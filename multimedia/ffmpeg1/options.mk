@@ -6,6 +6,7 @@ PKG_OPTIONS_VAR=		PKG_OPTIONS.ffmpeg
 PKG_SUPPORTED_OPTIONS=		faac lame ass libvpx theora vorbis xvid \
 			opencore-amr rtmp
 #PKG_SUPPORTED_OPTIONS+=	x264
+PKG_SUPPORTED_OPTIONS+=		tools
 PKG_SUGGESTED_OPTIONS=		lame ass libvpx theora vorbis xvid
 #PKG_OPTIONS_OPTIONAL_GROUPS=	aac-decoder
 #PKG_OPTIONS_GROUP.aac-decoder=	faac
@@ -152,4 +153,11 @@ CONFIGURE_ARGS+=	--enable-libvpx
 .include "../../multimedia/libvpx/buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--disable-libvpx
+.endif
+
+PLIST_VARS+=		tools
+.if !empty(PKG_OPTIONS:Mtools)
+BUILD_TARGET=		all alltools
+MAKE_JOBS_SAFE=		no
+PLIST.tools=		yes
 .endif

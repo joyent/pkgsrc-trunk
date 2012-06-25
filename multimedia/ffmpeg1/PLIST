@@ -2,6 +2,12 @@
 bin/ffmpeg1
 bin/ffprobe1
 bin/ffserver1
+${PLIST.tools}bin/cws2fws
+${PLIST.tools}bin/graph2dot
+${PLIST.tools}bin/pktdumper
+${PLIST.tools}bin/probetest
+${PLIST.tools}bin/qt-faststart
+${PLIST.tools}bin/trasher
 include/ffmpeg1/libavcodec/avcodec.h
 include/ffmpeg1/libavcodec/avfft.h
 include/ffmpeg1/libavcodec/dxva2.h
