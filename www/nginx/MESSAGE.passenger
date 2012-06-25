@@ -1,0 +1,25 @@
+===========================================================================
+$NetBSD$
+
+To enable Passenger in Nginx, add these lines to your nginx.conf file,
+under the 'http' block:
+
+  http {
+      ...
+      passenger_root ${PREFIX};
+      passenger_ruby ${RUBY};
+      ...
+  }
+
+To deploy a Rails/Rack application, set a 'server' block's root to the
+'public' directory of your application, and add the 'passenger_enabled'
+directive, like this:
+
+   server {
+      listen 80;
+      server_name www.yourhost.com;
+      root /path/to/application/public;
+      passenger_enabled on;
+   }
+
+===========================================================================
