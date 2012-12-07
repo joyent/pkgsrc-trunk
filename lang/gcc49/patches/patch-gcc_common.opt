@@ -1,0 +1,19 @@
+$NetBSD$
+
+Implement -fstrict-calling-conventions, from:
+
+  https://github.com/richlowe/gcc/commit/c245a538375d071928782a1564cd7e55d70bd4a0
+
+--- gcc/common.opt.orig	2015-02-26 02:43:52.000000000 +0000
++++ gcc/common.opt
+@@ -1991,6 +1991,10 @@ fstrict-aliasing
+ Common Report Var(flag_strict_aliasing) Optimization
+ Assume strict aliasing rules apply
+ 
++fstrict-calling-conventions
++Common Report Var(flag_strict_calling_conventions) Init(1)
++Use strict ABI calling conventions even for static functions
++
+ fstrict-overflow
+ Common Report Var(flag_strict_overflow)
+ Treat signed overflow as undefined

@@ -3,12 +3,22 @@ $NetBSD: patch-gcc_configure,v 1.2 2017/07/10 15:55:40 maya Exp $
 Add dl_iterate_phdr detection for FreeBSD and DragonFly.
 Detection for NetBSD and OpenBSD is added but commented out in case this
 error handling mechanism is activated for these platforms later.
+Fix detection of native TLS on SunOS, joyent/pkgsrc#264
 
 netbsd provides ssp in libc and doesn't build libssp, adjust ssp spec fragment
 for it too
 
 --- gcc/configure.orig	2014-05-28 11:37:50.000000000 +0000
 +++ gcc/configure
+@@ -23330,7 +23330,7 @@ $as_echo "#define TLS_SECTION_ASM_FLAG '
+       tls_first_major=2
+       tls_first_minor=14
+       tls_section_flag=T
+-      tls_as_opt="--fatal-warnings"
++      tls_as_opt="-32 --fatal-warnings"
+     fi
+     conftest_s="$conftest_s
+ foo:	.long	25
 @@ -27513,7 +27513,7 @@ fi
  	 # simply assert that glibc does provide this, which is true for all
  	 # realistically usable GNU/Hurd configurations.
