@@ -15,11 +15,28 @@
 #	a message noting the actions taken.  It is either YES or NO and
 #	defaults to  YES for PKG_DEVELOPERs, otherwise NO.
 #
+# PKGINSTALL_IGNORE_UIDGID
+#	Whether or not to treat the specific uid/gid provided by the package as
+#	simply advisory.  In the case where either the user/group already
+#	exists but the uid/gid does not match, or the uid/gid is already taken
+#	by a different user:
+#
+#	* "yes" will add the user/group if necessary with an unspecified uid/gid
+#	* "no" will not add the user/group and fail the install.
+#
+#	Default value: no
+#
+# PKGINSTALL_VERBOSE
+#	A list of scriptlets that will be verbose and output a message
+#	noting the actions taken.
+#
 _VARGROUPS+=		pkginstall
 _USER_VARS.pkginstall= \
 	FONTS_VERBOSE \
 	INFO_FILES_VERBOSE \
 	OCAML_FINDLIB_REGISTER_VERBOSE \
+	PKGINSTALL_IGNORE_UIDGID \
+	PKGINSTALL_VERBOSE \
 	PKG_CREATE_USERGROUP \
 	PKG_CONFIG PKG_CONFIG_PERMS \
 	PKG_RCD_SCRIPTS \
@@ -1083,6 +1100,25 @@ FILES_SUBST+=		PKG_UPDATE_FONTS_DB=${PKG_UPDATE_FONTS_DB:Q}
 FILES_SUBST+=		FONTS_VERBOSE=${FONTS_VERBOSE:Q}
 FILES_SUBST+=		INFO_FILES_VERBOSE=${INFO_FILES_VERBOSE:Q}
 FILES_SUBST+=		OCAML_FINDLIB_REGISTER_VERBOSE=${OCAML_FINDLIB_REGISTER_VERBOSE:Q}
+
+PKGINSTALL_IGNORE_UIDGID?=	no
+FILES_SUBST+=			PKGINSTALL_IGNORE_UIDGID=${PKGINSTALL_IGNORE_UIDGID:Q}
+
+.if defined(PKG_DEVELOPER) && ${PKG_DEVELOPER} != "no"
+PKGINSTALL_VERBOSE?=	all
+.else
+PKGINSTALL_VERBOSE?=	# empty
+.endif
+.if !empty(PKGINSTALL_VERBOSE:Mall) || !empty(PKGINSTALL_VERBOSE:Mfonts)
+FILES_SUBST+=		FONTS_VERBOSE=yes
+.else
+FILES_SUBST+=		FONTS_VERBOSE=no
+.endif
+.if !empty(PKGINSTALL_VERBOSE:Mall) || !empty(PKGINSTALL_VERBOSE:Minfo-files)
+FILES_SUBST+=		INFO_FILES_VERBOSE=yes
+.else
+FILES_SUBST+=		INFO_FILES_VERBOSE=no
+.endif
 
 # Substitute for various programs used in the DEINSTALL/INSTALL scripts and
 # in the rc.d scripts.
