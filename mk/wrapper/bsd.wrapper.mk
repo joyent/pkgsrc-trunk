@@ -208,6 +208,7 @@ _UNWRAP_SED=		-f ${_WRAP_UNTRANSFORM_SEDFILE}
 _WRAPPER_SH.${_wrappee_}=		${WRAPPER_SRCDIR}/wrapper.sh
 _WRAP_ENV.${_wrappee_}?=		${_WRAP_ENV}
 _WRAP_EXTRA_ARGS.${_wrappee_}?=		# empty
+_WRAP_EXTRA_LIBS.${_wrappee_}?=		# empty
 _WRAP_ARG_PP.${_wrappee_}?=		${_WRAP_ARG_PP}
 _WRAP_ARG_PP_MAIN.${_wrappee_}?=	${_WRAP_ARG_PP_MAIN}
 _WRAP_ARG_SOURCE.${_wrappee_}?=		${_WRAP_ARG_SOURCE}
@@ -400,6 +401,7 @@ _WRAP_SUBST_SED.${_wrappee_}=						\
 	-e "s|@_WRAP_EMPTY_FILE@|${_WRAP_EMPTY_FILEQ}|g"		\
 	-e "s|@_WRAP_ENV@|${_WRAP_ENV.${_wrappee_}:Q}|g"		\
 	-e "s|@_WRAP_EXTRA_ARGS@|${_WRAP_EXTRA_ARGS.${_wrappee_}:Q}|g"	\
+	-e "s|@_WRAP_EXTRA_LIBS@|${_WRAP_EXTRA_LIBS.${_wrappee_}:Q}|g"	\
 	-e "s|@_WRAP_ARG_PP@|${_WRAP_ARG_PP.${_wrappee_}:Q}|g"		\
 	-e "s|@_WRAP_ARG_PP_MAIN@|${_WRAP_ARG_PP_MAIN.${_wrappee_}:Q}|g" \
 	-e "s|@_WRAP_ARG_SOURCE@|${_WRAP_ARG_SOURCE.${_wrappee_}:Q}|g"	\

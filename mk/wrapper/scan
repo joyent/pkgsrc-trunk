@@ -31,6 +31,13 @@
 # Optional argument processing.
 for arg do
 	case $arg in
-	*)	;;
+	# Append extra libs to output objects, but not when using 'ld -r' or a
+	# compiler in pre-processor mode.
+	-o)			append_extra_libs=yes ;;
+	-r)			rflag=yes ;;
+	-E)			preproc=yes ;;
+	-M*)			preproc=yes ;;
+	c-header|c++-header)	preproc=yes ;;
+	*)			;;
 	esac
 done
