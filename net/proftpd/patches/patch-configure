@@ -1,0 +1,15 @@
+$NetBSD$
+
+Help linker find -lperconaserverclient for percona
+
+--- configure.orig	2017-04-10 02:31:02.000000000 +0000
++++ configure
+@@ -40004,7 +40004,7 @@ if test x"$pr_use_mysql" = xyes; then
+   LDFLAGS="$LDFLAGS $ac_build_addl_libdirs"
+ 
+     LIBS=`echo "$LIBS" | sed -e 's/-lsupp//g'`;
+-  LIBS="$LIBS -lm -lmysqlclient -lz"
++  LIBS="$LIBS $(mysql_config --libs)"
+ 
+   { echo "$as_me:$LINENO: checking for mysql_get_option" >&5
+ echo $ECHO_N "checking for mysql_get_option... $ECHO_C" >&6; }

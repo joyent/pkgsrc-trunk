@@ -33,7 +33,7 @@ SUBST_FILES.sh+=	blib/script/pt-mysql-summary
 SUBST_FILES.sh+=	blib/script/pt-summary
 SUBST_SED.sh+=		-e 's|^\#!.*|\#!${TOOLS_PATH.sh}|'
 
-DEPENDS+=	p5-DBD-mysql-[0-9]*:../../databases/p5-DBD-mysql
+DEPENDS+=	p5-DBD-{mysql,percona}*-[0-9]*:../../databases/p5-DBD-mysql
 #DEPENDS+=	{perl>=5.7.3,p5-Time-HiRes-[0-9]*}:../../time/p5-Time-HiRes
 
 PERL5_PACKLIST=	auto/percona-toolkit/.packlist
