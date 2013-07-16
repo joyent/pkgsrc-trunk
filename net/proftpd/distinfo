@@ -6,6 +6,7 @@ SHA512 (proftpd-1.3.6c.tar.gz) = 9b10e603b26d527b594682a4905e70dc0a8361372ed80a8
 Size (proftpd-1.3.6c.tar.gz) = 20271908 bytes
 SHA1 (patch-Make.rules.in) = 4689fcb4aff5c9b3a2e47a43b93e76101d54e812
 SHA1 (patch-Makefile.in) = 332dcd9d773770c10d876dc9da1dc7f6b1c15421
+SHA1 (patch-configure) = 999ffe0d8826340cf95cb425378616a39859b3df
 SHA1 (patch-configure.in) = ed8e190a89cbfc3276d9e77f0bbb624f6d19f816
 SHA1 (patch-contrib_mod__load_configure.in) = 0a72c47bf813ffd2ca8f8188a2d8596ec4d60200
 SHA1 (patch-contrib_mod__load_mod__load.c) = c51abd46ffc950b5baec615a0fdaf92c993414e3
