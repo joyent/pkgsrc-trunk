@@ -67,7 +67,9 @@ LICENSE=		squeezeboxserver-license
 # Database server
 MYSQL_VERSIONS_ACCEPTED=	55
 .include "../../mk/mysql.buildlink3.mk"
-.include "${MYSQL_PKGSRCDIR:S/-client$/-server/}/buildlink3.mk"
+
+# Make sure p5-DBD-{mysql,percona}* matches the mysql.bl3 above
+BUILD_DEPENDS+=	p5-DBD-${MYSQL_PKG_PREFIX}-[0-9]*:../../databases/p5-DBD-mysql
 
 # Audio converters
 DEPENDS+=	wavpack-[0-9]*:../../audio/wavpack
@@ -79,7 +81,7 @@ DEPENDS+=	faad2-[0-9]*:../../audio/faad2
 DEPENDS+=	p5-Audio-Scan>=0.84:../../audio/p5-Audio-Scan
 DEPENDS+=	p5-Class-XSAccessor>=1.05:../../devel/p5-Class-XSAccessor
 #DEPENDS+=	{perl>=5.10.0,p5-Compress-Raw-Zlib-[0-9]*}:../../devel/p5-Compress-Raw-Zlib
-DEPENDS+=	p5-DBD-mysql>=3.0002:../../databases/p5-DBD-mysql
+DEPENDS+=	p5-DBD-{mysql,percona}*-[0-9]*:../../databases/p5-DBD-mysql
 DEPENDS+=	p5-DBI>=1.608:../../databases/p5-DBI
 DEPENDS+=	p5-Digest-SHA1-[0-9]*:../../security/p5-Digest-SHA1
 DEPENDS+=	p5-EV>=3.8:../../devel/p5-EV

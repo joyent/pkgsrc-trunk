@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.49 2019/09/02 13:19:47 adam Exp $
 
 DISTNAME=	MySQL-python-1.2.5
-PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/MySQL-python/mysqldb/}
+PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/MySQL-python/${MYSQL_PKG_PREFIX}db/}
 CATEGORIES=	databases python
 MASTER_SITES=	${MASTER_SITE_PYPI:=M/MySQL-python/}
 EXTRACT_SUFX=	.zip
