@@ -43,6 +43,10 @@ CONFIGURE_ARGS+=	--with-lib-path=${LIB_PATH}
 CONFIGURE_ARGS+=	--program-prefix=g
 BINUTILS_PREFIX=	${PREFIX}/${MACHINE_GNU_PLATFORM}
 
+# Joyent changes to avoid pulling in unwanted dependencies.
+CONFIGURE_ARGS+=		--without-zlib
+OVERRIDE_DIRDEPTH.depcomp=	-1
+
 PLIST_SRC=	${PKGDIR}/PLIST.common
 PLIST_SRC+=	${WRKDIR}/PLIST_DYNAMIC
 
