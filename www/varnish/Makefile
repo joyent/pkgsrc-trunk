@@ -62,6 +62,11 @@ CONFIGURE_ENV+=	VCC_CC="gcc ${_COMPILER_ABI_FLAG.${ABI}} -fpic -shared -o %o %s"
 .  endif
 .endif
 
+.include "../../mk/compiler.mk"
+.if ${PKGSRC_COMPILER} == "gcc"
+DEPENDS+=	${_GCC_DEPENDENCY}
+.endif
+
 .include "../../mk/curses.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/readline.buildlink3.mk"
