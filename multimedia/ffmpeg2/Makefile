@@ -49,6 +49,9 @@ post-install:
 
 .include "../../mk/compiler.mk"
 
+# XXX: Incompatible with our disabling -fomit-frame-pointer
+CONFIGURE_ARGS+=	--disable-asm
+
 # disable asm on i386 for non-gcc and gcc < 4.2
 .if ${MACHINE_ARCH} == "i386"
 .  if !empty(MACHINE_PLATFORM:MDarwin-*-i386) \
