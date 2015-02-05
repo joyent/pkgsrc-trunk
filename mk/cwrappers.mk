@@ -82,6 +82,9 @@ generate-cwrappers:
 .  for cmd in ${CWRAPPERS_PREPEND.${wrappee}:U}
 	${RUN}echo prepend=${cmd:Q} >> ${CWRAPPERS_CONFIG_DIR}/${CWRAPPERS_CONFIG.${wrappee}}
 .  endfor
+.  for cmd in ${CWRAPPERS_LDADD.${wrappee}:U}
+	${RUN}echo ldadd=${cmd:Q} >> ${CWRAPPERS_CONFIG_DIR}/${CWRAPPERS_CONFIG.${wrappee}}
+.  endfor
 .  for cmd in ${_CWRAPPERS_UNWRAP}
 	${RUN}echo unwrap=${cmd:Q} >> ${CWRAPPERS_CONFIG_DIR}/${CWRAPPERS_CONFIG.${wrappee}}
 .  endfor

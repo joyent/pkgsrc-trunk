@@ -43,6 +43,8 @@ extern char *exec_path;
 extern char *exec_name;
 extern char *wrksrc;
 extern int debug;
+extern int rflag;
+extern int linking;
 
 enum operation_mode {
 	mode_unknown,
@@ -69,7 +71,9 @@ extern struct argument *prepend_after;
 char	*concat(const char *, const char *);
 char	*concat2(const char *, const char *, size_t);
 void	arglist_from_argc(struct arglist *, int, char **);
+void	arglist_register_globals(struct arglist *);
 void	arglist_apply_config(struct arglist *);
+void	arglist_apply_ldadd(struct arglist *);
 int	command_exec(struct arglist *, int, char **);
 size_t	wrapper_hash(const char *);
 size_t	wrapper_hash2(const char *, size_t);
@@ -99,6 +103,7 @@ char	*xstrndup(const char *, size_t);
 void	operation_mode_as(void);
 
 void	operation_mode_cc(struct arglist *);
+void	ldadd_cc(struct arglist *);
 void	normalise_cc(struct arglist *);
 void	cleanup_cc(struct arglist *args);
 void	transform_cc(struct arglist *args);
@@ -111,6 +116,7 @@ void	register_generic_transform(const char *);
 void	generic_transform_cc(struct arglist *);
 
 void	operation_mode_ld(struct arglist *);
+void	ldadd_ld(struct arglist *);
 void	normalise_ld(struct arglist *);
 void	generic_transform_ld(struct arglist *);
 
