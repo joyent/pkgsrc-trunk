@@ -1,0 +1,12 @@
+$NetBSD$
+
+--- contrib/postgres_fdw/Makefile.orig	2014-12-16 01:07:34.000000000 +0000
++++ contrib/postgres_fdw/Makefile
+@@ -19,7 +19,6 @@ PG_CONFIG = pg_config
+ PGXS := $(shell $(PG_CONFIG) --pgxs)
+ include $(PGXS)
+ else
+-SHLIB_PREREQS = submake-libpq
+ subdir = contrib/postgres_fdw
+ top_builddir = ../..
+ include $(top_builddir)/src/Makefile.global
