@@ -117,7 +117,7 @@ pbulk-index-item:
 	@echo "USE_DESTDIR="${_USE_DESTDIR:Q}
 	@echo "BOOTSTRAP_PKG="${BOOTSTRAP_PKG}
 	@echo "USERGROUP_PHASE="${USERGROUP_PHASE:Q}
-	@echo "SCAN_DEPENDS="${_PBULK_SCAN_DEPENDS:O:u:Q}
+	@echo "SCAN_DEPENDS="${_PBULK_SCAN_DEPENDS:N${PKGBUILD_BASEDIR:U/nonexistent}/*:O:u:Q}
 .if defined(_PBULK_MULTI_NEEDED)
 	@printf "MULTI_VERSION="
 .for _t in ${_PBULK_MULTI_NEEDED}
