@@ -37,7 +37,13 @@ for client in ${scan_clients}; do
 		;;
 	esac
 	if [ -z "$path" ]; then
-		ssh $port $client "${pscan} -c ${master_port_scan} -M ${make} ${extra_pscan_args} ${pkgsrc}" &
+		if [ -n "${chroot_create}" -a "${chroot_dir}" ]; then
+			ssh $port $client "for dir in ${chroot_dir}-scan*; do
+				PBULK_CONF=${PBULK_CONF} chroot \${dir} @SH@ -c \"${pscan} -c ${master_port_scan} -M ${make} ${extra_pscan_args} ${pkgsrc}\" &
+			done" &
+		else
+			ssh $port $client "PBULK_CONF=${PBULK_CONF} ${pscan} -c ${master_port_scan} -M ${make} ${extra_pscan_args} ${pkgsrc}" &
+		fi
 	else
 		chroot "$path" ${pscan} -c ${master_port_scan} -M ${make} ${extra_pscan_args} ${pkgsrc} &
 	fi
