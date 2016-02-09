@@ -190,6 +190,10 @@ if [ ${ret} -eq 0 ]; then
 
 	echo "COMPILER=${compiler}" >> ${loc}/status
 	echo "PLATFORM=${opsys} ${opver}/${platform}" >> ${loc}/status
+
+	if [ -s ${pkgsrc}/README.push ]; then
+		echo "DESCRIPTION=`head -1 ${pkgsrc}/README.push`" >> ${loc}/status
+	fi
 fi
 
 ${pkg_up_to_date_script} ${pkgname} ${dependencies} && exit 0
