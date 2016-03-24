@@ -29,6 +29,10 @@ LDFLAGS+=		-L${WRKSRC}
 # $RANDOM usage there is fine
 CHECK_PORTABILITY_SKIP=	Tools/faqwiz/move-faqwiz.sh
 
+# Harmless PKG_CONFIG_LIBDIR references to BUILDLINK_DIR
+CHECK_WRKREF_SKIP+=	lib/python2.7/_sysconfigdata.py
+CHECK_WRKREF_SKIP+=	lib/python2.7/config/Makefile
+
 PTHREAD_OPTS+=		require
 PTHREAD_AUTO_VARS=	yes
 .include "../../mk/pthread.buildlink3.mk"
