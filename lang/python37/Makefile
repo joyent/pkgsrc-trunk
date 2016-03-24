@@ -160,6 +160,10 @@ SUBST_SED.findlib+=	-e "s!\('-Wl,-t'\)!'${COMPILER_RPATH_FLAG}${PREFIX}/lib', '-
 
 CHECK_INTERPRETER_SKIP=	lib/python${PY_VER_SUFFIX}/venv/scripts/posix/pydoc
 
+# Harmless PKG_CONFIG_LIBDIR references to BUILDLINK_DIR
+CHECK_WRKREF_SKIP+=	lib/python3.4/_sysconfigdata.py
+CHECK_WRKREF_SKIP+=	lib/python3.4/config-3.4/Makefile
+
 # Avoid error: Cannot generate ./Include/opcode.h, python not found !
 post-configure:
 	touch ${WRKSRC}/Include/opcode.h
