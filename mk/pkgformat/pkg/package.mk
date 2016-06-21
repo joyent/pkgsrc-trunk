@@ -16,6 +16,8 @@ PKGFILE?=		${PKGREPOSITORY}/${FILEBASE}-${PKGVERSION}${PKG_SUFX}
 STAGE_PKGFILE?=		${WRKDIR}/.packages/${FILEBASE}-${PKGVERSION}${PKG_SUFX}
 PKGREPOSITORY?=		${PACKAGES}/${PKGREPOSITORYSUBDIR}
 PKGREPOSITORYSUBDIR?=	All
+PKGINFOREPOSITORY?=	${PACKAGES}/pkginfo
+PKGINFOFILE?=		${PKGINFOREPOSITORY}/${FILEBASE}-${PKGVERSION}.pkginfo
 
 ######################################################################
 ### package-create (PRIVATE, pkgsrc/mk/package/package.mk)
@@ -23,7 +25,7 @@ PKGREPOSITORYSUBDIR?=	All
 ### package-create creates the binary package.
 ###
 .PHONY: package-create
-package-create: ${PKGFILE}
+package-create: ${PKGINFOFILE}
 
 ######################################################################
 ### stage-package-create (PRIVATE, pkgsrc/mk/package/package.mk)
@@ -67,6 +69,10 @@ ${PKGFILE}: ${STAGE_PKGFILE}
 	${RUN} ${MKDIR} ${.TARGET:H};					\
 	${LN} -f ${STAGE_PKGFILE} ${PKGFILE} 2>/dev/null ||		\
 		${CP} -pf ${STAGE_PKGFILE} ${PKGFILE}
+
+${PKGINFOFILE}: ${PKGFILE}
+	${RUN} ${MKDIR} ${.TARGET:H};					\
+	${PKG_INFO} -X ${PKGFILE} >${.TARGET}
 .endif
 
 ######################################################################
