@@ -18,7 +18,7 @@ CCLD=		$(CC)
 LIBS=		-linstall -lnetpgpverify -larchive -lbz2 -lz -lfetch @LIBS@
 
 .if !empty(SSL_SUPPORT)
-LIBS+=		-lssl -lcrypto
+LIBS+=		-lssl -lcrypto -lssp
 .endif
 
 CPPFLAGS=	@CPPFLAGS@ -I. -I$(srcdir) -I../lib -DBINDIR=\"$(sbindir)\"
