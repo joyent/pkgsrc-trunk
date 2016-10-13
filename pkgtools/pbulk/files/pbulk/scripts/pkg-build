@@ -189,7 +189,11 @@ if [ ${ret} -eq 0 ]; then
 	compiler=`cd ${pkgsrc}/pkgtools/pkg_install && ${make} show-var VARNAME=PKGSRC_COMPILER`
 
 	echo "COMPILER=${compiler}" >> ${loc}/status
-	echo "PLATFORM=${opsys} ${opver}/${platform}" >> ${loc}/status
+	if [ -n "${report_platform}" ]; then
+		echo "PLATFORM=${report_platform}" >> ${loc}/status
+	else
+		echo "PLATFORM=${opsys} ${opver}/${platform}" >> ${loc}/status
+	fi
 
 	if [ -s ${pkgsrc}/README.push ]; then
 		echo "DESCRIPTION=`head -1 ${pkgsrc}/README.push`" >> ${loc}/status
