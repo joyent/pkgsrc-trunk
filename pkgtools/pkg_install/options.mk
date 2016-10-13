@@ -21,8 +21,20 @@ MAKE_ENV+=		FETCH_WITH_INET6=no
 .if !empty(PKG_OPTIONS:Mopenssl)
 CONFIGURE_ARGS+=	--with-ssl
 MAKE_ENV+=		FETCH_WITH_OPENSSL=yes
-LDFLAGS+=		-lssl -lcrypto
+CONFIGURE_ARGS+=	--with-ssl
 
+# Ensure that openssl is linked statically to avoid bootstrap issues.
+pre-configure: static-openssl
+.PHONY: static-openssl
+static-openssl:
+.for lib in crypto ssl
+.  for ext in dylib so
+	${RM} -f ${BUILDLINK_DIR:U/nonexistant}/lib/lib${lib}*.${ext}*
+.  endfor
+.endfor
+	${CP} `${CC} --print-file-name=libssp.a` ${WRKSRC}/lib || ${TRUE}
+
+BUILDLINK_DEPMETHOD.openssl=	build
 .include "../../security/openssl/buildlink3.mk"
 .else
 LIBARCHIVE_CONFIGURE_ARGS+=	--without-openssl

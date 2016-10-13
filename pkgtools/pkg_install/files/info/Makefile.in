@@ -24,7 +24,7 @@ LDFLAGS=	@LDFLAGS@ -L../lib
 .if empty(BOOTSTRAP)
 LIBS=		-linstall -lnetpgpverify -larchive -lbz2 -lz -lfetch @LIBS@
 .if !empty(SSL_SUPPORT)
-LIBS+=		-lssl -lcrypto
+LIBS+=		-lssl -lcrypto -lssp
 .endif
 .else
 LIBS=		-linstall @LIBS@

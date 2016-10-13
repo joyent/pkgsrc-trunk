@@ -30,7 +30,7 @@ OBJS=		main.o perform.o pl.o util.o build.o
 .if empty(BOOTSTRAP)
 LIBS=		-linstall -lnetpgpverify -larchive -lbz2 -lz -lfetch @LIBS@
 .if !empty(SSL_SUPPORT)
-LIBS+=		-lssl -lcrypto
+LIBS+=		-lssl -lcrypto -lssp
 .endif
 .else
 LIBS=		-linstall ${STATIC_LIBARCHIVE} @LIBS@
