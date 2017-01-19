@@ -82,7 +82,7 @@ else
 	rm -rf "${bulklog}"/* || true
 fi
 
-mkdir -p "${bulklog}" "${loc}"
+mkdir -p "${bulklog}" "${bulklog}/cache" "${loc}"
 
 @PREFIX@/libexec/pbulk/client-clean
 
