@@ -9,7 +9,6 @@ BUILDLINK_API_DEPENDS.libtorrent+=	libtorrent>=0.13.6
 BUILDLINK_ABI_DEPENDS.libtorrent+=	libtorrent>=0.13.6nb1
 BUILDLINK_PKGSRCDIR.libtorrent?=	../../net/libtorrent
 
-.include "../../devel/libsigc++/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
 .endif # LIBTORRENT_BUILDLINK3_MK
 

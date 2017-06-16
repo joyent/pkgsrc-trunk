@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.57 2017/05/03 08:38:44 jperkin Exp $
 
 DISTNAME=	libtorrent-0.13.6
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	net
 MASTER_SITES=	http://rtorrent.net/downloads/
 
@@ -36,10 +36,14 @@ CONFIGURE_ARGS+= --enable-aligned
 CONFIGURE_ARGS+=	--with-kqueue
 .endif
 
+.if ${OPSYS} == "SunOS"
+CONFIGURE_ARGS+=	--enable-interrupt-socket
+.endif
+
 .include "../../mk/compiler.mk"
 
-# See http://libtorrent.rakshasa.no/ticket/96
-.if !empty(CC_VERSION:Mgcc-[45].*)
+ See http://libtorrent.rakshasa.no/ticket/96
+.if !empty(CC_VERSION:Mgcc-4.0.*)
 CXXFLAGS+=	-fpermissive -fno-strength-reduce -fno-thread-jumps \
 		-fno-inline -fforce-addr
 .endif
@@ -59,5 +63,4 @@ CONFIGURE_ENV+=	OPENSSL_LIBS=${OPENSSL_LIBS:Q}
 .endif
 
 .include "../../devel/zlib/buildlink3.mk"
-.include "../../devel/libsigc++/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
