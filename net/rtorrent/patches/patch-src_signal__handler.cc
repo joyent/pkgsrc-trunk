@@ -1,6 +1,4 @@
-$NetBSD: patch-src_signal__handler.cc,v 1.3 2013/09/18 16:33:09 joerg Exp $
-
---- src/signal_handler.cc.orig	2012-03-29 13:06:11.000000000 +0000
+--- src/signal_handler.cc
 +++ src/signal_handler.cc
 @@ -38,6 +38,7 @@
  
@@ -9,4 +7,22 @@ $NetBSD: patch-src_signal__handler.cc,v 1.3 2013/09/18 16:33:09 joerg Exp $
 +#include <string>
  #include "rak/error_number.h"
  #include "signal_handler.h"
- 
+
+@@ -74,8 +74,15 @@ SignalHandler::set_handler(unsigned int signum, slot_void slot) {
+   if (!slot)
+     throw std::logic_error("SignalHandler::set_handler(...) received an empty slot.");
+
+-  signal(signum, &SignalHandler::caught);
+-  m_handlers[signum] = slot;
++  struct sigaction sa;
++  sigemptyset(&sa.sa_mask);
++  sa.sa_flags = SA_RESTART;
++  sa.sa_handler = &SignalHandler::caught;
++
++  if (sigaction(signum, &sa, NULL) == -1)
++    throw std::logic_error("Could not set sigaction: " + std::string(rak::error_number::current().c_str()));
++  else
++    m_handlers[signum] = slot;
+ }
+
+ void
