@@ -7,3 +7,4 @@ Size (libtorrent-0.13.6.tar.gz) = 781253 bytes
 SHA1 (patch-src_Makefile.am) = e69dd1da8a9736fa45af71cfc167c8b89a7fe648
 SHA1 (patch-src_Makefile.in) = 522fbdb8da913d351fd86aface86aa2d1d86b5cc
 SHA1 (patch-src_data_chunk__list.cpp) = 4b09b093ca5f2abdb7e4d3c1c0bdb9fdfcd4f981
+SHA1 (patch-src_net_listen.cc) = 5e28fcc5fd5494f2b1e0a46f8af8a95f3948e983
