@@ -165,6 +165,7 @@ share/doc/rancid/lgnotes.html
 share/doc/rancid/rancid-cvspurge
 share/doc/rancid/rancid.conf.sample
 share/doc/rancid/rtrfilter
+share/doc/rancid/rancid.types.conf
 share/examples/rancid/lg.conf.sample
 share/examples/rancid/rancid.conf.sample
 share/examples/rancid/rancid.types.base

@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.21 2016/12/23 19:31:26 pettai Exp $
 #
 
-DISTNAME=		rancid-3.6.1
+DISTNAME=		rancid-3.6.2
 CATEGORIES=		net
 MASTER_SITES=		ftp://ftp.shrubbery.net/pub/rancid/
 
