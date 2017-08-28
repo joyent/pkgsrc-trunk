@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.61 2017/07/11 19:41:20 joerg Exp $
 #
 
-DISTNAME=	groonga-6.0.8
+DISTNAME=	groonga-7.0.4
 CATEGORIES=	textproc
 MASTER_SITES=	http://packages.groonga.org/source/groonga/
 
@@ -31,12 +31,14 @@ PKG_SYSCONFSUBDIR=	${PKGBASE}
 
 BUILD_DEFS+=		VARBASE
 
-INSTALL_DIRS=		${BUILD_DIRS} vendor/onigmo-source
-INSTALL_MAKE_FLAGS+=	sysconfdir=${PREFIX}/share/examples
+EXAMPLE_CONF_DIR=	${PREFIX}/share/examples/groonga
 
-CONF_FILES+=		share/examples/${PKGBASE}/groonga.conf \
+INSTALL_DIRS=		${BUILD_DIRS} vendor/onigmo-source
+INSTALL_MAKE_FLAGS+=	sysconfdir=${PREFIX}/share/examples/
+
+CONF_FILES+=		${EXAMPLE_CONF_DIR}/groonga.conf \
 			${PKG_SYSCONFDIR}/groonga.conf
-CONF_FILES+=		share/examples/groonga/synonyms.tsv \
+CONF_FILES+=		${EXAMPLE_CONF_DIR}/synonyms.tsv \
 			${PKG_SYSCONFDIR}/synonyms.tsv
 
 OWN_DIRS+=		${VARBASE}/log/${PKGBASE}

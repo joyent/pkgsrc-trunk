@@ -66,34 +66,32 @@ OWN_DIRS+=	${VARBASE}/run/${PKGBASE}
 OWN_DIRS+=	${VARBASE}/log/${PKGBASE}/httpd
 BUILD_DEFS+=	VARBASE
 
-CONF_FILES+=	share/examples/${PKGBASE}/httpd/fastcgi.conf \
+CONF_FILES+=	${EXAMPLE_CONF_DIR}/httpd/fastcgi.conf \
 		${PKG_SYSCONFDIR}/httpd/fastcgi.conf
-CONF_FILES+=	share/examples/${PKGBASE}/httpd/fastcgi_params \
+CONF_FILES+=	${EXAMPLE_CONF_DIR}/httpd/fastcgi_params \
 		${PKG_SYSCONFDIR}/httpd/fastcgi_params
-CONF_FILES+=	share/examples/${PKGBASE}/httpd/groonga-httpd.conf \
+CONF_FILES+=	${EXAMPLE_CONF_DIR}/httpd/groonga-httpd.conf \
 		${PKG_SYSCONFDIR}/httpd/groonga-httpd.conf
-CONF_FILES+=	share/examples/${PKGBASE}/httpd/html/50x.html \
+CONF_FILES+=	${EXAMPLE_CONF_DIR}/httpd/html/50x.html \
 		${PKG_SYSCONFDIR}/httpd/html/50x.html
-CONF_FILES+=	share/examples/${PKGBASE}/httpd/html/index.html \
+CONF_FILES+=	${EXAMPLE_CONF_DIR}/httpd/html/index.html \
 		${PKG_SYSCONFDIR}/httpd/html/index.html
-CONF_FILES+=	share/examples/${PKGBASE}/httpd/koi-utf \
+CONF_FILES+=	${EXAMPLE_CONF_DIR}/httpd/koi-utf \
 		${PKG_SYSCONFDIR}/httpd/koi-utf
-CONF_FILES+=	share/examples/${PKGBASE}/httpd/koi-win \
+CONF_FILES+=	${EXAMPLE_CONF_DIR}/httpd/koi-win \
 		${PKG_SYSCONFDIR}/httpd/koi-win
-CONF_FILES+=	share/examples/${PKGBASE}/httpd/mime.types \
+CONF_FILES+=	${EXAMPLE_CONF_DIR}/httpd/mime.types \
 		${PKG_SYSCONFDIR}/httpd/mime.types
-CONF_FILES+=	share/examples/${PKGBASE}/httpd/nginx.conf \
-		${PKG_SYSCONFDIR}/httpd/nginx.conf
-CONF_FILES+=	share/examples/${PKGBASE}/httpd/scgi_params \
+CONF_FILES+=	${EXAMPLE_CONF_DIR}/httpd/scgi_params \
 		${PKG_SYSCONFDIR}/httpd/scgi_params
-CONF_FILES+=	share/examples/${PKGBASE}/httpd/uwsgi_params \
+CONF_FILES+=	${EXAMPLE_CONF_DIR}/httpd/uwsgi_params \
 		${PKG_SYSCONFDIR}/httpd/uwsgi_params
-CONF_FILES+=	share/examples/${PKGBASE}/httpd/win-utf \
+CONF_FILES+=	${EXAMPLE_CONF_DIR}/httpd/win-utf \
 		${PKG_SYSCONFDIR}/httpd/win-utf
 
 SUBST_CLASSES+=		confpath
 SUBST_STAGE.confpath=	pre-build
-SUBST_FILES.confpath=	vendor/nginx-1.11.3/objs/Makefile
+SUBST_FILES.confpath=	vendor/nginx-1.13.1/objs/Makefile
 SUBST_SED.confpath=	-e 's,\$$(DESTDIR)${PKG_SYSCONFDIR}/httpd,\$$(DESTDIR)${PREFIX}/share/examples/${PKGBASE}/httpd,g'
 
 .else

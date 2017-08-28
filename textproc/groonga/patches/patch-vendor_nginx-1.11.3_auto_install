@@ -2,9 +2,9 @@ $NetBSD: patch-vendor_nginx-1.11.3_auto_install,v 1.1 2016/09/11 16:07:55 taca E
 
 Don't create "*.default".
 
---- vendor/nginx-1.11.3/auto/install.orig	2016-07-27 04:07:48.000000000 +0000
-+++ vendor/nginx-1.11.3/auto/install
-@@ -123,30 +123,21 @@ install:	build $NGX_INSTALL_PERL_MODULES
+--- vendor/nginx-1.13.1/auto/install.orig	2017-06-23 17:48:52.000000000 +0200
++++ vendor/nginx-1.13.1/auto/install	2017-07-27 10:37:44.063303480 +0200
+@@ -123,30 +123,21 @@
  
  	test -f '\$(DESTDIR)$NGX_CONF_PREFIX/mime.types' \\
  		|| cp conf/mime.types '\$(DESTDIR)$NGX_CONF_PREFIX'
@@ -30,9 +30,9 @@ Don't create "*.default".
 -		'\$(DESTDIR)$NGX_CONF_PREFIX/scgi_params.default'
  
  	test -f '\$(DESTDIR)$NGX_CONF_PATH' \\
--		|| cp conf/nginx.conf '\$(DESTDIR)$NGX_CONF_PATH'
+ 		|| cp conf/nginx.conf '\$(DESTDIR)$NGX_CONF_PATH'
 -	cp conf/nginx.conf '\$(DESTDIR)$NGX_CONF_PREFIX/nginx.conf.default'
-+		|| cp conf/nginx.conf '\$(DESTDIR)$NGX_CONF_PREFIX'
  
  	test -d '\$(DESTDIR)`dirname "$NGX_PID_PATH"`' \\
  		|| mkdir -p '\$(DESTDIR)`dirname "$NGX_PID_PATH"`'
+
