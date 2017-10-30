@@ -15,8 +15,8 @@ pkgbase := ImageMagick6
 .if !empty(PKG_BUILD_OPTIONS.ImageMagick6:Mdjvu)
 .include "../../graphics/djvulibre-lib/buildlink3.mk"
 .endif
-.if !empty(PKG_BUILD_OPTIONS.ImageMagick6:Mjasper)
-.include "../../graphics/jasper/buildlink3.mk"
+.if !empty(PKG_BUILD_OPTIONS.ImageMagick6:Mjp2)
+.include "../../graphics/openjpeg/buildlink3.mk"
 .endif
 .if !empty(PKG_BUILD_OPTIONS.ImageMagick6:Mopenexr)
 .include "../../graphics/openexr/buildlink3.mk"

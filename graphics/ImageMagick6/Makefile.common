@@ -4,7 +4,7 @@
 # since they disappear immediately when new releases happen.
 
 IM_MAJOR_VER=		6.9.9
-IM_MINOR_VER=		12
+IM_MINOR_VER=		20
 IM_MAJOR_LIB_VER=	6
 
 .if (${IM_MINOR_VER} != NONE)
