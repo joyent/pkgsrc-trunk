@@ -1,13 +1,10 @@
-$NetBSD: patch-ak,v 1.3 2004/12/03 12:15:54 adam Exp $
+--- src/eggdrop.h.orig      2017-08-13 21:07:00.000000000 +0000
++++ src/eggdrop.h   2017-11-05 23:48:54.794491497 +0000
+@@ -62,7 +62,6 @@
 
---- src/eggdrop.h.orig	2004-07-25 11:17:34.000000000 +0000
-+++ src/eggdrop.h
-@@ -75,7 +75,7 @@
- 
- 
+
  /* Language stuff */
 -#define LANGDIR  "./language" /* language file directory                   */
-+#define LANGDIR  __PREFIX__ "/share/eggdrop/language" /* language file directory                   */
  #define BASELANG "english"    /* language which always gets loaded before
                                   all other languages. You do not want to
                                   change this.                              */
