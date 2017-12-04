@@ -8,7 +8,7 @@ CATEGORIES=             databases
 MASTER_SITES=           ${MASTER_SITE_GITHUB:=2ndQuadrant/}
 DIST_SUBDIR=            ${GITHUB_PROJECT}
 
-MAINTAINER=             it@virtua.ch
+MAINTAINER=             pkgsrc-users@NetBSD.org
 HOMEPAGE=               https://github.com/2ndQuadrant/repmgr/
 COMMENT=                The Most Popular Replication Manager for PostgreSQL (Postgres)
 LICENSE=                gnu-gpl-v3
