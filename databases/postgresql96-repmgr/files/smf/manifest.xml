@@ -19,9 +19,9 @@
     <exec_method type="method" name="start" exec="@PREFIX@/bin/repmgrd -f %{config_file} -p %{data}/repmgrd.pid -d" timeout_seconds="300" />
     <exec_method type="method" name="stop" exec=":kill" timeout_seconds="60"/>
     <exec_method type="method" name="refresh" exec=":kill -HUP" timeout_seconds="60"/>
-    <property_group name="config" type="application">
+    <property_group name="application" type="application">
       <propval name="data" type="astring" value="@PGHOME@/data" />
-      <propval name="config_file" type="astring" value="@PKG_SYSCONFDIR@/postgresql/repmgr.conf" />
+      <propval name="config_file" type="astring" value="@PKG_SYSCONFDIR@/repmgr.conf" />
     </property_group>
     <template>
       <common_name>
