@@ -27,6 +27,7 @@
       <common_name>
         <loctext xml:lang="C">Replication Manager for PostgreSQL clusters</loctext>
       </common_name>
+      <documentation>
         <doc_link name="repmgr.org" uri="http://repmgr.org" />
       </documentation>
     </template>
