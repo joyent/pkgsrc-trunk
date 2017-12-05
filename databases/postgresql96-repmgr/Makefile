@@ -15,6 +15,17 @@ LICENSE=                gnu-gpl-v3
 
 DEPENDS+=               postgresql${PGSQL_VERSION}-client>=0:../../databases/postgresql${PGSQL_VERSION}-client
 
+# PGUSER	username of the database administrator
+# PGGROUP	group of the database administrator
+# PGHOME	home directory of the database administrator and location of
+#		the databases
+FILES_SUBST+=		PGUSER=${PGUSER}
+FILES_SUBST+=		PGGROUP=${PGGROUP}
+FILES_SUBST+=		PGHOME=${PGHOME}
+BUILD_DEFS+=		PGHOME VARBASE
+
+SMF_NAME=			postgresql-repmgr
+
 GNU_CONFIGURE=          yes
 USE_TOOLS+=             gmake
 
