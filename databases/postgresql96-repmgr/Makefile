@@ -19,10 +19,18 @@ DEPENDS+=               postgresql${PGSQL_VERSION}-client>=0:../../databases/pos
 # PGGROUP	group of the database administrator
 # PGHOME	home directory of the database administrator and location of
 #		the databases
-FILES_SUBST+=		PGUSER=${PGUSER}
-FILES_SUBST+=		PGGROUP=${PGGROUP}
-FILES_SUBST+=		PGHOME=${PGHOME}
-BUILD_DEFS+=		PGHOME VARBASE
+FILES_SUBST+=			PGUSER=${PGUSER}
+FILES_SUBST+=			PGGROUP=${PGGROUP}
+FILES_SUBST+=			PGHOME=${PGHOME}
+BUILD_DEFS+=			PGHOME
+
+PKG_GROUPS_VARS+=       PGGROUP
+PKG_USERS_VARS+=        PGUSER
+
+PKG_GROUPS=             ${PGGROUP}
+PKG_USERS=              ${PGUSER}:${PGGROUP}
+PKG_GECOS.${PGUSER}=    PostgreSQL database administrator
+PKG_HOME.${PGUSER}=     ${PGHOME}
 
 SMF_NAME=			postgresql-repmgr
 
@@ -31,7 +39,8 @@ USE_TOOLS+=             gmake
 
 PKG_SYSCONFSUBDIR?=     postgresql
 EGDIR=                  ${PREFIX}/share/examples/repmgr
-CONF_FILES+=            ${EGDIR}/repmgr.conf.sample ${PKG_SYSCONFDIR}/repmgr.conf
+CONF_FILES_PERMS=       ${EGDIR}/repmgr.conf.sample ${PKG_SYSCONFDIR}/repmgr.conf \
+                        ${REAL_ROOT_USER} ${PGGROUP} 0640
 
 INSTALLATION_DIRS+=     share/doc/repmgr ${EGDIR}
 
