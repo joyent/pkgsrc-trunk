@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.17 2017/09/18 09:53:33 maya Exp $
+# $NetBSD: Makefile,v 1.20 2017/12/08 08:52:56 maya Exp $
 
 PKGREVISION= 1
 .include "../../print/poppler/Makefile.common"
@@ -7,15 +7,18 @@ PKGNAME=		poppler-qt5-${POPPLER_VERS}
 COMMENT=		PDF rendering library (QT5 wrapper)
 MAINTAINER=		pkgsrc-users@NetBSD.org
 
-GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--disable-cairo-output
-CONFIGURE_ARGS+=	--enable-poppler-qt5
-CONFIGURE_ARGS+=	--disable-poppler-qt4
-CONFIGURE_ARGS+=	--disable-gtk-test
-CONFIGURE_ARGS+=	--disable-utils
-CONFIGURE_ENV+=		MOCQT5=${QTDIR}/bin/moc
+CMAKE_ARGS+=    -DENABLE_SPLASH=ON
+CMAKE_ARGS+=    -DCMAKE_DISABLE_FIND_PACKAGE_CAIRO=TRUE
+CMAKE_ARGS+=    -DBUILD_GTK_TESTS=OFF
+CMAKE_ARGS+=    -DENABLE_GLIB=OFF
+CMAKE_ARGS+=    -DENABLE_UTILS=OFF
+CMAKE_ARGS+=    -DENABLE_CPP=OFF
+CMAKE_ARGS+=    -DENABLE_QT4=OFF
+CMAKE_ARGS+=    -DENABLE_QT5=ON
+# Don't build libcurl based HTTP support. ## might want to include
+CMAKE_ARGS+=    -DENABLE_LIBCURL=OFF
 
-USE_TOOLS+=		gmake
+CMAKE_ARGS+=    -DMOCQT5=${QTDIR}/bin/moc
 
 BUILDLINK_API_DEPENDS.poppler+= poppler>=${POPPLER_VERS}
 .include "../../print/poppler/buildlink3.mk"

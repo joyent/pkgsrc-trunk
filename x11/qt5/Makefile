@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.8 2016/03/02 23:03:59 ryoon Exp $
+# $NetBSD: Makefile,v 1.10 2017/12/05 19:57:46 joerg Exp $
 
 DISTNAME=	qt5-${QTVERSION}
 PKGREVISION=	1

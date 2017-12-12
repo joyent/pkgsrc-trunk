@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.124 2017/09/18 09:53:28 maya Exp $
+# $NetBSD: Makefile,v 1.126 2017/12/08 08:52:57 maya Exp $
 #
 
 DISTNAME=	tellico-2.3.9
-PKGREVISION=	30
+PKGREVISION=	32
 CATEGORIES=	misc
 MASTER_SITES=	http://tellico-project.org/files/
 EXTRACT_SUFX=	.tar.bz2

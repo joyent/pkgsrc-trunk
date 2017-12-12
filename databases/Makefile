@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.552 2017/11/10 15:08:08 fhajny Exp $
+# $NetBSD: Makefile,v 1.554 2017/12/08 15:28:58 jperkin Exp $
 
 COMMENT=	Databases
 
@@ -279,7 +279,6 @@ SUBDIR+=	poco-data
 SUBDIR+=	poco-data-mysql
 SUBDIR+=	poco-data-odbc
 SUBDIR+=	poco-data-sqlite
-SUBDIR+=	postgresql-pgbench
 SUBDIR+=	postgresql-pgroonga
 SUBDIR+=	postgresql-pljava
 SUBDIR+=	postgresql-postgis2
@@ -397,6 +396,7 @@ SUBDIR+=	qore-sqlite3-module
 SUBDIR+=	quicklist
 SUBDIR+=	rdb
 SUBDIR+=	redis
+SUBDIR+=	repmgr
 SUBDIR+=	rrdtool
 SUBDIR+=	rrdtool12
 SUBDIR+=	ruby-activeldap

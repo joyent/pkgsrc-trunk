@@ -1,7 +1,7 @@
-# $NetBSD: version.mk,v 1.110 2017/10/24 11:04:03 morr Exp $
+# $NetBSD: version.mk,v 1.112 2017/12/08 20:12:43 bsiegert Exp $
 
 VIM_VERSION=		8.0
-VIM_PATCHLEVEL=		1214
+VIM_PATCHLEVEL=		1379
 # Changelog: see http://ftp.vim.org/pub/vim/patches/8.0/
 VIM_SUBDIR=		vim80
 

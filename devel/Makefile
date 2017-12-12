@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2574 2017/11/29 14:06:39 adam Exp $
+# $NetBSD: Makefile,v 1.2578 2017/12/10 14:58:44 bacon Exp $
 #
 
 COMMENT=	Development utilities
@@ -340,7 +340,6 @@ SUBDIR+=	go-protobuf
 SUBDIR+=	go-purell
 SUBDIR+=	go-ratelimit
 SUBDIR+=	go-review
-SUBDIR+=	go-runewidth
 SUBDIR+=	go-sanitized_anchor_name
 SUBDIR+=	go-shellwords
 SUBDIR+=	go-shuffle
@@ -1788,6 +1787,7 @@ SUBDIR+=	php-sysvsem
 SUBDIR+=	php-sysvshm
 SUBDIR+=	php-xcache
 SUBDIR+=	php-xdebug
+SUBDIR+=	php-xdebug-devel
 SUBDIR+=	physfs
 SUBDIR+=	picasm
 SUBDIR+=	picopb
@@ -1916,6 +1916,7 @@ SUBDIR+=	py-extras
 SUBDIR+=	py-faker
 SUBDIR+=	py-falcon
 SUBDIR+=	py-fann2
+SUBDIR+=	py-fasteners
 SUBDIR+=	py-fastimport
 SUBDIR+=	py-filebytes
 SUBDIR+=	py-filechunkio
@@ -2174,6 +2175,7 @@ SUBDIR+=	py-whichcraft
 SUBDIR+=	py-windbg
 SUBDIR+=	py-wrapt
 SUBDIR+=	py-xdg
+SUBDIR+=	py-xopen
 SUBDIR+=	py-zanata-python-client
 SUBDIR+=	py-zconfig
 SUBDIR+=	python-mode

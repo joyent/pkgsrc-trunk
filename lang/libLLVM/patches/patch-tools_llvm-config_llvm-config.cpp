@@ -1,4 +1,4 @@
-$NetBSD: patch-tools_llvm-config_llvm-config.cpp,v 1.3 2017/03/17 22:38:18 adam Exp $
+$NetBSD: patch-tools_llvm-config_llvm-config.cpp,v 1.5 2017/12/08 02:14:44 gdt Exp $
 
 Avoid conflict with lang/clang.
 Use -lLLVM-3.8 instead of -lLLVM-3.8.0 so we don't break unnecessarily

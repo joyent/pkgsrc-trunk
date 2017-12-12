@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1191 2017/11/28 13:48:28 hauke Exp $
+# $NetBSD: Makefile,v 1.1193 2017/12/09 19:56:38 tsutsui Exp $
 #
 
 COMMENT=	Networking tools
@@ -749,7 +749,6 @@ SUBDIR+=	ruby-tw
 SUBDIR+=	ruby-twitter
 SUBDIR+=	ruby-twitter-stream
 SUBDIR+=	ruby-twitter-text
-SUBDIR+=	ruby-userstream
 SUBDIR+=	ruby-xdr
 SUBDIR+=	samba
 SUBDIR+=	samba4
@@ -787,6 +786,7 @@ SUBDIR+=	sslh
 SUBDIR+=	ssmping
 SUBDIR+=	ssync
 SUBDIR+=	stripes
+SUBDIR+=	stund
 SUBDIR+=	sup
 SUBDIR+=	syncffsd
 SUBDIR+=	syncthing

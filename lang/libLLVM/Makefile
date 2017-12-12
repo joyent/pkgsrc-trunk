@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.25 2017/07/24 13:13:39 maya Exp $
+# $NetBSD: Makefile,v 1.27 2017/12/08 02:14:44 gdt Exp $
 
 DISTNAME=	llvm-4.0.1.src
 PKGNAME=	${DISTNAME:S/llvm/libLLVM/:S/.src//}

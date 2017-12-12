@@ -1,4 +1,4 @@
-$NetBSD: patch-cmake_modules_AddLLVM.cmake,v 1.4 2017/03/17 22:38:18 adam Exp $
+$NetBSD: patch-cmake_modules_AddLLVM.cmake,v 1.6 2017/12/08 02:14:44 gdt Exp $
 
 Disable library install rules. Handled manually.
 Make sure llvm-config goes in libexec/libLLVM to avoid conflict.

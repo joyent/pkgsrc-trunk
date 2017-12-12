@@ -1,5 +1,6 @@
-# $NetBSD: Makefile,v 1.13 2017/08/14 19:26:04 nros Exp $
+# $NetBSD: Makefile,v 1.15 2017/12/08 08:52:56 maya Exp $
 
+PKGREVISION= 1
 .include "../../print/poppler/Makefile.common"
 
 PKGNAME=		poppler-cpp-${POPPLER_VERS}
@@ -9,20 +10,26 @@ MAINTAINER=		reed@reedmedia.net
 
 CONFLICTS+=		poppler<0.4.5nb1
 
-GNU_CONFIGURE=		yes
-USE_TOOLS+=		gmake
-PKGCONFIG_OVERRIDE+=	${WRKSRC}/poppler-cpp.pc.in
+PKGCONFIG_OVERRIDE+=	${WRKSRC}/poppler-cpp.pc.cmake
 
-CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR:Q}
 # Don't build the cairo graphics backend, required by glib.
-CONFIGURE_ARGS+=	--disable-cairo-output
-# Don't build the splash graphics backend.
-CONFIGURE_ARGS+=	--disable-splash-output
-# Don't compile poppler qt wrapper.
-CONFIGURE_ARGS+=	--disable-poppler-qt
+CMAKE_ARGS+=    -DCMAKE_DISABLE_FIND_PACKAGE_CAIRO=TRUE
+# Don't build the cairo graphics backend, required by glib.
+CMAKE_ARGS+=    -DENABLE_SPLASH=OFF
 # Don't compile GTK+ test program.
-CONFIGURE_ARGS+=	--disable-gtk-test
-CONFIGURE_ARGS+=	--disable-utils
+CMAKE_ARGS+=    -DBUILD_GTK_TESTS=OFF
+# Don't compile GLib wrapper which also needs gtk2
+CMAKE_ARGS+=    -DENABLE_GLIB=OFF
+# Don't build and install the tools
+CMAKE_ARGS+=    -DENABLE_UTILS=OFF
+# Compile poppler cpp wrapper.
+CMAKE_ARGS+=    -DENABLE_CPP=ON
+# Don't compile poppler qt4 wrapper.
+CMAKE_ARGS+=    -DENABLE_QT4=OFF
+# Don't compile poppler qt5 wrapper.
+CMAKE_ARGS+=    -DENABLE_QT5=OFF
+# Don't build libcurl based HTTP support. ## might want to include
+CMAKE_ARGS+=    -DENABLE_LIBCURL=OFF
 
 BUILDLINK_API_DEPENDS.poppler+=	poppler-${POPPLER_VERS}{,nb*}
 .include "../../print/poppler/buildlink3.mk"
@@ -39,9 +46,8 @@ CHECK_BUILTIN.iconv:=	yes
 CHECK_BUILTIN.iconv:=	no
 
 .if !empty(USE_BUILTIN.iconv:M[nN][oO])
-CONFIGURE_ARGS+=	--with-libiconv-prefix=${BUILDLINK_PREFIX.iconv}
-.else
-CONFIGURE_ARGS+=	--with-libiconv-prefix
+CMAKE_ARGS+=		-DICONV_INCLUDE_DIR:PATH=${BUILDLINK_PREFIX.iconv}/include
+CMAKE_ARGS+=		-DICONV_LIBRARIES:PATH=${BUILDLINK_PREFIX.iconv}/lib
 .endif
 
 post-install:

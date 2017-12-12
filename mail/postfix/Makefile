@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.298 2017/10/13 17:13:19 taca Exp $
+# $NetBSD: Makefile,v 1.300 2017/12/09 02:35:52 taca Exp $
 
 .include "../../mail/postfix/Makefile.common"
 
