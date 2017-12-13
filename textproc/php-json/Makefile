@@ -7,4 +7,13 @@ COMMENT=		PHP extension for JSON serialization support
 CONFIGURE_ARGS+=	--enable-${MODNAME}=shared
 
 .include "../../lang/php/ext.mk"
+
+INSTALLATION_DIRS+=	include/php/ext/json
+JSON_INCLUDES=		php_json.h
+PLIST_SRC+=		${.CURDIR}/../../textproc/php-json/PLIST
+
+post-install:
+		${INSTALL_DATA} ${WRKSRC}/${JSON_INCLUDES} \
+			${DESTDIR}${PREFIX}/include/php/ext/json/${JSON_INCLUDES}
+
 .include "../../mk/bsd.pkg.mk"

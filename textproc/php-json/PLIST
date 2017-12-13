@@ -1,0 +1,2 @@
+@comment $NetBSD$
+include/php/ext/json/php_json.h
