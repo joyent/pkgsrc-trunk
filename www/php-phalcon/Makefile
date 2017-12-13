@@ -37,19 +37,19 @@ USE_LANGUAGES+=		c c++
 PHP_VERSIONS_ACCEPTED=	56 70 71
 
 .if ${MACHINE_ARCH} == "x86_64"
-  .if ${PKG_PHP_VERSION} >= 70
+.  if ${PKG_PHP_VERSION} >= 70
 WRKSRC=			${WRKDIR}/${GITHUB_PROJECT}-${PECL_VERSION}/build/php7/64bits
-  .else
+.  else
 WRKSRC=			${WRKDIR}/${GITHUB_PROJECT}-${PECL_VERSION}/build/php5/64bits
-  .endif
+.  endif
 .endif
 
 .if ${MACHINE_ARCH} == "i386"
-  .if ${PKG_PHP_VERSION} >= 70
+.  if ${PKG_PHP_VERSION} >= 70
 WRKSRC=			${WRKDIR}/${GITHUB_PROJECT}-${PECL_VERSION}/build/php7/32bits
-  .else
+.  else
 WRKSRC=			${WRKDIR}/${GITHUB_PROJECT}-${PECL_VERSION}/build/php5/32bits
-  .endif
+.  endif
 .endif
 
 .include "../../databases/php-pdo/buildlink3.mk"
