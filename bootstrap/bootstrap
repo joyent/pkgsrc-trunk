@@ -1351,6 +1351,7 @@ if test -n "$XARGS"; then
 	echo "TOOLS_PLATFORM.xargs?=		$XARGS" >> ${TARGET_MKCONF}
 	echo "TOOLS_PLATFORM.xargs?=		$XARGS" >> ${BOOTSTRAP_MKCONF}
 fi
+if false; then
 if test -n "$CFLAGS"; then
 	echo "CFLAGS+=		$CFLAGS" >> ${TARGET_MKCONF}
 	echo "DBG=			# prevent DBG from adding default optimizer flags" >> ${TARGET_MKCONF}
@@ -1364,6 +1365,7 @@ if test -n "$LDFLAGS"; then
 fi
 if test -n "$LIBS"; then
 	echo "LIBS+=		$LIBS" >> ${TARGET_MKCONF}
+fi
 fi
 
 # opsys specific fiddling
