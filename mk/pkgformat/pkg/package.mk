@@ -72,7 +72,7 @@ ${PKGFILE}: ${STAGE_PKGFILE}
 
 ${PKGINFOFILE}: ${PKGFILE}
 	${RUN} ${MKDIR} ${.TARGET:H};					\
-	${PKG_INFO} -X ${PKGFILE} >${.TARGET}
+	${PKG_INFO} -X ${PKGFILE} >${.TARGET} 2>/dev/null || ${TRUE}
 .endif
 
 ######################################################################
