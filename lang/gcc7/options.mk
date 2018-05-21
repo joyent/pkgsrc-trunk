@@ -149,7 +149,9 @@ LANGS+=			fortran
 
 .if !empty(PKG_OPTIONS:Mgcc-c++)
 LANGS+=			c++
+.if ${OPSYS} != "SunOS"
 CONFIGURE_ARGS+=	--enable-__cxa_atexit
+.endif
 CONFIGURE_ARGS+=	--with-gxx-include-dir=${GCC_PREFIX}/include/c++/
 .else
 CONFIGURE_ARGS+=	--disable-build-with-cxx
