@@ -11,7 +11,7 @@ Pull in ${PREFIX}/lib by default and handle for multiarch.
 -   %{!YP,*:%{p|pg:-Y P,%R/usr/lib/libp/" ARCH64_SUBDIR ":%R/lib/" ARCH64_SUBDIR ":%R/usr/lib/" ARCH64_SUBDIR "}	\
 -	   %{!p:%{!pg:-Y P,%R/lib/" ARCH64_SUBDIR ":%R/usr/lib/" ARCH64_SUBDIR "}}}"
 +   -R@PREFIX@/lib/" @MARCH64_SUBDIR@ " \
-+   %{!YP,*:%{p|pg:-Y P,%R/usr/lib/libp/" ARCH64_SUBDIR ":%R/lib/" ARCH64_SUBDIR ":%R/usr/lib/" ARCH64_SUBDIR ":%R@PREFIX@/lib/" @MARCH64_SUBDIR@ "} \
++   %{!YP,*:%{p|pg:-Y P,%R/lib/" ARCH64_SUBDIR ":%R/usr/lib/" ARCH64_SUBDIR ":%R@PREFIX@/lib/" @MARCH64_SUBDIR@ "} \
 +	   %{!p:%{!pg:-Y P,%R/lib/" ARCH64_SUBDIR ":%R/usr/lib/" ARCH64_SUBDIR ":%R@PREFIX@/lib/" @MARCH64_SUBDIR@ "}}}"
  
  #undef LINK_ARCH64_SPEC
