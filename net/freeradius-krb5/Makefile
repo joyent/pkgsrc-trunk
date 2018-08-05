@@ -7,6 +7,7 @@ COMMENT=		Free RADIUS rlm_krb5 module
 CATEGORIES=		net
 
 CONFIGURE_ARGS+=    --with-rlm_krb5
+CONFIGURE_ARGS+=    --without-rlm_ldap
 
 do-install:
 	${INSTALL_LIB} ${WRKSRC}/build/lib/.libs/rlm_krb5.so ${DESTDIR}${PREFIX}/lib

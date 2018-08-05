@@ -8,6 +8,7 @@ COMMENT=		Free RADIUS FreeTDS support
 CATEGORIES=		net
 
 CONFIGURE_ARGS+=    --with-rlm_sql_freetds
+CONFIGURE_ARGS+=    --without-rlm_ldap
 
 do-install:
 	${INSTALL_LIB} ${WRKSRC}/build/lib/.libs/rlm_sql_freetds.so ${DESTDIR}${PREFIX}/lib

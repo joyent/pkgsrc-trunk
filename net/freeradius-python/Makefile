@@ -9,6 +9,7 @@ CATEGORIES=		net
 PYTHON_VERSIONS_ACCEPTED=	27
 
 CONFIGURE_ARGS+=    --with-rlm_python
+CONFIGURE_ARGS+=    --without-rlm_ldap
 
 do-install:
 	${INSTALL_LIB} ${WRKSRC}/build/lib/.libs/rlm_python.so ${DESTDIR}${PREFIX}/lib
