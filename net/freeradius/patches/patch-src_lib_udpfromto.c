@@ -19,14 +19,3 @@ passed. Use either IP_PKTINFO or IP_SENDSRCADDR, but not both.
  		struct cmsghdr *cmsg;
  		struct in_pktinfo *pkt;
  
-@@ -405,9 +405,7 @@ int sendfromto(int s, void *buf, size_t 
- 		pkt = (struct in_pktinfo *) CMSG_DATA(cmsg);
- 		memset(pkt, 0, sizeof(*pkt));
- 		pkt->ipi_spec_dst = s4->sin_addr;
--#  endif
--
--#  ifdef IP_SENDSRCADDR
-+#  elif defined(IP_SENDSRCADDR)
- 		struct cmsghdr *cmsg;
- 		struct in_addr *in;
- 
