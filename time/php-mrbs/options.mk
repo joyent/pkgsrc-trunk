@@ -16,7 +16,7 @@ PKG_SUGGESTED_OPTIONS=	mysql
 DEPENDS+=		${PHP_PKG_PREFIX}-mysql>=5.2.0:../../databases/php-mysql
 PHP_VERSIONS_ACCEPTED=	56
 .elif !empty(PKG_OPTIONS:Mpgsql)
-DEPENDS+=		${PHP_PKG_PREFIX}-pgsql>=5.2.0:../../databases/php-pgsql
+DEPENDS+=		${PHP_PKG_PREFIX}-pgsql*-[0-9]*:../../databases/php-pgsql
 .else
 PKG_FAIL_REASON+=	${PKGNAME} needs either mysql or pgsql
 .endif
