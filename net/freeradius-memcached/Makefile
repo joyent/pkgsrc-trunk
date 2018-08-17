@@ -7,6 +7,7 @@ COMMENT=		Free RADIUS support for memcached
 CATEGORIES=		net
 
 CONFIGURE_ARGS+=    --with-rlm_cache_memcached
+CONFIGURE_ARGS+=    --without-rlm_ldap
 
 do-install:
 	${INSTALL_LIB} ${WRKSRC}/build/lib/.libs/rlm_cache_memcached.so ${DESTDIR}${PREFIX}/lib

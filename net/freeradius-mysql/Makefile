@@ -7,6 +7,7 @@ COMMENT=		Free RADIUS MySQL support
 CATEGORIES=		net
 
 CONFIGURE_ARGS+=    --with-rlm_sql_mysql
+CONFIGURE_ARGS+=    --without-rlm_ldap
 
 do-install:
 	${INSTALL_LIB} ${WRKSRC}/build/lib/.libs/rlm_sql_mysql.so ${DESTDIR}${PREFIX}/lib

@@ -7,6 +7,7 @@ COMMENT=		Free RADIUS UNIXODBC support
 CATEGORIES=		net
 
 CONFIGURE_ARGS+=    --with-rlm_sql_unixodbc
+CONFIGURE_ARGS+=    --without-rlm_ldap
 
 do-install:
 	${INSTALL_LIB} ${WRKSRC}/build/lib/.libs/rlm_sql_unixodbc.so ${DESTDIR}${PREFIX}/lib

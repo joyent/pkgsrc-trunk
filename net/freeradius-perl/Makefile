@@ -7,6 +7,7 @@ COMMENT=		Free RADIUS rlm_perl module
 CATEGORIES=		net
 
 CONFIGURE_ARGS+=    --with-rlm_perl
+CONFIGURE_ARGS+=    --without-rlm_ldap
 
 do-install:
 	${INSTALL_LIB} ${WRKSRC}/build/lib/.libs/rlm_perl.so ${DESTDIR}${PREFIX}/lib

@@ -8,6 +8,7 @@ COMMENT=		Free RADIUS SQLite support
 CATEGORIES=		net
 
 CONFIGURE_ARGS+=    --with-rlm_sql_iodbc
+CONFIGURE_ARGS+=    --without-rlm_ldap
 
 do-install:
 	${INSTALL_LIB} ${WRKSRC}/build/lib/.libs/rlm_sql_sqlite.so ${DESTDIR}${PREFIX}/lib
