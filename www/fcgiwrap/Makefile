@@ -17,6 +17,7 @@ GNU_CONFIGURE=	yes
 USE_TOOLS+=	automake autoreconf pkg-config
 
 LDFLAGS.SunOS+=	-lsocket -lnsl
+CFLAGS.SunOS+= -Wimplicit-fallthrough=0
 
 pre-configure:
 	cd ${WRKSRC} && autoreconf -i
