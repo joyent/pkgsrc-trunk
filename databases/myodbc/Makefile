@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.43 2020/05/23 13:08:51 nia Exp $
 
 DISTNAME=	mysql-connector-odbc-5.3.2-src
-PKGNAME=	${DISTNAME:S/mysql-connector-odbc/myodbc/:S/-src$//}
+PKGNAME=	${DISTNAME:S/mysql-connector-odbc/${MYSQL_PKG_PREFIX}-odbc/:S/-src$//}
 PKGREVISION=	2
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_MYSQL:=Connector-ODBC/5.3/}
@@ -14,15 +14,13 @@ LICENSE=	gnu-gpl-v2
 USE_CMAKE=		yes
 CMAKE_ARGS=		-Wno-dev
 #CMAKE_ARGS+=		-DMYSQL_DIR=${BUILDLINK_PREFIX.mysql-client}
-CMAKE_ARGS+=		-DMYSQL_INCLUDE_DIR=${BUILDLINK_PREFIX.mysql-client}/include/mysql
+CMAKE_ARGS+=		-DMYSQL_INCLUDE_DIR=${BUILDLINK_PREFIX.mysql-client}/${BUILDLINK_INCDIRS.mysql-client}
 USE_LANGUAGES=		c c++
 
 INSTALLATION_DIRS=	share/doc/mysql-connector-odbc
 INSTALLATION_DIRS+=	share/mysql-connector-odbc/test
 
 .include "options.mk"
-
-MYSQL_VERSIONS_ACCEPTED=	56
 
 .include "../../devel/libltdl/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
