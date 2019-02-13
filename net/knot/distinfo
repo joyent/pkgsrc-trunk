@@ -1,7 +1,15 @@
 $NetBSD: distinfo,v 1.24 2018/03/08 14:30:37 pettai Exp $
 
-SHA1 (knot-2.5.7.tar.xz) = 26bcd2784a8d1c062a4a103d9f2cb651804e7d68
-RMD160 (knot-2.5.7.tar.xz) = 96ac63cf365ed10fc979a351c79c12e345d4c2f0
-SHA512 (knot-2.5.7.tar.xz) = 96e375f556309bb89cea982dda169cef70c23d03c48282110e47a44849c1102cd37d98aa7650781b399f5d932b724b8a935f0b9e55e4920465ae7b74a0d1d55a
-Size (knot-2.5.7.tar.xz) = 1084656 bytes
+SHA1 (knot-2.7.6.tar.xz) = d2f313267c2b68b822c5b715927eae9d5268738e
+RMD160 (knot-2.7.6.tar.xz) = fca8c746a783789a1a5c0d1f0fbe2df8f652a250
+SHA512 (knot-2.7.6.tar.xz) = 6b6a727d57337da01e2d44abec7fde4504d112604769b118fe6254b0317f149ed4e9fab321a04517eccedb08e409818d1817fc1136c27d1fd351538e6816022a
+Size (knot-2.7.6.tar.xz) = 1151068 bytes
 SHA1 (patch-samples_Makefile.in) = 499b8742dbd948e489b01d512bc7a8d8e4fe2e7b
+SHA1 (patch-src_contrib_lmdb_mdb.c) = e79ebf7dea57f1fb696d172546f5055166e24c78
+SHA1 (patch-src_contrib_ucw_mempool.c) = 029490dcd03ef3462b81f6162959999164a6b6be
+SHA1 (patch-src_libdnssec_shared_keyid__gnutls.c) = a72963afce0c17990676fd0145e847dd0360d9ef
+SHA1 (patch-src_libknot_endian.h) = caabd209a6821f3df2e41e456e2d7d594c4d0825
+SHA1 (patch-src_libknot_yparser_yparser.c) = b64d0b7e2224f95f7cdab03bb0a84072cd883922
+SHA1 (patch-src_libzscanner_scanner.c.g2) = d4fa3114027353a5061e35abad550fa8b15c1086
+SHA1 (patch-src_libzscanner_scanner.c.t0) = 41e25c78be2b0d58237576eff5b1e7911406d7cf
+SHA1 (patch-src_libzscanner_scanner.rl) = 167e315becd78d4cbccf9f45aea7a70c84ecda39

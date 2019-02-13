@@ -1,17 +1,16 @@
 # $NetBSD: Makefile,v 1.40 2018/07/04 13:40:28 jperkin Exp $
 
-DISTNAME=	knot-2.5.7
-PKGREVISION=	1
+DISTNAME=	knot-2.7.6
 CATEGORIES=	net
 MASTER_SITES=	https://secure.nic.cz/files/knot-dns/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pettai@NetBSD.org
 HOMEPAGE=	https://www.knot-dns.cz/
-COMMENT=	Knot (auth) DNS server
+COMMENT=	Authoritative DNS server
 LICENSE=	gnu-gpl-v3
 
-BUILD_DEFS+=	VARBASE
+BUILD_DEFS+=	PKG_SYSCONFBASE VARBASE
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--prefix=${PREFIX:Q}
@@ -24,11 +23,13 @@ CONFIGURE_ARGS+=	--with-libidn=${BUILDLINK_PREFIX.libidn}
 
 CONFIGURE_ARGS.NetBSD+=	--enable-recvmmsg=no
 
+CFLAGS.SunOS+=	-D_XOPEN_SOURCE=600 -D__EXTENSIONS__
+
 .include "../../mk/bsd.prefs.mk"
 
-.if ${MACHINE_ARCH} == "i386" 
-CFLAGS += -march=i586 
-.endif 
+.if ${MACHINE_ARCH} == "i386"
+CFLAGS += -march=i586
+.endif
 
 USE_LIBTOOL=	yes
 USE_TOOLS+=	bison flex gmake pkg-config
@@ -46,6 +47,8 @@ PKGCONFIG_OVERRIDE+=	src/zscanner/libzscanner.pc.in
 RCD_SCRIPTS=	knot
 
 EGDIR=			${PREFIX}/share/examples/knot
+SMF_NAME=		knot
+
 PKG_SYSCONFSUBDIR=	knot
 
 SUBST_CLASSES+=		paths
@@ -61,6 +64,7 @@ CONF_FILES+=	${EGDIR}/example.com.zone \
 INSTALLATION_DIRS=	${EGDIR}
 OWN_DIRS+=		${VARBASE}/knot
 
+.include "../../devel/editline/buildlink3.mk"
 .include "../../devel/userspace-rcu/buildlink3.mk"
 .include "../../security/gnutls/buildlink3.mk"
 .include "../../textproc/jansson/buildlink3.mk"
