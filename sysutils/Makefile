@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.792 2019/01/10 02:50:15 gutteridge Exp $
+# $NetBSD: Makefile,v 1.800 2019/02/23 06:20:52 martin Exp $
 #
 
 COMMENT=	System utilities
@@ -22,6 +22,8 @@ SUBDIR+=	amtterm
 SUBDIR+=	ansible
 SUBDIR+=	ansible2
 SUBDIR+=	apcupsd
+SUBDIR+=	arm-trusted-firmware-fiptool
+SUBDIR+=	arm-trusted-firmware-sun50i_a64
 SUBDIR+=	arm-trusted-firmware-sun50i-h6
 SUBDIR+=	arm-trusted-firmware-sun50iw1p1
 SUBDIR+=	asapm
@@ -34,8 +36,9 @@ SUBDIR+=	bacula
 SUBDIR+=	bacula-clientonly
 SUBDIR+=	bacula-doc
 SUBDIR+=	bacula-qt-console
+SUBDIR+=	bacula-qt5-console
 SUBDIR+=	bacula-tray-monitor
-SUBDIR+=	bacula-wx-console
+SUBDIR+=	bacula-tray-monitor-qt5
 SUBDIR+=	baloo
 SUBDIR+=	baloo-widgets
 SUBDIR+=	baloo5
@@ -361,11 +364,11 @@ SUBDIR+=	mc46
 SUBDIR+=	mcollective
 SUBDIR+=	mdf2iso
 SUBDIR+=	memconf
-SUBDIR+=	memtest86
 SUBDIR+=	memtester
 SUBDIR+=	memtestplus
 SUBDIR+=	mencvcd
 SUBDIR+=	menu-cache
+SUBDIR+=	meson-tools
 SUBDIR+=	mesure
 SUBDIR+=	mgm
 SUBDIR+=	mklivecd
@@ -483,6 +486,7 @@ SUBDIR+=	py-pefile
 SUBDIR+=	py-psutil
 SUBDIR+=	py-ptyprocess
 SUBDIR+=	py-pyinotify
+SUBDIR+=	py-salt-pepper
 SUBDIR+=	py-setconf
 SUBDIR+=	py-setproctitle
 SUBDIR+=	py-structlog
@@ -633,6 +637,7 @@ SUBDIR+=	u-boot-nanopi-m1
 SUBDIR+=	u-boot-nanopi-neo
 SUBDIR+=	u-boot-nanopi-neo-plus2
 SUBDIR+=	u-boot-nanopi-neo2
+SUBDIR+=	u-boot-odroid-c2
 SUBDIR+=	u-boot-odroid-xu3
 SUBDIR+=	u-boot-orangepi-2
 SUBDIR+=	u-boot-orangepi-one

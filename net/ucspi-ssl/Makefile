@@ -1,8 +1,9 @@
-# $NetBSD: Makefile,v 1.26 2018/12/14 22:52:45 schmonz Exp $
+# $NetBSD: Makefile,v 1.28 2019/01/18 18:18:38 schmonz Exp $
 #
 
 DISTNAME=		ucspi-ssl-0.10.7
 PKGNAME=		${DISTNAME:S/-0./-0.999./}
+PKGREVISION=		2
 CATEGORIES=		net
 MASTER_SITES=		https://www.fehcom.de/ipnet/ucspi-ssl/
 EXTRACT_SUFX=		.tgz
@@ -49,7 +50,11 @@ DJB_CONFIG_CMDS=							\
 	${ECHO} ${PREFIX}/bin > conf-tcpbin;				\
 	${ECHO} > conf-ssl;						\
 	${ECHO} ${SSLDIR}/certs > conf-cadir;				\
-	${ECHO} ${PKG_SYSCONFDIR}/dh1024.pem > conf-dhfile;
+	${ECHO} ${PKG_SYSCONFDIR}/dh1024.pem > conf-dhfile;		\
+	${ECHO} ${DEFAULT_MEDIUM_CIPHERS} > conf-ciphers;
+
+# from `postconf -d | grep tls_medium_cipherlist`
+DEFAULT_MEDIUM_CIPHERS=	aNULL:-aNULL:ALL:!EXPORT:!LOW:+RC4:@STRENGTH
 
 .include "../../mk/bsd.prefs.mk"
 

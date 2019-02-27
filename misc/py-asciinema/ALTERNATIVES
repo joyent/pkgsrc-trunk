@@ -1,1 +1,1 @@
-bin/asciinema @PREFIX@/bin/asciinema@PYVERSSUFFIX@
+bin/asciinema @PREFIX@/bin/asciinema-@PYVERSSUFFIX@

@@ -1,10 +1,11 @@
-# $NetBSD: Makefile,v 1.1 2015/05/26 10:52:25 jaapb Exp $
+# $NetBSD: Makefile,v 1.3 2019/02/01 21:52:59 markd Exp $
 
-DISTNAME= europecv
-PKGNAME=	tex-${DISTNAME}-2014
-TEXLIVE_REV=	34454
+DISTNAME=	europecv
+PKGNAME=	tex-${DISTNAME}-2018.49814
+TEXLIVE_REV=	49814
 
 MAINTAINER=	jaapb@kerguelen.org
+HOMEPAGE=	http://ctan.org/pkg/europecv
 COMMENT=	Unofficial class for European curricula vitae
 LICENSE=	lppl-1.3c
 

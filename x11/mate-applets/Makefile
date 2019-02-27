@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.20 2018/12/09 18:52:51 adam Exp $
+# $NetBSD: Makefile,v 1.23 2019/02/17 06:02:54 gutteridge Exp $
 
 PYTHON_VERSIONS_ACCEPTED=	27
-PKGREVISION= 5
 .include "../../meta-pkgs/mate/Makefile.common"
 
 DISTNAME=	mate-applets-${VERSION:R}.1
@@ -16,29 +15,27 @@ TOOL_DEPENDS+=	libxml2-[0-9]*:../../textproc/libxml2 # for xmllint
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--libexecdir=${PREFIX}/libexec/mate-applets
 
+.include "../../mk/bsd.prefs.mk"
+
+PLIST_VARS=		batt cpufreq
+.if ${OPSYS} == "NetBSD" &&  (${MACHINE_ARCH} == "i386" || ${MACHINE_ARCH} == "x86_64")
+CONFIGURE_ARGS+=	--enable-cpufreq=yes
+PLIST.cpufreq=		yes
+.endif
+
 INSTALL_MAKE_FLAGS+=	sysconfdir=${PREFIX}/share/examples/mate-applets
 
 MAKE_DIRS+=	${PKG_SYSCONFDIR}/sound/events
 
-.include "../../mk/bsd.prefs.mk"
-
 .if ${OPSYS} != "Darwin" && ${OPSYS} != "SunOS"
 CONF_FILES+=	${PREFIX}/share/examples/mate-applets/sound/events/mate-battstat_applet.soundlist \
 		${PKG_SYSCONFDIR}/sound/events/mate-battstat_applet.soundlist
-.endif
-
-PLIST_VARS=	batt
-.if ${OPSYS} != "Darwin" && ${OPSYS} != "SunOS"
 PLIST.batt=	yes
 .endif
 
 .include "options.mk"
 
 .include "../../devel/glib2/schemas.mk"
-
-REPLACE_PYTHON+=	invest-applet/invest/chart.py
-REPLACE_PYTHON+=	invest-applet/invest/invest-applet.py
-REPLACE_PYTHON+=	invest-applet/invest/mate-invest-chart
 
 .include "../../x11/mate-panel/buildlink3.mk"
 .include "../../x11/mate-desktop/buildlink3.mk"

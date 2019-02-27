@@ -1,11 +1,11 @@
-# $NetBSD: license.mk,v 1.95 2018/12/10 15:50:10 gdt Exp $
+# $NetBSD: license.mk,v 1.98 2019/02/10 21:36:54 leot Exp $
 #
 # This file handles everything about the LICENSE variable. It is
 # included automatically by bsd.pkg.mk.
 #
 # XXX There should be one place to set the default list and for users
 # to set the ACCEPTABLE_LICENSES list, used by both source builds and
-# binary installs#
+# binary installs.
 #
 # XXX: Some of this content arguably belongs in the pkgsrc guide
 # instead.

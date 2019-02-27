@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.12 2016/08/04 10:09:08 adam Exp $
+# $NetBSD: options.mk,v 1.14 2019/02/05 20:18:43 adam Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.mysql5
 
@@ -11,7 +11,7 @@ PKG_SUGGESTED_OPTIONS+=	embedded-server ssl
 
 # Enable OpenSSL support
 .if !empty(PKG_OPTIONS:Mssl)
-.	include "../../security/openssl/buildlink3.mk"
+.  include "../../security/openssl/buildlink3.mk"
 CMAKE_ARGS+=		-DWITH_SSL=system
 .else
 CMAKE_ARGS+=		-DWITH_SSL=no
@@ -42,7 +42,7 @@ PLIST_VARS+=	sphinx
 SPHINX_VER=	2.2.11
 DISTFILES=	${DEFAULT_DISTFILES} sphinx-${SPHINX_VER}-release${EXTRACT_SUFX}
 SITES.sphinx-2.2.11-release.tar.gz=	http://sphinxsearch.com/files/
-.  if !empty(PKGPATH:Mdatabases/mysql56-server)
+.  if ${PKGPATH} == "databases/mysql56-server"
 MESSAGE_SRC=	${PKGDIR}/MESSAGE ${PKGDIR}/MESSAGE.sphinx
 .  endif
 PLIST.sphinx=	yes

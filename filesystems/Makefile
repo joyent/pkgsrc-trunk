@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.43 2016/11/06 16:12:30 wiz Exp $
+# $NetBSD: Makefile,v 1.45 2019/01/16 08:57:17 adam Exp $
 #
 
 COMMENT=	File systems, and file system related packages
@@ -44,7 +44,7 @@ SUBDIR+=	p5-Module-Path
 SUBDIR+=	p5-MooseX-Types-Path-Tiny
 SUBDIR+=	p5-Path-Tiny
 SUBDIR+=	perfuse
-SUBDIR+=	py-filesystem
+SUBDIR+=	py-fs
 SUBDIR+=	py-fuse-bindings
 SUBDIR+=	squashfs
 SUBDIR+=	tahoe-lafs

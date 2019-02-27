@@ -88,6 +88,9 @@ const (
 	shqDquotBacktSquot                  // e.g. "`'word'`"
 )
 
+// String returns a very short identifier for the quoting state.
+// In this, d means double quotes, s means single quotes,
+// b means backticks and S means subshell.
 func (q ShQuoting) String() string {
 	return [...]string{
 		"plain",
@@ -97,18 +100,18 @@ func (q ShQuoting) String() string {
 	}[q]
 }
 
-func (q ShQuoting) ToVarUseContext() vucQuoting {
+func (q ShQuoting) ToVarUseContext() VucQuoting {
 	switch q {
 	case shqPlain:
-		return vucQuotPlain
+		return VucQuotPlain
 	case shqDquot:
-		return vucQuotDquot
+		return VucQuotDquot
 	case shqSquot:
-		return vucQuotSquot
+		return VucQuotSquot
 	case shqBackt:
-		return vucQuotBackt
+		return VucQuotBackt
 	}
-	return vucQuotUnknown
+	return VucQuotUnknown
 }
 
 // ShToken is an operator or a keyword or some text intermingled with variables.

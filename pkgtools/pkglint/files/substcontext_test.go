@@ -8,7 +8,7 @@ import (
 func (s *Suite) Test_SubstContext__incomplete(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wextra")
+	t.SetUpCommandLine("-Wextra")
 	ctx := NewSubstContext()
 
 	ctx.Varassign(newSubstLine(t, 10, "PKGNAME=pkgname-1.0"))
@@ -38,7 +38,7 @@ func (s *Suite) Test_SubstContext__incomplete(c *check.C) {
 func (s *Suite) Test_SubstContext__complete(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wextra")
+	t.SetUpCommandLine("-Wextra")
 	ctx := NewSubstContext()
 
 	ctx.Varassign(newSubstLine(t, 10, "PKGNAME=pkgname-1.0"))
@@ -65,6 +65,7 @@ func (s *Suite) Test_SubstContext__OPSYSVARS(c *check.C) {
 	G.Opts.WarnExtra = true
 	ctx := NewSubstContext()
 
+	// SUBST_CLASSES is added to OPSYSVARS in mk/bsd.pkg.mk.
 	ctx.Varassign(newSubstLine(t, 11, "SUBST_CLASSES.SunOS+=prefix"))
 	ctx.Varassign(newSubstLine(t, 12, "SUBST_CLASSES.NetBSD+=prefix"))
 	ctx.Varassign(newSubstLine(t, 13, "SUBST_FILES.prefix=Makefile"))
@@ -83,7 +84,7 @@ func (s *Suite) Test_SubstContext__OPSYSVARS(c *check.C) {
 func (s *Suite) Test_SubstContext__no_class(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wextra")
+	t.SetUpCommandLine("-Wextra")
 	ctx := NewSubstContext()
 
 	ctx.Varassign(newSubstLine(t, 10, "UNRELATED=anything"))
@@ -99,7 +100,7 @@ func (s *Suite) Test_SubstContext__no_class(c *check.C) {
 func (s *Suite) Test_SubstContext__multiple_classes_in_one_line(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wextra")
+	t.SetUpCommandLine("-Wextra")
 
 	simulateSubstLines(t,
 		"10: SUBST_CLASSES+=         one two",
@@ -118,7 +119,7 @@ func (s *Suite) Test_SubstContext__multiple_classes_in_one_line(c *check.C) {
 func (s *Suite) Test_SubstContext__multiple_classes_in_one_block(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wextra")
+	t.SetUpCommandLine("-Wextra")
 
 	simulateSubstLines(t,
 		"10: SUBST_CLASSES+=         one",
@@ -142,7 +143,7 @@ func (s *Suite) Test_SubstContext__multiple_classes_in_one_block(c *check.C) {
 func (s *Suite) Test_SubstContext__directives(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wextra")
+	t.SetUpCommandLine("-Wextra")
 
 	simulateSubstLines(t,
 		"10: SUBST_CLASSES+=         os",
@@ -171,7 +172,7 @@ func (s *Suite) Test_SubstContext__directives(c *check.C) {
 func (s *Suite) Test_SubstContext__missing_transformation_in_one_branch(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wextra")
+	t.SetUpCommandLine("-Wextra")
 
 	simulateSubstLines(t,
 		"10: SUBST_CLASSES+=         os",
@@ -197,7 +198,7 @@ func (s *Suite) Test_SubstContext__missing_transformation_in_one_branch(c *check
 func (s *Suite) Test_SubstContext__nested_conditionals(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wextra")
+	t.SetUpCommandLine("-Wextra")
 
 	simulateSubstLines(t,
 		"10: SUBST_CLASSES+=         os",
@@ -225,8 +226,8 @@ func (s *Suite) Test_SubstContext__nested_conditionals(c *check.C) {
 func (s *Suite) Test_SubstContext__post_patch(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wextra,no-space", "--show-autofix")
-	t.SetupVartypes()
+	t.SetUpCommandLine("-Wextra,no-space", "--show-autofix")
+	t.SetUpVartypes()
 
 	mklines := t.NewMkLines("os.mk",
 		MkRcsID,
@@ -246,8 +247,8 @@ func (s *Suite) Test_SubstContext__post_patch(c *check.C) {
 func (s *Suite) Test_SubstContext__pre_configure_with_NO_CONFIGURE(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wall,no-space")
-	pkg := t.SetupPackage("category/package",
+	t.SetUpCommandLine("-Wall,no-space")
+	pkg := t.SetUpPackage("category/package",
 		"SUBST_CLASSES+=         os",
 		"SUBST_STAGE.os=         pre-configure",
 		"SUBST_FILES.os=         guess-os.h",
@@ -264,8 +265,8 @@ func (s *Suite) Test_SubstContext__pre_configure_with_NO_CONFIGURE(c *check.C) {
 func (s *Suite) Test_SubstContext__adjacent(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wextra")
-	t.SetupVartypes()
+	t.SetUpCommandLine("-Wextra")
+	t.SetUpVartypes()
 
 	mklines := t.NewMkLines("os.mk",
 		MkRcsID,
@@ -289,8 +290,8 @@ func (s *Suite) Test_SubstContext__adjacent(c *check.C) {
 func (s *Suite) Test_SubstContext__do_patch(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wextra,no-space")
-	t.SetupVartypes()
+	t.SetUpCommandLine("-Wextra,no-space")
+	t.SetUpVartypes()
 
 	mklines := t.NewMkLines("os.mk",
 		MkRcsID,
@@ -312,8 +313,8 @@ func (s *Suite) Test_SubstContext__do_patch(c *check.C) {
 func (s *Suite) Test_SubstContext__SUBST_VARS_defined_in_block(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wextra,no-space")
-	t.SetupVartypes()
+	t.SetUpCommandLine("-Wextra,no-space")
+	t.SetUpVartypes()
 
 	mklines := t.NewMkLines("os.mk",
 		MkRcsID,
@@ -337,8 +338,8 @@ func (s *Suite) Test_SubstContext__SUBST_VARS_defined_in_block(c *check.C) {
 func (s *Suite) Test_SubstContext__SUBST_VARS_in_next_paragraph(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wextra,no-space")
-	t.SetupVartypes()
+	t.SetUpCommandLine("-Wextra,no-space")
+	t.SetUpVartypes()
 
 	mklines := t.NewMkLines("os.mk",
 		MkRcsID,
@@ -360,8 +361,8 @@ func (s *Suite) Test_SubstContext__SUBST_VARS_in_next_paragraph(c *check.C) {
 func (s *Suite) Test_SubstContext_suggestSubstVars(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupVartypes()
-	t.SetupTool("sh", "SH", AtRunTime)
+	t.SetUpVartypes()
+	t.SetUpTool("sh", "SH", AtRunTime)
 
 	mklines := t.NewMkLines("subst.mk",
 		MkRcsID,
@@ -369,31 +370,75 @@ func (s *Suite) Test_SubstContext_suggestSubstVars(c *check.C) {
 		"SUBST_CLASSES+=\t\ttest",
 		"SUBST_STAGE.test=\tpre-configure",
 		"SUBST_FILES.test=\tfilename",
-		"SUBST_SED.test+=\t-e s,@SH@,${SH},g",           // Can be replaced.
-		"SUBST_SED.test+=\t-e s,@SH@,${SH:Q},g",         // Can be replaced, with or without the :Q modifier.
-		"SUBST_SED.test+=\t-e s,@SH@,${SH:T},g",         // Cannot be replaced because of the :T modifier.
-		"SUBST_SED.test+=\t-e s,@SH@,${SH},",            // Can be replaced, even without the g option.
-		"SUBST_SED.test+=\t-e 's,@SH@,${SH},'",          // Can be replaced, whether in single quotes or not.
-		"SUBST_SED.test+=\t-e \"s,@SH@,${SH},\"",        // Can be replaced, whether in double quotes or not.
-		"SUBST_SED.test+=\t-e s,'@SH@','${SH}',",        // Can be replaced, even when the quoting changes midways.
-		"SUBST_SED.test+=\ts,'@SH@','${SH}',",           // Can be replaced, even when the -e is missing.
-		"SUBST_SED.test+=\t-e s,@SH@,${PKGNAME},",       // Cannot be replaced since the variable name differs.
-		"SUBST_SED.test+=\t-e s,@SH@,'\"'${SH:Q}'\"',g", // Cannot be replaced since the double quotes are added.
+		"SUBST_SED.test+=\t-e s,@SH@,${SH},g",            // Can be replaced.
+		"SUBST_SED.test+=\t-e s,@SH@,${SH:Q},g",          // Can be replaced, with or without the :Q modifier.
+		"SUBST_SED.test+=\t-e s,@SH@,${SH:T},g",          // Cannot be replaced because of the :T modifier.
+		"SUBST_SED.test+=\t-e s,@SH@,${SH},",             // Can be replaced, even without the g option.
+		"SUBST_SED.test+=\t-e 's,@SH@,${SH},'",           // Can be replaced, whether in single quotes or not.
+		"SUBST_SED.test+=\t-e \"s,@SH@,${SH},\"",         // Can be replaced, whether in double quotes or not.
+		"SUBST_SED.test+=\t-e s,'@SH@','${SH}',",         // Can be replaced, even when the quoting changes midways.
+		"SUBST_SED.test+=\ts,'@SH@','${SH}',",            // Can be replaced manually, even when the -e is missing.
+		"SUBST_SED.test+=\t-e s,@SH@,${PKGNAME},",        // Cannot be replaced since the variable name differs.
+		"SUBST_SED.test+=\t-e s,@SH@,'\"'${SH:Q}'\"',g",  // Cannot be replaced since the double quotes are added.
+		"SUBST_SED.test+=\t-e s",                         // Just to get 100% code coverage.
+		"SUBST_SED.test+=\t-e s,@SH@,${SH:Q}",            // Just to get 100% code coverage.
+		"SUBST_SED.test+=\t-e s,@SH@,${SH:Q}, # comment", // This is not fixed automatically.
 		"# end")
 
 	mklines.Check()
 
 	t.CheckOutputLines(
 		"WARN: subst.mk:6: Please use ${SH:Q} instead of ${SH}.",
-		"NOTE: subst.mk:6: The substitution command \"s,@SH@,${SH},g\" can be replaced with \"SUBST_VARS.test+= SH\".",
-		"NOTE: subst.mk:7: The substitution command \"s,@SH@,${SH:Q},g\" can be replaced with \"SUBST_VARS.test+= SH\".",
+		"NOTE: subst.mk:6: The substitution command \"s,@SH@,${SH},g\" "+
+			"can be replaced with \"SUBST_VARS.test+= SH\".",
+		"NOTE: subst.mk:7: The substitution command \"s,@SH@,${SH:Q},g\" "+
+			"can be replaced with \"SUBST_VARS.test+= SH\".",
 		"WARN: subst.mk:8: Please use ${SH:T:Q} instead of ${SH:T}.",
 		"WARN: subst.mk:9: Please use ${SH:Q} instead of ${SH}.",
-		"NOTE: subst.mk:9: The substitution command \"s,@SH@,${SH},\" can be replaced with \"SUBST_VARS.test+= SH\".",
-		// TODO: Handle the quotes in line 10
-		// TODO: Handle the quotes in line 11
-		// TODO: Handle the quotes in line 12
-		"NOTE: subst.mk:13: Please always use \"-e\" in sed commands, even if there is only one substitution.")
+		"NOTE: subst.mk:9: The substitution command \"s,@SH@,${SH},\" "+
+			"can be replaced with \"SUBST_VARS.test+= SH\".",
+		"NOTE: subst.mk:10: The substitution command \"'s,@SH@,${SH},'\" "+
+			"can be replaced with \"SUBST_VARS.test+= SH\".",
+		"NOTE: subst.mk:11: The substitution command \"\\\"s,@SH@,${SH},\\\"\" "+
+			"can be replaced with \"SUBST_VARS.test+= SH\".",
+		"NOTE: subst.mk:12: The substitution command \"s,'@SH@','${SH}',\" "+
+			"can be replaced with \"SUBST_VARS.test+= SH\".",
+		"NOTE: subst.mk:13: Please always use \"-e\" in sed commands, "+
+			"even if there is only one substitution.",
+		"NOTE: subst.mk:13: The substitution command \"s,'@SH@','${SH}',\" "+
+			"can be replaced with \"SUBST_VARS.test+= SH\".",
+		"NOTE: subst.mk:18: The substitution command \"s,@SH@,${SH:Q},\" "+
+			"can be replaced with \"SUBST_VARS.test+= SH\".")
+
+	t.SetUpCommandLine("--show-autofix")
+
+	mklines.Check()
+
+	t.CheckOutputLines(
+		"NOTE: subst.mk:6: The substitution command \"s,@SH@,${SH},g\" "+
+			"can be replaced with \"SUBST_VARS.test+= SH\".",
+		"AUTOFIX: subst.mk:6: Replacing \"SUBST_SED.test+=\\t-e s,@SH@,${SH},g\" "+
+			"with \"SUBST_VARS.test+=\\tSH\".",
+		"NOTE: subst.mk:7: The substitution command \"s,@SH@,${SH:Q},g\" "+
+			"can be replaced with \"SUBST_VARS.test+= SH\".",
+		"AUTOFIX: subst.mk:7: Replacing \"SUBST_SED.test+=\\t-e s,@SH@,${SH:Q},g\" "+
+			"with \"SUBST_VARS.test+=\\tSH\".",
+		"NOTE: subst.mk:9: The substitution command \"s,@SH@,${SH},\" "+
+			"can be replaced with \"SUBST_VARS.test+= SH\".",
+		"AUTOFIX: subst.mk:9: Replacing \"SUBST_SED.test+=\\t-e s,@SH@,${SH},\" "+
+			"with \"SUBST_VARS.test+=\\tSH\".",
+		"NOTE: subst.mk:10: The substitution command \"'s,@SH@,${SH},'\" "+
+			"can be replaced with \"SUBST_VARS.test+= SH\".",
+		"AUTOFIX: subst.mk:10: Replacing \"SUBST_SED.test+=\\t-e 's,@SH@,${SH},'\" "+
+			"with \"SUBST_VARS.test+=\\tSH\".",
+		"NOTE: subst.mk:11: The substitution command \"\\\"s,@SH@,${SH},\\\"\" "+
+			"can be replaced with \"SUBST_VARS.test+= SH\".",
+		"AUTOFIX: subst.mk:11: Replacing \"SUBST_SED.test+=\\t-e \\\"s,@SH@,${SH},\\\"\" "+
+			"with \"SUBST_VARS.test+=\\tSH\".",
+		"NOTE: subst.mk:12: The substitution command \"s,'@SH@','${SH}',\" "+
+			"can be replaced with \"SUBST_VARS.test+= SH\".",
+		"AUTOFIX: subst.mk:12: Replacing \"SUBST_SED.test+=\\t-e s,'@SH@','${SH}',\" "+
+			"with \"SUBST_VARS.test+=\\tSH\".")
 }
 
 // simulateSubstLines only tests some of the inner workings of SubstContext.
@@ -403,7 +448,7 @@ func simulateSubstLines(t *Tester, texts ...string) {
 	for _, lineText := range texts {
 		var lineno int
 		_, err := fmt.Sscanf(lineText[0:4], "%d: ", &lineno)
-		G.Assertf(err == nil, "%s", err)
+		G.AssertNil(err, "")
 		text := lineText[4:]
 		line := newSubstLine(t, lineno, text)
 

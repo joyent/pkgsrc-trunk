@@ -109,7 +109,7 @@ func (pkg *Package) checkPossibleDowngrade() {
 		changeVersion := replaceAll(change.Version, `nb\d+$`, "")
 		if pkgver.Compare(pkgversion, changeVersion) < 0 {
 			mkline.Warnf("The package is being downgraded from %s (see %s) to %s.",
-				change.Version, mkline.Line.RefTo(change.Line), pkgversion)
+				change.Version, mkline.Line.RefToLocation(change.Location), pkgversion)
 			G.Explain(
 				"The files in doc/CHANGES-*, in which all version changes are",
 				"recorded, have a higher version number than what the package says.",
@@ -134,10 +134,10 @@ func (pkg *Package) checkLinesBuildlink3Inclusion(mklines MkLines) {
 	for _, mkline := range mklines.mklines {
 		if mkline.IsInclude() {
 			includedFile := mkline.IncludedFile()
-			if m, bl3 := match1(includedFile, `^\.\./\.\./(.*)/buildlink3\.mk`); m {
-				includedFiles[bl3] = mkline
-				if pkg.bl3[bl3] == nil {
-					mkline.Warnf("%s/buildlink3.mk is included by this file but not by the package.", bl3)
+			if matches(includedFile, `^\.\./\.\./.*/buildlink3\.mk`) {
+				includedFiles[includedFile] = mkline
+				if pkg.bl3[includedFile] == nil {
+					mkline.Warnf("%s is included by this file but not by the package.", includedFile)
 				}
 			}
 		}
@@ -146,7 +146,7 @@ func (pkg *Package) checkLinesBuildlink3Inclusion(mklines MkLines) {
 	if trace.Tracing {
 		for packageBl3 := range pkg.bl3 {
 			if includedFiles[packageBl3] == nil {
-				trace.Step1("%s/buildlink3.mk is included by the package but not by the buildlink3.mk file.", packageBl3)
+				trace.Step1("%s is included by the package but not by the buildlink3.mk file.", packageBl3)
 			}
 		}
 	}
@@ -166,9 +166,9 @@ func (pkg *Package) loadPackageMakefile() MkLines {
 	}
 
 	// TODO: Is this still necessary? This code is 20 years old and was introduced
-	// when pkglint loaded the package Makefile including all included files into
-	// a single string. Maybe it makes sense to print the file inclusion hierarchy
-	// to quickly see files that cannot be included because of unresolved variables.
+	//  when pkglint loaded the package Makefile including all included files into
+	//  a single string. Maybe it makes sense to print the file inclusion hierarchy
+	//  to quickly see files that cannot be included because of unresolved variables.
 	if G.Opts.DumpMakefile {
 		G.out.WriteLine("Whole Makefile (with all included files) follows:")
 		for _, line := range allLines.lines.Lines {
@@ -185,10 +185,10 @@ func (pkg *Package) loadPackageMakefile() MkLines {
 	allLines.collectUsedVariables()
 	allLines.CheckRedundantAssignments()
 
-	pkg.Pkgdir, _ = pkg.vars.Value("PKGDIR")
-	pkg.DistinfoFile, _ = pkg.vars.Value("DISTINFO_FILE")
-	pkg.Filesdir, _ = pkg.vars.Value("FILESDIR")
-	pkg.Patchdir, _ = pkg.vars.Value("PATCHDIR")
+	pkg.Pkgdir = pkg.vars.LastValue("PKGDIR")
+	pkg.DistinfoFile = pkg.vars.LastValue("DISTINFO_FILE")
+	pkg.Filesdir = pkg.vars.LastValue("FILESDIR")
+	pkg.Patchdir = pkg.vars.LastValue("PATCHDIR")
 
 	// See lang/php/ext.mk
 	if varIsDefinedSimilar("PHPEXT_MK") {
@@ -314,10 +314,7 @@ func (pkg *Package) readMakefile(filename string, mainLines MkLines, allLines Mk
 
 	// For every included buildlink3.mk, include the corresponding builtin.mk
 	// automatically since the pkgsrc infrastructure does the same.
-	//
-	// Disabled for now since it increases the running time by about 20%
-	// and produces many new warnings, which must be evaluated first.
-	if false && path.Base(filename) == "buildlink3.mk" {
+	if path.Base(filename) == "buildlink3.mk" {
 		builtin := path.Join(path.Dir(filename), "builtin.mk")
 		if fileExists(builtin) {
 			pkg.readMakefile(builtin, mainLines, allLines, "")
@@ -362,10 +359,10 @@ func (pkg *Package) findIncludedFile(mkline MkLine, includingFilename string) (i
 
 	if includedFile != "" {
 		if mkline.Basename != "buildlink3.mk" {
-			if m, bl3File := match1(includedFile, `^\.\./\.\./(.*)/buildlink3\.mk$`); m {
-				pkg.bl3[bl3File] = mkline
+			if matches(includedFile, `^\.\./\.\./(.*)/buildlink3\.mk$`) {
+				pkg.bl3[includedFile] = mkline
 				if trace.Tracing {
-					trace.Step1("Buildlink3 file in package: %q", bl3File)
+					trace.Step1("Buildlink3 file in package: %q", includedFile)
 				}
 			}
 		}
@@ -441,6 +438,11 @@ func (pkg *Package) checkGnuConfigureUseLanguages() {
 	vars := pkg.vars
 
 	if gnuLine := vars.FirstDefinition("GNU_CONFIGURE"); gnuLine != nil {
+
+		// FIXME: Instead of using the first definition here, a better approach
+		//  is probably to use all the definitions except those from mk/compiler.mk.
+		//  In real pkgsrc, the last definition is typically from mk/compiler.mk
+		//  and only contains c++.
 		if useLine := vars.FirstDefinition("USE_LANGUAGES"); useLine != nil {
 
 			if matches(useLine.VarassignComment(), `(?-i)\b(?:c|empty|none)\b`) {
@@ -463,7 +465,7 @@ func (pkg *Package) checkGnuConfigureUseLanguages() {
 // It is only used inside pkgsrc to mark changes that are
 // independent from the upstream package.
 func (pkg *Package) nbPart() string {
-	pkgrevision, _ := pkg.vars.Value("PKGREVISION")
+	pkgrevision := pkg.vars.LastValue("PKGREVISION")
 	if rev, err := strconv.Atoi(pkgrevision); err == nil {
 		return "nb" + strconv.Itoa(rev)
 	}
@@ -553,7 +555,7 @@ func (pkg *Package) checkUpdate() {
 		return
 	}
 
-	for _, sugg := range G.Pkgsrc.GetSuggestedPackageUpdates() {
+	for _, sugg := range G.Pkgsrc.SuggestedUpdates() {
 		if pkg.EffectivePkgbase != sugg.Pkgname {
 			continue
 		}
@@ -594,7 +596,7 @@ func (pkg *Package) CheckVarorder(mklines MkLines) {
 		defer trace.Call0()()
 	}
 
-	if !G.Opts.WarnOrder || pkg.seenMakefileCommon {
+	if pkg.seenMakefileCommon {
 		return
 	}
 
@@ -669,12 +671,10 @@ func (pkg *Package) CheckVarorder(mklines MkLines) {
 			variable("TOOL_DEPENDS", many),
 			variable("DEPENDS", many))}
 
-	firstRelevant := -1
-	lastRelevant := -1
+	relevantLines := (func() []MkLine {
+		firstRelevant := -1
+		lastRelevant := -1
 
-	// TODO: understand and explain this code.
-	//  It is much longer and much more complicated than it should be.
-	skip := func() bool {
 		relevantVars := make(map[string]bool)
 		for _, section := range sections {
 			for _, variable := range section.vars {
@@ -696,7 +696,7 @@ func (pkg *Package) CheckVarorder(mklines MkLines) {
 							trace.Stepf("Skipping varorder because of line %s.",
 								mklines.mklines[firstIrrelevant].Linenos())
 						}
-						return true
+						return nil
 					}
 					lastRelevant = i
 				} else {
@@ -716,9 +716,13 @@ func (pkg *Package) CheckVarorder(mklines MkLines) {
 		}
 
 		if firstRelevant == -1 {
-			return true
+			return nil
 		}
-		interesting := mklines.mklines[firstRelevant : lastRelevant+1]
+		return mklines.mklines[firstRelevant : lastRelevant+1]
+	})()
+
+	skip := func() bool {
+		interesting := relevantLines
 
 		varcanon := func() string {
 			for len(interesting) > 0 && interesting[0].IsComment() {
@@ -763,7 +767,7 @@ func (pkg *Package) CheckVarorder(mklines MkLines) {
 		return len(interesting) == 0
 	}
 
-	if skip() {
+	if len(relevantLines) == 0 || skip() {
 		return
 	}
 
@@ -771,7 +775,7 @@ func (pkg *Package) CheckVarorder(mklines MkLines) {
 	for _, section := range sections {
 		for _, variable := range section.vars {
 			found := false
-			for _, mkline := range mklines.mklines[firstRelevant : lastRelevant+1] {
+			for _, mkline := range relevantLines {
 				if mkline.IsVarassign() || mkline.IsCommentedVarassign() {
 					if mkline.Varcanon() == variable.varname {
 						canonical = append(canonical, mkline.Varname())
@@ -794,7 +798,7 @@ func (pkg *Package) CheckVarorder(mklines MkLines) {
 	// TODO: This leads to very long and complicated warnings.
 	//  Those parts that are correct should not be mentioned,
 	//  except if they are helpful for locating the mistakes.
-	mkline := mklines.mklines[firstRelevant]
+	mkline := relevantLines[0]
 	mkline.Warnf("The canonical order of the variables is %s.", strings.Join(canonical, ", "))
 	G.Explain(
 		"In simple package Makefiles, some common variables should be",
@@ -815,8 +819,8 @@ func (pkg *Package) checkLocallyModified(filename string) {
 		defer trace.Call(filename)()
 	}
 
-	owner, _ := pkg.vars.Value("OWNER")
-	maintainer, _ := pkg.vars.Value("MAINTAINER")
+	owner := pkg.vars.LastValue("OWNER")
+	maintainer := pkg.vars.LastValue("MAINTAINER")
 	if maintainer == "pkgsrc-users@NetBSD.org" {
 		maintainer = ""
 	}
@@ -881,9 +885,9 @@ func (pkg *Package) checkIncludeConditionally(mkline MkLine, indentation *Indent
 		}
 
 		// TODO: Check whether the conditional variables are the same on both places.
-		// Ideally they should match, but there may be some differences in internal
-		// variables, which need to be filtered out before comparing them, like it is
-		// already done with *_MK variables.
+		//  Ideally they should match, but there may be some differences in internal
+		//  variables, which need to be filtered out before comparing them, like it is
+		//  already done with *_MK variables.
 	}
 }
 
@@ -898,6 +902,19 @@ func (pkg *Package) loadPlistDirs(plistFilename string) {
 				pkg.Plist.Dirs[dir] = true
 			}
 		}
+	}
+}
+
+func (pkg *Package) AutofixDistinfo(oldSha1, newSha1 string) {
+	distinfoFilename := pkg.File(pkg.DistinfoFile)
+	if lines := Load(distinfoFilename, NotEmpty|LogErrors); lines != nil {
+		for _, line := range lines.Lines {
+			fix := line.Autofix()
+			fix.Warnf(SilentAutofixFormat)
+			fix.Replace(oldSha1, newSha1)
+			fix.Apply()
+		}
+		lines.SaveAutofixChanges()
 	}
 }
 

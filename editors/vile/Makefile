@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.68 2018/08/22 09:45:03 wiz Exp $
+# $NetBSD: Makefile,v 1.70 2019/02/16 00:52:06 wiz Exp $
 
-DISTNAME=		vile-9.8
-PKGREVISION=		9
+DISTNAME=		vile-9.8t
 CATEGORIES=		editors
-MASTER_SITES=		ftp://invisible-island.net/vile/
+MASTER_SITES=		ftp://ftp.invisible-island.net/vile/current/
 EXTRACT_SUFX=		.tgz
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
@@ -31,8 +30,6 @@ FILTERDIR=		${PREFIX}/libexec/vile
 EGDIR=			${PREFIX}/share/examples/vile
 
 post-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/perl/vileget			\
-		${DESTDIR}${PREFIX}/bin/vileget
 	${INSTALL_DATA_DIR} ${DESTDIR}${EGDIR}
 	set -e;								\
 	for f in filters/spell.rc filters/filters.rc			\

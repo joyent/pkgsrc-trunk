@@ -8,8 +8,8 @@ import (
 func (s *Suite) Test_MkLines_Check__unusual_target(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupVartypes()
-	t.SetupTool("cc", "CC", AtRunTime)
+	t.SetUpVartypes()
+	t.SetUpTool("cc", "CC", AtRunTime)
 	mklines := t.NewMkLines("Makefile",
 		MkRcsID,
 		"",
@@ -25,7 +25,7 @@ func (s *Suite) Test_MkLines_Check__unusual_target(c *check.C) {
 func (s *Suite) Test_MkLines__quoting_LDFLAGS_for_GNU_configure(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupVartypes()
+	t.SetUpVartypes()
 	G.Pkg = NewPackage(t.File("category/pkgbase"))
 	mklines := t.NewMkLines("Makefile",
 		MkRcsID,
@@ -42,10 +42,10 @@ func (s *Suite) Test_MkLines__quoting_LDFLAGS_for_GNU_configure(c *check.C) {
 func (s *Suite) Test_MkLines__for_loop_multiple_variables(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupVartypes()
-	t.SetupTool("echo", "ECHO", AtRunTime)
-	t.SetupTool("find", "FIND", AtRunTime)
-	t.SetupTool("pax", "PAX", AtRunTime)
+	t.SetUpVartypes()
+	t.SetUpTool("echo", "ECHO", AtRunTime)
+	t.SetUpTool("find", "FIND", AtRunTime)
+	t.SetUpTool("pax", "PAX", AtRunTime)
 	mklines := t.NewMkLines("Makefile", // From audio/squeezeboxserver
 		MkRcsID,
 		"",
@@ -69,7 +69,7 @@ func (s *Suite) Test_MkLines__for_loop_multiple_variables(c *check.C) {
 func (s *Suite) Test_MkLines__comparing_YesNo_variable_to_string(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupVartypes()
+	t.SetUpVartypes()
 	mklines := t.NewMkLines("databases/gdbm_compat/builtin.mk",
 		MkRcsID,
 		".if ${USE_BUILTIN.gdbm} == \"no\"",
@@ -88,8 +88,8 @@ func (s *Suite) Test_MkLines__comparing_YesNo_variable_to_string(c *check.C) {
 func (s *Suite) Test_MkLines__varuse_sh_modifier(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupVartypes()
-	t.SetupTool("sed", "SED", AfterPrefsMk)
+	t.SetUpVartypes()
+	t.SetUpTool("sed", "SED", AfterPrefsMk)
 	mklines := t.NewMkLines("lang/qore/module.mk",
 		MkRcsID,
 		"qore-version=\tqore --short-version | ${SED} -e s/-.*//",
@@ -118,7 +118,7 @@ func (s *Suite) Test_MkLines__varuse_sh_modifier(c *check.C) {
 func (s *Suite) Test_MkLines__varuse_parameterized(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupVartypes()
+	t.SetUpVartypes()
 	mklines := t.NewMkLines("converters/wv2/Makefile",
 		MkRcsID,
 		"CONFIGURE_ARGS+=\t\t${CONFIGURE_ARGS.${ICONV_TYPE}-iconv}",
@@ -155,7 +155,7 @@ func (s *Suite) Test_MkLines__varuse_parameterized(c *check.C) {
 func (s *Suite) Test_MkLines__loop_modifier(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupVartypes()
+	t.SetUpVartypes()
 	mklines := t.NewMkLines("chat/xchat/Makefile",
 		MkRcsID,
 		"GCONF_SCHEMAS=\tapps_xchat_url_handler.schemas",
@@ -172,7 +172,7 @@ func (s *Suite) Test_MkLines__loop_modifier(c *check.C) {
 func (s *Suite) Test_MkLines__PKG_SKIP_REASON_depending_on_OPSYS(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupVartypes()
+	t.SetUpVartypes()
 	mklines := t.NewMkLines("Makefile",
 		MkRcsID,
 		"PKG_SKIP_REASON+=\t\"Fails everywhere\"",
@@ -189,8 +189,8 @@ func (s *Suite) Test_MkLines__PKG_SKIP_REASON_depending_on_OPSYS(c *check.C) {
 func (s *Suite) Test_MkLines_Check__use_list_variable_as_part_of_word(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupVartypes()
-	t.SetupTool("tr", "", AtRunTime)
+	t.SetUpVartypes()
+	t.SetUpTool("tr", "", AtRunTime)
 	mklines := t.NewMkLines("converters/chef/Makefile",
 		MkRcsID,
 		"\tcd ${WRKSRC} && tr '\\r' '\\n' < ${DISTDIR}/${DIST_SUBDIR}/${DISTFILES} > chef.l")
@@ -204,7 +204,7 @@ func (s *Suite) Test_MkLines_Check__use_list_variable_as_part_of_word(c *check.C
 func (s *Suite) Test_MkLines_Check__absolute_pathname_depending_on_OPSYS(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupVartypes()
+	t.SetUpVartypes()
 	mklines := t.NewMkLines("games/heretic2-demo/Makefile",
 		MkRcsID,
 		".if ${OPSYS} == \"DragonFly\"",
@@ -227,7 +227,7 @@ func (s *Suite) Test_MkLines_Check__absolute_pathname_depending_on_OPSYS(c *chec
 func (s *Suite) Test_MkLines_CheckForUsedComment(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("--show-autofix")
+	t.SetUpCommandLine("--show-autofix")
 
 	test := func(pkgpath string, lines []string, diagnostics []string) {
 		mklines := t.NewMkLines("Makefile.common", lines...)
@@ -306,8 +306,8 @@ func (s *Suite) Test_MkLines_CheckForUsedComment(c *check.C) {
 func (s *Suite) Test_MkLines_collectDefinedVariables(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wall,no-space")
-	t.SetupPkgsrc()
+	t.SetUpCommandLine("-Wall,no-space")
+	t.SetUpPkgsrc()
 	t.CreateFileLines("mk/tools/defaults.mk",
 		"USE_TOOLS+=     autoconf autoconf213")
 	G.Pkgsrc.LoadInfrastructure()
@@ -337,20 +337,20 @@ func (s *Suite) Test_MkLines_collectDefinedVariables(c *check.C) {
 	// The OSV.NetBSD variable is used implicitly via the OSV variable, therefore no warning.
 	t.CheckOutputLines(
 		// FIXME: the below warning is wrong; it's ok to have SUBST blocks in all files,
-		// maybe except buildlink3.mk.
+		//  maybe except buildlink3.mk.
 		"WARN: determine-defined-variables.mk:12: The variable SUBST_VARS.subst may not be set " +
-			"(only given a default value, appended to) in this file; " +
-			"it would be ok in Makefile, Makefile.common, options.mk.")
+			"(only given a default value, or appended to) in this file; " +
+			"it would be ok in Makefile, Makefile.common or options.mk.")
 }
 
 func (s *Suite) Test_MkLines_collectDefinedVariables__BUILTIN_FIND_FILES_VAR(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wall,no-space")
-	t.SetupPackage("category/package")
+	t.SetUpCommandLine("-Wall,no-space")
+	t.SetUpPackage("category/package")
 	t.CreateFileLines("mk/buildlink3/bsd.builtin.mk",
 		MkRcsID)
-	mklines := t.SetupFileMkLines("category/package/builtin.mk",
+	mklines := t.SetUpFileMkLines("category/package/builtin.mk",
 		MkRcsID,
 		"",
 		"BUILTIN_FIND_FILES_VAR:=        H_XFT2",
@@ -409,7 +409,7 @@ func (s *Suite) Test_MkLines_collectUsedVariables__nested(c *check.C) {
 func (s *Suite) Test_MkLines__private_tool_undefined(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupVartypes()
+	t.SetUpVartypes()
 	mklines := t.NewMkLines("filename",
 		MkRcsID,
 		"",
@@ -424,7 +424,7 @@ func (s *Suite) Test_MkLines__private_tool_undefined(c *check.C) {
 func (s *Suite) Test_MkLines__private_tool_defined(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupVartypes()
+	t.SetUpVartypes()
 	mklines := t.NewMkLines("filename",
 		MkRcsID,
 		"TOOLS_CREATE+=\tmd5sum",
@@ -441,7 +441,7 @@ func (s *Suite) Test_MkLines__private_tool_defined(c *check.C) {
 func (s *Suite) Test_MkLines_Check__indentation(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupVartypes()
+	t.SetUpVartypes()
 	mklines := t.NewMkLines("options.mk",
 		MkRcsID,
 		". if !defined(GUARD_MK)",
@@ -492,9 +492,9 @@ func (s *Suite) Test_MkLines_Check__indentation(c *check.C) {
 func (s *Suite) Test_MkLines_Check__indentation_include(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupVartypes()
+	t.SetUpVartypes()
 	t.CreateFileLines("included.mk")
-	mklines := t.SetupFileMkLines("module.mk",
+	mklines := t.SetUpFileMkLines("module.mk",
 		MkRcsID,
 		"",
 		".if ${PKGPATH} == \"category/package\"",
@@ -511,47 +511,10 @@ func (s *Suite) Test_MkLines_Check__indentation_include(c *check.C) {
 		"NOTE: ~/module.mk:7: This directive should be indented by 2 spaces.")
 }
 
-func (s *Suite) Test_MkLines_Check__endif_comment(c *check.C) {
-	t := s.Init(c)
-
-	t.SetupVartypes()
-	mklines := t.NewMkLines("opsys.mk",
-		MkRcsID,
-		"",
-		".for i in 1 2 3 4 5",
-		".  if ${OPSYS} == NetBSD",
-		".    if ${MACHINE_ARCH} == x86_64",
-		".      if ${OS_VERSION:M8.*}",
-		".      endif # MACHINE_ARCH", // Wrong, should be OS_VERSION.
-		".    endif # OS_VERSION",     // Wrong, should be MACHINE_ARCH.
-		".  endif # OPSYS",            // Correct.
-		".endfor # j",                 // Wrong, should be i.
-		"",
-		".if ${PKG_OPTIONS:Moption}",
-		".endif # option", // Correct.
-		"",
-		".if ${PKG_OPTIONS:Moption}",
-		".endif # opti", // This typo goes unnoticed since "opti" is a substring of the condition.
-		"",
-		".if ${OPSYS} == NetBSD",
-		".elif ${OPSYS} == FreeBSD",
-		".endif # NetBSD") // Wrong, should be FreeBSD from the .elif.
-
-	// See MkLineChecker.checkDirective
-	mklines.Check()
-
-	t.CheckOutputLines(
-		"WARN: opsys.mk:7: Comment \"MACHINE_ARCH\" does not match condition \"${OS_VERSION:M8.*}\".",
-		"WARN: opsys.mk:8: Comment \"OS_VERSION\" does not match condition \"${MACHINE_ARCH} == x86_64\".",
-		"WARN: opsys.mk:10: Comment \"j\" does not match loop \"i in 1 2 3 4 5\".",
-		"WARN: opsys.mk:12: Unknown option \"option\".",
-		"WARN: opsys.mk:20: Comment \"NetBSD\" does not match condition \"${OPSYS} == FreeBSD\".")
-}
-
 func (s *Suite) Test_MkLines_Check__unfinished_directives(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupVartypes()
+	t.SetUpVartypes()
 	mklines := t.NewMkLines("opsys.mk",
 		MkRcsID,
 		"",
@@ -572,7 +535,7 @@ func (s *Suite) Test_MkLines_Check__unfinished_directives(c *check.C) {
 func (s *Suite) Test_MkLines_Check__unbalanced_directives(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupVartypes()
+	t.SetUpVartypes()
 	mklines := t.NewMkLines("opsys.mk",
 		MkRcsID,
 		"",
@@ -594,7 +557,7 @@ func (s *Suite) Test_MkLines_Check__unbalanced_directives(c *check.C) {
 func (s *Suite) Test_MkLines_Check__incomplete_subst_at_end(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupVartypes()
+	t.SetUpVartypes()
 	mklines := t.NewMkLines("subst.mk",
 		MkRcsID,
 		"",
@@ -614,11 +577,11 @@ func (s *Suite) Test_MkLines_Check__incomplete_subst_at_end(c *check.C) {
 func (s *Suite) Test_MkLines__wip_category_Makefile(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wall", "--explain")
-	t.SetupVartypes()
-	t.SetupTool("rm", "RM", AtRunTime)
+	t.SetUpCommandLine("-Wall", "--explain")
+	t.SetUpVartypes()
+	t.SetUpTool("rm", "RM", AtRunTime)
 	t.CreateFileLines("mk/misc/category.mk")
-	mklines := t.SetupFileMkLines("wip/Makefile",
+	mklines := t.SetUpFileMkLines("wip/Makefile",
 		MkRcsID,
 		"",
 		"COMMENT=\tWIP pkgsrc packages",
@@ -656,8 +619,8 @@ func (s *Suite) Test_MkLines__wip_category_Makefile(c *check.C) {
 func (s *Suite) Test_MkLines_collectDocumentedVariables(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupVartypes()
-	t.SetupTool("rm", "RM", AtRunTime)
+	t.SetUpVartypes()
+	t.SetUpTool("rm", "RM", AtRunTime)
 	mklines := t.NewMkLines("Makefile",
 		MkRcsID,
 		"#",
@@ -707,7 +670,7 @@ func (s *Suite) Test_MkLines_collectDocumentedVariables(c *check.C) {
 func (s *Suite) Test_MkLines__shell_command_indentation(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupVartypes()
+	t.SetUpVartypes()
 	mklines := t.NewMkLines("Makefile",
 		MkRcsID,
 		"#",
@@ -726,8 +689,8 @@ func (s *Suite) Test_MkLines__shell_command_indentation(c *check.C) {
 func (s *Suite) Test_MkLines__unknown_options(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupVartypes()
-	t.SetupOption("known", "")
+	t.SetUpVartypes()
+	t.SetUpOption("known", "")
 	mklines := t.NewMkLines("options.mk",
 		MkRcsID,
 		"#",
@@ -747,25 +710,22 @@ func (s *Suite) Test_MkLines_CheckRedundantAssignments__override_in_mk(c *check.
 		"OVERRIDE=\tprevious value",
 		"REDUNDANT=\tredundant")
 	including := t.NewMkLines("including.mk",
+		".include \"included.mk\"",
 		"OVERRIDE=\toverridden value",
 		"REDUNDANT=\tredundant")
 
 	var allLines []Line
+	allLines = append(allLines, including.lines.Lines[:1]...)
 	allLines = append(allLines, included.lines.Lines...)
-	allLines = append(allLines, including.lines.Lines...)
+	allLines = append(allLines, including.lines.Lines[1:]...)
 	mklines := NewMkLines(NewLines(included.lines.FileName, allLines))
 
 	// XXX: The warnings from here are not in the same order as the other warnings.
 	// XXX: There may be some warnings for the same file separated by warnings for other files.
 	mklines.CheckRedundantAssignments()
 
-	// No warning for VAR=... in Makefile since it makes sense to have common files
-	// with default values for variables, overriding some of them in each package.
 	t.CheckOutputLines(
-		// FIXME: The below warning is wrong because overwriting in a different file is ok.
-		"WARN: included.mk:1: Variable OVERRIDE is overwritten in including.mk:1.",
-		// FIXME: It's the other way round: including.mk:2 is redundant because of included.mk:2.
-		"NOTE: included.mk:2: Definition of REDUNDANT is redundant because of including.mk:2.")
+		"NOTE: including.mk:3: Definition of REDUNDANT is redundant because of included.mk:2.")
 }
 
 func (s *Suite) Test_MkLines_CheckRedundantAssignments__override_in_Makefile(c *check.C) {
@@ -774,13 +734,15 @@ func (s *Suite) Test_MkLines_CheckRedundantAssignments__override_in_Makefile(c *
 		"VAR=\tvalue ${OTHER}",
 		"VAR?=\tvalue ${OTHER}",
 		"VAR=\tnew value")
-	makefile := t.NewMkLines("Makefile",
+	including := t.NewMkLines("Makefile",
+		".include \"module.mk\"",
 		"VAR=\tthe package may overwrite variables from other files")
 
 	var allLines []Line
+	allLines = append(allLines, including.lines.Lines[:1]...)
 	allLines = append(allLines, included.lines.Lines...)
-	allLines = append(allLines, makefile.lines.Lines...)
-	mklines := NewMkLines(NewLines(included.lines.FileName, allLines))
+	allLines = append(allLines, including.lines.Lines[1:]...)
+	mklines := NewMkLines(NewLines(including.lines.FileName, allLines))
 
 	// XXX: The warnings from here are not in the same order as the other warnings.
 	// XXX: There may be some warnings for the same file separated by warnings for other files.
@@ -789,7 +751,7 @@ func (s *Suite) Test_MkLines_CheckRedundantAssignments__override_in_Makefile(c *
 	// No warning for VAR=... in Makefile since it makes sense to have common files
 	// with default values for variables, overriding some of them in each package.
 	t.CheckOutputLines(
-		"NOTE: module.mk:1: Definition of VAR is redundant because of line 2.",
+		"NOTE: module.mk:2: Definition of VAR is redundant because of line 1.",
 		"WARN: module.mk:1: Variable VAR is overwritten in line 3.")
 }
 
@@ -826,7 +788,7 @@ func (s *Suite) Test_MkLines_CheckRedundantAssignments__overwrite_same_value(c *
 	mklines.CheckRedundantAssignments()
 
 	t.CheckOutputLines(
-		"NOTE: module.mk:1: Definition of VAR is redundant because of line 2.")
+		"NOTE: module.mk:2: Definition of VAR is redundant because of line 1.")
 }
 
 func (s *Suite) Test_MkLines_CheckRedundantAssignments__conditional_overwrite(c *check.C) {
@@ -869,7 +831,7 @@ func (s *Suite) Test_MkLines_CheckRedundantAssignments__overwrite_same_variable_
 
 	t.CheckOutputLines(
 		"WARN: module.mk:1: Variable OTHER is overwritten in line 3.",
-		"NOTE: module.mk:2: Definition of VAR is redundant because of line 4.")
+		"NOTE: module.mk:4: Definition of VAR is redundant because of line 2.")
 }
 
 func (s *Suite) Test_MkLines_CheckRedundantAssignments__overwrite_different_value_used_between(c *check.C) {
@@ -894,8 +856,7 @@ func (s *Suite) Test_MkLines_CheckRedundantAssignments__overwrite_different_valu
 
 	t.CheckOutputLines(
 		"WARN: module.mk:1: Variable OTHER is overwritten in line 4.",
-		// FIXME: It's the other way round: line 6 is redundant because of line 2.
-		"NOTE: module.mk:2: Definition of VAR is redundant because of line 6.")
+		"NOTE: module.mk:6: Definition of VAR is redundant because of line 2.")
 }
 
 func (s *Suite) Test_MkLines_CheckRedundantAssignments__procedure_call(c *check.C) {
@@ -954,17 +915,37 @@ func (s *Suite) Test_MkLines_CheckRedundantAssignments__shell_and_eval_literal(c
 	t.CheckOutputEmpty()
 }
 
+func (s *Suite) Test_MkLines_CheckRedundantAssignments__included_OPSYS_variable(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package",
+		".include \"../../category/dependency/buildlink3.mk\"",
+		"CONFIGURE_ARGS+=\tone",
+		"CONFIGURE_ARGS=\ttwo",
+		"CONFIGURE_ARGS+=\tthree")
+	t.SetUpPackage("category/dependency")
+	t.CreateFileDummyBuildlink3("category/dependency/buildlink3.mk")
+	t.CreateFileLines("category/dependency/builtin.mk",
+		MkRcsID,
+		"CONFIGURE_ARGS.Darwin+=\tdarwin")
+
+	G.Check(t.File("category/package"))
+
+	t.CheckOutputLines(
+		"WARN: ~/category/package/Makefile:21: Variable CONFIGURE_ARGS is overwritten in line 22.")
+}
+
 func (s *Suite) Test_MkLines_Check__PLIST_VARS(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wno-space")
-	t.SetupVartypes()
-	t.SetupOption("both", "")
-	t.SetupOption("only-added", "")
-	t.SetupOption("only-defined", "")
+	t.SetUpCommandLine("-Wno-space")
+	t.SetUpVartypes()
+	t.SetUpOption("both", "")
+	t.SetUpOption("only-added", "")
+	t.SetUpOption("only-defined", "")
 	t.CreateFileLines("mk/bsd.options.mk")
 
-	mklines := t.SetupFileMkLines("category/package/options.mk",
+	mklines := t.SetUpFileMkLines("category/package/options.mk",
 		MkRcsID,
 		"",
 		"PKG_OPTIONS_VAR=        PKG_OPTIONS.pkg",
@@ -993,12 +974,12 @@ func (s *Suite) Test_MkLines_Check__PLIST_VARS(c *check.C) {
 func (s *Suite) Test_MkLines_Check__PLIST_VARS_indirect(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wno-space")
-	t.SetupVartypes()
-	t.SetupOption("option1", "")
-	t.SetupOption("option2", "")
+	t.SetUpCommandLine("-Wno-space")
+	t.SetUpVartypes()
+	t.SetUpOption("option1", "")
+	t.SetUpOption("option2", "")
 
-	mklines := t.SetupFileMkLines("module.mk",
+	mklines := t.SetUpFileMkLines("module.mk",
 		MkRcsID,
 		"",
 		"MY_PLIST_VARS=  option1 option2",
@@ -1029,11 +1010,11 @@ func (s *Suite) Test_MkLines_Check__PLIST_VARS_indirect(c *check.C) {
 func (s *Suite) Test_MkLines_Check__PLIST_VARS_indirect_2(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wno-space")
-	t.SetupVartypes()
-	t.SetupOption("a", "")
-	t.SetupOption("b", "")
-	t.SetupOption("c", "")
+	t.SetUpCommandLine("-Wno-space")
+	t.SetUpVartypes()
+	t.SetUpOption("a", "")
+	t.SetUpOption("b", "")
+	t.SetUpOption("c", "")
 
 	mklines := t.NewMkLines("module.mk",
 		MkRcsID,
@@ -1056,8 +1037,8 @@ func (s *Suite) Test_MkLines_Check__PLIST_VARS_indirect_2(c *check.C) {
 func (s *Suite) Test_MkLines_collectElse(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wno-space")
-	t.SetupVartypes()
+	t.SetUpCommandLine("-Wno-space")
+	t.SetUpVartypes()
 
 	mklines := t.NewMkLines("module.mk",
 		MkRcsID,
@@ -1083,8 +1064,8 @@ func (s *Suite) Test_MkLines_collectElse(c *check.C) {
 func (s *Suite) Test_MkLines_Check__defined_and_used_variables(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wno-space")
-	t.SetupVartypes()
+	t.SetUpCommandLine("-Wno-space")
+	t.SetUpVartypes()
 
 	mklines := t.NewMkLines("module.mk",
 		MkRcsID,
@@ -1110,8 +1091,8 @@ func (s *Suite) Test_MkLines_Check__defined_and_used_variables(c *check.C) {
 func (s *Suite) Test_MkLines_Check__hacks_mk(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wall,no-space")
-	t.SetupVartypes()
+	t.SetUpCommandLine("-Wall,no-space")
+	t.SetUpVartypes()
 	mklines := t.NewMkLines("hacks.mk",
 		MkRcsID,
 		"",
@@ -1127,8 +1108,8 @@ func (s *Suite) Test_MkLines_Check__hacks_mk(c *check.C) {
 func (s *Suite) Test_MkLines_Check__MASTER_SITE_in_HOMEPAGE(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupMasterSite("MASTER_SITE_GITHUB", "https://github.com/")
-	t.SetupVartypes()
+	t.SetUpMasterSite("MASTER_SITE_GITHUB", "https://github.com/")
+	t.SetUpVartypes()
 	G.Mk = t.NewMkLines("devel/catch/Makefile",
 		MkRcsID,
 		"HOMEPAGE=\t${MASTER_SITE_GITHUB:=philsquared/Catch/}",
@@ -1150,7 +1131,7 @@ func (s *Suite) Test_MkLines_Check__MASTER_SITE_in_HOMEPAGE(c *check.C) {
 func (s *Suite) Test_MkLines_Check__VERSION_as_word_part_in_MASTER_SITES(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupVartypes()
+	t.SetUpVartypes()
 	mklines := t.NewMkLines("geography/viking/Makefile",
 		MkRcsID,
 		"MASTER_SITES=\t${MASTER_SITE_SOURCEFORGE:=viking/}${VERSION}/")
@@ -1166,7 +1147,7 @@ func (s *Suite) Test_MkLines_Check__VERSION_as_word_part_in_MASTER_SITES(c *chec
 func (s *Suite) Test_MkLines_Check__shell_command_as_word_part_in_ENV_list(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupVartypes()
+	t.SetUpVartypes()
 	mklines := t.NewMkLines("x11/lablgtk1/Makefile",
 		MkRcsID,
 		"CONFIGURE_ENV+=\tCC=${CC}")
@@ -1181,8 +1162,8 @@ func (s *Suite) Test_MkLines_Check__shell_command_as_word_part_in_ENV_list(c *ch
 func (s *Suite) Test_MkLines_Check__extra_warnings(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wextra")
-	t.SetupVartypes()
+	t.SetUpCommandLine("-Wextra")
+	t.SetUpVartypes()
 	G.Pkg = NewPackage(t.File("category/pkgbase"))
 	G.Mk = t.NewMkLines("options.mk",
 		MkRcsID,
@@ -1212,8 +1193,8 @@ func (s *Suite) Test_MkLines_Check__extra_warnings(c *check.C) {
 func (s *Suite) Test_MkLines_ForEach__conditional_variables(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wall,no-space")
-	t.SetupVartypes()
+	t.SetUpCommandLine("-Wall,no-space")
+	t.SetUpVartypes()
 	mklines := t.NewMkLines("conditional.mk",
 		MkRcsID,
 		"",
@@ -1251,8 +1232,8 @@ func (s *Suite) Test_MkLines_ForEach__conditional_variables(c *check.C) {
 func (s *Suite) Test_MkLines_checkVarassignPlist__indirect(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupVartypes()
-	mklines := t.SetupFileMkLines("plist.mk",
+	t.SetUpVartypes()
+	mklines := t.SetUpFileMkLines("plist.mk",
 		MkRcsID,
 		"",
 		"MY_PLIST_VARS=\tvar1 var2",
@@ -1269,7 +1250,7 @@ func (s *Suite) Test_MkLines_checkVarassignPlist__indirect(c *check.C) {
 func (s *Suite) Test_VaralignBlock_Process__autofix(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wspace", "--show-autofix")
+	t.SetUpCommandLine("-Wspace", "--show-autofix")
 
 	mklines := t.NewMkLines("file.mk",
 		"VAR=   value",    // Indentation 7, fixed to 8.
@@ -1339,7 +1320,7 @@ func (s *Suite) Test_VaralignBlock_Process__reduce_indentation(c *check.C) {
 func (s *Suite) Test_VaralignBlock_Process__longest_line_no_space(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wspace")
+	t.SetUpCommandLine("-Wspace")
 	mklines := t.NewMkLines("file.mk",
 		"SUBST_CLASSES+= aaaaaaaa",
 		"SUBST_STAGE.aaaaaaaa= pre-configure",
@@ -1362,7 +1343,7 @@ func (s *Suite) Test_VaralignBlock_Process__longest_line_no_space(c *check.C) {
 func (s *Suite) Test_VaralignBlock_Process__only_spaces(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wspace")
+	t.SetUpCommandLine("-Wspace")
 	mklines := t.NewMkLines("file.mk",
 		"SUBST_CLASSES+= aaaaaaaa",
 		"SUBST_STAGE.aaaaaaaa= pre-configure",

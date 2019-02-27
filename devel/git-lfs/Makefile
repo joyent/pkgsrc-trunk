@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.4 2018/12/19 15:47:08 bsiegert Exp $
+# $NetBSD: Makefile,v 1.6 2019/01/24 10:00:35 bsiegert Exp $
 
-DISTNAME=	git-lfs-2.5.1
-PKGREVISION=	2
+DISTNAME=	git-lfs-2.6.1
+PKGREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=git-lfs/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -19,10 +19,12 @@ GO_DIST_BASE=	${PKGNAME_NOREV}
 INSTALLATION_DIRS=	bin
 
 pre-build:
-	cp ${WRKSRC}/lfsapi/certs_openbsd.go ${WRKSRC}/lfsapi/certs_netbsd.go
+	cp ${WRKSRC}/lfshttp/certs_openbsd.go ${WRKSRC}/lfshttp/certs_netbsd.go
 # generate content for "git-lfs --help"
 	ln -sf ${GO} ${BUILDLINK_DIR}/bin/go
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} GOPATH=${WRKDIR} ${GO} generate github.com/git-lfs/git-lfs/commands
+# https://github.com/git-lfs/git-lfs/pull/3377
+	rm -rf ${WRKSRC}/t/git-lfs-test-server-api
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKDIR}/bin/git-lfs ${DESTDIR}${PREFIX}/bin/git-lfs

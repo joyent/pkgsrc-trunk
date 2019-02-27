@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.31 2018/09/29 10:34:33 tnn Exp $
+# $NetBSD: Makefile,v 1.33 2019/02/06 14:51:37 taca Exp $
 
-DISTNAME=	jekyll-3.8.4
+DISTNAME=	jekyll-3.8.5
 CATEGORIES=	www
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -24,13 +24,15 @@ DEPENDS+=	${RUBY_PKGPREFIX}-safe_yaml>=1.0<2:../../textproc/ruby-safe_yaml
 # below packages are not listed in gemspec
 DEPENDS+=	${RUBY_PKGPREFIX}-jekyll-minima>=2.1.1:../../www/ruby-jekyll-minima
 DEPENDS+=	${RUBY_PKGPREFIX}-jekyll-feed>=0.9.2:../../www/ruby-jekyll-feed
-DEPENDS+=       ${RUBY_PKGPREFIX}-bundler>=1.7:../../misc/ruby-bundler
 
-RUBY_VERSIONS_ACCEPTED=	23 24 25
+RUBY_VERSIONS_ACCEPTED=	23 24 25 26
 
 RUBYGEM_OPTIONS+=	--format-executable
 
 OVERRIDE_GEMSPEC+=	i18n>=0.7
 
 .include "../../lang/ruby/gem.mk"
+.if ${RUBY_VER} != 26
+DEPENDS+=	${RUBY_PKGPREFIX}-bundler>=1.7:../../misc/ruby-bundler
+.endif
 .include "../../mk/bsd.pkg.mk"

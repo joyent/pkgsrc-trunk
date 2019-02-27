@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.93 2018/03/11 17:28:08 wiz Exp $
+# $NetBSD: Makefile,v 1.95 2019/02/24 15:18:45 wiz Exp $
 
 .include "../../archivers/gtar/Makefile.common"
 
@@ -32,7 +32,7 @@ CONFIGURE_ENV+=		ac_cv_have_decl_strtoimax=no
 LDFLAGS.SCO_SV+=	-lsocket
 .endif
 
-PLIST_VARS+=		gtar rmt
+PLIST_VARS+=		rmt
 
 TEST_TARGET=		check
 
@@ -47,6 +47,10 @@ CONFIGURE_ENV+=		gt_cv_func_gnugettext3_libintl=yes
 .endif
 
 CPPFLAGS.MirBSD+=	-Dstrtoimax=strtoll -Dstrtoumax=strtoull
+
+# From sigwait(3):
+CFLAGS.OpenBSD+=	-pthread
+LDFLAGS.OpenBSD+=	-pthread
 
 #bug 20453 in bug-gzip list, passed onto gnulib
 CONFIGURE_ENV.AIX+=	ac_cv_header_wctype_h=no

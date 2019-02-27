@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.105 2018/12/09 18:52:28 adam Exp $
+# $NetBSD: Makefile,v 1.108 2019/02/13 20:12:10 wiz Exp $
 
-DISTNAME=	harfbuzz-2.2.0
-PKGREVISION=	1
+DISTNAME=	harfbuzz-2.3.1
 CATEGORIES=	fonts
 MASTER_SITES=	http://www.freedesktop.org/software/harfbuzz/release/
 EXTRACT_SUFX=	.tar.bz2
@@ -17,6 +16,7 @@ USE_TOOLS+=		gmake pkg-config
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-cairo=no
 CONFIGURE_ARGS+=	--with-graphite2=no
+GCC_REQD+=		4.9
 
 PKGCONFIG_OVERRIDE+=	src/harfbuzz.pc.in
 PKGCONFIG_OVERRIDE+=	src/harfbuzz-icu.pc.in

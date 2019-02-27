@@ -5,7 +5,7 @@ import "gopkg.in/check.v1"
 func (s *Suite) Test_CheckdirCategory__totally_broken(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupVartypes()
+	t.SetUpVartypes()
 	t.CreateFileLines("archivers/Makefile",
 		"# $",
 		"SUBDIR+=pkg1",
@@ -39,7 +39,7 @@ func (s *Suite) Test_CheckdirCategory__totally_broken(c *check.C) {
 func (s *Suite) Test_CheckdirCategory__invalid_comment(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupVartypes()
+	t.SetUpVartypes()
 	t.CreateFileLines("archivers/Makefile",
 		MkRcsID,
 		"",
@@ -68,8 +68,8 @@ func (s *Suite) Test_CheckdirCategory__invalid_comment(c *check.C) {
 func (s *Suite) Test_CheckdirCategory__wip(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupPkgsrc()
-	t.SetupVartypes()
+	t.SetUpPkgsrc()
+	t.SetUpVartypes()
 	t.CreateFileLines("mk/misc/category.mk")
 	t.CreateFileLines("wip/package/Makefile")
 	t.CreateFileLines("wip/Makefile",
@@ -93,8 +93,8 @@ func (s *Suite) Test_CheckdirCategory__wip(c *check.C) {
 func (s *Suite) Test_CheckdirCategory__subdirs(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupPkgsrc()
-	t.SetupVartypes()
+	t.SetUpPkgsrc()
+	t.SetUpVartypes()
 	t.CreateFileLines("mk/misc/category.mk")
 	t.CreateFileLines("category/in-wrong-order/Makefile")
 	t.CreateFileLines("category/duplicate/Makefile")
@@ -130,6 +130,89 @@ func (s *Suite) Test_CheckdirCategory__subdirs(c *check.C) {
 		"ERROR: ~/category/Makefile:11: \"commented-mk-only\" exists in the Makefile but not in the file system.")
 }
 
+func (s *Suite) Test_CheckdirCategory__only_in_Makefile(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPkgsrc()
+	t.SetUpVartypes()
+	t.CreateFileLines("mk/misc/category.mk")
+	t.CreateFileLines("category/both/Makefile")
+	t.CreateFileLines("category/Makefile",
+		MkRcsID,
+		"",
+		"COMMENT=\tCategory comment",
+		"",
+		"SUBDIR+=\tabove-only-in-makefile",
+		"SUBDIR+=\tboth",
+		"SUBDIR+=\tonly-in-makefile",
+		"",
+		".include \"../mk/misc/category.mk\"")
+
+	CheckdirCategory(t.File("category"))
+
+	t.CheckOutputLines(
+		"ERROR: ~/category/Makefile:5: \"above-only-in-makefile\" exists in the Makefile "+
+			"but not in the file system.",
+		"ERROR: ~/category/Makefile:7: \"only-in-makefile\" exists in the Makefile "+
+			"but not in the file system.")
+}
+
+func (s *Suite) Test_CheckdirCategory__only_in_file_system(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPkgsrc()
+	t.SetUpVartypes()
+	t.CreateFileLines("mk/misc/category.mk")
+	t.CreateFileLines("category/above-only-in-fs/Makefile")
+	t.CreateFileLines("category/both/Makefile")
+	t.CreateFileLines("category/only-in-fs/Makefile")
+	t.CreateFileLines("category/Makefile",
+		MkRcsID,
+		"",
+		"COMMENT=\tCategory comment",
+		"",
+		"SUBDIR+=\tboth",
+		"",
+		".include \"../mk/misc/category.mk\"")
+
+	CheckdirCategory(t.File("category"))
+
+	t.CheckOutputLines(
+		"ERROR: ~/category/Makefile:5: \"above-only-in-fs\" exists in the file system "+
+			"but not in the Makefile.",
+		"ERROR: ~/category/Makefile:6: \"only-in-fs\" exists in the file system "+
+			"but not in the Makefile.")
+}
+
+func (s *Suite) Test_CheckdirCategory__recursive(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpCommandLine("-r")
+	t.SetUpPkgsrc()
+	t.SetUpVartypes()
+	t.CreateFileLines("mk/misc/category.mk")
+	t.CreateFileLines("category/commented/Makefile")
+	t.CreateFileLines("category/package/Makefile")
+	t.CreateFileLines("category/Makefile",
+		MkRcsID,
+		"",
+		"COMMENT=\tCategory comment",
+		"",
+		"#SUBDIR+=\tcommented\t# reason",
+		"SUBDIR+=\tpackage",
+		"",
+		".include \"../mk/misc/category.mk\"")
+	t.Chdir("category")
+
+	CheckdirCategory(".")
+
+	t.CheckOutputEmpty()
+	t.Check(
+		G.Todo,
+		deepEquals,
+		[]string{"./package"})
+}
+
 // Ensures that a directory in the file system can be added at the very
 // end of the SUBDIR list. This case takes a different code path than
 // an addition in the middle.
@@ -141,9 +224,9 @@ func (s *Suite) Test_CheckdirCategory__subdirs(c *check.C) {
 func (s *Suite) Test_CheckdirCategory__subdirs_file_system_at_the_bottom(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wall", "--show-autofix")
-	t.SetupPkgsrc()
-	t.SetupVartypes()
+	t.SetUpCommandLine("-Wall", "--show-autofix")
+	t.SetUpPkgsrc()
+	t.SetUpVartypes()
 	t.CreateFileLines("mk/misc/category.mk")
 	t.CreateFileLines("category/mk-and-fs/Makefile")
 	t.CreateFileLines("category/zzz-fs-only/Makefile")
@@ -166,8 +249,8 @@ func (s *Suite) Test_CheckdirCategory__subdirs_file_system_at_the_bottom(c *chec
 func (s *Suite) Test_CheckdirCategory__indentation(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupPkgsrc()
-	t.SetupVartypes()
+	t.SetUpPkgsrc()
+	t.SetUpVartypes()
 	t.CreateFileLines("mk/misc/category.mk")
 	t.CreateFileLines("category/package1/Makefile")
 	t.CreateFileLines("category/package2/Makefile")
@@ -185,4 +268,71 @@ func (s *Suite) Test_CheckdirCategory__indentation(c *check.C) {
 
 	t.CheckOutputLines(
 		"NOTE: ~/category/Makefile:5: This variable value should be aligned with tabs, not spaces, to column 17.")
+}
+
+func (s *Suite) Test_CheckdirCategory__comment_at_the_top(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPkgsrc()
+	t.SetUpVartypes()
+	t.CreateFileLines("mk/misc/category.mk")
+	t.CreateFileLines("category/package/Makefile")
+	t.CreateFileLines("category/Makefile",
+		MkRcsID,
+		"",
+		"# This category collects all programs that don't fit anywhere else.",
+		"",
+		"COMMENT=\tCategory comment",
+		"",
+		"SUBDIR+=\tpackage",
+		"",
+		".include \"../mk/misc/category.mk\"")
+
+	CheckdirCategory(t.File("category"))
+
+	// FIXME: Wow. These are quite a few warnings and errors, just because there is
+	//  an additional comment above the COMMENT definition.
+	t.CheckOutputLines(
+		"ERROR: ~/category/Makefile:3: COMMENT= line expected.",
+		"NOTE: ~/category/Makefile:2: Empty line expected after this line.",
+		"ERROR: ~/category/Makefile:3: SUBDIR+= line or empty line expected.",
+		"ERROR: ~/category/Makefile:3: \"package\" exists in the file system but not in the Makefile.",
+		"NOTE: ~/category/Makefile:2: Empty line expected after this line.",
+		"WARN: ~/category/Makefile:3: This line should contain the following text: .include \"../mk/misc/category.mk\"",
+		"ERROR: ~/category/Makefile:3: The file should end here.")
+}
+
+func (s *Suite) Test_CheckdirCategory__unexpected_EOF_while_reading_SUBDIR(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPkgsrc()
+	t.SetUpVartypes()
+	t.CreateFileLines("mk/misc/category.mk")
+	t.CreateFileLines("category/package/Makefile")
+	t.CreateFileLines("category/Makefile",
+		MkRcsID,
+		"",
+		"COMMENT=\tCategory comment",
+		"",
+		"SUBDIR+=\tpackage")
+
+	CheckdirCategory(t.File("category"))
+
+	// Doesn't happen in practice since categories are created very seldom.
+	t.CheckOutputLines(
+		"NOTE: ~/category/Makefile:5: Empty line expected after this line.",
+		"WARN: ~/category/Makefile:EOF: This line should contain the following text: "+
+			".include \"../mk/misc/category.mk\"")
+}
+
+func (s *Suite) Test_CheckdirCategory__no_Makefile(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPkgsrc()
+	t.CreateFileLines("category/other-file")
+
+	G.Check(t.File("category"))
+
+	t.CheckOutputLines(
+		"ERROR: ~/category/Makefile: Cannot be read.")
 }

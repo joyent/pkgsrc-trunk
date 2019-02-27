@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.5 2018/03/12 11:16:51 wiz Exp $
+# $NetBSD: Makefile,v 1.7 2019/02/16 13:13:42 leot Exp $
 #
 
-DISTNAME=	sxiv-24
-PKGREVISION=	2
+DISTNAME=	sxiv-25
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_GITHUB:=muennich/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -11,8 +10,6 @@ MAINTAINER=	leot@NetBSD.org
 HOMEPAGE=	https://github.com/muennich/sxiv
 COMMENT=	Simple (or small or suckless) X Image Viewer
 LICENSE=	gnu-gpl-v2
-
-USE_TOOLS+=	gmake
 
 MAKE_FLAGS+=	PREFIX=${PREFIX} MANPREFIX=${PREFIX}/${PKGMANDIR}
 MAKE_FLAGS+=	AUTORELOAD=nop

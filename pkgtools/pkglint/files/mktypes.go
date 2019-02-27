@@ -110,6 +110,11 @@ func (m MkVarUseModifier) Subst(str string) string {
 	return result
 }
 
+// MatchMatch tries to match the modifier to a :M or a :N pattern matching.
+// Examples:
+//  :Mpattern   => true, true, "pattern"
+//  :Npattern   => true, false, "pattern"
+//  :X          => false
 func (m MkVarUseModifier) MatchMatch() (ok bool, positive bool, pattern string) {
 	if hasPrefix(m.Text, "M") || hasPrefix(m.Text, "N") {
 		return true, m.Text[0] == 'M', m.Text[1:]
@@ -128,9 +133,8 @@ func (vu *MkVarUse) Mod() string {
 	return mod.String()
 }
 
-// IsExpression returns whether the varname is interpreted as a variable
-// name (the usual case) or as an expression (rare, only the modifiers
-// "?:" and "L" do this).
+// IsExpression returns whether the varname is interpreted as an expression
+// instead of a variable name (rare, only the modifiers :? and :L do this).
 func (vu *MkVarUse) IsExpression() bool {
 	if len(vu.modifiers) == 0 {
 		return false

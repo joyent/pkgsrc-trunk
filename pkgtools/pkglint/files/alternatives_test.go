@@ -5,7 +5,7 @@ import "gopkg.in/check.v1"
 func (s *Suite) Test_CheckFileAlternatives__PLIST(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupPackage("category/package")
+	t.SetUpPackage("category/package")
 	t.Chdir("category/package")
 	t.CreateFileLines("ALTERNATIVES",
 		"sbin/sendmail @PREFIX@/sbin/sendmail.postfix@POSTFIXVER@",
@@ -37,7 +37,7 @@ func (s *Suite) Test_CheckFileAlternatives__PLIST(c *check.C) {
 		"ERROR: ALTERNATIVES:7: Alternative implementation \"@VARBASE@/game/scores\" "+
 			"must appear in the PLIST as \"${VARBASE}/game/scores\".")
 
-	t.SetupCommandLine("--autofix")
+	t.SetUpCommandLine("--autofix")
 
 	G.Check(".")
 
@@ -58,4 +58,24 @@ func (s *Suite) Test_CheckFileAlternatives__empty(c *check.C) {
 
 	t.CheckOutputLines(
 		"ERROR: ALTERNATIVES: Must not be empty.")
+}
+
+func (s *Suite) Test_CheckFileAlternatives__ALTERNATIVES_SRC(c *check.C) {
+	t := s.Init(c)
+
+	// It's a strange situation, having an ALTERNATIVES file defined by
+	// the package but then referring to another package's file by means
+	// of ALTERNATIVES_SRC. As of February 2019 I don't remember if I
+	// really had this case in mind when I initially wrote the code in
+	// CheckFileAlternatives.
+	t.SetUpPackage("category/package",
+		"ALTERNATIVES_SRC=\talts")
+	t.CreateFileLines("category/package/ALTERNATIVES",
+		"bin/pgm @PREFIX@/bin/gnu-program",
+		"bin/pgm @PREFIX@/bin/nb-program")
+	G.Pkgsrc.LoadInfrastructure()
+
+	G.Check(t.File("category/package"))
+
+	t.CheckOutputEmpty()
 }

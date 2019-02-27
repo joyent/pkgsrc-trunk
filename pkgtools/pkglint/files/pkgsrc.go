@@ -7,7 +7,6 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
-	"strconv"
 	"strings"
 )
 
@@ -35,21 +34,22 @@ type Pkgsrc struct {
 	LastChange          map[string]*Change  //
 	listVersions        map[string][]string // See ListVersions
 
-	// Variables that may be overridden by the pkgsrc user. Used for checking BUILD_DEFS.
+	// Variables that may be overridden by the pkgsrc user.
+	// They are typically defined in mk/defaults/mk.conf.
+	//
+	// Whenever a package uses such a variable, it must add the variable name
+	// to BUILD_DEFS.
 	UserDefinedVars Scope
 
 	Deprecated map[string]string   //
 	vartypes   map[string]*Vartype // varcanon => type
-
-	Hashes       map[string]*Hash // Maps "alg:filename" => hash (inter-package check).
-	UsedLicenses map[string]bool  // Maps "license name" => true (inter-package check).
 }
 
 func NewPkgsrc(dir string) *Pkgsrc {
 	src := Pkgsrc{
 		dir,
 		make(map[string]bool),
-		NewTools("Pkgsrc"),
+		NewTools(),
 		make(map[string]string),
 		make(map[string]string),
 		make(map[string]string),
@@ -59,21 +59,17 @@ func NewPkgsrc(dir string) *Pkgsrc {
 		make(map[string][]string),
 		NewScope(),
 		make(map[string]string),
-		make(map[string]*Vartype),
-		nil, // Only initialized when pkglint is run for a whole pkgsrc installation
-		nil}
-
-	addDefaultBuildDefs(&src)
+		make(map[string]*Vartype)}
 
 	return &src
 }
 
-func addDefaultBuildDefs(src *Pkgsrc) {
+func (src *Pkgsrc) loadDefaultBuildDefs() {
 
 	// Some user-defined variables do not influence the binary
 	// package at all and therefore do not have to be added to
 	// BUILD_DEFS; therefore they are marked as "already added".
-	src.AddBuildDefs(
+	src.addBuildDefs(
 		"DISTDIR",
 		"FETCH_CMD",
 		"FETCH_OUTPUT_ARGS",
@@ -82,7 +78,7 @@ func addDefaultBuildDefs(src *Pkgsrc) {
 
 	// The following variables are used so often that not every
 	// package should need to add it to BUILD_DEFS manually.
-	src.AddBuildDefs(
+	src.addBuildDefs(
 		"PKGSRC_COMPILER",
 		"PKGSRC_USE_SSP",
 		"UNPRIVILEGED",
@@ -90,14 +86,15 @@ func addDefaultBuildDefs(src *Pkgsrc) {
 
 	// The following variables are so obscure that they are
 	// probably not used in practice.
-	src.AddBuildDefs(
+	src.addBuildDefs(
 		"MANINSTALL")
 
 	// The following variables are added to _BUILD_DEFS by the pkgsrc
 	// infrastructure and thus don't need to be added by the package again.
 	// To regenerate the below list:
 	//  grep -hr '^_BUILD_DEFS+=' mk/ | tr ' \t' '\n\n' | sed -e 's,.*=,,' -e '/^_/d' -e '/^$/d' -e 's,.*,"&"\,,' | sort -u
-	src.AddBuildDefs(
+	// TODO: Run the equivalent of the above command at startup.
+	src.addBuildDefs(
 		"ABI",
 		"BUILTIN_PKGS",
 		"CFLAGS",
@@ -156,6 +153,7 @@ func (src *Pkgsrc) LoadInfrastructure() {
 	src.loadTools()
 	src.initDeprecatedVars()
 	src.loadUntypedVars()
+	src.loadDefaultBuildDefs()
 }
 
 // Latest returns the latest package matching the given pattern.
@@ -189,6 +187,7 @@ func (src *Pkgsrc) ListVersions(category string, re regex.Pattern, repl string, 
 			"Regular expression %q must be anchored at both ends.", re)
 	}
 
+	// TODO: Maybe convert cache key to a struct, to save allocations.
 	cacheKey := category + "/" + string(re) + " => " + repl
 	if latest, found := src.listVersions[cacheKey]; found {
 		return latest
@@ -218,17 +217,17 @@ func (src *Pkgsrc) ListVersions(category string, re regex.Pattern, repl string, 
 	// written without dots, which leads to ambiguities:
 	//
 	// databases/postgresql: 94 < 95 < 96 < 10 < 11
-	// lang/go: go19 < go110 < go111 < go2
+	// lang/go: 19 < 110 < 111 < 2
 	keys := make(map[string]int)
 	for _, name := range names {
 		if m, pkgbase, versionStr := match2(name, `^(\D+)(\d+)$`); m {
-			version, _ := strconv.Atoi(versionStr)
+			version := toInt(versionStr, 0)
 			if pkgbase == "postgresql" && version < 60 {
 				version = 10 * version
 			}
 			if pkgbase == "go" {
-				major, _ := strconv.Atoi(versionStr[:1])
-				minor, _ := strconv.Atoi(versionStr[1:])
+				major := toInt(versionStr[:1], 0)
+				minor := toInt(versionStr[1:], 0)
 				version = 100*major + minor
 			}
 			keys[name] = version
@@ -236,7 +235,7 @@ func (src *Pkgsrc) ListVersions(category string, re regex.Pattern, repl string, 
 	}
 
 	sort.SliceStable(names, func(i, j int) bool {
-		if keyI, keyJ := keys[names[i]], keys[names[j]]; keyI != 0 && keyJ != 0 {
+		if keyI, keyJ := keys[names[i]], keys[names[j]]; keyI != keyJ {
 			return keyI < keyJ
 		}
 		return naturalLess(names[i], names[j])
@@ -252,7 +251,7 @@ func (src *Pkgsrc) ListVersions(category string, re regex.Pattern, repl string, 
 }
 
 func (src *Pkgsrc) checkToplevelUnusedLicenses() {
-	usedLicenses := src.UsedLicenses
+	usedLicenses := G.UsedLicenses
 	if usedLicenses == nil {
 		return
 	}
@@ -275,7 +274,7 @@ func (src *Pkgsrc) loadTools() {
 
 	toolFiles := []string{"defaults.mk"}
 	{
-		toc := G.Pkgsrc.File("mk/tools/bsd.tools.mk")
+		toc := src.File("mk/tools/bsd.tools.mk")
 		mklines := LoadMk(toc, MustSucceed|NotEmpty)
 		for _, mkline := range mklines.mklines {
 			if mkline.IsInclude() {
@@ -307,7 +306,7 @@ func (src *Pkgsrc) loadTools() {
 	}
 
 	for _, basename := range toolFiles {
-		mklines := G.Pkgsrc.LoadMk("mk/tools/"+basename, MustSucceed|NotEmpty)
+		mklines := src.LoadMk("mk/tools/"+basename, MustSucceed|NotEmpty)
 		mklines.ForEach(func(mkline MkLine) {
 			tools.ParseToolLine(mkline, true, !mklines.indentation.IsConditional())
 		})
@@ -315,7 +314,7 @@ func (src *Pkgsrc) loadTools() {
 
 	for _, relativeName := range [...]string{"mk/bsd.prefs.mk", "mk/bsd.pkg.mk"} {
 
-		mklines := G.Pkgsrc.LoadMk(relativeName, MustSucceed|NotEmpty)
+		mklines := src.LoadMk(relativeName, MustSucceed|NotEmpty)
 		mklines.ForEach(func(mkline MkLine) {
 			if mkline.IsVarassign() {
 				varname := mkline.Varname()
@@ -324,8 +323,9 @@ func (src *Pkgsrc) loadTools() {
 					tools.ParseToolLine(mkline, true, !mklines.indentation.IsConditional())
 
 				case "_BUILD_DEFS":
+					// TODO: Compare with src.loadDefaultBuildDefs; is it redundant?
 					for _, buildDefsVar := range mkline.Fields() {
-						src.AddBuildDefs(buildDefsVar)
+						src.addBuildDefs(buildDefsVar)
 					}
 				}
 			}
@@ -384,7 +384,8 @@ func (src *Pkgsrc) loadUntypedVars() {
 		return nil
 	}
 
-	_ = filepath.Walk(src.File("mk"), handleFile)
+	err := filepath.Walk(src.File("mk"), handleFile)
+	G.AssertNil(err, "Walk error in pkgsrc infrastructure")
 }
 
 func (src *Pkgsrc) parseSuggestedUpdates(lines Lines) []SuggestedUpdate {
@@ -397,6 +398,8 @@ func (src *Pkgsrc) parseSuggestedUpdates(lines Lines) []SuggestedUpdate {
 	for _, line := range lines.Lines {
 		text := line.Text
 
+		// TODO: Replace this state transition scheme with explicit code,
+		//  hoping that the code will be easier to understand.
 		if state == 0 && text == "Suggested package updates" {
 			state = 1
 		} else if state == 1 && text == "" {
@@ -410,7 +413,7 @@ func (src *Pkgsrc) parseSuggestedUpdates(lines Lines) []SuggestedUpdate {
 		if state == 3 {
 			if m, pkgname, comment := match2(text, `^\to[\t ]([^\t ]+)(?:[\t ]*(.+))?$`); m {
 				if m, pkgbase, pkgversion := match2(pkgname, rePkgname); m {
-					updates = append(updates, SuggestedUpdate{line, pkgbase, pkgversion, comment})
+					updates = append(updates, SuggestedUpdate{line.Location, intern(pkgbase), intern(pkgversion), intern(comment)})
 				} else {
 					line.Warnf("Invalid package name %q.", pkgname)
 				}
@@ -423,19 +426,35 @@ func (src *Pkgsrc) parseSuggestedUpdates(lines Lines) []SuggestedUpdate {
 }
 
 func (src *Pkgsrc) loadSuggestedUpdates() {
-	src.suggestedUpdates = src.parseSuggestedUpdates(Load(G.Pkgsrc.File("doc/TODO"), MustSucceed))
-	src.suggestedWipUpdates = src.parseSuggestedUpdates(Load(G.Pkgsrc.File("wip/TODO"), NotEmpty))
+	src.suggestedUpdates = src.parseSuggestedUpdates(Load(src.File("doc/TODO"), MustSucceed))
+	src.suggestedWipUpdates = src.parseSuggestedUpdates(Load(src.File("wip/TODO"), NotEmpty))
 }
 
 func (src *Pkgsrc) loadDocChangesFromFile(filename string) []*Change {
 
+	warn := !G.Wip
+
 	parseChange := func(line Line) *Change {
-		text := line.Text
-		if !hasPrefix(text, "\t") {
+		lex := textproc.NewLexer(line.Text)
+
+		space := lex.NextHspace()
+		if space == "" {
 			return nil
 		}
 
-		f := strings.Fields(text)
+		if space != "\t" {
+			if warn {
+				line.Warnf("Package changes should be indented using a single tab, not %q.", space)
+				line.Explain(
+					"To avoid this formatting mistake in the future, just run",
+					sprintf("%q", bmake("cce")),
+					"after committing the update to the package.")
+			}
+
+			return nil
+		}
+
+		f := strings.Fields(lex.Rest())
 		n := len(f)
 		if n != 4 && n != 6 {
 			return nil
@@ -447,57 +466,101 @@ func (src *Pkgsrc) loadDocChangesFromFile(filename string) []*Change {
 		}
 		author, date = author[1:], date[:len(date)-1]
 
+		newChange := func(version string) *Change {
+			return &Change{
+				Location: line.Location,
+				Action:   intern(action),
+				Pkgpath:  intern(pkgpath),
+				Version:  intern(version),
+				Author:   intern(author),
+				Date:     intern(date),
+			}
+		}
+
 		switch {
 		case action == "Added" && f[2] == "version" && n == 6:
-			return &Change{line, action, pkgpath, f[3], author, date}
+			return newChange(f[3])
+
 		case (action == "Updated" || action == "Downgraded") && f[2] == "to" && n == 6:
-			return &Change{line, action, pkgpath, f[3], author, date}
+			return newChange(f[3])
+
 		case action == "Removed" && (n == 6 && f[2] == "successor" || n == 4):
-			return &Change{line, action, pkgpath, "", author, date}
+			return newChange("")
+
 		case (action == "Renamed" || action == "Moved") && f[2] == "to" && n == 6:
-			return &Change{line, action, pkgpath, "", author, date}
+			return newChange("")
 		}
+
+		line.Warnf("Unknown doc/CHANGES line: %s", line.Text)
+		line.Explain(
+			"See mk/misc/developer.mk for the rules.")
+
 		return nil
 	}
 
+	// Each date in the file should be from the same year as the filename says.
+	// This check has been added in 2018.
+	// For years earlier than 2018 pkglint doesn't care because it's not a big issue anyway.
 	year := ""
 	if m, yyyy := match1(filename, `-(\d+)$`); m && yyyy >= "2018" {
 		year = yyyy
 	}
 
+	infra := false
 	lines := Load(filename, MustSucceed|NotEmpty)
 	var changes []*Change
 	for _, line := range lines.Lines {
-		if change := parseChange(line); change != nil {
-			changes = append(changes, change)
-			if year != "" && change.Date[0:4] != year {
-				line.Warnf("Year %s for %s does not match the filename %s.", change.Date[0:4], change.Pkgpath, filename)
+
+		if hasPrefix(line.Text, "\tmk/") {
+			infra = true
+		}
+		if infra {
+			if hasSuffix(line.Text, "]") {
+				infra = false
 			}
-			if len(changes) >= 2 && year != "" {
-				if prev := changes[len(changes)-2]; change.Date < prev.Date {
-					line.Warnf("Date %s for %s is earlier than %s for %s.", change.Date, change.Pkgpath, prev.Date, prev.Pkgpath)
-					G.Explain(
-						"The entries in doc/CHANGES should be in chronological order, and",
-						"all dates are assumed to be in the UTC timezone, to prevent time",
-						"warps.",
-						"",
-						"To fix this, determine which of the involved dates are correct",
-						"and which aren't.",
-						"",
-						"To prevent this kind of mistakes in the future, make sure that",
-						sprintf("your system time is correct and run %q to commit", bmake("cce")),
-						"the changes entry.")
-				}
+			continue
+		}
+
+		change := parseChange(line)
+		if change == nil {
+			continue
+		}
+
+		changes = append(changes, change)
+
+		if !warn {
+			continue
+		}
+
+		if year != "" && change.Date[0:4] != year {
+			line.Warnf("Year %s for %s does not match the filename %s.",
+				change.Date[0:4], change.Pkgpath, filename)
+		}
+
+		if len(changes) >= 2 && year != "" {
+			if prev := changes[len(changes)-2]; change.Date < prev.Date {
+				line.Warnf("Date %s for %s is earlier than %s in %s.",
+					change.Date, change.Pkgpath, prev.Date, line.RefToLocation(prev.Location))
+				line.Explain(
+					"The entries in doc/CHANGES should be in chronological order, and",
+					"all dates are assumed to be in the UTC timezone, to prevent time",
+					"warps.",
+					"",
+					"To fix this, determine which of the involved dates are correct",
+					"and which aren't.",
+					"",
+					"To prevent this kind of mistakes in the future,",
+					"make sure that your system time is correct and run",
+					sprintf("%q", bmake("cce")),
+					"to commit the changes entry.")
 			}
-		} else if lex := textproc.NewLexer(line.Text); lex.SkipByte('\t') && lex.TestByteSet(textproc.Upper) {
-			line.Warnf("Unknown doc/CHANGES line: %s", line.Text)
-			G.Explain("See mk/misc/developer.mk for the rules.")
 		}
 	}
+
 	return changes
 }
 
-func (src *Pkgsrc) GetSuggestedPackageUpdates() []SuggestedUpdate {
+func (src *Pkgsrc) SuggestedUpdates() []SuggestedUpdate {
 	if G.Wip {
 		return src.suggestedWipUpdates
 	} else {
@@ -515,7 +578,7 @@ func (src *Pkgsrc) loadDocChanges() {
 	var filenames []string
 	for _, file := range files {
 		filename := file.Name()
-		if matches(filename, `^CHANGES-20\d\d$`) && filename >= "CHANGES-2011" {
+		if matches(filename, `^CHANGES-20\d\d$`) && filename >= "CHANGES-2011" { // TODO: Why 2011?
 			filenames = append(filenames, filename)
 		}
 	}
@@ -531,10 +594,10 @@ func (src *Pkgsrc) loadDocChanges() {
 }
 
 func (src *Pkgsrc) loadUserDefinedVars() {
-	mklines := G.Pkgsrc.LoadMk("mk/defaults/mk.conf", MustSucceed|NotEmpty)
+	mklines := src.LoadMk("mk/defaults/mk.conf", MustSucceed|NotEmpty)
 
 	for _, mkline := range mklines.mklines {
-		if mkline.IsVarassign() {
+		if mkline.IsVarassign() { // TODO: What about mkline.IsCommentedVarassign?
 			src.UserDefinedVars.Define(mkline.Varname(), mkline)
 		}
 	}
@@ -739,6 +802,7 @@ func (src *Pkgsrc) ReadDir(dirName string) []os.FileInfo {
 // Example:
 //  NewPkgsrc("/usr/pkgsrc").File("distfiles") => "/usr/pkgsrc/distfiles"
 func (src *Pkgsrc) File(relativeName string) string {
+	// TODO: Package.File resolves variables, Pkgsrc.File doesn't. They should behave the same.
 	return cleanpath(src.topdir + "/" + relativeName)
 }
 
@@ -750,12 +814,15 @@ func (src *Pkgsrc) ToRel(filename string) string {
 	return relpath(src.topdir, filename)
 }
 
-func (src *Pkgsrc) AddBuildDefs(varnames ...string) {
+func (src *Pkgsrc) addBuildDefs(varnames ...string) {
 	for _, varname := range varnames {
 		src.buildDefs[varname] = true
 	}
 }
 
+// IsBuildDef returns whether the given variable is automatically added
+// to BUILD_DEFS by the pkgsrc infrastructure. In such a case, the
+// package doesn't need to add the variable to BUILD_DEFS itself.
 func (src *Pkgsrc) IsBuildDef(varname string) bool {
 	return src.buildDefs[varname]
 }
@@ -766,6 +833,7 @@ func (src *Pkgsrc) loadMasterSites() {
 	for _, mkline := range mklines.mklines {
 		if mkline.IsVarassign() {
 			varname := mkline.Varname()
+			// TODO: Give a plausible reason for the MASTER_SITE_BACKUP exception.
 			if hasPrefix(varname, "MASTER_SITE_") && varname != "MASTER_SITE_BACKUP" {
 				for _, url := range mkline.ValueFields(mkline.Value()) {
 					if matches(url, `^(?:http://|https://|ftp://)`) {
@@ -773,17 +841,17 @@ func (src *Pkgsrc) loadMasterSites() {
 					}
 				}
 
-				// TODO: register variable type, to avoid redundant
-				// definitions in vardefs.go.
+				// TODO: register variable type, to avoid redundant definitions in vardefs.go.
 			}
 		}
 	}
 
 	// Explicitly allowed, although not defined in mk/fetch/sites.mk.
+	// TODO: Document where this definition comes from and why it is good.
 	src.registerMasterSite("MASTER_SITE_LOCAL", "ftp://ftp.NetBSD.org/pub/pkgsrc/distfiles/LOCAL_PORTS/")
 
 	if trace.Tracing {
-		trace.Stepf("Loaded %d MASTER_SITE_* URLs.", len(G.Pkgsrc.MasterSiteURLToVar))
+		trace.Stepf("Loaded %d MASTER_SITE_* URLs.", len(src.MasterSiteURLToVar))
 	}
 }
 
@@ -804,7 +872,7 @@ func (src *Pkgsrc) loadPkgOptions() {
 		if m, name, description := match2(line.Text, `^([-0-9a-z_+]+)(?:[\t ]+(.*))?$`); m {
 			src.PkgOptions[name] = description
 		} else {
-			line.Fatalf("Unknown line format: %s", line.Text)
+			line.Errorf("Invalid line format: %s", line.Text)
 		}
 	}
 }
@@ -844,6 +912,10 @@ func (src *Pkgsrc) VariableType(varname string) (vartype *Vartype) {
 		}
 	}
 
+	return src.guessVariableType(varname)
+}
+
+func (src *Pkgsrc) guessVariableType(varname string) (vartype *Vartype) {
 	allowAll := []ACLEntry{{"*", aclpAll}}
 	allowRuntime := []ACLEntry{{"*", aclpAllRuntime}}
 
@@ -854,6 +926,7 @@ func (src *Pkgsrc) VariableType(varname string) (vartype *Vartype) {
 	case hasSuffix(varbase, "DIRS"):
 		gtype = &Vartype{lkShell, BtPathmask, allowRuntime, true}
 	case hasSuffix(varbase, "DIR") && !hasSuffix(varbase, "DESTDIR"), hasSuffix(varname, "_HOME"):
+		// TODO: hasSuffix(varbase, "BASE")
 		gtype = &Vartype{lkNone, BtPathname, allowRuntime, true}
 	case hasSuffix(varbase, "FILES"):
 		gtype = &Vartype{lkShell, BtPathmask, allowRuntime, true}
@@ -878,6 +951,7 @@ func (src *Pkgsrc) VariableType(varname string) (vartype *Vartype) {
 	case hasSuffix(varname, "_LDFLAGS"):
 		gtype = &Vartype{lkShell, BtLdFlag, allowRuntime, true}
 	case hasSuffix(varbase, "_MK"):
+		// TODO: Add BtGuard for inclusion guards, since these variables may only be checked using defined().
 		gtype = &Vartype{lkNone, BtUnknown, allowAll, true}
 	}
 
@@ -900,19 +974,19 @@ func (src *Pkgsrc) VariableType(varname string) (vartype *Vartype) {
 	return gtype
 }
 
-// Change is a change entry from the `doc/CHANGES-*` files.
+// Change describes a modification to a single package, from the doc/CHANGES-* files.
 type Change struct {
-	Line    Line
-	Action  string
-	Pkgpath string
-	Version string
-	Author  string
-	Date    string
+	Location Location
+	Action   string
+	Pkgpath  string
+	Version  string
+	Author   string
+	Date     string
 }
 
-// SuggestedUpdate is from the `doc/TODO` file.
+// SuggestedUpdate describes a desired package update, from the doc/TODO file.
 type SuggestedUpdate struct {
-	Line    Line
+	Line    Location
 	Pkgname string
 	Version string
 	Comment string

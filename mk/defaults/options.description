@@ -93,6 +93,7 @@ claws-mail-jpilot	Add jpilot support.
 clisp			Common/C Lisp.
 clutter			Use Clutter for graphics support.
 cmxs			Produce CMXS files.
+color			Enable color support.
 compface		Enable compface support.
 coqide			Enable ide support for coq.
 coreaudio		Enable Core Audio library support.
@@ -254,6 +255,7 @@ gnome			Enable GNOME support.
 gnome-keyring		Enable GNOME keyring support.
 gnomecanvas		Enable GNOME canvas support
 gnomevfs		Enable GNOME Virtual File System support.
+gnupg1			Use GNU Privacy Guard (GnuPG) Version 1.x
 gnupg2			Use GNU Privacy Guard (GnuPG) Version 2.0
 gnuplot-pdf-doc		Install PDF document.
 gnutls			Enable GNU TLS support.
@@ -740,10 +742,11 @@ sysroot			Allow pkg to accept sysroot option, which changes system root.
 szip			Enable szip compression.
 tacacs-shrubbery-acls-support	Enable ACL support.
 tacacs-shrubbery-drop-root-privileges	Drop root privileges, and run as a non-root user.
-tai-system-clock	Install leapsecs.dat to support /etc/localtime using TAI
+tai-system-clock	Enable application support for /etc/localtime being TAI.
 tap			Enable Tom's Audio Processing plugins library support.
 tcl			Enable Tcl scripting support.
 tcpwrappers		Enable tcpwrappers support.
+termcap			Enable termcap support.
 terminfo		Use terminfo.
 tests			Build and install tests.
 theora			Use the theora codecs.
@@ -834,6 +837,8 @@ xinerama		Enable Xinerama support.
 xjdic-locale		Honor LOCALE env var, instead of requiring ISO-2022-JP.
 xlockmore-allow-root	Allow root to get access.
 xlockmore-dpms		Use DPMS.
+xls			Enable XLS support.
+xlsx			Enable XLSX support.
 xml			Enable XML support.
 xmlrpc			Enable XMLRPC support.
 xpm			Enable X PixMap image format support.

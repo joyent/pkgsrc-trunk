@@ -3,6 +3,7 @@ package pkglint
 import (
 	"bytes"
 	"crypto/sha1"
+	"encoding/hex"
 	"io/ioutil"
 	"path"
 	"strings"
@@ -123,7 +124,7 @@ func (ck *distinfoLinesChecker) checkAlgorithms(line Line) {
 			"",
 			"If the patches directory looks wrong, pkglint needs to be improved.")
 
-	case algorithms != "SHA1, RMD160, Size" && algorithms != "SHA1, RMD160, SHA512, Size":
+	case algorithms != "SHA1, RMD160, SHA512, Size":
 		line.Errorf("Expected SHA1, RMD160, SHA512, Size checksums for %q, got %s.", filename, algorithms)
 	}
 }
@@ -143,8 +144,7 @@ func (ck *distinfoLinesChecker) checkUnrecordedPatches() {
 	for _, file := range patchFiles {
 		patchName := file.Name()
 		if file.Mode().IsRegular() && !ck.patches[patchName] && hasPrefix(patchName, "patch-") {
-			ck.distinfoLines.Errorf("patch %q is not recorded. Run %q.",
-				// FIXME: Relative paths must not be "../dependency" but the full "../../category/dependency" instead.
+			ck.distinfoLines.Errorf("Patch %q is not recorded. Run %q.",
 				cleanpath(relpath(path.Dir(ck.distinfoLines.FileName), G.Pkg.File(ck.patchdir+"/"+patchName))),
 				bmake("makepatchsum"))
 		}
@@ -153,22 +153,44 @@ func (ck *distinfoLinesChecker) checkUnrecordedPatches() {
 
 // Inter-package check for differing distfile checksums.
 func (ck *distinfoLinesChecker) checkGlobalDistfileMismatch(line Line, filename, alg, hash string) {
-	hashes := G.Pkgsrc.Hashes
 
 	// Intentionally checking the filename instead of ck.isPatch.
 	// Missing the few distfiles that actually start with patch-*
 	// is more convenient than having lots of false positive mismatches.
-	if hashes != nil && !hasPrefix(filename, "patch-") {
-		key := alg + ":" + filename
-		otherHash := hashes[key]
-		if otherHash != nil {
-			if otherHash.hash != hash {
-				line.Errorf("The %s hash for %s is %s, which conflicts with %s in %s.",
-					alg, filename, hash, otherHash.hash, line.RefTo(otherHash.line))
-			}
-		} else {
-			hashes[key] = &Hash{hash, line}
+	if hasPrefix(filename, "patch-") {
+		return
+	}
+
+	hashes := G.Hashes
+	if hashes == nil {
+		return
+	}
+
+	// The Size hash is not encoded in hex, therefore it would trigger wrong error messages below.
+	// Since the Size hash is targeted towards humans and not really useful for detecting duplicates,
+	// omitting the check here is ok. Any mismatches will be reliably detected because the other
+	// hashes will be different, too.
+	if alg == "Size" {
+		return
+	}
+
+	key := alg + ":" + filename
+	otherHash := hashes[key]
+
+	// See https://github.com/golang/go/issues/29802
+	hashBytes := make([]byte, hex.DecodedLen(len(hash)))
+	_, err := hex.Decode(hashBytes, []byte(hash))
+	if err != nil {
+		line.Errorf("The %s hash for %s contains a non-hex character.", alg, filename)
+	}
+
+	if otherHash != nil {
+		if !bytes.Equal(otherHash.hash, hashBytes) {
+			line.Errorf("The %s hash for %s is %s, which conflicts with %s in %s.",
+				alg, filename, hash, hex.EncodeToString(otherHash.hash), line.RefToLocation(otherHash.location))
 		}
+	} else {
+		hashes[key] = &Hash{hashBytes, line.Location}
 	}
 }
 
@@ -219,17 +241,4 @@ func computePatchSha1Hex(patchFilename string) (string, error) {
 		}
 	}
 	return sprintf("%x", hasher.Sum(nil)), nil
-}
-
-func AutofixDistinfo(oldSha1, newSha1 string) {
-	distinfoFilename := G.Pkg.File(G.Pkg.DistinfoFile)
-	if lines := Load(distinfoFilename, NotEmpty|LogErrors); lines != nil {
-		for _, line := range lines.Lines {
-			fix := line.Autofix()
-			fix.Warnf(SilentAutofixFormat)
-			fix.Replace(oldSha1, newSha1)
-			fix.Apply()
-		}
-		SaveAutofixChanges(lines)
-	}
 }

@@ -1,4 +1,4 @@
-/*	$NetBSD: license.c,v 1.52 2018/08/14 13:21:07 leot Exp $	*/
+/*	$NetBSD: license.c,v 1.54 2019/02/10 21:35:01 wiz Exp $	*/
 
 /*-
  * Copyright (c) 2009 Joerg Sonnenberger <joerg@NetBSD.org>.

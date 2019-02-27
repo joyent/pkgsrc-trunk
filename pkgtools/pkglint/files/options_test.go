@@ -5,20 +5,20 @@ import "gopkg.in/check.v1"
 func (s *Suite) Test_CheckLinesOptionsMk(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wall,no-space")
-	t.SetupVartypes()
-	t.SetupOption("mc-charset", "")
-	t.SetupOption("mysql", "")
-	t.SetupOption("ncurses", "")
-	t.SetupOption("negative", "Demonstrates negated .if/.else")
-	t.SetupOption("slang", "")
-	t.SetupOption("sqlite", "")
-	t.SetupOption("x11", "")
+	t.SetUpCommandLine("-Wall,no-space")
+	t.SetUpVartypes()
+	t.SetUpOption("mc-charset", "")
+	t.SetUpOption("mysql", "")
+	t.SetUpOption("ncurses", "")
+	t.SetUpOption("negative", "Demonstrates negated .if/.else")
+	t.SetUpOption("slang", "")
+	t.SetUpOption("sqlite", "")
+	t.SetUpOption("x11", "")
 
 	t.CreateFileLines("mk/bsd.options.mk",
 		MkRcsID)
 
-	mklines := t.SetupFileMkLines("category/package/options.mk",
+	mklines := t.SetUpFileMkLines("category/package/options.mk",
 		MkRcsID,
 		"",
 		"PKG_OPTIONS_VAR=                PKG_OPTIONS.mc",
@@ -68,6 +68,69 @@ func (s *Suite) Test_CheckLinesOptionsMk(c *check.C) {
 			"Option \"undeclared\" is handled but not added to PKG_SUPPORTED_OPTIONS.")
 }
 
+// This test is provided for code coverage. Similarities to existing files are purely coincidental.
+func (s *Suite) Test_CheckLinesOptionsMk__edge_cases(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpCommandLine("-Wall,no-space")
+	t.SetUpVartypes()
+	t.SetUpOption("option1", "Description for option1")
+	t.CreateFileLines("mk/compiler.mk",
+		MkRcsID)
+	t.CreateFileLines("mk/bsd.options.mk",
+		MkRcsID)
+	t.DisableTracing()
+
+	mklines := t.SetUpFileMkLines("category/package/options.mk",
+		MkRcsID)
+
+	CheckLinesOptionsMk(mklines)
+
+	t.CheckOutputLines(
+		"WARN: ~/category/package/options.mk:EOF: Expected definition of PKG_OPTIONS_VAR.")
+
+	mklines = t.SetUpFileMkLines("category/package/options.mk",
+		MkRcsID,
+		"PKG_SUPPORTED_OPTIONS=\toption1")
+
+	CheckLinesOptionsMk(mklines)
+
+	t.CheckOutputLines(
+		"WARN: ~/category/package/options.mk:2: Expected definition of PKG_OPTIONS_VAR.")
+
+	mklines = t.SetUpFileMkLines("category/package/options.mk",
+		MkRcsID,
+		"PKG_OPTIONS_VAR=\tPKG_OPTIONS.pkgbase",
+		"PKG_SUPPORTED_OPTIONS=\toption1",
+		".include \"../../mk/compiler.mk\"")
+
+	CheckLinesOptionsMk(mklines)
+
+	t.CheckOutputLines(
+		"WARN: ~/category/package/options.mk:3: " +
+			"Option \"option1\" should be handled below in an .if block.")
+
+	mklines = t.SetUpFileMkLines("category/package/options.mk",
+		MkRcsID,
+		"PKG_OPTIONS_VAR=\tPKG_OPTIONS.pkgbase",
+		"PKG_SUPPORTED_OPTIONS=\toption1",
+		".include \"../../mk/bsd.options.mk\"",
+		"",
+		".if !empty(PKG_OPTIONS:O:u:Moption1) "+
+			"|| !empty(PKG_OPTIONS:Noption1) "+
+			"|| !empty(PKG_OPTIONS:O) "+
+			"|| !empty(X11_TYPE) "+
+			"|| !empty(PKG_OPTIONS:M${X11_TYPE})",
+		".endif")
+
+	CheckLinesOptionsMk(mklines)
+
+	// Although technically this option is handled by the :Noption1 modifier,
+	// this is so unusual that the warning is justified.
+	t.CheckOutputLines(
+		"WARN: ~/category/package/options.mk:3: Option \"option1\" should be handled below in an .if block.")
+}
+
 // If there is no .include line after the declaration of the package-settable
 // variables, the whole analysis stops.
 //
@@ -75,13 +138,13 @@ func (s *Suite) Test_CheckLinesOptionsMk(c *check.C) {
 func (s *Suite) Test_CheckLinesOptionsMk__unexpected_line(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wno-space")
-	t.SetupVartypes()
+	t.SetUpCommandLine("-Wno-space")
+	t.SetUpVartypes()
 
 	t.CreateFileLines("mk/bsd.options.mk",
 		MkRcsID)
 
-	mklines := t.SetupFileMkLines("category/package/options.mk",
+	mklines := t.SetUpFileMkLines("category/package/options.mk",
 		MkRcsID,
 		"",
 		"PKG_OPTIONS_VAR=                PKG_OPTIONS.mc",
@@ -98,17 +161,17 @@ func (s *Suite) Test_CheckLinesOptionsMk__unexpected_line(c *check.C) {
 func (s *Suite) Test_CheckLinesOptionsMk__malformed_condition(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupCommandLine("-Wno-space")
-	t.SetupVartypes()
-	t.SetupOption("mc-charset", "")
-	t.SetupOption("ncurses", "")
-	t.SetupOption("slang", "")
-	t.SetupOption("x11", "")
+	t.SetUpCommandLine("-Wno-space")
+	t.SetUpVartypes()
+	t.SetUpOption("mc-charset", "")
+	t.SetUpOption("ncurses", "")
+	t.SetUpOption("slang", "")
+	t.SetUpOption("x11", "")
 
 	t.CreateFileLines("mk/bsd.options.mk",
 		MkRcsID)
 
-	mklines := t.SetupFileMkLines("category/package/options.mk",
+	mklines := t.SetUpFileMkLines("category/package/options.mk",
 		MkRcsID,
 		"",
 		"PKG_OPTIONS_VAR=                PKG_OPTIONS.mc",
@@ -128,4 +191,45 @@ func (s *Suite) Test_CheckLinesOptionsMk__malformed_condition(c *check.C) {
 
 	t.CheckOutputLines(
 		"WARN: ~/category/package/options.mk:13: Invalid condition, unrecognized part: \"${OPSYS} == 'Darwin'\".")
+}
+
+func (s *Suite) Test_CheckLinesOptionsMk__PLIST_VARS_based_on_PKG_SUPPORTED_OPTIONS(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpOption("one", "")
+	t.SetUpOption("two", "")
+	t.SetUpOption("three", "")
+	t.SetUpPackage("category/package")
+	t.CreateFileLines("mk/bsd.options.mk")
+	t.SetUpFileMkLines("category/package/options.mk",
+		MkRcsID,
+		"",
+		"PKG_OPTIONS_VAR=\tPKG_OPTIONS.package",
+		"PKG_SUPPORTED_OPTIONS+=\tone",
+		"PKG_SUPPORTED_OPTIONS+=\ttwo",
+		"PKG_SUPPORTED_OPTIONS+=\tthree",
+		"",
+		".include \"../../mk/bsd.options.mk\"",
+		"",
+		"PLIST_VARS+=\t${PKG_SUPPORTED_OPTIONS}",
+		"",
+		".if ${PKG_OPTIONS:Mone}",
+		"PLIST.one=\tyes",
+		".endif",
+		"",
+		".if ${PKG_OPTIONS:Mthree}",
+		"PLIST.three=\tyes",
+		".endif")
+	t.Chdir("category/package")
+
+	G.Check(".")
+
+	// Even though PLIST_VARS is defined indirectly by referencing
+	// PKG_SUPPORTED_OPTIONS and that variable is defined in several
+	// lines, pkglint gets all the facts correct and knows that
+	// only PLIST.two is missing.
+	t.CheckOutputLines(
+		"WARN: options.mk:10: "+
+			"\"two\" is added to PLIST_VARS, but PLIST.two is not defined in this file.",
+		"WARN: options.mk:5: Option \"two\" should be handled below in an .if block.")
 }

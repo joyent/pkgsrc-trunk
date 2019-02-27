@@ -1,0 +1,18 @@
+# $NetBSD: buildlink3.mk,v 1.2 2019/01/26 20:19:42 tnn Exp $
+
+BUILDLINK_TREE+=	libLLVM4
+
+.if !defined(LIBLLVM4_BUILDLINK3_MK)
+LIBLLVM4_BUILDLINK3_MK:=
+
+BUILDLINK_API_DEPENDS.libLLVM4+=	libLLVM4>=4.0.0
+BUILDLINK_PKGSRCDIR.libLLVM4?=		../../lang/libLLVM4
+BUILDLINK_INCDIRS.libLLVM4?=		include/libLLVM4
+BUILDLINK_LIBDIRS.libLLVM4?=		lib/libLLVM4
+
+LLVM_CONFIG_PATH?=		${BUILDLINK_PREFIX.libLLVM4}/libexec/libLLVM4/llvm-config
+
+.include "../../devel/zlib/buildlink3.mk"
+.endif	# LIBLLVM4_BUILDLINK3_MK
+
+BUILDLINK_TREE+=	-libLLVM4

@@ -1,10 +1,11 @@
-@comment $NetBSD: PLIST,v 1.4 2018/05/14 12:29:35 youri Exp $
+@comment $NetBSD: PLIST,v 1.6 2019/02/17 05:54:36 gutteridge Exp $
 bin/caja
 bin/caja-autorun-software
 bin/caja-connect-server
 bin/caja-file-management-properties
 include/caja/libcaja-extension/caja-column-provider.h
 include/caja/libcaja-extension/caja-column.h
+include/caja/libcaja-extension/caja-configurable.h
 include/caja/libcaja-extension/caja-extension-types.h
 include/caja/libcaja-extension/caja-file-info.h
 include/caja/libcaja-extension/caja-info-provider.h
@@ -20,7 +21,6 @@ man/man1/caja-autorun-software.1
 man/man1/caja-connect-server.1
 man/man1/caja-file-management-properties.1
 man/man1/caja.1
-share/appdata/caja.appdata.xml
 share/applications/caja-autorun-software.desktop
 share/applications/caja-browser.desktop
 share/applications/caja-computer.desktop
@@ -101,14 +101,9 @@ share/gtk-doc/html/libcaja-extension/right.png
 share/gtk-doc/html/libcaja-extension/style.css
 share/gtk-doc/html/libcaja-extension/up-insensitive.png
 share/gtk-doc/html/libcaja-extension/up.png
-share/icons/hicolor/16x16/apps/caja.png
 share/icons/hicolor/16x16/emblems/emblem-note.png
-share/icons/hicolor/22x22/apps/caja.png
-share/icons/hicolor/24x24/apps/caja.png
 share/icons/hicolor/24x24/emblems/emblem-note.png
-share/icons/hicolor/32x32/apps/caja.png
 share/icons/hicolor/48x48/emblems/emblem-note.png
-share/icons/hicolor/scalable/apps/caja.svg
 share/locale/af/LC_MESSAGES/caja.mo
 share/locale/am/LC_MESSAGES/caja.mo
 share/locale/ar/LC_MESSAGES/caja.mo
@@ -175,6 +170,7 @@ share/locale/ks/LC_MESSAGES/caja.mo
 share/locale/ku/LC_MESSAGES/caja.mo
 share/locale/ku_IQ/LC_MESSAGES/caja.mo
 share/locale/ky/LC_MESSAGES/caja.mo
+share/locale/la/LC_MESSAGES/caja.mo
 share/locale/li/LC_MESSAGES/caja.mo
 share/locale/lt/LC_MESSAGES/caja.mo
 share/locale/lv/LC_MESSAGES/caja.mo
@@ -216,6 +212,7 @@ share/locale/te/LC_MESSAGES/caja.mo
 share/locale/th/LC_MESSAGES/caja.mo
 share/locale/tk/LC_MESSAGES/caja.mo
 share/locale/tr/LC_MESSAGES/caja.mo
+share/locale/tt/LC_MESSAGES/caja.mo
 share/locale/ug/LC_MESSAGES/caja.mo
 share/locale/uk/LC_MESSAGES/caja.mo
 share/locale/ur/LC_MESSAGES/caja.mo
@@ -229,6 +226,7 @@ share/locale/zh_CN/LC_MESSAGES/caja.mo
 share/locale/zh_HK/LC_MESSAGES/caja.mo
 share/locale/zh_TW/LC_MESSAGES/caja.mo
 share/locale/zu/LC_MESSAGES/caja.mo
+share/metainfo/caja.appdata.xml
 share/mime/packages/caja.xml
 share/pixmaps/caja/audio.svg
 share/pixmaps/caja/backgrounds.png

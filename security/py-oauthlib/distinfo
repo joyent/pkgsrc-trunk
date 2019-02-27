@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.14 2018/05/27 12:24:56 wiz Exp $
+$NetBSD: distinfo,v 1.16 2019/01/25 12:28:32 adam Exp $
 
-SHA1 (oauthlib-2.1.0.tar.gz) = 3e7b426212fc0d9f91813a983238321ee9026d15
-RMD160 (oauthlib-2.1.0.tar.gz) = f8a3993c595191170bdbbe6c8b407c29e98e8340
-SHA512 (oauthlib-2.1.0.tar.gz) = bd749c7b65de00cc0c371053577623aca5767a0b20e41b2d5e3e20f8246e84bf360472b4ec983023227d6164ecd7ed4647c41cd8f425fe21200a2c25a9049ffd
-Size (oauthlib-2.1.0.tar.gz) = 128807 bytes
+SHA1 (oauthlib-3.0.1.tar.gz) = 97ff326312f00915ba8519b9eeaa2f79ddd273bc
+RMD160 (oauthlib-3.0.1.tar.gz) = 56ac60341748801b3c2f8f446553e30576260f4f
+SHA512 (oauthlib-3.0.1.tar.gz) = 88ee266f764488090b849c036d2475c31dab0d8b18bd6afd0450da6aa0982ba17cdada7d0c25791d5efcf89601f69ae40cd21c584540448c209f90d36e0e98f8
+Size (oauthlib-3.0.1.tar.gz) = 149303 bytes

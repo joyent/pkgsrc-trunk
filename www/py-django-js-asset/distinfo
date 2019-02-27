@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.3 2018/05/01 07:23:36 adam Exp $
+$NetBSD: distinfo,v 1.5 2019/02/21 16:25:13 adam Exp $
 
-SHA1 (django-js-asset-1.1.0.tar.gz) = d24fe964155a8fa834ead961998110e2c1020445
-RMD160 (django-js-asset-1.1.0.tar.gz) = 8050135203c9345df550baa0c66a5edc86426ef9
-SHA512 (django-js-asset-1.1.0.tar.gz) = 19370b00163fa846ec94ee7584edf1b80706d3f73ef51ed4564c4a4e1542c5b0d771f18068a1cad938ae343932712478cd8cbfdd7b9c69b5984acb9229a69b1d
-Size (django-js-asset-1.1.0.tar.gz) = 4456 bytes
+SHA1 (django-js-asset-1.2.2.tar.gz) = 094b30513ece35f280481844b8ed255727217f6b
+RMD160 (django-js-asset-1.2.2.tar.gz) = 6bf27fd62d99d707998151de17709430d16d730f
+SHA512 (django-js-asset-1.2.2.tar.gz) = ea050c5093abd8312733b1402e275fcb44f0702c27e28aeb64d0470a8514cd85906707915556a9878b669c96918813c4bf2b69d281d33f18fcc7c143f8ae9f48
+Size (django-js-asset-1.2.2.tar.gz) = 4436 bytes

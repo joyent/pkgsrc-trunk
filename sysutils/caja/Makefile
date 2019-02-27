@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.14 2018/11/14 22:22:22 kleink Exp $
+# $NetBSD: Makefile,v 1.16 2019/02/17 05:54:36 gutteridge Exp $
 
-PKGREVISION= 2
 .include "../../meta-pkgs/mate/Makefile.common"
 
-DISTNAME=	caja-${VERSION:R}.2
+DISTNAME=	caja-${VERSION:R}.4
 CATEGORIES=	sysutils
 
 COMMENT=	File manager for the MATE desktop

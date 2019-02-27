@@ -31,7 +31,7 @@ func NewMkLines(lines Lines) MkLines {
 		mklines[i] = NewMkLine(line)
 	}
 
-	tools := NewTools(lines.FileName)
+	tools := NewTools()
 	tools.Fallback(G.Pkgsrc.Tools)
 
 	return &MkLinesImpl{
@@ -50,7 +50,7 @@ func NewMkLines(lines Lines) MkLines {
 }
 
 // TODO: Consider defining an interface MkLinesChecker (different name, though, since this one confuses even me)
-// that checks a single topic, like:
+//  that checks a single topic, like:
 //
 //  * PlistVars
 //  * ForLoops
@@ -171,13 +171,12 @@ func (mklines *MkLinesImpl) checkAll() {
 		mklines.indentation.CheckFinish(mklines.lines.FileName)
 	}
 
-	// TODO: Extract this code so that it is clearly visible in the stack trace.
 	if trace.Tracing {
 		trace.Stepf("Starting main checking loop")
 	}
 	mklines.ForEachEnd(lineAction, atEnd)
 
-	substContext.Finish(NewMkLine(mklines.lines.EOFLine())) // TODO: mklines.EOFLine()
+	substContext.Finish(mklines.EOFLine())
 	varalign.Finish()
 
 	CheckLinesTrailingEmptyLines(mklines.lines)
@@ -350,8 +349,8 @@ func (mklines *MkLinesImpl) collectDocumentedVariables() {
 	relevant := true
 
 	// TODO: Correctly interpret declarations like "package-settable variables:" and
-	// TODO: "user-settable variables", as well as "default: ...", "allowed: ...",
-	// TODO: "list of" and other types.
+	//  "user-settable variables", as well as "default: ...", "allowed: ...",
+	//  "list of" and other types.
 
 	finish := func() {
 		if commentLines >= 3 && relevant {
@@ -406,18 +405,15 @@ func (mklines *MkLinesImpl) CheckRedundantAssignments() {
 	scope := NewRedundantScope()
 
 	isRelevant := func(old, new MkLine) bool {
-		if old.Basename != "Makefile" && new.Basename == "Makefile" {
-			return false
-		}
 		if new.Op() == opAssignEval {
 			return false
 		}
 		return true
 	}
 
-	scope.OnIgnore = func(old, new MkLine) {
+	scope.OnRedundant = func(old, new MkLine) {
 		if isRelevant(old, new) && old.Value() == new.Value() {
-			old.Notef("Definition of %s is redundant because of %s.", new.Varname(), old.RefTo(new))
+			new.Notef("Definition of %s is redundant because of %s.", old.Varname(), new.RefTo(old))
 		}
 	}
 
@@ -479,6 +475,10 @@ func (mklines *MkLinesImpl) CheckForUsedComment(relativeName string) {
 
 func (mklines *MkLinesImpl) SaveAutofixChanges() {
 	mklines.lines.SaveAutofixChanges()
+}
+
+func (mklines *MkLinesImpl) EOFLine() MkLine {
+	return NewMkLine(mklines.lines.EOFLine())
 }
 
 // VaralignBlock checks that all variable assignments from a paragraph

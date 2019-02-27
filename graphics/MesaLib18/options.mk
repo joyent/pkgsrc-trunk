@@ -1,26 +1,20 @@
-# $NetBSD: options.mk,v 1.2 2018/12/24 02:30:45 sevan Exp $
+# $NetBSD: options.mk,v 1.11 2019/01/26 21:28:29 tnn Exp $
 
 PKG_OPTIONS_VAR=		PKG_OPTIONS.MesaLib
 PKG_SUPPORTED_OPTIONS=		llvm dri
 PKG_SUGGESTED_OPTIONS=
 
-PKG_SUPPORTED_OPTIONS+=		dri3 glx-tls xvmc debug
+PKG_SUPPORTED_OPTIONS+=		glx-tls xvmc debug
 PKG_SUPPORTED_OPTIONS+=		vdpau vaapi
-PKG_SUPPORTED_OPTIONS+=		texture
 PKG_SUPPORTED_OPTIONS+=		osmesa
 PKG_SUPPORTED_OPTIONS+=		glesv1 glesv2
 PKG_SUPPORTED_OPTIONS+=		xa
 PKG_SUPPORTED_OPTIONS+=		noatexit
-PKG_SUPPORTED_OPTIONS+=		libelf
+PKG_SUPPORTED_OPTIONS+=		vulkan
 
 # PKG_SUGGESTED_OPTIONS+=		xvmc
 PKG_SUGGESTED_OPTIONS+=		vdpau vaapi
-
-# glesv1 and glesv2 build error on NetBSD
-# due to no table_noop_array for tls patch
-.if ${OPSYS} != "NetBSD"
 PKG_SUGGESTED_OPTIONS+=		glesv1 glesv2
-.endif
 
 PKG_SUGGESTED_OPTIONS+=		xa
 PKG_SUGGESTED_OPTIONS+=		noatexit
@@ -40,12 +34,8 @@ PKG_SUGGESTED_OPTIONS+=		llvm
 PKG_SUGGESTED_OPTIONS+=		dri
 .endif
 
-.if ${OPSYS} == "Linux"
-PKG_SUGGESTED_OPTIONS+=		dri3
-.endif
 
 # Use Thread Local Storage in GLX where it is supported by Mesa and works.
-# XXX Fixme
 .if \
 	!empty(MACHINE_PLATFORM:MNetBSD-[789].*-i386) ||	\
 	!empty(MACHINE_PLATFORM:MNetBSD-[789].*-x86_64) ||	\
@@ -56,43 +46,32 @@ PKG_SUGGESTED_OPTIONS+=		dri3
 PKG_SUGGESTED_OPTIONS+=		glx-tls
 .endif
 
-# segfault starting x on FreeBSD 12 (current) if not using base libelf
-# WebGL demos and mpv not working for radeonsi on NetBSD
-.if ${OPSYS} != "FreeBSD" && ${OPSYS} != "NetBSD"
-PKG_SUGGESTED_OPTIONS+=		libelf
-.endif
-
 .include "../../mk/bsd.options.mk"
 
 # gallium
-PLIST_VARS+=	freedreno ilo i915 i965 nouveau r300 r600 radeonsi	\
-		swrast svga vc4 virgl
+PLIST_VARS+=	freedreno i915 i965 nouveau r300 r600 radeonsi	\
+		swrast svga vc4 virgl vulkan
 # classic DRI
-PLIST_VARS+=	dri swrast_dri i915_dri nouveau_dri i965_dri radeon_dri r200_dri
+PLIST_VARS+=	dri swrast_dri nouveau_dri radeon_dri r200
 # other features
-PLIST_VARS+=	gbm vaapi vdpau wayland xatracker
+PLIST_VARS+=	egl gbm vaapi vdpau wayland xatracker
 PLIST_VARS+=	osmesa xvmc
 PLIST_VARS+=	glesv1 glesv2
-
-.if !empty(PKG_OPTIONS:Mtexture)
-CONFIGURE_ARGS+=	--enable-texture-float
-.endif
 
 .if !empty(PKG_OPTIONS:Mdri)
 
 CONFIGURE_ARGS+=	--enable-dri
-CONFIGURE_ARGS+=	--enable-egl
-
-.if !empty(PKG_OPTIONS:Mdri3)
-# CFLAGS+=		-DHAVE_DRI3
-# CONFIGURE_ARGS+=	--enable-dri3
-.else # !dri3
-CONFIGURE_ARGS+=	--disable-dri3
-.endif # dri3
-
+# Having DRI3 and egl compiled in by default doesn't hurt, the X server
+# will only use it if it is supported at run time.
+CONFIGURE_ARGS+=	--enable-dri3
 .if ${OPSYS} != "Darwin"
+CONFIGURE_ARGS+=	--enable-egl
 CONFIGURE_ARGS+=	--enable-gbm
+PLIST.egl=		yes
 PLIST.gbm=		yes
+.else
+CONFIGURE_ARGS+=	--disable-egl
+CONFIGURE_ARGS+=	--disable-gbm
 .endif
 
 .if !empty(PKG_OPTIONS:Mosmesa)
@@ -138,6 +117,7 @@ BUILDLINK_DEPMETHOD.libpciaccess=	full
 
 DRI_DRIVERS=		#
 GALLIUM_DRIVERS=	#
+VULKAN_DRIVERS=		#
 
 # Software rasterizer
 PLIST.swrast_dri=	yes
@@ -155,24 +135,26 @@ GALLIUM_DRIVERS+=	svga
 
 # Intel chipsets, x86 only
 PLIST.i915=		yes
-# GALLIUM_DRIVERS+=	i915
-PLIST.i915_dri=		yes
+GALLIUM_DRIVERS+=	i915
 DRI_DRIVERS+=		i915
 
-# ilo is being phased out in favor of Vulkan
-# Experimental Intel driver
-# PLIST.ilo=		yes
-# GALLIUM_DRIVERS+=	ilo
-
-PLIST.i965_dri=		yes
+PLIST.i965=		yes
 DRI_DRIVERS+=		i965
+
+.endif
+
+# Vulkan support
+.if !empty(PKG_OPTIONS:Mvulkan)
+VULKAN_DRIVERS+=	intel
+VULKAN_DRIVERS+=	radeon
+PLIST.vulkan=		yes
 .endif
 
 # ARM drivers
 .if !empty(MACHINE_PLATFORM:MNetBSD-*-*arm*)
 # Qualcomm SnapDragon, libdrm_freedreno.pc
-GALLIUM_DRIVERS+=	freedreno
-PLIST.freedreno=	yes
+#GALLIUM_DRIVERS+=	freedreno
+#PLIST.freedreno=	yes
 
 # Broadcom VideoCore 4
 GALLIUM_DRIVERS+=	vc4
@@ -209,7 +191,7 @@ PLIST.radeon_dri=	yes
 DRI_DRIVERS+=		radeon
 
 # classic DRI r200
-PLIST.r200_dri=		yes
+PLIST.r200=		yes
 DRI_DRIVERS+=		r200
 
 # FreeBSD lacks nouveau support (there are official binaries from Nvidia)
@@ -261,30 +243,28 @@ PLIST.radeonsi=		yes
 GALLIUM_DRIVERS+=	radeonsi
 CONFIGURE_ARGS+=	--enable-llvm
 CONFIGURE_ARGS+=	--enable-llvm-shared-libs
-# CONFIGURE_ARGS+=	--enable-r600-llvm-compiler
 
-.if !empty(PKG_OPTIONS:Mlibelf)
+.if !exists(/usr/include/libelf.h)
 .include "../../devel/libelf/buildlink3.mk"
-CPPFLAGS+=		-I${BUILDLINK_PREFIX.libelf}/include/libelf
 .endif
 
-# XXX update libLLVM to use it instead
-#BUILDLINK_API_DEPENDS.libLLVM+= libLLVM>=5.0
-.include "../../lang/llvm/buildlink3.mk"
+BUILDLINK_API_DEPENDS.libLLVM+= libLLVM>=7.0
+.include "../../lang/libLLVM/buildlink3.mk"
 CONFIGURE_ENV+=		ac_cv_path_ac_pt_LLVM_CONFIG=${LLVM_CONFIG_PATH}
 .else # !llvm
 CONFIGURE_ARGS+=	--disable-xa
 CONFIGURE_ARGS+=	--disable-llvm
 CONFIGURE_ARGS+=	--disable-llvm-shared-libs
-# CONFIGURE_ARGS+=	--disable-r600-llvm-compiler
 .endif # llvm
 
 CONFIGURE_ARGS+=	--with-gallium-drivers=${GALLIUM_DRIVERS:ts,}
 CONFIGURE_ARGS+=	--with-dri-drivers=${DRI_DRIVERS:ts,}
+CONFIGURE_ARGS+=	--with-vulkan-drivers=${VULKAN_DRIVERS:ts,}
 
 .else # !dri
 CONFIGURE_ARGS+=	--with-gallium-drivers=
 CONFIGURE_ARGS+=	--with-dri-drivers=
+CONFIGURE_ARGS+=	--with-vulkan-drivers=
 CONFIGURE_ARGS+=	--disable-dri
 CONFIGURE_ARGS+=	--disable-dri3
 CONFIGURE_ARGS+=	--disable-egl
@@ -292,6 +272,9 @@ CONFIGURE_ARGS+=	--disable-gbm
 CONFIGURE_ARGS+=	--disable-gles1
 CONFIGURE_ARGS+=	--disable-gles2
 CONFIGURE_ARGS+=	--enable-xlib-glx
+CONFIGURE_ARGS+=	--with-platforms=x11
+# XXX configure looks for expat but doesn't actually need it in non-dri case
+CONFIGURE_ENV+=		EXPAT_CFLAGS=" " EXPAT_LIBS=" "
 .if !empty(PKG_OPTIONS:Mllvm)
 PKG_FAIL_REASON+=	"The llvm PKG_OPTION must also be disabled when dri is disabled"
 .endif

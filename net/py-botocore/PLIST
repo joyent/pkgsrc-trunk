@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.16 2018/12/21 15:12:56 ryoon Exp $
+@comment $NetBSD: PLIST,v 1.18 2019/02/12 10:51:55 adam Exp $
 ${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
 ${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
 ${PYSITELIB}/${EGG_INFODIR}/dependency_links.txt
@@ -38,6 +38,7 @@ ${PYSITELIB}/botocore/credentials.pyo
 ${PYSITELIB}/botocore/data/_retry.json
 ${PYSITELIB}/botocore/data/acm-pca/2017-08-22/paginators-1.json
 ${PYSITELIB}/botocore/data/acm-pca/2017-08-22/service-2.json
+${PYSITELIB}/botocore/data/acm-pca/2017-08-22/waiters-2.json
 ${PYSITELIB}/botocore/data/acm/2015-12-08/examples-1.json
 ${PYSITELIB}/botocore/data/acm/2015-12-08/paginators-1.json
 ${PYSITELIB}/botocore/data/acm/2015-12-08/service-2.json
@@ -71,6 +72,8 @@ ${PYSITELIB}/botocore/data/autoscaling-plans/2018-01-06/service-2.json
 ${PYSITELIB}/botocore/data/autoscaling/2011-01-01/examples-1.json
 ${PYSITELIB}/botocore/data/autoscaling/2011-01-01/paginators-1.json
 ${PYSITELIB}/botocore/data/autoscaling/2011-01-01/service-2.json
+${PYSITELIB}/botocore/data/backup/2018-11-15/paginators-1.json
+${PYSITELIB}/botocore/data/backup/2018-11-15/service-2.json
 ${PYSITELIB}/botocore/data/batch/2016-08-10/examples-1.json
 ${PYSITELIB}/botocore/data/batch/2016-08-10/paginators-1.json
 ${PYSITELIB}/botocore/data/batch/2016-08-10/service-2.json
@@ -219,6 +222,9 @@ ${PYSITELIB}/botocore/data/dms/2016-01-01/examples-1.json
 ${PYSITELIB}/botocore/data/dms/2016-01-01/paginators-1.json
 ${PYSITELIB}/botocore/data/dms/2016-01-01/service-2.json
 ${PYSITELIB}/botocore/data/dms/2016-01-01/waiters-2.json
+${PYSITELIB}/botocore/data/docdb/2014-10-31/paginators-1.json
+${PYSITELIB}/botocore/data/docdb/2014-10-31/service-2.json
+${PYSITELIB}/botocore/data/docdb/2014-10-31/waiters-2.json
 ${PYSITELIB}/botocore/data/ds/2015-04-16/examples-1.json
 ${PYSITELIB}/botocore/data/ds/2015-04-16/paginators-1.json
 ${PYSITELIB}/botocore/data/ds/2015-04-16/service-2.json
@@ -319,6 +325,7 @@ ${PYSITELIB}/botocore/data/globalaccelerator/2018-08-08/paginators-1.json
 ${PYSITELIB}/botocore/data/globalaccelerator/2018-08-08/service-2.json
 ${PYSITELIB}/botocore/data/glue/2017-03-31/paginators-1.json
 ${PYSITELIB}/botocore/data/glue/2017-03-31/service-2.json
+${PYSITELIB}/botocore/data/greengrass/2017-06-07/paginators-1.json
 ${PYSITELIB}/botocore/data/greengrass/2017-06-07/service-2.json
 ${PYSITELIB}/botocore/data/guardduty/2017-11-28/paginators-1.json
 ${PYSITELIB}/botocore/data/guardduty/2017-11-28/service-2.json
@@ -341,6 +348,7 @@ ${PYSITELIB}/botocore/data/iot-jobs-data/2017-09-29/service-2.json
 ${PYSITELIB}/botocore/data/iot/2015-05-28/examples-1.json
 ${PYSITELIB}/botocore/data/iot/2015-05-28/paginators-1.json
 ${PYSITELIB}/botocore/data/iot/2015-05-28/service-2.json
+${PYSITELIB}/botocore/data/iot1click-devices/2018-05-14/paginators-1.json
 ${PYSITELIB}/botocore/data/iot1click-devices/2018-05-14/service-2.json
 ${PYSITELIB}/botocore/data/iot1click-projects/2018-05-14/paginators-1.json
 ${PYSITELIB}/botocore/data/iot1click-projects/2018-05-14/service-2.json
@@ -436,6 +444,7 @@ ${PYSITELIB}/botocore/data/pi/2018-02-27/paginators-1.json
 ${PYSITELIB}/botocore/data/pi/2018-02-27/service-2.json
 ${PYSITELIB}/botocore/data/pinpoint-email/2018-07-26/paginators-1.json
 ${PYSITELIB}/botocore/data/pinpoint-email/2018-07-26/service-2.json
+${PYSITELIB}/botocore/data/pinpoint-sms-voice/2018-09-05/service-2.json
 ${PYSITELIB}/botocore/data/pinpoint/2016-12-01/examples-1.json
 ${PYSITELIB}/botocore/data/pinpoint/2016-12-01/service-2.json
 ${PYSITELIB}/botocore/data/polly/2016-06-10/examples-1.json
@@ -557,6 +566,8 @@ ${PYSITELIB}/botocore/data/waf/2015-08-24/paginators-1.json
 ${PYSITELIB}/botocore/data/waf/2015-08-24/service-2.json
 ${PYSITELIB}/botocore/data/workdocs/2016-05-01/paginators-1.json
 ${PYSITELIB}/botocore/data/workdocs/2016-05-01/service-2.json
+${PYSITELIB}/botocore/data/worklink/2018-09-25/paginators-1.json
+${PYSITELIB}/botocore/data/worklink/2018-09-25/service-2.json
 ${PYSITELIB}/botocore/data/workmail/2017-10-01/paginators-1.json
 ${PYSITELIB}/botocore/data/workmail/2017-10-01/service-2.json
 ${PYSITELIB}/botocore/data/workspaces/2015-04-08/examples-1.json

@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.12 2018/06/23 20:32:39 youri Exp $
+@comment $NetBSD: PLIST,v 1.14 2019/02/17 16:06:01 youri Exp $
 bin/thunar
 bin/thunar-settings
 include/thunarx-3/thunarx/thunarx-config.h
@@ -33,6 +33,7 @@ share/applications/Thunar-folder-handler.desktop
 share/applications/Thunar.desktop
 share/applications/thunar-settings.desktop
 share/dbus-1/services/org.xfce.FileManager.service
+share/dbus-1/services/org.xfce.Thunar.FileManager1.service
 share/dbus-1/services/org.xfce.Thunar.service
 share/doc/Thunar/README.gtkrc
 share/examples/xfce4/Thunar/uca.xml

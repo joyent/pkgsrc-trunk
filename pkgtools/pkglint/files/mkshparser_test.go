@@ -2,23 +2,54 @@ package pkglint
 
 import (
 	"encoding/json"
+	"fmt"
 	"gopkg.in/check.v1"
-	"strconv"
 )
 
-func (s *Suite) Test_parseShellProgram__parse_error_for_unfinished_shell_variable(c *check.C) {
+func (s *Suite) Test_parseShellProgram__parse_error_for_dollar(c *check.C) {
 	t := s.Init(c)
 
-	mkline := t.NewMkLine("module.mk", 1, "\t$${")
+	test := func(text string, expProgram *MkShList, expError error, expDiagnostics ...string) {
+		shline := t.NewShellLine("module.mk", 123, "\t"+text)
 
-	list, err := parseShellProgram(mkline.Line, mkline.ShellCommand())
+		if len(expDiagnostics) > 0 {
+			defer t.CheckOutputLines(expDiagnostics...)
+		} else {
+			defer t.CheckOutputEmpty()
+		}
 
-	c.Check(list, check.IsNil)
-	// XXX: []string{"$${"} would be an even better error message
-	c.Check(err.Error(), equals, "parse error at []string{\"\"}")
+		program, err := parseShellProgram(shline.mkline.Line, text)
 
-	t.CheckOutputLines(
-		"WARN: module.mk:1: Internal pkglint error in ShTokenizer.ShAtom at \"$${\" (quoting=plain).")
+		if err == nil {
+			c.Check(err, equals, expError)
+		} else {
+			c.Check(err, deepEquals, expError)
+			c.Check(program, deepEquals, expProgram)
+		}
+	}
+
+	test("$$",
+		nil,
+		nil,
+		nil...)
+
+	test(
+		"$${",
+		nil,
+		fmt.Errorf("splitIntoShellTokens couldn't parse \"$${\""),
+		"WARN: module.mk:123: Unclosed shell variable starting at \"$${\".")
+
+	test(
+		"$$;",
+		nil,
+		nil,
+		nil...)
+
+	test(
+		"shell$$;",
+		nil,
+		nil,
+		nil...)
 }
 
 type ShSuite struct {
@@ -257,8 +288,12 @@ func (s *ShSuite) Test_ShellParser__compound_list(c *check.C) {
 func (s *ShSuite) Test_ShellParser__term(c *check.C) {
 	b := s.init(c)
 
-	// TODO
-	_ = b
+	s.test("echo1 ; echo2 ;",
+		b.List().
+			AddCommand(b.SimpleCommand("echo1")).
+			AddSemicolon().
+			AddCommand(b.SimpleCommand("echo2")).
+			AddSemicolon())
 }
 
 func (s *ShSuite) Test_ShellParser__for_clause(c *check.C) {
@@ -392,8 +427,16 @@ func (s *ShSuite) Test_ShellParser__until_clause(c *check.C) {
 func (s *ShSuite) Test_ShellParser__function_definition(c *check.C) {
 	b := s.init(c)
 
-	// TODO
-	_ = b
+	s.test("fn() { simple-command; }",
+		b.List().AddCommand(b.Function(
+			"fn",
+			b.Brace(b.List().
+				AddCommand(b.SimpleCommand("simple-command")).
+				AddSemicolon()).
+				Compound)))
+
+	// For some reason the POSIX grammar does not allow function bodies that consist of
+	// a single command without braces or parentheses.
 }
 
 func (s *ShSuite) Test_ShellParser__brace_group(c *check.C) {
@@ -491,10 +534,8 @@ func (s *ShSuite) Test_ShellParser__io_redirect(c *check.C) {
 }
 
 func (s *ShSuite) Test_ShellParser__io_here(c *check.C) {
-	b := s.init(c)
-
-	// TODO
-	_ = b
+	// In pkgsrc Makefiles, the IO here-documents cannot be used since all the text
+	// is joined into a single line. Therefore there are no tests here.
 }
 
 func (s *ShSuite) init(c *check.C) *MkShBuilder {
@@ -576,6 +617,48 @@ func (s *ShSuite) Test_ShellLexer_Lex__redirects(c *check.C) {
 	c.Check(lexer.Lex(&llval), equals, 0)
 }
 
+func (s *ShSuite) Test_ShellLexer_Lex__keywords(c *check.C) {
+	b := s.init(c)
+
+	testErr := func(program, error, remaining string) {
+		tokens, rest := splitIntoShellTokens(dummyLine, program)
+		s.c.Check(rest, equals, "")
+
+		lexer := ShellLexer{
+			current:        "",
+			remaining:      tokens,
+			atCommandStart: true,
+			error:          ""}
+		parser := shyyParserImpl{}
+
+		succeeded := parser.Parse(&lexer)
+
+		c.Check(succeeded, equals, 1)
+		c.Check(lexer.error, equals, error)
+		c.Check(joinSkipEmpty(" ", append([]string{lexer.current}, lexer.remaining...)...), equals, remaining)
+	}
+
+	s.test(
+		"echo if then elif else fi for in do done while until case esac",
+		b.List().AddCommand(b.SimpleCommand("echo",
+			"if", "then", "elif", "else", "fi",
+			"for", "in", "do", "done", "while", "until", "case", "esac")))
+
+	testErr(
+		"echo ;; remaining",
+		"syntax error",
+		";; remaining")
+
+	testErr(
+		"echo (subshell-command args)",
+		"syntax error",
+		"subshell-command args )")
+
+	testErr("while :; do :; done if cond; then :; fi",
+		"syntax error",
+		"if cond ; then : ; fi")
+}
+
 type MkShBuilder struct {
 }
 
@@ -602,10 +685,7 @@ func (b *MkShBuilder) SimpleCommand(words ...string) *MkShCommand {
 		if assignments && matches(word, `^[A-Za-z_]\w*=`) {
 			cmd.Assignments = append(cmd.Assignments, b.Token(word))
 		} else if m, fdstr, op, rest := match3(word, `^(\d*)(<<-|<<|<&|>>|>&|>\||<|>)(.*)$`); m {
-			fd, err := strconv.Atoi(fdstr)
-			if err != nil {
-				fd = -1
-			}
+			fd := toInt(fdstr, -1)
 			cmd.Redirections = append(cmd.Redirections, b.Redirection(fd, op, rest))
 		} else {
 			assignments = false

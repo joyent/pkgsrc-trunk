@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.61 2018/12/11 17:06:46 he Exp $
+# $NetBSD: Makefile,v 1.64 2019/02/12 10:52:28 he Exp $
 
-DISTNAME=	unbound-1.8.3
+DISTNAME=	unbound-1.9.0
+PKGREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	http://www.nlnetlabs.nl/downloads/unbound/
 
@@ -21,6 +22,8 @@ CONFIGURE_ARGS+=	--with-pidfile=${VARBASE}/run/unbound/unbound.pid
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFBASE}
 GNU_CONFIGURE=		yes
 TEST_TARGET=		test
+
+.include "options.mk"
 
 # unbound uses some OpenBSD libc functions such as reallocarray(3).
 # The existing tests just look for the symbol in libc regardless

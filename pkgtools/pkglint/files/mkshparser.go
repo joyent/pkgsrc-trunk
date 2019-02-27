@@ -1,6 +1,6 @@
 package pkglint
 
-import "strconv"
+import "fmt"
 
 func parseShellProgram(line Line, program string) (*MkShList, error) {
 	if trace.Tracing {
@@ -13,10 +13,14 @@ func parseShellProgram(line Line, program string) (*MkShList, error) {
 
 	succeeded := parser.Parse(lexer)
 
-	if succeeded == 0 && lexer.error == "" {
+	switch {
+	case succeeded == 0 && lexer.error == "":
 		return lexer.result, nil
+	case succeeded == 0 && rest != "":
+		return nil, fmt.Errorf("splitIntoShellTokens couldn't parse %q", rest)
+	default:
+		return nil, &ParseError{append([]string{lexer.current}, lexer.remaining...)}
 	}
-	return nil, &ParseError{append([]string{lexer.current}, lexer.remaining...)}
 }
 
 type ParseError struct {
@@ -157,7 +161,7 @@ func (lex *ShellLexer) Lex(lval *shyySymType) (ttype int) {
 	}
 
 	if m, fdstr, op := match2(token, `^(\d+)(<<-|<<|<>|<&|>>|>&|>\||<|>)$`); m {
-		fd, _ := strconv.Atoi(fdstr)
+		fd := toInt(fdstr, -1)
 		lval.IONum = fd
 		lex.ioRedirect = op
 		return tkIO_NUMBER
@@ -188,7 +192,9 @@ func (lex *ShellLexer) Lex(lval *shyySymType) (ttype int) {
 		case "do":
 			return tkDO
 		case "done":
-			// TODO: add test that ensures "lex.atCommandStart = false" is required here.
+			// lex.atCommandStart must stay true here because further "done" or "fi"
+			// may follow directly, without any semicolon.
+			// Ideally lex.atCommandStart would be a tri-state variable: yes, no, partly.
 			return tkDONE
 		case "in":
 			lex.atCommandStart = false
@@ -200,7 +206,7 @@ func (lex *ShellLexer) Lex(lval *shyySymType) (ttype int) {
 		case "{":
 			return tkLBRACE
 		case "}":
-			// TODO: add test that ensures "lex.atCommandStart = false" is required here.
+			// See the comment at the "done" case above.
 			return tkRBRACE
 		case "!":
 			return tkEXCLAM

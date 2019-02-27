@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.40 2018/07/04 13:40:28 jperkin Exp $
+# $NetBSD: Makefile,v 1.41 2019/01/29 15:07:24 ryoon Exp $
 
 DISTNAME=	knot-2.7.6
 CATEGORIES=	net

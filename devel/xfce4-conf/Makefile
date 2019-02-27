@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.18 2018/11/14 22:21:21 kleink Exp $
+# $NetBSD: Makefile,v 1.20 2019/02/06 11:31:33 martin Exp $
 
-PKGREVISION= 3
 .include "../../meta-pkgs/xfce4/Makefile.common"
 
-VERSION=	4.13.4
+VERSION=	4.13.6
 DISTNAME=	xfconf-${VERSION}
 PKGNAME=	xfce4-conf-${VERSION}
 CATEGORIES=	devel
 MASTER_SITES=	http://archive.xfce.org/src/xfce/xfconf/4.13/
+PKGREVISION=	1
 
 HOMEPAGE=	http://docs.xfce.org/xfce/xfconf/start
 COMMENT=	Xfce client-server configuration storage and query system

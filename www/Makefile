@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1358 2019/01/07 18:03:27 kleink Exp $
+# $NetBSD: Makefile,v 1.1366 2019/02/24 16:12:36 taca Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -42,6 +42,7 @@ SUBDIR+=	apache-tomcat6
 SUBDIR+=	apache-tomcat7
 SUBDIR+=	apache-tomcat8
 SUBDIR+=	apache-tomcat85
+SUBDIR+=	apache-tomcat9
 SUBDIR+=	apache24
 SUBDIR+=	apachetop
 SUBDIR+=	asp2php
@@ -113,6 +114,7 @@ SUBDIR+=	ganglia-webfrontend
 SUBDIR+=	geckodriver
 SUBDIR+=	geeklog
 SUBDIR+=	gitweb
+SUBDIR+=	gnurl
 SUBDIR+=	go-ace
 SUBDIR+=	go-cssmin
 SUBDIR+=	go-gogs-client
@@ -700,6 +702,7 @@ SUBDIR+=	py-flask-mail
 SUBDIR+=	py-flask-principal
 SUBDIR+=	py-flask-rest
 SUBDIR+=	py-flask-restful
+SUBDIR+=	py-flask-restplus
 SUBDIR+=	py-flask-script
 SUBDIR+=	py-flask-security
 SUBDIR+=	py-flask-sqlalchemy
@@ -893,6 +896,9 @@ SUBDIR+=	ruby-rest-client
 SUBDIR+=	ruby-robots
 SUBDIR+=	ruby-rouge
 SUBDIR+=	ruby-sass
+SUBDIR+=	ruby-sass34
+SUBDIR+=	ruby-sass-listen
+SUBDIR+=	ruby-sass-rails
 SUBDIR+=	ruby-sass-rails32
 SUBDIR+=	ruby-sawyer
 SUBDIR+=	ruby-selenium-webdriver
@@ -942,6 +948,7 @@ SUBDIR+=	tidy
 SUBDIR+=	tinyproxy
 SUBDIR+=	trac
 SUBDIR+=	trafficserver
+SUBDIR+=	tscrape
 SUBDIR+=	typo3_62
 SUBDIR+=	uhttpmock
 SUBDIR+=	urlget

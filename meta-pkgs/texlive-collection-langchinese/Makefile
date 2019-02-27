@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.11 2018/05/13 11:56:19 markd Exp $
+# $NetBSD: Makefile,v 1.13 2019/02/02 00:20:18 markd Exp $
 
 DISTNAME=	collection-langchinese
 PKGNAME=	texlive-${DISTNAME}-2018pre1
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
-TEXLIVE_REV=	47408
+TEXLIVE_REV=	49876
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.tug.org/texlive/
@@ -26,12 +26,14 @@ DEPENDS+=	tex-hyphen-chinese-[0-9]*:../../print/tex-hyphen-chinese
 # impatient-cn is documentation only
 # latex-notes-zh-cn is documentation only
 # lshort-chinese is documentation only
+# depend njurepo
 # depend pgfornament-han
 # texlive-zh-cn is documentation only
 # texproposal is documentation only
 # depend xtuthesis
 # depend upzhkinsoku
 # depend xpinyin
+# depend zhlineskip
 # depend zhlipsum
 # depend zhmetrics
 # depend zhmetrics-uptex

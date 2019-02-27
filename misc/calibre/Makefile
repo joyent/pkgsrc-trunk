@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.215 2018/12/09 18:52:36 adam Exp $
+# $NetBSD: Makefile,v 1.217 2019/02/16 13:26:49 wiz Exp $
 
-DISTNAME=	calibre-3.34.0
-PKGREVISION=	2
+DISTNAME=	calibre-3.39.1
+PKGREVISION=	1
 CATEGORIES=	misc
 #MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=calibre/}
 MASTER_SITES=	http://download.calibre-ebook.com/${PKGVERSION_NOREV}/
@@ -14,7 +14,7 @@ COMMENT=	E-book library management application
 LICENSE=	gnu-gpl-v3
 
 DEPENDS+=	${PYPKGPREFIX}-apsw>=3.7.17:../../databases/py-apsw
-DEPENDS+=	${PYPKGPREFIX}-cssutils>=0.9.9:../../textproc/py-cssutils
+DEPENDS+=	${PYPKGPREFIX}-css-parser-[0-9]*:../../textproc/py-css-parser
 DEPENDS+=	${PYPKGPREFIX}-dateutil>=1.4.1:../../time/py-dateutil
 DEPENDS+=	${PYPKGPREFIX}-dns>=1.6.0:../../net/py-dns
 DEPENDS+=	${PYPKGPREFIX}-elementtree-[0-9]*:../../textproc/py-elementtree

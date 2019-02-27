@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.8 2018/12/28 20:28:02 schmonz Exp $
+# $NetBSD: Makefile,v 1.10 2019/01/26 21:12:54 dholland Exp $
 #
 
 PKGNAME=		rc.d-boot-20181228
@@ -63,15 +63,13 @@ RCDBOOT_STYLE=		netbsd-native
 RCDBOOT_STYLE=		openbsd-rcd
 .endif
 
-.if ${RCDBOOT_STYLE} != "unknown"
-ONLY_FOR_PLATFORM+=	${OPSYS}-*-*
-.else
+.if ${RCDBOOT_STYLE} == "unknown"
 # Help wanted! Some known boot schemes we'd like to support:
 # - https://wiki.gentoo.org/wiki/Project:OpenRC
 # - http://smarden.org/runit/
 # - https://jdebp.eu/Softwares/nosh/
 # - http://upstart.ubuntu.com
-NOT_FOR_PLATFORM+=	${OPSYS}-*-*
+BROKEN_ON_PLATFORM+=	${OPSYS}-*-*
 .endif
 
 BUILD_DEFS+=		RCDBOOT_STYLE RCD_SCRIPTS_DIR

@@ -1,9 +1,6 @@
 package pkglint
 
-import (
-	"path"
-	"strings"
-)
+import "path"
 
 // Vartype is a combination of a data type and a permission specification.
 // See vardefs.go for examples, and vartypecheck.go for the implementation.
@@ -16,10 +13,16 @@ type Vartype struct {
 
 type KindOfList uint8
 
-// TODO: Rename lkNone to Plain, and lkShell to List.
 const (
-	lkNone  KindOfList = iota // Plain data type
-	lkShell                   // List entries are shell words; used in the :M, :S modifiers.
+	// lkNone is a plain data type, no list at all.
+	lkNone KindOfList = iota
+
+	// lkShell is a compound type, consisting of several space-separated elements.
+	// Elements can have embedded spaces by enclosing them in quotes, like in the shell.
+	//
+	// These lists are used in the :M, :S modifiers, in .for loops,
+	// and as lists of arbitrary things.
+	lkShell
 )
 
 type ACLEntry struct {
@@ -50,24 +53,22 @@ func (perms ACLPermissions) String() string {
 	if perms == 0 {
 		return "none"
 	}
-	result := "" +
-		ifelseStr(perms.Contains(aclpSet), "set, ", "") +
-		ifelseStr(perms.Contains(aclpSetDefault), "set-default, ", "") +
-		ifelseStr(perms.Contains(aclpAppend), "append, ", "") +
-		ifelseStr(perms.Contains(aclpUseLoadtime), "use-loadtime, ", "") +
-		ifelseStr(perms.Contains(aclpUse), "use, ", "") +
-		ifelseStr(perms.Contains(aclpUnknown), "unknown, ", "")
-	return strings.TrimRight(result, ", ")
+	return joinSkipEmpty(", ",
+		ifelseStr(perms.Contains(aclpSet), "set", ""),
+		ifelseStr(perms.Contains(aclpSetDefault), "set-default", ""),
+		ifelseStr(perms.Contains(aclpAppend), "append", ""),
+		ifelseStr(perms.Contains(aclpUseLoadtime), "use-loadtime", ""),
+		ifelseStr(perms.Contains(aclpUse), "use", ""),
+		ifelseStr(perms.Contains(aclpUnknown), "unknown", ""))
 }
 
 func (perms ACLPermissions) HumanString() string {
-	result := "" +
-		ifelseStr(perms.Contains(aclpSet), "set, ", "") +
-		ifelseStr(perms.Contains(aclpSetDefault), "given a default value, ", "") +
-		ifelseStr(perms.Contains(aclpAppend), "appended to, ", "") +
-		ifelseStr(perms.Contains(aclpUseLoadtime), "used at load time, ", "") +
-		ifelseStr(perms.Contains(aclpUse), "used, ", "")
-	return strings.TrimRight(result, ", ")
+	return joinSkipEmptyOxford("or",
+		ifelseStr(perms.Contains(aclpSet), "set", ""),
+		ifelseStr(perms.Contains(aclpSetDefault), "given a default value", ""),
+		ifelseStr(perms.Contains(aclpAppend), "appended to", ""),
+		ifelseStr(perms.Contains(aclpUseLoadtime), "used at load time", ""),
+		ifelseStr(perms.Contains(aclpUse), "used", ""))
 }
 
 func (vt *Vartype) EffectivePermissions(basename string) ACLPermissions {
@@ -90,6 +91,7 @@ func (vt *Vartype) Union() ACLPermissions {
 	return permissions
 }
 
+// AllowedFiles lists the file patterns in which the given permissions are allowed.
 func (vt *Vartype) AllowedFiles(perms ACLPermissions) string {
 	files := make([]string, 0, len(vt.aclEntries))
 	for _, aclEntry := range vt.aclEntries {
@@ -97,25 +99,34 @@ func (vt *Vartype) AllowedFiles(perms ACLPermissions) string {
 			files = append(files, aclEntry.glob)
 		}
 	}
-	return strings.Join(files, ", ")
+	return joinSkipEmptyCambridge("or", files...)
 }
 
-// IsConsideredList returns whether the type is considered a shell list.
-// This distinction between "real lists" and "considered a list" makes
-// the implementation of checklineMkVartype easier.
+// IsConsideredList returns whether the type is considered a list.
+//
+// FIXME: Explain why this method is necessary. IsList is clear, and MayBeAppendedTo also,
+//  but this in-between state needs a decent explanation.
+//  Probably MkLineChecker.checkVartype needs to be revisited completely.
 func (vt *Vartype) IsConsideredList() bool {
 	if vt.kindOfList == lkShell {
 		return true
 	}
 	switch vt.basicType {
-	case BtAwkCommand, BtSedCommands, BtShellCommand, BtShellCommands, BtLicense, BtConfFiles:
+	case BtAwkCommand, BtSedCommands, BtShellCommand, BtShellCommands, BtConfFiles:
 		return true
 	}
 	return false
 }
 
 func (vt *Vartype) MayBeAppendedTo() bool {
-	return vt.kindOfList != lkNone || vt.IsConsideredList() || vt.basicType == BtComment
+	if vt.kindOfList != lkNone || vt.IsConsideredList() {
+		return true
+	}
+	switch vt.basicType {
+	case BtComment, BtLicense:
+		return true
+	}
+	return false
 }
 
 func (vt *Vartype) String() string {
@@ -193,9 +204,11 @@ type BasicType struct {
 func (bt *BasicType) IsEnum() bool {
 	return hasPrefix(bt.name, "enum: ")
 }
+
 func (bt *BasicType) HasEnum(value string) bool {
 	return !contains(value, " ") && contains(bt.name, " "+value+" ")
 }
+
 func (bt *BasicType) AllowedEnums() string {
 	return bt.name[6 : len(bt.name)-1]
 }
@@ -266,7 +279,11 @@ var (
 	BtYesNoIndirectly        = &BasicType{"YesNoIndirectly", (*VartypeCheck).YesNoIndirectly}
 )
 
-func init() { // Necessary due to circular dependency
+// Necessary due to circular dependencies between the checkers.
+//
+// The Go compiler is stricter than absolutely necessary for this particular case.
+// The following methods are only referred to but not invoked during initialization.
+func init() {
 	BtShellCommand.checker = (*VartypeCheck).ShellCommand
 	BtShellCommands.checker = (*VartypeCheck).ShellCommands
 	BtShellWord.checker = (*VartypeCheck).ShellWord

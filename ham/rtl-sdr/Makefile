@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.12 2018/09/01 19:09:57 gdt Exp $
+# $NetBSD: Makefile,v 1.14 2019/02/03 10:48:17 tnn Exp $
 
-DISTNAME=		rtl-sdr-0.5.4
+DISTNAME=		rtl-sdr-0.6.0
 CATEGORIES=		ham
 MASTER_SITES=		${MASTER_SITE_GITHUB:=steve-m/}
 GITHUB_PROJECT=		librtlsdr
-GITHUB_TAG=		v${PKGVERSION_NOREV}
+GITHUB_TAG=		${PKGVERSION_NOREV}
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://sdr.osmocom.org/trac/wiki/rtl-sdr
@@ -18,12 +18,6 @@ USE_CMAKE=		yes
 CONFIGURE_DIRS=build
 BUILD_DIRS=${CONFIGURE_DIRS}
 CMAKE_ARG_PATH=..
-
-SUBST_CLASSES+=			fix-inline
-SUBST_STAGE.fix-inline=		pre-configure
-SUBST_MESSAGE.fix-inline=	Fixing inline calls
-SUBST_FILES.fix-inline=		src/rtl_adsb.c src/rtl_power.c
-SUBST_SED.fix-inline=		-e 's,inline,static inline,g'
 
 PKGCONFIG_OVERRIDE+=     librtlsdr.pc.in
 

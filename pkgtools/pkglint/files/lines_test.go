@@ -30,9 +30,8 @@ func (s *Suite) Test_Lines_CheckRcsID(c *check.C) {
 func (s *Suite) Test_Lines_CheckRcsID__wip(c *check.C) {
 	t := s.Init(c)
 
-	t.SetupPkgsrc()
-	t.SetupPackage("wip/package",
-		"CATEGORIES=\tchinese")
+	t.SetUpPkgsrc()
+	t.SetUpPackage("wip/package")
 	t.CreateFileLines("wip/package/file1.mk",
 		"# $"+"NetBSD: dummy $")
 	t.CreateFileLines("wip/package/file2.mk",
@@ -61,4 +60,15 @@ func (s *Suite) Test_Lines_CheckRcsID__wip(c *check.C) {
 		"AUTOFIX: ~/wip/package/file3.mk:1: Inserting a line \"# $"+"NetBSD$\" before this line.",
 		"AUTOFIX: ~/wip/package/file4.mk:1: Inserting a line \"# $"+"NetBSD$\" before this line.",
 		"AUTOFIX: ~/wip/package/file5.mk:1: Inserting a line \"# $"+"NetBSD$\" before this line.")
+
+	// In production mode, this error is disabled since it doesn't provide
+	// enough benefit compared to the work it would produce.
+	//
+	// To make it useful, the majority of pkgsrc-wip packages would first
+	// have to follow this style.
+	G.Testing = false
+
+	G.Check(t.File("wip/package"))
+
+	t.CheckOutputEmpty()
 }

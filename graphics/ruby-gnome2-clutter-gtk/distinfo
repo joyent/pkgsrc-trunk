@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.15 2018/11/01 14:22:59 tsutsui Exp $
+$NetBSD: distinfo,v 1.17 2019/02/03 07:02:53 tsutsui Exp $
 
-SHA1 (clutter-gtk-3.3.0.gem) = 5279fcedcf4e30baf5ee7920cc9d4710ceb3ca0d
-RMD160 (clutter-gtk-3.3.0.gem) = e82265ef79a2219c5fbf272354193e6abb253a79
-SHA512 (clutter-gtk-3.3.0.gem) = 3f290e081de82d25cf9d71cccbf4a4b3a779aae2896d1b82941279c04bcd1310e25dc9ccf0a484260bb5410d94efe1beafdb532efdaa8a23ddb8599f1379d48d
-Size (clutter-gtk-3.3.0.gem) = 31744 bytes
+SHA1 (clutter-gtk-3.3.2.gem) = 00226c5916109de75795000e0fe3e6e7f23274e4
+RMD160 (clutter-gtk-3.3.2.gem) = 9e8216ae9fe5ace285aed41af7c580bd69438790
+SHA512 (clutter-gtk-3.3.2.gem) = f1092e3eed3eb6e2fa63c1a1af89bf7dd271dcde062aad7669246f29c6386846d9691669dd4906f5dd1987ccef5cbee336d051988dc79bd7d9650549bbef6429
+Size (clutter-gtk-3.3.2.gem) = 31232 bytes

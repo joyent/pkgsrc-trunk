@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.32 2018/08/04 19:05:13 sevan Exp $
+# $NetBSD: Makefile,v 1.36 2019/02/15 20:38:29 triaxx Exp $
 
-DISTNAME=		smartmontools-6.6
-PKGREVISION= 		1
+DISTNAME=		smartmontools-7.0
+PKGREVISION=		2
 CATEGORIES=		sysutils
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=smartmontools/}
 
@@ -13,7 +13,7 @@ LICENSE=		gnu-gpl-v2
 ONLY_FOR_PLATFORM=	Darwin-*-* DragonFly-*-* FreeBSD-*-* Linux-*-*
 ONLY_FOR_PLATFORM+=	NetBSD-*-* OpenBSD-*-* SunOS-*-*
 
-USE_LANGUAGES=		c c++03
+USE_LANGUAGES=		c c++
 USE_TOOLS+=		gmake
 GNU_CONFIGURE=		yes
 

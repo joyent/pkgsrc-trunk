@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST.hipe,v 1.6 2018/07/03 11:01:21 fhajny Exp $
+@comment $NetBSD: PLIST.hipe,v 1.8 2019/01/22 00:07:35 nia Exp $
 lib/erlang/lib/hipe-${VERSION.hipe}/ebin/elf_format.beam
 lib/erlang/lib/hipe-${VERSION.hipe}/ebin/hipe.beam
 lib/erlang/lib/hipe-${VERSION.hipe}/ebin/hipe_adj_list.beam

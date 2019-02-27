@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.5 2018/05/22 21:15:02 markd Exp $
+# $NetBSD: Makefile,v 1.7 2019/01/27 09:59:14 markd Exp $
 
 DISTNAME=	collection-plaingeneric
-PKGNAME=	texlive-${DISTNAME}-2018pre2
+PKGNAME=	texlive-${DISTNAME}-2018pre3
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
-TEXLIVE_REV=	45805
+TEXLIVE_REV=	49271
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.tug.org/texlive/
@@ -23,6 +23,7 @@ DEPENDS+=	tex-apnum>=1.1:../../math/tex-apnum
 # depend catcodes
 # depend chronosys
 # depend colorsep
+# depend cweb-old
 # depend dinat
 # depend dirtree
 # depend docbytex
@@ -59,11 +60,12 @@ DEPENDS+=	tex-lambda-lists-[0-9]*:../../print/tex-lambda-lists
 # depend langcode
 # depend lecturer
 # depend librarian
-# depend listofitems
+DEPENDS+=	tex-listofitems-[0-9]*:../../print/tex-listofitems
 DEPENDS+=	tex-mathdots-[0-9]*:../../print/tex-mathdots
 # depend metatex
 # depend midnight
 DEPENDS+=	tex-mkpattern-[0-9]*:../../print/tex-mkpattern
+# depend modulus
 DEPENDS+=	tex-multido>=1.42:../../devel/tex-multido
 # depend navigator
 DEPENDS+=	tex-newsletr-[0-9]*:../../print/tex-newsletr
@@ -89,6 +91,7 @@ DEPENDS+=	tex-resumemac-[0-9]*:../../print/tex-resumemac
 DEPENDS+=	tex-tex-ps>=2010:../../graphics/tex-tex-ps
 DEPENDS+=	tex-tex4ht-[0-9]*:../../print/tex-tex4ht
 # depend texapi
+# depend texdate
 DEPENDS+=	tex-texinfo-[0-9]*:../../print/tex-texinfo
 DEPENDS+=	tex-timetable-[0-9]*:../../print/tex-timetable
 DEPENDS+=	tex-tracklang-[0-9]*:../../print/tex-tracklang

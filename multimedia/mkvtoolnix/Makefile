@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.124 2019/01/07 09:12:40 adam Exp $
+# $NetBSD: Makefile,v 1.126 2019/02/12 23:46:23 adam Exp $
 
-DISTNAME=	mkvtoolnix-30.1.0
+DISTNAME=	mkvtoolnix-31.0.0
 CATEGORIES=	multimedia
 MASTER_SITES=	https://mkvtoolnix.download/sources/
 EXTRACT_SUFX=	.tar.xz
@@ -35,14 +35,8 @@ LDFLAGS.SunOS+=		-lintl
 
 INSTALL_ENV+=	SHELL=${SH:Q}
 
-.if !empty(MAKE_JOBS)
-DRAKE_ARGS=	-v -j${MAKE_JOBS}
-.else
-DRAKE_ARGS=	# empty
-.endif
-
 do-build:
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${RAKE} ${DRAKE_ARGS}
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${RAKE}
 
 do-install:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${INSTALL_ENV} ${RAKE} install
