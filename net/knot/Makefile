@@ -23,7 +23,7 @@ CONFIGURE_ARGS+=	--with-libidn=${BUILDLINK_PREFIX.libidn}
 
 CONFIGURE_ARGS.NetBSD+=	--enable-recvmmsg=no
 
-CFLAGS.SunOS+=	-D_XOPEN_SOURCE=600 -D__EXTENSIONS__
+CFLAGS.SunOS+=	-D_XOPEN_SOURCE=600 -D_REENTRANT
 
 .include "../../mk/bsd.prefs.mk"
 
