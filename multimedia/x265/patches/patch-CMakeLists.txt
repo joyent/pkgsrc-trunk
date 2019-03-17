@@ -15,7 +15,7 @@ Solaris ld: Passing "-Wa,--noexecstack" to gcc will generate an ELF section
          else()
 -            list(APPEND LINKER_OPTIONS "-Wl,-Bsymbolic,-znoexecstack")
 +            if(${CMAKE_SYSTEM_NAME} MATCHES "SunOS")
-+                list(APPEND LINKER_OPTIONS "-mimpure-text -Wa,--noexecstack")
++                list(APPEND LINKER_OPTIONS "-mimpure-text -Wa,--noexecstack -Wl,-M,/usr/lib/ld/map.noexstk")
 +            else()
 +                list(APPEND LINKER_OPTIONS "-Wl,-Bsymbolic,-znoexecstack")
 +            endif()
