@@ -18,7 +18,7 @@
       <dependency name='config-file' grouping='require_all' restart_on='refresh' type='path'>
         <service_fmri value='file://localhost@PKG_SYSCONFDIR@/zabbix_agentd.conf'/>
       </dependency>
-      <exec_method name='start' type='method' exec='@PREFIX@/@SMF_METHOD_FILE.zabbix_agentd@ -c @PKG_SYSCONFDIR@/zabbix_agentd.conf' timeout_seconds='0'/>
+      <exec_method name='start' type='method' exec='@PREFIX@/sbin/zabbix_agentd -c @PKG_SYSCONFDIR@/zabbix_agentd.conf' timeout_seconds='0'/>
       <exec_method name='stop' type='method' exec=':kill' timeout_seconds='0'/>
       <template>
         <common_name>
@@ -30,7 +30,7 @@
       <dependency name='config-file' grouping='require_all' restart_on='refresh' type='path'>
         <service_fmri value='file://localhost@PKG_SYSCONFDIR@/zabbix_server.conf'/>
       </dependency>
-      <exec_method name='start' type='method' exec='@PREFIX@/@SMF_METHOD_FILE.zabbix_server@ -c @PKG_SYSCONFDIR@/zabbix_server.conf' timeout_seconds='0'/>
+      <exec_method name='start' type='method' exec='@PREFIX@/sbin/zabbix_server -c @PKG_SYSCONFDIR@/zabbix_server.conf' timeout_seconds='0'/>
       <exec_method name='stop' type='method' exec=':kill' timeout_seconds='0'/>
       <template>
         <common_name>
@@ -42,7 +42,7 @@
       <dependency name='config-file' grouping='require_all' restart_on='refresh' type='path'>
         <service_fmri value='file://localhost@PKG_SYSCONFDIR@/zabbix_proxy.conf'/>
       </dependency>
-      <exec_method name='start' type='method' exec='@PREFIX@/@SMF_METHOD_FILE.zabbix_proxy@ -c @PKG_SYSCONFDIR@/zabbix_proxy.conf' timeout_seconds='0'/>
+      <exec_method name='start' type='method' exec='@PREFIX@/sbin/zabbix_proxy -c @PKG_SYSCONFDIR@/zabbix_proxy.conf' timeout_seconds='0'/>
       <exec_method name='stop' type='method' exec=':kill' timeout_seconds='0'/>
       <template>
         <common_name>
