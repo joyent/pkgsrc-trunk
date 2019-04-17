@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.837 2019/03/27 16:45:51 jperkin Exp $
+# $NetBSD: Makefile,v 1.839 2019/04/15 14:27:49 taca Exp $
 #
 
 COMMENT=	Packages to support the X window system

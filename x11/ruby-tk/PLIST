@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.15 2017/04/22 18:34:15 taca Exp $
+@comment $NetBSD: PLIST,v 1.17 2019/04/15 14:27:07 taca Exp $
 ${RUBY_VENDORLIB}/multi-tk.rb
 ${RUBY_VENDORLIB}/remote-tk.rb
 ${RUBY_VENDORLIB}/tcltk.rb
