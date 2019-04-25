@@ -2,7 +2,7 @@ $NetBSD$
 
 Apply SunOS fix from https://github.com/pkg/term/pull/41
 
---- ../../pkg/term/termios/termios_solaris.go.orig	2018-07-30 02:16:39.000000000 +0000
+--- ../../pkg/term/termios/termios_solaris.go.orig	2019-04-25 03:19:22.118815385 +0000
 +++ ../../pkg/term/termios/termios_solaris.go
 @@ -31,13 +31,13 @@ const FIORDCHK = C.FIORDCHK
  // Tcgetattr gets the current serial port settings.
