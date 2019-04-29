@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.27 2018/12/13 19:51:48 adam Exp $
+# $NetBSD: Makefile,v 1.30 2019/04/26 14:12:35 maya Exp $
 
 DISTNAME=	libftdi1-1.1
-PKGREVISION=	12
+PKGREVISION=	13
 CATEGORIES=	devel
 MASTER_SITES=	https://www.intra2net.com/en/developer/libftdi/download/
 EXTRACT_SUFX=	.tar.bz2
@@ -17,7 +17,7 @@ USE_CMAKE=	yes
 USE_TOOLS+=	pkg-config cmake
 USE_LANGUAGES=	c c++
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # not yet ported as of 1.0
+PYTHON_VERSIONS_INCOMPATIBLE=	36 37 # not yet ported as of 1.0
 
 BUILD_DEPENDS+=libusb1-[0-9]*:../../devel/libusb1
 # It is better off to have doxygen, but

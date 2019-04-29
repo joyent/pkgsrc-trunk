@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.30 2018/07/04 13:40:09 jperkin Exp $
+# $NetBSD: Makefile,v 1.32 2019/04/26 13:13:41 maya Exp $
 
 DISTNAME=	moss-0.1.13
-PKGREVISION=	6
+PKGREVISION=	7
 CATEGORIES=	audio
 MASTER_SITES=	http://kldp.net/frs/download.php/1580/
 
@@ -13,7 +13,7 @@ LICENSE=	gnu-gpl-v2
 DEPENDS+=	${PYPKGPREFIX}-ogg>=1.3:../../audio/py-ogg
 DEPENDS+=	${PYPKGPREFIX}-vorbis>=1.3:../../audio/py-vorbis
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-ogg, py-vorbis
+PYTHON_VERSIONS_INCOMPATIBLE=	 36 37 # py-ogg, py-vorbis
 
 REPLACE_PYTHON=	${WRKSRC}/*.py
 

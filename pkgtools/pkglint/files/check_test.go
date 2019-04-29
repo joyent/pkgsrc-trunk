@@ -9,6 +9,7 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"regexp"
 	"strings"
 	"testing"
 
@@ -56,7 +57,7 @@ func (s *Suite) Init(c *check.C) *Tester {
 }
 
 func (s *Suite) SetUpTest(c *check.C) {
-	t := Tester{c: c}
+	t := Tester{c: c, testName: c.TestName()}
 	s.Tester = &t
 
 	G = NewPkglint()
@@ -89,7 +90,11 @@ func (s *Suite) TearDownTest(c *check.C) {
 	t.c = nil // No longer usable; see https://github.com/go-check/check/issues/22
 
 	if err := os.Chdir(t.prevdir); err != nil {
-		_, _ = fmt.Fprintf(os.Stderr, "Cannot chdir back to previous dir: %s", err)
+		t.Errorf("Cannot chdir back to previous dir: %s", err)
+	}
+
+	if t.seenSetupPkgsrc > 0 && !t.seenFinish && !t.seenMain {
+		t.Errorf("After t.SetupPkgsrc(), t.FinishSetUp() or t.Main() must be called.")
 	}
 
 	if out := t.Output(); out != "" {
@@ -121,12 +126,18 @@ func Test(t *testing.T) { check.TestingT(t) }
 // all the test methods, which makes it difficult to find
 // a method by auto-completion.
 type Tester struct {
+	c        *check.C // Only usable during the test method itself
+	testName string
+
 	stdout  bytes.Buffer
 	stderr  bytes.Buffer
 	tmpdir  string
-	c       *check.C // Only usable during the test method itself
-	prevdir string   // The current working directory before the test started
-	relCwd  string   // See Tester.Chdir
+	prevdir string // The current working directory before the test started
+	relCwd  string // See Tester.Chdir
+
+	seenSetupPkgsrc int
+	seenFinish      bool
+	seenMain        bool
 }
 
 // SetUpCommandLine simulates a command line for the remainder of the test.
@@ -177,7 +188,7 @@ func (t *Tester) SetUpOption(name, description string) {
 }
 
 func (t *Tester) SetUpTool(name, varname string, validity Validity) *Tool {
-	return G.Pkgsrc.Tools.def(name, varname, false, validity)
+	return G.Pkgsrc.Tools.def(name, varname, false, validity, nil)
 }
 
 // SetUpFileLines creates a temporary file and writes the given lines to it.
@@ -294,6 +305,8 @@ func (t *Tester) SetUpPkgsrc() {
 
 	// Category Makefiles require this file for the common definitions.
 	t.CreateFileLines("mk/misc/category.mk")
+
+	t.seenSetupPkgsrc++
 }
 
 // SetUpCategory makes the given category valid by creating a dummy Makefile.
@@ -316,7 +329,8 @@ func (t *Tester) SetUpCategory(name string) {
 // Returns the path to the package, ready to be used with Pkglint.Check.
 //
 // After calling this method, individual files can be overwritten as necessary.
-// Then, G.Pkgsrc.LoadInfrastructure should be called to load all the files.
+// At the end of the setup phase, t.FinishSetUp() must be called to load all
+// the files.
 func (t *Tester) SetUpPackage(pkgpath string, makefileLines ...string) string {
 
 	category := path.Dir(pkgpath)
@@ -326,7 +340,6 @@ func (t *Tester) SetUpPackage(pkgpath string, makefileLines ...string) string {
 	}
 
 	t.SetUpPkgsrc()
-	t.SetUpVartypes()
 	t.SetUpCategory(category)
 
 	t.CreateFileLines(pkgpath+"/DESCR",
@@ -375,7 +388,7 @@ func (t *Tester) SetUpPackage(pkgpath string, makefileLines ...string) string {
 line:
 	for _, line := range makefileLines {
 		if m, prefix := match1(line, `^#?(\w+=)`); m {
-			for i, existingLine := range mlines {
+			for i, existingLine := range mlines[:19] {
 				if hasPrefix(strings.TrimPrefix(existingLine, "#"), prefix) {
 					mlines[i] = line
 					continue line
@@ -619,11 +632,59 @@ func (s *Suite) Test_Tester_SetUpHierarchy(c *check.C) {
 		"NOTE: subdir/env.mk:1: Text is: VAR= env")
 }
 
+func (t *Tester) FinishSetUp() {
+	if t.seenSetupPkgsrc == 0 {
+		t.Errorf("Unnecessary t.FinishSetUp() since t.SetUpPkgsrc() has not been called.")
+	}
+
+	if !t.seenFinish {
+		t.seenFinish = true
+		G.Pkgsrc.LoadInfrastructure()
+	} else {
+		t.Errorf("Redundant t.FinishSetup() since it was called multiple times.")
+	}
+}
+
+// Main runs the pkglint main program with the given command line arguments.
+//
+// Arguments that name existing files or directories in the temporary test
+// directory are transformed to their actual paths.
+func (t *Tester) Main(args ...string) int {
+	if t.seenFinish && !t.seenMain {
+		t.Errorf("Calling t.FinishSetup() before t.Main() is redundant " +
+			"since t.Main() loads the pkgsrc infrastructure.")
+	}
+
+	t.seenMain = true
+
+	// Reset the logger, for tests where t.Main is called multiple times.
+	G.errors = 0
+	G.warnings = 0
+	G.logged = Once{}
+
+	argv := []string{"pkglint"}
+	for _, arg := range args {
+		fileArg := t.File(arg)
+		_, err := os.Lstat(fileArg)
+		if err == nil {
+			argv = append(argv, fileArg)
+		} else {
+			argv = append(argv, arg)
+		}
+	}
+
+	return G.Main(argv...)
+}
+
 // Check delegates a check to the check.Check function.
 // Thereby, there is no need to distinguish between c.Check and t.Check
 // in the test code.
 func (t *Tester) Check(obj interface{}, checker check.Checker, args ...interface{}) bool {
 	return t.c.Check(obj, checker, args...)
+}
+
+func (t *Tester) Errorf(format string, args ...interface{}) {
+	_, _ = fmt.Fprintf(os.Stderr, "In %s: %s\n", t.testName, sprintf(format, args...))
 }
 
 // ExpectFatal runs the given action and expects that this action calls
@@ -662,7 +723,8 @@ func (t *Tester) ExpectFatalMatches(action func(), expected regex.Pattern) {
 		if r == nil {
 			panic("Expected a pkglint fatal error but didn't get one.")
 		} else if _, ok := r.(pkglintFatal); ok {
-			t.Check(t.Output(), check.Matches, string(expected))
+			pattern := `^(?:` + string(expected) + `)$`
+			t.Check(t.Output(), check.Matches, pattern)
 		} else {
 			panic(r)
 		}
@@ -719,10 +781,13 @@ func (t *Tester) NewLine(filename string, lineno int, text string) Line {
 func (t *Tester) NewMkLine(filename string, lineno int, text string) MkLine {
 	basename := path.Base(filename)
 	G.Assertf(
-		hasSuffix(basename, ".mk") || basename == "Makefile" || hasPrefix(basename, "Makefile."),
+		hasSuffix(basename, ".mk") ||
+			basename == "Makefile" ||
+			hasPrefix(basename, "Makefile.") ||
+			basename == "mk.conf",
 		"filename %q must be realistic, otherwise the variable permissions are wrong", filename)
 
-	return NewMkLine(t.NewLine(filename, lineno, text))
+	return MkLineParser{}.Parse(t.NewLine(filename, lineno, text))
 }
 
 func (t *Tester) NewShellLineChecker(mklines MkLines, filename string, lineno int, text string) *ShellLineChecker {
@@ -808,6 +873,47 @@ func (t *Tester) CheckOutputLines(expectedLines ...string) {
 	t.CheckOutput(expectedLines)
 }
 
+// CheckOutputMatches checks that the output up to now matches the given lines.
+// Each line may either be an exact string or a regular expression.
+// By convention, regular expressions are written in backticks.
+//
+// After the comparison, the output buffers are cleared so that later
+// calls only check against the newly added output.
+//
+// See CheckOutputEmpty.
+func (t *Tester) CheckOutputMatches(expectedLines ...regex.Pattern) {
+	output := t.Output()
+	actualLines := strings.Split(output, "\n")
+	actualLines = actualLines[:len(actualLines)-1]
+
+	ok := func(actualLine string, expectedLine regex.Pattern) bool {
+		if actualLine == string(expectedLine) {
+			return true
+		}
+
+		pattern := `^(?:` + string(expectedLine) + `)$`
+		re, err := regexp.Compile(pattern)
+		if err != nil {
+			return false
+		}
+
+		return re.MatchString(actualLine)
+	}
+
+	// If a line matches the corresponding pattern, make them equal in the
+	// comparison output, in order to concentrate on the lines that don't match.
+	var patterns []string
+	for i, expectedLine := range expectedLines {
+		if i < len(actualLines) && ok(actualLines[i], expectedLine) {
+			patterns = append(patterns, actualLines[i])
+		} else {
+			patterns = append(patterns, string(expectedLine))
+		}
+	}
+
+	t.Check(emptyToNil(actualLines), deepEquals, emptyToNil(patterns))
+}
+
 // CheckOutput checks that the output up to now equals the given lines.
 // After the comparison, the output buffers are cleared so that later
 // calls only check against the newly added output.
@@ -889,4 +995,12 @@ func (t *Tester) CheckFileLinesDetab(relativeFileName string, lines ...string) {
 	}
 
 	t.Check(detabbedLines, deepEquals, lines)
+}
+
+// Use marks all passed functions as used for the Go compiler.
+//
+// This means that the test cases that follow do not have to use each of them,
+// and this in turn allows uninteresting test cases to be deleted during
+// development.
+func (t *Tester) Use(functions ...interface{}) {
 }

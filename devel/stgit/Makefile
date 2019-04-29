@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.36 2018/08/22 09:45:00 wiz Exp $
+# $NetBSD: Makefile,v 1.39 2019/04/26 14:12:38 maya Exp $
 
 DISTNAME=	stgit-0.17.1
-PKGREVISION=	12
+PKGREVISION=	13
 CATEGORIES=	devel
 MASTER_SITES=	http://download.gna.org/stgit/
 
@@ -24,7 +24,7 @@ REPLACE_BASH=	contrib/stg-*
 
 REPLACE_PYTHON=	*.py stgit/*.py stg
 PYSETUPINSTALLARGS=	--prefix=${PREFIX}
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # not yet ported as of 0.17.1
+PYTHON_VERSIONS_INCOMPATIBLE=	36 37 # not yet ported as of 0.17.1
 
 MAKE_ENV+=	ASCIIDOC=${PREFIX}/bin/asciidoc
 

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.28 2018/07/03 05:03:14 adam Exp $
+# $NetBSD: Makefile,v 1.30 2019/04/26 13:13:55 maya Exp $
 
 DISTNAME=		tailor-0.9.35
-PKGREVISION=		5
+PKGREVISION=		6
 CATEGORIES=		devel scm
 MASTER_SITES=		http://darcs.arstecnica.it/
 
@@ -12,7 +12,7 @@ LICENSE=		gnu-gpl-v3
 
 USE_LANGUAGES=		#none
 
-PYTHON_VERSIONS_INCOMPATIBLE=  34 35 36 37 # not yet ported as of 0.9.35
+PYTHON_VERSIONS_INCOMPATIBLE=   36 37 # not yet ported as of 0.9.35
 REPLACE_PYTHON=		tailor
 
 AUTO_MKDIRS=		yes

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.23 2019/04/15 10:19:04 leot Exp $
+# $NetBSD: Makefile,v 1.25 2019/04/26 13:14:08 maya Exp $
 
 DISTNAME=	mitmproxy-4.0.4
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=mitmproxy/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -40,7 +40,7 @@ SUBST_SED.setuppyversions=	-E -e '/>=/ s/, *<[^"]+//g'
 REPLACE_SH+=	mitmproxy/contrib/kaitaistruct/make.sh
 
 USE_LANGUAGES=			# none
-PYTHON_VERSIONS_INCOMPATIBLE=	27 34 35
+PYTHON_VERSIONS_INCOMPATIBLE=	27 
 
 post-install:
 	${FIND} ${DESTDIR} -name "*.orig" -type f -exec ${RM} {} \;

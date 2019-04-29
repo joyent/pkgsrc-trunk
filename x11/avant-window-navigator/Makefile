@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.47 2019/03/25 13:56:27 wiz Exp $
+# $NetBSD: Makefile,v 1.49 2019/04/26 13:14:23 maya Exp $
 
 DISTNAME=	avant-window-navigator-0.4.0
-PKGREVISION=	33
+PKGREVISION=	34
 CATEGORIES=	x11
 MASTER_SITES=	https://launchpad.net/awn/0.4/0.4.0/+download/
 
@@ -44,7 +44,7 @@ SUBST_SED.pathfix=	-e "s,/usr/share,${PREFIX}/share,"
 PY_PATCHPLIST=		yes
 REPLACE_PYTHON+=	awn-settings/awnSettings.py.in
 REPLACE_PYTHON+=	awn-settings/awnSettingsHelper.py
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-gtk2
+PYTHON_VERSIONS_INCOMPATIBLE=	 36 37 # py-gtk2
 
 .include "../../devel/GConf/schemas.mk"
 .include "../../lang/vala/buildlink3.mk"

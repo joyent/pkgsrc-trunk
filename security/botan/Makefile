@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.48 2018/09/04 00:02:02 minskim Exp $
+# $NetBSD: Makefile,v 1.51 2019/04/26 14:12:44 maya Exp $
 
 DISTNAME=	Botan-1.10.17
 PKGNAME=	${DISTNAME:tl}
+PKGREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	https://botan.randombit.net/releases/
 EXTRACT_SUFX=	.tgz
@@ -15,7 +16,7 @@ HAS_CONFIGURE=		yes
 USE_LANGUAGES=		c++03
 
 PYTHON_FOR_BUILD_ONLY=	yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # not yet ported as of 1.8.14; 1.10 is supposedly better
+PYTHON_VERSIONS_INCOMPATIBLE=	36 37 # not yet ported as of 1.8.14; 1.10 is supposedly better
 
 CONFIG_SHELL=		${PYTHONBIN}
 CONFIGURE_SCRIPT=	./configure.py

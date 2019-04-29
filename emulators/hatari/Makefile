@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.48 2019/02/06 17:51:01 tnn Exp $
+# $NetBSD: Makefile,v 1.51 2019/04/26 14:12:38 maya Exp $
 
 DISTNAME=	hatari-2.0.0
+PKGREVISION=	1
 CATEGORIES=	emulators
 MASTER_SITES=	http://download.tuxfamily.org/hatari/${PKGVERSION_NOREV}/
 EXTRACT_SUFX=	.tar.bz2
@@ -14,7 +15,7 @@ USE_CMAKE=		yes
 USE_LANGUAGES=		c
 CMAKE_ARGS+=		-DENABLE_OSX_BUNDLE:BOOL=0
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # not yet ported as of 1.7.0
+PYTHON_VERSIONS_INCOMPATIBLE=	36 37 # not yet ported as of 1.7.0
 
 REPLACE_PYTHON+=	python-ui/config.py
 REPLACE_PYTHON+=	python-ui/debugui.py

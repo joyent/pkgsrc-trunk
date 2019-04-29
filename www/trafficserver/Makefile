@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.12 2018/12/15 21:12:24 wiz Exp $
+# $NetBSD: Makefile,v 1.14 2019/04/26 13:14:22 maya Exp $
 
 DISTNAME=	trafficserver-7.1.2
-PKGREVISION=	4
+PKGREVISION=	5
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_APACHE:=trafficserver/}
 EXTRACT_SUFX=	.tar.bz2
@@ -19,7 +19,7 @@ GNU_CONFIGURE=	yes
 
 # For man pages
 PYTHON_FOR_BUILD_ONLY=		yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37
+PYTHON_VERSIONS_INCOMPATIBLE=	 36 37
 BUILD_DEPENDS+=			${PYPKGPREFIX}-sphinx-[0-9]*:../../textproc/py-sphinx
 
 .include "../../mk/bsd.prefs.mk"

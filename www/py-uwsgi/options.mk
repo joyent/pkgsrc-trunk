@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.5 2019/03/06 13:07:58 joerg Exp $
+# $NetBSD: options.mk,v 1.7 2019/04/29 03:28:39 dholland Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.py-uwsgi
 PKG_SUPPORTED_OPTIONS=	debug openssl pcre uuid uwsgi-sse_offload yaml
@@ -31,7 +31,6 @@ UWSGI_JSON=			json=jansson
 .elif !empty(PKG_OPTIONS:Myajl)
 .include "../../devel/yajl/buildlink3.mk"
 UWSGI_JSON=			json=yajl
-BROKEN=		The yajl option requires a yajl.pc file which that package doesn't have.
 .else
 UWSGI_JSON=			json=false
 .endif
@@ -61,6 +60,8 @@ INSTALL_ENV+=			UWSGI_EMBED_PLUGINS=sse_offload
 post-extract: post-extract-sse
 post-extract-sse:
 	mv ${WRKDIR}/uwsgi-sse-offload-${SSE_REVISION} ${WRKSRC}/plugins/sse_offload
+.else
+UWSGI_SSE=			sse_offload=false
 .endif
 
 .if !empty(PKG_OPTIONS:Muuid)

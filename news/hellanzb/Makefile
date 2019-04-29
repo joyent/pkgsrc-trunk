@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.17 2018/07/03 05:03:30 adam Exp $
+# $NetBSD: Makefile,v 1.19 2019/04/26 13:14:10 maya Exp $
 #
 .include "../../news/hellanzb/Makefile.version"
 
 DISTNAME=		hellanzb-${HELLANZB_VERSION}.${HELLANZB_SVN_REV}
-PKGREVISION=		4
+PKGREVISION=		5
 CATEGORIES=		news
 MASTER_SITES=		${MASTER_SITE_LOCAL}
 
@@ -18,7 +18,7 @@ DEPENDS+=	${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 DEPENDS+=	par2>=0.4:../../archivers/par2
 DEPENDS+=	unrar>=3.5.4:../../archivers/unrar
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # as of 0.14
+PYTHON_VERSIONS_INCOMPATIBLE=	 36 37 # as of 0.14
 
 USE_LANGUAGES=	#none
 

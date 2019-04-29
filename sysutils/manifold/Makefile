@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.10 2018/12/15 21:12:23 wiz Exp $
+# $NetBSD: Makefile,v 1.12 2019/04/26 13:14:15 maya Exp $
 
 PKGNAME=	${DISTNAME:S/^M/m/}
+PKGREVISION=	1
 DISTNAME=	Manifold-0.2.0
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_PYPI:=M/Manifold/}
@@ -14,7 +15,7 @@ DEPENDS+=	${PYPKGPREFIX}-genshi-[0-9]*:../../www/py-genshi
 
 USE_LANGUAGES=	# none
 
-PYTHON_VERSIONS_INCOMPATIBLE=  34 35 36 37 # not yet ported as of 0.2.0
+PYTHON_VERSIONS_INCOMPATIBLE=   36 37 # not yet ported as of 0.2.0
 
 post-extract:
 	${CHMOD} -R g-w ${WRKSRC}/*

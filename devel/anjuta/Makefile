@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.138 2018/11/29 11:21:49 prlw1 Exp $
+# $NetBSD: Makefile,v 1.141 2019/04/28 07:07:48 wiz Exp $
 
 DISTNAME=	anjuta-3.10.0
-PKGREVISION=	28
+PKGREVISION=	31
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/anjuta/3.10/}
 EXTRACT_SUFX=	.tar.xz
@@ -72,7 +72,7 @@ CFLAGS+=	-Wno-error=format-zero-length
 .include "../../databases/libgda/buildlink3.mk"
 #.include "../../devel/devhelp/buildlink3.mk"
 .include "../../devel/gdl/buildlink3.mk"
-.include "../../devel/glade3/buildlink3.mk"
+.include "../../devel/glade/buildlink3.mk"
 .include "../../devel/libgnomeui/buildlink3.mk"
 .include "../../devel/pcre/buildlink3.mk"
 .include "../../devel/GConf/schemas.mk"

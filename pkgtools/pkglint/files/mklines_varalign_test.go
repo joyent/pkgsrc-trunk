@@ -934,18 +934,16 @@ func (s *Suite) Test_Varalign__realign_commented_single_lines(c *check.C) {
 		"SHORT=\tvalue")
 	vt.Diagnostics(
 		"NOTE: ~/Makefile:1: This variable value should be aligned to column 17.",
-		"NOTE: ~/Makefile:3--4: This variable value should be aligned with tabs, not spaces, to column 17.",
 		"NOTE: ~/Makefile:5--6: This line should be aligned with \"\\t\\t\".",
 		"NOTE: ~/Makefile:7: This variable value should be aligned to column 17.")
 	vt.Autofixes(
 		"AUTOFIX: ~/Makefile:1: Replacing \"\\t\" with \"\\t\\t\".",
-		"AUTOFIX: ~/Makefile:3: Replacing \" \" with \"\\t\".",
 		"AUTOFIX: ~/Makefile:6: Replacing indentation \"\" with \"\\t\\t\".",
 		"AUTOFIX: ~/Makefile:7: Replacing \"\\t\" with \"\\t\\t\".")
 	vt.Fixed(
 		"SHORT=          value",
 		"#DISTFILES=     distfile-1.0.0.tar.gz",
-		"#CONTINUATION=  \\",
+		"#CONTINUATION= \\",
 		"#               continued",
 		"#CONFIGURE_ENV+= \\",
 		"#               TZ=UTC",
@@ -1012,20 +1010,38 @@ func (s *Suite) Test_Varalign__realign_commented_multiline(c *check.C) {
 	vt.Run()
 }
 
-// FIXME: The diagnostic does not correspond to the autofix; see "if oldWidth == 8".
+// The VAR2 line is a continuation line that starts in column 9, just like
+// the VAR1 line. Therefore the alignment is correct.
+//
+// Its continuation line is indented using effectively tab-tab-space, and
+// this relative indentation compared to the VAR2 line is preserved since
+// it is often used for indenting AWK or shell programs.
 func (s *Suite) Test_Varalign__mixed_indentation(c *check.C) {
 	vt := NewVaralignTester(s, c)
 	vt.Input(
 		"VAR1=\tvalue1",
 		"VAR2=\tvalue2 \\",
 		" \t \t value2 continued")
-	vt.Diagnostics(
-	/*"NOTE: ~/Makefile:2--3: This line should be aligned with \"\\t\"."*/ )
-	vt.Autofixes(
-	/*"AUTOFIX: ~/Makefile:3: Replacing indentation \" \\t \\t \" with \"\\t\\t \"."*/ )
+	vt.Diagnostics()
+	vt.Autofixes()
 	vt.Fixed(
 		"VAR1=   value1",
 		"VAR2=   value2 \\",
 		"                 value2 continued")
+	vt.Run()
+}
+
+func (s *Suite) Test_Varalign__eol_comment(c *check.C) {
+	vt := NewVaralignTester(s, c)
+	vt.Input(
+		"VAR1=\tdefined",
+		"VAR2=\t# defined",
+		"VAR3=\t#empty")
+	vt.Diagnostics()
+	vt.Autofixes()
+	vt.Fixed(
+		"VAR1=   defined",
+		"VAR2=   # defined",
+		"VAR3=   #empty")
 	vt.Run()
 }

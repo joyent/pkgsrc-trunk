@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.2 2019/01/13 17:58:47 nia Exp $
+# $NetBSD: Makefile,v 1.4 2019/04/26 13:13:44 maya Exp $
 
 DISTNAME=	centerim5-5.0.1
+PKGREVISION=	1
 CATEGORIES=	chat
 MASTER_SITES=	http://www.centerim.org/download/cim5/
 
@@ -19,7 +20,7 @@ CONFIGURE_ARGS+=	--prefix=${PREFIX}
 
 USE_LIBTOOL=	yes
 
-PYTHON_VERSIONS_INCOMPATIBLE=	27 34
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 SUBST_CLASSES+=		equals
 SUBST_STAGE.equals=	pre-configure

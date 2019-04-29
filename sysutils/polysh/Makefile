@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.9 2018/07/04 13:40:38 jperkin Exp $
+# $NetBSD: Makefile,v 1.11 2019/04/26 13:14:15 maya Exp $
 
 DISTNAME=	polysh-0.4
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	http://guichaz.free.fr/polysh/files/
 EXTRACT_SUFX=	.tar.bz2
@@ -13,7 +13,7 @@ LICENSE=	gnu-gpl-v2
 
 USE_LANGUAGES=	# none
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # not yet ported as of 0.4
+PYTHON_VERSIONS_INCOMPATIBLE=	 36 37 # not yet ported as of 0.4
 REPLACE_PYTHON=	polysh/rb_tree.py
 
 SUBST_CLASSES+=		setup

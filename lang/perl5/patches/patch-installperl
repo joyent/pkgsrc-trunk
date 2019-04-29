@@ -1,0 +1,12 @@
+$NetBSD: patch-installperl,v 1.1 2019/04/23 09:27:46 adam Exp $
+
+--- installperl.orig	2014-05-26 13:34:20.000000000 +0000
++++ installperl
+@@ -332,7 +332,6 @@ $do_installprivlib = 0 if $versiononly &
+ mkpath($installprivlib);
+ mkpath($installarchlib);
+ mkpath($installsitelib, $opts{verbose}, 0777) if ($installsitelib);
+-mkpath($installsitearch, $opts{verbose}, 0777) if ($installsitearch);
+ 
+ if (-d 'lib') {
+     find({no_chdir => 1, wanted => \&installlib}, 'lib')

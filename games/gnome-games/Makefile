@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.167 2018/11/29 11:21:51 prlw1 Exp $
+# $NetBSD: Makefile,v 1.170 2019/04/26 14:12:39 maya Exp $
 
 DISTNAME=		gnome-games-2.32.1
-PKGREVISION=		40
+PKGREVISION=		41
 CATEGORIES=		games gnome
 MASTER_SITES=		${MASTER_SITE_GNOME:=sources/gnome-games/2.32/}
 EXTRACT_SUFX=		.tar.bz2
@@ -11,7 +11,7 @@ HOMEPAGE=		https://www.gnome.org/
 COMMENT=		GNOME2 games collection
 #LICENSE=		gnu-gpl-v2 AND gnu-fdl-v1.1
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-ORBit via py-gnome2
+PYTHON_VERSIONS_INCOMPATIBLE=	36 37 # py-ORBit via py-gnome2
 
 CONFLICTS=		xbill-[0-9]*
 SUPERSEDES=		glchess-[0-9]*

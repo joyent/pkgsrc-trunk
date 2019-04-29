@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.18 2018/07/03 05:03:39 adam Exp $
+# $NetBSD: Makefile,v 1.20 2019/04/26 13:14:19 maya Exp $
 
 DISTNAME=	ies4linux-2.99.0.1
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	www
 MASTER_SITES=	http://www.tatanka.com.br/ies4linux/downloads/
 
@@ -17,7 +17,7 @@ BUILD_DEPENDS+= cabextract-[0-9]*:../../archivers/cabextract
 NO_BUILD= 	yes
 USE_LANGUAGES=	# none
 USE_TOOLS+=	bash:run pax unzip:run
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-gtk2
+PYTHON_VERSIONS_INCOMPATIBLE=	 36 37 # py-gtk2
 
 SHAREDIR=		share/ies4linux
 

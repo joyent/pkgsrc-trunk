@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.32 2018/12/01 16:30:35 wiz Exp $
+# $NetBSD: Makefile,v 1.34 2019/04/28 10:50:15 rillig Exp $
 
 DISTNAME=	libxcb-1.13.1
+PKGREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	https://xcb.freedesktop.org/dist/
 EXTRACT_SUFX=	.tar.bz2
@@ -17,7 +18,7 @@ GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_TOOLS+=	gmake pkg-config
 
-CONFIGURE_ARGS+=	--disable-build-docs	# or needs doxygen
+CONFIGURE_ARGS+=	--disable-devel-docs	# or needs doxygen
 CONFIGURE_ARGS+=	--enable-xinput
 CONFIGURE_ARGS+=	--without-doxygen
 

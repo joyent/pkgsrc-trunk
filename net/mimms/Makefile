@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.8 2018/07/03 05:03:27 adam Exp $
+# $NetBSD: Makefile,v 1.11 2019/04/26 14:12:42 maya Exp $
 
 DISTNAME=	mimms-3.2.1
+PKGREVISION=	1
 CATEGORIES=	net multimedia
 MASTER_SITES=	http://download.savannah.gnu.org/releases/mimms/
 EXTRACT_SUFX=	.tar.bz2
@@ -15,7 +16,7 @@ LICENSE=	gnu-gpl-v3
 EGG_NAME?=       ${DISTNAME:C/-([^0-9])/_\1/gC/([0-9])\.([0-9])\.([0-9])/\1.\2/}
 
 USE_LANGUAGES=	# none
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # not yet ported as of 3.2
+PYTHON_VERSIONS_INCOMPATIBLE=	36 37 # not yet ported as of 3.2
 
 SUBST_CLASSES+=		man
 SUBST_FILES.man+=	setup.py

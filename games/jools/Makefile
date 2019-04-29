@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.16 2018/07/03 05:03:18 adam Exp $
+# $NetBSD: Makefile,v 1.19 2019/04/26 14:12:39 maya Exp $
 
 DISTNAME=		jools-0.20
-PKGREVISION=		4
+PKGREVISION=		5
 CATEGORIES=		games
 #MASTER_SITES=		http://pessimization.com/software/jools/
 DISTFILES=		${DISTNAME}${EXTRACT_SUFX} jools-musicpack-1.0.tar.gz
@@ -12,7 +12,7 @@ COMMENT=		Bejeweled clone
 
 DEPENDS+=		${PYPKGPREFIX}-game>=1.4:../../devel/py-game
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # not yet ported as of 0.20
+PYTHON_VERSIONS_INCOMPATIBLE=	36 37 # not yet ported as of 0.20
 REPLACE_PYTHON=			jools/__init__.py
 
 post-install:

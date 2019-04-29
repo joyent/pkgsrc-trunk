@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2018/04/11 11:50:38 markd Exp $
+# $NetBSD: Makefile,v 1.5 2019/04/25 21:08:10 markd Exp $
 
 DISTNAME=	kapidox-${KF5VER}
 CATEGORIES=	textproc

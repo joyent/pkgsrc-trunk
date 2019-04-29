@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.38 2018/07/03 05:03:19 adam Exp $
+# $NetBSD: Makefile,v 1.41 2019/04/26 14:12:39 maya Exp $
 
 # gpsd 3.11 has been released.  It has only not been updated because
 # newer versions use scons.
 DISTNAME=	gpsd-2.96
-PKGREVISION=	6
+PKGREVISION=	7
 CATEGORIES=	geography
 MASTER_SITES=	http://download-mirror.savannah.gnu.org/releases/gpsd/
 
@@ -19,7 +19,7 @@ BUILD_DEPENDS+=	xmlto-[0-9]*:../../textproc/xmlto
 GNU_CONFIGURE=	YES
 CONFIGURE_ENV+=	PYTHON=${PYTHONBIN}
 PY_PATCHPLIST=	yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # not yet ported as of 2.96
+PYTHON_VERSIONS_INCOMPATIBLE=	36 37 # not yet ported as of 2.96
 
 USE_TOOLS+=	gmake
 USE_LIBTOOL=	yes

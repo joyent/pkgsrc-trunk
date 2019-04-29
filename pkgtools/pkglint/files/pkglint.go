@@ -512,6 +512,15 @@ func CheckLinesMessage(lines Lines) {
 		defer trace.Call1(lines.FileName)()
 	}
 
+	// For now, skip all checks when the MESSAGE may be built from multiple
+	// files.
+	//
+	// If the need arises, some of the checks may be activated again, but
+	// that requires more sophisticated code.
+	if G.Pkg != nil && G.Pkg.vars.Defined("MESSAGE_SRC") {
+		return
+	}
+
 	explanation := func() []string {
 		return []string{
 			"A MESSAGE file should consist of a header line, having 75 \"=\"",
@@ -521,8 +530,9 @@ func CheckLinesMessage(lines Lines) {
 	}
 
 	if lines.Len() < 3 {
-		lines.LastLine().Warnf("File too short.")
-		G.Explain(explanation()...)
+		line := lines.LastLine()
+		line.Warnf("File too short.")
+		line.Explain(explanation()...)
 		return
 	}
 
@@ -704,7 +714,7 @@ func (pkglint *Pkglint) checkExecutable(filename string, mode os.FileMode) {
 		fix.Describef(0, "Clearing executable bits")
 		if autofix {
 			if err := os.Chmod(filename, mode&^0111); err != nil {
-				line.Errorf("Cannot clear executable bits: %s", err)
+				G.Logger.Errorf(cleanpath(filename), "Cannot clear executable bits: %s", err)
 			}
 		}
 	})
@@ -730,8 +740,7 @@ func CheckLinesTrailingEmptyLines(lines Lines) {
 // to USE_TOOLS in the current scope (file or package).
 func (pkglint *Pkglint) Tool(mklines MkLines, command string, time ToolTime) (tool *Tool, usable bool) {
 	varname := ""
-	p := NewMkParser(nil, command, false)
-	if varUse := p.VarUse(); varUse != nil && p.EOF() {
+	if varUse := ToVarUse(command); varUse != nil {
 		varname = varUse.varname
 	}
 

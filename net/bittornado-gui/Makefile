@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.35 2018/07/03 05:03:26 adam Exp $
+# $NetBSD: Makefile,v 1.37 2019/04/26 13:14:07 maya Exp $
 
 .include "../../net/bittornado/Makefile.common"
 
 PKGNAME=	${DISTNAME:S/Tornado/Tornado-gui/}
-PKGREVISION=	11
+PKGREVISION=	12
 
 COMMENT+=	(wxGTK GUI)
 
@@ -16,7 +16,7 @@ NO_BUILD=	yes
 
 REPLACE_PYTHON=	btcompletedirgui.py btdownloadgui.py
 REPLACE_PYTHON+=	btmaketorrentgui.py
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-wxWidgets
+PYTHON_VERSIONS_INCOMPATIBLE=	 36 37 # py-wxWidgets
 
 INSTALLATION_DIRS=	bin
 

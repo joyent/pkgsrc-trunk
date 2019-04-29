@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.63 2018/11/14 22:21:31 kleink Exp $
+# $NetBSD: Makefile,v 1.65 2019/04/26 13:13:58 maya Exp $
 
 DISTNAME=		kye-1.0
-PKGREVISION=		27
+PKGREVISION=		28
 CATEGORIES=		games
 MASTER_SITES=		http://games.moria.org.uk/kye/download/
 
@@ -15,7 +15,7 @@ SUBST_STAGE.prefix=	pre-configure
 SUBST_FILES.prefix=	kye/common.py
 SUBST_SED.prefix=	's|@PREFIX@|${PREFIX}|g'
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-gtk2
+PYTHON_VERSIONS_INCOMPATIBLE=	 36 37 # py-gtk2
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/extension.mk"

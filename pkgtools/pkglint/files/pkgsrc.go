@@ -300,13 +300,13 @@ func (src *Pkgsrc) loadTools() {
 		{"true", "TRUE", AfterPrefsMk}}
 
 	for _, toolDef := range toolDefs {
-		tools.def(toolDef.Name, toolDef.Varname, true, toolDef.Validity)
+		tools.def(toolDef.Name, toolDef.Varname, true, toolDef.Validity, nil)
 	}
 
 	for _, basename := range toolFiles {
 		mklines := src.LoadMk("mk/tools/"+basename, MustSucceed|NotEmpty)
 		mklines.ForEach(func(mkline MkLine) {
-			tools.ParseToolLine(mkline, true, !mklines.indentation.IsConditional())
+			tools.ParseToolLine(mklines, mkline, true, !mklines.indentation.IsConditional())
 		})
 	}
 
@@ -318,7 +318,7 @@ func (src *Pkgsrc) loadTools() {
 				varname := mkline.Varname()
 				switch varname {
 				case "USE_TOOLS":
-					tools.ParseToolLine(mkline, true, !mklines.indentation.IsConditional())
+					tools.ParseToolLine(mklines, mkline, true, !mklines.indentation.IsConditional())
 
 				case "_BUILD_DEFS":
 					// TODO: Compare with src.loadDefaultBuildDefs; is it redundant?
@@ -344,16 +344,25 @@ func (src *Pkgsrc) loadTools() {
 func (src *Pkgsrc) loadUntypedVars() {
 
 	// Setting guessed to false prevents the vartype.guessed case in MkLineChecker.CheckVaruse.
-	unknownType := Vartype{lkNone, BtUnknown, []ACLEntry{{"*", aclpAll}}, false}
+	unknownType := Vartype{BtUnknown, NoVartypeOptions, []ACLEntry{{"*", aclpAll}}}
 
 	define := func(varcanon string, mkline MkLine) {
 		switch {
-		case
-			src.vartypes.DefinedCanon(varcanon),  // Already defined
-			src.Tools.ByVarname(varcanon) != nil, // Already known as a tool
-			hasPrefix(varcanon, "_"),             // Skip internal variables
-			contains(varcanon, "$"),              // Indirect or parameterized
-			hasSuffix(varcanon, "_MK"):           // Multiple-inclusion guard
+		case src.vartypes.DefinedCanon(varcanon):
+			// Already defined, can also be a tool.
+
+		case hasPrefix(varcanon, "_"):
+			// Variables starting with an underscore are reserved for the
+			// infrastructure and are not available for use by packages.
+
+		case contains(varcanon, "$"):
+			// Indirect, but not the usual parameterized form. Variables of
+			// this form should not be unintentionally visible from outside
+			// the infrastructure since they don't follow the pkgsrc naming
+			// conventions.
+
+		case hasSuffix(varcanon, "_MK"):
+			// Multiple-inclusion guards are internal to the infrastructure.
 
 		default:
 			if trace.Tracing {
@@ -598,7 +607,7 @@ func (src *Pkgsrc) loadUserDefinedVars() {
 	mklines := src.LoadMk("mk/defaults/mk.conf", MustSucceed|NotEmpty)
 
 	for _, mkline := range mklines.mklines {
-		if mkline.IsVarassign() { // TODO: What about mkline.IsCommentedVarassign?
+		if mkline.IsVarassign() || mkline.IsCommentedVarassign() {
 			src.UserDefinedVars.Define(mkline.Varname(), mkline)
 		}
 	}
@@ -909,12 +918,12 @@ func (src *Pkgsrc) VariableType(mklines MkLines, varname string) (vartype *Varty
 		if tool.Validity == AfterPrefsMk && mklines.Tools.SeenPrefs {
 			perms |= aclpUseLoadtime
 		}
-		return &Vartype{lkNone, BtShellCommand, []ACLEntry{{"*", perms}}, false}
+		return &Vartype{BtShellCommand, NoVartypeOptions, []ACLEntry{{"*", perms}}}
 	}
 
 	if m, toolVarname := match1(varname, `^TOOLS_(.*)`); m {
 		if tool := G.ToolByVarname(mklines, toolVarname); tool != nil {
-			return &Vartype{lkNone, BtPathname, []ACLEntry{{"*", aclpUse}}, false}
+			return &Vartype{BtPathname, NoVartypeOptions, []ACLEntry{{"*", aclpUse}}}
 		}
 	}
 
@@ -930,37 +939,37 @@ func (src *Pkgsrc) guessVariableType(varname string) (vartype *Vartype) {
 	var gtype *Vartype
 	switch {
 	case hasSuffix(varbase, "DIRS"):
-		gtype = &Vartype{lkShell, BtPathmask, allowRuntime, true}
+		gtype = &Vartype{BtPathmask, List | Guessed, allowRuntime}
 	case hasSuffix(varbase, "DIR") && !hasSuffix(varbase, "DESTDIR"), hasSuffix(varname, "_HOME"):
 		// TODO: hasSuffix(varbase, "BASE")
-		gtype = &Vartype{lkNone, BtPathname, allowRuntime, true}
+		gtype = &Vartype{BtPathname, Guessed, allowRuntime}
 	case hasSuffix(varbase, "FILES"):
-		gtype = &Vartype{lkShell, BtPathmask, allowRuntime, true}
+		gtype = &Vartype{BtPathmask, List | Guessed, allowRuntime}
 	case hasSuffix(varbase, "FILE"):
-		gtype = &Vartype{lkNone, BtPathname, allowRuntime, true}
+		gtype = &Vartype{BtPathname, Guessed, allowRuntime}
 	case hasSuffix(varbase, "PATH"):
-		gtype = &Vartype{lkNone, BtPathlist, allowRuntime, true}
+		gtype = &Vartype{BtPathlist, Guessed, allowRuntime}
 	case hasSuffix(varbase, "PATHS"):
-		gtype = &Vartype{lkShell, BtPathname, allowRuntime, true}
+		gtype = &Vartype{BtPathname, List | Guessed, allowRuntime}
 	case hasSuffix(varbase, "_USER"):
-		gtype = &Vartype{lkNone, BtUserGroupName, allowAll, true}
+		gtype = &Vartype{BtUserGroupName, Guessed, allowAll}
 	case hasSuffix(varbase, "_GROUP"):
-		gtype = &Vartype{lkNone, BtUserGroupName, allowAll, true}
+		gtype = &Vartype{BtUserGroupName, Guessed, allowAll}
 	case hasSuffix(varbase, "_ENV"):
-		gtype = &Vartype{lkShell, BtShellWord, allowRuntime, true}
+		gtype = &Vartype{BtShellWord, List | Guessed, allowRuntime}
 	case hasSuffix(varbase, "_CMD"):
-		gtype = &Vartype{lkNone, BtShellCommand, allowRuntime, true}
+		gtype = &Vartype{BtShellCommand, Guessed, allowRuntime}
 	case hasSuffix(varbase, "_ARGS"):
-		gtype = &Vartype{lkShell, BtShellWord, allowRuntime, true}
+		gtype = &Vartype{BtShellWord, List | Guessed, allowRuntime}
 	case hasSuffix(varbase, "_CFLAGS"), hasSuffix(varname, "_CPPFLAGS"), hasSuffix(varname, "_CXXFLAGS"):
-		gtype = &Vartype{lkShell, BtCFlag, allowRuntime, true}
+		gtype = &Vartype{BtCFlag, List | Guessed, allowRuntime}
 	case hasSuffix(varname, "_LDFLAGS"):
-		gtype = &Vartype{lkShell, BtLdFlag, allowRuntime, true}
+		gtype = &Vartype{BtLdFlag, List | Guessed, allowRuntime}
 	case hasSuffix(varbase, "_MK"):
 		// TODO: Add BtGuard for inclusion guards, since these variables may only be checked using defined().
-		gtype = &Vartype{lkNone, BtUnknown, allowAll, true}
+		gtype = &Vartype{BtUnknown, Guessed, allowAll}
 	case hasSuffix(varbase, "_SKIP"):
-		gtype = &Vartype{lkShell, BtPathmask, allowRuntime, true}
+		gtype = &Vartype{BtPathmask, List | Guessed, allowRuntime}
 	}
 
 	if gtype == nil {

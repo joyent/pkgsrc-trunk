@@ -897,11 +897,24 @@ func (s *Suite) Test_Autofix_Anyway__autofix_and_show_autofix_options(c *check.C
 	fix.Anyway()
 	fix.Apply()
 
-	// The replacement text is not found, therefore the note should not be logged.
-	// Because of fix.Anyway, the note should be logged anyway.
-	// But because of the --autofix option, the note should not be logged.
-	// Even if the --show-autofix option is explicitly given, the note should not be logged.
-	// Therefore, in the end nothing is shown in this case.
+	// The text to be replaced is not found. Because nothing is fixed here,
+	// there's no need to log anything.
+	//
+	// But fix.Anyway is set, therefore the diagnostic should be logged even
+	// though it cannot be fixed automatically. This comes handy in situations
+	// where simple cases can be fixed automatically and more complex cases
+	// (often involving special characters that need to be escaped properly)
+	// should nevertheless result in a diagnostics.
+	//
+	// The --autofix option is set, which means that the diagnostics don't
+	// get logged, only the actual fixes do.
+	//
+	// But then there's also the --show-autofix option, which logs the
+	// corresponding diagnostic for each autofix that actually changes
+	// something. But this autofix doesn't change anything, therefore even
+	// the --show-autofix doesn't have an effect.
+	//
+	// Therefore, in the end nothing is logged in this case.
 	t.CheckOutputEmpty()
 }
 
@@ -1085,9 +1098,9 @@ func (s *Suite) Test_SaveAutofixChanges__file_removed(c *check.C) {
 
 	SaveAutofixChanges(lines)
 
-	c.Check(t.Output(), check.Matches, ""+
-		"AUTOFIX: ~/subdir/file.txt:1: Replacing \"line\" with \"Line\".\n"+
-		"ERROR: ~/subdir/file.txt.pkglint.tmp: Cannot write: .*\n")
+	t.CheckOutputMatches(
+		"AUTOFIX: ~/subdir/file.txt:1: Replacing \"line\" with \"Line\".",
+		`ERROR: ~/subdir/file.txt.pkglint.tmp: Cannot write: .*`)
 }
 
 func (s *Suite) Test_SaveAutofixChanges__file_busy_Windows(c *check.C) {
@@ -1113,9 +1126,9 @@ func (s *Suite) Test_SaveAutofixChanges__file_busy_Windows(c *check.C) {
 
 	SaveAutofixChanges(lines)
 
-	c.Check(t.Output(), check.Matches, ""+
-		"AUTOFIX: ~/subdir/file.txt:1: Replacing \"line\" with \"Line\".\n"+
-		"ERROR: ~/subdir/file.txt.pkglint.tmp: Cannot overwrite with autofixed content: .*\n")
+	t.CheckOutputMatches(
+		"AUTOFIX: ~/subdir/file.txt:1: Replacing \"line\" with \"Line\".",
+		`ERROR: ~/subdir/file.txt.pkglint.tmp: Cannot overwrite with autofixed content: .*`)
 }
 
 // This test covers the highly unlikely situation in which a file is loaded
@@ -1140,9 +1153,9 @@ func (s *Suite) Test_SaveAutofixChanges__cannot_overwrite(c *check.C) {
 
 	SaveAutofixChanges(lines)
 
-	c.Check(t.Output(), check.Matches, ""+
-		"AUTOFIX: ~/file.txt:1: Replacing \"line\" with \"Line\".\n"+
-		"ERROR: ~/file.txt.pkglint.tmp: Cannot overwrite with autofixed content: .*\n")
+	t.CheckOutputMatches(
+		"AUTOFIX: ~/file.txt:1: Replacing \"line\" with \"Line\".",
+		`ERROR: ~/file.txt.pkglint.tmp: Cannot overwrite with autofixed content: .*`)
 }
 
 // Up to 2018-11-25, pkglint in some cases logged only the source without
@@ -1167,8 +1180,8 @@ func (s *Suite) Test_Autofix__lonely_source(c *check.C) {
 		"",
 		".for id in ${PRE_XORGPROTO_LIST_MISSING}",
 		".endfor")
-	G.Pkgsrc.LoadInfrastructure()
 	t.Chdir(".")
+	t.FinishSetUp()
 
 	G.Check("x11/xorg-cf-files")
 	G.Check("x11/xorgproto")
@@ -1188,8 +1201,8 @@ func (s *Suite) Test_Autofix__lonely_source_2(c *check.C) {
 
 	t.SetUpPackage("print/tex-bibtex8",
 		"MAKE_FLAGS+=\tCFLAGS=${CFLAGS.${PKGSRC_COMPILER}}")
-	G.Pkgsrc.LoadInfrastructure()
 	t.Chdir(".")
+	t.FinishSetUp()
 
 	G.Check("print/tex-bibtex8")
 

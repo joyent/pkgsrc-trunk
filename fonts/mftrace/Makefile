@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.31 2018/07/03 05:03:17 adam Exp $
+# $NetBSD: Makefile,v 1.34 2019/04/26 14:12:38 maya Exp $
 
 DISTNAME=	mftrace-1.2.15
-PKGREVISION=	3
+PKGREVISION=	4
 CATEGORIES=	fonts
 MASTER_SITES=	http://lilypond.org/download/sources/mftrace/
 
@@ -22,7 +22,7 @@ CONFIGURE_ENV+=		PYTHON=${PYTHONBIN:Q}
 MAKE_FILE=		GNUmakefile
 
 PLIST_SUBST+=		PYSITELIB=${PYSITELIB:Q}
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # not yet ported as of 1.2.15
+PYTHON_VERSIONS_INCOMPATIBLE=	36 37 # not yet ported as of 1.2.15
 
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1 ${PYSITELIB}
 

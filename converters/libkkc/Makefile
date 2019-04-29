@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.5 2016/04/07 14:35:27 ryoon Exp $
+# $NetBSD: Makefile,v 1.7 2019/04/28 07:13:33 wiz Exp $
 
 DISTNAME=	libkkc-0.3.5
+PKGREVISION=	1
 CATEGORIES=	converters textproc japanese inputmethod
 MASTER_SITES=	https://github.com/ueno/libkkc/releases/download/v${PKGVERSION_NOREV}/
 
@@ -9,6 +10,7 @@ HOMEPAGE=	https://github.com/ueno/libkkc/
 COMMENT=	Japanese Kana Kanji conversion library
 LICENSE=	gnu-gpl-v3
 
+PYTHON_VERSIONS_ACCEPTED=	27 # py-marisa
 BUILD_DEPENDS+=	${PYPKGPREFIX}-marisa-[0-9]*:../../textproc/py-marisa
 
 GNU_CONFIGURE=		yes

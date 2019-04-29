@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.13 2018/11/14 22:21:48 kleink Exp $
+# $NetBSD: Makefile,v 1.15 2019/04/28 07:15:11 wiz Exp $
 
 DISTNAME=	chirp-0.4.1
-PKGREVISION=	8
+PKGREVISION=	9
 CATEGORIES=	ham
 MASTER_SITES=	https://chirp.danplanet.com/download/${PKGVERSION}/
 
@@ -14,6 +14,8 @@ USE_LANGUAGES=	#none
 REPLACE_PYTHON= *.py chirp/*.py chirpui/*.py
 
 DEPENDS+=       ${PYPKGPREFIX}-serial>=2.7:../../comms/py-serial
+
+PYTHON_VERSIONS_ACCEPTED=	27 # py-gtk2
 
 .include "../../mk/bsd.prefs.mk"
 

@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.8 2018/07/18 00:06:17 joerg Exp $
+# $NetBSD: Makefile,v 1.10 2019/04/26 13:13:59 maya Exp $
 
 DISTNAME=	teeworlds-0.6.3-src
 PKGNAME=	${DISTNAME:S/-src//}
+PKGREVISION=	1
 CATEGORIES=	games
 MASTER_SITES=	http://downloads.teeworlds.com/
 
@@ -18,7 +19,7 @@ AUTO_MKDIRS=	yes
 
 CPIO=	cpio
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # hardcoded to 2.7 in a patch
+PYTHON_VERSIONS_INCOMPATIBLE=	 36 37 # hardcoded to 2.7 in a patch
 
 do-configure:
 	set -e; cd ${WRKSRC}; bam config

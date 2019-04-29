@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2847 2019/04/05 12:59:12 nonaka Exp $
+# $NetBSD: Makefile,v 1.2849 2019/04/28 18:47:13 adam Exp $
 #
 
 COMMENT=	Development utilities
@@ -315,7 +315,6 @@ SUBDIR+=	git-remote-hg
 SUBDIR+=	git-svn
 SUBDIR+=	gitolite
 SUBDIR+=	glade
-SUBDIR+=	glade3
 SUBDIR+=	glib
 SUBDIR+=	glib2
 SUBDIR+=	glib2-tools
@@ -2178,6 +2177,7 @@ SUBDIR+=	py-mercurial
 SUBDIR+=	py-meson
 SUBDIR+=	py-minimock
 SUBDIR+=	py-mixbox
+SUBDIR+=	py-mmh3
 SUBDIR+=	py-mock
 SUBDIR+=	py-modulegraph
 SUBDIR+=	py-more-itertools

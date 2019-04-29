@@ -159,9 +159,6 @@ func (s *Suite) Test_ShellLineChecker_CheckShellCommandLine(c *check.C) {
 		"WARN: filename.mk:1: Please switch to \"set -e\" mode "+
 			"before using a semicolon (after \"uname=`uname`\") to separate commands.")
 
-	t.SetUpTool("echo", "", AtRunTime)
-	t.SetUpVartypes()
-
 	test("echo ${PKGNAME:Q}", // VucQuotPlain
 		"NOTE: filename.mk:1: The :Q operator isn't necessary for ${PKGNAME} here.")
 
@@ -680,10 +677,10 @@ func (s *Suite) Test_ShellLineChecker_CheckShellCommandLine__shell_variables(c *
 	t.SetUpTool("cp", "CP", AtRunTime)
 	t.SetUpTool("mv", "MV", AtRunTime)
 	t.SetUpTool("sed", "SED", AtRunTime)
-	text := "\tfor f in *.pl; do ${SED} s,@PREFIX@,${PREFIX}, < $f > $f.tmp && ${MV} $f.tmp $f; done"
+	text := "for f in *.pl; do ${SED} s,@PREFIX@,${PREFIX}, < $f > $f.tmp && ${MV} $f.tmp $f; done"
 
-	ck := t.NewShellLineChecker(nil, "Makefile", 3, text)
-	ck.mkline.Tokenize(ck.mkline.ShellCommand(), true)
+	ck := t.NewShellLineChecker(nil, "Makefile", 3, "\t# dummy")
+	ck.mkline.Tokenize(text, true)
 	ck.CheckShellCommandLine(text)
 
 	t.CheckOutputLines(
@@ -1091,6 +1088,7 @@ func (s *Suite) Test_SimpleCommandChecker_handleCommandVariable__from_package(c 
 	t.CreateFileLines("category/package/extra.mk",
 		MkRcsID,
 		"PYTHON_BIN=\tmy_cmd")
+	t.FinishSetUp()
 
 	G.Check(pkg)
 

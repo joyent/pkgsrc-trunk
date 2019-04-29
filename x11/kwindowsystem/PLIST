@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.1 2016/05/26 09:49:49 markd Exp $
+@comment $NetBSD: PLIST,v 1.4 2019/04/27 21:23:20 markd Exp $
 include/KF5/KWindowSystem/KKeyServer
 include/KF5/KWindowSystem/KSelectionOwner
 include/KF5/KWindowSystem/KSelectionWatcher
@@ -40,10 +40,10 @@ lib/libKF5WindowSystem.so.${PKGVERSION}
 qt5/mkspecs/modules/qt_KWindowSystem.pri
 qt5/plugins/kf5/org.kde.kwindowsystem.platforms/KF5WindowSystemWaylandPlugin.so
 qt5/plugins/kf5/org.kde.kwindowsystem.platforms/KF5WindowSystemX11Plugin.so
+share/examples/kde-xdg/kwindowsystem.categories
 share/locale/af/LC_MESSAGES/kwindowsystem5_qt.qm
 share/locale/ar/LC_MESSAGES/kwindowsystem5_qt.qm
 share/locale/as/LC_MESSAGES/kwindowsystem5_qt.qm
-share/locale/ast/LC_MESSAGES/kwindowsystem5_qt.qm
 share/locale/be/LC_MESSAGES/kwindowsystem5_qt.qm
 share/locale/be@latin/LC_MESSAGES/kwindowsystem5_qt.qm
 share/locale/bg/LC_MESSAGES/kwindowsystem5_qt.qm

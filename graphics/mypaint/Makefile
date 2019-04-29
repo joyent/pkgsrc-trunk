@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.37 2019/01/02 23:48:41 tnn Exp $
+# $NetBSD: Makefile,v 1.39 2019/04/26 13:14:00 maya Exp $
 
 DISTNAME=	mypaint-1.2.1
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_GITHUB:=mypaint/}
 EXTRACT_SUFX=	.tar.xz
@@ -22,7 +22,7 @@ USE_LANGUAGES=	c c++
 
 USE_TOOLS+=	bash:run msgfmt pkg-config
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-gtk2
+PYTHON_VERSIONS_INCOMPATIBLE=	 36 37 # py-gtk2
 
 USE_PKGLOCALEDIR=	yes
 

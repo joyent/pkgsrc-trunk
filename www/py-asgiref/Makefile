@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.10 2018/05/24 06:37:46 adam Exp $
+# $NetBSD: Makefile,v 1.12 2019/04/26 13:14:20 maya Exp $
 
-DISTNAME=	asgiref-2.3.2
+DISTNAME=	asgiref-3.1.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	www python
 MASTER_SITES=	${MASTER_SITE_PYPI:=a/asgiref/}
@@ -14,7 +14,7 @@ DEPENDS+=	${PYPKGPREFIX}-async-timeout>=2.0.0:../../devel/py-async-timeout
 
 USE_LANGUAGES=	# none
 
-PYTHON_VERSIONS_INCOMPATIBLE=	27 34
+PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

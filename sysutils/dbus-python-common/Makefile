@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.15 2018/05/07 11:26:30 wiz Exp $
+# $NetBSD: Makefile,v 1.17 2019/04/26 13:14:14 maya Exp $
 
 DISTNAME=	dbus-python-1.2.8
 PKGNAME=	${DISTNAME:S/python/python-common/}
+PKGREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus-python/
 
@@ -15,7 +16,7 @@ CONFLICTS+=	py[0-9]*-dbus<1.1.1
 PYTHON_FOR_BUILD_ONLY=	yes
 #BUILD_DEPENDS+= ${PYPKGPREFIX}-docutils>=0:../../textproc/py-docutils
 #DEPENDS+=	${PYPKGPREFIX}-pyrex>=0.9.3:../../lang/py-pyrex
-#PYTHON_VERSIONS_INCOMPATIBLE=34 35 36 # py-pyrex
+#PYTHON_VERSIONS_INCOMPATIBLE= 36 # py-pyrex
 
 USE_TOOLS+=	pkg-config gmake
 GNU_CONFIGURE=	yes

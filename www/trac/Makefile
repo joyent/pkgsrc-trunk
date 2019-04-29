@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.83 2018/07/03 05:03:41 adam Exp $
+# $NetBSD: Makefile,v 1.85 2019/04/26 13:14:22 maya Exp $
 
 DISTNAME=	Trac-1.0.13
 PKGNAME=	${DISTNAME:tl}
+PKGREVISION=	1
 CATEGORIES=	devel www
 MASTER_SITES=	http://ftp.edgewall.org/pub/trac/
 
@@ -23,7 +24,7 @@ DEPENDS+=	${PYPKGPREFIX}-genshi>=0.6:../../www/py-genshi
 USE_TOOLS+=	pax
 
 # The Trac 1.0 series does not support python 3.
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37
+PYTHON_VERSIONS_INCOMPATIBLE=	 36 37
 
 REPLACE_PYTHON=	contrib/cgi-bin/trac.* contrib/*.py contrib/*-hook
 REPLACE_PYTHON+=	trac/tests/functional/*.py

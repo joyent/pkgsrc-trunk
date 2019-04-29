@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.34 2018/11/14 22:22:28 kleink Exp $
+# $NetBSD: Makefile,v 1.37 2019/04/26 14:12:46 maya Exp $
 
 DISTNAME=	virt-manager-0.9.4
-PKGREVISION=	25
+PKGREVISION=	26
 CATEGORIES=	sysutils
 MASTER_SITES=	http://virt-manager.org/download/sources/virt-manager/
 
@@ -26,7 +26,7 @@ USE_PKGLOCALEDIR=	yes
 
 GCONF_SCHEMAS+=	virt-manager.schemas
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-ORBit via py-gnome2, py-gtk2
+PYTHON_VERSIONS_INCOMPATIBLE=	36 37 # py-ORBit via py-gnome2, py-gtk2
 
 SUBST_CLASSES+=		python
 SUBST_STAGE.python=	pre-configure

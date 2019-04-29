@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.22 2018/08/19 20:16:40 wiz Exp $
+# $NetBSD: Makefile,v 1.24 2019/04/26 13:14:05 maya Exp $
 
 DISTNAME=	${PYPKGPREFIX}-gnome-bindings-2.26.2
+PKGREVISION=	1
 CATEGORIES=	meta-pkgs x11 gnome
 MASTER_SITES=	# empty
 
@@ -10,7 +11,7 @@ COMMENT=	Meta-package for Python bindings for the GNOME desktop
 
 META_PACKAGE=	yes
 
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-ORBit, py-gnome2, py-gtk2
+PYTHON_VERSIONS_INCOMPATIBLE=	 36 37 # py-ORBit, py-gnome2, py-gtk2
 
 .include "../../lang/python/pyversion.mk"
 

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.74 2019/04/03 00:32:41 ryoon Exp $
+# $NetBSD: Makefile,v 1.77 2019/04/26 14:12:38 maya Exp $
 
 DISTNAME=		lyx-2.3.2
-PKGREVISION=		1
+PKGREVISION=		2
 CATEGORIES=		editors
 MASTER_SITES=		ftp://ftp.lyx.org/pub/lyx/stable/2.3.x/
 MASTER_SITES+=		ftp://ftp.sdsc.edu/pub/other/lyx/stable/2.3.x/
@@ -63,7 +63,7 @@ GNU_CONFIGURE=			YES
 USE_TOOLS+=			gmake perl:run pkg-config xgettext
 USE_LIBTOOL=			YES
 USE_PKGLOCALEDIR=		YES
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # not yet ported as of 1.6.10
+PYTHON_VERSIONS_INCOMPATIBLE=	36 37 # not yet ported as of 1.6.10
 
 CXXFLAGS.Linux+=	-fpermissive
 LDFLAGS.SunOS+=		-liconv

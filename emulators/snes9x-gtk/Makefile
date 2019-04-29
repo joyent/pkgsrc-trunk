@@ -1,5 +1,6 @@
-# $NetBSD: Makefile,v 1.64 2019/03/05 12:12:31 nia Exp $
+# $NetBSD: Makefile,v 1.66 2019/04/25 07:32:53 maya Exp $
 
+PKGREVISION= 1
 .include "../../emulators/snes9x/Makefile.common"
 
 PKGNAME=	snes9x-gtk-${SNES9X_VERSION}
@@ -27,7 +28,7 @@ SUBST_FILES.oss+=	gtk/src/gtk_sound_driver_oss.cpp
 SUBST_SED.oss=		-e "s,/dev/dsp,${DEVOSSAUDIO},g"
 .endif
 
-LIBS.SunOS+=		-lsocket -lnsl
+LDFLAGS.SunOS+=		-lsocket -lnsl
 
 BUILDLINK_TRANSFORM+=	rm:-ldl
 

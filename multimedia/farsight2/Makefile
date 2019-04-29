@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.76 2019/04/03 00:32:55 ryoon Exp $
+# $NetBSD: Makefile,v 1.78 2019/04/26 13:14:06 maya Exp $
 
 DISTNAME=	farsight2-0.0.31
-PKGREVISION=	36
+PKGREVISION=	37
 CATEGORIES=	chat multimedia
 MASTER_SITES=	http://farsight.freedesktop.org/releases/farsight2/
 
@@ -20,7 +20,7 @@ PKGCONFIG_OVERRIDE+=	farsight2.pc.in
 # gstreamer-check-0.10 >= 0.10.23 (GStreamer Check unittest Library)
 
 PY_PATCHPLIST=	yes
-PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 37 # py-gtk2, py-gstreamer0.10
+PYTHON_VERSIONS_INCOMPATIBLE=	 36 37 # py-gtk2, py-gstreamer0.10
 
 .include "../../lang/python/pyversion.mk"
 
