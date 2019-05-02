@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.55 2019/04/28 06:59:52 wiz Exp $
+# $NetBSD: Makefile,v 1.57 2019/05/02 08:36:10 wiz Exp $
 
-DISTNAME=	bulk-medium-20190428
+DISTNAME=	bulk-medium-20190502
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -84,8 +84,8 @@ BUILD_DEPENDS+=	php>=7.1<7.2:../../lang/php71
 BUILD_DEPENDS+=	ruby24-base-[0-9]*:../../lang/ruby24-base
 BUILD_DEPENDS+=	ruby25-base-[0-9]*:../../lang/ruby25-base
 BUILD_DEPENDS+=	ruby26-base-[0-9]*:../../lang/ruby26-base
-BUILD_DEPENDS+=	sun-jdk6-[0-9]*:../../lang/sun-jdk6
-BUILD_DEPENDS+=	sun-jre6-[0-9]*:../../lang/sun-jre6
+BUILD_DEPENDS+=	sun-jdk7-[0-9]*:../../lang/sun-jdk7
+BUILD_DEPENDS+=	sun-jre7-[0-9]*:../../lang/sun-jre7
 BUILD_DEPENDS+=	openjdk7-[0-9]*:../../lang/openjdk7
 BUILD_DEPENDS+=	openjdk8-[0-9]*:../../lang/openjdk8
 BUILD_DEPENDS+=	python37-[0-9]*:../../lang/python37
@@ -97,9 +97,9 @@ BUILD_DEPENDS+=	mhonarc-[0-9]*:../../mail/mhonarc
 BUILD_DEPENDS+=	mutt-[0-9]*:../../mail/mutt
 BUILD_DEPENDS+=	re-alpine-[0-9]*:../../mail/re-alpine
 BUILD_DEPENDS+=	spamassassin-[0-9]*:../../mail/spamassassin
-BUILD_DEPENDS+=	bind>=9.10<9.11:../../net/bind910
 BUILD_DEPENDS+=	bind>=9.11<9.12:../../net/bind911
 BUILD_DEPENDS+=	bind>=9.12<9.13:../../net/bind912
+BUILD_DEPENDS+=	bind>=9.14<9.15:../../net/bind914
 BUILD_DEPENDS+=	clive-[0-9]*:../../net/clive
 BUILD_DEPENDS+=	nmap-[0-9]*:../../net/nmap
 BUILD_DEPENDS+=	samba>=4.2:../../net/samba4

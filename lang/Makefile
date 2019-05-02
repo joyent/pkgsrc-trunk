@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.514 2019/04/26 09:40:15 roy Exp $
+# $NetBSD: Makefile,v 1.517 2019/05/02 09:28:53 adam Exp $
 #
 
 COMMENT=	Programming languages
@@ -116,7 +116,6 @@ SUBDIR+=	java-lang-spec
 SUBDIR+=	java-vm-spec
 SUBDIR+=	jikes
 SUBDIR+=	jimtcl
-SUBDIR+=	jini
 SUBDIR+=	joos
 SUBDIR+=	js
 SUBDIR+=	kaffe
@@ -214,8 +213,6 @@ SUBDIR+=	py-six
 SUBDIR+=	py-spark-parser
 SUBDIR+=	py-uncompyle6
 SUBDIR+=	py27-html-docs
-SUBDIR+=	py34-html-docs
-SUBDIR+=	py35-html-docs
 SUBDIR+=	py36-html-docs
 SUBDIR+=	py37-html-docs
 #SUBDIR+=	python		# only contains Makefile fragments
@@ -272,9 +269,7 @@ SUBDIR+=	squeak-vm
 SUBDIR+=	sr
 SUBDIR+=	sr-examples
 SUBDIR+=	stalin
-SUBDIR+=	sun-jdk6
 SUBDIR+=	sun-jdk7
-SUBDIR+=	sun-jre6
 SUBDIR+=	sun-jre7
 SUBDIR+=	swi-prolog
 SUBDIR+=	swi-prolog-jpl
