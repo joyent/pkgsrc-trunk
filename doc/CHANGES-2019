@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2019,v 1.1945 2019/05/02 19:08:52 gdt Exp $
+$NetBSD: CHANGES-2019,v 1.1951 2019/05/03 08:46:58 wiz Exp $
 
 Changes to the packages collection and infrastructure in 2019:
 
@@ -3139,3 +3139,18 @@ Changes to the packages collection and infrastructure in 2019:
 	Updated fonts/ipaexfont to 00401 [ryoon 2019-05-02]
 	Updated lang/polyml to 5.7.1 [alnsn 2019-05-02]
 	Updated geography/gpsbabel to 1.6.0 [gdt 2019-05-02]
+	Removed fonts/acroread7-chsfont [wiz 2019-05-02]
+	Removed fonts/acroread7-chtfont [wiz 2019-05-02]
+	Removed fonts/acroread7-font-share [wiz 2019-05-02]
+	Removed fonts/acroread7-jpnfont [wiz 2019-05-02]
+	Removed fonts/acroread7-korfont [wiz 2019-05-02]
+	Removed fonts/acroread9-chsfont [wiz 2019-05-02]
+	Removed fonts/acroread9-chtfont [wiz 2019-05-02]
+	Removed fonts/acroread9-font-share [wiz 2019-05-02]
+	Removed fonts/acroread9-jpnfont [wiz 2019-05-02]
+	Removed fonts/acroread9-korfont [wiz 2019-05-02]
+	Removed mail/amavis-perl [wiz 2019-05-02]
+	Removed www/opera-acroread7 [wiz 2019-05-02]
+	Updated net/dnscrypt-proxy2 to 2.0.23 [nia 2019-05-03]
+	Updated lang/php71 to 7.1.29 [taca 2019-05-03]
+	Updated net/tor to 0.4.0.5 [wiz 2019-05-03]
