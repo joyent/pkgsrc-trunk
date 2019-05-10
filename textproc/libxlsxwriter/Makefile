@@ -1,12 +1,11 @@
-# $NetBSD: Makefile,v 1.3 2019/04/25 07:33:24 maya Exp $
+# $NetBSD: Makefile,v 1.5 2019/05/06 09:17:13 sjmulder Exp $
 
-DISTNAME=	libxlsxwriter-0.8.5
-PKGREVISION=	1
+DISTNAME=	libxlsxwriter-0.8.6
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=jmcnamara/}
 GITHUB_TAG=	RELEASE_${PKGVERSION_NOREV}
 
-MAINTAINER=	ik@sjmulder.nl
+MAINTAINER=	sjmulder@NetBSD.org
 HOMEPAGE=	https://libxlsxwriter.github.io/
 COMMENT=	C library for creating Microsoft Excel files
 LICENSE=	2-clause-bsd AND original-bsd AND zlib AND mpl-2.0
