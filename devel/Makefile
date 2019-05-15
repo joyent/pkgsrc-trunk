@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2850 2019/05/06 23:19:21 kamil Exp $
+# $NetBSD: Makefile,v 1.2853 2019/05/15 08:39:05 markd Exp $
 #
 
 COMMENT=	Development utilities
@@ -845,6 +845,7 @@ SUBDIR+=	ocaml-lwt_ppx
 SUBDIR+=	ocaml-lwt_react
 SUBDIR+=	ocaml-lwt_ssl
 SUBDIR+=	ocaml-migrate-parsetree
+SUBDIR+=	ocaml-mmap
 SUBDIR+=	ocaml-oasis
 SUBDIR+=	ocaml-ocplib-endian
 SUBDIR+=	ocaml-optcomp
@@ -887,6 +888,7 @@ SUBDIR+=	ocaml-reactiveData
 SUBDIR+=	ocaml-resource-pooling
 SUBDIR+=	ocaml-result
 SUBDIR+=	ocaml-rresult
+SUBDIR+=	ocaml-seq
 SUBDIR+=	ocaml-sexplib
 SUBDIR+=	ocaml-sexplib0
 SUBDIR+=	ocaml-spawn
@@ -2752,6 +2754,8 @@ SUBDIR+=	tex-pgfopts
 SUBDIR+=	tex-pgfopts-doc
 SUBDIR+=	tex-pst-uml
 SUBDIR+=	tex-pst-uml-doc
+SUBDIR+=	tex-tlshell
+SUBDIR+=	tex-tlshell-doc
 SUBDIR+=	tex-xifthen
 SUBDIR+=	tex-xifthen-doc
 SUBDIR+=	threadweaver

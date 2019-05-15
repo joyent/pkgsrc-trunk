@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.728 2019/05/02 08:43:23 wiz Exp $
+# $NetBSD: Makefile,v 1.730 2019/05/15 09:01:33 markd Exp $
 #
 
 COMMENT=	Desktop publishing
@@ -11,7 +11,6 @@ SUBDIR+=	R-knitr
 SUBDIR+=	a2ps
 SUBDIR+=	abc2ps
 SUBDIR+=	abcm2ps
-SUBDIR+=	acroread8
 SUBDIR+=	adobeps-win
 SUBDIR+=	advi
 SUBDIR+=	apsfilter
@@ -639,6 +638,8 @@ SUBDIR+=	tex-footbib
 SUBDIR+=	tex-footbib-doc
 SUBDIR+=	tex-footmisc
 SUBDIR+=	tex-footmisc-doc
+SUBDIR+=	tex-footnotehyper
+SUBDIR+=	tex-footnotehyper-doc
 SUBDIR+=	tex-footnpag
 SUBDIR+=	tex-footnpag-doc
 SUBDIR+=	tex-forloop

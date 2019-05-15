@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.66 2018/12/13 19:51:36 adam Exp $
+# $NetBSD: Makefile,v 1.68 2019/05/13 11:03:58 leot Exp $
 
-DISTNAME=	mupdf-1.14.0-source
+DISTNAME=	mupdf-1.15.0-source
 PKGNAME=	${DISTNAME:S/-source//}
-PKGREVISION=	2
 CATEGORIES=	print
 MASTER_SITES=	https://mupdf.com/downloads/archive/
 
@@ -10,14 +9,6 @@ MAINTAINER=	leot@NetBSD.org
 HOMEPAGE=	https://mupdf.com/
 COMMENT=	Lightweight PDF, XPS and E-book viewer and toolkit
 LICENSE=	gnu-agpl-v3
-
-# XXX: The tarball originally packaged for mupdf-1.14.0 did not contain commit
-# XXX: id 7f77313e6d60fc917146b80cce2f9c1ab0152349 changes related to mupdf-gl
-# XXX: that defines realpath(3) for Windows and fix an inverted logic
-# XXX: condition regarding FREEGLUT macro check.
-# XXX: The DIST_SUBDIR definition can be removed in the next (post-1.14.0)
-# XXX: stable release of mupdf.
-DIST_SUBDIR=	${PKGNAME_NOREV}
 
 USE_LANGUAGES=	c99
 USE_LIBTOOL=	yes
@@ -43,7 +34,6 @@ CFLAGS.SunOS+=	-D_XOPEN_SOURCE=600
 # default Javascript interpreter for mupdf).
 post-extract:
 	${RM} -fr \
-	    ${WRKSRC}/thirdparty/curl \
 	    ${WRKSRC}/thirdparty/freeglut \
 	    ${WRKSRC}/thirdparty/freetype \
 	    ${WRKSRC}/thirdparty/harfbuzz \
@@ -67,7 +57,7 @@ BUILDLINK_API_DEPENDS.zlib+=	zlib>=1.2.7
 .include "../../graphics/jbig2dec/buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
-# XXX: Needs lcms2-2.9 that ATM is not in pkgsrc.
+# XXX: mupdf needs lcms2-art fork
 #BUILDLINK_API_DEPENDS.lcms2+= lcms2>=2.9
 #.include "../../graphics/lcms2/buildlink3.mk"
 .include "../../graphics/openjpeg/buildlink3.mk"

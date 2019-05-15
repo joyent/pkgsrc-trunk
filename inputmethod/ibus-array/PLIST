@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.2 2015/01/20 11:24:33 obache Exp $
+@comment $NetBSD: PLIST,v 1.5 2019/05/15 14:23:15 leot Exp $
 libexec/ibus-engine-array
 libexec/ibus-setup-array
 share/ibus-array/icons/ibus-array.png

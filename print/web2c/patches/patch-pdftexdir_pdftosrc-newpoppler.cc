@@ -1,8 +1,10 @@
-$NetBSD: patch-pdftexdir_pdftosrc-newpoppler.cc,v 1.4 2019/02/17 11:44:38 tnn Exp $
+$NetBSD: patch-pdftexdir_pdftosrc-newpoppler.cc,v 1.6 2019/05/14 13:23:10 adam Exp $
 
---- pdftexdir/pdftosrc-newpoppler.cc.orig	2017-10-17 21:52:13.000000000 +0000
+Fix building.
+
+--- pdftexdir/pdftosrc-newpoppler.cc.orig	2018-12-06 23:31:33.000000000 +0000
 +++ pdftexdir/pdftosrc-newpoppler.cc
-@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
+@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
      Stream *s;
      Object srcStream, srcName, catalogDict;
      FILE *outfile;
@@ -11,16 +13,16 @@ $NetBSD: patch-pdftexdir_pdftosrc-newpoppler.cc,v 1.4 2019/02/17 11:44:38 tnn Ex
      int objnum = 0, objgen = 0;
      bool extract_xref_table = false;
      int c;
-@@ -109,7 +109,7 @@ int main(int argc, char *argv[])
+@@ -110,7 +110,7 @@ int main(int argc, char *argv[])
              fprintf(stderr, "No SourceName found\n");
              exit(1);
          }
--        outname = srcName.getString()->getCString();
-+        outname = srcName.getString()->c_str();
+-        outname = (char *)srcName.getString()->getCString();
++        outname = (char *)srcName.getString()->c_str();
          // We cannot free srcName, as objname shares its string.
          // srcName.free();
      } else if (objnum > 0) {
-@@ -118,7 +118,7 @@ int main(int argc, char *argv[])
+@@ -119,7 +119,7 @@ int main(int argc, char *argv[])
              fprintf(stderr, "Not a Stream object\n");
              exit(1);
          }
@@ -29,7 +31,7 @@ $NetBSD: patch-pdftexdir_pdftosrc-newpoppler.cc,v 1.4 2019/02/17 11:44:38 tnn Ex
          if ((p = strrchr(buf, '.')) == 0)
              p = strchr(buf, 0);
          if (objgen == 0)
-@@ -128,7 +128,7 @@ int main(int argc, char *argv[])
+@@ -129,7 +129,7 @@ int main(int argc, char *argv[])
          outname = buf;
      } else {                    // objnum < 0 means we are extracting the XRef table
          extract_xref_table = true;
@@ -38,7 +40,12 @@ $NetBSD: patch-pdftexdir_pdftosrc-newpoppler.cc,v 1.4 2019/02/17 11:44:38 tnn Ex
          if ((p = strrchr(buf, '.')) == 0)
              p = strchr(buf, 0);
          sprintf(p, ".xref");
-@@ -161,7 +161,7 @@ int main(int argc, char *argv[])
+@@ -157,12 +157,11 @@ int main(int argc, char *argv[])
+                         (e->type == xrefEntryFree ? "f" : "n"));
+             else {              // e->offset is the object number of the object stream
+                 Stream *str;
+-                Lexer *lexer;
+                 Parser *parser;
                  Object objStr, obj1, obj2;
                  int nObjects, first, n;
                  int localOffset = 0;
@@ -47,15 +54,15 @@ $NetBSD: patch-pdftexdir_pdftosrc-newpoppler.cc,v 1.4 2019/02/17 11:44:38 tnn Ex
  
                  objStr = xref->fetch(e->offset, 0);
                  assert(objStr.isStream());
-@@ -173,9 +173,9 @@ int main(int argc, char *argv[])
+@@ -174,9 +173,8 @@ int main(int argc, char *argv[])
  
                  // parse the header: object numbers and offsets
                  objStr.streamReset();
 -                str = new EmbedStream(objStr.getStream(), Object(objNull), gTrue, first);
-+                str = new EmbedStream(objStr.getStream(), Object(objNull), true, first);
-                 lexer = new Lexer(xref, str);
+-                lexer = new Lexer(xref, str);
 -                parser = new Parser(xref, lexer, gFalse);
-+                parser = new Parser(xref, lexer, false);
++                str = new EmbedStream(objStr.getStream(), Object(objNull), true, first);
++                parser = new Parser(xref, str, false);
                  for (n = 0; n < nObjects; ++n) {
                      obj1 = parser->getObj();
                      obj2 = parser->getObj();

@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.5 2014/11/07 11:56:04 obache Exp $
+@comment $NetBSD: PLIST,v 1.8 2019/05/15 14:33:13 leot Exp $
 bin/ibus-setup-hangul
 libexec/ibus-engine-hangul
 libexec/ibus-setup-hangul
