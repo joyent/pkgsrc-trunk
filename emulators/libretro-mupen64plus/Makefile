@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.16 2018/10/14 16:51:57 nia Exp $
+# $NetBSD: Makefile,v 1.20 2019/05/18 10:41:59 nia Exp $
 
-DISTNAME=	libretro-mupen64plus-20181013
+DISTNAME=	libretro-mupen64plus-20190426
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_GITHUB:=libretro/}
 GITHUB_PROJECT=	mupen64plus-libretro
-GITHUB_TAG=	e7ea1ae1f7a6e9913a46946e322d1a2f6d8c4ae0
+GITHUB_TAG=	af7a4bf219ded4036257a92060b146d7d4333f0f
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://docs.libretro.com/library/mupen64plus/
@@ -21,17 +21,25 @@ SUBST_MESSAGE.vc=	Fixing path to VideoCore libraries.
 SUBST_FILES.vc=		Makefile
 SUBST_SED.vc+=		-e 's;/opt/vc;${PREFIX};g'
 
-MAKE_FLAGS+=		GIT_VERSION="-pkgsrc"
+MAKE_FLAGS+=	GIT_VERSION="-pkgsrc"
 
 .if !empty(MACHINE_ARCH:M*arm*)
 MAKE_FLAGS+=	WITH_DYNAREC=arm
+MAKE_FLAGS+=	PIC=1
 .elif ${MACHINE_ARCH} == "i386"
 MAKE_FLAGS+=	WITH_DYNAREC=x86
+MAKE_FLAGS+=	PIC=0
 BUILD_DEPENDS+=	nasm-[0-9]*:../../devel/nasm
 .elif ${MACHINE_ARCH} == "x86_64"
 MAKE_FLAGS+=	WITH_DYNAREC=x86_64
+MAKE_FLAGS+=	PIC=1
+.elif ${MACHINE_ARCH} == "aarch64"
+MAKE_FLAGS+=	WITH_DYNAREC=aarch64
+MAKE_FLAGS+=	PIC=1
 .else
 MAKE_FLAGS+=	WITH_DYNAREC=
+MAKE_FLAGS+=	DYNAREC_USED=0
+MAKE_FLAGS+=	PIC=1
 .endif
 
 BUILDLINK_TRANSFORM.SunOS+=	rm:-Wl,--version-script=./libretro/link.T
@@ -47,7 +55,5 @@ do-install:
 	${INSTALL_LIB} ${WRKSRC}/mupen64plus_libretro.so \
 	    ${DESTDIR}${PREFIX}/lib/libretro/mupen64plus_libretro.so
 
-.include "../../devel/zlib/buildlink3.mk"
-.include "../../graphics/png/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,4 +1,4 @@
-$NetBSD: patch-CMakeLists.txt,v 1.8 2019/03/13 20:49:40 leot Exp $
+$NetBSD: patch-CMakeLists.txt,v 1.10 2019/05/17 17:57:44 leot Exp $
 
 - Fix support for arm
 - Fix support for ppc, from FreeBSD.

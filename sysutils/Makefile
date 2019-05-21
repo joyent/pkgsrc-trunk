@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.808 2019/05/02 08:49:36 wiz Exp $
+# $NetBSD: Makefile,v 1.810 2019/05/18 17:39:48 thorpej Exp $
 #
 
 COMMENT=	System utilities
@@ -18,6 +18,7 @@ SUBDIR+=	amanda-client
 SUBDIR+=	amanda-common
 SUBDIR+=	amanda-plot
 SUBDIR+=	amanda-server
+SUBDIR+=	amlogic-meson-fwtools
 SUBDIR+=	amtterm
 SUBDIR+=	ansible
 SUBDIR+=	ansible2
@@ -651,6 +652,7 @@ SUBDIR+=	u-boot-pinebook
 SUBDIR+=	u-boot-pocketchip
 SUBDIR+=	u-boot-rockpro64
 SUBDIR+=	u-boot-sopine-baseboard
+SUBDIR+=	u-boot-zynq-zybo-z7
 SUBDIR+=	upower
 SUBDIR+=	ups-nut
 SUBDIR+=	ups-nut-cgi
