@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2019,v 1.2212 2019/05/21 18:22:16 wiz Exp $
+$NetBSD: CHANGES-2019,v 1.2222 2019/05/22 11:55:01 jperkin Exp $
 
 Changes to the packages collection and infrastructure in 2019:
 
@@ -3787,3 +3787,15 @@ Changes to the packages collection and infrastructure in 2019:
 	Updated pkgtools/pkglint to 5.7.10 [rillig 2019-05-21]
 	Updated textproc/py-html5-parser to 0.4.6 [wiz 2019-05-21]
 	Updated textproc/oniguruma to 6.9.2 [wiz 2019-05-21]
+	Updated devel/gdl to 3.28.0 [wiz 2019-05-21]
+	Updated security/caff to 2.10 [wiz 2019-05-21]
+	Updated devel/py-mercurial to 5.0 [wiz 2019-05-21]
+	Updated textproc/libhighlight to 3.51 [schmonz 2019-05-21]
+	Updated textproc/highlight to 3.51 [schmonz 2019-05-21]
+	Updated textproc/p5-highlight to 3.51 [schmonz 2019-05-21]
+	Added sysutils/bsdec2-image-upload version 1.2.2 [jmcneill 2019-05-22]
+	Updated www/curl to 7.65.0 [leot 2019-05-22]
+	Updated devel/libuv to 1.29.1 [adam 2019-05-22]
+	Updated net/grpc to 1.21.0 [adam 2019-05-22]
+	Updated devel/py-meson to 0.50.1 [prlw1 2019-05-22]
+	Added sysutils/node_exporter version 0.18.0 [jperkin 2019-05-22]
