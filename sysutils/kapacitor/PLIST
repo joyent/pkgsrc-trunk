@@ -1,0 +1,14 @@
+@comment $NetBSD$
+bin/kapacitor
+bin/kapacitord
+share/doc/kapacitor/CHANGELOG.md
+share/doc/kapacitor/DESIGN.md
+share/doc/kapacitor/LICENSE
+share/doc/kapacitor/LICENSE_OF_DEPENDENCIES.md
+share/doc/kapacitor/README.md
+share/examples/kapacitor/kapacitor.conf
+share/examples/kapacitor/logrotate.d/kapacitor
+@pkgdir share/kapacitor/telegraf
+@pkgdir man/man1
+@pkgdir etc/kapacitor
+@pkgdir etc/influxdb
