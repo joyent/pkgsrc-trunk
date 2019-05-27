@@ -292,7 +292,7 @@ func (tr *Tools) addAlias(tool *Tool, alias string) {
 // parseUseTools interprets a "USE_TOOLS+=" line from a Makefile fragment.
 // It determines the validity of the tool, i.e. in which places it may be used.
 //
-// If createIfAbsent is true and the tools is unknown, it is registered.
+// If createIfAbsent is true and the tool is unknown, it is registered.
 // This can be done only in the pkgsrc infrastructure files, where the
 // actual definition is assumed to be in some other file. In packages
 // though, this assumption cannot be made and pkglint needs to be strict.
@@ -302,23 +302,38 @@ func (tr *Tools) parseUseTools(mkline MkLine, createIfAbsent bool, addToUseTools
 		return
 	}
 
-	deps := mkline.ValueFields(value)
-
-	// See mk/tools/autoconf.mk:/^\.if !defined/
-	if matches(value, `\bautoconf213\b`) {
-		deps = append(deps, "autoconf-2.13", "autoheader-2.13", "autoreconf-2.13", "autoscan-2.13", "autoupdate-2.13", "ifnames-2.13")
-	}
-	if matches(value, `\bautoconf\b`) {
-		deps = append(deps, "autoheader", "autom4te", "autoreconf", "autoscan", "autoupdate", "ifnames")
-	}
-
 	validity := tr.validity(mkline.Basename, addToUseTools)
-	for _, dep := range deps {
+	for _, dep := range mkline.ValueFields(value) {
 		name := strings.Split(dep, ":")[0]
 		if createIfAbsent || tr.ByName(name) != nil {
 			tr.def(name, "", false, validity, nil)
+			for _, implicitName := range tr.implicitTools(name) {
+				tr.def(implicitName, "", false, validity, nil)
+			}
 		}
 	}
+}
+
+func (tr *Tools) implicitTools(toolName string) []string {
+
+	// See mk/tools/autoconf.mk:/^\.if !defined/
+
+	if toolName == "autoconf213" {
+		return []string{
+			"autoconf-2.13", "autoheader-2.13", "autoreconf-2.13",
+			"autoscan-2.13", "autoupdate-2.13", "ifnames-2.13",
+			"autoconf",
+			"autoheader", "autom4te", "autoreconf",
+			"autoscan", "autoupdate", "ifnames"}
+	}
+
+	if toolName == "autoconf" {
+		return []string{
+			"autoheader", "autom4te", "autoreconf",
+			"autoscan", "autoupdate", "ifnames"}
+	}
+
+	return nil
 }
 
 func (tr *Tools) validity(basename string, useTools bool) Validity {

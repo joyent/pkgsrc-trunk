@@ -1,31 +1,23 @@
-# $NetBSD: Makefile,v 1.41 2019/05/05 22:49:51 ryoon Exp $
+# $NetBSD: Makefile,v 1.43 2019/05/25 10:50:42 wiz Exp $
 
-DISTNAME=	tor-browser-60.5.1esr-8.5-1-build2
-PKGNAME=	tor-browser-8.5
-PKGREVISION=	3
+DISTNAME=	src-firefox-tor-browser-60.7.0esr-8.5-1-build1
+PKGNAME=	tor-browser-8.5.60.7.0
 CATEGORIES=	www
-# DISTFILE manually packaged from git checkout
+MASTER_SITES=	https://dist.torproject.org/torbrowser/8.5/
+EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	ryoon@NetBSD.org
 HOMEPAGE=	https://www.torproject.org/projects/torbrowser.html.en
 COMMENT=	Tor Browser based on Firefox
 LICENSE=	mpl-1.1
 
-WRKSRC=		${WRKDIR}/tor-browser
+WRKSRC=		${WRKDIR}/${DISTNAME:S/src-//}
 
 DEPENDS+=	tor-[0-9]*:../../net/tor
 
+EXTRACT_USING=	bsdtar
+
 # How to update this package:
-#
-# make a tarball:
-# git clone https://git.torproject.org/tor-browser.git
-# cd tor-browser
-# git fetch --tags
-# git tag -l
-# (choose a tag, here tor-browser-60.5.1esr-8.5-1-build2)
-# git checkout tor-browser-60.5.1esr-8.5-1-build2
-# cd ..
-# tar -cvzf tor-browser-60.5.1esr-8.5-1-build2.tar.gz --exclude .git tor-browser
 #
 # replace all patches with the one from the correspoding www/firefox${ESR_RELEASE}
 # BUT keep patch-xpcom_io_TorFileUtils.cpp!

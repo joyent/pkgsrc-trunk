@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.35 2017/05/15 14:14:04 wiz Exp $
+# $NetBSD: Makefile,v 1.37 2019/05/27 13:21:41 ryoon Exp $
 
 .include "../../devel/gettext/Makefile.common"
 
 PKGNAME=	${DISTNAME:S/-/-tools-/}
-PKGREVISION=	1
 COMMENT=	Tools for providing messages in different languages
 
 DISTINFO_FILE=	${.CURDIR}/../../devel/gettext/distinfo
@@ -24,6 +23,7 @@ CONFIGURE_ENV+=		GCJ= ac_cv_prog_GCJ= ac_cv_prog_JAR=
 CONFIGURE_ENV+=		HAVE_GCJ_IN_PATH=
 CONFIGURE_ENV+=		HAVE_JAVAC_IN_PATH=
 CONFIGURE_ENV+=		HAVE_JIKES_IN_PATH=
+GNU_CONFIGURE_STRICT=	no # because of gettext-runtime
 LDFLAGS.AIX+=		-Wl,-brtl
 
 SHLIBTOOL_OVERRIDE=	# empty
