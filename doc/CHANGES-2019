@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2019,v 1.2317 2019/05/30 20:05:51 he Exp $
+$NetBSD: CHANGES-2019,v 1.2326 2019/05/31 14:42:58 jperkin Exp $
 
 Changes to the packages collection and infrastructure in 2019:
 
@@ -3925,3 +3925,17 @@ Changes to the packages collection and infrastructure in 2019:
 	Updated www/py-autobahn to 19.5.1 [adam 2019-05-30]
 	Updated www/py-hyperlink to 19.0.0 [adam 2019-05-30]
 	Updated security/opendnssec to 1.4.13nb9 [he 2019-05-30]
+	Updated net/libcares to 1.15.0nb1 [adam 2019-05-31]
+	Updated net/grpc to 1.21.2 [adam 2019-05-31]
+	Updated lang/gcc8 to 8.3.0 [kamil 2019-05-31]
+	Updated lang/gcc8-libs to 8.3.0nb1 [kamil 2019-05-31]
+	Updated graphics/libimagequant to 2.12.3 [adam 2019-05-31]
+	Updated graphics/pngquant to 2.12.3 [adam 2019-05-31]
+	Updated www/firefox to 67.0nb2 [maya 2019-05-31]
+	Updated geography/py-country to 18.12.8 [adam 2019-05-31]
+	Updated www/py-django2 to 2.1.8 [adam 2019-05-31]
+	Updated security/py-cryptodome to 3.8.2 [adam 2019-05-31]
+	Updated www/py-cfscrape to 2.0.5 [adam 2019-05-31]
+	Updated databases/prometheus to 2.10.0 [adam 2019-05-31]
+	Updated lang/rust to 1.35.0 [jperkin 2019-05-31]
+	Added databases/postgres_exporter version 0.4.7 [jperkin 2019-05-31]

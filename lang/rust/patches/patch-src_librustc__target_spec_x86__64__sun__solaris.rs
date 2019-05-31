@@ -1,6 +1,6 @@
-$NetBSD$
+$NetBSD: patch-src_librustc__target_spec_x86__64__sun__solaris.rs,v 1.1 2019/05/31 14:11:23 jperkin Exp $
 
-Test jbk patch.
+Enable stack probes on SunOS.
 
 --- src/librustc_target/spec/x86_64_sun_solaris.rs.orig	2019-01-16 09:30:27.000000000 +0000
 +++ src/librustc_target/spec/x86_64_sun_solaris.rs
