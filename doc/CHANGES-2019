@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2019,v 1.2349 2019/06/01 20:26:52 adam Exp $
+$NetBSD: CHANGES-2019,v 1.2361 2019/06/02 09:30:28 adam Exp $
 
 Changes to the packages collection and infrastructure in 2019:
 
@@ -3969,3 +3969,31 @@ Changes to the packages collection and infrastructure in 2019:
 	Updated sysutils/xfce4-cpugraph-plugin to 1.0.90 [gutteridge 2019-06-01]
 	Updated security/tor-browser to 8.5.60.7.0nb2 [wiz 2019-06-01]
 	Updated devel/cmake to 3.14.5 [adam 2019-06-01]
+	Updated devel/p5-Data-Page to 2.03 [wen 2019-06-02]
+	Updated devel/p5-Devel-PatchPerl to 1.60 [wen 2019-06-02]
+	Updated devel/p5-Devel-PPPort to 3.52 [wen 2019-06-02]
+	Updated devel/py-pbr to 5.2.1 [mef 2019-06-02]
+	Updated devel/pango to 1.42.4nb4 [ryoon 2019-06-02]
+	Updated fonts/harfbuzz to 2.4.0nb3 [ryoon 2019-06-02]
+	Updated misc/libreoffice to 6.2.4.2 [ryoon 2019-06-02]
+	Updated devel/p5-B-Hooks-Parser to 0.21 [wen 2019-06-02]
+	Updated devel/p5-bareword-filehandles to 0.007 [wen 2019-06-02]
+	Updated devel/py-hypothesis to 4.24.0 [adam 2019-06-02]
+	Updated devel/py-test to 4.6.0 [adam 2019-06-02]
+	Updated lang/llvm to 8.0.0 [adam 2019-06-02]
+	Updated lang/clang to 8.0.0 [adam 2019-06-02]
+	Updated lang/clang-static-analyzer to 8.0.0 [adam 2019-06-02]
+	Updated lang/clang-tools-extra to 8.0.0 [adam 2019-06-02]
+	Updated lang/compiler-rt to 8.0.0 [adam 2019-06-02]
+	Updated lang/libcxx to 8.0.0 [adam 2019-06-02]
+	Updated lang/libcxxabi to 8.0.0 [adam 2019-06-02]
+	Updated lang/libunwind to 8.0.0 [adam 2019-06-02]
+	Updated devel/lld to 8.0.0 [adam 2019-06-02]
+	Updated devel/lldb to 8.0.0 [adam 2019-06-02]
+	Updated devel/polly to 8.0.0 [adam 2019-06-02]
+	Updated devel/include-what-you-use to 0.12 [adam 2019-06-02]
+	Updated devel/py-llvmlite to 0.29.0 [adam 2019-06-02]
+	Updated math/py-numba to 0.44.0 [adam 2019-06-02]
+	Updated emulators/gxemul to 0.6.1nb3 [gson 2019-06-02]
+	Updated devel/creduce to 2.10.0 [adam 2019-06-02]
+	Updated security/gnupg2 to 2.2.16 [adam 2019-06-02]
