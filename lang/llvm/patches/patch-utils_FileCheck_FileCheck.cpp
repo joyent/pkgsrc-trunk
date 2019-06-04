@@ -1,4 +1,4 @@
-$NetBSD$
+$NetBSD: patch-utils_FileCheck_FileCheck.cpp,v 1.1 2019/06/04 10:22:17 jperkin Exp $
 
 Avoid ambiguous function call.
 
@@ -9,7 +9,7 @@ Avoid ambiguous function call.
    if (InputFileEnd[-1] != '\n')
      ++LineCount;
 -  unsigned LineNoWidth = log10(LineCount) + 1;
-+  unsigned LineNoWidth = log10((float)LineCount) + 1;
++  unsigned LineNoWidth = log10((double)LineCount) + 1;
    // +3 below adds spaces (1) to the left of the (right-aligned) line numbers
    // on input lines and (2) to the right of the (left-aligned) labels on
    // annotation lines so that input lines and annotation lines are more

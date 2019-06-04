@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2019,v 1.2365 2019/06/02 15:03:08 adam Exp $
+$NetBSD: CHANGES-2019,v 1.2375 2019/06/04 09:08:45 he Exp $
 
 Changes to the packages collection and infrastructure in 2019:
 
@@ -4000,3 +4000,20 @@ Changes to the packages collection and infrastructure in 2019:
 	Updated audio/fasttracker2 to 2.158 [fox 2019-06-02]
 	Added math/double-conversion version 3.1.5 [mef 2019-06-02]
 	Updated lang/zig to 0.4.0 [adam 2019-06-02]
+	Updated net/freeDiameter to 1.3.2 [wiz 2019-06-02]
+	Updated devel/py-cython to 0.29.10 [adam 2019-06-03]
+	Updated devel/py-test to 4.6.1 [adam 2019-06-03]
+	Updated devel/glib2 to 2.60.2 [prlw1 2019-06-03]
+	Removed sysutils/gio-fam [prlw1 2019-06-03]
+	Updated devel/gobject-introspection to 1.60.1 [prlw1 2019-06-03]
+	Updated chat/ircd-hybrid to 8.2.26 [fox 2019-06-03]
+	Updated pkgtools/texlive2pkg to 1.5 [markd 2019-06-03]
+	Added print/tex-ifetex version 1.2a [markd 2019-06-03]
+	Added print/tex-ifetex-doc version 1.2a [markd 2019-06-03]
+	Added www/p5-HTTP-Tiny-Multipart version 0.08 [markd 2019-06-03]
+	Added devel/p5-GitLab-API-v4 version 0.14 [markd 2019-06-03]
+	Added www/p5-HTML-Template-Compiled version 1.003 [markd 2019-06-03]
+	Updated www/py-django to 1.11.21 [adam 2019-06-03]
+	Updated www/py-django2 to 2.2.2 [adam 2019-06-03]
+	Updated sysutils/sysupgrade to 1.5nb4 [triaxx 2019-06-03]
+	Updated security/openssh to 8.0.1nb2 [he 2019-06-04]
