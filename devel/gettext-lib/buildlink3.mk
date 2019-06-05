@@ -22,7 +22,7 @@ BUILDLINK_LDADD.gettext+=	${BUILDLINK_LDADD.iconv}
 # to LIBS to workaround this brokenness.
 #
 BROKEN_GETTEXT_DETECTION?=	no
-.if !empty(BROKEN_GETTEXT_DETECTION:M[yY][eE][sS])
+.if !empty(BROKEN_GETTEXT_DETECTION:M[yY][eE][sS]) || ${OPSYS} == "SunOS"
 BUILDLINK_LIBS.gettext+=	${BUILDLINK_LDADD.gettext}
 CONFIGURE_ENV+=			INTLLIBS="${BUILDLINK_LDADD.gettext}"
 .endif
