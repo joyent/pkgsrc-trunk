@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.295 2019/03/21 13:58:55 wiz Exp $
+# $NetBSD: Makefile,v 1.297 2019/06/09 13:58:08 nia Exp $
 #
 
 COMMENT=	Emulators for other operating systems
@@ -20,6 +20,7 @@ SUBDIR+=	arcem
 SUBDIR+=	arnold
 SUBDIR+=	atari800
 SUBDIR+=	b-em
+SUBDIR+=	blastem
 SUBDIR+=	blinkensim
 SUBDIR+=	bochs
 SUBDIR+=	ckmame
@@ -138,6 +139,7 @@ SUBDIR+=	m1
 SUBDIR+=	makeppf
 SUBDIR+=	mame
 SUBDIR+=	mednafen
+SUBDIR+=	mgba
 SUBDIR+=	minivmac
 SUBDIR+=	mmix
 SUBDIR+=	nestopia
