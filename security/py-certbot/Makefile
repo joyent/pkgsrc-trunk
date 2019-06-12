@@ -1,16 +1,14 @@
-# $NetBSD: Makefile,v 1.14 2019/05/17 06:46:30 adam Exp $
+# $NetBSD: Makefile,v 1.16 2019/06/12 10:27:37 adam Exp $
 
-DISTNAME=	certbot-0.34.2
-PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-CATEGORIES=	security python
+DISTNAME=	certbot-${CERTBOT_VERSION}
 MASTER_SITES=	${MASTER_SITE_PYPI:=c/certbot/}
 
 MAINTAINER=	fhajny@NetBSD.org
-HOMEPAGE=	https://github.com/certbot/certbot
 COMMENT=	Client for the Let's Encrypt CA
-LICENSE=	apache-2.0
 
-EGG_NAME=	${DISTNAME}
+.include "../../security/py-certbot/Makefile.common"
+
+#EGG_NAME=	${DISTNAME}
 
 DEPENDS+=	${PYPKGPREFIX}-acme>=0.29.0:../../security/py-acme
 DEPENDS+=	${PYPKGPREFIX}-configargparse>=0.9.3:../../devel/py-configargparse
@@ -30,8 +28,6 @@ TEST_DEPENDS+=	${PYPKGPREFIX}-readline-[0-9]*:../../devel/py-readline
 TEST_DEPENDS+=	${PYPKGPREFIX}-test-[0-9]*:../../devel/py-test
 TEST_DEPENDS+=	${PYPKGPREFIX}-test-cov-[0-9]*:../../devel/py-test-cov
 TEST_DEPENDS+=	${PYPKGPREFIX}-test-xdist-[0-9]*:../../devel/py-test-xdist
-
-USE_LANGUAGES=	# none
 
 BUILD_DEFS+=		VARBASE
 
