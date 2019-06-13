@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2858 2019/06/11 11:34:38 markd Exp $
+# $NetBSD: Makefile,v 1.2860 2019/06/13 09:35:33 gson Exp $
 #
 
 COMMENT=	Development utilities
@@ -2316,6 +2316,7 @@ SUBDIR+=	py-pyparsing
 SUBDIR+=	py-pyrsistent
 SUBDIR+=	py-pysha3
 SUBDIR+=	py-pysvn
+SUBDIR+=	py-pyte
 SUBDIR+=	py-pytemplate
 SUBDIR+=	py-python-dotenv
 SUBDIR+=	py-python-slugify
@@ -2807,7 +2808,6 @@ SUBDIR+=	xmake
 SUBDIR+=	xorg-util-macros
 SUBDIR+=	xsd
 SUBDIR+=	xulrunner192
-SUBDIR+=	xulrunner45
 SUBDIR+=	xxgdb
 SUBDIR+=	xxhash
 SUBDIR+=	yajl
