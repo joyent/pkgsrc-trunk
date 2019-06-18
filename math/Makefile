@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.406 2019/06/02 14:20:58 mef Exp $
+# $NetBSD: Makefile,v 1.409 2019/06/17 00:36:10 gdt Exp $
 
 COMMENT=	Mathematics
 
@@ -98,6 +98,7 @@ SUBDIR+=	antixls
 SUBDIR+=	aribas
 SUBDIR+=	arpack
 SUBDIR+=	bc
+SUBDIR+=	bc-gh
 SUBDIR+=	bcal
 SUBDIR+=	blas
 SUBDIR+=	blitz++
@@ -317,11 +318,13 @@ SUBDIR+=	py-rpy
 SUBDIR+=	py-scikit-image
 SUBDIR+=	py-scikit-learn
 SUBDIR+=	py-scipy
+SUBDIR+=	py-scipy12
 SUBDIR+=	py-simpleeval
 SUBDIR+=	py-statsmodels
 SUBDIR+=	py-sympy
 SUBDIR+=	py-tables
 SUBDIR+=	py-tensorboard
+SUBDIR+=	py-uncertainties
 SUBDIR+=	py-z3
 SUBDIR+=	py-z3solver
 SUBDIR+=	qalculate

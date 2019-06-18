@@ -1,9 +1,9 @@
-$NetBSD: patch-gio_meson.build,v 1.2 2019/06/05 08:57:15 jperkin Exp $
+$NetBSD: patch-gio_meson.build,v 1.4 2019/06/16 15:28:12 leot Exp $
 
 Don't build tests, as have strong dependency on libdl.
 Disable inotify on SunOS.
 
---- gio/meson.build.orig	2019-05-03 13:43:28.000000000 +0000
+--- gio/meson.build.orig	2019-06-10 17:47:20.000000000 +0000
 +++ gio/meson.build
 @@ -758,7 +758,7 @@ gioenumtypes_c = custom_target('gioenumt
  gioenumtypes_dep = declare_dependency(sources : [gioenumtypes_h, glib_enumtypes_h])
@@ -14,7 +14,7 @@ Disable inotify on SunOS.
    subdir('inotify')
    internal_deps += [ inotify_lib ]
    internal_objects += [inotify_lib.extract_all_objects()]
-@@ -994,4 +994,3 @@ if enable_systemtap
+@@ -994,4 +995,3 @@ if enable_systemtap
  endif
  
  subdir('fam')
