@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.19082 2019/06/20 05:48:14 nia Exp $
+$NetBSD: TODO,v 1.19090 2019/06/23 18:38:00 wiz Exp $
 
 Suggested new packages
 ======================
@@ -355,7 +355,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o R-ncdf-1.6.8
 	o SOGo-4.0.7
 	o SOPE-4.0.7
-	o Sigil-0.9.14
 	o TiffIO-140a
 	o YoSucker-81
 	o abcmidi-20170416
@@ -378,7 +377,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o alsa-plugins-1.1.0
 	o amarok-2.9.0
 	o amavis-perl-0.3.12 [called just amavis]
-	o amaya-11.4.4 [wip]
 	o ampache-3.8.2
 	o angband-3.2
 	o anjuta-3.16.0
@@ -459,7 +457,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o cdrkit-1.1.10
 	o cfengine3-3.10.2
 	o cflow-mode-1.4
-	o cgal-4.6.1
 	o cgen-20160301
 	o cgic-207
 	o checkbot-1.80
@@ -850,6 +847,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o kdevelop4-4.7.2
 	o kdevplatform-1.7.1
 	o keybinder-0.3.1
+	o khard-0.14.0
 	o kipi-plugins-4.14.0
 	o kismet-2011.03r2 [pkg/45692]
 	o kismet-2016.07R1
@@ -872,6 +870,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o ldapsdk-6.0.7
 	o lgeneral-1.3.1
 	o libX11-1.6.8
+	o libXt-1.2.0
 	o libbpg-0.9.6
 	o libcaca-0.99.19
 	o libcarddav-14.0.4
@@ -902,6 +901,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libprelude-3.1.0
 	o libpreludedb-3.1.0
 	o libquantum-1.1.0 [pkg/43728, development release]
+	o libssh2-1.9.0
 	o libstree-0.4.2
 	o libtcl-nothread-8.5.1
 	o libtecla-1.6.3
@@ -937,7 +937,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o mailutis-2.2 [wip]
 	o maketool-0.8.4
 	o makeztxt-1.60
-	o mame-0.210
 	o manedit-1.2.1
 	o mapserver-7.0.1
 	o matchbox-panel-0.9.3
@@ -981,7 +980,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o mopher-0.6.0
 	o moserial-2.30.0
 	o mousetweaks-3.12.0 [wip]
-	o mpc-0.32
 	o mpdas-0.4.1
 	o mserv-devel-0.41
 	o multitail-6.4.2
@@ -1113,6 +1111,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-HappyDoc-3.0
 	o py-Scientific-doc-2.5.5
 	o py-cassa-1.11.0
+	o py-curl-7.43.0.3
 	o py-ephem3-3.7.6.0
 	o py-gnome-menus-3.8.0
 	o py-gobject3-3.30.4
