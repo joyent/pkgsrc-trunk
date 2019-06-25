@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.16 2019/06/21 15:42:19 pgoyette Exp $
+# $NetBSD: Makefile,v 1.18 2019/06/25 15:35:33 pgoyette Exp $
 
 # no Release yet
-_DATE=		20190619
+PKG_DATE=	20190619
 GIT_COMMIT=	3ec23ced30f80e365c60cacf620a5847231c3ceb
 DISTNAME=	i2c-tools-${GIT_COMMIT}
-PKGNAME=	decode-dimms-0.0.${_DATE}
+PKGNAME=	decode-dimms-0.0.${PKG_DATE}
 CATEGORIES=	sysutils
 MASTER_SITES=	https://git.kernel.org/pub/scm/utils/i2c-tools/i2c-tools.git/snapshot/
 
@@ -17,16 +17,19 @@ USE_TOOLS+=	perl:run
 REPLACE_PERL=	eeprom/decode-dimms
 
 SUBST_CLASSES+=		rev
-SUBST_STAGE.rev=	pre-patch
-SUBST_FILES.rev=        eeprom/decode-dimms
-SUBST_SED.rev=          -e 's/^$$revision = .*;/$$revision = "${_DATE}-${GIT_COMMIT}";/'
+SUBST_STAGE.rev=	post-extract
+SUBST_FILES.rev=	eeprom/decode-dimms
+SUBST_SED.rev=		-e 's/^$$revision = .*;/$$revision = "${PKG_DATE}-${GIT_COMMIT}";/'
 SUBST_SED.rev+=		-e '/^$$revision =~/d'
 
 NO_BUILD=	yes
 
 USE_LANGUAGES=	# empty
 
-ONLY_FOR_PLATFORM= NetBSD-*-*
+# This package's primary purpose is to introduce use of hw.spdmem* sysctl
+# as the source of SPD data; these sysctl variables are only available on
+# NetBSD (and only if the spdmem(4) device is configured).
+ONLY_FOR_PLATFORM=	NetBSD-*-*
 
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1
 
