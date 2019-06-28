@@ -76,8 +76,12 @@ ${_BUILD_INFO_FILE}: ${_PLIST_NOKEYWORDS}
 					for (l = 1; l <= nlibs; l++) {						\
 						for (r = 1; r <= nrpath; r++) {					\
 							sub(/\/$$/, "", rpath[r]);				\
-							if (system("test -f " rpath[r] "/" libs[l]) == 0) {	\
-								print rpath[r] "/" libs[l];			\
+							libfile = rpath[r] "/" libs[l];				\
+							if (!(libfile in libcache)) {				\
+								libcache[libfile] = system("test -f " libfile); \
+							}							\
+							if (libcache[libfile] == 0) {				\
+								print libfile;					\
 								break;						\
 							}							\
 						}								\
