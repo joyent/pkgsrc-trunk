@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.428 2019/06/23 16:02:00 nia Exp $
+# $NetBSD: Makefile,v 1.435 2019/06/30 23:33:40 nia Exp $
 #
 
 COMMENT=	Games
@@ -6,6 +6,8 @@ COMMENT=	Games
 SUBDIR+=	0verkill
 SUBDIR+=	2048-cli
 SUBDIR+=	4stAttack
+SUBDIR+=	7kaa
+SUBDIR+=	7kaa-music
 SUBDIR+=	AitDoB
 SUBDIR+=	InterLOGIC
 SUBDIR+=	KoboDeluxe
@@ -30,6 +32,7 @@ SUBDIR+=	armagetronad-server
 SUBDIR+=	arx-libertatis
 SUBDIR+=	asc
 SUBDIR+=	asciiquarium
+SUBDIR+=	assaultcube
 SUBDIR+=	atomix
 SUBDIR+=	atque
 SUBDIR+=	barrage
@@ -92,6 +95,7 @@ SUBDIR+=	einstein-puzzle
 SUBDIR+=	enigma
 SUBDIR+=	et
 SUBDIR+=	etlegacy
+SUBDIR+=	etlegacy-server
 SUBDIR+=	eus-demo
 SUBDIR+=	exchess
 SUBDIR+=	exchess-book-medium
@@ -251,6 +255,7 @@ SUBDIR+=	marathon-evil
 SUBDIR+=	marathon-trilogy
 SUBDIR+=	mari0
 SUBDIR+=	minami
+SUBDIR+=	minetest
 SUBDIR+=	mirrormagic
 SUBDIR+=	monsterz
 SUBDIR+=	moon-buggy
@@ -310,6 +315,7 @@ SUBDIR+=	quakedata
 SUBDIR+=	quakeforge
 SUBDIR+=	quakespasm
 SUBDIR+=	quarry
+SUBDIR+=	redeclipse
 SUBDIR+=	rftg
 SUBDIR+=	robotfindskitten
 SUBDIR+=	rocksndiamonds
@@ -318,6 +324,7 @@ SUBDIR+=	rollemup
 SUBDIR+=	rtcw
 SUBDIR+=	ruby-squib
 SUBDIR+=	sarien
+SUBDIR+=	sauerbraten
 SUBDIR+=	scid
 SUBDIR+=	scummvm
 SUBDIR+=	scummvm-bass

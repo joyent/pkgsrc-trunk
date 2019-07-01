@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.821 2019/06/17 16:42:29 adam Exp $
+# $NetBSD: Makefile,v 1.823 2019/06/30 22:13:13 nia Exp $
 #
 
 COMMENT=	Graphics tools and libraries
@@ -256,6 +256,7 @@ SUBDIR+=	imlib2
 SUBDIR+=	impress
 SUBDIR+=	inkscape
 SUBDIR+=	ipe
+SUBDIR+=	irrlicht
 SUBDIR+=	ivtools
 SUBDIR+=	jasper
 SUBDIR+=	jbig2dec
@@ -295,6 +296,7 @@ SUBDIR+=	lensfun
 SUBDIR+=	lepton
 SUBDIR+=	leptonica
 SUBDIR+=	lib3ds
+SUBDIR+=	libansilove
 SUBDIR+=	libart
 SUBDIR+=	libbpg
 SUBDIR+=	libcaca
