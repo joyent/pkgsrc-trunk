@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.19094 2019/07/01 04:10:51 ryoon Exp $
+$NetBSD: TODO,v 1.19101 2019/07/02 20:52:28 nia Exp $
 
 Suggested new packages
 ======================
@@ -695,6 +695,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o gnu-crypto-2.1.0
 	o gnu-pw-mgr-2.0
 	o gnucap-20130423
+	o gnucash-3.6
 	o gnustep-back-0.24.1
 	o gnustep-base-1.24.8
 	o gnustep-examples-1.4.0
@@ -850,7 +851,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o kdevelop-5.1
 	o kdevelop4-4.7.2
 	o kdevplatform-1.7.1
-	o keepassxc-2.4.3
 	o keybinder-0.3.1
 	o khard-0.14.0
 	o kipi-plugins-4.14.0
@@ -875,7 +875,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o ldapsdk-6.0.7
 	o lgeneral-1.3.1
 	o libX11-1.6.8
-	o libXt-1.2.0
+	o libXt-1.2.0 [https://lists.x.org/archives/xorg/2019-June/059825.html]
 	o libbpg-0.9.6
 	o libcaca-0.99.19
 	o libcarddav-14.0.4
@@ -914,7 +914,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libtcl-nothread-8.5.1
 	o libtecla-1.6.3
 	o libtrace-3.0.22
-	o libuv-1.30.0
 	o libv4l-0.8.5
 	o libvirt-2.3
 	o libxdg-basedir-1.2.0
@@ -1259,8 +1258,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o streamtuner-2.2.0
 	o subtitleeditor-0.54.0 [https://github.com/kitone/subtitleeditor]
 	o superlu-5.1.1
-	o supertux-0.5
-	o supertuxkart-1.0
 	o swapd-1.0.5
 	o swath-0.5.2
 	o swfdec-gnome-2.30.1
@@ -1339,7 +1336,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o virtinst-0.600.4
 	o virtuoso-7.2.0p1
 	o visual-regexp-3.1
-	o vlc-3.0.7
 	o vnc-4.0 [http://www.realvnc.com/download.html|pkgsrc-wip]
 	o vnstat-1.15
 	o vtk-5.10.1
@@ -1517,7 +1513,7 @@ Suggested cleanups in pkgsrc
 	  FOO_USE_* variables.
 
 	o Fix packages installing manual pages under share/man to install
-	  them directly under man.
+	  them under PKGMANDIR.
 	  Affects: net/tsclient
 
 	o Convert packages to use generic install scripts where possible

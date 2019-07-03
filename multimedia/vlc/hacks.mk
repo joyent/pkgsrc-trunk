@@ -1,4 +1,4 @@
-# $NetBSD: hacks.mk,v 1.3 2015/10/25 11:00:18 wiz Exp $
+# $NetBSD: hacks.mk,v 1.5 2019/07/02 20:55:21 nia Exp $
 
 .if !defined(VLC_HACKS_MK)
 VLC_HACKS_MK=		# empty

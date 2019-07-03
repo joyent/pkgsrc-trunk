@@ -1,9 +1,9 @@
-$NetBSD: distinfo,v 1.45 2019/05/22 09:14:38 adam Exp $
+$NetBSD: distinfo,v 1.47 2019/07/02 16:44:06 adam Exp $
 
-SHA1 (libuv-1.29.1.tar.gz) = 40b21933825c5340f75ba8bd38aeaf838e99e098
-RMD160 (libuv-1.29.1.tar.gz) = 9003f05bfbab7d8e4e21b9ad84d6f2c8a72674c2
-SHA512 (libuv-1.29.1.tar.gz) = 7e1ed1bc500bfaab44858b3ff4685ec3d2abce412718ad144d642f7526f6dbcba643ea9a623bb129d545599570be64ed9a498d85485c1716c4c365bb7ab61898
-Size (libuv-1.29.1.tar.gz) = 1224127 bytes
+SHA1 (libuv-1.30.1.tar.gz) = aefd1b237821bec8bb964d7ba85661fca35b6a97
+RMD160 (libuv-1.30.1.tar.gz) = af43d0d1932208c6d0d09dab96df452f28f9a217
+SHA512 (libuv-1.30.1.tar.gz) = bf6d99e4807da3e90c1852b901953fb5ddb9354942a433d8ddfef9a0766abfe3783216936c546ea1b9f2872d0d031dd184519bb5c7f58f6baeae4446f0f5e3fd
+Size (libuv-1.30.1.tar.gz) = 1228593 bytes
 SHA1 (patch-autogen.sh) = a5f48189bfb17624c545a80626ea311b7755d232
 SHA1 (patch-configure.ac) = e6636d522dc9218fc9aee62846426645473cb6cd
 SHA1 (patch-src_unix_darwin.c) = 489f73fe81b9dea2acc72a669bf667c560c1deea

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2862 2019/06/23 09:42:04 wiz Exp $
+# $NetBSD: Makefile,v 1.2864 2019/07/02 04:06:43 adam Exp $
 #
 
 COMMENT=	Development utilities
@@ -51,7 +51,6 @@ SUBDIR+=	SDL_ttf
 SUBDIR+=	SDLmm
 SUBDIR+=	SOPE
 SUBDIR+=	ZenTest
-SUBDIR+=	accerciser
 SUBDIR+=	accerciser3
 SUBDIR+=	acme
 SUBDIR+=	acr
@@ -2140,7 +2139,6 @@ SUBDIR+=	py-iowait
 SUBDIR+=	py-ipaddr
 SUBDIR+=	py-ipykernel
 SUBDIR+=	py-ipython
-SUBDIR+=	py-ipython010
 SUBDIR+=	py-ipython5
 SUBDIR+=	py-ipython_genutils
 SUBDIR+=	py-iso-639
