@@ -1,0 +1,62 @@
+$NetBSD$
+
+Split configuration between -client and -server.
+Do not run libmysql_api_test, requires LD_LIBRARY_PATH.
+
+--- libmysql/CMakeLists.txt.orig	2019-04-13 11:46:31.000000000 +0000
++++ libmysql/CMakeLists.txt
+@@ -241,11 +241,17 @@ IF(WIN32)
+ ENDIF()
+ 
+ # LDAP authentication SASL client plugin
++IF(NOT WITHOUT_SERVER)
+ MESSAGE(STATUS "Creating LDAP authentication SASL client library.")
+ ADD_SUBDIRECTORY(authentication_ldap)
++ENDIF()
+   
+ # Merge several convenience libraries into one big mysqlclient
++IF(WITHOUT_SERVER)
+ MERGE_CONVENIENCE_LIBRARIES(mysqlclient ${LIBS_TO_MERGE} COMPONENT Development)
++ELSE()
++MERGE_CONVENIENCE_LIBRARIES(mysqlclient SKIP_INSTALL ${LIBS_TO_MERGE} COMPONENT Development)
++ENDIF()
+ TARGET_LINK_LIBRARIES(mysqlclient PRIVATE ${LIBS_TO_LINK})
+ 
+ # Visual Studio users need debug  static library for debug projects
+@@ -284,9 +290,15 @@ ENDIF()
+ IF(NOT DISABLE_SHARED)
+   # Merge several convenience libraries into one big mysqlclient
+   # and link them together into shared library.
++  IF(WITHOUT_SERVER)
+   MERGE_LIBRARIES_SHARED(libmysql ${LIBS_TO_MERGE}
+     EXPORTS ${CLIENT_API_FUNCTIONS} ${CLIENT_API_FUNCTIONS_UNDOCUMENTED}
+     COMPONENT SharedLibraries)
++  ELSE()
++  MERGE_LIBRARIES_SHARED(libmysql SKIP_INSTALL ${LIBS_TO_MERGE}
++    EXPORTS ${CLIENT_API_FUNCTIONS} ${CLIENT_API_FUNCTIONS_UNDOCUMENTED}
++    COMPONENT SharedLibraries)
++  ENDIF()
+   TARGET_LINK_LIBRARIES(libmysql PRIVATE ${LIBS_TO_LINK})
+ 
+   IF(WIN32)
+@@ -359,6 +371,7 @@ CONFIGURE_FILE(api_test.c.in ${CMAKE_CUR
+ # from @CLIENT_API_FUNCTIONS@ are declared by <mysql.h>. It will fail
+ # to run if not all of these symbols are exported by the library.
+ #
++IF(NOT WITHOUT_SERVER)
+ MYSQL_ADD_EXECUTABLE(libmysql_api_test
+   ${CMAKE_CURRENT_BINARY_DIR}/api_test.c SKIP_INSTALL)
+ # Clang/UBSAN needs this on some platforms.
+@@ -380,9 +393,12 @@ IF(DISABLE_SHARED)
+ ELSE()
+   TARGET_LINK_LIBRARIES(libmysql_api_test libmysql)
+ ENDIF()
++ENDIF()
+ 
+ # Verify that libmysql_api_test runs OK
++IF(0)
+ ADD_CUSTOM_COMMAND(TARGET libmysql_api_test POST_BUILD
+   COMMAND $<TARGET_FILE:libmysql_api_test>
+   > ${CMAKE_CURRENT_BINARY_DIR}/libmysql_api_test.out
+   )
++ENDIF()
