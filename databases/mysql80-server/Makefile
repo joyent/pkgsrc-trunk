@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.20 2019/02/05 20:19:55 adam Exp $
 
 PKGNAME=	${DISTNAME:S/-/-server-/}
-COMMENT=	A free SQL database (server)
+COMMENT=	MySQL database server
 
 CONFLICTS=	mysql3-server-[0-9]*
 
@@ -10,6 +10,14 @@ CONFLICTS=	mysql3-server-[0-9]*
 CMAKE_ARGS+=		-DINSTALL_INFODIR=${PKGINFODIR}
 CMAKE_ARGS+=		-DINSTALL_MYSQLTESTDIR=""
 CMAKE_ARGS+=		-DWITH_EMBEDDED_SERVER=ON
+
+.include "../../mk/bsd.prefs.mk"
+
+.if ${OS_VARIANT} == "SmartOS"
+CMAKE_ARGS+=		-DUSE_PREGEN_RPC=1
+.else
+CMAKE_ARGS+=		-DUSE_PREGEN_RPC=0
+.endif
 
 PTHREAD_OPTS+=		require
 
