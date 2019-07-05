@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.6 2019/07/01 04:08:08 ryoon Exp $
+# $NetBSD: Makefile,v 1.8 2019/07/05 08:38:36 nia Exp $
 
 DISTNAME=	dolphin-emu-5.0
 PKGREVISION=	4
@@ -15,7 +15,10 @@ LICENSE=	gnu-gpl-v2
 EXTRACT_USING=	bsdtar
 USE_TOOLS+=	msgfmt msgmerge pkg-config
 USE_CMAKE=	yes
-USE_LANGUAGES=	c c++
+USE_LANGUAGES=	c c++14
+
+# std::make_unique
+GCC_REQD+=	4.9
 
 # Since SFML is not available in pkgsrc, make sure the included version
 # is always used.
@@ -25,7 +28,10 @@ CMAKE_ARGS+=	-DPKGMANDIR=${PKGMANDIR}
 
 .include "../../mk/bsd.prefs.mk"
 
+# Claims to only support little endian architectures.
 ONLY_FOR_PLATFORM=	${LITTLEENDIANPLATFORMS}
+
+# No support in the code.
 BROKEN_ON_PLATFORM+=	SunOS-*-*
 
 .if ${MACHINE_ARCH} != "x86_64" && ${MACHINE_ARCH} != "aarch64"
@@ -35,8 +41,7 @@ CMAKE_ARGS+=		-DENABLE_GENERIC=1
 # "Couldn't find libevdev and/or libudev.  Can't build evdev controller backend."
 CMAKE_ARGS.Linux+=	-DENABLE_EVDEV=0
 
-BUILDLINK_TRANSFORM+=	rm:-ldl
-
+# JIT
 NOT_PAX_MPROTECT_SAFE+=	bin/dolphin-emu
 NOT_PAX_MPROTECT_SAFE+=	bin/dolphin-emu-nogui
 
@@ -59,5 +64,6 @@ NOT_PAX_MPROTECT_SAFE+=	bin/dolphin-emu-nogui
 .endif
 .include "../../x11/wxGTK30/buildlink3.mk"
 .include "../../mk/dlopen.buildlink3.mk"
+BUILDLINK_TRANSFORM+=	opt:-ldl:${BUILDLINK_LDADD.dl:Q}
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
