@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.19105 2019/07/05 09:17:38 nia Exp $
+$NetBSD: TODO,v 1.19111 2019/07/07 15:46:27 nia Exp $
 
 Suggested new packages
 ======================
@@ -299,6 +299,70 @@ Suggested new packages
 	https://github.com/digitalocean/netbox
 	IP address management and data center infrastructure management tool
 
+	Flowblade
+	https://jliljebl.github.io/flowblade/
+	Video editor
+
+	OpenShot
+	https://www.openshot.org/
+	Video editor
+
+	ManaPlus
+	https://manaplus.org/
+	MMORPG client
+
+	linx-server
+	Self-hosted file/code/media sharing website
+	https://github.com/andreimarcu/linx-server
+
+	qBittorrent [pkgsrc-wip]
+	https://www.qbittorrent.org/
+	Bittorrent client, open source alternative to uTorrent
+
+	Simutrans [pkgsrc-wip]
+	https://www.simutrans.com/en/
+	Transportation simulator game
+
+	gemrb [pkgsrc-wip]
+	https://github.com/gemrb/gemrb
+	Reimplementation of Bioware's Infinity Engine used for playing Baldur's Gate
+
+	luakit [pkgsrc-wip]
+	https://luakit.github.io/
+	Webkit based browser extensible with Lua
+
+	Aquaria [pkgsrc-wip]
+	https://github.com/AquariaOSE/Aquaria
+	Open source release of the successful indie game
+
+	CaveExpress/CavePacker
+	http://www.caveproductions.org/
+	Sokoban game/2D platformer with physics-based gameplay and dozens of levels.
+
+	StepMania
+	https://www.stepmania.com/
+	Rhythm game
+
+	Widelands
+	https://www.widelands.org/
+	RTS game
+
+	Unknown Horizons
+	http://unknown-horizons.org/
+	2D realtime strategy simulation with an emphasis on economy and city building
+
+	0 A.D. [pkgsrc-wip]
+	https://play0ad.com/
+	A free, open-source game of ancient warfare
+
+	Hedgewars
+	https://www.hedgewars.org/
+	Strategy game similar to Worms
+
+	Barbie Seahorse Adventures
+	http://www.imitationpickles.org/barbie/
+	You're a seahorse - and you want to go to the moon!
+
 	Missing xorg packages
 	app: constype, intel-gpu-tools
 	driver: xf86-input-aiptek, xf86-input-calcomp, xf86-input-citron,
@@ -411,8 +475,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o aspell-nb-2.0.10
 	o asterisk13-13.21.1
 	o aubio-0.4.2
-	o audacious-3.7.1
-	o audacious-plugins-3.7.1
 	o autoconvert-0.3.16
 	o avant-window-navigator-0.4.2
 	o avidemux-2.6.16
@@ -1300,6 +1362,9 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o tor-browser-8.5.1
 	o totem-3.14.1
 	o totem-pl-parser-3.10.3
+	o transmission-2.94
+	o transmission-gtk-2.94
+	o transmission-qt-2.94
 	o tripwire-2.3.1 [see also pkg/22362]
 	o trojita-0.6
 	o ts-0.7.5
