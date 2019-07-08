@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.19111 2019/07/07 15:46:27 nia Exp $
+$NetBSD: TODO,v 1.19116 2019/07/08 16:48:33 nia Exp $
 
 Suggested new packages
 ======================
@@ -358,6 +358,10 @@ Suggested new packages
 	Hedgewars
 	https://www.hedgewars.org/
 	Strategy game similar to Worms
+
+	Kakoune code editor
+	http://kakoune.org/
+	Experimental modal text editor
 
 	Barbie Seahorse Adventures
 	http://www.imitationpickles.org/barbie/
@@ -1239,7 +1243,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o rp-pppoe-3.11
 	o rsnapshot-1.4.2
 	o rt4-4.4.0
-	o rtcw-1.41.3
 	o rtty-4.0 [at ftp://ftp.isc.org/isc/rtty/]
 	o rubber-1.4
 	o ruby-jquery-rails-4.2.1
@@ -1372,7 +1375,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o turba-4.2.12
 	o uae-0.8.29
 	o ubs-0.20
-	o ucon64-2.2.0
 	o ucview-0.33
 	o udpcast-20120424
 	o udunits-2.1.17 [pkg/43529, breaks ncview-1.x, also need to update it to 2.x]

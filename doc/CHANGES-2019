@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2019,v 1.2812 2019/07/07 20:23:10 gdt Exp $
+$NetBSD: CHANGES-2019,v 1.2831 2019/07/08 19:45:54 adam Exp $
 
 Changes to the packages collection and infrastructure in 2019:
 
@@ -4690,3 +4690,28 @@ Changes to the packages collection and infrastructure in 2019:
 	Updated net/tacacs-shrubbery to F4.0.4.28 [schwarz 2019-07-07]
 	Updated devel/diffutils to 3.7 [schwarz 2019-07-07]
 	Updated geography/gama to 2.06 [gdt 2019-07-07]
+	Removed games/rtcw [nia 2019-07-07]
+	Updated emulators/ucon64 to 2.2.0 [wiz 2019-07-07]
+	Added lang/cbmbasic version 0.0.20141206 [sjmulder 2019-07-08]
+	Updated www/py-asgiref to 3.1.4 [adam 2019-07-08]
+	Updated www/py-pylint-django to 2.0.10 [adam 2019-07-08]
+	Updated devel/py-cython to 0.29.12 [adam 2019-07-08]
+	Updated www/py-autobahn to 19.7.1 [adam 2019-07-08]
+	Updated net/ldns to 1.7.0 [roy 2019-07-08]
+	Removed games/rollemup [nia 2019-07-08]
+	Updated net/iperf3 to 3.7 [adam 2019-07-08]
+	Updated time/py-tzdata to 2019.2 [adam 2019-07-08]
+	Updated comms/libhidapi to 0.9.0 [nia 2019-07-08]
+	Updated lang/php72 to 7.2.20 [taca 2019-07-08]
+	Updated lang/php73 to 7.3.7 [taca 2019-07-08]
+	Updated time/ruby-tzinfo-data to 1.2019.2 [taca 2019-07-08]
+	Updated net/ruby-domain_name to 0.5.20190701 [taca 2019-07-08]
+	Updated www/ruby-net-http-persistent to 3.0.1 [leot 2019-07-08]
+	Updated math/glpk to 4.65 [leot 2019-07-08]
+	Added audio/mixxx version 2.2.1 [nia 2019-07-08]
+	Updated misc/libreoffice to 6.2.5.2 [ryoon 2019-07-08]
+	Updated graphics/tesseract to 4.1.0 [adam 2019-07-08]
+	Updated textproc/jsoncpp to 1.9.0 [adam 2019-07-08]
+	Updated sysutils/salt to 2019.2.0nb2 [jperkin 2019-07-08]
+	Updated devel/py-typing to 3.7.4 [adam 2019-07-08]
+	Updated devel/py-typing-extensions to 3.7.4 [adam 2019-07-08]
