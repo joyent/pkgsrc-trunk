@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.13 2019/06/28 19:15:06 schmonz Exp $
+# $NetBSD: Makefile,v 1.16 2019/07/10 12:59:54 schmonz Exp $
 
 DISTNAME=		ucspi-tcp6-1.10.6
+PKGREVISION=		2
 CATEGORIES=		net
 MASTER_SITES=		https://www.fehcom.de/ipnet/ucspi-tcp6/
 EXTRACT_SUFX=		.tgz
@@ -16,9 +17,6 @@ WRKSRC=			${WRKDIR}/net/${PKGBASE}/${DISTNAME}
 DJB_SLASHPACKAGE=	yes
 DJB_RESTRICTED=		no
 DJB_CONFIG_DIR=		${WRKSRC}
-
-CPPFLAGS+=		-I${PREFIX}/include/qlibs
-LDFLAGS+=		-L${PREFIX}/lib/qlibs
 
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1 ${PKGMANDIR}/man5
 

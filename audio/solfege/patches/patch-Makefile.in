@@ -1,0 +1,17 @@
+$NetBSD: patch-Makefile.in,v 1.1 2019/07/11 04:51:14 schmonz Exp $
+
+Avoid GNUism (from MacPorts).
+
+--- Makefile.in.orig	2013-10-05 20:57:48.000000000 +0000
++++ Makefile.in
+@@ -144,7 +144,9 @@ install-program-files: mkinstalldirs
+ 	$(INSTALL_DATA) system.rc $(DESTDIR)/$(sysconfdir)/$(PACKAGE)
+ 	$(INSTALL_DATA) solfege.desktop $(DESTDIR)/$(datadir)/applications/
+ 	for ifile in $(installfiles); do \
+-	    cp --parents $$ifile $(DESTDIR)/$(datadir)/$(PACKAGE)/; \
++	    dname=$$(dirname "$$ifile"); \
++	    $(INSTALL) -d -m 755 "$(DESTDIR)/$(datadir)/$(PACKAGE)/$$dname"; \
++	    $(INSTALL_DATA) "$$ifile" "$(DESTDIR)/$(datadir)/$(PACKAGE)/$$dname"; \
+ 	done
+ 
+ compileall:

@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.5 2019/06/20 02:09:25 schmonz Exp $
+# $NetBSD: Makefile,v 1.8 2019/07/10 12:59:53 schmonz Exp $
 
 DISTNAME=		djbdnscurve6-35
+PKGREVISION=		2
 CATEGORIES=		net
 MASTER_SITES=		https://www.fehcom.de/ipnet/djbdnscurve6/
 EXTRACT_SUFX=		.tgz
@@ -36,12 +37,6 @@ BUILD_DEFS+=		PKG_SYSCONFBASE
 
 INSTALLATION_DIRS=	${PKGMANDIR}/man1 ${PKGMANDIR}/man5 ${PKGMANDIR}/man8 \
 			share/examples/${PKGBASE}
-
-.include "../../mk/bsd.prefs.mk"
-
-CFLAGS+=		-I${PREFIX}/include/qlibs
-CFLAGS+=		-I${PREFIX}/include/sodium
-LDFLAGS+=		-L${PREFIX}/lib/qlibs
 
 do-install:
 	cd ${WRKSRC}/compile && ./install && ./instcheck
