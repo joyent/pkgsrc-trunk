@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2019,v 1.2896 2019/07/13 09:58:52 wiedi Exp $
+$NetBSD: CHANGES-2019,v 1.2906 2019/07/14 15:21:32 bsiegert Exp $
 
 Changes to the packages collection and infrastructure in 2019:
 
@@ -4796,3 +4796,13 @@ Changes to the packages collection and infrastructure in 2019:
 	Updated www/py-flask to 1.1.1 [adam 2019-07-13]
 	Updated archivers/py-zipp to 0.5.2 [adam 2019-07-13]
 	Updated editors/nano to 4.3 [wiedi 2019-07-13]
+	Updated databases/ruby-sequel to 5.22.0 [taca 2019-07-13]
+	Updated textproc/gtkspell to 2.0.16nb30 [wiz 2019-07-13]
+	Updated textproc/py-enchant to 1.6.11nb1 [wiz 2019-07-13]
+	Updated databases/ruby-hiera to 3.5.0 [taca 2019-07-13]
+	Updated databases/ruby-arel-helpers to 2.9.1 [taca 2019-07-13]
+	Updated www/libmicrohttpd to 0.9.65 [bsiegert 2019-07-13]
+	Updated audio/fasttracker2 to 2.162 [fox 2019-07-13]
+	Updated devel/py-mercurial to 5.0.2 [wiz 2019-07-14]
+	Updated lang/go111 to 1.11.12 [bsiegert 2019-07-14]
+	Updated lang/go112 to 1.12.7 [bsiegert 2019-07-14]
