@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.130 2018/12/05 12:10:21 bsiegert Exp $
+# $NetBSD: Makefile,v 1.133 2019/07/15 07:05:02 jnemeth Exp $
 
 PKGNAME=	sendmail-${DIST_VERS}
-PKGREVISION=	3
+PKGREVISION=	5
 COMMENT=	The well known Mail Transport Agent
 
 CONFLICTS+=	courier-mta-[0-9]* fastforward>=0.51nb2 postfix-[0-9]*
@@ -102,6 +102,12 @@ post-patch: make-sendmail-siteconfig
 .endif
 .if !empty(PKG_OPTIONS:Msasl)
 	cat ${FILESDIR}/site.config.m4-sasl2 >>${SITECONFIG}
+.endif
+.if !empty(PKG_OPTIONS:Msendmail-ffr-badrcptshutdown)
+	cat ${FILESDIR}/site.config.m4-ffr_badrcptshutdown >>${SITECONFIG}
+.endif
+.if !empty(PKG_OPTIONS:Mblacklistd)
+	cat ${FILESDIR}/site.config.m4-blacklistd >>${SITECONFIG}
 .endif
 
 post-extract:
