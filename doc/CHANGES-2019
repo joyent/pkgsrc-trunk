@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2019,v 1.2921 2019/07/15 18:32:20 bsiegert Exp $
+$NetBSD: CHANGES-2019,v 1.2932 2019/07/16 19:31:29 schmonz Exp $
 
 Changes to the packages collection and infrastructure in 2019:
 
@@ -4836,3 +4836,14 @@ Changes to the packages collection and infrastructure in 2019:
 	Updated audio/libwildmidi to 0.4.3 [nia 2019-07-15]
 	Updated devel/py-meson to 0.51.1nb1 [prlw1 2019-07-15]
 	Updated security/botan-devel to 2.11.0 [bsiegert 2019-07-15]
+	Updated graphics/exiv2 to 0.27.1 [nia 2019-07-15]
+	Updated graphics/gexiv2 to 0.12.0 [nia 2019-07-15]
+	Removed graphics/exiv2-organize [nia 2019-07-15]
+	Updated graphics/jasper to 2.0.16 [nia 2019-07-16]
+	Updated audio/xmix to 2.1nb4 [micha 2019-07-16]
+	Updated x11/fltk13 to 1.3.5 [micha 2019-07-16]
+	Updated security/stunnel to 5.55 [ryoon 2019-07-16]
+	Updated graphics/libwebp to 1.0.3 [ryoon 2019-07-16]
+	Updated net/fetch to 1.8nb4 [jperkin 2019-07-16]
+	Updated mail/postfix to 3.3.3nb1 [triaxx 2019-07-16]
+	Updated www/wordpress to 5.2.2 [schmonz 2019-07-16]
