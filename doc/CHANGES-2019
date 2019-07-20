@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2019,v 1.2976 2019/07/19 21:15:16 wiz Exp $
+$NetBSD: CHANGES-2019,v 1.2987 2019/07/20 21:22:54 wiz Exp $
 
 Changes to the packages collection and infrastructure in 2019:
 
@@ -4901,3 +4901,15 @@ Changes to the packages collection and infrastructure in 2019:
 	Updated meta-pkgs/modular-xorg-apps to 1.14.1.11 [wiz 2019-07-19]
 	Updated meta-pkgs/modular-xorg-libs to 1.8 [wiz 2019-07-19]
 	Removed x11/rstart [wiz 2019-07-19]
+	Updated net/mikutter to 3.9.1 [tsutsui 2019-07-20]
+	Updated x11/qt5-qtwebkit to 5.212.0.alpha3 [nia 2019-07-20]
+	Updated wm/xfce4-wm to 4.13.3nb2 [gutteridge 2019-07-20]
+	Updated graphics/ImageMagick to 7.0.8.55 [nia 2019-07-20]
+	Updated graphics/gimp2-wideangle to 1.0.10 [tnn 2019-07-20]
+	Updated graphics/gimp-warp-sharp to 1.5 [tnn 2019-07-20]
+	Updated lang/guile22 to 2.2.6 [wiz 2019-07-20]
+	Updated pkgtools/x11-links to 1.21 [wiz 2019-07-20]
+	Added devel/apenwarr-redo version 0.41 [schmonz 2019-07-20]
+	Added devel/jdebp-redo version 1.4 [schmonz 2019-07-20]
+	Updated net/libfilezilla to 0.17.1 [wiz 2019-07-20]
+	Updated net/filezilla to 3.43.0 [wiz 2019-07-20]
