@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.46 2019/07/01 04:08:10 ryoon Exp $
+# $NetBSD: Makefile,v 1.48 2019/07/21 22:24:49 wiz Exp $
 
 .include "../../games/crossfire-client/Makefile.common"
 
 PKGNAME=	crossfire-client-gtk2-${CROSSFIRE_VERSION}
-PKGREVISION=	43
+PKGREVISION=	45
 COMMENT=	Multi-player graphical arcade and adventure game; GTK2 client
 
 INSTALL_DIRS=	gtk-v2
