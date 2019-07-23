@@ -8,8 +8,9 @@
 # MYSQL_VERSION_DEFAULT
 #	The preferred MySQL version.
 #
-#	Possible: 57 56 55 51 mariadb55 mariadb100
-#		  73-cluster percona57 percona56 percona55
+#	Possible: 80 57 56 55 51 73-cluster
+#		  mariadb55 mariadb100
+#		  percona80 percona57 percona56 percona55
 #		  percona57-cluster percona56-cluster percona55-cluster
 #	Default: 57
 #
@@ -31,9 +32,9 @@
 # MYSQL_PKG_PREFIX
 # 	The package name prefix for the selected version.
 #
-# 	Possible: mysql73-cluster mysql57 mysql56 mysql55 mysql51 mysql5
-# 		  percona57 percona56 percona55
-# 		  percona55-cluster percona56-cluster percona57-cluster
+# 	Possible: mysql80 mysql57 mysql56 mysql55 mysql51 mysql5 mysql73-cluster
+# 		  percona80 percona57 percona56 percona55
+# 		  percona57-cluster percona56-cluster percona55-cluster
 #
 
 .if !defined(MYSQL_VERSION_MK)
@@ -54,14 +55,18 @@ BUILD_DEFS_EFFECTS+=		MYSQL_VERSION MYSQL_PKG_PREFIX
 MYSQL_VERSIONS_ACCEPTED?=	${_PKG_MYSQLS}
 
 # The available MySQL packages:
-_PKG_MYSQLS=			57 56 55 51 mariadb55 mariadb100
+_PKG_MYSQLS=			80 57 56 55 51 mariadb55 mariadb100
 _PKG_MYSQLS+=			57-cluster
-_PKG_MYSQLS+=			percona57 percona56 percona55
-_PKG_MYSQLS+=			percona55-cluster percona56-cluster percona57-cluster
+_PKG_MYSQLS+=			percona80 percona57 percona56 percona55
+_PKG_MYSQLS+=			percona57-cluster percona56-cluster percona55-cluster
 
 _MYSQL_PKGBASE.57-cluster=	mysql-cluster-7.3.*
 _MYSQL_PKGSRCDIR.57-cluster=	../../joyent/mysql73-cluster
 _MYSQL_PKG_PREFIX.57-cluster=	mysql73-cluster
+
+_MYSQL_PKGBASE.80=		mysql-client-8.0.*
+_MYSQL_PKGSRCDIR.80=		../../databases/mysql80-client
+_MYSQL_PKG_PREFIX.80=		mysql80
 
 _MYSQL_PKGBASE.57=		mysql-client-5.7.*
 _MYSQL_PKGSRCDIR.57=		../../databases/mysql57-client
@@ -86,6 +91,10 @@ _MYSQL_PKG_PREFIX.mariadb55=	mariadb55
 _MYSQL_PKGBASE.mariadb100=	mariadb-client-10.0.*
 _MYSQL_PKGSRCDIR.mariadb100=	../../joyent/mariadb100-client
 _MYSQL_PKG_PREFIX.mariadb100=	mariadb100
+
+_MYSQL_PKGBASE.percona80=	percona-client-8.0.*
+_MYSQL_PKGSRCDIR.percona80=	../../joyent/percona80-client
+_MYSQL_PKG_PREFIX.percona80=	percona80
 
 _MYSQL_PKGBASE.percona57=	percona-client-5.7.*
 _MYSQL_PKGSRCDIR.percona57=	../../joyent/percona57-client
