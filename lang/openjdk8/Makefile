@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.80 2019/07/21 22:25:14 wiz Exp $
+# $NetBSD: Makefile,v 1.82 2019/07/25 19:12:55 tnn Exp $
 
-DISTNAME=	openjdk-1.8.202-20190219
-PKGNAME=	openjdk8-1.8.202
-PKGREVISION=	3
+DISTNAME=	openjdk-jdk8u-${GITHUB_TAG}
+PKGNAME=	openjdk8-1.8.${GITHUB_TAG:C/.*u([0-9]+).*/\1/}
 CATEGORIES=	lang
-MASTER_SITES=	${MASTER_SITE_LOCAL:=openjdk7/}
-EXTRACT_SUFX=	.tar.xz
+MASTER_SITES=   ${MASTER_SITE_GITHUB:=battleblow/}
+GITHUB_PROJECT= openjdk-jdk8u
+GITHUB_TAG=     jdk8u222-b10.1
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://openjdk.java.net/
@@ -26,6 +26,7 @@ JAVA_WRAPPERS=	jar java javac javadoc javah javap jcmd jhat jps jstack \
 BUILD_DEPENDS+=		mozilla-rootcerts>=1.0.20140820nb2:../../security/mozilla-rootcerts
 
 GNU_CONFIGURE=		yes
+USE_GNU_CONFIGURE_HOST=	no
 CONFIGURE_SCRIPT=	configure
 CONFIG_SHELL=		bash
 CONFIG_SUB_OVERRIDE+=	common/autoconf/build-aux/config.sub
@@ -35,7 +36,6 @@ CONFIG_GUESS_OVERRIDE+=	common/autoconf/build-aux/autoconf-config.guess
 USE_LANGUAGES=		c c++
 USE_TOOLS+=		bash gmake pax pkg-config unzip:run zip:run
 UNLIMIT_RESOURCES=	datasize stacksize
-WRKSRC=			${WRKDIR}/openjdk
 PLIST_SRC+=		${PLIST_SRC_DFLT}
 CHECK_SHLIBS_SKIP+=	java/openjdk8/jre/lib/${LIBDIR_ARCH}/libinstrument.so
 
@@ -46,8 +46,7 @@ BUILDLINK_TRANSFORM+=	rm:-Werror
 
 CONFIGURE_ARGS+=	--disable-option-checking # for --with-libiconv-prefix
 CONFIGURE_ARGS+=	--prefix=${PREFIX:Q}
-CONFIGURE_ARGS+=	--build=${MACHINE_GNU_PLATFORM:Q}
-CONFIGURE_ARGS+=	--host=${MACHINE_GNU_PLATFORM:Q}
+CONFIGURE_ARGS+=	--openjdk-target=${MACHINE_GNU_PLATFORM:Q}
 CONFIGURE_ARGS+=	--with-boot-jdk=${ALT_BOOTDIR}
 CONFIGURE_ARGS+=	--with-zlib=system
 CONFIGURE_ARGS+=	--with-giflib=bundled
