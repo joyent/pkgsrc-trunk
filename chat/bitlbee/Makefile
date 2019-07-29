@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.81 2019/07/20 22:46:10 wiz Exp $
+# $NetBSD: Makefile,v 1.83 2019/07/28 15:37:26 nia Exp $
 
 DISTNAME=		bitlbee-3.6
-PKGREVISION=		1
+PKGREVISION=		3
 CATEGORIES=		chat
 MASTER_SITES=		http://get.bitlbee.org/src/
 
@@ -41,6 +41,8 @@ DATADIR=		${PREFIX}/share/bitlbee
 DOCDIR=			${PREFIX}/share/doc/bitlbee
 STATEDIR=		${VARBASE}/db/bitlbee
 
+.include "../../mk/bsd.prefs.mk"
+
 BITLBEE_USER?=		bitlbee
 BITLBEE_GROUP?=		nobody
 
@@ -52,6 +54,7 @@ PKG_USERS=		${BITLBEE_USER}:${BITLBEE_GROUP}
 PKG_HOME.bitlbee=	${VARBASE}/db/bitlbee
 
 INSTALLATION_DIRS=	${PKGMANDIR}/man5 ${PKGMANDIR}/man8 sbin
+INSTALLATION_DIRS+=	lib/pkgconfig include/bitlbee
 
 CPPFLAGS.SunOS+=	-Du_int16_t=uint16_t
 
@@ -74,25 +77,18 @@ do-install:
 .for f in AUTHORS FAQ README CREDITS user-guide/user-guide.txt user-guide/user-guide.html
 	${INSTALL_DATA} ${WRKSRC}/doc/${f} ${DESTDIR}${DOCDIR}
 .endfor
-
-PKG_OPTIONS_VAR=	PKG_OPTIONS.bitlbee
-PKG_SUPPORTED_OPTIONS=	inet6
-PKG_SUGGESTED_OPTIONS=	inet6
-
-.include "../../mk/bsd.options.mk"
-
-.if !empty(PKG_OPTIONS:Minet6)
-CONFIGURE_ARGS+=	--ipv6=1
-.else
-CONFIGURE_ARGS+=	--ipv6=0
-.endif
+	${INSTALL_DATA} ${WRKSRC}/bitlbee.pc ${DESTDIR}${PREFIX}/lib/pkgconfig
+	${INSTALL_DATA} ${WRKSRC}/*.h ${DESTDIR}${PREFIX}/include/bitlbee
+	${INSTALL_DATA} ${WRKSRC}/lib/*.h ${DESTDIR}${PREFIX}/include/bitlbee
+	${INSTALL_DATA} ${WRKSRC}/protocols/*.h ${DESTDIR}${PREFIX}/include/bitlbee
 
 RCD_SCRIPTS=		bitlbee
 RCD_SCRIPT_SRC.bitlbee=	${FILESDIR}/bitlbee.sh
 
 # see https://savannah.gnu.org/support/index.php?107660
-#BUILDLINK_ABI_DEPENDS.gnutls+= gnutls<2.12.0
+#BUILDLINK_ABI_DEPENDS.gnutls+=	gnutls<2.12.0
 
+.include "options.mk"
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 PYTHON_FOR_BUILD_ONLY=	yes

@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.50 2019/07/21 22:24:06 wiz Exp $
+# $NetBSD: buildlink3.mk,v 1.53 2019/07/28 21:39:33 wiz Exp $
 
 BUILDLINK_TREE+=	librsvg
 
@@ -6,7 +6,6 @@ BUILDLINK_TREE+=	librsvg
 LIBRSVG_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.librsvg+=		librsvg>=2.12.6nb1
-BUILDLINK_ABI_DEPENDS.librsvg+=		librsvg>=2.44.14nb2
 
 .include "../../mk/bsd.fast.prefs.mk"
 
@@ -15,9 +14,11 @@ BUILDLINK_ABI_DEPENDS.librsvg+=		librsvg>=2.44.14nb2
 .if ${LIBRSVG_TYPE} == "rust"
 BUILDLINK_PKGSRCDIR.librsvg?=		../../graphics/librsvg
 BUILDLINK_API_DEPENDS.librsvg+=		librsvg>=2.41
+BUILDLINK_ABI_DEPENDS.librsvg+=		librsvg>=2.44.14nb2
 .elif ${LIBRSVG_TYPE} == "c"
 BUILDLINK_PKGSRCDIR.librsvg?=		../../graphics/librsvg-c
 BUILDLINK_API_DEPENDS.librsvg+=		librsvg<2.41
+BUILDLINK_ABI_DEPENDS.librsvg+=		librsvg>=2.40.20nb4
 .else
 PKG_FAIL_REASON+=       "[graphics/librsvg/buildlink3.mk] Invalid value ${LIBRSVG_TYPE} for LIBRSVG_TYPE."
 .endif
