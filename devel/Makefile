@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2869 2019/07/25 16:48:41 ryoon Exp $
+# $NetBSD: Makefile,v 1.2876 2019/07/31 01:29:16 brook Exp $
 #
 
 COMMENT=	Development utilities
@@ -21,7 +21,9 @@ SUBDIR+=	R-bindr
 SUBDIR+=	R-bit
 SUBDIR+=	R-bit64
 SUBDIR+=	R-blob
+SUBDIR+=	R-checkmate
 SUBDIR+=	R-cli
+SUBDIR+=	R-clipr
 SUBDIR+=	R-crayon
 SUBDIR+=	R-evaluate
 SUBDIR+=	R-fansi
@@ -34,9 +36,14 @@ SUBDIR+=	R-memoise
 SUBDIR+=	R-pkgconfig
 SUBDIR+=	R-plogr
 SUBDIR+=	R-proto
+SUBDIR+=	R-rematch
 SUBDIR+=	R-repr
+SUBDIR+=	R-rio
 SUBDIR+=	R-rlang
+SUBDIR+=	R-tcltk2
 SUBDIR+=	R-uuid
+SUBDIR+=	R-withr
+SUBDIR+=	R-xfun
 SUBDIR+=	RBTools
 SUBDIR+=	RTFM
 SUBDIR+=	RTx-RightsMatrix

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.827 2019/07/21 10:34:51 wiz Exp $
+# $NetBSD: Makefile,v 1.830 2019/07/31 13:01:17 brook Exp $
 #
 
 COMMENT=	Graphics tools and libraries
@@ -24,12 +24,14 @@ SUBDIR+=	PanoTools
 SUBDIR+=	R-Cairo
 SUBDIR+=	R-colorspace
 SUBDIR+=	R-dichromat
+SUBDIR+=	R-effects
 SUBDIR+=	R-ggplot2
 SUBDIR+=	R-gridExtra
 SUBDIR+=	R-labeling
 SUBDIR+=	R-latticeExtra
 SUBDIR+=	R-munsell
 SUBDIR+=	R-scales
+SUBDIR+=	R-viridis
 SUBDIR+=	R-viridisLite
 SUBDIR+=	SDL2_image
 SUBDIR+=	SDL_image
@@ -368,7 +370,6 @@ SUBDIR+=	opencolorio
 SUBDIR+=	opencsg
 SUBDIR+=	opencv
 SUBDIR+=	opencv-contrib-face
-SUBDIR+=	opencv2
 SUBDIR+=	opendis
 SUBDIR+=	openexr
 SUBDIR+=	openimageio
