@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.446 2019/08/09 16:26:09 nia Exp $
+# $NetBSD: Makefile,v 1.450 2019/08/26 16:49:49 micha Exp $
 #
 
 COMMENT=	Games
@@ -87,7 +87,10 @@ SUBDIR+=	defendguin
 SUBDIR+=	devilutionx
 SUBDIR+=	digger
 SUBDIR+=	dipmap
+SUBDIR+=	doom-pwad-sigil
 SUBDIR+=	doom1
+SUBDIR+=	doom2-pwad-preacher
+SUBDIR+=	doom2-pwad-struggle
 SUBDIR+=	doomlegacy
 SUBDIR+=	dopewars
 SUBDIR+=	duckmaze
@@ -129,6 +132,7 @@ SUBDIR+=	freeciv-manual
 SUBDIR+=	freeciv-server
 SUBDIR+=	freeciv-share
 SUBDIR+=	freecol
+SUBDIR+=	freedoom
 SUBDIR+=	freedroid
 SUBDIR+=	freesci
 SUBDIR+=	frotz
