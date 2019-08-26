@@ -457,9 +457,10 @@ func (s *Suite) Test_MkLine__aligned(c *check.C) {
 		"\tvalue",
 		true)
 
-	// In commented multilines, the continuation lines may or may not start
-	// with a comment character. Bmake doesn't care, but for human readers
-	// it is confusing to omit the leading comment character.
+	// In commented multilines, bmake doesn't care whether the
+	// continuation lines does or doesn't start with a comment character.
+	// For human readers though, it is confusing to omit the leading
+	// comment character.
 	//
 	// For determining whether a multiline is aligned, the initial comment
 	// character is ignored.
@@ -1737,6 +1738,15 @@ func (s *Suite) Test_MkLineParser_MatchVarassign(c *check.C) {
 		"")
 }
 
+func (s *Suite) Test_MkLineParser_getRawValueAlign__assertion(c *check.C) {
+	t := s.Init(c)
+
+	var p MkLineParser
+
+	// This is unrealistic; just for code coverage of the assertion.
+	t.ExpectAssert(func() { p.getRawValueAlign("a", "b") })
+}
+
 func (s *Suite) Test_NewMkOperator(c *check.C) {
 	t := s.Init(c)
 
@@ -1921,12 +1931,11 @@ func (s *Suite) Test_Indentation_Varnames__repetition(c *check.C) {
 
 	G.Check(t.File("category/package"))
 
-	// TODO: It feels wrong that OPSYS is mentioned twice here.
-	//  Why only twice and not three times?
 	t.CheckOutputLines(
-		"WARN: ~/category/package/buildlink3.mk:14: " +
-			"\"../../category/other/buildlink3.mk\" is included conditionally here " +
-			"(depending on OPSYS, OPSYS) and unconditionally in Makefile:20.")
+		"WARN: ~/category/package/Makefile:20: " +
+			"\"../../category/other/buildlink3.mk\" is included " +
+			"unconditionally here and " +
+			"conditionally in buildlink3.mk:14 (depending on OPSYS).")
 }
 
 func (s *Suite) Test_MkLine_ForEachUsed(c *check.C) {

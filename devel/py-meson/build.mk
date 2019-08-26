@@ -1,8 +1,13 @@
-# $NetBSD: build.mk,v 1.10 2019/07/10 10:40:35 markd Exp $
+# $NetBSD: build.mk,v 1.12 2019/08/23 15:42:55 nia Exp $
 
 BUILD_DEPENDS+=	${PYPKGPREFIX}-meson-[0-9]*:../../devel/py-meson
 
 .PHONY: meson-configure meson-build meson-install
+
+# pkgsrc contains multiple llvm-config executables at multiple locations.
+.if !empty(LLVM_CONFIG_PATH)
+MAKE_ENV+=	LLVM_CONFIG_PATH=${LLVM_CONFIG_PATH:Q}
+.endif
 
 do-configure: meson-configure
 meson-configure:
@@ -10,7 +15,7 @@ meson-configure:
 
 do-build: meson-build
 meson-build:
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ninja -C output
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ninja -j ${MAKE_JOBS:U1} -C output
 
 do-install: meson-install
 meson-install:

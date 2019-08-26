@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.426 2019/07/31 13:34:58 brook Exp $
+# $NetBSD: Makefile,v 1.434 2019/08/24 22:10:16 alnsn Exp $
 
 COMMENT=	Mathematics
 
@@ -6,6 +6,7 @@ SUBDIR+=	R
 SUBDIR+=	R-CGIwithR
 SUBDIR+=	R-DAAG
 SUBDIR+=	R-DBI
+SUBDIR+=	R-DEoptimR
 SUBDIR+=	R-FNN
 SUBDIR+=	R-Formula
 SUBDIR+=	R-GRASS
@@ -42,10 +43,13 @@ SUBDIR+=	R-classInt
 SUBDIR+=	R-clim.pact
 SUBDIR+=	R-coda
 SUBDIR+=	R-combinat
+SUBDIR+=	R-compositions
 SUBDIR+=	R-date
+SUBDIR+=	R-dplyr
 SUBDIR+=	R-e1071
 SUBDIR+=	R-ellipsis
 SUBDIR+=	R-emdbook
+SUBDIR+=	R-energy
 SUBDIR+=	R-estimability
 SUBDIR+=	R-forcats
 SUBDIR+=	R-forecast
@@ -86,6 +90,7 @@ SUBDIR+=	R-quantreg
 SUBDIR+=	R-randomForest
 SUBDIR+=	R-relimp
 SUBDIR+=	R-reshape2
+SUBDIR+=	R-robustbase
 SUBDIR+=	R-rstudioapi
 SUBDIR+=	R-sandwich
 SUBDIR+=	R-sgeostat
@@ -96,7 +101,9 @@ SUBDIR+=	R-splancs
 SUBDIR+=	R-stabledist
 SUBDIR+=	R-statmod
 SUBDIR+=	R-survey
+SUBDIR+=	R-tensorA
 SUBDIR+=	R-tibble
+SUBDIR+=	R-tidyr
 SUBDIR+=	R-urca
 SUBDIR+=	R-vctrs
 SUBDIR+=	R-wle
@@ -398,6 +405,7 @@ SUBDIR+=	xlispstat
 SUBDIR+=	xmgr
 SUBDIR+=	xylib
 SUBDIR+=	yacas
+SUBDIR+=	yices2
 SUBDIR+=	yorick
 SUBDIR+=	z3
 

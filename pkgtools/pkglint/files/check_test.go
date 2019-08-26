@@ -233,8 +233,7 @@ func (t *Tester) LoadMkInclude(relativeFileName string) *MkLines {
 			lines = append(lines, mkline.Line)
 
 			if mkline.IsInclude() {
-				included := cleanpath(path.Dir(filename) + "/" + mkline.IncludedFile())
-				load(included)
+				load(mkline.IncludedFileFull())
 			}
 		}
 	}
@@ -308,6 +307,18 @@ func (t *Tester) SetUpPkgsrc() {
 		MkCvsID)
 	t.CreateFileLines("mk/bsd.fast.prefs.mk",
 		MkCvsID)
+
+	// This file is used for initializing the allowed values for
+	// USE_LANGUAGES; see VarTypeRegistry.compilerLanguages.
+	t.CreateFileLines("mk/compiler.mk",
+		"_CXX_STD_VERSIONS=\tc++ c++14",
+		".if ${USE_LANGUAGES:Mada} || \\",
+		"    ${USE_LANGUAGES:Mc} || \\",
+		"    ${USE_LANGUAGES:Mc99} || \\",
+		"    ${USE_LANGUAGES:Mobjc} || \\",
+		"    ${USE_LANGUAGES:Mfortran} || \\",
+		"    ${USE_LANGUAGES:Mfortran77}",
+		".endif")
 
 	// Category Makefiles require this file for the common definitions.
 	t.CreateFileLines("mk/misc/category.mk")
@@ -669,6 +680,7 @@ func (t *Tester) FinishSetUp() {
 }
 
 // Main runs the pkglint main program with the given command line arguments.
+// Other than in the other tests, the -Wall option is not added implicitly.
 //
 // Arguments that name existing files or directories in the temporary test
 // directory are transformed to their actual paths.

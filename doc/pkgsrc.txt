@@ -147,6 +147,8 @@ II. The pkgsrc developer's guide
 
             12.1.1. Perl modules
             12.1.2. Python modules and programs
+            12.1.3. R packages
+            12.1.4. TeXlive packages
 
         12.2. Examples
 
@@ -2372,6 +2374,8 @@ Table of Contents
 
         12.1.1. Perl modules
         12.1.2. Python modules and programs
+        12.1.3. R packages
+        12.1.4. TeXlive packages
 
     12.2. Examples
 
@@ -2620,6 +2624,8 @@ Table of Contents
 
     12.1.1. Perl modules
     12.1.2. Python modules and programs
+    12.1.3. R packages
+    12.1.4. TeXlive packages
 
 12.2. Examples
 
@@ -2759,6 +2765,46 @@ infrastructure will depend on the appropriate package version. For example:
 PYTHON_VERSIONED_DEPENDENCIES=dialog
 
 Look inside versioned_dependencies.mk for a list of supported packages.
+
+12.1.3. R packages
+
+Simple R packages from CRAN are handled automatically by R2pkg, which is
+available in pkgtools/R2pkg. Individual packages (and optionally their
+dependencies) may be created and updated. R packages generally follow the same
+form, and most of the relevant information needed is contained in a DESCRIPTION
+file as part of each R package on CRAN. Consequently, R2pkg downloads that
+information and creates or updates a package in the canonical form. The
+resulting package should be reviewed for correctness.
+
+12.1.4. TeXlive packages
+
+TeXlive packages from CTAN are handled automatically by texlive2pkg, which is
+available in pkgtools/texlive2pkg.
+
+If the TeXlive package name is not known, it may be useful to search CTAN. A "
+Contained in" field on the package page typically identifies the basename of
+the package file in the TeXlive archive.
+
+If the TeXlive package name is known, download the files from the TeXlive
+archive. For package foo, you will need to download foo.tar.xz. Most TeXlive
+packages also have associated documentation packages, so download
+foo.doc.tar.xz at the same time. These files should be placed in the
+appropriate category directory, which is often but not always print. Then run
+the following command in the category directory.
+
+texlive2pkg foo.tar.xz foo.doc.tar.xz
+
+This will create two packages, tex-foo and tex-foo-doc. Be sure to check that
+both packages are correct.
+
+Finally, CTAN currently does not include version information in package
+filenames and changes their contents periodically when updates occur.
+Consequently, pkgsrc avoids downloading distfiles directly from CTAN and
+instead relies on the pkgsrc archives. For each new or updated TeXlive package,
+e.g., the main one and the corresponding documentation, upload the distfiles
+with the following command in each package directory.
+
+make upload-distfiles
 
 12.2. Examples
 
@@ -3187,7 +3233,7 @@ If you want to share patches between multiple packages in pkgsrc, e.g. because
 they use the same distfiles, set PATCHDIR to the path where the patch files can
 be found, e.g.:
 
-PATCHDIR= ${.CURDIR}/../xemacs/patches
+PATCHDIR=       ../../editors/xemacs/patches
 
 Patch files that are distributed by the author or other maintainers can be
 listed in PATCHFILES.
@@ -3405,7 +3451,7 @@ the creation of this file.
 If you want to share files in this way with other packages, set the FILESDIR
 variable to point to the other package's files directory, e.g.:
 
-FILESDIR=${.CURDIR}/../xemacs/files
+FILESDIR=       ../../editors/xemacs/files
 
 Chapter 14. Programming in Makefiles
 
@@ -8702,125 +8748,126 @@ JPEG_DEFAULT                         KERBEROS
 KERMIT_SUID_UUCP                     KJS_USE_PCRE
 KNEWS_DOMAIN_FILE                    KNEWS_DOMAIN_NAME
 KRB5_ACCEPTED                        KRB5_DEFAULT
-LANGUAGES                            LATEX2HTML_ICONPATH
-LDCONFIG_ADD_CMD                     LDCONFIG_REMOVE_CMD
-LEAFNODE_DATA_DIR                    LEAFNODE_GROUP
-LEAFNODE_USER                        LIBDVDCSS_HOMEPAGE
-LIBDVDCSS_MASTER_SITES               LIBRSVG_TYPE
-LIBTOOL                              LIBTOOLIZE_PLIST
-LIBTOOL_M4_OVERRIDE                  LIBUSB_TYPE
-LICENSE                              LINKER_RPATH_FLAG
-LINK_RPATH_FLAG                      LINUX_BASE_NODEPS
-LINUX_BASE_PREFERRED                 LINUX_BASE_REQUIRED
-LINUX_LOCALES                        LOCALBASE
-LOCALBASE_LOCKTYPE                   LOCALPATCHES
-LOVE_DATA                            LOVE_GAME
-LOVE_VERSION                         LP64PLATFORMS
-MACHINE_PLATFORM                     MAILAGENT_DOMAIN
-MAILAGENT_EMAIL                      MAILAGENT_FQDN
-MAILAGENT_ORGANIZATION               MAJORDOMO_HOMEDIR
-MAJOR_OS_VERSION                     MAKEINFO_ARGS
-MAKE_DIRS                            MAKE_DIRS_PERMS
-MAKE_ENV                             MAKE_FILE
-MAKE_FLAGS                           MAKE_JOBS
-MAKE_JOBS_SAFE                       MAKE_PROGRAM
-MANINSTALL                           MANZ
-MASTER_SITES                         MASTER_SITE_BACKUP
-MASTER_SITE_CYGWIN                   MASTER_SITE_GNOME
-MASTER_SITE_GNU                      MASTER_SITE_LOCAL
-MASTER_SITE_MOZILLA                  MASTER_SITE_OPENOFFICE
-MASTER_SITE_OVERRIDE                 MASTER_SITE_PERL_CPAN
-MASTER_SITE_SUNSITE                  MASTER_SITE_SUSE
-MASTER_SITE_TEX_CTAN                 MASTER_SITE_XCONTRIB
-MASTER_SITE_XEMACS                   MASTER_SORT
-MASTER_SORT_RANDOM                   MASTER_SORT_REGEX
-MECAB_CHARSET                        MEDIATOMB_GROUP
-MEDIATOMB_USER                       MIPSPROBASE
-MIREDO_GROUP                         MIREDO_USER
-MISSING_FEATURES                     MKDIR
-MLDONKEY_GROUP                       MLDONKEY_HOME
-MLDONKEY_USER                        MONOTONE_GROUP
-MONOTONE_USER                        MOTIFBASE
-MOTIF_TYPE                           MOTIF_TYPE_DEFAULT
-MPI_TYPE                             MSGFMT_STRIP_MSGCTXT
-MSGFMT_STRIP_MSGID_PLURAL            MTOOLS_ENABLE_FLOPPYD
-MUST                                 MV
-MYSQL_CHARSET                        MYSQL_DATADIR
-MYSQL_EXTRA_CHARSET                  MYSQL_GROUP
-MYSQL_PKGSRCDIR                      MYSQL_USER
-MYSQL_VERSIONS_ACCEPTED              MYSQL_VERSION_DEFAULT
-NAGIOSCMD_GROUP                      NAGIOSDIR
-NAGIOS_GROUP                         NAGIOS_USER
-NATIVE_APPEND_ABI                    NATIVE_APPEND_ELF
-NATIVE_EXEC_FMT                      NATIVE_MACHINE_PLATFORM
-NATIVE_OBJECT_FMT                    NBPAX_PROGRAM_PREFIX
-NETBSD_LOGIN_NAME                    NMH_EDITOR
-NMH_MTA                              NMH_PAGER
-NOLOGIN                              NONZERO_FILESIZE_P
-NOTE                                 NOT_FOR_PLATFORM
-NOT_PAX_ASLR_SAFE                    NOT_PAX_MPROTECT_SAFE
-NO_BUILD                             NO_CHECKSUM
-NO_CONFIGURE                         NO_SKIP
-NS_PREFERRED                         NULLMAILER_GROUP
-NULLMAILER_USER                      OASIS
-OASIS_BUILD_ARGS                     OBJHOSTNAME
-OBJMACHINE                           OCAML_FINDLIB_DIRS
-OCAML_FINDLIB_REGISTER               OCAML_FINDLIB_REGISTER_VERBOSE
-OCAML_SITELIBDIR                     OCAML_TOPKG_DOCDIR
-OCAML_USE_DUNE                       OCAML_USE_FINDLIB
-OCAML_USE_JBUILDER                   OCAML_USE_OASIS
-OCAML_USE_OASIS_DYNRUN               OCAML_USE_OPAM
-OCAML_USE_OPT_COMPILER               OCAML_USE_TOPKG
-OMF                                  ONLY_FOR_COMPILER
-ONLY_FOR_PLATFORM                    OPENSSH_CHROOT
-OPENSSH_GROUP                        OPENSSH_USER
-OPSYS                                OPSYS_EMULDIR
-OSS_TYPE                             OSX
-OSX_TOLERATE_SDK_SKEW                OS_HAVE_ALSA
-OS_HAVE_RCD                          OS_VARIANT
-OS_VERSION                           OTF_FONTS_DIR
-OVERRIDE_DIRDEPTH                    OVERRIDE_GEMSPEC
-OVERRIDE_GNU_CONFIG_SCRIPTS          OVERRIDE_ROCKSPEC
-OWN_DIRS                             OWN_DIRS_PERMS
-P4GROUP                              P4PORT
-P4ROOT                               P4USER
-PACKAGES                             PALMOS_DEFAULT_SDK
-PAMBASE                              PAM_DEFAULT
-PAPERSIZE                            PASSIVE_FETCH
-PATCHDIR                             PATCHFILES
-PATCH_ARGS                           PATCH_DEBUG
-PATCH_DIST_ARGS                      PATCH_DIST_CAT
-PATCH_DIST_STRIP                     PATCH_FUZZ_FACTOR
-PATCH_STRIP                          PATH
-PCCBASE                              PEAR
-PEAR_CHANNEL                         PEAR_CHANNEL_ALIAS
-PEAR_CHANNEL_VERSION                 PEAR_CMD
-PEAR_LIB                             PEAR_PACKAGE_XML
-PERL5                                PERL5_CONFIGURE
-PERL5_CONFIGURE_DIRS                 PERL5_LDFLAGS
-PERL5_LICENSE                        PERL5_MODULE_TYPE
-PERL5_PACKLIST                       PERL5_PACKLIST_DIR
-PERL5_PERLBASE                       PERL5_SITEBASE
-PERL5_USE_PACKLIST                   PERL5_VENDORBASE
-PFCTL                                PFVAR_H
-PF_VERSION                           PGGROUP
-PGHOME                               PGPKGSRCDIR
-PGSQL_TYPE                           PGSQL_VERSIONS_ACCEPTED
-PGSQL_VERSION_DEFAULT                PGUSER
-PG_LIB_EXT                           PHP
-PHPCOMMON_MK                         PHPPKGSRCDIR
-PHP_BASE_VERS                        PHP_CHECK_INSTALLED
-PHP_EXTENSION_DIR                    PHP_INITIAL_TEENY
-PHP_PKG_PREFIX                       PHP_VERSION
-PHP_VERSIONS_ACCEPTED                PHP_VERSIONS_INCOMPATIBLE
-PHP_VERSION_DEFAULT                  PHP_VERSION_REQD
-PILRC_USE_GTK                        PKGCONFIG_BASE
-PKGCONFIG_FILE                       PKGCONFIG_OVERRIDE
-PKGCONFIG_OVERRIDE_STAGE             PKGDIR
-PKGGNUDIR                            PKGINFODIR
-PKGLOCALEDIR                         PKGMANDIR
-PKGNAME                              PKGNAME_REQD
-PKGPATH                              PKGREVISION
+LANGUAGES                            LAPACK_LIBS
+LATEX2HTML_ICONPATH                  LDCONFIG_ADD_CMD
+LDCONFIG_REMOVE_CMD                  LEAFNODE_DATA_DIR
+LEAFNODE_GROUP                       LEAFNODE_USER
+LIBDVDCSS_HOMEPAGE                   LIBDVDCSS_MASTER_SITES
+LIBRSVG_TYPE                         LIBTOOL
+LIBTOOLIZE_PLIST                     LIBTOOL_M4_OVERRIDE
+LIBUSB_TYPE                          LICENSE
+LINKER_RPATH_FLAG                    LINK_RPATH_FLAG
+LINUX_BASE_NODEPS                    LINUX_BASE_PREFERRED
+LINUX_BASE_REQUIRED                  LINUX_LOCALES
+LOCALBASE                            LOCALBASE_LOCKTYPE
+LOCALPATCHES                         LOVE_DATA
+LOVE_GAME                            LOVE_VERSION
+LP64PLATFORMS                        MACHINE_PLATFORM
+MAILAGENT_DOMAIN                     MAILAGENT_EMAIL
+MAILAGENT_FQDN                       MAILAGENT_ORGANIZATION
+MAJORDOMO_HOMEDIR                    MAJOR_OS_VERSION
+MAKEINFO_ARGS                        MAKE_DIRS
+MAKE_DIRS_PERMS                      MAKE_ENV
+MAKE_FILE                            MAKE_FLAGS
+MAKE_JOBS                            MAKE_JOBS_SAFE
+MAKE_PROGRAM                         MANINSTALL
+MANZ                                 MASTER_SITES
+MASTER_SITE_BACKUP                   MASTER_SITE_CYGWIN
+MASTER_SITE_GNOME                    MASTER_SITE_GNU
+MASTER_SITE_LOCAL                    MASTER_SITE_MOZILLA
+MASTER_SITE_OPENOFFICE               MASTER_SITE_OVERRIDE
+MASTER_SITE_PERL_CPAN                MASTER_SITE_SUNSITE
+MASTER_SITE_SUSE                     MASTER_SITE_TEX_CTAN
+MASTER_SITE_XCONTRIB                 MASTER_SITE_XEMACS
+MASTER_SORT                          MASTER_SORT_RANDOM
+MASTER_SORT_REGEX                    MECAB_CHARSET
+MEDIATOMB_GROUP                      MEDIATOMB_USER
+MIPSPROBASE                          MIREDO_GROUP
+MIREDO_USER                          MISSING_FEATURES
+MKDIR                                MLDONKEY_GROUP
+MLDONKEY_HOME                        MLDONKEY_USER
+MONOTONE_GROUP                       MONOTONE_USER
+MOTIFBASE                            MOTIF_TYPE
+MOTIF_TYPE_DEFAULT                   MPI_TYPE
+MSGFMT_STRIP_MSGCTXT                 MSGFMT_STRIP_MSGID_PLURAL
+MTOOLS_ENABLE_FLOPPYD                MUST
+MV                                   MYSQL_CHARSET
+MYSQL_DATADIR                        MYSQL_EXTRA_CHARSET
+MYSQL_GROUP                          MYSQL_PKGSRCDIR
+MYSQL_USER                           MYSQL_VERSIONS_ACCEPTED
+MYSQL_VERSION_DEFAULT                NAGIOSCMD_GROUP
+NAGIOSDIR                            NAGIOS_GROUP
+NAGIOS_USER                          NATIVE_APPEND_ABI
+NATIVE_APPEND_ELF                    NATIVE_EXEC_FMT
+NATIVE_MACHINE_PLATFORM              NATIVE_OBJECT_FMT
+NBPAX_PROGRAM_PREFIX                 NETBSD_LOGIN_NAME
+NMH_EDITOR                           NMH_MTA
+NMH_PAGER                            NOLOGIN
+NONZERO_FILESIZE_P                   NOTE
+NOT_FOR_PLATFORM                     NOT_PAX_ASLR_SAFE
+NOT_PAX_MPROTECT_SAFE                NO_BUILD
+NO_CHECKSUM                          NO_CONFIGURE
+NO_SKIP                              NS_PREFERRED
+NULLMAILER_GROUP                     NULLMAILER_USER
+OASIS                                OASIS_BUILD_ARGS
+OBJHOSTNAME                          OBJMACHINE
+OCAML_FINDLIB_DIRS                   OCAML_FINDLIB_REGISTER
+OCAML_FINDLIB_REGISTER_VERBOSE       OCAML_SITELIBDIR
+OCAML_TOPKG_DOCDIR                   OCAML_USE_DUNE
+OCAML_USE_FINDLIB                    OCAML_USE_JBUILDER
+OCAML_USE_OASIS                      OCAML_USE_OASIS_DYNRUN
+OCAML_USE_OPAM                       OCAML_USE_OPT_COMPILER
+OCAML_USE_TOPKG                      OMF
+ONLY_FOR_COMPILER                    ONLY_FOR_PLATFORM
+OPENSSH_CHROOT                       OPENSSH_GROUP
+OPENSSH_USER                         OPSYS
+OPSYS_EMULDIR                        OSS_TYPE
+OSX                                  OSX_TOLERATE_SDK_SKEW
+OS_HAVE_ALSA                         OS_HAVE_RCD
+OS_VARIANT                           OS_VERSION
+OTF_FONTS_DIR                        OVERRIDE_DIRDEPTH
+OVERRIDE_GEMSPEC                     OVERRIDE_GNU_CONFIG_SCRIPTS
+OVERRIDE_ROCKSPEC                    OWN_DIRS
+OWN_DIRS_PERMS                       P4GROUP
+P4PORT                               P4ROOT
+P4USER                               PACKAGES
+PALMOS_DEFAULT_SDK                   PAMBASE
+PAM_DEFAULT                          PAPERSIZE
+PASSIVE_FETCH                        PATCHDIR
+PATCHFILES                           PATCH_ARGS
+PATCH_DEBUG                          PATCH_DIST_ARGS
+PATCH_DIST_CAT                       PATCH_DIST_STRIP
+PATCH_FUZZ_FACTOR                    PATCH_STRIP
+PATH                                 PCCBASE
+PEAR                                 PEAR_CHANNEL
+PEAR_CHANNEL_ALIAS                   PEAR_CHANNEL_VERSION
+PEAR_CMD                             PEAR_LIB
+PEAR_PACKAGE_XML                     PERL5
+PERL5_CONFIGURE                      PERL5_CONFIGURE_DIRS
+PERL5_LDFLAGS                        PERL5_LICENSE
+PERL5_MODULE_TYPE                    PERL5_PACKLIST
+PERL5_PACKLIST_DIR                   PERL5_PERLBASE
+PERL5_SITEBASE                       PERL5_USE_PACKLIST
+PERL5_VENDORBASE                     PFCTL
+PFVAR_H                              PF_VERSION
+PGGROUP                              PGHOME
+PGPKGSRCDIR                          PGSQL_TYPE
+PGSQL_VERSIONS_ACCEPTED              PGSQL_VERSION_DEFAULT
+PGUSER                               PG_LIB_EXT
+PHP                                  PHPCOMMON_MK
+PHPPKGSRCDIR                         PHP_BASE_VERS
+PHP_CHECK_INSTALLED                  PHP_EXTENSION_DIR
+PHP_INITIAL_TEENY                    PHP_PKG_PREFIX
+PHP_VERSION                          PHP_VERSIONS_ACCEPTED
+PHP_VERSIONS_INCOMPATIBLE            PHP_VERSION_DEFAULT
+PHP_VERSION_REQD                     PILRC_USE_GTK
+PKGCONFIG_BASE                       PKGCONFIG_FILE
+PKGCONFIG_OVERRIDE                   PKGCONFIG_OVERRIDE_STAGE
+PKGDIR                               PKGGNUDIR
+PKGINFODIR                           PKGLOCALEDIR
+PKGMANDIR                            PKGNAME
+PKGNAME_REQD                         PKGPATH
+PKGREVISION                          PKGSRC_BLAS_TYPES
 PKGSRC_CHANGES                       PKGSRC_COMPILER
 PKGSRC_KEEP_BIN_PKGS                 PKGSRC_LOCKTYPE
 PKGSRC_MAKE_ENV                      PKGSRC_MESSAGE_RECIPIENTS
@@ -9038,10 +9085,11 @@ ZSH_STATIC                           __stdc__
 _vargroups                           add
 all                                  alternatives
 aslr                                 asprintf
-autoconf                             automake
-autoreconf                           awk
-bash                                 big-endian
-bin-install                          binpkg-list
+atlas                                autoconf
+automake                             autoreconf
+awk                                  bash
+big-endian                           bin-install
+binpkg-list                          blas
 bootstrap-depends                    broken
 broken_on_platform                   build
 build-env                            buildlink-directories
@@ -9101,55 +9149,57 @@ interp                               interpreter
 intl                                 iso
 kerberos                             krb
 krb5                                 ksh
-latex                                libnbcompat
-libs                                 libtool
-licence                              license
-lintl                                little-endian
-lock                                 locking
-lvalue                               make
-makesum                              memory
-mercurial                            meta
-meta-package                         meta_package
-mit-krb5                             mk.conf
+lapack                               latex
+libnbcompat                          libs
+libtool                              licence
+license                              lintl
+little-endian                        lock
+locking                              lvalue
+make                                 makesum
+memory                               mercurial
+meta                                 meta-package
+meta_package                         mit-krb5
+mk.conf                              mkl
 mount                                mprotect
 mremap                               nb
 nbcompat                             no
 obstack                              obstack_ptr_grow
 occurs                               only
-options                              options.mk
-order                                override
-override-intltool                    override-message-intltool
-package                              parallel
-partial                              path
-pax                                  paxctl
-pbulk-index                          pc
-perl                                 perl5
-perms                                php
-pkg-build-options                    pkg-config
-pkg_build_options                    platform
-plist                                post-extract
-post-fetch                           post-wrapper
-pre-configure                        pre-extract
-pre-fetch                            print-go-deps
-print-plist                          print-summary-data
-privileged-install-hook              pypi
-python                               readme-all
-regcomp                              relro
-rename                               reorder
-replace                              replace_interpreter
-reproducible                         resolv
-root                                 ruby
-setenv                               setgid
-setprogname                          setuid
-sh                                   show
-show-all                             show-build-defs
-show-depends                         show-deps
-show-distfiles                       show-downlevel
-show-subdir-var                      show-tools
-show-var                             show-vars
-snprintf                             ssp
-st_mode                              stage-install
-strip                                strong
+openblas                             options
+options.mk                           order
+override                             override-intltool
+override-message-intltool            package
+parallel                             partial
+path                                 pax
+paxctl                               pbulk-index
+pc                                   perl
+perl5                                perms
+php                                  pkg-build-options
+pkg-config                           pkg_build_options
+platform                             plist
+post-extract                         post-fetch
+post-wrapper                         pre-configure
+pre-extract                          pre-fetch
+print-go-deps                        print-plist
+print-summary-data                   privileged-install-hook
+pypi                                 python
+readme-all                           regcomp
+relro                                rename
+reorder                              replace
+replace_interpreter                  reproducible
+resolv                               root
+ruby                                 setenv
+setgid                               setprogname
+setuid                               sh
+show                                 show-all
+show-build-defs                      show-depends
+show-deps                            show-distfiles
+show-downlevel                       show-subdir-var
+show-tools                           show-var
+show-vars                            snprintf
+ssp                                  st_mode
+stage-install                        strip
+strnlen                              strong
 subst                                subversion
 sun                                  sunpro
 sunwspro                             svn

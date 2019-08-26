@@ -1,10 +1,11 @@
-# $NetBSD: Makefile,v 1.9 2019/05/15 09:37:20 markd Exp $
+# $NetBSD: Makefile,v 1.11 2019/08/13 20:49:23 markd Exp $
 
 DISTNAME=	collection-latexrecommended
-PKGNAME=	texlive-${DISTNAME}-2019
+PKGNAME=	texlive-${DISTNAME}-2019.51533
+PKGREVISION=	1
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
-TEXLIVE_REV=	50559
+TEXLIVE_REV=	51533
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.tug.org/texlive/
@@ -37,6 +38,7 @@ DEPENDS+=	tex-fp-[0-9]*:../../math/tex-fp
 DEPENDS+=	tex-index-[0-9]*:../../print/tex-index
 DEPENDS+=	tex-jknapltx-[0-9]*:../../print/tex-jknapltx
 DEPENDS+=	tex-koma-script-[0-9]*:../../print/tex-koma-script
+DEPENDS+=	tex-l3backend-[0-9]*:../../devel/tex-l3backend
 DEPENDS+=	tex-l3experimental-[0-9]*:../../devel/tex-l3experimental
 DEPENDS+=	tex-l3kernel-[0-9]*:../../devel/tex-l3kernel
 DEPENDS+=	tex-l3packages-[0-9]*:../../devel/tex-l3packages
@@ -55,8 +57,8 @@ DEPENDS+=	tex-ntgclass-[0-9]*:../../print/tex-ntgclass
 DEPENDS+=	tex-parskip-[0-9]*:../../print/tex-parskip
 DEPENDS+=	tex-pdfpages-[0-9]*:../../print/tex-pdfpages
 DEPENDS+=	tex-polyglossia-[0-9]*:../../print/tex-polyglossia
-DEPENDS+=	tex-powerdot-[0-9]*:../../print/tex-powerdot
 DEPENDS+=	tex-psfrag-[0-9]*:../../print/tex-psfrag
+DEPENDS+=	tex-ragged2e-[0-9]*:../../print/tex-ragged2e
 DEPENDS+=	tex-rcs-[0-9]*:../../print/tex-rcs
 DEPENDS+=	tex-sansmath-[0-9]*:../../print/tex-sansmath
 DEPENDS+=	tex-section-[0-9]*:../../print/tex-section

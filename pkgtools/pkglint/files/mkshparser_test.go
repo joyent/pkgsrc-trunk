@@ -19,6 +19,7 @@ func (s *Suite) Test_parseShellProgram__parse_error_for_dollar(c *check.C) {
 				t.CheckEquals(err, expError)
 			} else {
 				t.CheckDeepEquals(err, expError)
+				t.CheckDeepEquals(err.Error(), expError.Error()) // Just for code coverage
 				t.CheckDeepEquals(program, expProgram)
 			}
 
@@ -47,6 +48,12 @@ func (s *Suite) Test_parseShellProgram__parse_error_for_dollar(c *check.C) {
 		"shell$$;",
 		nil,
 		nil,
+		nil...)
+
+	test(
+		"case ;;",
+		nil,
+		&ParseError{[]string{";;"}},
 		nil...)
 }
 
@@ -384,6 +391,29 @@ func (s *ShSuite) Test_ShellParser__case_clause(c *check.C) {
 			b.CaseItem(
 				b.Words("if", "then", "else"),
 				b.List(), sepNone))))
+
+	// This could be regarded an evil preprocessor hack, but it's used
+	// in practice and is somewhat established, even though it is
+	// difficult to parse and understand, even for humans.
+	s.test("case $$expr in ${PATTERNS:@p@ (${p}) action ;; @} (*) ;; esac",
+		b.List().AddCommand(b.Case(
+			b.Token("$$expr"),
+			b.CaseItemVar("${PATTERNS:@p@ (${p}) action ;; @}"),
+			b.CaseItem(
+				b.Words("*"),
+				b.List(), sepNone))))
+
+	// The default case may even be omitted.
+	s.test("case $$expr in ${PATTERNS:@p@ (${p}) action ;; @} esac",
+		b.List().AddCommand(b.Case(
+			b.Token("$$expr"),
+			b.CaseItemVar("${PATTERNS:@p@ (${p}) action ;; @}"))))
+
+	// Only variables that end with a :@ modifier may be used in this
+	// construct. All others are tokenized as normal words and lead
+	// to a syntax error in the shell parser.
+	s.testFail("case $$expr in ${PATTERNS} esac",
+		[]string{}...)
 }
 
 func (s *ShSuite) Test_ShellParser__if_clause(c *check.C) {
@@ -555,11 +585,11 @@ func (s *ShSuite) test(program string, expected *MkShList) {
 		error:          ""}
 	parser := shyyParserImpl{}
 
-	succeeded := parser.Parse(&lexer)
+	zeroMeansSuccess := parser.Parse(&lexer)
 
 	c := s.c
 
-	if t.CheckEquals(succeeded, 0) && t.CheckEquals(lexer.error, "") {
+	if t.CheckEquals(zeroMeansSuccess, 0) && t.CheckEquals(lexer.error, "") {
 		if !t.CheckDeepEquals(lexer.result, expected) {
 			actualJSON, actualErr := json.MarshalIndent(lexer.result, "", "  ")
 			expectedJSON, expectedErr := json.MarshalIndent(expected, "", "  ")
@@ -569,6 +599,21 @@ func (s *ShSuite) test(program string, expected *MkShList) {
 		}
 	} else {
 		t.CheckDeepEquals(lexer.remaining, []string{})
+	}
+}
+
+func (s *ShSuite) testFail(program string, expectedRemaining ...string) {
+	t := s.t
+
+	tokens, rest := splitIntoShellTokens(dummyLine, program)
+	t.CheckEquals(rest, "")
+	lexer := ShellLexer{remaining: tokens, atCommandStart: true}
+	parser := shyyParserImpl{}
+
+	zeroMeansSuccess := parser.Parse(&lexer)
+
+	if t.CheckEquals(zeroMeansSuccess, 1) && t.Check(lexer.error, check.Not(check.Equals), "") {
+		t.CheckDeepEquals(lexer.remaining, expectedRemaining)
 	}
 }
 
@@ -664,6 +709,44 @@ func (s *ShSuite) Test_ShellLexer_Lex__keywords(c *check.C) {
 		"if cond ; then : ; fi")
 }
 
+func (s *Suite) Test_ShellLexer_Lex__case_patterns(c *check.C) {
+	t := s.Init(c)
+
+	test := func(shellProgram string, expectedTokens ...int) {
+		tokens, rest := splitIntoShellTokens(nil, shellProgram)
+		lexer := NewShellLexer(tokens, rest)
+
+		var actualTokens []int
+		for {
+			var token shyySymType
+			tokenType := lexer.Lex(&token)
+			if tokenType <= 0 {
+				break
+			}
+			actualTokens = append(actualTokens, tokenType)
+		}
+		t.CheckDeepEquals(actualTokens, expectedTokens)
+	}
+
+	test(
+		"case $$expr in ${PATTERNS:@p@(${p}) action ;; @} esac",
+
+		tkCASE,
+		tkWORD,
+		tkIN,
+		tkWORD,
+		tkESAC)
+
+	test(
+		"case $$expr in ${PATTERNS:Mpattern} esac",
+
+		tkCASE,
+		tkWORD,
+		tkIN,
+		tkWORD,
+		tkWORD) // No tkESAC since there is no :@ modifier.
+}
+
 type MkShBuilder struct {
 }
 
@@ -728,7 +811,11 @@ func (b *MkShBuilder) Case(selector *ShToken, items ...*MkShCaseItem) *MkShComma
 }
 
 func (b *MkShBuilder) CaseItem(patterns []*ShToken, action *MkShList, separator MkShSeparator) *MkShCaseItem {
-	return &MkShCaseItem{patterns, action, separator}
+	return &MkShCaseItem{patterns, action, separator, nil}
+}
+
+func (b *MkShBuilder) CaseItemVar(varUseText string) *MkShCaseItem {
+	return &MkShCaseItem{nil, nil, sepNone, b.Token(varUseText)}
 }
 
 func (b *MkShBuilder) While(cond, action *MkShList, redirects ...*MkShRedirection) *MkShCommand {

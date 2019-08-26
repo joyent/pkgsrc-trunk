@@ -1,5 +1,6 @@
-# $NetBSD: xorg.libdrm,v 1.14 2019/05/10 16:25:14 leot Exp $
+# $NetBSD: xorg.libdrm,v 1.17 2019/08/21 11:51:46 nia Exp $
 #
+include/X11/libsync.h
 include/X11/xf86drm.h
 include/X11/xf86mm.h
 include/libdrm/amdgpu.h
@@ -39,6 +40,7 @@ include/libdrm/sis_drm.h
 include/libdrm/via_drm.h
 include/libdrm/virtgpu_drm.h
 include/libkms/libkms.h
+include/libsync.h
 include/xf86drm.h
 include/xf86drmMode.h
 lib/libdrm.a
@@ -56,6 +58,10 @@ lib/libdrm.so.4.1
 lib/libdrm.so.5.0
 lib/libdrm.so.6.0
 lib/libdrm.so.7.0
+lib/libdrm_amdgpu.a
+lib/libdrm_amdgpu.so
+lib/libdrm_amdgpu.so.1
+lib/libdrm_amdgpu.so.1.0
 lib/libdrm_intel.a
 lib/libdrm_intel.so
 lib/libdrm_intel.so.0
@@ -67,6 +73,10 @@ lib/libdrm_intel.so.3.1
 lib/libdrm_intel.so.3.2
 lib/libdrm_intel.so.3.3
 lib/libdrm_intel.so.5.0
+lib/libdrm_nouveau.a
+lib/libdrm_nouveau.so
+lib/libdrm_nouveau.so.3
+lib/libdrm_nouveau.so.3.0
 lib/libdrm_radeon.a
 lib/libdrm_radeon.so
 lib/libdrm_radeon.so.0
@@ -75,5 +85,7 @@ lib/libdrm_radeon.so.1.0
 lib/libdrm_radeon.so.3.0
 lib/libdrm_radeon.so.4.0
 lib/pkgconfig/libdrm.pc
+lib/pkgconfig/libdrm_amdgpu.pc
 lib/pkgconfig/libdrm_intel.pc
+lib/pkgconfig/libdrm_nouveau.pc
 lib/pkgconfig/libdrm_radeon.pc

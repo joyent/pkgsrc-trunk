@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.83 2019/06/04 13:55:43 nia Exp $
+# $NetBSD: Makefile,v 1.86 2019/08/18 17:57:55 nia Exp $
 
 DISTNAME=	mpv-0.29.1
-PKGREVISION=	8
+PKGREVISION=	10
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_GITHUB:=mpv-player/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -24,6 +24,7 @@ WAF_CONFIGURE_ARGS+=	--bindir=${PREFIX}/bin
 WAF_CONFIGURE_ARGS+=	--enable-dvdnav
 WAF_CONFIGURE_ARGS+=	--enable-dvdread
 WAF_CONFIGURE_ARGS+=	--disable-egl-x11
+WAF_CONFIGURE_ARGS+=	--disable-swift
 
 PYTHON_FOR_BUILD_ONLY=	yes
 
@@ -51,18 +52,7 @@ post-install:
 
 .include "options.mk"
 
-.include "../../mk/bsd.prefs.mk"
-.if ${OPSYS} != "Darwin"
-.include "../../graphics/MesaLib/buildlink3.mk"
-.include "../../x11/libdrm/buildlink3.mk"
-.include "../../x11/libXinerama/buildlink3.mk"
-.include "../../x11/libXrandr/buildlink3.mk"
-.include "../../x11/libXScrnSaver/buildlink3.mk"
-.include "../../x11/libXv/buildlink3.mk"
-.include "../../x11/libXxf86vm/buildlink3.mk"
 .include "../../mk/oss.buildlink3.mk"
-.endif
-
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/waf/waf.mk"
 .include "../../devel/zlib/buildlink3.mk"

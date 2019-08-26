@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.52 2019/07/08 22:15:46 sevan Exp $
+# $NetBSD: Makefile,v 1.54 2019/08/22 10:32:16 wiz Exp $
 
-DISTNAME=	libuv-1.30.1
+DISTNAME=	libuv-1.31.0
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=libuv/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -14,6 +14,9 @@ USE_LIBTOOL=	yes
 USE_TOOLS+=	autoconf automake pkg-config
 USE_FEATURES+=	strnlen
 GNU_CONFIGURE=	yes
+# 3 test failures as of 1.31.0
+# https://github.com/libuv/libuv/issues/2437
+# connect_unspecified, tcp_open, udp_open
 TEST_TARGET=	check
 
 INSTALLATION_DIRS+=	include/uv

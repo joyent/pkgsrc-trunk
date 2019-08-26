@@ -1,4 +1,4 @@
-# $NetBSD: xorg.mk,v 1.34 2019/07/20 21:09:48 wiz Exp $
+# $NetBSD: xorg.mk,v 1.36 2019/08/23 15:18:39 rjs Exp $
 #
 # This is for X.org, but use "xfree" files also.
 
@@ -31,6 +31,7 @@ FILES_LIST=	${FILESDIR}/xorg
 .include "../../x11/libXext/buildlink3.mk"
 .include "../../x11/libXfixes/buildlink3.mk"
 .include "../../x11/libXfont/buildlink3.mk"
+.include "../../x11/libXfont2/buildlink3.mk"
 .include "../../x11/libXft/buildlink3.mk"
 .include "../../x11/libXinerama/buildlink3.mk"
 .include "../../x11/libXmu/buildlink3.mk"
@@ -44,6 +45,7 @@ FILES_LIST=	${FILESDIR}/xorg
 .include "../../x11/libXv/buildlink3.mk"
 .include "../../x11/libdrm/buildlink3.mk"
 .include "../../x11/libxcb/buildlink3.mk"
+.include "../../x11/libxshmfence/buildlink3.mk"
 .include "../../x11/pixman/buildlink3.mk"
 .include "../../x11/xbitmaps/buildlink3.mk"
 .include "../../x11/xcb-proto/buildlink3.mk"

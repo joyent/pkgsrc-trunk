@@ -1,16 +1,16 @@
-# $NetBSD: Makefile,v 1.60 2018/10/17 18:03:48 jperkin Exp $
+# $NetBSD: Makefile,v 1.62 2019/08/22 09:57:08 nia Exp $
 
 DISTNAME=	MesaGLUT-7.9.2
 # we have the autoconf patches from git, so call it 8.0.1.
 PKGNAME=	glut-8.0.1
 PKGREVISION=	2
 CATEGORIES=	graphics
-MASTER_SITES=	ftp://ftp.freedesktop.org/pub/mesa/glut/
+MASTER_SITES=	https://mesa.freedesktop.org/archive/glut/
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://cgit.freedesktop.org/mesa/glut/
-COMMENT=	GLUT Graphics library similar to SGI's OpenGL
+COMMENT=	OpenGL Utility Toolkit
 #LICENSE=	# TODO: (see mk/license.mk)
 
 WRKSRC=		${WRKDIR}/Mesa-7.9.2

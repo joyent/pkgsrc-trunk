@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.50 2019/07/21 22:24:12 wiz Exp $
+# $NetBSD: Makefile,v 1.55 2019/08/25 11:54:34 leot Exp $
 
-DISTNAME=	libnotify-0.7.7
-PKGREVISION=	6
+DISTNAME=	libnotify-0.7.8
+PKGREVISION=	1
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/libnotify/0.7/}
 EXTRACT_SUFX=	.tar.xz
@@ -14,11 +14,11 @@ LICENSE=	gnu-lgpl-v2.1
 CONFLICTS+=	libnotify07-[0-9]*
 SUPERSEDES+=	libnotify07-[0-9]*
 
-USE_LIBTOOL=		yes
 USE_TOOLS+=		gmake pkg-config
-GNU_CONFIGURE=		yes
 
-PKGCONFIG_OVERRIDE=	libnotify.pc.in
+PKGCONFIG_OVERRIDE=	output/meson-private/libnotify.pc
+PKGCONFIG_OVERRIDE_STAGE=pre-install
+MAKE_ENV+=		LD_LIBRARY_PATH=${WRKSRC}/output/${PKGBASE}
 
 .include "options.mk"
 
@@ -27,4 +27,5 @@ BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.26.0
 .include "../../devel/glib2/buildlink3.mk"
 BUILDLINK_DEPMETHOD.gtk3=	build
 .include "../../x11/gtk3/buildlink3.mk"
+.include "../../devel/py-meson/build.mk"
 .include "../../mk/bsd.pkg.mk"

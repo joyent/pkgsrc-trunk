@@ -1,5 +1,7 @@
 package pkglint
 
+import "path"
+
 func CheckLinesOptionsMk(mklines *MkLines) {
 	ck := OptionsLinesChecker{
 		mklines,
@@ -68,7 +70,7 @@ func (ck *OptionsLinesChecker) lookingAtPkgOptionsVar(mlex *MkLinesLexer) bool {
 	return false
 }
 
-// checkLineUpper checks a line from the upper part of an options.mk file,
+// handleUpperLine checks a line from the upper part of an options.mk file,
 // before bsd.options.mk is included.
 func (ck *OptionsLinesChecker) handleUpperLine(mkline *MkLine) bool {
 	switch {
@@ -125,13 +127,27 @@ func (ck *OptionsLinesChecker) handleLowerLine(mkline *MkLine) {
 func (ck *OptionsLinesChecker) handleLowerCondition(mkline *MkLine, cond *MkCond) {
 
 	recordUsedOption := func(varuse *MkVarUse) {
-		if varuse.varname == "PKG_OPTIONS" && len(varuse.modifiers) == 1 {
-			if m, positive, pattern := varuse.modifiers[0].MatchMatch(); m && positive {
-				option := pattern
-				if !containsVarRef(option) {
-					ck.handledOptions[option] = mkline
-					ck.optionsInDeclarationOrder = append(ck.optionsInDeclarationOrder, option)
-				}
+		if varuse.varname != "PKG_OPTIONS" || len(varuse.modifiers) != 1 {
+			return
+		}
+
+		m, positive, pattern, exact := varuse.modifiers[0].MatchMatch()
+		if !m || !positive || containsVarRef(pattern) {
+			return
+		}
+
+		if exact {
+			option := pattern
+			ck.handledOptions[option] = mkline
+			ck.optionsInDeclarationOrder = append(ck.optionsInDeclarationOrder, option)
+			return
+		}
+
+		for declaredOption := range ck.declaredOptions {
+			matched, err := path.Match(pattern, declaredOption)
+			if err == nil && matched {
+				ck.handledOptions[declaredOption] = mkline
+				ck.optionsInDeclarationOrder = append(ck.optionsInDeclarationOrder, declaredOption)
 			}
 		}
 	}
@@ -153,7 +169,7 @@ func (ck *OptionsLinesChecker) handleLowerCondition(mkline *MkLine, cond *MkCond
 			"and write the condition like this, which has the same effect",
 			"as the !empty(...).",
 			"",
-			"\t.if ${PKG_OPTIONS.packagename:Moption}")
+			"\t.if ${PKG_OPTIONS:Moption}")
 	}
 }
 

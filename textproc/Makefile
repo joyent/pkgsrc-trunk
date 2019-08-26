@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1041 2019/07/31 13:55:04 brook Exp $
+# $NetBSD: Makefile,v 1.1045 2019/08/09 18:32:48 brook Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -11,7 +11,10 @@ SUBDIR+=	GutenMark-words
 SUBDIR+=	LDoc
 SUBDIR+=	Markdown
 SUBDIR+=	OdfConverter
+SUBDIR+=	R-brew
 SUBDIR+=	R-cellranger
+SUBDIR+=	R-clisymbols
+SUBDIR+=	R-commonmark
 SUBDIR+=	R-data.table
 SUBDIR+=	R-formatR
 SUBDIR+=	R-gsubfn
@@ -28,6 +31,7 @@ SUBDIR+=	R-readxl
 SUBDIR+=	R-stringi
 SUBDIR+=	R-stringr
 SUBDIR+=	R-utf8
+SUBDIR+=	R-xml2
 SUBDIR+=	R-yaml
 SUBDIR+=	WordNet
 SUBDIR+=	aha

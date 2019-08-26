@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.705 2019/07/02 12:02:51 adam Exp $
+# $NetBSD: Makefile,v 1.711 2019/08/23 23:00:50 ng0 Exp $
 #
 
 COMMENT=	Security tools
@@ -12,7 +12,9 @@ SUBDIR+=	HElib
 SUBDIR+=	KeePass
 SUBDIR+=	PACK
 SUBDIR+=	PortableSigner
+SUBDIR+=	R-askpass
 SUBDIR+=	R-digest
+SUBDIR+=	R-openssl
 SUBDIR+=	TweetNaCl
 SUBDIR+=	acmesh
 SUBDIR+=	aide
@@ -68,6 +70,7 @@ SUBDIR+=	destroy
 SUBDIR+=	dhbitty
 SUBDIR+=	dirb
 SUBDIR+=	dnssec-tools
+SUBDIR+=	doas
 SUBDIR+=	dropbear
 SUBDIR+=	dsniff
 SUBDIR+=	dsniff-nox11
@@ -148,6 +151,7 @@ SUBDIR+=	libb2
 SUBDIR+=	libbf
 SUBDIR+=	libcrack
 SUBDIR+=	libcurvecpr
+SUBDIR+=	libdecaf
 SUBDIR+=	libdes
 SUBDIR+=	libfprint
 SUBDIR+=	libfwbuilder
@@ -200,6 +204,7 @@ SUBDIR+=	md4-collision
 SUBDIR+=	md5-collision
 SUBDIR+=	merkletree
 SUBDIR+=	mhash
+SUBDIR+=	minisign
 SUBDIR+=	mirrordir
 SUBDIR+=	mit-krb5
 SUBDIR+=	mit-krb5-appl
@@ -598,6 +603,7 @@ SUBDIR+=	tripwire
 SUBDIR+=	validns
 SUBDIR+=	vault
 SUBDIR+=	volatility
+SUBDIR+=	xca
 SUBDIR+=	xml-security-c
 SUBDIR+=	xmlsec1
 SUBDIR+=	yafic

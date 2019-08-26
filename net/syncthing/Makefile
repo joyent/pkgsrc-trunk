@@ -1,21 +1,25 @@
-# $NetBSD: Makefile,v 1.92 2019/07/14 20:48:39 triaxx Exp $
+# $NetBSD: Makefile,v 1.95 2019/08/14 15:45:44 bsiegert Exp $
 
-# Upstream used to frequently break protocol compatibility.  While
-# users of pkgsrc syncthing on multiple systems can update
-# synchronously, an important use case is interoperating with
-# syncthing-android.
-# Therefore, pkgsrc will update to a new major version (e.g. 0.14.x vs
-# 1.0.x) when a corresponding syncthing-android version becomes
-# available in the f-droid.org repository:
-# https://f-droid.org/repository/browse/?fdid=com.nutomic.syncthingandroid
-# Updates to new major versions must be tested against the android
-# version from f-droid prior to commiting.  (This is an attempt to
-# avoid having to version syncthing in pkgsrc.)
+# Upstream used to frequently break protocol compatibility, but since
+# 2018 or so this has been much better.  While users of pkgsrc
+# syncthing on multiple systems can update synchronously, an important
+# use case is interoperating with syncthing-android.
+#
+# Therefore, pkgsrc will update to a new syncthing version
+# (e.g. 0.14.x vs 1.0.x) if either there is no protocol break, or when
+# a corresponding syncthing-android version becomes available in the
+# f-droid.org repository:
+#   https://f-droid.org/repository/browse/?fdid=com.nutomic.syncthingandroid
+# Updates that could possibly break protocol compatibility with the
+# current syncthing-android in f-droid must be tested against the
+# android version from f-droid prior to commiting.  (This is an
+# attempt to avoid having to version syncthing in pkgsrc.)
 # Note that the android versioning is disconnected from syncthing versioning;
 # see https://github.com/syncthing/syncthing-android/issues/652 for
 # a fuller explanation.
 DISTNAME=	syncthing-source-v1.2.0
 PKGNAME=	${DISTNAME:S,source-v,,}
+PKGREVISION=	2
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=syncthing/}
 GITHUB_RELEASE=	v${PKGVERSION_NOREV}
@@ -73,7 +77,7 @@ FILES_SUBST+=		SYNCTHING_GROUP=${SYNCTHING_GROUP}
 RCD_SCRIPTS+=		syncthing
 
 do-build:
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${GO} run build.go build syncthing
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${GO} run build.go -no-upgrade build syncthing
 
 # Binaries other than syncthing proper should perhaps be installed.
 do-install:

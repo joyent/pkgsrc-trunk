@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.16 2019/07/10 12:59:54 schmonz Exp $
+# $NetBSD: Makefile,v 1.18 2019/08/19 22:05:39 schmonz Exp $
 
-DISTNAME=		ucspi-tcp6-1.10.6
-PKGREVISION=		2
+DISTNAME=		ucspi-tcp6-1.10.7
+PKGREVISION=		1
 CATEGORIES=		net
 MASTER_SITES=		https://www.fehcom.de/ipnet/ucspi-tcp6/
 EXTRACT_SUFX=		.tgz
@@ -19,6 +19,8 @@ DJB_RESTRICTED=		no
 DJB_CONFIG_DIR=		${WRKSRC}
 
 INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1 ${PKGMANDIR}/man5
+
+MAKE_JOBS_SAFE=		no
 
 post-configure:
 	${RUN}cd ${DJB_CONFIG_DIR};		\

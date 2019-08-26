@@ -1,4 +1,4 @@
-# $NetBSD: license.mk,v 1.99 2019/07/02 09:28:12 jaapb Exp $
+# $NetBSD: license.mk,v 1.101 2019/08/14 18:12:00 brook Exp $
 #
 # This file handles everything about the LICENSE variable. It is
 # included automatically by bsd.pkg.mk.
@@ -143,6 +143,7 @@ DEFAULT_ACCEPTABLE_LICENSES= \
 	mit \
 	mpl-1.0 mpl-1.1 mpl-2.0 \
 	mplusfont \
+	ms-pl \
 	ofl-v1.0 ofl-v1.1 \
 	openssl \
 	original-bsd modified-bsd 2-clause-bsd \
@@ -169,6 +170,8 @@ DEFAULT_ACCEPTABLE_LICENSES= \
 # The following licenses meet the DFSG (but are not formally approved
 # by FSF/OSI) as evidenced by inclusion in Debian main.
 #
+# used in https://sources.debian.org/copyright/license/python-biopython/
+DEFAULT_ACCEPTABLE_LICENSES+=	biopython
 # \todo reference to package
 DEFAULT_ACCEPTABLE_LICENSES+=	happy
 # used in https://sources.debian.org/copyright/license/lsof/

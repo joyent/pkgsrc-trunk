@@ -11,12 +11,12 @@ func parseShellProgram(line *Line, program string) (*MkShList, error) {
 	lexer := NewShellLexer(tokens, rest)
 	parser := shyyParserImpl{}
 
-	succeeded := parser.Parse(lexer)
+	zeroMeansSuccess := parser.Parse(lexer)
 
 	switch {
-	case succeeded == 0 && lexer.error == "":
+	case zeroMeansSuccess == 0 && lexer.error == "":
 		return lexer.result, nil
-	case succeeded == 0:
+	case zeroMeansSuccess == 0:
 		return nil, fmt.Errorf("splitIntoShellTokens couldn't parse %q", rest)
 	default:
 		return nil, &ParseError{append([]string{lexer.current}, lexer.remaining...)}
@@ -243,6 +243,21 @@ func (lex *ShellLexer) Lex(lval *shyySymType) (ttype int) {
 		p := NewShTokenizer(dummyLine, token, false) // Just for converting the string to a ShToken
 		lval.Word = p.ShToken()
 		lex.atCommandStart = false
+
+		// Inside of a case statement, ${PATTERNS:@p@ (${p}) action ;; @} expands to
+		// a list of case-items, and after this list a new command starts.
+		// This is necessary to return a following "esac" as tkESAC instead of a
+		// simple word.
+		if lex.sinceCase >= 0 && len(lval.Word.Atoms) == 1 {
+			if varUse := lval.Word.Atoms[0].VarUse(); varUse != nil {
+				if len(varUse.modifiers) > 0 {
+					lastModifier := varUse.modifiers[len(varUse.modifiers)-1].Text
+					if hasPrefix(lastModifier, "@") {
+						lex.atCommandStart = true
+					}
+				}
+			}
+		}
 	}
 
 	return ttype

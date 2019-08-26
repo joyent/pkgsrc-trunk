@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.29 2019/04/25 19:43:17 adam Exp $
+# $NetBSD: Makefile,v 1.31 2019/08/11 13:25:17 wiz Exp $
 
 DISTNAME=	qtwebchannel-everywhere-src-${QTVERSION}
 PKGNAME=	qt5-qtwebchannel-${QTVERSION}
+PKGREVISION=	1
 COMMENT=	Qt5 WebChannel module
 
 MAKE_ENV+=		QTDIR=${QTDIR}
@@ -13,7 +14,7 @@ INSTALLATION_DIRS+=	lib/pkgconfig
 post-install:
 .for i in Qt5WebChannel.pc
 	cd ${DESTDIR}${PREFIX}/lib/pkgconfig && \
-		ln -f -s ${QTPREFIX}/lib/pkgconfig/${i} ${i}
+	${LN} -f -s ${QTPREFIX}/lib/pkgconfig/${i} ${i}
 .endfor
 
 .include "../../x11/qt5-qtdeclarative/buildlink3.mk"

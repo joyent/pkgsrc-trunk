@@ -1,0 +1,6 @@
+$NetBSD: distinfo,v 1.2 2019/08/13 16:44:27 gdt Exp $
+
+SHA1 (esptool-2.7.tar.gz) = b51f204ca71572690967e72e4facf6bb8f1ed84d
+RMD160 (esptool-2.7.tar.gz) = cca1c283774211cc1a85f415966b87a785b6e774
+SHA512 (esptool-2.7.tar.gz) = 50f3315de4c5334c586cef14f1be1b2fa7086b89db64f7379ef29d9afa70d98117c98b318c567465dade298f9df9be4947a39133ade749dca7463347fa578db6
+Size (esptool-2.7.tar.gz) = 83472 bytes

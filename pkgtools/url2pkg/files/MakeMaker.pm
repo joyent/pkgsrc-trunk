@@ -34,6 +34,8 @@
 
 package ExtUtils::MakeMaker;
 
+require 5.013002;
+
 use strict;
 use warnings;
 
@@ -50,7 +52,7 @@ our $VERSION = '6.66';
 
 our $Verbose	= 0;	# exported
 our @EXPORT	= qw(&WriteMakefile &prompt $Verbose $version);
-our @EXPORT_OK	= qw(&neatvalue);
+our @EXPORT_OK	= qw(&neatvalue &_sprintf562);
 
 # Finds and returns the category a given package lies in.
 # If the package does not exist, C<undef> is returned.
@@ -64,12 +66,30 @@ sub find_category($) {
 	foreach my $cat (readdir(D)) {
 		next if ($cat =~ qr"^\.");
 
-		if (-d (conf_pkgsrcdir."/${cat}/${pkg}")) {
+		if (-f (conf_pkgsrcdir."/${cat}/${pkg}/Makefile")) {
 			$retval = $cat;
 		}
 	}
-	closedir(D);
+	closedir(D) or die;
 	return $retval;
+}
+
+sub writeDependency($$) {
+	my ($dep, $ver) = @_;
+
+	my $pkgbase = "p5-" . ($dep =~ s/::/-/gr);
+	my $category = find_category($pkgbase);
+
+	if (defined($category)) {
+		printf("DEPENDS\t%s>=%s:../../%s/%s\n", $pkgbase, $ver, $category, $pkgbase);
+		return;
+	}
+
+	# If the package does not exist but the Perl module can be
+	# loaded, assume that no extra dependency is needed.
+	return if eval("use $dep $ver; 1;");
+
+	die("$0: ERROR: No pkgsrc package found for dependency ${dep}>=${ver}.\n$@\n");
 }
 
 sub WriteMakefile(%) {
@@ -77,25 +97,8 @@ sub WriteMakefile(%) {
 
 	if (exists($options{"PREREQ_PM"})) {
 		my $deps = $options{"PREREQ_PM"};
-
 		foreach my $dep (sort(keys(%{$deps}))) {
-			my ($ver, $pkgbase, $category);
-
-			$ver = $deps->{$dep};
-			($pkgbase = "p5-${dep}") =~ s/::/-/g;
-			$category = find_category($pkgbase);
-
-			if (defined($category)) {
-				printf("%s>=%s:../../%s/%s\n", $pkgbase, $ver, $category, $pkgbase);
-
-			} else {
-				# If the package does not exist but the
-				# Perl module can be loaded, assume that
-				# no extra dependency is needed. Otherwise fail.
-				if (!eval(sprintf("use %s %s; 1;", $dep, $ver))) {
-					die("$0: ERROR: No pkgsrc package found for dependency ${dep}>=${ver}.\n$@\n");
-				}
-			}
+			writeDependency($dep, $deps->{$dep});
 		}
 	}
 }
@@ -108,6 +111,10 @@ sub prompt(@) {
 
 sub neatvalue {
 	return;
+}
+
+sub _sprintf562 {
+	return sprintf(@_);
 }
 
 1;

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.16 2019/07/20 22:46:57 wiz Exp $
+# $NetBSD: Makefile,v 1.18 2019/08/22 12:23:55 ryoon Exp $
 
 DISTNAME=	trafficserver-7.1.2
-PKGREVISION=	7
+PKGREVISION=	9
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_APACHE:=trafficserver/}
 EXTRACT_SUFX=	.tar.bz2

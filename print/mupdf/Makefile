@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.69 2019/07/06 11:27:48 leot Exp $
+# $NetBSD: Makefile,v 1.72 2019/08/22 12:23:43 ryoon Exp $
 
-DISTNAME=	mupdf-1.15.0-source
+DISTNAME=	mupdf-1.16.1-source
 PKGNAME=	${DISTNAME:S/-source//}
 PKGREVISION=	1
 CATEGORIES=	print
@@ -25,7 +25,6 @@ MAKE_FLAGS+=		build=release
 MAKE_ENV+=		HAVE_LIBCRYPTO=no	# Needs openssl-1.1.0
 MAKE_ENV+=		USE_SYSTEM_LIBS=yes
 
-CFLAGS+=	-DJBIG_NO_MEMENTO
 CFLAGS.SunOS+=	-D_XOPEN_SOURCE=600
 
 .include "options.mk"
@@ -35,6 +34,7 @@ CFLAGS.SunOS+=	-D_XOPEN_SOURCE=600
 # default Javascript interpreter for mupdf).
 post-extract:
 	${RM} -fr \
+	    ${WRKSRC}/thirdparty/curl \
 	    ${WRKSRC}/thirdparty/freeglut \
 	    ${WRKSRC}/thirdparty/freetype \
 	    ${WRKSRC}/thirdparty/harfbuzz \

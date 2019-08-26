@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.1 2019/05/15 08:39:05 markd Exp $
+$NetBSD: distinfo,v 1.3 2019/08/11 11:05:45 markd Exp $
 
-SHA1 (tex-tlshell-50776/tlshell.tar.xz) = 700d5815a9e9eae6dd3909885de8770247a1df3a
-RMD160 (tex-tlshell-50776/tlshell.tar.xz) = 8ccbb7776ba099ead22e343ee1a8f89f95134887
-SHA512 (tex-tlshell-50776/tlshell.tar.xz) = b60df04fd42a09a6293c059432ea1a305e6dea0c86a53f46336e238e7a8db8642f323661bfa69890c7ea5889ddc044a034889ec658c19bfcf7a6ec5787b4d1a5
-Size (tex-tlshell-50776/tlshell.tar.xz) = 18584 bytes
+SHA1 (tex-tlshell-51677/tlshell.tar.xz) = 41d127c479c3be24603db2804b3c8fc8faf5248d
+RMD160 (tex-tlshell-51677/tlshell.tar.xz) = 62590554f373f1a352f23999441590f98b7f0ce0
+SHA512 (tex-tlshell-51677/tlshell.tar.xz) = d89ba92ca6f6766601d98d48b0de754bb377df9a38e51a08d6784f70bdc31996f1147c49baca94a2790c75b29d2318f8c1f577a1bdca4a551081fc7f67525e2b
+Size (tex-tlshell-51677/tlshell.tar.xz) = 25104 bytes

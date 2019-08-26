@@ -1,14 +1,11 @@
-# $NetBSD: Makefile,v 1.3 2019/07/31 14:56:44 brook Exp $
-
-CATEGORIES=	devel R
-GITHUB_PROJECT=	${R_PKGNAME}
-
-MAINTAINER=	minskim@NetBSD.org
-HOMEPAGE=	https://irkernel.github.io/
-COMMENT=	Native R kernel for the Jupyter notebook
+# $NetBSD: Makefile,v 1.5 2019/08/08 19:53:37 brook Exp $
 
 R_PKGNAME=	IRkernel
 R_PKGVER=	1.0.2
+CATEGORIES=	devel
+
+MAINTAINER=	minskim@NetBSD.org
+COMMENT=	Native R kernel for the Jupyter notebook
 
 DEPENDS+=	R-IRdisplay>=0.3.0.9999:../../devel/R-IRdisplay
 DEPENDS+=	R-crayon>=1.3.4:../../devel/R-crayon

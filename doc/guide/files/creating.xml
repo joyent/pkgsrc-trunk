@@ -1,4 +1,4 @@
-<!-- $NetBSD: creating.xml,v 1.28 2019/05/20 18:14:24 leot Exp $ -->
+<!-- $NetBSD: creating.xml,v 1.31 2019/08/25 17:11:00 brook Exp $ -->
 
 <chapter id="creating">
 <title>Creating a new pkgsrc package from scratch</title>
@@ -193,6 +193,74 @@ PYTHON_VERSIONED_DEPENDENCIES=dialog
 </programlisting>
 Look inside <filename>versioned_dependencies.mk</filename> for a list
 of supported packages.</para>
+</sect2>
+
+<sect2 id="creating.R-package">
+<title>R packages</title>
+
+<para>Simple R packages from <ulink
+url="https://cran.r-project.org/web/packages/available_packages_by_name.html">CRAN</ulink>
+are handled automatically by <command>R2pkg</command>, which is
+available in <filename role="pkg">pkgtools/R2pkg</filename>.
+Individual packages (and optionally their dependencies) may be created
+and updated.  R packages generally follow the same form, and most of
+the relevant information needed is contained in a
+<filename>DESCRIPTION</filename> file as part of each R package on
+<ulink
+url="https://cran.r-project.org/web/packages/available_packages_by_name.html">CRAN</ulink>.
+Consequently, <command>R2pkg</command> downloads that information and
+creates or updates a package in the canonical form.  The resulting
+package should be reviewed for correctness.</para>
+
+</sect2>
+
+<sect2 id="creating.TeX-package">
+<title>TeXlive packages</title>
+
+<para>TeXlive packages from <ulink
+url="https://www.ctan.org/">CTAN</ulink> are handled automatically by
+<command>texlive2pkg</command>, which is available in <filename
+role="pkg">pkgtools/texlive2pkg</filename>.</para>
+
+<para>If the TeXlive package name is not known, it may be useful to
+search <ulink url="https://www.ctan.org/">CTAN</ulink>.  A
+<quote>Contained in</quote> field on the package page typically
+identifies the basename of the package file in the <ulink
+url="https://www.ctan.org/tex-archive/systems/texlive/tlnet/archive">TeXlive
+archive</ulink>.</para>
+
+<para>If the TeXlive package name is known, download the files from
+the <ulink
+url="https://www.ctan.org/tex-archive/systems/texlive/tlnet/archive">TeXlive
+archive</ulink>.  For package <filename>foo</filename>, you will need
+to download <filename>foo.tar.xz</filename>.  Most TeXlive packages
+also have associated documentation packages, so download
+<filename>foo.doc.tar.xz</filename> at the same time.  These files
+should be placed in the appropriate category directory, which is often
+but not always <filename>print</filename>.  Then run the following
+command in the category directory.</para>
+
+<programlisting>
+texlive2pkg foo.tar.xz foo.doc.tar.xz
+</programlisting>
+
+<para>This will create two packages, <filename>tex-foo</filename> and
+<filename>tex-foo-doc</filename>.  Be sure to check that both packages
+are correct.</para>
+
+<para>Finally, <ulink url="https://www.ctan.org/">CTAN</ulink>
+currently does not include version information in package filenames
+and changes their contents periodically when updates occur.
+Consequently, pkgsrc avoids downloading distfiles directly from <ulink
+url="https://www.ctan.org/">CTAN</ulink> and instead relies on the
+pkgsrc archives.  For each new or updated TeXlive package, e.g., the
+main one and the corresponding documentation, upload the distfiles
+with the following command in each package directory.</para>
+
+<programlisting>
+make upload-distfiles
+</programlisting>
+
 </sect2>
 
 </sect1>

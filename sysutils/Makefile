@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.822 2019/07/31 13:40:17 brook Exp $
+# $NetBSD: Makefile,v 1.829 2019/08/15 08:45:07 fcambus Exp $
 #
 
 COMMENT=	System utilities
@@ -6,7 +6,12 @@ COMMENT=	System utilities
 SUBDIR+=	855resolution
 SUBDIR+=	915resolution
 SUBDIR+=	9base
+SUBDIR+=	R-later
+SUBDIR+=	R-processx
 SUBDIR+=	R-progress
+SUBDIR+=	R-ps
+SUBDIR+=	R-sys
+SUBDIR+=	R-xopen
 SUBDIR+=	WCMCommander
 SUBDIR+=	accountsservice
 SUBDIR+=	acpica-utils
@@ -47,6 +52,7 @@ SUBDIR+=	bbsload
 SUBDIR+=	bchunk
 SUBDIR+=	bcmfw
 SUBDIR+=	bcollect
+SUBDIR+=	bdfresize
 SUBDIR+=	beats
 SUBDIR+=	bfs
 SUBDIR+=	binwalk
@@ -619,6 +625,7 @@ SUBDIR+=	trash
 SUBDIR+=	tree
 SUBDIR+=	ts
 SUBDIR+=	tsm8
+SUBDIR+=	ttyplot
 #SUBDIR+=	u-boot			# only contains Makefile fragments
 SUBDIR+=	u-boot-a10-olinuxino-lime
 SUBDIR+=	u-boot-a20-olinuxino-lime2

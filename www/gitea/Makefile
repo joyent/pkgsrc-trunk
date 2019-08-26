@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.5 2019/06/19 10:04:10 nia Exp $
+# $NetBSD: Makefile,v 1.9 2019/08/19 10:27:42 nia Exp $
 
-DISTNAME=	gitea-1.8.3
+DISTNAME=	gitea-1.9.1
 MASTER_SITES=	${MASTER_SITE_GITHUB:=go-gitea/}
 CATEGORIES=	www
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -65,7 +65,8 @@ SUBST_VARS.fix-var=	VARBASE GITEA_USER
 
 MAKE_DIRS+=	${PKG_SYSCONFDIR}/conf
 
-CONF_FILES+=	${EGDIR}/app.ini.sample ${PKG_SYSCONFDIR}/conf/app.ini
+CONF_FILES_PERMS+=	${EGDIR}/app.ini.sample ${PKG_SYSCONFDIR}/conf/app.ini \
+			${GITEA_USER} ${GITEA_GROUP} 0600
 
 .include "../../mk/bsd.prefs.mk"
 

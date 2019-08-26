@@ -1,10 +1,16 @@
-# $NetBSD: Makefile,v 1.1393 2019/07/31 13:58:41 brook Exp $
+# $NetBSD: Makefile,v 1.1401 2019/08/22 13:32:28 fcambus Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
 
 SUBDIR+=	R-curl
+SUBDIR+=	R-gh
 SUBDIR+=	R-htmlwidgets
+SUBDIR+=	R-httpuv
+SUBDIR+=	R-httr
+SUBDIR+=	R-miniUI
+SUBDIR+=	R-shiny
+SUBDIR+=	R-shinyjs
 SUBDIR+=	SOGo
 SUBDIR+=	SOGo3
 SUBDIR+=	SpeedyCGI
@@ -158,6 +164,7 @@ SUBDIR+=	kdewebkit
 SUBDIR+=	khtml
 SUBDIR+=	kjs
 SUBDIR+=	kjsembed
+SUBDIR+=	kore
 SUBDIR+=	lhs
 SUBDIR+=	libecap
 SUBDIR+=	libghttp
@@ -732,6 +739,7 @@ SUBDIR+=	py-hyperframe
 SUBDIR+=	py-hyperlink
 SUBDIR+=	py-idna
 SUBDIR+=	py-idna_ssl
+SUBDIR+=	py-ipywidgets
 SUBDIR+=	py-jonpy
 SUBDIR+=	py-landslide
 SUBDIR+=	py-livereload

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.31 2019/07/14 10:59:35 wiz Exp $
+# $NetBSD: Makefile,v 1.33 2019/08/18 08:35:47 wiz Exp $
 
 DISTNAME=	mercurial-${VERSION}
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}

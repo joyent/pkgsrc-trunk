@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.18 2019/07/21 22:26:05 wiz Exp $
+# $NetBSD: Makefile,v 1.20 2019/08/17 18:52:26 gutteridge Exp $
 
-PKGREVISION= 1
 .include "../../meta-pkgs/xfce4/Makefile.common"
 
-VERSION=	0.6.3
+VERSION=	0.6.4
 DISTNAME=	garcon-${VERSION}
 PKGNAME=	xfce4-garcon-${VERSION}
 CATEGORIES=	x11

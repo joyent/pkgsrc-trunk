@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.13 2019/05/13 11:42:58 markd Exp $
+# $NetBSD: Makefile,v 1.15 2019/08/11 10:27:37 markd Exp $
 
 DISTNAME=	babel.doc
-PKGNAME=	tex-${DISTNAME:S/./-/}-3.31
-TEXLIVE_REV=	50977
+PKGNAME=	tex-${DISTNAME:S/./-/}-3.33
+TEXLIVE_REV=	51681
 
 MAINTAINER=	minskim@NetBSD.org
-HOMEPAGE=	http://ctan.org/pkg/babel
+HOMEPAGE=	https://ctan.org/pkg/babel
 COMMENT=	Documentation for tex-babel
 LICENSE=	lppl-1.3c
 

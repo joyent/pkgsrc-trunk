@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.51 2019/07/21 22:26:07 wiz Exp $
+# $NetBSD: Makefile,v 1.53 2019/08/11 13:25:20 wiz Exp $
 
-PKGREVISION= 5
+PKGREVISION= 1
 .include "../../meta-pkgs/xfce4/Makefile.common"
 
-DISTNAME=	xfce4-terminal-0.8.7.4
+DISTNAME=	xfce4-terminal-0.8.8
 CATEGORIES=	x11
-MASTER_SITES=	http://archive.xfce.org/src/apps/xfce4-terminal/0.8/
+MASTER_SITES=	https://archive.xfce.org/src/apps/xfce4-terminal/0.8/
 
 HOMEPAGE=	https://docs.xfce.org/apps/terminal/start
 COMMENT=	Xfce terminal emulator

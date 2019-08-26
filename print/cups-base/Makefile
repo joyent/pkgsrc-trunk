@@ -1,10 +1,9 @@
-# $NetBSD: Makefile,v 1.22 2019/07/21 22:24:09 wiz Exp $
+# $NetBSD: Makefile,v 1.24 2019/08/16 21:19:30 leot Exp $
 
 .include "../../print/cups/Makefile.common"
 
 DISTNAME=	cups-${CUPS_VERS}-source
 PKGNAME=	cups-base-${CUPS_VERS}
-PKGREVISION=	3
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_GITHUB:=apple/}
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1261 2019/07/29 18:07:46 wiz Exp $
+# $NetBSD: Makefile,v 1.1264 2019/08/25 15:09:22 tsutsui Exp $
 #
 
 COMMENT=	Networking tools
@@ -212,6 +212,7 @@ SUBDIR+=	grive2
 SUBDIR+=	grpc
 SUBDIR+=	gsnmp
 SUBDIR+=	gssdp
+SUBDIR+=	gssdp12
 SUBDIR+=	gst-plugins0.10-mms
 SUBDIR+=	gst-plugins0.10-rtmp
 SUBDIR+=	gst-plugins0.10-soup
@@ -230,6 +231,7 @@ SUBDIR+=	gupnp-av
 SUBDIR+=	gupnp-dlna
 SUBDIR+=	gupnp-igd
 SUBDIR+=	gupnp-tools
+SUBDIR+=	gupnp12
 SUBDIR+=	haproxy
 SUBDIR+=	hesiod
 SUBDIR+=	hf6to4
@@ -794,6 +796,7 @@ SUBDIR+=	ruby-tw
 SUBDIR+=	ruby-twitter
 SUBDIR+=	ruby-twitter-stream
 SUBDIR+=	ruby-twitter-text
+SUBDIR+=	ruby-twitter-text-simpleidn
 SUBDIR+=	ruby-xdr
 SUBDIR+=	sacc
 SUBDIR+=	samba

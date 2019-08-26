@@ -1,13 +1,12 @@
-# $NetBSD: Makefile,v 1.1 2019/05/31 14:42:04 jperkin Exp $
+# $NetBSD: Makefile,v 1.3 2019/08/21 08:50:51 adam Exp $
 
-DISTNAME=	postgres_exporter-0.4.7
+DISTNAME=	postgres_exporter-0.5.1
 MASTER_SITES=	${MASTER_SITE_GITHUB:=wrouesnel/}
 CATEGORIES=	databases
-GITHUB_PROJECT=	postgres_exporter
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	pkgsrc-users@pkgsrc.org
-HOMEPAGE=	https://github.com/wrouesnel/postgres_exporter/
+HOMEPAGE=	https://github.com/wrouesnel/postgres_exporter
 COMMENT=	PostgresSQL metric exporter for Prometheus
 LICENSE=	apache-2.0
 

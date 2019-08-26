@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.43 2019/07/20 22:46:06 wiz Exp $
+# $NetBSD: Makefile,v 1.45 2019/08/22 12:23:53 ryoon Exp $
 
-DISTNAME=	libmicrohttpd-0.9.65
+DISTNAME=	libmicrohttpd-0.9.66
 PKGREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GNU:=libmicrohttpd/}
 
-MAINTAINER=	ng0@n0.is
+MAINTAINER=	ng0@NetBSD.org
 HOMEPAGE=	https://www.gnu.org/software/libmicrohttpd/
 COMMENT=	Small C library to run an HTTP server as part of another app
 LICENSE=	gnu-lgpl-v2.1

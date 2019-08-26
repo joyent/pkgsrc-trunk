@@ -179,6 +179,7 @@ enchant			Add spell checking support using enchant.
 enchant-zemberek	Add spell checking support for Turkish.
 epoll			Enable support for epoll I/O event notification facility.
 epub			Enable epub support.
+erlang-hipe		Enable HiPE support.
 esound			Enable support for the Enlightment Sound Daemon.
 evolution-data-server	Enable support for evolution-data-server.
 exim-build-eximon	Also build the X based exim queue monitoring tool.
@@ -230,6 +231,8 @@ ftp			Enable File Transfer Protocol (FTP) support.
 fts			Enable full-text searching.
 fuse			Enable Filesystem in Userspace support.
 gamin			Enable Gamin file and directory monitoring system support.
+gallium-xa		Enable the Gallium xa state tracker.
+gallium-xvmc		Enable the Gallium xvmc state tracker.
 gcc-ada			Build the gcc Ada frontend and libraries.
 gcc-c++			Build the gcc C++ frontend and libraries.
 gcc-d			Build the gcc D frontend and libraries.
@@ -257,6 +260,8 @@ gimp1-helpbrowser	Link against gnome1 to get a help browser.
 git			Enable Git support.
 git-gui			Build the GUI in Tcl/Tk.
 glade			Enable Glade support
+glesv1			Enable OpenGL ES 1.0 support.
+glesv2			Enable OpenGL ES 2.0 support.
 glfw			Enable GLFW support
 gmp			Enable gmp (GNU Multiple Precision Arithmetic Library) support.
 gmp-fat			Build-in all x86 assembler code, detecting CPU at run-time.
@@ -586,6 +591,7 @@ openmpi-vampirtrace	Build VampirTrace as part of OpenMPI.
 openssl			Enable OpenSSL support.
 opus			Enable opus support.
 oracle			Enable Oracle support.
+osmesa			Enable off-screen rendering.
 oss			Enable support for the Open Sound System audio library.
 osx-addressbook		Enable support for the Mac OS X Address Book.
 otr			Enable Off-the-record encrypted messaging.
@@ -813,6 +819,7 @@ vidix			Enable VIDIX (Video Interface for *niX support).
 viewvc-php		Use php to colorize .php and .inc files.
 vlc-skins		Enable skins support in VLC.
 vorbis			Enable Ogg Vorbis support.
+vulkan			Enable support for the Vulkan 3D and compute API.
 w3m			Use and enable support for the w3m browser.
 w3m-image-gdk-pixbuf	Use gdk-pixbuf as imaging library for W3m.
 w3m-image-gtk2		Use GTK2 as imaging library for W3m.
@@ -820,6 +827,7 @@ w3m-image-imlib		Use imlib as imaging library for W3m.
 w3m-image-imlib2	Use imlib2 as imaging library for W3m.
 w3m-lynx-key		Enable lynx-like key bindings.
 wavpack			Enable wavpack support.
+wayland			Enable support for the Wayland display server protocol.
 webdav			Enable WebDAV support.
 webkit-jit		Enable JIT compilation.
 webrtc			Enable web realtime communications API.

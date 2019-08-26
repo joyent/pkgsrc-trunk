@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.214 2019/07/21 22:24:46 wiz Exp $
+# $NetBSD: Makefile,v 1.217 2019/08/22 12:23:05 ryoon Exp $
 
-DISTNAME=	qemu-4.0.0
-PKGREVISION=	8
+DISTNAME=	qemu-4.1.0
+PKGREVISION=	1
 CATEGORIES=	emulators
 MASTER_SITES=	https://download.qemu.org/
 EXTRACT_SUFX=	.tar.xz
@@ -18,6 +18,7 @@ FAKE_NCURSES=		yes
 UNLIMIT_RESOURCES=	datasize
 HAS_CONFIGURE=		yes
 
+GMAKE_REQD=		4.1 # needed for docs
 TOOL_DEPENDS+=		${PYPKGPREFIX}-sphinx-[0-9]*:../../textproc/py-sphinx
 
 SUBST_CLASSES+=			prefix
@@ -139,7 +140,7 @@ TEST_TARGET=		check
 post-install:
 	${INSTALL_DATA} ${FILESDIR}/Makefile.multinode-NetBSD \
 		${DESTDIR}${PREFIX}/share/doc/qemu/
-	${RM} ${DESTDIR}${PREFIX}/share/doc/qemu/interop/.buildinfo
+	${RM} -f ${DESTDIR}${PREFIX}/share/doc/qemu/interop/.buildinfo
 
 # On Darwin, qemu uses Cocoa and CoreAudio
 .if ${OPSYS} != "Darwin"

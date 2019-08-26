@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.45 2019/07/21 22:25:28 wiz Exp $
+# $NetBSD: Makefile,v 1.47 2019/08/19 01:13:34 gutteridge Exp $
 
-PKGREVISION= 1
 .include "../../meta-pkgs/xfce4/Makefile.common"
 
-DISTNAME=	xfce4-mpc-plugin-0.5.1
+DISTNAME=	xfce4-mpc-plugin-0.5.2
 CATEGORIES=	multimedia
 MASTER_SITES=	http://archive.xfce.org/src/panel-plugins/xfce4-mpc-plugin/0.5/
 

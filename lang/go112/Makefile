@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.4 2019/05/27 15:16:38 bsiegert Exp $
+# $NetBSD: Makefile,v 1.6 2019/08/14 15:42:52 bsiegert Exp $
 
 .include "../../lang/go/version.mk"
 

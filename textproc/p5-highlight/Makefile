@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.12 2018/10/08 13:52:20 schmonz Exp $
+# $NetBSD: Makefile,v 1.14 2019/08/13 01:48:49 schmonz Exp $
 
 .include "../../textproc/libhighlight/Makefile.common"
 

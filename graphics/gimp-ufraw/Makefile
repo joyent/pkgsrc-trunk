@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.112 2019/07/21 22:24:58 wiz Exp $
+# $NetBSD: Makefile,v 1.114 2019/08/20 14:31:03 gdt Exp $
 
 # Note that upstream has replaced tarballs without changing the
 # version number (e.g., 0.19.2 had two different tarballs).
@@ -6,7 +6,7 @@
 # updating pkgsrc.
 DISTNAME=		ufraw-0.22
 PKGNAME=		gimp-${DISTNAME}
-PKGREVISION=		12
+PKGREVISION=		14
 CATEGORIES=		graphics
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=ufraw/}
 
