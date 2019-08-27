@@ -1,4 +1,6 @@
-$NetBSD: patch-codelite__terminal_TextView.cpp,v 1.1 2019/08/18 03:48:44 maya Exp $
+$NetBSD: patch-codelite__terminal_TextView.cpp,v 1.3 2019/08/27 14:45:04 wiz Exp $
+
+Compilation fix for wx3.0 gtk+3 builds.
 
 --- codelite_terminal/TextView.cpp.orig   2019-05-21 17:52:21.000000000 +0300
 +++ codelite_terminal/TextView.cpp
@@ -39,4 +41,3 @@ $NetBSD: patch-codelite__terminal_TextView.cpp,v 1.1 2019/08/18 03:48:44 maya Ex
 +#endif
 +#endif
 +}
-

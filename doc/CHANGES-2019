@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2019,v 1.3640 2019/08/26 17:09:15 rin Exp $
+$NetBSD: CHANGES-2019,v 1.3650 2019/08/27 10:25:25 adam Exp $
 
 Changes to the packages collection and infrastructure in 2019:
 
@@ -5955,3 +5955,24 @@ Changes to the packages collection and infrastructure in 2019:
 	Added games/doom2-pwad-struggle version 20180819nb1 [baeuerle 2019-08-26]
 	Added games/doom-pwad-sigil version 1.1 [baeuerle 2019-08-26]
 	Updated www/viewvc to 1.1.27 [rin 2019-08-26]
+	Added textproc/py-markovify version 0.7.2 [ng0 2019-08-26]
+	Updated lang/ocaml to 4.08.1nb1 [jaapb 2019-08-27]
+	Updated www/py-httpie to 1.0.3 [adam 2019-08-27]
+	Updated math/py-quadprog to 0.1.7 [adam 2019-08-27]
+	Updated lang/gcc7 to 7.4.0nb3 [jperkin 2019-08-27]
+	Updated lang/gcc7-libs to 7.4.0nb4 [jperkin 2019-08-27]
+	Updated pkgtools/texlive2pkg to 1.7 [markd 2019-08-27]
+	Updated multimedia/phonon to 4.10.3 [markd 2019-08-27]
+	Updated multimedia/phonon-qt5 to 4.10.3 [markd 2019-08-27]
+	Updated multimedia/phonon-backend-vlc to 0.10.3 [markd 2019-08-27]
+	Updated multimedia/phonon-qt5-backend-vlc to 0.10.3 [markd 2019-08-27]
+	Updated multimedia/phonon-backend-gstreamer to 4.9.1 [markd 2019-08-27]
+	Updated multimedia/phonon-backend-gstreamer-shared to 4.9.1 [markd 2019-08-27]
+	Updated multimedia/phonon-qt5-backend-gstreamer to 4.9.1 [markd 2019-08-27]
+	Updated net/unbound to 1.9.3 [he 2019-08-27]
+	Updated www/py-django-admin-rangefilter to 0.5.0 [adam 2019-08-27]
+	Updated www/py-django-admin-sortable2 to 0.7.3 [adam 2019-08-27]
+	Updated textproc/py-validators to 0.14.0 [adam 2019-08-27]
+	Updated security/py-ntlm-auth to 1.4.0 [adam 2019-08-27]
+	Updated www/grafana to 6.3.3 [adam 2019-08-27]
+	Updated www/py-cheroot to 6.5.6 [adam 2019-08-27]
