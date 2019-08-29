@@ -1,24 +1,23 @@
-# $NetBSD: Makefile,v 1.4 2019/08/13 18:54:59 gdt Exp $
+# $NetBSD: Makefile,v 1.7 2019/08/28 07:57:30 adam Exp $
 
 DISTNAME=	python-slugify-3.0.3
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-PKGREVISION=	1
+PKGREVISION=	3
 CATEGORIES=	devel www python
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/python-slugify/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/un33k/python-slugify
-COMMENT=	Slugify application that handles Unicode
+COMMENT=	Slugify (non-ASCII to ASCII) application that handles Unicode
 LICENSE=	mit
 
-USE_LANGUAGES=		# none
+DEPENDS+=	${PYPKGPREFIX}-text-unidecode>=1.2:../../textproc/py-text-unidecode
 
-DEPENDS+=	${PYPKGPREFIX}-Unidecode>=0.04.16:../../textproc/py-Unidecode
+USE_LANGUAGES=	# none
 
 post-install:
-	${MV} ${DESTDIR}${PREFIX}/bin/slugify \
-		${DESTDIR}${PREFIX}/bin/slugify${PYVERSSUFFIX} || ${TRUE}
+	cd ${DESTDIR}${PREFIX}/bin && \
+	${MV} slugify slugify-${PYVERSSUFFIX} || ${TRUE}
 
-.include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"
