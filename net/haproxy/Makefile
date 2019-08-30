@@ -51,7 +51,7 @@ TARGET=	linux24e
 TARGET=	linux24
 .    endif
 .  else
-TARGET=	linux2628
+TARGET=	linux-glibc
 .  endif
 .else
 TARGET=	generic
