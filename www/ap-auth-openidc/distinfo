@@ -1,0 +1,7 @@
+$NetBSD$
+
+SHA1 (mod_auth_openidc-2.4.0.tar.gz) = b757ce48111e807000c6b2588c1acd4a872fa3ac
+RMD160 (mod_auth_openidc-2.4.0.tar.gz) = e901576fd4815f239d0ecb1f4f276dcb088bf754
+SHA512 (mod_auth_openidc-2.4.0.tar.gz) = 9e1f3d05bb7d3c2ea4606a989da6a02ead2226fb58997730255aa92d0e878e478b87ea959d12055305041b4f0808703654f47a2c56e3adfcaa16d7fbfe86241d
+Size (mod_auth_openidc-2.4.0.tar.gz) = 269836 bytes
+SHA1 (patch-configure) = 196985db541d02dc73d07190ff5efaf7f0776440

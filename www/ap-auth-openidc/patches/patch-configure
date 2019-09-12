@@ -1,0 +1,13 @@
+$NetBSD$
+
+--- configure.orig	2019-08-22 15:00:46.000000000 +0000
++++ configure
+@@ -4128,7 +4128,7 @@ fi
+ 
+ case "$with_hiredis" in #(
+   yes) :
+-    if test "$HIREDIS_LIBS" == ""; then
++    if test "$HIREDIS_LIBS" = ""; then
+ pkg_failed=no
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking for hiredis" >&5
+ $as_echo_n "checking for hiredis... " >&6; }
