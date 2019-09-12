@@ -16,7 +16,6 @@ CONFIGURE_ARGS+=	--with-openssl=/opt/local --prefix=/opt/local --with-jansson=/o
 USE_LIBTOOL=		YES
 USE_MULTIARCH=		lib
 USE_PKGLOCALEDIR=	YES
-#USE_TOOLS+=		pkg-config msgfmt autoconf automake flex
 
 .include "../../security/openssl/buildlink3.mk"
 .include "../../textproc/jansson/buildlink3.mk"
