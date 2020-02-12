@@ -3,7 +3,7 @@
 PKG_OPTIONS_VAR=		PKG_OPTIONS.nginx
 PKG_SUPPORTED_OPTIONS=		dav flv gtools inet6 luajit mail-proxy memcache naxsi \
 				pcre push realip ssl sub uwsgi image-filter \
-				debug status nginx-autodetect-cflags echo \
+				debug slice status nginx-autodetect-cflags echo \
 				set-misc headers-more array-var encrypted-session \
 				form-input perl gzip http2 auth-request secure-link rtmp
 PKG_OPTIONS_LEGACY_OPTS+=	v2:http2
@@ -195,6 +195,10 @@ DISTFILES+=		${PUSH_DISTFILE}
 .if !empty(PKG_OPTIONS:Mimage-filter)
 .include "../../graphics/gd/buildlink3.mk"
 CONFIGURE_ARGS+=	--with-http_image_filter_module
+.endif
+
+.if !empty(PKG_OPTIONS:Mslice)
+CONFIGURE_ARGS+=	--with-http_slice_module
 .endif
 
 .if !empty(PKG_OPTIONS:Mstatus)
