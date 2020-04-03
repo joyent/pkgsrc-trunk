@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.545 2020/03/21 15:29:37 taca Exp $
+# $NetBSD: Makefile,v 1.547 2020/03/31 20:37:47 roy Exp $
 #
 
 COMMENT=	Electronic mail utilities
@@ -7,7 +7,6 @@ SUBDIR+=	GNUMail
 SUBDIR+=	OSBF-lua
 SUBDIR+=	Pantomime
 SUBDIR+=	R-mime
-SUBDIR+=	YoSucker
 SUBDIR+=	akonadi
 SUBDIR+=	alpine
 SUBDIR+=	amavisd-milter
@@ -169,6 +168,7 @@ SUBDIR+=	mimedefang
 SUBDIR+=	mimp
 SUBDIR+=	mini_sendmail
 SUBDIR+=	minimalist
+SUBDIR+=	mlmmj
 SUBDIR+=	mopher
 SUBDIR+=	mpop
 SUBDIR+=	msmtp
