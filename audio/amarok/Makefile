@@ -42,14 +42,14 @@ SUBST_SED.mysql=	-e s:/opt/mysqle/:${BUILDLINK_PREFIX.mysql-server}:
 MYSQL_VERSIONS_ACCEPTED=	56 55
 
 .include "../../mk/mysql.buildlink3.mk"
-.if ${_MYSQL_VERSION} == "56"
+.if ${MYSQL_VERSION} == "56"
 .include "../../databases/mysql56-server/buildlink3.mk"
 SUBST_SED.mysql+=	-e s:@@WLR@@:${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.mysql-server}/lib:
-.elif ${_MYSQL_VERSION} == "55"
+.elif ${MYSQL_VERSION} == "55"
 .include "../../databases/mysql55-server/buildlink3.mk"
 SUBST_SED.mysql+=	-e s:@@WLR@@:${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.mysql-server}/lib:
 .else
-PKG_FAIL_REASON+=	"Unknown mysql version: ${_MYSQL_VERSION}"
+PKG_FAIL_REASON+=	"Unknown mysql version: ${MYSQL_VERSION}"
 .endif
 
 .include "../../audio/liblastfm/buildlink3.mk"

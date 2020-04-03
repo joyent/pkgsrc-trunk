@@ -16,7 +16,7 @@ DEPENDS+=		${PYPKGPREFIX}-cdecimal-[0-9]*:../../math/py-cdecimal
 
 .if !empty(PKG_OPTIONS:Mmysql)
 PYTHON_VERSIONS_ACCEPTED=	27 # py-mysqldb
-DEPENDS+=		${PYPKGPREFIX}-mysqldb-[0-9]*:../../databases/py-mysqldb
+DEPENDS+=		${PYPKGPREFIX}-${MYSQL_PKG_PREFIX}db-[0-9]*:../../databases/py-mysqldb
 .endif
 
 .if !empty(PKG_OPTIONS:Mpydot)
