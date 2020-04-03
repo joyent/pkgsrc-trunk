@@ -30,7 +30,7 @@
 # OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 # SUCH DAMAGE.
 
-. @PBULK_CONFIG@
+. ${PBULK_CONF:-@PBULK_CONFIG@}
 
 set -e
 
@@ -82,39 +82,12 @@ else
 	rm -rf "${bulklog}"/* || true
 fi
 
-mkdir -p "${bulklog}" "${loc}"
+mkdir -p "${bulklog}" "${bulklog}/cache" "${loc}"
 
 @PREFIX@/libexec/pbulk/client-clean
 
-# Log common settings...
-opsys=`cd ${pkgsrc}/pkgtools/pkg_install && ${make} show-var VARNAME=OPSYS`
-opver=`cd ${pkgsrc}/pkgtools/pkg_install && ${make} show-var VARNAME=OS_VERSION`
-# Check if it is an OS with variants where we would rather use the
-# variant name and version rather than common name and version
-case "$opsys" in
-	SunOS | Cygwin | SCO_SV)
-		opvar=`cd ${pkgsrc}/pkgtools/pkg_install && ${make} show-var VARNAME=OS_VARIANT`
-	case "$opsys" in
-		Cygwin | SCO_SV)
-			opsys=$opvar
-		;;
-		SunOS)
-			if [ -n "$opvar" ]; then
-			opsys=$opvar
-			opver=`cd ${pkgsrc}/pkgtools/pkg_install && ${make} show-var VARNAME=LOWER_VARIANT_VERSION`
-			fi
-		;;
-	esac
-	;;
-esac
-
-platform=`cd ${pkgsrc}/pkgtools/pkg_install && ${make} show-var VARNAME=MACHINE_ARCH`
-compiler=`cd ${pkgsrc}/pkgtools/pkg_install && ${make} show-var VARNAME=PKGSRC_COMPILER`
-
-echo "PLATFORM=${opsys} ${opver}/${platform}" > ${loc}/status
-echo "COMPILER=${compiler}" >> ${loc}/status
-
+# Start status file, it will be moved into place by the first build.
 date '+BUILD_START_ISO=%Y-%m-%d %H:%M
 BUILD_START_DIR=%Y%m%d.%H%M
-BUILD_START_EPOCHE=%s' >> ${loc}/status
-echo "BASE_URL=${base_url}" >> ${loc}/status
+BUILD_START_EPOCHE=%s' > ${loc}/status.pre-build
+echo "BASE_URL=${base_url}" >> ${loc}/status.pre-build
