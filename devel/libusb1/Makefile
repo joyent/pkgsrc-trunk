@@ -1,10 +1,12 @@
-# $NetBSD: Makefile,v 1.22 2019/12/22 17:06:39 jmcneill Exp $
+# $NetBSD: Makefile,v 1.25 2020/04/03 20:39:03 nia Exp $
 
-DISTNAME=	libusb-1.0.22
+DISTNAME=	libusb-1.0.23
 PKGNAME=	${DISTNAME:S/libusb/libusb1/}
-PKGREVISION=	3
+PKGREVISION=	1
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=libusb/}
+MASTER_SITES=	${MASTER_SITE_GITHUB:=libusb/}
+GITHUB_PROJECT=	libusb
+GITHUB_RELEASE=	v${PKGVERSION_NOREV}
 EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -43,5 +45,6 @@ CONFLICTS=	libusbx-[0-9]*
 do-test:
 	cd ${WRKSRC}/tests && ./stress
 
+.include "options.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

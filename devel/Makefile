@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3087 2020/04/02 10:33:09 wiz Exp $
+# $NetBSD: Makefile,v 1.3089 2020/04/03 23:06:34 nia Exp $
 #
 
 COMMENT=	Development utilities
@@ -2098,6 +2098,7 @@ SUBDIR+=	py-ZopeInterface
 SUBDIR+=	py-ZopeSchema
 SUBDIR+=	py-ZopeTestrunner
 SUBDIR+=	py-absl-py
+SUBDIR+=	py-adb
 SUBDIR+=	py-aiofiles
 SUBDIR+=	py-angr
 SUBDIR+=	py-anytree
@@ -2291,6 +2292,7 @@ SUBDIR+=	py-lazr.delegates
 SUBDIR+=	py-lazy-object-proxy
 SUBDIR+=	py-libevent-rpcgen
 SUBDIR+=	py-libmc
+SUBDIR+=	py-libusb1
 SUBDIR+=	py-limits
 SUBDIR+=	py-line_profiler
 SUBDIR+=	py-linecache2
