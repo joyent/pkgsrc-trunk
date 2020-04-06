@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2020,v 1.2111 2020/04/05 16:11:15 bsiegert Exp $
+$NetBSD: CHANGES-2020,v 1.2127 2020/04/06 08:33:50 wiz Exp $
 
 Changes to the packages collection and infrastructure in 2020:
 
@@ -2909,3 +2909,19 @@ Changes to the packages collection and infrastructure in 2020:
 	Updated misc/mate-utils to 1.24.0 [bsiegert 2020-04-05]
 	Updated x11/mozo to 1.24.0 [bsiegert 2020-04-05]
 	Updated editors/pluma to 1.24.0 [bsiegert 2020-04-05]
+	Updated x11/xfce4-terminal to 0.8.9.2 [gutteridge 2020-04-05]
+	Updated x11/xfce4-session to 4.14.2 [gutteridge 2020-04-05]
+	Updated x11/xfce4-garcon to 0.7.0 [gutteridge 2020-04-05]
+	Updated sysutils/xfce4-thunar to 1.8.14 [gutteridge 2020-04-05]
+	Updated x11/xfce4-clipman-plugin to 1.6.1 [gutteridge 2020-04-05]
+	Updated editors/retext to 7.1.0 [gutteridge 2020-04-06]
+	Added lang/mozjs68 version 68.6.0 [wiz 2020-04-06]
+	Updated lang/mozjs60 to 60.8.0nb1 [wiz 2020-04-06]
+	Added textproc/py-sphinx-autoapi version 1.3.0 [wiz 2020-04-06]
+	Added devel/py-fuzzywuzzy version 0.18.0 [wiz 2020-04-06]
+	Added textproc/py-sphobjinv version 2.0.1 [wiz 2020-04-06]
+	Updated textproc/py-sphinx-autodoc-typehints to 1.10.3 [wiz 2020-04-06]
+	Updated misc/khard to 0.16.0 [wiz 2020-04-06]
+	Updated x11/gtk3 to 3.24.17 [wiz 2020-04-06]
+	Updated www/apache24 to 2.4.43 [wiz 2020-04-06]
+	Updated devel/libgit2 to 1.0.0 [wiz 2020-04-06]
