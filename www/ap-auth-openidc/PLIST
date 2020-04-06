@@ -1,0 +1,2 @@
+@comment $NetBSD$
+lib/httpd/mod_auth_openidc.so
