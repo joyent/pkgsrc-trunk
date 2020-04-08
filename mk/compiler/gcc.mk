@@ -96,7 +96,7 @@ _DEF_VARS.gcc=	\
 	_LINKER_RPATH_FLAG \
 	_NEED_GCC2 _NEED_GCC3 _NEED_GCC34 _NEED_GCC44 \
 	_NEED_GCC48 _NEED_GCC49 _NEED_GCC5 _NEED_GCC6 \
-	_NEED_GCC7 _NEED_GCC8 _NEED_GCC_AUX _NEED_NEWER_GCC \
+	_NEED_GCC7 _NEED_GCC8 _NEED_GCC9 _NEED_GCC_AUX _NEED_NEWER_GCC \
 	_PKGSRC_GCC_VERSION \
 	_USE_GCC_SHLIB _USE_PKGSRC_GCC \
 	_WRAP_EXTRA_ARGS.CC \
@@ -127,7 +127,7 @@ _USE_VARS.gcc=	\
 _IGN_VARS.gcc=	\
 	_GCC2_PATTERNS _GCC3_PATTERNS _GCC34_PATTERNS _GCC44_PATTERNS \
 	_GCC48_PATTERNS _GCC49_PATTERNS _GCC5_PATTERNS _GCC6_PATTERNS \
-	_GCC7_PATTERNS _GCC8_PATTERNS _GCC_AUX_PATTERNS
+	_GCC7_PATTERNS _GCC8_PATTERNS _GCC9_PATTERNS _GCC_AUX_PATTERNS
 _LISTED_VARS.gcc= \
 	MAKEFLAGS IMAKEOPTS LDFLAGS PREPEND_PATH
 .include "../../mk/bsd.prefs.mk"
@@ -151,9 +151,8 @@ GCC_REQD+=	20120614
 
 # _GCC_DIST_VERSION is the highest version of GCC installed by the pkgsrc
 # without the PKGREVISIONs.
-_GCC_DIST_NAME:=	gcc8
-.include "../../lang/${_GCC_DIST_NAME}/version.mk"
-_GCC_DIST_VERSION:=	${${_GCC_DIST_NAME:tu}_DIST_VERSION}
+_GCC_DIST_NAME:=	gcc9
+_GCC_DIST_VERSION:=	9.3.0
 
 # _GCC2_PATTERNS matches N s.t. N <= 2.95.3.
 _GCC2_PATTERNS=	[0-1].* 2.[0-9] 2.[0-9].* 2.[1-8][0-9] 2.[1-8][0-9].*	\
@@ -186,6 +185,9 @@ _GCC7_PATTERNS= 7 7.*
 
 # _GCC8_PATTERNS matches N s.t. 8.0 <= N < 9.
 _GCC8_PATTERNS= 8 8.*
+
+# _GCC9_PATTERNS matches N s.t. 9.0 <= N < 9.
+_GCC9_PATTERNS= 9 9.*
 
 # _GCC_AUX_PATTERNS matches 8-digit date YYYYMMDD*
 _GCC_AUX_PATTERNS= 20[1-2][0-9][0-1][0-9][0-3][0-9]*
@@ -350,6 +352,12 @@ _NEED_GCC8?=	no
 _NEED_GCC8=	yes
 .  endif
 .endfor
+_NEED_GCC9?=	no
+.for _pattern_ in ${_GCC9_PATTERNS}
+.  if !empty(_GCC_REQD:M${_pattern_})
+_NEED_GCC9=	yes
+.  endif
+.endfor
 _NEED_GCC_AUX?=	no
 .for _pattern_ in ${_GCC_AUX_PATTERNS}
 .  if !empty(_GCC_REQD:M${_pattern_})
@@ -362,8 +370,8 @@ _NEED_NEWER_GCC=NO
     !empty(_NEED_GCC48:M[nN][oO]) && !empty(_NEED_GCC49:M[nN][oO]) && \
     !empty(_NEED_GCC5:M[nN][oO]) && !empty(_NEED_GCC6:M[nN][oO]) && \
     !empty(_NEED_GCC7:M[nN][oO]) && !empty(_NEED_GCC8:M[nN][oO]) && \
-    !empty(_NEED_GCC_AUX:M[nN][oO])
-_NEED_GCC8=	yes
+    !empty(_NEED_GCC9:M[nN][oO]) && !empty(_NEED_GCC_AUX:M[nN][oO])
+_NEED_GCC9=	yes
 .endif
 
 # Assume by default that GCC will only provide a C compiler.
@@ -387,6 +395,8 @@ LANGUAGES.gcc=	c c++ fortran fortran77 go java objc obj-c++
 .elif !empty(_NEED_GCC7:M[yY][eE][sS])
 LANGUAGES.gcc=	c c++ fortran fortran77 go java objc obj-c++
 .elif !empty(_NEED_GCC8:M[yY][eE][sS])
+LANGUAGES.gcc=	c c++ fortran fortran77 go java objc obj-c++
+.elif !empty(_NEED_GCC9:M[yY][eE][sS])
 LANGUAGES.gcc=	c c++ fortran fortran77 go java objc obj-c++
 .elif !empty(_NEED_GCC_AUX:M[yY][eE][sS])
 LANGUAGES.gcc=	c c++ fortran fortran77 objc ada
@@ -662,6 +672,20 @@ _GCC_DEPENDENCY=	gcc8>=${_GCC_REQD}:../../lang/gcc8
 _USE_GCC_SHLIB?=	yes
 .    endif
 .  endif
+#
+# Use gcc 9.x from joyent/gcc9
+#
+.elif !empty(_NEED_GCC9:M[yY][eE][sS])
+_GCC_PKGBASE=		gcc9
+.  if ${PKGPATH} == joyent/gcc9
+_IGNORE_GCC=		yes
+MAKEFLAGS+=		_IGNORE_GCC=yes
+.  endif
+.  if !defined(_IGNORE_GCC) && !empty(_LANGUAGES.gcc)
+_GCC_PKGSRCDIR=		../../joyent/gcc9
+_GCC_DEPENDENCY=	gcc9>=${_GCC_REQD}:../../joyent/gcc9
+.  endif
+#
 .elif !empty(_NEED_GCC_AUX:M[yY][eE][sS])
 #
 # We require Ada-capable compiler in the lang/gcc5-aux directory.
@@ -1001,7 +1025,7 @@ PREPEND_PATH+=	${_GCC_DIR}/bin
 # Add dependency on GCC libraries if requested.
 .if (defined(_USE_GCC_SHLIB) && !empty(_USE_GCC_SHLIB:M[Yy][Ee][Ss])) && !empty(USE_PKGSRC_GCC_RUNTIME:M[Yy][Ee][Ss])
 #  Special case packages which are themselves a dependency of gcc runtime.
-.  if ${PKGPATH} != devel/binutils && \
+.  if ${PKGPATH} != devel/binutils && empty(PKGPATH:Mjoyent/gcc9) && \
       empty(PKGPATH:Mlang/gcc4?) && empty(PKGPATH:Mlang/gcc[5-9])
 .    if !empty(_GCC_PKGBASE:Mgcc48)
 .      include "../../lang/gcc48-libs/buildlink3.mk"
@@ -1015,6 +1039,8 @@ PREPEND_PATH+=	${_GCC_DIR}/bin
 .      include "../../lang/gcc7-libs/buildlink3.mk"
 .    elif !empty(_GCC_PKGBASE:Mgcc8)
 .      include "../../lang/gcc8-libs/buildlink3.mk"
+.    elif !empty(_GCC_PKGBASE:Mgcc9)
+.      include "../../joyent/gcc9-libs/buildlink3.mk"
 .    else
 PKG_FAIL_REASON+=	"No USE_PKGSRC_GCC_RUNTIME support for ${CC_VERSION}"
 .    endif
