@@ -597,17 +597,29 @@ remove_pkg(const char *pkg)
 	 * Errors in the remaining part are counted, but don't stop the
 	 * processing.
 	 */
-
 	for (p = plist.head; p; p = p->next) {
-	    if (p->type != PLIST_PKGDEP)
-		continue;
-	    if (Verbose)
-		printf("Attempting to remove dependency "
-		       "on package `%s'\n", p->name);
-	    if (Fake)
-		continue;
-	    match_installed_pkgs(p->name, remove_depend,
+		char *depmatch, *sep;
+		if (p->type != PLIST_PKGDEP)
+			continue;
+		if (Verbose)
+			printf("Attempting to remove dependency "
+			    "on package `%s'\n", p->name);
+		if (Fake)
+			continue;
+		/*
+		 * Convert any specific version match into a general match,
+		 * to catch cases where the package in question has already
+		 * been upgraded to a version that no longer matches, for
+		 * example when upgrading a set of packages all together.
+		 */
+		depmatch = xstrdup(p->name);
+		if ((sep = strpbrk(depmatch, "<>")) != NULL) {
+			*sep = '\0';
+			depmatch = xasprintf("%s-[0-9]*", depmatch);
+		}
+		match_installed_pkgs(depmatch, remove_depend,
 				 __UNCONST(pkg));
+		free(depmatch);
 	}
 
 	free_plist(&plist);
