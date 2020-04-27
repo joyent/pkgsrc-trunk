@@ -231,6 +231,25 @@ typedef struct _lpkg_t {
 TAILQ_HEAD(_lpkg_head_t, _lpkg_t);
 typedef struct _lpkg_head_t lpkg_head_t;
 
+/*
+ * To improve performance when handling lists containing a large number of
+ * packages, it can be beneficial to use hashed lookups to avoid excessive
+ * strcmp() calls when searching for existing entries.
+ *
+ * The simple hashing function below uses the first 3 characters of either a
+ * pattern match or package name (as they are guaranteed to exist).
+ *
+ * Based on pkgsrc package names across the tree, this can still result in
+ * somewhat uneven distribution due to high numbers of packages beginning with
+ * "p5-", "php", "py-" etc, and so there are diminishing returns when trying to
+ * use a hash size larger than around 16 or so.
+ */
+#define PKG_HASH_SIZE		16
+#define PKG_HASH_ENTRY(x)	(((unsigned char)(x)[0] \
+				+ (unsigned char)(x)[1] * 257 \
+				+ (unsigned char)(x)[2] * 65537) \
+				& (PKG_HASH_SIZE - 1))
+
 struct pkg_vulnerabilities {
 	size_t	entries;
 	char	**vulnerability;
@@ -287,7 +306,7 @@ int	iterate_pkg_db(int (*)(const char *, void *), void *);
 
 int	add_installed_pkgs_by_basename(const char *, lpkg_head_t *);
 int	add_installed_pkgs_by_pattern(const char *, lpkg_head_t *);
-char	*find_best_matching_installed_pkg(const char *);
+char	*find_best_matching_installed_pkg(const char *, int);
 char	*find_best_matching_file(const char *, const char *, int, int);
 int	match_installed_pkgs(const char *, int (*)(const char *, void *), void *);
 int	match_local_files(const char *, int, int, const char *, int (*cb)(const char *, void *), void *);

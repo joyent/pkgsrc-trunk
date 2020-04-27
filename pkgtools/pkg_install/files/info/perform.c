@@ -566,13 +566,13 @@ CheckForBestPkg(const char *pkgname)
 {
 	char *pattern, *best_match;
 
-	best_match = find_best_matching_installed_pkg(pkgname);
+	best_match = find_best_matching_installed_pkg(pkgname, 1);
 	if (best_match == NULL) {
 		if (ispkgpattern(pkgname))
 			return 1;
 
 		pattern = xasprintf("%s-[0-9]*", pkgname);
-		best_match = find_best_matching_installed_pkg(pattern);
+		best_match = find_best_matching_installed_pkg(pattern, 1);
 		free(pattern);
 	}
 

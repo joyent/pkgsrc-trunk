@@ -68,7 +68,7 @@ register_depends(package_t *plist, char *deps, int build_only)
 		cp = strsep(&deps, " \t\n");
 		if (*cp) {
 			char *best_installed;
-			best_installed = find_best_matching_installed_pkg(cp);
+			best_installed = find_best_matching_installed_pkg(cp, 1);
 			if (best_installed != NULL) {
 				add_plist(plist, PLIST_BLDDEP, best_installed);
 				if (Verbose && !PlistOnly && build_only)
