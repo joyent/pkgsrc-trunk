@@ -7,6 +7,6 @@ PKG_SUGGESTED_OPTIONS=	sqlite
 .include "../../mk/bsd.options.mk"
 
 .if !empty(PKG_OPTIONS:Msqlite)
-GO_TAGS+=	sqlite sqlite_unlock_notify
+GO_TAGS+=	bindata sqlite sqlite_unlock_notify
 .include "../../databases/sqlite3/buildlink3.mk"
 .endif

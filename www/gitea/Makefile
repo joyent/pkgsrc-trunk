@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.33 2020/05/17 14:50:40 nia Exp $
+# $NetBSD: Makefile,v 1.34 2020/05/20 22:37:40 teutat3s Exp $
 
 DISTNAME=	gitea-1.11.5
 MASTER_SITES=	${MASTER_SITE_GITHUB:=go-gitea/}
@@ -16,17 +16,13 @@ GO_SRCPATH=		code.gitea.io/gitea
 .include "../../lang/go/go-vars.mk"
 .include "options.mk"
 
-.if !empty(GO_TAGS)
-GO_BUILD_PATTERN+=	-tags "${GO_TAGS}"
-.endif
-
-GO_BUILD_PATTERN+=	${GO_SRCPATH}
-
 BUILD_DEFS+=	VARBASE GITEA_USER GITEA_GROUP
 
 EXTRACT_USING=	bsdtar
-USE_TOOLS+=	pax
+USE_TOOLS+=	gmake ggrep pax
 DEPENDS+=	git-base-[0-9]*:../../devel/git-base
+BUILD_DEPENDS+=	nodejs:../../lang/nodejs
+BUILD_DEPENDS+=	npm:../../lang/npm
 
 EGDIR=		${PREFIX}/share/examples/gitea
 
@@ -50,13 +46,6 @@ PKG_USERS=	${GITEA_USER}:${GITEA_GROUP}
 PKG_SHELL.${GITEA_USER}=	${SH}
 PKG_HOME.${GITEA_USER}=		${VARBASE}/db/gitea
 
-SUBST_CLASSES+=			fix-version
-SUBST_STAGE.fix-version=	pre-configure
-SUBST_MESSAGE.fix-version=	Fix the outdated version number.
-SUBST_FILES.fix-version=	main.go
-SUBST_SED.fix-version=		-e 's,^\(	Version = \)"1\.9\.0-dev",\1"${PKGVERSION}",'
-SUBST_NOOP_OK.fix-version=	no
-
 SUBST_CLASSES+=		fix-var
 SUBST_STAGE.fix-var=	pre-configure
 SUBST_MESSAGE.fix-var=	Replace some vars
@@ -75,11 +64,20 @@ FILES_SUBST+=	GITEA_SHARE_DIR=${PREFIX}/share/gitea
 
 RCD_SCRIPTS+=	gitea
 
+MAKE_TARGET=	build
+MAKE_ENV+=	TAGS="${GO_TAGS}"
+
 pre-patch:
 	${CP} ${FILESDIR}/app.ini.sample ${WRKDIR}/
+	${CP} ${WRKDIR}/${DISTNAME}/.eslint* ${WRKSRC}/
+	${CP} ${WRKDIR}/${DISTNAME}/.stylelintrc ${WRKSRC}/
+	echo ${PKGVERSION_NOREV} > ${WRKSRC}/VERSION
+
+do-build:
+	cd ${WRKSRC} && ${BUILD_MAKE_CMD}
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKDIR}/bin/gitea ${DESTDIR}${PREFIX}/sbin
+	${INSTALL_PROGRAM} ${WRKSRC}/gitea ${DESTDIR}${PREFIX}/sbin
 	cd ${WRKSRC}/options && ${PAX} -rw -pp . ${DESTDIR}${PREFIX}/share/gitea/options/
 	cd ${WRKSRC}/templates && ${PAX} -rw -pp . ${DESTDIR}${PREFIX}/share/gitea/templates/
 	cd ${WRKSRC}/public && ${PAX} -rw -pp . ${DESTDIR}${PREFIX}/share/gitea/public/
