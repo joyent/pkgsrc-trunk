@@ -41,6 +41,11 @@ BUILD_DEFS+=		VARBASE
 CHECK_SHLIBS_SKIP=	libexec/proftpd/*.a
 CHECK_SSP_SKIP=		${CHECK_SHLIBS_SKIP}
 
+SUBST_CLASSES+=		libs
+SUBST_STAGE.libs=	pre-build
+SUBST_FILES.libs=	modules/mod_sql_mysql.c
+SUBST_SED.libs=		-e 's|^\(.\*\ \$$Libraries:\ \).* \$$|\1'"`mysql_config --libs`"'\ \$$|'
+
 pre-configure:
 	cd ${WRKSRC} && ${TOOLS_CMD.autoconf} &&\
 	cd contrib/mod_load && ${TOOLS_CMD.autoconf}
