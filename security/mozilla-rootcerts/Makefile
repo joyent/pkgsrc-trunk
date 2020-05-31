@@ -1,11 +1,10 @@
-# $NetBSD: Makefile,v 1.35 2020/03/30 16:38:03 gdt Exp $
+# $NetBSD: Makefile,v 1.37 2020/05/30 22:39:08 tnn Exp $
 
 DISTNAME=	mozilla-rootcerts-1.0.${CERTDATA_DATE}
-PKGREVISION=	1
 CATEGORIES=	security
-MASTER_SITES=	-https://hg.mozilla.org/mozilla-central/raw-file/491b05117886ece80b94c88f7107e6e12c1394be/security/nss/lib/ckfw/builtins/certdata.txt
-DISTFILES=	${CERTDATA}
+MASTER_SITES=	-https://hg.mozilla.org/mozilla-central/raw-file/4f0b2cc28b1482e285bcfceec472a568f3843299/security/nss/lib/ckfw/builtins/certdata.txt
 EXTRACT_SUFX=	# empty
+DISTFILES=	${CERTDATA}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://hg.mozilla.org/mozilla-central/log/tip/security/nss/lib/ckfw/builtins/certdata.txt
@@ -15,7 +14,7 @@ LICENSE=	mpl-2.0
 USE_TOOLS=	awk:run echo:run expr:run ln:run ls:run openssl:run rm:run mkdir:run
 
 # This must be kept in sync with security/mozilla-rootcerts-openssl
-CERTDATA_DATE=	20191207
+CERTDATA_DATE=	20200529
 CERTDATA=	certdata-${CERTDATA_DATE}.txt
 
 WRKSRC=		${WRKDIR}
@@ -47,18 +46,18 @@ INSTALLATION_DIRS=	sbin ${DATADIR}
 
 do-extract:
 	${CP} ${FILESDIR}/${CERT_SCRIPT} ${WRKSRC}
-	${CP} ${DISTDIR}/${CERTDATA} ${WRKSRC}
+	${CP} ${DISTDIR}/${CERTDATA} ${WRKSRC}/certdata.txt
 
 do-build:
 	${MKDIR} ${WRKSRC}/certs
 	cd ${WRKSRC}/certs && \
-	${SH} ${WRKSRC}/${CERT_SCRIPT} -f ${WRKSRC}/${CERTDATA} extract
+	${SH} ${WRKSRC}/${CERT_SCRIPT} -f ${WRKSRC}/certdata.txt extract
 	${LS} -rt ${WRKSRC}/certs/*.pem | ${XARGS} ${CAT} >${WRKSRC}/cacert.pem
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/${CERT_SCRIPT} \
 		${DESTDIR}${PREFIX}/sbin/mozilla-rootcerts
-	${INSTALL_DATA} ${WRKSRC}/${CERTDATA} ${DESTDIR}${DATADIR}/certdata.txt
+	${INSTALL_DATA} ${WRKSRC}/certdata.txt ${DESTDIR}${DATADIR}/certdata.txt
 	${INSTALL_DATA} ${WRKSRC}/cacert.pem ${DESTDIR}${DATADIR}/cacert.pem
 
 .include "../../mk/bsd.pkg.mk"

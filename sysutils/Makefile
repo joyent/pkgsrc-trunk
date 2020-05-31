@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.880 2020/05/26 11:13:43 bouyer Exp $
+# $NetBSD: Makefile,v 1.882 2020/05/29 10:38:13 nia Exp $
 #
 
 COMMENT=	System utilities
@@ -212,7 +212,6 @@ SUBDIR+=	gkrellm-share
 SUBDIR+=	gnome-menus
 SUBDIR+=	gnome-nds-thumbnailer
 SUBDIR+=	gnome-vfs
-SUBDIR+=	gnome-vfs-monikers
 SUBDIR+=	gnome-vfsmm
 SUBDIR+=	gnuit
 SUBDIR+=	goreman
@@ -480,7 +479,6 @@ SUBDIR+=	py-dbus
 SUBDIR+=	py-diffoscope
 SUBDIR+=	py-euca2ools
 SUBDIR+=	py-filetype
-SUBDIR+=	py-gnome-menus
 SUBDIR+=	py-google-compute-engine
 SUBDIR+=	py-kazoo
 SUBDIR+=	py-magic

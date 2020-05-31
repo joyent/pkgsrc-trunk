@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.205 2020/05/23 08:22:40 adam Exp $
+# $NetBSD: Makefile,v 1.207 2020/05/28 12:12:51 nia Exp $
 #
 
 COMMENT=	Clocks, calendars, daily planners and other time related applications
@@ -29,7 +29,6 @@ SUBDIR+=	gnome-pomodoro
 SUBDIR+=	gnutime
 SUBDIR+=	gnyaclock
 SUBDIR+=	grdc
-SUBDIR+=	gtodo
 SUBDIR+=	hebcal
 SUBDIR+=	heirloom-date
 SUBDIR+=	hs-clock
@@ -210,8 +209,8 @@ SUBDIR+=	tex-datetime2-greek
 SUBDIR+=	tex-datetime2-hebrew
 SUBDIR+=	tex-datetime2-icelandic
 SUBDIR+=	tex-datetime2-irish
-SUBDIR+=	tex-datetime2-italian
 SUBDIR+=	tex-datetime2-it-fulltext
+SUBDIR+=	tex-datetime2-italian
 SUBDIR+=	tex-datetime2-latin
 SUBDIR+=	tex-datetime2-lsorbian
 SUBDIR+=	tex-datetime2-magyar
