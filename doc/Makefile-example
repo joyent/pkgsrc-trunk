@@ -1,4 +1,4 @@
-# $NetBSD: Makefile-example,v 1.25 2018/05/21 18:35:22 wiz Exp $
+# $NetBSD: Makefile-example,v 1.27 2020/05/31 21:22:47 rillig Exp $
 
 # First paragraph - distfile and binary package data
 # DISTNAME PKGNAME PKGREVISION CATEGORIES MASTER_SITES
@@ -10,7 +10,7 @@ CATEGORIES=		devel gnu	# multiple categories are allowed
 MASTER_SITES=		${MASTER_SITE_GNU:=make/}
 #EXTRACT_SUFX=		.tar.bz2	# .tar.gz is the default, only needed in unusual circumstances
 
-# Second paragraph - MAINTAINER/OWNER, HOMEPAGE and COMMENT, and LICEN[CS]E
+# Second paragraph - MAINTAINER/OWNER, HOMEPAGE and COMMENT, and LICENSE
 MAINTAINER=		pkgsrc-users@NetBSD.org	# set this to your email address, pkgsrc-users@ is the default
 HOMEPAGE=		http://www.gnu.org/software/make/make.html
 COMMENT=		GNU version of 'make' utility	# start with a capital, no articles at start
@@ -23,7 +23,7 @@ LICENSE=		hptools-license # Licenses should be added to the pkgsrc/licenses dire
 
 # Set RESTRICTED to a very short explanation (typically "No permission to
 # redistribute for a fee.").  NO_*_ON_* may only be set to ${RESTRICTED}.
-RESTRICTED=		"Redistribution of unmodified source only; resale prohibited."
+RESTRICTED=		Redistribution of unmodified source only; resale prohibited.
 NO_SRC_ON_CDROM=	${RESTRICTED}
 NO_BIN_ON_FTP=		${RESTRICTED}
 NO_BIN_ON_CDROM=	${RESTRICTED}
@@ -71,12 +71,12 @@ BUILD_DEFS+=		GNU_PROGRAM_PREFIX
 
 # Makefile targets should occur after all the other definitions in the file
 post-install:
-	${CHMOD} g-s ${PREFIX}/bin/${GNU_PROGRAM_PREFIX}make
-	${CHGRP} ${BINGRP} ${PREFIX}/bin/${GNU_PROGRAM_PREFIX}make
+	${CHMOD} g-s ${DESTDIR}${PREFIX}/bin/${GNU_PROGRAM_PREFIX}make
+	${CHGRP} ${BINGRP} ${DESTDIR}${PREFIX}/bin/${GNU_PROGRAM_PREFIX}make
 .if !defined(GNU_PROGRAM_PREFIX) || ${GNU_PROGRAM_PREFIX} != "g"
 	# Solaris's "ln -fs" is not the same as on *BSD - use an explicit rm(1) instead
-	${RM} -f ${PREFIX}/bin/gmake
-	${LN} -s ${GNU_PROGRAM_PREFIX}make ${PREFIX}/bin/gmake
+	${RM} -f ${DESTDIR}${PREFIX}/bin/gmake
+	${LN} -s ${GNU_PROGRAM_PREFIX}make ${DESTDIR}${PREFIX}/bin/gmake
 .endif
 
 # buildlink3 files should come after all variables have been set,

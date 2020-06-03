@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.95 2020/05/06 14:04:29 adam Exp $
+# $NetBSD: Makefile,v 1.97 2020/06/02 08:23:44 adam Exp $
 
 VERSION=	2.3
 DISTNAME=	poedit-${VERSION}
-PKGREVISION=	4
+PKGREVISION=	5
 CATEGORIES=	editors
 MASTER_SITES=	${MASTER_SITE_GITHUB:=vslavik/}
 GITHUB_RELEASE=	v${VERSION}-oss
@@ -18,7 +18,8 @@ USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		gmake pkg-config zip:run
 GNU_CONFIGURE=		yes
 
-CONFIGURE_ARGS+=	--with-boost=${BUILDLINK_PREFIX.boost-libs}
+CONFIGURE_ARGS+=		--with-boost=${BUILDLINK_PREFIX.boost-libs}
+GNU_CONFIGURE_WX_VERSION=	no
 
 CXXFLAGS+=		-fpermissive
 BUILDLINK_TRANSFORM+=	rm:-Wall

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.316 2020/05/30 14:34:25 nia Exp $
+# $NetBSD: Makefile,v 1.327 2020/06/02 13:26:26 nia Exp $
 #
 
 COMMENT=	Emulators for other operating systems
@@ -68,6 +68,8 @@ SUBDIR+=	fs-uae-arcade
 SUBDIR+=	fs-uae-launcher
 SUBDIR+=	fuse-emulator
 SUBDIR+=	fuse-emulator-utils
+SUBDIR+=	gearboy
+SUBDIR+=	gearsystem
 SUBDIR+=	generator-cbiere
 SUBDIR+=	gens
 SUBDIR+=	gns3-gui
@@ -106,24 +108,27 @@ SUBDIR+=	libretro-cap32
 SUBDIR+=	libretro-core-info
 SUBDIR+=	libretro-desmume
 SUBDIR+=	libretro-dolphin
-SUBDIR+=	libretro-fbalpha
+SUBDIR+=	libretro-fbneo
 SUBDIR+=	libretro-fceumm
+SUBDIR+=	libretro-flycast
 SUBDIR+=	libretro-freeintv
 SUBDIR+=	libretro-fuse
 SUBDIR+=	libretro-gambatte
+SUBDIR+=	libretro-gearboy
+SUBDIR+=	libretro-gearsystem
 SUBDIR+=	libretro-genesis-plus-gx
 SUBDIR+=	libretro-mame2010
 SUBDIR+=	libretro-mgba
-SUBDIR+=	libretro-mupen64plus
 SUBDIR+=	libretro-nestopia
 SUBDIR+=	libretro-np2kai
 SUBDIR+=	libretro-o2em
+SUBDIR+=	libretro-parallel-n64
 SUBDIR+=	libretro-pcsx-rearmed
 SUBDIR+=	libretro-picodrive
 SUBDIR+=	libretro-ppsspp
 SUBDIR+=	libretro-prosystem
-SUBDIR+=	libretro-reicast
 SUBDIR+=	libretro-sameboy
+SUBDIR+=	libretro-smsplus
 SUBDIR+=	libretro-snes9x
 SUBDIR+=	libretro-snes9x2005
 SUBDIR+=	libretro-snes9x2010

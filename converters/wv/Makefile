@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.88 2020/03/08 16:47:29 wiz Exp $
+# $NetBSD: Makefile,v 1.90 2020/06/02 08:22:33 adam Exp $
 
 DISTNAME=	wv-1.2.9
-PKGREVISION=	14
+PKGREVISION=	15
 CATEGORIES=	converters
 MASTER_SITES=	http://www.abiword.com/downloads/wv/${PKGVERSION_NOREV}/
 
@@ -13,9 +13,7 @@ USE_LIBTOOL=		yes
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		gmake pkg-config
 GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--with-libiconv=${BUILDLINK_PREFIX.libiconv}
 CONFIGURE_ARGS+=	--with-libwmf=${BUILDLINK_PREFIX.libwmf}
-CONFIGURE_ARGS+=	--with-libxml2=${BUILDLINK_PREFIX.libxml2}
 CONFIGURE_ARGS+=	--with-png=${BUILDLINK_PREFIX.png}
 CONFIGURE_ARGS+=	--with-zlib=${BUILDLINK_PREFIX.zlib}
 

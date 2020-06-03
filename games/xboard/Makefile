@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.63 2020/03/10 22:10:00 wiz Exp $
+# $NetBSD: Makefile,v 1.65 2020/06/02 08:23:57 adam Exp $
 
 DISTNAME=	xboard-4.9.1
 #PKGREVISION=	1
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GNU:=xboard/}
 
@@ -11,7 +11,6 @@ HOMEPAGE=	https://www.gnu.org/software/xboard/
 COMMENT=	Graphical frontend for chess engines and servers
 LICENSE=	gnu-gpl-v3
 
-CONFIGURE_ARGS+=	--enable-xpm
 CONFIGURE_ARGS+=	--enable-zippy	# interface to ICS
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	PERLPATH=${PERL5}

@@ -1,13 +1,15 @@
-# $NetBSD: Makefile,v 1.3 2020/04/25 01:46:48 gutteridge Exp $
+# $NetBSD: Makefile,v 1.8 2020/06/02 10:47:17 pin Exp $
 
-DISTNAME=	lxqt-config-0.14.1
+DISTNAME=	lxqt-config-0.15.0
+PKGREVISION=	1
 CATEGORIES=	x11
-MASTER_SITES=	https://downloads.lxqt.org/downloads/lxqt-config/0.14.1/
+MASTER_SITES=	${MASTER_SITE_GITHUB:=lxqt/}
+GITHUB_RELEASE=	${PKGVERSION_NOREV}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://github.com/lxqt/lxqt-config/
 COMMENT=	System configuration control center
-HOMEPAGE=	https://lxqt.org/
 LICENSE=	gnu-lgpl-v2.1
 
 USE_CMAKE=	yes
@@ -17,12 +19,13 @@ USE_LANGUAGES=	c c++
 CONFIGURE_DIRS=	build
 CMAKE_ARG_PATH=	..
 
+.include "../../mk/bsd.prefs.mk"
+.if ${OPSYS} != "Linux"
 CMAKE_ARGS+=	-DWITH_INPUT=OFF
+.endif
 
 LDFLAGS+=	${COMPILER_RPATH_FLAG}${PREFIX}/lib/lxqt-config \
 		-L${PREFIX}/lib/lxqt-config/
-
-.include "../../mk/bsd.prefs.mk"
 
 # NetBSD base X11 places xkb config files in a non-standard location
 .if ${OPSYS} == "NetBSD" && ${X11_TYPE} != "modular"

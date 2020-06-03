@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.22 2020/04/11 06:33:47 gutteridge Exp $
+# $NetBSD: Makefile,v 1.24 2020/06/02 00:56:36 gutteridge Exp $
 
 .include "../../meta-pkgs/mate/Makefile.common"
 
@@ -10,14 +10,13 @@ COMMENT=	MATE session manager
 TOOL_DEPENDS+=	xmlto-[0-9]*:../../textproc/xmlto
 TOOL_DEPENDS+=	libxslt-[0-9]*:../../textproc/libxslt
 TOOL_DEPENDS+=	autoconf-archive-[0-9]*:../../devel/autoconf-archive
-TOOL_DEPENDS+=	mate-common-${VERSION}:../../devel/mate-common
+TOOL_DEPENDS+=	mate-common>=${VERSION}:../../devel/mate-common
 
 DEPENDS+=	docbook-xsl-[0-9]*:../../textproc/docbook-xsl
 
 USE_TOOLS+=	autoreconf automake autoconf aclocal libtoolize
 
 .include "../../graphics/MesaLib/features.mk"
-CONFIGURE_ARGS+=	--with-glesv2=${MESALIB_SUPPORTS_GLESv2}
 PLIST_VARS+=	glesv2
 .if ${MESALIB_SUPPORTS_GLESv2} == "yes"
 PLIST.glesv2=	yes

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.54 2020/04/12 08:29:15 adam Exp $
+# $NetBSD: Makefile,v 1.56 2020/06/02 08:24:53 adam Exp $
 
-PKGREVISION= 19
+PKGREVISION= 20
 .include "../../meta-pkgs/xfce4/Makefile.common"
 
 VERSION=	4.12.1
@@ -11,8 +11,6 @@ MASTER_SITES=	http://archive.xfce.org/src/apps/orage/4.12/
 
 HOMEPAGE=	http://www.kolumbus.fi/~w408237/orage/
 COMMENT=	Xfce time managing application
-
-CONFIGURE_ARGS+=	--disable-libxfce4mcs
 
 # avoid picking up native libpopt, e.g. on Linux
 CONFIGURE_ENV+=	ac_cv_lib_popt_poptGetContext=no

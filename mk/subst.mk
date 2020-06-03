@@ -1,4 +1,4 @@
-# $NetBSD: subst.mk,v 1.93 2020/05/16 19:02:32 rillig Exp $
+# $NetBSD: subst.mk,v 1.95 2020/06/03 10:56:46 gdt Exp $
 #
 # The subst framework replaces text in one or more files in the WRKSRC
 # directory. Packages can define several ``classes'' of replacements.
@@ -95,8 +95,8 @@
 #
 #	Typical reasons to change this to yes are:
 #
-#	1.  SUBST_FILES is generated dynamically and may include
-#	    unaffected files.
+#	1.  SUBST_FILES is generated dynamically (e.g., via find) and
+#	    may include unaffected files.
 #
 #	2.  There are multiple SUBST_SED patterns, and some of these
 #	    do not count as identity substitution since they contain

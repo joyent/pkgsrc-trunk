@@ -1,12 +1,14 @@
-# $NetBSD: Makefile,v 1.2 2020/04/25 15:18:42 gutteridge Exp $
+# $NetBSD: Makefile,v 1.5 2020/06/02 11:01:28 pin Exp $
 
-DISTNAME=	lxqt-runner-0.14.1
+DISTNAME=	lxqt-runner-0.15.0
+PKGREVISION=	1
 CATEGORIES=	x11
-MASTER_SITES=	https://downloads.lxqt.org/downloads/lxqt-runner/0.14.1/
+MASTER_SITES=	${MASTER_SITE_GITHUB:=lxqt/}
+GITHUB_RELEASE=	${PKGVERSION_NOREV}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://lxqt.org/
+HOMEPAGE=	https://github.com/lxqt/lxqt-runner/
 COMMENT=	Launch applications quickly by typing commands
 LICENSE=	gnu-lgpl-v2.1
 

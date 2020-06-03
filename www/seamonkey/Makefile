@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.211 2020/05/14 16:53:31 rillig Exp $
+# $NetBSD: Makefile,v 1.214 2020/06/02 08:24:58 adam Exp $
 
 DISTNAME=	seamonkey-${SM_VER}.source
 PKGNAME=	seamonkey-${SM_VER:S/b/beta/}
-PKGREVISION=	1
+PKGREVISION=	2
 SM_VER=		2.53.2
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_MOZILLA:=seamonkey/releases/${SM_VER}/source/}
@@ -21,6 +21,8 @@ USE_TOOLS+=	unzip pax
 
 NOT_PAX_MPROTECT_SAFE+=	lib/${PKGBASE}/seamonkey
 NOT_PAX_MPROTECT_SAFE+=	lib/${PKGBASE}/seamonkey-bin
+
+GCC_REQD+=	6
 
 .include "../../mk/bsd.prefs.mk"
 .include "options.mk"
@@ -42,6 +44,7 @@ LDFLAGS+=		${COMPILER_RPATH_FLAG}${PREFIX}/lib/${PKGBASE}
 .include "../../mk/bsd.prefs.mk"
 
 CHECK_PORTABILITY_SKIP+=	mozilla/js/src/tests/update-test262.sh
+CHECK_PORTABILITY_SKIP+=	mozilla/modules/pdfium/update.sh
 CHECK_PORTABILITY_SKIP+=	mozilla/security/nss/tests/libpkix/libpkix.sh
 
 CHECK_INTERPRETER_SKIP+=	lib/seamonkey-sdk/sdk/bin/header.py

@@ -378,6 +378,7 @@ kerberos		Enable Kerberos support.
 kerberos-prefix-cmds	Enables addition of a prefix to the kerberos client commands.
 kerberos4		Enable Kerberos4 support.
 kermit-suid-uucp	Install kermit setuid uucp.
+keyring			Enable gnome-keyring support.
 klash			Install Konqueror flash plugin.
 kqueue			Enable support for kernel event notification mechanism.
 l10n			Enable language localization.
@@ -543,6 +544,7 @@ mongo			Support the MongoDB database.
 moonlight		Support the obsolete Silverlight implementation.
 motif			Enable motif support.
 motoya			Add motoya fonts.
+mouse			Enable mouse support.
 mozilla			Use mozilla as gecko rendering engine.
 mozilla-jemalloc	Enable building with Mozilla's jemalloc.
 mozilla-jit		Enable nanojit javascript acceleration.

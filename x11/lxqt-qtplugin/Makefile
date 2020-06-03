@@ -1,12 +1,14 @@
-# $NetBSD: Makefile,v 1.2 2020/04/25 14:55:39 gutteridge Exp $
+# $NetBSD: Makefile,v 1.5 2020/06/02 10:52:03 pin Exp $
 
-DISTNAME=	lxqt-qtplugin-0.14.0
+DISTNAME=	lxqt-qtplugin-0.15.1
+PKGREVISION=	1
 CATEGORIES=	x11
-MASTER_SITES=	https://downloads.lxqt.org/downloads/lxqt-qtplugin/0.14.0/
+MASTER_SITES=	${MASTER_SITE_GITHUB:=lxqt/}
+GITHUB_RELEASE= ${PKGVERSION_NOREV}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://lxqt.org/
+HOMEPAGE=	https://github.com/lxqt/lxqt-qtplugin/
 COMMENT=	LXQt platform integration plugin for Qt5
 LICENSE=	gnu-lgpl-v2.1
 

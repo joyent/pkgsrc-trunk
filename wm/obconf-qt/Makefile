@@ -1,13 +1,14 @@
-# $NetBSD: Makefile,v 1.2 2020/04/12 08:29:15 adam Exp $
+# $NetBSD: Makefile,v 1.5 2020/06/02 08:54:52 pin Exp $
 
-DISTNAME=	obconf-qt-0.14.1
+DISTNAME=	obconf-qt-0.15.0
 PKGREVISION=	1
 CATEGORIES=	wm
-MASTER_SITES=	https://downloads.lxqt.org/downloads/obconf-qt/0.14.1/
+MASTER_SITES=	${MASTER_SITE_GITHUB:=lxqt/}
+GITHUB_RELEASE=	${PKGVERSION_NOREV}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://lxqt.org/
+HOMEPAGE=	https://github.com/lxqt/obconf-qt/
 COMMENT=	Qt based configurator of OpenBox window manager
 LICENSE=	gnu-gpl-v2
 

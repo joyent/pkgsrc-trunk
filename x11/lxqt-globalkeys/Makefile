@@ -1,12 +1,14 @@
-# $NetBSD: Makefile,v 1.1 2020/04/25 01:34:53 gutteridge Exp $
+# $NetBSD: Makefile,v 1.4 2020/06/02 10:48:35 pin Exp $
 
-DISTNAME=	lxqt-globalkeys-0.14.3
+DISTNAME=	lxqt-globalkeys-0.15.0
+PKGREVISION=	1
 CATEGORIES=	x11
-MASTER_SITES=	https://downloads.lxqt.org/downloads/lxqt-globalkeys/0.14.3/
+MASTER_SITES=	${MASTER_SITE_GITHUB:=lxqt/}
+GITHUB_RELEASE=	${PKGVERSION_NOREV}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://lxqt.org/
+HOMEPAGE=	https://github.com/lxqt/lxqt-globalkeys/
 COMMENT=	Daemon and library for global keyboard shortcuts registration
 LICENSE=	gnu-lgpl-v2.1
 
