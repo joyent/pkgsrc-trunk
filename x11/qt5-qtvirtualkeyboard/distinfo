@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.5 2020/06/02 06:41:03 adam Exp $
+$NetBSD: distinfo,v 1.7 2020/06/05 16:15:47 mef Exp $
 
 SHA1 (qtvirtualkeyboard-everywhere-src-5.15.0.tar.xz) = 36bbe7e30eae3967429f14c127e860148409b96b
 RMD160 (qtvirtualkeyboard-everywhere-src-5.15.0.tar.xz) = 239aa23d1a39c91d6b59eab70eb38afae4c10f4f
