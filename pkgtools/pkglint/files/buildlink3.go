@@ -54,7 +54,7 @@ func (ck *Buildlink3Checker) Check() {
 	}
 
 	// Fourth paragraph: Cleanup, corresponding to the first paragraph.
-	if !llex.SkipContainsOrWarn("BUILDLINK_TREE+=\t-" + ck.pkgbase) {
+	if !llex.SkipTextOrWarn("BUILDLINK_TREE+=\t-" + ck.pkgbase) {
 		return
 	}
 
@@ -132,7 +132,7 @@ func (ck *Buildlink3Checker) checkSecondParagraph(mlex *MkLinesLexer) bool {
 	}
 	pkgupperLine, pkgupper := mlex.PreviousMkLine(), m[1]
 
-	if !mlex.SkipContainsOrWarn(pkgupper + "_BUILDLINK3_MK:=") {
+	if !mlex.SkipTextOrWarn(pkgupper + "_BUILDLINK3_MK:=") {
 		return false
 	}
 	mlex.SkipEmptyOrNote()
@@ -275,6 +275,11 @@ func (ck *Buildlink3Checker) checkVarassign(mkline *MkLine, pkgbase string) {
 		if hasPrefix(varname, "BUILDLINK_") && mkline.Varcanon() != "BUILDLINK_API_DEPENDS.*" {
 			mkline.Warnf("Only buildlink variables for %q, not %q may be set in this file.", pkgbase, varparam)
 		}
+	}
+
+	if varname == "pkgbase" && value != ck.pkgbase {
+		mkline.Errorf("A buildlink3.mk file must only query its own PKG_BUILD_OPTIONS.%s, not PKG_BUILD_OPTIONS.%s.",
+			ck.pkgbase, value)
 	}
 }
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.31 2020/05/22 10:56:22 adam Exp $
+# $NetBSD: Makefile,v 1.33 2020/06/06 02:01:05 mef Exp $
 
 DISTNAME=	libcarddav_0.6.2-2debian2
 PKGNAME=	${DISTNAME:S/_/-/:S/-2debian2/.2.2/}

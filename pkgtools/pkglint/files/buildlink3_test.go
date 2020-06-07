@@ -376,7 +376,7 @@ func (s *Suite) Test_CheckLinesBuildlink3Mk__missing_BUILDLINK_TREE_at_end(c *ch
 	CheckLinesBuildlink3Mk(mklines)
 
 	t.CheckOutputLines(
-		"WARN: buildlink3.mk:13: This line should contain the following text: BUILDLINK_TREE+=\t-hs-X11")
+		"WARN: buildlink3.mk:13: This line should consist of the following text: BUILDLINK_TREE+=\t-hs-X11")
 }
 
 func (s *Suite) Test_CheckLinesBuildlink3Mk__DEPMETHOD_placement(c *check.C) {
@@ -424,7 +424,7 @@ func (s *Suite) Test_CheckLinesBuildlink3Mk__multiple_inclusion_wrong(c *check.C
 	t.CheckOutputLines(
 		"WARN: buildlink3.mk:5: HS_X11_BUILDLINK3_MK is used but not defined.",
 		"WARN: buildlink3.mk:6: UNRELATED_BUILDLINK3_MK is defined but not used.",
-		"WARN: buildlink3.mk:6: This line should contain the following text: HS_X11_BUILDLINK3_MK:=")
+		"WARN: buildlink3.mk:6: This line should consist of the following text: HS_X11_BUILDLINK3_MK:=")
 }
 
 func (s *Suite) Test_CheckLinesBuildlink3Mk__missing_endif(c *check.C) {
@@ -631,6 +631,21 @@ func (s *Suite) Test_Buildlink3Checker_checkSecondParagraph__missing_mkbase(c *c
 		"WARN: ~/category/package/Makefile:4: \"\" is not a valid package name.")
 }
 
+func (s *Suite) Test_Buildlink3Checker_checkPkgbaseMismatch(c *check.C) {
+	t := s.Init(c)
+
+	t.SetUpPackage("category/package")
+	t.CreateFileBuildlink3Id("category/package/buildlink3.mk", "unrelated")
+	t.Chdir("category/package")
+	t.FinishSetUp()
+
+	G.Check(".")
+
+	t.CheckOutputLines(
+		"ERROR: buildlink3.mk:3: Package name mismatch between \"unrelated\" " +
+			"in this file and \"package\" from Makefile:3.")
+}
+
 func (s *Suite) Test_Buildlink3Checker_checkMainPart__if_else_endif(c *check.C) {
 	t := s.Init(c)
 
@@ -732,10 +747,12 @@ func (s *Suite) Test_Buildlink3Checker_checkVarUse__PKG_BUILD_OPTIONS(c *check.C
 
 	G.Check(t.File("category/package/buildlink3.mk"))
 
-	// TODO: Warn about PKG_BUILD_OPTIONS.package since that variable is not defined.
 	t.CheckOutputLines(
 		"WARN: ~/category/package/buildlink3.mk:15: "+
 			"PKG_BUILD_OPTIONS is used but not defined.",
+		"ERROR: ~/category/package/buildlink3.mk:12: "+
+			"A buildlink3.mk file must only query its own PKG_BUILD_OPTIONS.package, "+
+			"not PKG_BUILD_OPTIONS.unrelated.",
 		"WARN: ~/category/package/buildlink3.mk:21: "+
 			"Wrong PKG_BUILD_OPTIONS, expected \"package\" instead of \"unrelated\".")
 }
@@ -743,7 +760,7 @@ func (s *Suite) Test_Buildlink3Checker_checkVarUse__PKG_BUILD_OPTIONS(c *check.C
 // As of October 2018, pkglint parses package dependencies a little
 // different than the pkg_* tools.
 // In all but two cases this works, this is one of the exceptions.
-// The "{totem,totem-xine}" cannot be parsed, therefore the check skipped.
+// The "{totem,totem-xine}" cannot be parsed, therefore the check is skipped.
 func (s *Suite) Test_Buildlink3Checker_checkVarassign__abi_api_versions_brace(c *check.C) {
 	t := s.Init(c)
 
@@ -1096,7 +1113,19 @@ func (s *Suite) Test_LoadBuildlink3Data(c *check.C) {
 	t := s.Init(c)
 
 	t.CreateFileBuildlink3("category/package/buildlink3.mk",
-		"BUILDLINK_ABI_DEPENDS.package+=\tpackage>=0.1")
+		"BUILDLINK_ABI_DEPENDS.package+=\tpackage>=0.1",
+		"",
+		"BUILDLINK_API_DEPENDS.other+=\tother>=0.1",
+		"BUILDLINK_ABI_DEPENDS.other+=\tother>=0.1.3",
+		"BUILDLINK_API_DEPENDS.package+=\tinvalid",
+		"BUILDLINK_API_DEPENDS.package+=\tpackage>=0.1:extra",
+		"BUILDLINK_ABI_DEPENDS.package+=\tinvalid",
+		"BUILDLINK_ABI_DEPENDS.package+=\tpackage>=0.1:extra",
+
+		"BUILDLINK_PREFIX.package=\t${PREFIX}",
+		"BUILDLINK_PREFIX.other=\t${PREFIX}",
+
+		"BUILDLINK_PKGSRCDIR.other=\tcategory/package")
 	t.Chdir("category/package")
 	mklines := LoadMk("buildlink3.mk", nil, MustSucceed)
 
@@ -1104,6 +1133,7 @@ func (s *Suite) Test_LoadBuildlink3Data(c *check.C) {
 
 	t.CheckDeepEquals(data, &Buildlink3Data{
 		id:        "package",
+		prefix:    "${PREFIX}",
 		pkgsrcdir: "../../category/package",
 		apiDepends: &DependencyPattern{
 			Pkgbase: "package",

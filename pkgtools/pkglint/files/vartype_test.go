@@ -136,7 +136,6 @@ func (s *Suite) Test_Vartype_AlternativeFiles(c *check.C) {
 		rules(
 			"buildlink3.mk: none",
 			"*: set"),
-		// TODO: should be "buildlink3.mk only".
 		"*, but not buildlink3.mk")
 
 	// If there are both positive and negative cases, preserve all the
@@ -158,7 +157,6 @@ func (s *Suite) Test_Vartype_AlternativeFiles(c *check.C) {
 			"builtin.mk: set",
 			"Makefile: none",
 			"*.mk: append"),
-		// TODO: should be "builtin.mk only".
 		"builtin.mk, but not buildlink3.mk, Makefile or *.mk")
 }
 
@@ -252,6 +250,8 @@ func (s *Suite) Test_BasicType_NeedsQ(c *check.C) {
 	test("PKG_FAIL_REASON", true)
 	test("SUBST_MESSAGE.id", true)
 	test("CC", true)
+
+	test("TOOLS_NOOP", false)
 }
 
 func (s *Suite) Test_BasicType_HasEnum(c *check.C) {
