@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2020,v 1.3442 2020/06/07 18:57:00 otis Exp $
+$NetBSD: CHANGES-2020,v 1.3446 2020/06/08 06:56:38 adam Exp $
 
 Changes to the packages collection and infrastructure in 2020:
 
@@ -5489,3 +5489,11 @@ Changes to the packages collection and infrastructure in 2020:
 	Updated misc/ruby-hashie to 4.1.0 [taca 2020-06-07]
 	Updated devel/ruby-rspec_junit_formatter to 0.4.1 [taca 2020-06-07]
 	Updated net/powerdns to 4.2.2 [otis 2020-06-07]
+	Updated mail/roundcube to 1.4.5 [taca 2020-06-07]
+	Updated mail/roundcube-plugin-enigma to 1.4.5 [taca 2020-06-07]
+	Updated mail/roundcube-plugin-zipdownload to 1.4.5 [taca 2020-06-07]
+	Updated mail/roundcube-plugin-password to 1.4.5 [taca 2020-06-07]
+	Updated devel/ruby-regexp_parser to 1.7.1 [taca 2020-06-07]
+	Updated lang/rust to 1.44.0 [he 2020-06-07]
+	Updated devel/py-sortedcontainers to 2.2.2 [adam 2020-06-08]
+	Updated devel/py-wcwidth to 0.2.4 [adam 2020-06-08]
