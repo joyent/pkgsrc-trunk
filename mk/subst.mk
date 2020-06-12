@@ -1,4 +1,4 @@
-# $NetBSD: subst.mk,v 1.95 2020/06/03 10:56:46 gdt Exp $
+# $NetBSD: subst.mk,v 1.99 2020/06/11 20:13:22 rillig Exp $
 #
 # The subst framework replaces text in one or more files in the WRKSRC
 # directory. Packages can define several ``classes'' of replacements.
@@ -40,6 +40,7 @@
 # SUBST_CLASSES
 #	A list of class names.  When adding new classes to this list, be
 #	sure to append them (+=) instead of overriding them (=).
+#	The order in which the classes are applied is unspecified.
 #
 # SUBST_STAGE.<class>
 #	"stage" at which we do the text replacement. Should be one of
@@ -144,7 +145,6 @@ PKG_FAIL_REASON+=		"[subst.mk:${class}] SUBST_FILTER_CMD and SUBST_SED/SUBST_VAR
 .endif
 
 SUBST_FILTER_CMD.${class}?=	LC_ALL=C ${SED} ${SUBST_SED.${class}}
-SUBST_VARS.${class}?=		# none
 SUBST_MESSAGE.${class}?=	Substituting "${class}" in ${SUBST_FILES.${class}}
 .  for v in ${SUBST_VARS.${class}}
 SUBST_FILTER_CMD.${class}+=	-e s,@${v:C|[.[\\*^]|\\\\&|gW:Q}@,${${v}:S|\\|\\\\|gW:S|,|\\,|gW:S|&|\\\&|gW:S|${.newline}|\\${.newline}|gW:Q},g
@@ -187,7 +187,7 @@ ${_SUBST_COOKIE.${class}}:
 	noop_sep='';							\
 	for pattern in $$patterns; do					\
 		set +f;							\
-		changed=no;						\
+		found_any=no;						\
 		for file in $$pattern; do				\
 			case $$file in ([!A-Za-z0-9/]*) file="./$$file";; esac; \
 			tmpfile="$$file.subst.sav";			\
@@ -200,26 +200,24 @@ ${_SUBST_COOKIE.${class}}:
 				${_SUBST_WARN.${class}} "Ignoring non-text file \"$$file\"."; \
 				continue;				\
 			};						\
-			${SUBST_FILTER_CMD.${class}} < "$$file" > "$$tmpfile";	\
+			${SUBST_FILTER_CMD.${class}} < "$$file" > "$$tmpfile"; \
 			${CMP} -s "$$tmpfile" "$$file" && {		\
 				${AWK} -f ${PKGSRCDIR}/mk/scripts/subst-identity.awk -- ${SUBST_SED.${class}} \
-				&& found=$$(LC_ALL=C ${SED} -n ${SUBST_SED.${class}:C,^['"]?s.*,&p,} "$$file") \
-				&& [ -n "$$found" ] && {		\
-					changed=yes;			\
-					continue;			\
-				};					\
-				${_SUBST_WARN.${class}} "Nothing changed in \"$$file\"."; \
+				&& found_text=$$(LC_ALL=C ${SED} -n ${SUBST_SED.${class}:C,^['"]?s.*,&p,} "$$file") \
+				&& [ -n "$$found_text" ]		\
+				&& found_any=yes			\
+				|| ${_SUBST_WARN.${class}} "Nothing changed in \"$$file\"."; \
 				${RM} -f "$$tmpfile";			\
 				continue;				\
 			};						\
 			[ -x "$$file" ] && ${CHMOD} +x "$$tmpfile";	\
-			changed=yes;					\
+			found_any=yes;					\
 			${_SUBST_KEEP.${class}};			\
 			${MV} -f "$$tmpfile" "$$file"; 			\
 			${ECHO} "$$file" >> ${.TARGET}.tmp;		\
 		done;							\
 									\
-		[ "$$changed,${SUBST_NOOP_OK.${class}:tl}" = no,no ] && { \
+		[ "$$found_any,${SUBST_NOOP_OK.${class}:tl}" = no,no ] && { \
 			noop_count="$$noop_count+";			\
 			noop_patterns="$$noop_patterns$$noop_sep$$pattern"; \
 			noop_sep=" ";					\

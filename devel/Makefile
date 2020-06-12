@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3141 2020/06/07 07:25:36 taca Exp $
+# $NetBSD: Makefile,v 1.3143 2020/06/12 11:38:32 nia Exp $
 #
 
 COMMENT=	Development utilities
@@ -741,6 +741,7 @@ SUBDIR+=	libgnome
 SUBDIR+=	libgnomemm
 SUBDIR+=	libgnomeui
 SUBDIR+=	libgnomeuimm
+SUBDIR+=	libgnt
 SUBDIR+=	libgphoto2
 SUBDIR+=	libgsf
 SUBDIR+=	libgweather
@@ -2371,6 +2372,7 @@ SUBDIR+=	py-pathlib2
 SUBDIR+=	py-pathspec
 SUBDIR+=	py-pbr
 SUBDIR+=	py-pebble
+SUBDIR+=	py-pep517
 SUBDIR+=	py-pep8
 SUBDIR+=	py-pexpect
 SUBDIR+=	py-pip

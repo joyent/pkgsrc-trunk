@@ -1,0 +1,137 @@
+$NetBSD: patch-configure,v 1.1 2020/06/12 02:22:08 sevan Exp $
+
+- Fix configure to look for des_cbc_encrypt in -ldes
+- Fix configure on FreeBSD 10 & newer
+- Fix portability bug in test
+
+--- configure.orig	2018-07-16 15:33:50.000000000 +0100
++++ configure	2020-06-12 00:08:19.741995000 +0100
+@@ -13923,7 +13923,7 @@
+       hardcode_shlibpath_var=no
+       ;;
+ 
+-    freebsd1*)
++    freebsd1.*)
+       ld_shlibs=no
+       ;;
+ 
+@@ -14917,7 +14917,7 @@
+   shlibpath_var=LD_LIBRARY_PATH
+   ;;
+ 
+-freebsd1*)
++freebsd1.*)
+   dynamic_linker=no
+   ;;
+ 
+@@ -14928,7 +14928,7 @@
+     objformat=`/usr/bin/objformat`
+   else
+     case $host_os in
+-    freebsd[123]*) objformat=aout ;;
++    freebsd[123].*) objformat=aout ;;
+     *) objformat=elf ;;
+     esac
+   fi
+@@ -19637,7 +19637,7 @@
+ fi
+ 
+ # Linux systemd
+-if test "x$with_systemd" == "xyes"; then
++if test "x$with_systemd" = "xyes"; then
+   other_src_list="$other_src_list sd-daemon.c"
+   other_objs_list="$other_objs_list sd-daemon.o"
+   other_lobjs_list="$other_lobjs_list sd-daemon.lo"
+@@ -22715,6 +22715,81 @@
+ ##
+ #########################################
+ 
++
++echo "$as_me:$LINENO: checking for des_cbc_encrypt in -ldes" >&5
++echo $ECHO_N "checking for des_cbc_encrypt in -ldes... $ECHO_C" >&6
++if test "${ac_cv_lib_des_des_cbc_encrypt+set}" = set; then
++  echo $ECHO_N "(cached) $ECHO_C" >&6
++else
++  ac_check_lib_save_LIBS=$LIBS
++LIBS="-ldes  $LIBS"
++cat >conftest.$ac_ext <<_ACEOF
++/* confdefs.h.  */
++_ACEOF
++cat confdefs.h >>conftest.$ac_ext
++cat >>conftest.$ac_ext <<_ACEOF
++/* end confdefs.h.  */
++
++/* Override any gcc2 internal prototype to avoid an error.  */
++#ifdef __cplusplus
++extern "C"
++#endif
++/* We use char because int might match the return type of a gcc2
++   builtin and then its argument prototype would still apply.  */
++char des_cbc_encrypt ();
++int
++main ()
++{
++des_cbc_encrypt ();
++  ;
++  return 0;
++}
++_ACEOF
++rm -f conftest.$ac_objext conftest$ac_exeext
++if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
++  (eval $ac_link) 2>conftest.er1
++  ac_status=$?
++  grep -v '^ *+' conftest.er1 >conftest.err
++  rm -f conftest.er1
++  cat conftest.err >&5
++  echo "$as_me:$LINENO: \$? = $ac_status" >&5
++  (exit $ac_status); } &&
++	 { ac_try='test -z "$ac_c_werror_flag"
++			 || test ! -s conftest.err'
++  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
++  (eval $ac_try) 2>&5
++  ac_status=$?
++  echo "$as_me:$LINENO: \$? = $ac_status" >&5
++  (exit $ac_status); }; } &&
++	 { ac_try='test -s conftest$ac_exeext'
++  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
++  (eval $ac_try) 2>&5
++  ac_status=$?
++  echo "$as_me:$LINENO: \$? = $ac_status" >&5
++  (exit $ac_status); }; }; then
++  ac_cv_lib_des_des_cbc_encrypt=yes
++else
++  echo "$as_me: failed program was:" >&5
++sed 's/^/| /' conftest.$ac_ext >&5
++
++ac_cv_lib_des_des_cbc_encrypt=no
++fi
++rm -f conftest.err conftest.$ac_objext \
++      conftest$ac_exeext conftest.$ac_ext
++LIBS=$ac_check_lib_save_LIBS
++fi
++echo "$as_me:$LINENO: result: $ac_cv_lib_des_des_cbc_encrypt" >&5
++echo "${ECHO_T}$ac_cv_lib_des_des_cbc_encrypt" >&6
++if test $ac_cv_lib_des_des_cbc_encrypt = yes; then
++  cat >>confdefs.h <<_ACEOF
++#define HAVE_LIBDES 1
++_ACEOF
++
++  LIBS="-ldes $LIBS"
++
++fi
++
++
+ ##
+ #   Compilation-related
+ ##
+@@ -32360,6 +32435,10 @@
+   case $ac_option in
+   # Handling of the options.
+   -recheck | --recheck | --rechec | --reche | --rech | --rec | --re | --r)
++	: Avoid regenerating within pkgsrc
++	exit 0
++	: Avoid regenerating within pkgsrc
++	exit 0
+     ac_cs_recheck=: ;;
+   --version | --versio | --versi | --vers | --ver | --ve | --v | -V )
+     $as_echo "$ac_cs_version"; exit ;;

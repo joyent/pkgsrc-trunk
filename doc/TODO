@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.19911 2020/06/10 18:08:49 nia Exp $
+$NetBSD: TODO,v 1.19913 2020/06/12 21:04:50 wiz Exp $
 
 Suggested new packages
 ======================
@@ -977,12 +977,9 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-cassa-1.11.0
 	o py-configparser-5.0.0 [drops python-2.x support]
 	o py-ephem3-3.7.6.0
-	o py-google-api-python-client-1.9.1
-	o py-google-auth-1.16.1
 	o py-hgview-1.9.0
 	o py-input-pad-1.4.2
 	o py-keybinder-0.3.1
-	o py-lazy-object-proxy-1.5.0
 	o py-musicbrainz-0.7.4
 	o py-newt-0.52.20
 	o py-omniORBpy-3.7
