@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.174 2020/06/09 15:08:24 jperkin Exp $
+# $NetBSD: Makefile,v 1.177 2020/06/13 14:26:00 gdt Exp $
 
 DISTNAME=	rustc-1.43.1-src
 PKGNAME=	${DISTNAME:S/rustc/rust/:S/-src//}
@@ -136,9 +136,31 @@ CONFIGURE_ARGS+=	--debuginfo-level-tests=0
 CONFIGURE_ARGS+=	--set llvm.targets="ARM;X86"
 .endif
 
-.if ${OPSYS} == "NetBSD" && !empty(MACHINE_PLATFORM:MNetBSD-9.99.*) && \
-    !empty(MACHINE_PLATFORM:MNetBSD-[1-9][0-9].*)
+.if ${OPSYS} == "NetBSD"
+# Parallel builds failed on NetBSD due to dynamic linker locking bugs.
+# \todo Explain if the build is believed to be sound if not parallel,
+# or if a non-parallel build is merely more likely to work.
+#
+# See toolchain/54192 at
+#   http://gnats.netbsd.org/cgi-bin/query-pr-single.pl?number=54192
+# which was fixed in -current on 2020-04-19:
+#   http://mail-index.netbsd.org/source-changes/2020/04/16/msg116256.html
+#   http://mail-index.netbsd.org/source-changes/2020/04/19/msg116337.html
+# These  were pulled up to netbsd-9 on 2020-05-13:
+#   http://releng.netbsd.org/cgi-bin/req-9.cgi?show=907
+# This has not been pulled up to netbsd-8
+#   \todo Explain if it's not applicable, shouldn't be pulled up, should be
+#   but hasn't, is too hard, etc.
+#
+# On pkgbuild for 2020Q1 9.0_RELEASE amd64, rust did not build despite
+# MAKE_JOBS_SAFE=no, but setting MAKE_JOBS=1 resulted in success. (No
+# PR is open for this.)  \todo Understand and fix.
+#
+# If we aren't on 9-current, and are on 8.x or 9.x, avoid parallel.
+# \todo Consider avoiding setting this on netbsd-9 past the fix.
+.if empty(MACHINE_PLATFORM:MNetBSD-9.99.*) && !empty(MACHINE_PLATFORM:MNetBSD-[1-9].*)
 MAKE_JOBS_SAFE=	no
+.endif
 .endif
 
 #
