@@ -1,8 +1,8 @@
-# $NetBSD: options.mk,v 1.1 2020/06/15 15:11:50 scole Exp $
+# $NetBSD: options.mk,v 1.3 2020/06/16 16:18:02 scole Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.RE_flex
 PKG_SUPPORTED_OPTIONS=	cpu-optimization doxygen examples
-PKG_SUGGESTED_OPTIONS=	cpu-optimization
+PKG_SUGGESTED_OPTIONS=	cpu-optimization examples
 
 .include "../../mk/bsd.options.mk"
 
@@ -21,7 +21,7 @@ INSTALLATION_DIRS+=	share/RE-flex/html
 TOOL_DEPENDS+=		doxygen-[0-9]*:../../devel/doxygen
 
 post-configure:
-	cd ${WRKSRC} && ${MAKE_PROGRAM} doc/html
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_PROGRAM} doc/html
 
 post-install-doxygen:
 	${INSTALL_DATA} ${WRKSRC}/doc/html/* \

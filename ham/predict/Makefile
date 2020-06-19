@@ -1,13 +1,13 @@
-# $NetBSD: Makefile,v 1.6 2020/01/26 17:31:25 rillig Exp $
+# $NetBSD: Makefile,v 1.8 2020/06/16 13:43:36 mef Exp $
 #
 
-DISTNAME=	predict-2.2.3
+DISTNAME=	predict-2.2.6
 CATEGORIES=	ham
 MASTER_SITES=	http://www.qsl.net/kd2bd/
 
 MAINTAINER=	dbj@NetBSD.org
 HOMEPAGE=	https://www.qsl.net/kd2bd/predict.html
-COMMENT=	PREDICT - curses satellite tracking/orbital prediction program
+COMMENT=	Curses satellite tracking/orbital prediction program
 
 LICENSE=	gnu-gpl-v2
 
@@ -30,7 +30,7 @@ INSTALLATION_DIRS+=	bin ${PKGMANDIR}/man1 share/predict/default share/predict/vo
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/predict ${DESTDIR}${PREFIX}/bin/
 	${INSTALL_SCRIPT} ${WRKSRC}/vocalizer/vocalizer.sh ${DESTDIR}${PREFIX}/share/predict/vocalizer/vocalizer
-	${INSTALL_MAN} ${WRKSRC}/docs/man/predict.man ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/predict.1
+	${INSTALL_MAN} ${WRKSRC}/docs/man/predict.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/predict.1
 	${INSTALL_DATA} ${WRKSRC}/vocalizer/*.wav ${DESTDIR}${PREFIX}/share/predict/vocalizer/
 	${INSTALL_DATA} ${WRKSRC}/default/predict.* ${DESTDIR}${PREFIX}/share/predict/default/
 

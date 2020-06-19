@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1146 2020/06/11 14:05:56 adam Exp $
+# $NetBSD: Makefile,v 1.1148 2020/06/18 02:59:57 gutteridge Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -903,6 +903,7 @@ SUBDIR+=	py-parse
 SUBDIR+=	py-parse_type
 SUBDIR+=	py-pdf-parser
 SUBDIR+=	py-pdfrw
+SUBDIR+=	py-peg2
 SUBDIR+=	py-phonenumbers
 SUBDIR+=	py-poyo
 SUBDIR+=	py-precis-i18n

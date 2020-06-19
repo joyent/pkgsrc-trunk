@@ -1,4 +1,4 @@
-/* $NetBSD: diffbreaker.c,v 1.1 2020/05/24 16:44:20 nat Exp $ */
+/* $NetBSD: diffbreaker.c,v 1.8 2020/06/18 13:40:17 nat Exp $ */
 
 /*-
  * Copyright (c) 2018, 2019 Nathanial Sloss <nathanialsloss@yahoo.com.au>
@@ -43,7 +43,7 @@ ssize_t finalize_context(ssize_t context, ssize_t current, ssize_t secthead,
 ssize_t update_context(ssize_t lines, ssize_t current, ssize_t last);
 ssize_t get_context(ssize_t current, ssize_t last, ssize_t num);
 void print_buffer(ssize_t myLine, ssize_t dispLines);
-void parse_buffer(char *outfile, bool incremental, uint32_t filesuffix);
+void parse_buffer(char *outfile, bool incremental, uint32_t *filesuffix);
 void read_data_to_buffer(char *myFile);
 void free_buffers_actions(void);
 void setup_screen(void);
@@ -91,6 +91,7 @@ mark_dirty(void)
 	bool writetome = false, display = false;
 	bool pending = false, writesect = false;
 	ssize_t i, j = 0, last = 0, myfile = 0;
+	size_t len = (size_t)cpl;
 
 	j = 0;
 	for (i = 0; i < totalLines; i++) {
@@ -100,9 +101,8 @@ mark_dirty(void)
 				continue;
 			}
 			if (*ORIGBUF(i) == '+') {
-				if (j != i)
-					strcpy(ORIGBUF(j), ORIGBUF(i));
-				*ORIGBUF(j) = ' ';
+				strncpy(NEWBUF(j), ORIGBUF(i), len);
+				*NEWBUF(j) = ' ';
 				action[j] = 0;
 			}
 			break;
@@ -113,8 +113,7 @@ mark_dirty(void)
 			pending = false;
 			writesect = false;
 			action[j] = action[i];
-			if (j != i)
-				strcpy(ORIGBUF(j), ORIGBUF(i));
+			strncpy(NEWBUF(j), ORIGBUF(i), len);
 			break;
 		case 6: /* --- */
 			if (pending == false && writesect == false)
@@ -125,25 +124,24 @@ mark_dirty(void)
 			pending = true;
 			writetome = false;
 			writesect = true;
-			if (j != i)
-				strcpy(ORIGBUF(j), ORIGBUF(i));
+			strncpy(NEWBUF(j), ORIGBUF(i), len);
 			action[j] = action[i];
 			break;
 		case 7: /* +++ */
-			if (j != i)
-				strcpy(ORIGBUF(j), ORIGBUF(i));
+			strncpy(NEWBUF(j), ORIGBUF(i), len);
 			action[j] = action[i];
 			break;
 		case 1: /* unselected change */
 			display = true;
 			writesect = true;
 			writetome = true;
+			/* fallthrough */
 		default:
-			if (j != i)
-				strcpy(ORIGBUF(j), ORIGBUF(i));
+			strncpy(NEWBUF(j), ORIGBUF(i), len);
 			action[j] = action[i];
 			break;
 		}
+		strncpy(ORIGBUF(j), NEWBUF(j), len);
 		j++;
 	}
 	totalLines = display ? j-- : 0;
@@ -205,7 +203,8 @@ next:
 		if (action[i - l] == 2)
 			break;
 	}
-	l--;
+	if (l > 0)
+		l--;
 	if (tmpcontext)
 		j = update_context(tmpcontext, j, i - l);
 
@@ -254,7 +253,7 @@ finalize_context(ssize_t context, ssize_t current, ssize_t secthead,
 }
 
 void
-parse_buffer(char *outfile, bool incremental, uint32_t filesuffix)
+parse_buffer(char *outfile, bool incremental, uint32_t *filesuffix)
 {
 	ssize_t origoffs = 0, newoffs = 0, first = 0, last = 0, part = 0;
 	ssize_t final = 0, context = 0, fixoffs = 0, i, j, adj;
@@ -351,9 +350,12 @@ parse_buffer(char *outfile, bool incremental, uint32_t filesuffix)
 	char tmppath [512];
 	if (incremental)
 		snprintf(tmppath, sizeof(tmppath), "%s.%d.diff", outfile,
-		    filesuffix);
+		    *filesuffix);
 	else
 		snprintf(tmppath, sizeof(tmppath), "%s", outfile);
+
+	if (j == 0)
+		return;
 
 	if (!strcmp(tmppath, "-"))
 		myfile = stderr;
@@ -366,6 +368,7 @@ parse_buffer(char *outfile, bool incremental, uint32_t filesuffix)
 		fprintf(myfile, "%s", NEWBUF(i));
 	fclose(myfile);
 
+	*filesuffix += 1;
 	return;
 }
 
@@ -409,8 +412,8 @@ read_data_to_buffer(char *myFile)
 			}
 		}
 	}
-	l = n--;
-	cpl--;
+	cpl++;
+	l = n;
 
 	size_t totalalloc = (size_t)(l * cpl);
 	if (totalalloc <= 0 || l <= 0)
@@ -435,21 +438,15 @@ read_data_to_buffer(char *myFile)
 	}
 	memset(newaction, 0, (size_t)l * sizeof(*newaction));
 	memset(action, 0, (size_t)l * sizeof(*action));
+	memset(buffer, 0, (size_t)totalalloc * sizeof(*buffer));
+	memset(newbuffer, 0, (size_t)totalalloc * sizeof(*newbuffer));
 
-	l = 0;
 	j = n = 0;
 	lseek(fd, 0, SEEK_SET);
 	while ((nr = read(fd, line, sizeof(line))) > 0) {
 		for (i = 0; i < nr; i++) {
 			data = line[i];
-			l++;
 			*(ORIGBUF(j) + n++) = data;
-			if (l == sizeof(line)) {
-				l = 0;
-				n = 0;
-				j++;
-				continue;
-			}
 			if (data == '\n') {
 				myaction = 0;
 				if (*ORIGBUF(j) == '-' && *(ORIGBUF(j) + 1) ==
@@ -470,8 +467,11 @@ read_data_to_buffer(char *myFile)
 				action[j] = myaction;
 				if (action[j] != 4)
 					j++;
+				else {
+					memset(ORIGBUF(j), 0, (size_t)cpl);
+					action[j] = 0;
+				}
 				n = 0;
-				l = 0;
 			}
 		}
 	}
@@ -596,7 +596,7 @@ main(int argc, char *argv[])
 {
 	char *infile = NULL, *outfile = NULL;
 	bool incremental = false;
-	uint32_t filesuffix = 0;
+	uint32_t filesuffix = 1;
 	int ch;
 	char myKey;
 
@@ -665,7 +665,7 @@ main(int argc, char *argv[])
 		}
 		if (myKey == 'w') {
 			currentLine = 0;
-			parse_buffer(outfile, incremental, ++filesuffix);
+			parse_buffer(outfile, incremental, &filesuffix);
 			mark_dirty();
 			if (totalLines <= 0)
 				break;
