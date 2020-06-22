@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.14 2020/03/24 16:32:06 taca Exp $
+# $NetBSD: Makefile,v 1.16 2020/06/21 15:40:22 taca Exp $
 
 DISTNAME=	childprocess-3.0.0
 PKGNAME=	${RUBY_PKGPREFIX}-${DISTNAME}

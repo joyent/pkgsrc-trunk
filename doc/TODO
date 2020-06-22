@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.19919 2020/06/16 18:22:30 adam Exp $
+$NetBSD: TODO,v 1.19928 2020/06/22 06:24:25 wiz Exp $
 
 Suggested new packages
 ======================
@@ -375,7 +375,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o GMT-5.1.1
 	o GNUMail-1.2.2
 	o Gorm-1.2.22
-	o ImageMagick-7.0.10.19
+	o ImageMagick-7.0.10.20
 	o JBidwatcher-2.5.6 [wants launch4j]
 	o LPRng-core-3.8.35
 	o OdfConverter-4.0
@@ -388,7 +388,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o SOGo-4.3.1
 	o SOPE-4.3.1
 	o TECkit-2.5.10
-	o TeXmacs-1.99.12
 	o TiffIO-140a
 	o YoSucker-81
 	o abcmidi-20170416
@@ -477,7 +476,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o calligra-3.0.1 [in wip; koffice successor]
 	o cardboard-schedule-1.14c [at http://www.bright-green.com/downloads/]
 	o cascadia-ttf-2005.15
-	o catch2-2.12.2
 	o catdoc-1.1
 	o catdoc-tk-1.1
 	o cddbd-1.5.2
@@ -520,6 +518,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o denemo-2.0.12
 	o desklaunch-1.1.7
 	o deskmenu-1.4.5
+	o desktop-file-utils-0.26
 	o dhcpcd-dbus-0.6.1
 	o dikt-2s1
 	o dinotrace-9.4d
@@ -709,6 +708,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o ices-mp3-2.0.2
 	o icinga-base-2.11.2
 	o ike-2.0.1 [pkg/37032]
+	o ilmbase-2.5.2
 	o imapsync-1.678
 	o imp-6.2.12
 	o ingo-3.2.8
@@ -777,7 +777,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o libmcs-0.7.2
 	o libmilter-8.16.0.16
 	o libmtag-0.3.6
-	o libmysofa-1.1
 	o liboobs-2.32.0
 	o liboop-1.0.1
 	o libpgm-5.2.122
@@ -853,7 +852,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o multitail-6.4.2
 	o munin-common-2.0.52
 	o muse-0.9.2
-	o mutt-1.14.2
 	o myodbc-5.3.4
 	o mysql-connector-c++-8.0.17
 	o mysql-server-5.6.48
@@ -884,10 +882,10 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o opal-3.16.2
 	o openafs-1.8
 	o opencsg-1.4.0
+	o openexr-2.5.2
 	o openh323-1.19.1
 	o openmortal-0.7.1
 	o openoffice-4.1.7
-	o opensc-0.19.0
 	o openslp-2.0.0
 	o opensmtpd-6.0.0
 	o openvas-libraries-8.0.8
@@ -987,7 +985,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o py-pandas-1.0.0
 	o py-ptt-1.10.2
 	o py-rsa-4.6
-	o py-setuptools-47.1.1 [drops python-2.x support]
+	o py-setuptools-47.3.1 [drops python-2.x support]
 	o py-setuptools_scm-4.1.2
 	o py-simpletal-5.1
 	o py-sphinx-autoapi-1.4.0
@@ -1026,6 +1024,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o roxirc-2.0
 	o rp-l2tp-0.4
 	o rp-pppoe-3.11
+	o rsync-3.2.0
 	o rt4-4.4.0
 	o rtty-4.0 [at ftp://ftp.isc.org/isc/rtty/]
 	o rubber-1.4
@@ -1097,7 +1096,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o tcpdpriv-0.9
 	o tcpdstat-0.9
 	o tcpillust-1.00b
-	o tcpreplay-4.0.4
 	o tct-1.19
 	o tds-1.6.2
 	o ted-2.23
@@ -1117,6 +1115,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o tkpasman-2.2b
 	o tn5250-0.17.3 [at http://tn5250.sourceforge.net/]
 	o tob-0.26
+	o todoman-3.8.0
 	o tomboy-1.10.2
 	o top-3.8beta1
 	o topgit-0.8
@@ -1152,7 +1151,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html.
 	o visual-regexp-3.1
 	o vnc-4.0 [http://www.realvnc.com/download.html|pkgsrc-wip]
 	o vnstat-1.15
-	o vte3-0.60.2
 	o vtk-5.10.1
 	o wMosaic-3.8.22
 	o wap-utils-1.4.1

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1462 2020/06/16 09:14:21 pin Exp $
+# $NetBSD: Makefile,v 1.1464 2020/06/21 20:26:57 wiz Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -77,7 +77,6 @@ SUBDIR+=	clearsilver
 SUBDIR+=	clearsilver-base
 SUBDIR+=	cliqz
 SUBDIR+=	clisp-fastcgi
-#SUBDIR+=	contao		# only contains Makefile fragments
 SUBDIR+=	contao35
 SUBDIR+=	cppcms
 SUBDIR+=	crawl
@@ -99,6 +98,7 @@ SUBDIR+=	emacs-w3m-snapshot
 SUBDIR+=	epiphany
 SUBDIR+=	fcgi
 SUBDIR+=	fcgiwrap
+SUBDIR+=	felinks
 SUBDIR+=	fengoffice
 SUBDIR+=	ffproxy
 SUBDIR+=	firefox
@@ -108,6 +108,7 @@ SUBDIR+=	firefox52
 SUBDIR+=	firefox52-l10n
 SUBDIR+=	firefox68
 SUBDIR+=	firefox68-l10n
+SUBDIR+=	firefox_decrypt
 SUBDIR+=	gallery
 SUBDIR+=	gallery2
 SUBDIR+=	ganglia-webfrontend

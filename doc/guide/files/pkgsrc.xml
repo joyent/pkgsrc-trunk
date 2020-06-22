@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!-- $NetBSD: pkgsrc.xml,v 1.36 2020/01/03 15:55:24 leot Exp $ -->
+<!-- $NetBSD: pkgsrc.xml,v 1.38 2020/06/20 05:31:10 rillig Exp $ -->
 
 <!DOCTYPE book PUBLIC "-//NetBSD//DTD DocBook XML V4.5-Based DocBook Extension//EN" [
 
@@ -47,7 +47,7 @@
       <holder role="mailto:www@NetBSD.org">The NetBSD Foundation, Inc</holder>
     </copyright>
 
-    <pubdate>$NetBSD: pkgsrc.xml,v 1.36 2020/01/03 15:55:24 leot Exp $</pubdate>
+    <pubdate>$NetBSD: pkgsrc.xml,v 1.38 2020/06/20 05:31:10 rillig Exp $</pubdate>
 
     <abstract>
 
@@ -86,20 +86,19 @@
 	like a reference manual for pkgsrc.</para></partintro>
 
     &chap.help-devel;
-    &chap.creating;
     &chap.components;
-    &chap.makefile;
-    &chap.plist;
-    &chap.buildlink;
-    &chap.pkginstall;
-    &chap.options;
     &chap.build;
+    &chap.creating;
+    &chap.makefile;
+    &chap.options;
     &chap.tools;
+    &chap.buildlink;
+    &chap.plist;
+    &chap.pkginstall;
     &chap.fixes;
-    &chap.debug;
+    &chap.gnome;
     &chap.submit;
     &chap.devfaq;
-    &chap.gnome;
   </part>
 
   <!-- The pkgsrc infrastructure -->
