@@ -11,7 +11,7 @@
 #	Possible: 80 57 56 73-cluster
 #		  mariadb100 mariadb55
 #		  percona80 percona57 percona56
-#		  percona80-cluster percona57-cluster percona56-cluster
+#		  percona80-cluster percona57-cluster
 #	Default: 57
 #
 # Package-settable variables:
@@ -34,7 +34,7 @@
 #
 # 	Possible: mysql80 mysql57 mysql56 mysql73-cluster
 # 		  percona80 percona57 percona56
-# 		  percona80-cluster percona57-cluster percona56-cluster
+# 		  percona80-cluster percona57-cluster
 #
 
 .if !defined(MYSQL_VERSION_MK)
@@ -58,7 +58,7 @@ BUILD_DEFS_EFFECTS+=		MYSQL_VERSION MYSQL_PKG_PREFIX
 _PKG_MYSQLS=			80 57 56 mariadb100 mariadb55
 _PKG_MYSQLS+=			57-cluster
 _PKG_MYSQLS+=			percona80 percona57 percona56
-_PKG_MYSQLS+=			percona80-cluster percona57-cluster percona56-cluster
+_PKG_MYSQLS+=			percona80-cluster percona57-cluster
 
 # Package-settable variables.   XXX: 57 hardcoded duplicate to avoid pkglint errors
 MYSQL_VERSIONS_ACCEPTED?=	57 ${_PKG_MYSQLS:N*55*}
@@ -98,10 +98,6 @@ _MYSQL_PKG_PREFIX.percona57=	percona57
 _MYSQL_PKGBASE.percona56=	percona-client-5.6.*
 _MYSQL_PKGSRCDIR.percona56=	../../joyent/percona56-client
 _MYSQL_PKG_PREFIX.percona56=	percona56
-
-_MYSQL_PKGBASE.percona56-cluster=	percona-cluster-5.6.*
-_MYSQL_PKGSRCDIR.percona56-cluster=	../../joyent/percona56-cluster
-_MYSQL_PKG_PREFIX.percona56-cluster=	percona56-cluster
 
 _MYSQL_PKGBASE.percona57-cluster=	percona-cluster-5.7.*
 _MYSQL_PKGSRCDIR.percona57-cluster=	../../joyent/percona57-cluster
