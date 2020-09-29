@@ -79,5 +79,6 @@ screen-terminfo:
 	${SETENV} TERMINFO=${DESTDIR}${PREFIX}/share/lib/terminfo	\
 		/usr/bin/tic screeninfo.src
 
+.include "../../joyent/libutempter/buildlink3.mk"
 .include "../../mk/termcap.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

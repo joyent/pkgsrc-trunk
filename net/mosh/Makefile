@@ -25,6 +25,7 @@ TEST_TARGET=	check
 .include "../../devel/protobuf/buildlink3.mk"
 BUILDLINK_API_DEPENDS.zlib+=    zlib>=1.2.0.4
 .include "../../devel/zlib/buildlink3.mk"
+.include "../../joyent/libutempter/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
 
 .include "../../mk/curses.buildlink3.mk"
