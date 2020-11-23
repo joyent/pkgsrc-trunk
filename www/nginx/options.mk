@@ -1,11 +1,11 @@
 # $NetBSD: options.mk,v 1.63 2020/11/06 22:54:17 otis Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.nginx
-PKG_SUPPORTED_OPTIONS=	array-var auth-request dav debug echo encrypted-session \
-			form-input flv geoip gtools gzip headers-more http2 \
-			image-filter luajit mail-proxy memcache naxsi njs \
-			pcre perl push realip rtmp secure-link set-misc slice \
-			ssl status stream-ssl-preread sub uwsgi
+PKG_SUPPORTED_OPTIONS=	array-var auth-request cache-purge dav debug echo \
+			encrypted-session form-input flv geoip gtools gzip \
+			headers-more http2 image-filter luajit mail-proxy \
+			memcache naxsi njs pcre perl push realip rtmp secure-link \
+			set-misc slice ssl status stream-ssl-preread sub uwsgi
 PKG_SUGGESTED_OPTIONS=	pcre ssl
 
 PKG_OPTIONS_LEGACY_OPTS+=	v2:http2
@@ -292,3 +292,13 @@ SITES.${NJS_EXT_DISTFILE}+=	-https://github.com/nginx/njs/archive/${NJS_EXT_VERS
 DISTFILES+=			${NJS_EXT_DISTFILE}
 .endif
 
+.if !empty(PKG_OPTIONS:Mcache-purge)
+CONFIGURE_ARGS+=		--add-module=../${CACHEPURGE_DISTNAME}
+.endif
+.if !empty(PKG_OPTIONS:Mcache-purge) || make(makesum) || make(mdi)
+CACHEPURGE_VERSION=		2.3
+CACHEPURGE_DISTNAME=		ngx_cache_purge-${CACHEPURGE_VERSION}
+CACHEPURGE_DISTFILE=		${CACHEPURGE_DISTNAME}.tar.gz
+SITES.${CACHEPURGE_DISTFILE}=	-https://github.com/FRiCKLE/ngx_cache_purge/archive/${CACHEPURGE_VERSION}.tar.gz
+DISTFILES+=			${CACHEPURGE_DISTFILE}
+.endif
