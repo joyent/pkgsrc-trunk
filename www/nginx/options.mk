@@ -296,9 +296,9 @@ DISTFILES+=			${NJS_EXT_DISTFILE}
 CONFIGURE_ARGS+=		--add-module=../${CACHEPURGE_DISTNAME}
 .endif
 .if !empty(PKG_OPTIONS:Mcache-purge) || make(makesum) || make(mdi)
-CACHEPURGE_VERSION=		2.3
+CACHEPURGE_VERSION=		2.5.1
 CACHEPURGE_DISTNAME=		ngx_cache_purge-${CACHEPURGE_VERSION}
 CACHEPURGE_DISTFILE=		${CACHEPURGE_DISTNAME}.tar.gz
-SITES.${CACHEPURGE_DISTFILE}=	-https://github.com/FRiCKLE/ngx_cache_purge/archive/${CACHEPURGE_VERSION}.tar.gz
+SITES.${CACHEPURGE_DISTFILE}=	-https://github.com/nginx-modules/ngx_cache_purge/archive/${CACHEPURGE_VERSION}.tar.gz
 DISTFILES+=			${CACHEPURGE_DISTFILE}
 .endif
