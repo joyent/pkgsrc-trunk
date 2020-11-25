@@ -167,7 +167,8 @@ _ONLY_FOR_PLATFORMS.openjdk-bin= \
 _ONLY_FOR_PLATFORMS.openjdk11= \
 	NetBSD-[7-9]*-x86_64 \
 	NetBSD-[7-9]*-i386 \
-	NetBSD-*-aarch64
+	NetBSD-*-aarch64 \
+	SunOS-*-x86_64
 
 # Set ONLY_FOR_PLATFORM based on accepted JVMs
 .for _jvm_ in ${PKG_JVMS_ACCEPTED}
