@@ -8,8 +8,8 @@
 # MYSQL_VERSION_DEFAULT
 #	The preferred MySQL version.
 #
-#	Possible: 80 57 56 73-cluster
-#		  mariadb100 mariadb55
+#	Possible: 80 57 56
+#		  mariadb55
 #		  percona80 percona57 percona56
 #		  percona80-cluster percona57-cluster
 #	Default: 57
@@ -32,7 +32,7 @@
 # MYSQL_PKG_PREFIX
 # 	The package name prefix for the selected version.
 #
-# 	Possible: mysql80 mysql57 mysql56 mysql73-cluster
+# 	Possible: mysql80 mysql57 mysql56
 # 		  percona80 percona57 percona56
 # 		  percona80-cluster percona57-cluster
 #
@@ -55,17 +55,12 @@ BUILD_DEFS+=			MYSQL_VERSION_DEFAULT
 BUILD_DEFS_EFFECTS+=		MYSQL_VERSION MYSQL_PKG_PREFIX
 
 # The available MySQL packages:
-_PKG_MYSQLS=			80 57 56 mariadb100 mariadb55
-_PKG_MYSQLS+=			57-cluster
+_PKG_MYSQLS=			80 57 56 mariadb55
 _PKG_MYSQLS+=			percona80 percona57 percona56
 _PKG_MYSQLS+=			percona80-cluster percona57-cluster
 
-# Package-settable variables.   XXX: 57 hardcoded duplicate to avoid pkglint errors
-MYSQL_VERSIONS_ACCEPTED?=	57 ${_PKG_MYSQLS:N*55*}
-
-_MYSQL_PKGBASE.57-cluster=	mysql-cluster-7.3.*
-_MYSQL_PKGSRCDIR.57-cluster=	../../joyent/mysql73-cluster
-_MYSQL_PKG_PREFIX.57-cluster=	mysql73-cluster
+# Package-settable variables.   XXX: hardcoded duplicate to avoid pkglint errors
+MYSQL_VERSIONS_ACCEPTED?=	57 ${_PKG_MYSQLS:Nmariadb55}
 
 _MYSQL_PKGBASE.80=		mysql-client-8.0.*
 _MYSQL_PKGSRCDIR.80=		../../databases/mysql80-client
@@ -82,10 +77,6 @@ _MYSQL_PKG_PREFIX.56=		mysql56
 _MYSQL_PKGBASE.mariadb55=	mariadb-client-5.5.*
 _MYSQL_PKGSRCDIR.mariadb55=	../../databases/mariadb55-client
 _MYSQL_PKG_PREFIX.mariadb55=	mariadb55
-
-_MYSQL_PKGBASE.mariadb100=	mariadb-client-10.0.*
-_MYSQL_PKGSRCDIR.mariadb100=	../../joyent/mariadb100-client
-_MYSQL_PKG_PREFIX.mariadb100=	mariadb100
 
 _MYSQL_PKGBASE.percona80=	percona-client-8.0.*
 _MYSQL_PKGSRCDIR.percona80=	../../joyent/percona80-client
