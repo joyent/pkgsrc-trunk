@@ -1,0 +1,9 @@
+@comment $NetBSD: PLIST.Darwin,v 1.2 2020/12/06 20:40:59 dbj Exp $
+Applications/flarq-${FLARQ_VERSION}.app/Contents/Info.plist
+Applications/flarq-${FLARQ_VERSION}.app/Contents/MacOS/flarq
+Applications/flarq-${FLARQ_VERSION}.app/Contents/PkgInfo
+Applications/flarq-${FLARQ_VERSION}.app/Contents/Resources/flarq.icns
+Applications/fldigi-${FLDIGI_VERSION}.app/Contents/Info.plist
+Applications/fldigi-${FLDIGI_VERSION}.app/Contents/MacOS/fldigi
+Applications/fldigi-${FLDIGI_VERSION}.app/Contents/PkgInfo
+Applications/fldigi-${FLDIGI_VERSION}.app/Contents/Resources/fldigi.icns

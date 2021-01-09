@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.6 2019/04/07 18:23:52 adam Exp $
+# $NetBSD: Makefile,v 1.8 2020/12/20 13:07:58 nia Exp $
 
-DISTNAME=	mp4v2-4.1.0.0
+DISTNAME=	mp4v2-4.1.5
+PKGREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_GITHUB:=TechSmith/}
 GITHUB_TAG=	Release-ThirdParty-MP4v2-${PKGVERSION_NOREV}
@@ -12,7 +13,7 @@ LICENSE=	mpl-1.1
 
 WRKSRC=		${WRKDIR}/mp4v2-${GITHUB_TAG}
 
-USE_LANGUAGES=		c c++03
+USE_LANGUAGES=		c c++11
 USE_LIBTOOL=		yes
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		gmake

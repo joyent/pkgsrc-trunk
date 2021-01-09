@@ -1,4 +1,4 @@
-/* $NetBSD: lib.h,v 1.70 2020/07/01 10:03:20 jperkin Exp $ */
+/* $NetBSD: lib.h,v 1.72 2020/12/11 10:06:53 jperkin Exp $ */
 
 /* from FreeBSD Id: lib.h,v 1.25 1997/10/08 07:48:03 charnier Exp */
 
@@ -270,7 +270,7 @@ int	some_installed_package_conflicts_with(const char *, const char *, char **, c
 
 /* Prototypes */
 /* Misc */
-void    show_version(void);
+void    show_version(void) __attribute__ ((noreturn));
 int	fexec(const char *, ...);
 int	fexec_skipempty(const char *, ...);
 int	fcexec(const char *, const char *, ...);
@@ -447,6 +447,7 @@ extern const char *cert_chain_file;
 extern const char *certs_packages;
 extern const char *certs_pkg_vulnerabilities;
 extern const char *check_eol;
+extern const char *check_os_version;
 extern const char *check_vulnerabilities;
 extern const char *config_file;
 extern const char *config_pkg_dbdir;

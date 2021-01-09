@@ -1,0 +1,13 @@
+# $NetBSD: Makefile.common,v 1.2 2020/12/09 11:12:33 jaapb Exp $
+
+# used by devel/ocaml-dune-configurator/Makefile
+
+DUNE_VERSION=	2.7.1
+DISTNAME=	${GITHUB_PROJECT}-${DUNE_VERSION}
+
+LICENSE=	apache-2.0
+
+MASTER_SITES=	${MASTER_SITE_GITHUB:=ocaml/}
+GITHUB_PROJECT=	dune
+
+DISTINFO_FILE=	${PKGDIR}/../../devel/ocaml-dune/distinfo

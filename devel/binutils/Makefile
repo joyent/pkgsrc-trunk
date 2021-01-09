@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.83 2020/05/13 03:32:38 rillig Exp $
+# $NetBSD: Makefile,v 1.93 2020/12/20 22:41:31 fcambus Exp $
 
-DISTNAME=	binutils-2.34
-PKGREVISION=	2
+DISTNAME=	binutils-2.35.1
+PKGREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU:=binutils/}
 EXTRACT_SUFX=	.tar.bz2
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
+MAINTAINER=	fcambus@NetBSD.org
 HOMEPAGE=	https://www.gnu.org/software/binutils/
 COMMENT=	GNU binary utilities
 LICENSE=	gnu-gpl-v2 AND gnu-gpl-v3 AND gnu-lgpl-v2 AND gnu-lgpl-v3
@@ -47,6 +47,9 @@ PLIST_SRC=	${PKGDIR}/PLIST.common
 PLIST_SRC+=	${WRKDIR}/PLIST_DYNAMIC
 
 INFO_FILES=	yes
+TEST_TARGET=	check
+
+TEST_DEPENDS+=	dejagnu-[0-9]*:../../devel/dejagnu
 
 INSTALLATION_DIRS=	${PKGGNUDIR}bin ${PKGGNUDIR}${PKGMANDIR}/man1
 
@@ -76,14 +79,13 @@ PLIST.CTF=	yes
 .if ${OPSYS} == DragonFly \
 	|| (${OPSYS} == FreeBSD && empty(OS_VERSION:M[12345678].*)) \
 	|| (${OPSYS} == OpenBSD && empty(OS_VERSION:M[1234].*)) \
-	|| (${OPSYS} == NetBSD && empty(OS_VERSION:M[12345].*))
+	|| (${OPSYS} == NetBSD && empty(OS_VERSION:M[12345].*)) \
+	|| ${OPSYS} == Linux
 BUILD_GOLD=		yes
 PLIST.gold=		yes
 USE_TOOLS+=		bison
 CONFIGURE_ARGS+=	--enable-gold --enable-plugins
 .endif
-
-CFLAGS.OpenBSD+=	-Wno-bounded
 
 .include "../../mk/compiler.mk"
 .if !empty(PKGSRC_COMPILER:Mclang)
@@ -91,11 +93,6 @@ CFLAGS+=	-Wno-unused-value -Wno-format-security \
 		-Wno-uninitialized -Wno-format -Wno-string-plus-int \
 		-Wno-empty-body -Wno-self-assign -Wno-unused-function \
 		-Wno-error=unused-const-variable
-.endif
-
-# Issue is fixed in upstream binutils, remove this when upgraded past 2.24
-.if !empty(CC_VERSION:Mgcc-4.9.*)
-CONFIGURE_ARGS+=	--disable-werror
 .endif
 
 SYMLINK_FILES=	addr2line ar as c++filt dlltool elfedit ld.bfd		\

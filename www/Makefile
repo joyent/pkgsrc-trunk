@@ -1,10 +1,11 @@
-# $NetBSD: Makefile,v 1.1496 2020/11/24 00:19:28 nikita Exp $
+# $NetBSD: Makefile,v 1.1498 2020/12/14 03:35:23 mef Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
 
 SUBDIR+=	R-RCurl
 SUBDIR+=	R-curl
+SUBDIR+=	R-diffviewer
 SUBDIR+=	R-gh
 SUBDIR+=	R-htmlwidgets
 SUBDIR+=	R-httpuv
@@ -997,6 +998,7 @@ SUBDIR+=	tinyproxy
 SUBDIR+=	trac
 SUBDIR+=	trafficserver
 SUBDIR+=	tscrape
+SUBDIR+=	tuir
 SUBDIR+=	typo3_62
 SUBDIR+=	uhttpmock
 SUBDIR+=	urlget

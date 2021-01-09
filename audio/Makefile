@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.618 2020/11/10 16:36:15 nia Exp $
+# $NetBSD: Makefile,v 1.620 2020/12/11 10:12:42 nia Exp $
 #
 
 COMMENT=	Audio tools
@@ -231,6 +231,7 @@ SUBDIR+=	libdiscid
 SUBDIR+=	libdssialsacompat
 SUBDIR+=	libebur128
 SUBDIR+=	libfishsound
+SUBDIR+=	libgig
 SUBDIR+=	libgpod
 SUBDIR+=	libgroove
 SUBDIR+=	libid3tag
@@ -335,6 +336,7 @@ SUBDIR+=	musicpd
 SUBDIR+=	nas
 SUBDIR+=	nas-auscope
 SUBDIR+=	ncmpc
+SUBDIR+=	ncmpcpp
 SUBDIR+=	ncspot
 SUBDIR+=	normalize
 SUBDIR+=	nosefart

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.5 2020/05/10 14:03:01 rillig Exp $
+# $NetBSD: Makefile,v 1.7 2020/12/03 10:45:54 ast Exp $
 
-DISTNAME=	nostromo-1.9.6
-PKGREVISION=	2
+DISTNAME=	nostromo-1.9.9
+PKGREVISION=	3
 CATEGORIES=	www
 MASTER_SITES=	http://www.nazgul.ch/dev/
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}

@@ -1,8 +1,8 @@
-$NetBSD: patch-src_haproxy.c,v 1.2 2018/07/25 13:51:18 jperkin Exp $
+$NetBSD: patch-src_haproxy.c,v 1.4 2020/12/10 09:34:21 jperkin Exp $
 
 Special handling for XPG4_2 on SunOS.
 
---- src/haproxy.c.orig	2018-06-27 14:27:32.000000000 +0000
+--- src/haproxy.c.orig	2020-11-28 15:51:33.000000000 +0000
 +++ src/haproxy.c
 @@ -26,6 +26,13 @@
   */

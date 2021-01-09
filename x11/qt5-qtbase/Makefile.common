@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.44 2020/05/03 11:41:45 wiedi Exp $
+# $NetBSD: Makefile.common,v 1.47 2020/12/06 11:18:40 nia Exp $
 # used by x11/qt5-mysql/Makefile
 # used by x11/qt5-odbc/Makefile
 # used by x11/qt5-psql/Makefile
@@ -14,6 +14,7 @@
 # used by x11/qt5-qtmultimedia/Makefile
 # used by x11/qt5-qtnetworkauth/Makefile
 # used by x11/qt5-qtquickcontrols/Makefile
+# used by x11/qt5-qtquickcontrols2/Makefile
 # used by x11/qt5-qtscript/Makefile
 # used by x11/qt5-qtscxml/Makefile
 # used by x11/qt5-qtsensors/Makefile
@@ -25,10 +26,12 @@
 # used by x11/qt5-qtvirtualkeyboard/Makefile
 # used by x11/qt5-qtwayland/Makefile
 # used by x11/qt5-qtwebchannel/Makefile
-# used by x11/qt5-qtwebkit/Makefile
 # used by x11/qt5-qtwebsockets/Makefile
 # used by x11/qt5-qtx11extras/Makefile
 # used by x11/qt5-qtxmlpatterns/Makefile
+
+# https://doc.qt.io/qt-5/supported-platforms.html
+GCC_REQD+=	5
 
 .include "../../x11/qt5/Makefile.common"
 
@@ -37,9 +40,6 @@ BUILDLINK_TRANSFORM+=	opt:-ldl:${BUILDLINK_LDADD.dl:Q}
 
 USE_LANGUAGES=		c gnu++11
 USE_TOOLS+=		gmake perl:build pkg-config
-
-# https://doc.qt.io/qt-5/supported-platforms.html
-GCC_REQD+=		5
 
 # Avoid failures to due 'register' usage in X11 headers.
 CFLAGS+=		-Wno-register
@@ -77,7 +77,7 @@ do-configure:
 .PHONY: fix-darwin-install-name
 post-install: fix-darwin-install-name
 fix-darwin-install-name:
-	${FIND} ${DESTDIR}${PREFIX} -name "*.dylib" -print |		\
+	${FIND} ${DESTDIR}${PREFIX} -name "*.dylib" -type f -print |	\
 		while read lib; do					\
 		libname=`basename $${lib}`;				\
 		libdir=`dirname $${lib} | sed -e 's,${DESTDIR},,'`;	\

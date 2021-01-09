@@ -1,6 +1,6 @@
 #! /bin/sh
 
-# $NetBSD: mksandbox,v 1.15 2019/01/25 20:08:21 agc Exp $
+# $NetBSD: mksandbox,v 1.17 2020/12/07 13:05:12 jperkin Exp $
 
 # Copyright (c) 2002,2012 Alistair Crooks <agc@NetBSD.org>
 # All rights reserved.
@@ -136,7 +136,7 @@ Linux)
 	paxprog=""
 	sedprog=/bin/sed
 	sandboxMountDirs="$sandboxMountDirs /lib64 /usr/lib64 /usr/kerberos"
-	sandboxWriteDirs="$sandboxWriteDirs /proc"
+	sandboxWriteDirs="$sandboxWriteDirs /dev/shm /proc"
 	;;
 NetBSD)
 	bmakeprog=make
@@ -314,6 +314,10 @@ esac
 
 echo "Make empty dirs upon which to mount the null mounts"
 for d in $sandboxMountDirs; do
+	if [ -L $d ]; then
+		$cpprog -P $d $sandbox$d
+		continue
+	fi
 	test -d $d || continue;
 	case $d in
 	*X11*)	test "$with_x" = "yes" || continue ;;

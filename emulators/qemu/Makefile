@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.256 2020/11/02 17:17:15 martin Exp $
+# $NetBSD: Makefile,v 1.259 2020/12/20 16:51:44 spz Exp $
 
 DISTNAME=	qemu-5.1.0
-PKGREVISION=	9
+PKGREVISION=	11
 CATEGORIES=	emulators
 MASTER_SITES=	https://download.qemu.org/
 EXTRACT_SUFX=	.tar.xz
@@ -161,8 +161,12 @@ post-install:
 
 # On Darwin, qemu uses Cocoa and CoreAudio
 .if ${OPSYS} != "Darwin"
+.if !empty(PKG_OPTIONS:Mx11)
 PLIST.keymap=	yes
 .include "../../x11/libxkbcommon/buildlink3.mk"
+.else
+CONFIGURE_ARGS+=                --disable-xkbcommon
+.endif
 .include "../../mk/oss.buildlink3.mk"
 .endif
 .include "../../archivers/lzo/buildlink3.mk"

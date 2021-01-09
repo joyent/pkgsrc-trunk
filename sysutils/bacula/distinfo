@@ -1,9 +1,9 @@
-$NetBSD: distinfo,v 1.55 2020/05/24 01:22:15 joerg Exp $
+$NetBSD: distinfo,v 1.57 2020/12/12 23:51:19 jnemeth Exp $
 
-SHA1 (bacula-9.6.2.tar.gz) = 23c1c2a6a9626dc9d4169a685aa3a12648b00247
-RMD160 (bacula-9.6.2.tar.gz) = 82980cdf196c423fa9dc351e334582a6d718dcd9
-SHA512 (bacula-9.6.2.tar.gz) = a02d4ba92a3937e41a5b86c93969ca2b993b677a12b8731daea12271d33e636a7a6c7b399c5cae2afb2dde38b622e8b8e5906aff072e0a1a360b0a08749b91a1
-Size (bacula-9.6.2.tar.gz) = 4539091 bytes
+SHA1 (bacula-9.6.7.tar.gz) = cf548f4ab0b22761dfe2ddd5e9f0f29e0ccf77c8
+RMD160 (bacula-9.6.7.tar.gz) = 9361625af2bafca9595b0f259e832fba3de75653
+SHA512 (bacula-9.6.7.tar.gz) = 27551faa2e4b13c6c2b9a2500f1253dfa5ee84929013491a7bf512d965d655c5af78b08201090474bc9b29827ca0a5c1c5a23a55712a1f739f37de75449cfd4d
+Size (bacula-9.6.7.tar.gz) = 4168102 bytes
 SHA1 (patch-ad) = ce6bc29858d13dff1a0301db95f9bfedf3e66b01
 SHA1 (patch-aj) = 125d1503406474fec32e737068328cdfa718f5c2
 SHA1 (patch-configure) = fb2c8ec47f0b51f53b61d51df2855d944507bfc7
@@ -25,5 +25,5 @@ SHA1 (patch-src_plugins_fd_Makefile.in) = f1316cdbb66d9bc55d8adbd4b0bbde01443ccd
 SHA1 (patch-src_plugins_fd_docker_baculatar_baculatar) = ba5fb5edc8ee98f09d31f36e840d68facfe48233
 SHA1 (patch-src_qt-console_bat.pro.in) = 8df9381c0b35b5a3dcd237f8c017ae21d88c79ad
 SHA1 (patch-src_qt-console_tray-monitor_tray-monitor.pro.in) = 83b48b321de88aa766aa2fc082c95a3a8665981d
-SHA1 (patch-src_stored_Makefile.in) = 2c1a2b095593f88649bd0dc21f03cfbd24894fb5
+SHA1 (patch-src_stored_Makefile.in) = e5dd859ef083ec11de65667b176c00b68ff7d8a4
 SHA1 (patch-src_tools_Makefile.in) = 3448f4a472c8c339415ac8b3618dd09cb9d3cfd6

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.26 2020/10/15 23:29:56 gdt Exp $
+# $NetBSD: Makefile,v 1.28 2020/12/04 13:51:37 gdt Exp $
 
-PKGVERSION=	20201014
+PKGVERSION=	20201121
 PKGNAME=	chirp-${PKGVERSION}
 DISTNAME=	chirp-daily-${PKGVERSION_NOREV}
 CATEGORIES=	ham
@@ -18,6 +18,7 @@ MASTER_SITES=	https://trac.chirp.danplanet.com/chirp_daily/daily-${PKGVERSION_NO
 #   https://chirp.danplanet.com/news/15
 
 MAINTAINER=	dbj@NetBSD.org
+#MAINTAINER+=	gdt@NetBSD.org
 HOMEPAGE=	https://chirp.danplanet.com/projects/chirp/wiki/Home
 COMMENT=	Tool for programming Amateur Radio HTs
 LICENSE=	gnu-gpl-v3

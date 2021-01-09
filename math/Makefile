@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.483 2020/11/05 16:56:01 bacon Exp $
+# $NetBSD: Makefile,v 1.485 2020/12/19 15:18:51 mef Exp $
 
 COMMENT=	Mathematics
 
@@ -158,6 +158,7 @@ SUBDIR+=	double-conversion
 SUBDIR+=	eigen2
 SUBDIR+=	eigen3
 SUBDIR+=	eispack
+SUBDIR+=	erfa
 SUBDIR+=	ess
 SUBDIR+=	eukleides
 SUBDIR+=	eukleides10
@@ -337,7 +338,12 @@ SUBDIR+=	py-Theano
 SUBDIR+=	py-abcpmc
 SUBDIR+=	py-almost
 SUBDIR+=	py-arviz
+SUBDIR+=	py-asdf
 SUBDIR+=	py-asteval
+SUBDIR+=	py-astroML
+SUBDIR+=	py-astroplan
+SUBDIR+=	py-astropy
+SUBDIR+=	py-astroquery
 SUBDIR+=	py-autograd
 SUBDIR+=	py-bottleneck
 SUBDIR+=	py-cdecimal
@@ -346,8 +352,10 @@ SUBDIR+=	py-ephem
 SUBDIR+=	py-fftw
 SUBDIR+=	py-fpconst
 SUBDIR+=	py-gmpy
+SUBDIR+=	py-gwcs
 SUBDIR+=	py-infinity
 SUBDIR+=	py-intervals
+SUBDIR+=	py-jplephem
 SUBDIR+=	py-kiwisolver
 SUBDIR+=	py-libixion
 SUBDIR+=	py-lmfit
@@ -364,8 +372,11 @@ SUBDIR+=	py-numpy16
 SUBDIR+=	py-pandas
 SUBDIR+=	py-pandas-datareader
 SUBDIR+=	py-patsy
+SUBDIR+=	py-photutils
 SUBDIR+=	py-powerlaw
+SUBDIR+=	py-pyerfa
 SUBDIR+=	py-pymc3
+SUBDIR+=	py-pyvo
 SUBDIR+=	py-pywavelets
 SUBDIR+=	py-quadprog
 SUBDIR+=	py-roman

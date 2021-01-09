@@ -1,4 +1,4 @@
-# $NetBSD: NEWS,v 1.13 2020/03/30 10:04:27 nia Exp $
+# $NetBSD: NEWS,v 1.17 2020/12/15 08:36:02 nia Exp $
 
 PKGSRC NEWS
 ===========
@@ -6,6 +6,22 @@ PKGSRC NEWS
   This file contains information about important infrastructural changes in
   pkgsrc. The intended readers are the pkgsrc developers as well as anyone
   tracking pkgsrc-current.
+
+Python 3.8 default [nia 2020-12-04]
+	The default Python version was switched to 3.8.
+
+Default database location changed for NetBSD [wiz 2020-12-02]
+	The database of installed packages now defaults to ${PREFIX}/pkgdb
+	instead of /var/db/pkg on NetBSD. This matches the default on
+	other operating systems and cases where a non-default bootstrap
+	is used.
+
+	To deal with this change, see this blog post:
+
+	https://pkgsrc.org/news/pkgdb-change/
+
+	Since this change affects the packaging tools only, there is no change
+	to binary packages and they do not need to be rebuilt.
 
 lua 5.3 default [nia 2020-03-30]
 	The default Lua version was switched to 5.3.
@@ -65,7 +81,7 @@ Check for stripped/unstripped binaries [rillig 20080213]
 
 OpenSSL update [tnn 20080118]
 	OpenSSL in pkgsrc switched from the 0.9.7 to the 0.9.8 branch. To
-	accomodate for this, 596 packages dependent on openssl had their
+	accommodate for this, 596 packages dependent on openssl had their
 	revisions bumped.
 
 pkgsrc-2007Q4 released [agc 20080105]

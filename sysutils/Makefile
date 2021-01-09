@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.918 2020/11/21 13:01:22 nia Exp $
+# $NetBSD: Makefile,v 1.924 2020/12/17 16:00:07 bacon Exp $
 #
 
 COMMENT=	System utilities
@@ -37,6 +37,7 @@ SUBDIR+=	asapm
 SUBDIR+=	atitvout
 SUBDIR+=	attr
 SUBDIR+=	augeas
+SUBDIR+=	auto-admin
 SUBDIR+=	b2sum
 SUBDIR+=	backuppc
 SUBDIR+=	bacula
@@ -136,6 +137,7 @@ SUBDIR+=	crashme
 SUBDIR+=	cuisine
 SUBDIR+=	cvsreport
 SUBDIR+=	daemond
+SUBDIR+=	daemonize
 SUBDIR+=	daemontools
 SUBDIR+=	daemontools-encore
 SUBDIR+=	daemontools-run
@@ -329,6 +331,7 @@ SUBDIR+=	i810switch
 SUBDIR+=	iat
 SUBDIR+=	idesk
 SUBDIR+=	install-sh
+SUBDIR+=	intel-backlight
 SUBDIR+=	intel-microcode-netbsd
 SUBDIR+=	intellij-fsnotifier
 SUBDIR+=	ioping
@@ -714,6 +717,7 @@ SUBDIR+=	u-boot-pine-h64
 SUBDIR+=	u-boot-pine64
 SUBDIR+=	u-boot-pinebook
 SUBDIR+=	u-boot-pinebook-pro
+SUBDIR+=	u-boot-pinephone
 SUBDIR+=	u-boot-pocketchip
 SUBDIR+=	u-boot-roc-rk3328-cc
 SUBDIR+=	u-boot-rock64
@@ -844,6 +848,7 @@ SUBDIR+=	xnc
 SUBDIR+=	xosview
 SUBDIR+=	xps
 SUBDIR+=	xuvmstat
+SUBDIR+=	yank
 SUBDIR+=	ytree
 SUBDIR+=	zabbix
 SUBDIR+=	zabbix-frontend
@@ -854,5 +859,6 @@ SUBDIR+=	zabbix50-proxy
 SUBDIR+=	zabbix50-server
 SUBDIR+=	zidrav
 SUBDIR+=	znapzend
+SUBDIR+=	zoxide
 
 .include "../mk/misc/category.mk"

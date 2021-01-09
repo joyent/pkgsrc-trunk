@@ -1,10 +1,8 @@
-# $NetBSD: options.mk,v 1.1 2020/10/20 23:14:11 tnn Exp $
+# $NetBSD: options.mk,v 1.3 2020/11/29 22:46:02 nia Exp $
 
 PKG_OPTIONS_VAR=		PKG_OPTIONS.librespot
-PKG_OPTIONS_OPTIONAL_GROUPS=	backend
-PKG_OPTIONS_GROUP.backend=	alsa gstreamer jack portaudio pulseaudio rodio sdl
-
-PKG_SUGGESTED_OPTIONS=	portaudio
+PKG_SUPPORTED_OPTIONS=		alsa gstreamer jack portaudio pulseaudio rodio sdl
+PKG_SUGGESTED_OPTIONS=		portaudio
 
 .include "../../mk/bsd.options.mk"
 
@@ -21,7 +19,8 @@ RUSTFLAGS+=		-C link-arg=${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.gstreamer1}/li
 .endif
 
 .if !empty(PKG_OPTIONS:Mjack)
-CARGO_FEATURES+=	jack-backend
+CARGO_FEATURES+=	jackaudio-backend
+RUSTFLAGS+=		-C link-arg=-L${BUILDLINK_PREFIX.jack}/lib
 RUSTFLAGS+=		-C link-arg=${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.jack}/lib
 .include "../../audio/jack/buildlink3.mk"
 .endif
@@ -44,6 +43,7 @@ CARGO_FEATURES+=	rodio-backend
 
 .if !empty(PKG_OPTIONS:Msdl)
 CARGO_FEATURES+=	sdl-backend
+RUSTFLAGS+=		-C link-arg=-L${BUILDLINK_PREFIX.SDL2}/lib
 RUSTFLAGS+=		-C link-arg=${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.SDL2}/lib
 .include "../../devel/SDL2/buildlink3.mk"
 .endif

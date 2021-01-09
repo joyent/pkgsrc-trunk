@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.125 2020/11/05 09:06:55 ryoon Exp $
+# $NetBSD: Makefile,v 1.127 2020/12/27 02:34:54 joerg Exp $
 
 DISTNAME=	librsvg-2.48.3
 PKGREVISION=	3

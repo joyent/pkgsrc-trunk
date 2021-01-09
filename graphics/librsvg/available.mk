@@ -1,4 +1,4 @@
-# $NetBSD: available.mk,v 1.2 2020/06/17 10:13:25 nia Exp $
+# $NetBSD: available.mk,v 1.4 2020/12/26 23:39:30 nia Exp $
 #
 # This mk fragment define LIBRSVG_TYPE variable used in other librsvg mk
 # fragments.

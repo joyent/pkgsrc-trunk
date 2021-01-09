@@ -1,4 +1,4 @@
-/*	$NetBSD: pkgdb.c,v 1.39 2010/04/20 21:22:38 joerg Exp $	*/
+/*	$NetBSD: pkgdb.c,v 1.42 2020/12/18 17:10:54 maya Exp $	*/
 
 #if HAVE_CONFIG_H
 #include "config.h"
@@ -7,7 +7,7 @@
 #if HAVE_SYS_CDEFS_H
 #include <sys/cdefs.h>
 #endif
-__RCSID("$NetBSD: pkgdb.c,v 1.39 2010/04/20 21:22:38 joerg Exp $");
+__RCSID("$NetBSD: pkgdb.c,v 1.42 2020/12/18 17:10:54 maya Exp $");
 
 /*-
  * Copyright (c) 1999-2010 The NetBSD Foundation, Inc.
@@ -70,11 +70,8 @@ __RCSID("$NetBSD: pkgdb.c,v 1.39 2010/04/20 21:22:38 joerg Exp $");
  * Where we put logging information by default if PKG_DBDIR is unset.
  */
 #ifndef DEF_LOG_DIR
-#define DEF_LOG_DIR		"/var/db/pkg"
+#define DEF_LOG_DIR		PREFIX "/pkgdb"
 #endif
-
-/* just in case we change the environment variable name */
-#define PKG_DBDIR		"PKG_DBDIR"
 
 static DB   *pkgdbp;
 static char pkgdb_dir_default[] = DEF_LOG_DIR;
@@ -304,7 +301,33 @@ const char *
 pkgdb_get_dir(void)
 {
 
-	return pkgdb_dir;
+#ifdef NETBSD
+	/* 
+	 * NetBSD upgrade case.
+	 * NetBSD used to ship pkg_install with /var/db/pkg as
+	 * the default. We support continuing to install to
+	 * this location.
+	 *
+	 * This is NetBSD-specific because we can't assume that
+	 * /var/db/pkg is pkgsrc-owned on other systems (OpenBSD,
+	 * FreeBSD...)
+	 *
+	 * XXX: once postinstall is taught to automatically
+	 * handle migration, we can deprecate this behaviour.
+	 */
+
+#define PREVIOUS_LOG_DIR	"/var/db/pkg"
+	static char pkgdb_dir_previous[] = PREVIOUS_LOG_DIR;
+
+	struct stat sb;
+	if (strcmp(pkgdb_dir, DEF_LOG_DIR) == 0 &&
+	    stat(pkgdb_dir, &sb) == -1 && errno == ENOENT &&
+	    stat(PREVIOUS_LOG_DIR, &sb) == 0) {
+		return pkgdb_dir_previous;
+	}
+#endif
+
+        return pkgdb_dir;
 }
 
 /*

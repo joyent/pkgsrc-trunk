@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.8 2020/06/04 16:46:35 micha Exp $
+# $NetBSD: Makefile,v 1.11 2020/11/30 15:25:18 ryoon Exp $
 
-DISTNAME=	utf8proc-2.5.0
+DISTNAME=	utf8proc-2.6.0
 PKGREVISION=	1
 CATEGORIES=	converters
 MASTER_SITES=	${MASTER_SITE_GITHUB:=JuliaLang/}
@@ -18,8 +18,8 @@ INSTALLATION_DIRS=	include lib lib/pkgconfig
 
 # Use ABI version from CMakeLists.txt to stay compatible with cmake builds
 MAJOR=	2
-MINOR=	3
-PATCH=	2
+MINOR=	4
+PATCH=	0
 
 do-configure:
 	cd ${WRKSRC} && ${SED}						\

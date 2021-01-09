@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.8 2020/11/05 09:09:25 ryoon Exp $
+# $NetBSD: Makefile,v 1.11 2020/12/08 19:28:53 pin Exp $
 
-DISTNAME=	lxqt-panel-0.15.1
-PKGREVISION=	4
+DISTNAME=	lxqt-panel-0.16.1
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GITHUB:=lxqt/}
 GITHUB_RELEASE=	${PKGVERSION_NOREV}
@@ -19,6 +18,8 @@ USE_LANGUAGES=	c c++
 CONFIGURE_DIRS=	build
 CMAKE_ARG_PATH=	..
 
+CMAKE_ARGS+=	-DSYSSTAT_PLUGIN=No
+
 .include "../../mk/bsd.prefs.mk"
 .if ${OPSYS} != "Linux"
 CMAKE_ARGS+=	-DCPULOAD_PLUGIN=No
@@ -26,16 +27,17 @@ CMAKE_ARGS+=	-DKBINDICATOR_PLUGIN=No
 CMAKE_ARGS+=	-DMOUNT_PLUGIN=No
 CMAKE_ARGS+=	-DSENSORS_PLUGIN=No
 CMAKE_ARGS+=	-DNETWORKMONITOR_PLUGIN=No
-CMAKE_ARGS+=	-DSYSSTAT_PLUGIN=No
 CMAKE_ARGS+=	-DVOLUME_USE_ALSA=No
 CMAKE_ARGS+=	-DBACKLIGHT_PLUGIN=No
 .endif
 
-MENU_CONF=		share/examples/lxqt/xdg/menus
-AUTOSTART_CONF=		share/examples/lxqt/xdg/autostart
+MENU_CONF=		share/examples/menus
+AUTOSTART_CONF=		share/examples/autostart
+PANEL_CONF=		share/examples/lxqt
 PKG_SYSCONFSUBDIR=	xdg
 MAKE_DIRS=		${PKG_SYSCONFDIR}/menus
 MAKE_DIRS+=		${PKG_SYSCONFDIR}/autostart
+MAKE_DIRS+=		${PKG_SYSCONFDIR}/lxqt
 
 SUBST_CLASSES+=		prefix
 SUBST_MESSAGE.prefix=	Fixing paths.
@@ -51,11 +53,13 @@ CONF_FILES=	${MENU_CONF}/lxqt-applications.menu \
 		${PKG_SYSCONFDIR}/menus/lxqt-applications.menu
 CONF_FILES+=	${AUTOSTART_CONF}/lxqt-panel.desktop \
 		${PKG_SYSCONFDIR}/autostart/lxqt-panel.desktop
+CONF_FILES+=	${PANEL_CONF}/panel.conf \
+		${PKG_SYSCONFDIR}/lxqt/panel.conf
 
 pre-configure:
 	${MKDIR} -p ${WRKSRC}/build
 
-TOOL_DEPENDS+=	lxqt-build-tools-[0-9]*:../../devel/lxqt-build-tools
+TOOL_DEPENDS+=	lxqt-build-tools>=0.8:../../devel/lxqt-build-tools
 TOOL_DEPENDS+=	qt5-qttools-[0-9]*:../../x11/qt5-qttools
 DEPENDS+=	lxmenu-data-[0-9]*:../../sysutils/lxmenu-data
 

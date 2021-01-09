@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.6 2020/11/05 09:09:25 ryoon Exp $
+# $NetBSD: Makefile,v 1.8 2020/12/07 12:15:28 pin Exp $
 
-DISTNAME=	lxqt-admin-0.15.0
-PKGREVISION=	3
+DISTNAME=	lxqt-admin-0.16.0
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GITHUB:=lxqt/}
 GITHUB_RELEASE=	${PKGVERSION_NOREV}
@@ -22,7 +21,7 @@ CMAKE_ARG_PATH=	..
 pre-configure:
 	${MKDIR} -p ${WRKSRC}/build
 
-TOOL_DEPENDS+=	lxqt-build-tools-[0-9]*:../../devel/lxqt-build-tools
+TOOL_DEPENDS+=	lxqt-build-tools>=0.8:../../devel/lxqt-build-tools
 TOOL_DEPENDS+=	qt5-qttools-[0-9]*:../../x11/qt5-qttools
 DEPENDS+=	lxqt-policykit-[0-9]*:../../security/lxqt-policykit
 

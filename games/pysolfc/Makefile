@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.28 2019/06/06 21:53:44 adam Exp $
+# $NetBSD: Makefile,v 1.31 2020/12/24 12:44:58 mef Exp $
 
 DISTNAME=	PySolFC-2.6.4
 PKGNAME=	${DISTNAME:tl}
+PKGREVISION=	1
 CATEGORIES=	games python
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=pysolfc/}
 EXTRACT_SUFX=	.tar.xz
@@ -30,6 +31,8 @@ SUBST_SED.datadir=	-e 's,@DATADIR@,${PREFIX}/share/PySolFC,'
 INSTALLATION_DIRS+=	${PKGMANDIR}/man6
 
 PLIST_SRC=	PLIST ${WRKDIR}/PLIST.CS
+PLIST_SUBST+=	PYVERSSUFFIX=${PYVERSSUFFIX:Q}
+
 
 post-install:
 	${INSTALL_MAN} ${WRKSRC}/docs/pysol.6 \

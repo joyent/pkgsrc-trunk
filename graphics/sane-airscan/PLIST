@@ -1,0 +1,8 @@
+@comment $NetBSD: PLIST,v 1.2 2020/12/15 09:32:23 nia Exp $
+bin/airscan-discover
+lib/sane/libsane-airscan.so
+lib/sane/libsane-airscan.so.1
+man/man1/airscan-discover.1
+man/man5/sane-airscan.5
+share/examples/sane.d/airscan.conf
+share/examples/sane.d/dll.d/airscan

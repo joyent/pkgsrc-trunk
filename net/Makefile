@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1362 2020/11/19 20:13:19 schmonz Exp $
+# $NetBSD: Makefile,v 1.1367 2020/12/13 15:47:17 nia Exp $
 #
 
 COMMENT=	Networking tools
@@ -168,6 +168,7 @@ SUBDIR+=	freeradius-yubikey
 SUBDIR+=	freeradius2
 SUBDIR+=	freerdp
 SUBDIR+=	freerdp2
+SUBDIR+=	frr
 SUBDIR+=	fstrm
 SUBDIR+=	ftplibpp
 SUBDIR+=	ftpproxy
@@ -235,6 +236,7 @@ SUBDIR+=	gupnp-igd
 SUBDIR+=	gupnp-tools
 SUBDIR+=	gupnp12
 SUBDIR+=	haproxy
+SUBDIR+=	hdl-dump
 SUBDIR+=	hesiod
 SUBDIR+=	hf6to4
 SUBDIR+=	hlfl
@@ -412,6 +414,7 @@ SUBDIR+=	nanotodon
 SUBDIR+=	nap
 SUBDIR+=	napshare
 SUBDIR+=	nasd
+SUBDIR+=	nats-server
 SUBDIR+=	nbtscan
 SUBDIR+=	ncdc
 SUBDIR+=	ncftp3
@@ -662,6 +665,7 @@ SUBDIR+=	py-ORBit
 SUBDIR+=	py-Socks
 SUBDIR+=	py-adns
 SUBDIR+=	py-aio-pika
+SUBDIR+=	py-aioresponses
 SUBDIR+=	py-aiormq
 SUBDIR+=	py-aiorpcX
 SUBDIR+=	py-amqp
@@ -937,6 +941,7 @@ SUBDIR+=	ucspi-proxy
 SUBDIR+=	ucspi-ssl
 SUBDIR+=	ucspi-tcp
 SUBDIR+=	ucspi-tcp6
+SUBDIR+=	ucspi-tools
 SUBDIR+=	ucspi-unix
 SUBDIR+=	udns
 SUBDIR+=	udpcast

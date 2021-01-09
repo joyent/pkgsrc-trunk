@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.117 2020/11/06 12:30:16 nia Exp $
+# $NetBSD: Makefile,v 1.119 2020/12/24 09:28:14 nia Exp $
 
-DISTNAME=	mpv-0.32.0
-PKGREVISION=	18
+DISTNAME=	mpv-0.33.0
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_GITHUB:=mpv-player/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -34,12 +33,6 @@ CONF_FILES+=		share/examples/mpv/encoding-profiles.conf ${PKG_SYSCONFDIR}/mpv/en
 
 PKGCONFIG_OVERRIDE+=	libmpv/mpv.pc.in
 
-SUBST_CLASSES+=		audio
-SUBST_SED.audio+=	-e "s,/dev/dsp,${DEVOSSAUDIO},"
-SUBST_FILES.audio+=	audio/out/ao_oss.c
-SUBST_STAGE.audio=	pre-configure
-SUBST_MESSAGE.audio=	Fixing path to audio device.
-
 SUBST_CLASSES+=		python
 SUBST_SED.python+=	-e "s,python,python${PYVERSSUFFIX},"
 SUBST_SED.python+=	-e "s,rst2man,rst2man-${PYVERSSUFFIX},"
@@ -66,18 +59,28 @@ BUILDLINK_PASSTHRU_DIRS+=	${XCODE_DIR}/Toolchains/XcodeDefault.xctoolchain/usr/l
 .  endif
 .endif
 
+# 64-bit atomic operations
+# https://mail-index.netbsd.org/pkgsrc-users/2020/12/23/msg032927.html
+.if ${MACHINE_ARCH} == "i386"
+CFLAGS+=	-march=i586
+CXXFLAGS+=	-march=i586
+.endif
+
+.if ${MACHINE_ARCH} == "powerpc"
+.include "../../devel/libatomic/buildlink3.mk"
+.endif
+
 post-install:
 	cd ${DESTDIR}${PREFIX} && ${MV} etc/mpv/encoding-profiles.conf share/examples/mpv
 
 .include "options.mk"
 
-LDFLAGS.NetBSD+=	-lossaudio
-.include "../../mk/oss.buildlink3.mk"
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/waf/waf.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../graphics/lcms2/buildlink3.mk"
 .include "../../lang/python/application.mk"
+.include "../../multimedia/libass/buildlink3.mk"
 .include "../../multimedia/libdvdnav/buildlink3.mk"
 .include "../../multimedia/ffmpeg4/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"

@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.5 2020/11/05 09:08:50 ryoon Exp $
+# $NetBSD: Makefile,v 1.7 2020/12/19 16:41:36 taca Exp $
 
 DISTNAME=	bind-${BIND_VERSION}
 PKGNAME=	${DISTNAME:S/-P/pl/}
-PKGREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	ftp://ftp.isc.org/isc/bind9/${BIND_VERSION}/
 EXTRACT_SUFX=	.tar.xz
@@ -16,15 +15,13 @@ CONFLICTS+=	host-[0-9]*
 
 MAKE_JOBS_SAFE=	no
 
-BIND_VERSION=	9.16.7
-
-.include "../../mk/bsd.prefs.mk"
+BIND_VERSION=	9.16.10
 
 BUILD_DEFS+=	BIND_DIR VARBASE
 
 .include "options.mk"
 
-USE_TOOLS+=		pax perl pkg-config
+USE_TOOLS+=		autoconf pax perl pkg-config
 USE_LIBTOOL=		yes
 GNU_CONFIGURE=		yes
 CHECK_FILES_SKIP=	bin/tests/system/system-test-driver.sh
@@ -75,6 +72,9 @@ CONF_FILES+=		share/examples/bind9/bind.keys \
 			${PKG_SYSCONFDIR}/bind.keys
 
 INSTALLATION_DIRS+=	${DOCDIR}
+
+pre-configure:
+	cd ${WRKSRC} && autoconf -f
 
 post-install:
 .for f in ${DOCS}

@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.27 2019/11/27 14:25:34 nia Exp $
+@comment $NetBSD: PLIST,v 1.29 2020/12/07 11:27:33 nia Exp $
 bin/claws-mail
 include/claws-mail/account.h
 include/claws-mail/action.h
@@ -241,6 +241,7 @@ share/locale/ca/LC_MESSAGES/claws-mail.mo
 share/locale/cs/LC_MESSAGES/claws-mail.mo
 share/locale/da/LC_MESSAGES/claws-mail.mo
 share/locale/de/LC_MESSAGES/claws-mail.mo
+share/locale/el_GR/LC_MESSAGES/claws-mail.mo
 share/locale/en_GB/LC_MESSAGES/claws-mail.mo
 share/locale/es/LC_MESSAGES/claws-mail.mo
 share/locale/fi/LC_MESSAGES/claws-mail.mo

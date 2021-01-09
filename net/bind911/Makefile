@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.32 2020/11/05 09:08:50 ryoon Exp $
+# $NetBSD: Makefile,v 1.35 2020/12/19 14:44:15 taca Exp $
 
 DISTNAME=	bind-${BIND_VERSION}
 PKGNAME=	${DISTNAME:S/-P/pl/}
-PKGREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	ftp://ftp.isc.org/isc/bind9/${BIND_VERSION}/
+DISTFILES+=	${DEFAULT_DISTFILES} bind-9.11.25-fixed-man-pages.tar.gz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.isc.org/software/bind/
@@ -15,7 +15,7 @@ CONFLICTS+=	host-[0-9]*
 
 MAKE_JOBS_SAFE=	no
 
-BIND_VERSION=	9.11.23
+BIND_VERSION=	9.11.26
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -23,7 +23,7 @@ BUILD_DEFS+=	BIND_DIR VARBASE
 
 .include "options.mk"
 
-USE_TOOLS+=		pax perl pkg-config
+USE_TOOLS+=		pax perl pkg-config tar
 USE_LIBTOOL=		yes
 GNU_CONFIGURE=		yes
 MAKE_ENV+=		WRKDIR=${WRKDIR} PREFIX=${PREFIX}
@@ -33,6 +33,7 @@ CONFIGURE_ARGS+=		--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=		--localstatedir=${VARBASE}
 CONFIGURE_ARGS+=		--with-openssl=${SSLBASE:Q}
 CONFIGURE_ARGS+=		--with-python=no
+CONFIGURE_ARGS+=		--with-lmdb=no
 .if !empty(MACHINE_PLATFORM:MNetBSD-*-m68k) || \
     !empty(MACHINE_PLATFORM:MNetBSD-*-mipsel) || \
     !empty(MACHINE_PLATFORM:MNetBSD-*-vax)
@@ -70,11 +71,16 @@ CONF_FILES+=		share/examples/bind9/bind.keys \
 
 INSTALLATION_DIRS+=	${DOCDIR} ${DOCDIR}/arm
 
+post-extract:
+	cd ${WRKDIR} && \
+		${TAR} -xzf ${DISTDIR}/bind-9.11.25-fixed-man-pages.tar.gz
+
 post-install:
 .for f in ${DOCS}
 	${INSTALL_DATA} ${WRKSRC}/${f} ${DESTDIR}${PREFIX}/${DOCDIR}
 .endfor
 	${INSTALL_DATA} ${WRKSRC}/doc/arm/*.html ${DESTDIR}${PREFIX}/${DOCDIR}/arm
 
+.include "../../devel/zlib/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.220 2020/11/21 09:34:55 wiz Exp $
+# $NetBSD: Makefile,v 1.222 2020/12/26 17:02:37 nia Exp $
 
 DISTNAME=	inkscape-1.0.1
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	graphics
 MASTER_SITES=	https://media.inkscape.org/dl/resources/file/
 EXTRACT_SUFX=	.tar.xz
@@ -73,6 +73,15 @@ MANCOMPRESSED=	yes
 .include "../../mk/bsd.prefs.mk"
 .if ${OPSYS} == "Darwin"
 CMAKE_ARGS+=	-DIntl_INCLUDE_DIR=${BUILDLINK_PREFIX.gettext}/include
+.endif
+
+.if ${MACHINE_ARCH} == "i386"
+CFLAGS+=	-march=i586
+CXXFLAGS+=	-march=i586
+.endif
+
+.if ${MACHINE_ARCH} == "powerpc"
+.  include "../../devel/libatomic/buildlink3.mk"
 .endif
 
 # There exists some race condition in create_default_templates.py that

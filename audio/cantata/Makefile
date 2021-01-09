@@ -1,16 +1,18 @@
-# $NetBSD: Makefile,v 1.16 2020/11/05 09:07:23 ryoon Exp $
+# $NetBSD: Makefile,v 1.19 2020/11/29 01:40:56 mef Exp $
 
-DISTNAME=	cantata-2.4.1
-PKGREVISION=	1
+DISTNAME=	cantata-2.4.2
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_GITHUB:=CDrummond/}
 GITHUB_RELEASE=	v${PKGVERSION_NOREV}
 EXTRACT_SUFX=	.tar.bz2
+DIST_SUBDIR=	cantata-2.4.2
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://github.com/CDrummond/cantata/
+HOMEPAGE=	https://github.com/CDrummond/cantata
 COMMENT=	Qt5 Graphical MPD Client
 LICENSE=	gnu-gpl-v3
+
+TOOL_DEPENDS+=	qt5-qttools-[0-9]*:../../x11/qt5-qttools
 
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
@@ -36,6 +38,7 @@ PLIST.notdarwin=	yes
 .include "../../multimedia/ffmpeg4/buildlink3.mk"
 .include "../../net/avahi/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
+BUILDLINK_API_DEPENDS.qt5-qtbase+=	qt5-qtbase>=5.11
 .include "../../x11/qt5-qtbase/buildlink3.mk"
 .include "../../x11/qt5-qtmultimedia/buildlink3.mk"
 .include "../../x11/qt5-qtsvg/buildlink3.mk"

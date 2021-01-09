@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.2 2020/11/19 01:24:23 js Exp $
+# $NetBSD: Makefile,v 1.4 2020/12/04 20:45:02 nia Exp $
 
 DISTNAME=	mautrix-telegram-0.9.0
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	chat python
 MASTER_SITES=	${MASTER_SITE_GITHUB:=tulir/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -10,6 +10,9 @@ MAINTAINER=	js@pkgsrc.org
 HOMEPAGE=	https://github.com/tulir/mautrix-telegram
 COMMENT=	Matrix-Telegram hybrid puppeting/relaybot bridge
 LICENSE=	gnu-agpl-v3
+
+# pytest-runner
+TOOL_DEPENDS+=	${PYPKGPREFIX}-test-runner-[0-9]*:../../devel/py-test-runner
 
 DEPENDS+=	${PYPKGPREFIX}-sqlalchemy>=1.2<2:../../databases/py-sqlalchemy
 DEPENDS+=	${PYPKGPREFIX}-alembic>=1<2:../../databases/py-alembic

@@ -1,0 +1,18 @@
+$NetBSD: patch-Makefile.noimake,v 1.1 2020/12/08 11:15:57 nia Exp $
+
+Respect CFLAGS and LDFLAGS.
+
+--- Makefile.noimake.orig	2020-04-16 18:08:32.000000000 +0000
++++ Makefile.noimake
+@@ -5,9 +5,8 @@
+ # Arnold Robbins
+ # arnold@skeeve.atl.ga.us
+ 
+-CC = gcc
+-CFLAGS = -g -O
+-LIBS = -lX11
++CFLAGS+= -I${X11BASE}/include
++LIBS = ${LDFLAGS} -lX11
+ 
+ 9menu: 9menu.c
+ 	$(CC) $(CFLAGS) 9menu.c $(LIBS) -o 9menu

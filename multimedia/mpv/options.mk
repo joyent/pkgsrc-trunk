@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.25 2020/06/30 14:30:38 nia Exp $
+# $NetBSD: options.mk,v 1.27 2020/12/19 12:17:29 nia Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.mpv
 
@@ -7,15 +7,15 @@ PKG_OPTIONS_OPTIONAL_GROUPS=	gl
 PKG_OPTIONS_GROUP.gl=		opengl rpi
 
 # audio outputs
-PKG_SUPPORTED_OPTIONS+=		alsa jack pulseaudio
+PKG_SUPPORTED_OPTIONS+=		alsa jack openal pulseaudio
 # video outputs
-PKG_SUPPORTED_OPTIONS+=		caca libdrm wayland x11
+PKG_SUPPORTED_OPTIONS+=		caca libdrm x11
 # audio/video outputs
 PKG_SUPPORTED_OPTIONS+=		sdl2
 # misc
-PKG_SUPPORTED_OPTIONS+=		ass bluray lua
+PKG_SUPPORTED_OPTIONS+=		bluray lua
 
-PKG_SUGGESTED_OPTIONS=		ass bluray lua sdl2
+PKG_SUGGESTED_OPTIONS=		bluray lua sdl2
 PKG_SUGGESTED_OPTIONS.Linux+=	alsa pulseaudio
 
 .include "../../mk/bsd.fast.prefs.mk"
@@ -38,9 +38,8 @@ PKG_SUPPORTED_OPTIONS+=		vdpau
 PKG_SUGGESTED_OPTIONS+=		vdpau
 .endif
 
-.include "../../devel/wayland/platform.mk"
-
-.if ${PLATFORM_SUPPORTS_WAYLAND} == "yes"
+.if ${OPSYS} == "Linux"
+PKG_SUPPORTED_OPTIONS+=		wayland
 PKG_SUGGESTED_OPTIONS+=		wayland
 .endif
 
@@ -97,6 +96,17 @@ WAF_CONFIGURE_ARGS+=	--enable-jack
 WAF_CONFIGURE_ARGS+=	--disable-jack
 .endif
 
+
+###
+### OpenAL support (audio output)
+###
+.if !empty(PKG_OPTIONS:Mopenal)
+WAF_CONFIGURE_ARGS+=	--enable-openal
+.include "../../audio/openal-soft/buildlink3.mk"
+.else
+WAF_CONFIGURE_ARGS+=	--disable-openal
+.endif
+
 ###
 ### PulseAudio support (audio output)
 ###
@@ -115,16 +125,6 @@ WAF_CONFIGURE_ARGS+=	--enable-sdl2
 .include "../../devel/SDL2/buildlink3.mk"
 .else
 WAF_CONFIGURE_ARGS+=	--disable-sdl2
-.endif
-
-###
-### libASS support
-###
-.if !empty(PKG_OPTIONS:Mass)
-WAF_CONFIGURE_ARGS+=	--enable-libass
-.include "../../multimedia/libass/buildlink3.mk"
-.else
-WAF_CONFIGURE_ARGS+=	--disable-libass
 .endif
 
 ###

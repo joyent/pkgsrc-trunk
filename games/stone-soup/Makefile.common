@@ -1,11 +1,13 @@
-# $NetBSD: Makefile.common,v 1.4 2020/05/31 09:15:03 rillig Exp $
+# $NetBSD: Makefile.common,v 1.6 2020/12/30 12:24:27 nia Exp $
 # used by games/stone-soup/Makefile
 # used by games/stone-soup-sdl/Makefile
 
-DISTNAME=	stone_soup-0.24.0
-PKGNAME=	${DISTNAME:S/_/-/}
+DISTNAME=	stone_soup-0.25.1-nodeps
+PKGNAME=	${DISTNAME:S/_/-/:S/-nodeps//1}
 CATEGORIES=	games
-MASTER_SITES=	https://crawl.develz.org/release/${PKGVERSION_NOREV:R}/
+MASTER_SITES=	${MASTER_SITE_GITHUB:=crawl/}
+GITHUB_PROJECT=	crawl
+GITHUB_RELEASE=	0.25.1
 EXTRACT_SUFX=	.tar.xz
 
 HOMEPAGE=	https://crawl.develz.org/
@@ -17,10 +19,10 @@ PATCHDIR=	${.CURDIR}/../../games/stone-soup/patches
 WRKSRC=		${WRKDIR}/stone_soup-${PKGVERSION_NOREV}
 BUILD_DIRS=	source
 USE_TOOLS+=	pkg-config gmake perl
-USE_LANGUAGES=	c c++11
+USE_LANGUAGES=	c c++
 USE_LIBTOOL=	yes
 
-USE_CURSES=	wide
+CXXFLAGS+=	-DCURSES_INCLUDE_FILE='<ncursesw/ncurses.h>'
 
 # C++11
 GCC_REQD+=	4.8
@@ -31,16 +33,6 @@ MAKE_FLAGS+=	V=y
 MAKE_FLAGS+=	DATADIR=${PREFIX}/share/stone-soup
 MAKE_FLAGS+=	NO_AUTO_OPT=YesPlease
 MAKE_FLAGS+=	FORCE_CXX="${CXX} ${CXXFLAGS} ${LDFLAGS}"
-
-.include "../../mk/curses.buildlink3.mk"
-.if !empty(CURSES_TYPE:Mncurses*)
-.  if ${CURSES_TYPE} == "ncursesw"
-MAKE_FLAGS+=	LIBNCURSES_IS_UNICODE=Yes
-.  endif
-.else
-MAKE_FLAGS+=	NO_NCURSES=YesPlease
-MAKE_FLAGS+=	EXTRA_LIBS="-lcurses -pthread"
-.endif
 
 REPLACE_PERL+=	source/util/*.pl
 REPLACE_PERL+=	source/util/mac-crawl-build-update-cdo
@@ -65,6 +57,9 @@ CHECK_PORTABILITY_SKIP+=	source/contrib/sdl2-image/external/tiff-4.0.3/configure
 CHECK_PORTABILITY_SKIP+=	*/Xcode/*.sh
 
 .include "../../databases/sqlite3/buildlink3.mk"
+# FIXME: Compatibility issue with NetBSD curses
+# https://github.com/crawl/crawl/issues/1661
+.include "../../devel/ncursesw/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../lang/lua/buildlink3.mk"
 .include "../../lang/python/tool.mk"
