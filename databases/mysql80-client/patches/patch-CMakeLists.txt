@@ -1,0 +1,21 @@
+$NetBSD$
+
+Split configuration between -client and -server.
+
+--- CMakeLists.txt.orig	2019-01-25 22:33:03.000000000 +0000
++++ CMakeLists.txt
+@@ -1040,12 +1040,10 @@ ADD_SUBDIRECTORY(utilities)
+ ADD_SUBDIRECTORY(share)
+ ADD_SUBDIRECTORY(libservices)
+ 
+-IF(UNIX)
++IF(WITHOUT_SERVER)
+   ADD_SUBDIRECTORY(man)
+-ENDIF()
+-
+-IF(NOT WITHOUT_SERVER)
+   ADD_SUBDIRECTORY(testclients)
++ELSE()
+   ADD_SUBDIRECTORY(sql)
+ ENDIF()
+ 

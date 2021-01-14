@@ -1,0 +1,57 @@
+$NetBSD$
+
+Split configuration between -client and -server.
+
+--- client/CMakeLists.txt.orig	2019-04-13 11:46:31.000000000 +0000
++++ client/CMakeLists.txt
+@@ -27,13 +27,17 @@ INCLUDE_DIRECTORIES(
+ ## Subdirectory with common client code.
+ ADD_SUBDIRECTORY(base)
+ ## Subdirectory for mysqlpump code.
++IF(WITHOUT_SERVER)
+ ADD_SUBDIRECTORY(dump)
++ENDIF()
+ 
++IF(WITHOUT_SERVER)
+ MYSQL_ADD_EXECUTABLE(mysql completion_hash.cc mysql.cc readline.cc ../sql-common/sql_string.cc pattern_matcher.cc ${CMAKE_SOURCE_DIR}/sql/net_ns.cc)
+ TARGET_LINK_LIBRARIES(mysql mysqlclient)
+ IF(UNIX)
+   TARGET_LINK_LIBRARIES(mysql ${EDITLINE_LIBRARY})
+ ENDIF(UNIX)
++ENDIF()
+ 
+ IF(NOT WITHOUT_SERVER)
+   MYSQL_ADD_EXECUTABLE(mysql_upgrade upgrade/program.cc)
+@@ -48,13 +52,16 @@ SET(MYSQLTEST_SRC
+   mysqltest/utils.cc
+ )
+ 
++IF(WITHOUT_SERVER)
+ MYSQL_ADD_EXECUTABLE(mysqltest mysqltest.cc ${MYSQLTEST_SRC} COMPONENT Test)
+ TARGET_LINK_LIBRARIES(mysqltest mysqlclient)
+ ADD_DEPENDENCIES(mysqltest GenError GenClientError)
++ENDIF()
+ 
+ ADD_CONVENIENCE_LIBRARY(mysqlcheck_core check/mysqlcheck_core.cc)
+ TARGET_LINK_LIBRARIES(mysqlcheck_core mysqlclient)
+ 
++IF(WITHOUT_SERVER)
+ MYSQL_ADD_EXECUTABLE(mysqlcheck check/mysqlcheck.cc)
+ TARGET_LINK_LIBRARIES(mysqlcheck mysqlcheck_core)
+ 
+@@ -107,12 +114,15 @@ TARGET_LINK_LIBRARIES(mysqlslap mysqlcli
+ 
+ MYSQL_ADD_EXECUTABLE(mysql_config_editor mysql_config_editor.cc)
+ TARGET_LINK_LIBRARIES(mysql_config_editor mysqlclient)
++ENDIF()
+ 
++IF(NOT WITHOUT_SERVER)
+ MYSQL_ADD_EXECUTABLE(mysql_secure_installation mysql_secure_installation.cc)
+ TARGET_LINK_LIBRARIES(mysql_secure_installation mysqlclient)
+ 
+ MYSQL_ADD_EXECUTABLE(mysql_ssl_rsa_setup mysql_ssl_rsa_setup.cc path.cc logger.cc)
+ TARGET_LINK_LIBRARIES(mysql_ssl_rsa_setup mysys mysys_ssl)
++ENDIF()
+ 
+ # "WIN32" also covers 64 bit. "echo" is used in some files below "mysql-test/".
+ IF(WIN32)
