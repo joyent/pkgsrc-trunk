@@ -347,6 +347,7 @@ post-install:
 .PHONY: install-ctf
 install-ctf: plist
 	@${STEP_MSG} "Generating CTF data"
+	@${RM} -f ${WRKDIR}/.ctfdata ${WRKDIR}/.ctffail ${WRKDIR}/.ctfnox
 	${RUN}cd ${DESTDIR:Q}${PREFIX:Q};				\
 	${CAT} ${_PLIST_NOKEYWORDS} | while read f; do			\
 		case "$${f}" in						\
@@ -354,13 +355,29 @@ install-ctf: plist
 		*) ;;							\
 		esac;							\
 		[ ! -h "$${f}" ] || continue;				\
+		/bin/file -b "$${f}" | grep ^ELF >/dev/null || continue; \
+		if /bin/elfdump "$${f}" | grep SUNW_ctf >/dev/null; then \
+			continue;					\
+		fi;							\
 		tmp_f="$${f}.XXX";					\
-		if ${CTFCONVERT} -o "$${tmp_f}" "$${f}" 2>/dev/null; then \
+		if err=`${CTFCONVERT} -o "$${tmp_f}" "$${f}" 2>&1`; then \
 			if [ -f "$${tmp_f}" -a -f "$${f}" ]; then	\
 				${MV} "$${tmp_f}" "$${f}";		\
 			fi;						\
 		fi;							\
 		${RM} -f "$${tmp_f}";					\
+		if /bin/elfdump "$${f}"	| grep SUNW_ctf >/dev/null; then \
+			${ECHO} $${f}					\
+			    | ${SED} -e 's|^${DESTDIR}||'		\
+			    >>${WRKDIR}/.ctfdata;			\
+			[ -x "$${f}" ] || ${ECHO} $${f}			\
+			    | ${SED} -e 's|^${DESTDIR}||'		\
+			    >>${WRKDIR}/.ctfnox;			\
+		else							\
+			${ECHO} "$${f}: $${err}"			\
+			    | ${SED} -e 's|^${DESTDIR}||'		\
+			    >>${WRKDIR}/.ctffail;			\
+		fi;							\
 	done
 
 ######################################################################
