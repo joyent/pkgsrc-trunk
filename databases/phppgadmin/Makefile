@@ -11,7 +11,7 @@ MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://phppgadmin.sourceforge.net/
 COMMENT=	Set of PHP-scripts to administer PostgreSQL over the WWW
 
-DEPENDS+=	${PHP_PKG_PREFIX}-pgsql>=4.2.0:../../databases/php-pgsql
+DEPENDS+=	${PHP_PKG_PREFIX}-pgsql*-[0-9]*:../../databases/php-pgsql
 
 MESSAGE_SUBST+=	EGDIR=${EGDIR}
 

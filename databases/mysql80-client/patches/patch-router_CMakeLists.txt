@@ -1,0 +1,15 @@
+$NetBSD$
+
+Disable section specific to Solaris Studio.
+
+--- router/CMakeLists.txt.orig	2019-04-13 11:46:31.000000000 +0000
++++ router/CMakeLists.txt
+@@ -56,7 +56,7 @@ IF(POLICY CMP0075)
+   CMAKE_POLICY(SET CMP0075 OLD)
+ ENDIF()
+ 
+-IF(SOLARIS)
++IF(notSOLARIS)
+   # disable rapidjson optimisation on Solaris as it breaks
+   # shared objects that build with -fPIC
+   ADD_DEFINITIONS(-DRAPIDJSON_48BITPOINTER_OPTIMIZATION=0)

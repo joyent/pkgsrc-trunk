@@ -17,10 +17,10 @@ MYSQL_VERSIONS_ACCEPTED=	56
 .include "../../mk/mysql.buildlink3.mk"
 DEPENDS+=	qt4-mysql-[0-9]*:../../x11/qt4-mysql
 CMAKE_ARGS+=	-DAKONADI_BUILD_QSQLITE=off
-.  if ${_MYSQL_VERSION} == "56"
+.  if ${MYSQL_VERSION} == "56"
 .    include "../../databases/mysql56-server/buildlink3.mk"
 .  else
-PKG_FAIL_REASON+=	"Unknown MySQL version: ${_MYSQL_VERSION}"
+PKG_FAIL_RESASON+=	"Unknown MySQL version: ${MYSQL_VERSION}"
 .  endif
 SUBST_CLASSES+=		mysql
 SUBST_STAGE.mysql=	pre-configure
