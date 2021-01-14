@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# Dummy script to ensure that this never uses a pkgsrc shell.
+#
+exit 0

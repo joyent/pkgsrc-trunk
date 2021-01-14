@@ -52,6 +52,15 @@ USE_NATIVE_GCC=		yes
 
 .include "../../mk/bsd.prefs.mk"
 
+#
+# Register a dependency on mksh if it is used as the bootstrap shell to ensure
+# that we can run +INSTALL scripts etc.  This match is deliberate to catch both
+# of the prefixes used during bootstrap, we can't simply match on LOCALBASE.
+#
+.if ${TOOLS_PLATFORM.sh:M?*/bin/mksh}
+DEPENDS+=		mksh-[0-9]*:../../shells/mksh
+.endif
+
 .if ${OS_VARIANT} == "SCOOSR5"
 # SCO OpenServer 5.0.7/3.2's strings.h defines strcasecmp with
 # "unsigned size_t". We cannot use -Werror for net/libfetch.
@@ -86,7 +95,7 @@ EGDIR=			${PREFIX}/share/examples/pkg_install
 
 PLIST_SUBST+=		PKG_DBDIR=${PKG_DBDIR}
 
-DEINSTALL_SRC=		# empty
+DEINSTALL_SRC=		${PKGDIR}/DEINSTALL
 INSTALL_SRC=		${PKGDIR}/INSTALL
 FILES_SUBST+=		PKG_DBDIR=${PKG_DBDIR}			\
 			PKG_TOOLS_BIN=${PKG_TOOLS_BIN:Q}	\
@@ -110,7 +119,6 @@ BUILDLINK_API_DEPENDS.libarchive+=	libarchive>=3.3.1
 .include "../../archivers/xz/builtin.mk"
 .include "../../archivers/libarchive/builtin.mk"
 .include "../../devel/zlib/builtin.mk"
-.include "../../security/openssl/builtin.mk"
 
 .include "options.mk"
 
