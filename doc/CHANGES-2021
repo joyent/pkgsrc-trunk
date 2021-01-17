@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2021,v 1.450 2021/01/16 19:23:10 fox Exp $
+$NetBSD: CHANGES-2021,v 1.464 2021/01/17 08:32:50 jnemeth Exp $
 
 Changes to the packages collection and infrastructure in 2021:
 
@@ -568,3 +568,20 @@ Changes to the packages collection and infrastructure in 2021:
 	Added print/py-octoprint-firmwarecheck version 2020.09.23 [khorben 2021-01-16]
 	Updated audio/fasttracker2 to 1.43 [fox 2021-01-16]
 	Updated chat/ircd-hybrid to 8.2.37 [fox 2021-01-16]
+	Added security/erlang-p1_acme version 1.0.10 [triaxx 2021-01-16]
+	Added security/erlang-pkix version 1.0.7 [triaxx 2021-01-16]
+	Updated chat/ejabberd to 20.12 [triaxx 2021-01-16]
+	Updated devel/py-hg-git to 0.9.0nb1 [maya 2021-01-16]
+	Updated net/Radicale to 1.1.4nb3 [maya 2021-01-16]
+	Added print/py-octoprint-filecheck version 2020.08.07 [khorben 2021-01-16]
+	Updated audio/portaudio to version portaudio-190600.20161030nb7 [reinoud 2021-01-16]
+	Updated devel/py-joblib to 1.0.0 [adam 2021-01-16]
+	Updated devel/py-pyelftools to 0.27 [adam 2021-01-16]
+	Updated chat/ejabberd to 20.12nb1 [triaxx 2021-01-16]
+	Added devel/py-google-i18n-address to 2.4.0 [riastradh 2021-01-16]
+	Added devel/py-dict2xml to 1.7.0 [riastradh 2021-01-16]
+	Added textproc/py-xml2rfc to 3.5.0 [riastradh 2021-01-16]
+	Added textproc/ruby-kramdown-rfc2629 to 1.3.24 [riastradh 2021-01-16]
+	Updated sysutils/onefetch to 2.9.1 [pin 2021-01-16]
+	Updated sysutils/hal to 0.5.14nb26 [wiz 2021-01-17]
+	Updated comms/asterisk15 to 15.7.4 [jnemeth 2021-01-17]
