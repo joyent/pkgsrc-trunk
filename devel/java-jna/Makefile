@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.5 2020/06/26 10:26:08 yyamano Exp $
+# $NetBSD: Makefile,v 1.7 2021/01/23 01:18:48 gutteridge Exp $
 
 DISTNAME=	jna-5.2.0
 PKGNAME=	java-${DISTNAME}
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	devel java
 MASTER_SITES=	${MASTER_SITE_GITHUB:=java-native-access/}
 GITHUB_PROJECT=	jna
@@ -40,7 +40,7 @@ ONLY_FOR_PLATFORM+=	NetBSD-*-i386 NetBSD-*-x86_64
 USE_LANGUAGES=	c
 USE_JAVA=	yes
 USE_JAVA2=	yes
-USE_TOOLS+=	autoreconf automake autoconf gmake pkg-config pax
+USE_TOOLS+=	autoreconf automake autoconf ggrep gmake pkg-config pax
 USE_LIBTOOL=	yes
 
 OPSYSVARS+=	JNIPFX JNISFX
@@ -62,7 +62,7 @@ DEPENDS+=	openjdk8>=1.8.202:../../lang/openjdk8
 # JDK 11 or later doesn't generate frames
 PLIST_SRC=	PLIST
 .if ${PKG_JVM} == "sun-jdk7" || ${PKG_JVM} == "oracle-jdk8" || ${PKG_JVM} == "openjdk8"
-PLIST_SRC+=	PLIST.java8-javadoc	
+PLIST_SRC+=	PLIST.java8-javadoc
 .else
 PLIST_SRC+=	PLIST.java11-javadoc
 .endif
@@ -78,9 +78,17 @@ ANT_ARGS+=	-Dcflags_extra.native=""
 ANT_ARGS+=	-DCC=${CC}
 ANT_TARGET=	jar contrib-jars javadoc
 
+# Needed with recent GCC versions, e.g., 9.3.
+BUILDLINK_TRANSFORM+=	rm:-Werror
+.if empty(PKGSRC_COMPILER:Mclang)
+BUILDLINK_TRANSFORM+=	rm:-Wno-unknown-warning-option
+.endif
+
 do-build:
 	cd ${WRKSRC} && \
-	    ${_ULIMIT_CMD}${SETENV} ${MAKE_ENV} ${PREFIX}/bin/ant ${ANT_ARGS} ${ANT_TARGET}
+	    ${_ULIMIT_CMD}${SETENV} ${MAKE_ENV} \
+	    -Dgrep=grep -Dmake=make -Dmake.PATH=PATH=${PATH:Q} \
+	    ${PREFIX}/bin/ant ${ANT_ARGS} ${ANT_TARGET}
 
 do-install:
 	${INSTALL_LIB} ${WRKSRC}/build/native-*/${JNIPFX}jnidispatch.${JNISFX} \

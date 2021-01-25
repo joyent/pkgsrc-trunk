@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.6 2021/01/14 12:50:25 nia Exp $
+# $NetBSD: Makefile,v 1.8 2021/01/23 13:08:11 nia Exp $
 
 DISTNAME=	profanity-0.9.5
-PKGREVISION=	2
+PKGREVISION=	4
 CATEGORIES=	chat
 MASTER_SITES=	https://profanity-im.github.io/
 
@@ -25,6 +25,12 @@ SUBST_CLASSES+=		python
 SUBST_STAGE.python=	pre-configure
 SUBST_FILES.python=	configure.ac
 SUBST_SED.python=	-e 's,python-config,python${PYVERSSUFFIX}-config,g'
+
+SUBST_CLASSES+=		paths
+SUBST_STAGE.paths=	pre-configure
+SUBST_MESSAGE.paths=	Setting path to OpenSSL certificates.
+SUBST_FILES.paths=	src/config/preferences.c
+SUBST_VARS.paths=	SSLCERTS
 
 CONFIGURE_ARGS+=	--enable-plugins
 CONFIGURE_ARGS+=	--enable-c-plugins

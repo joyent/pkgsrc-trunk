@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.916 2021/01/01 17:19:09 pin Exp $
+# $NetBSD: Makefile,v 1.919 2021/01/24 19:03:46 maya Exp $
 #
 
 COMMENT=	Graphics tools and libraries
@@ -130,6 +130,7 @@ SUBDIR+=	faba-icon-theme
 SUBDIR+=	fbm
 SUBDIR+=	feh
 SUBDIR+=	fly
+SUBDIR+=	fna3d
 SUBDIR+=	fnlib
 SUBDIR+=	fotoxx
 SUBDIR+=	frameworks
@@ -364,6 +365,7 @@ SUBDIR+=	materia-gtk-theme
 SUBDIR+=	metacam
 SUBDIR+=	mgl
 SUBDIR+=	mng
+SUBDIR+=	mojoshader
 SUBDIR+=	moka-icon-theme
 SUBDIR+=	mpeg2codec
 SUBDIR+=	mpgtx
@@ -798,6 +800,7 @@ SUBDIR+=	vp
 SUBDIR+=	vtk
 SUBDIR+=	vtk-data
 SUBDIR+=	vtk-docs
+SUBDIR+=	vulkan-headers
 SUBDIR+=	wcslib
 SUBDIR+=	wld
 SUBDIR+=	wm-icons

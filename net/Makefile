@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1374 2021/01/15 23:27:25 triaxx Exp $
+# $NetBSD: Makefile,v 1.1376 2021/01/20 21:02:13 adam Exp $
 #
 
 COMMENT=	Networking tools
@@ -258,6 +258,7 @@ SUBDIR+=	hub
 SUBDIR+=	iana-etc
 SUBDIR+=	icinga-base
 SUBDIR+=	icinga2
+SUBDIR+=	icingaweb2
 SUBDIR+=	icsi-finger
 SUBDIR+=	iftop
 SUBDIR+=	inadyn
@@ -755,6 +756,7 @@ SUBDIR+=	py-socketpool
 SUBDIR+=	py-socksipy-branch
 SUBDIR+=	py-softlayer
 SUBDIR+=	py-softlayer_messaging
+SUBDIR+=	py-stone
 SUBDIR+=	py-subunit
 SUBDIR+=	py-tldextract
 SUBDIR+=	py-tweepy
