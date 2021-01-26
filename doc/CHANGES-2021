@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2021,v 1.617 2021/01/25 17:07:11 schmonz Exp $
+$NetBSD: CHANGES-2021,v 1.621 2021/01/26 06:23:15 adam Exp $
 
 Changes to the packages collection and infrastructure in 2021:
 
@@ -764,3 +764,10 @@ Changes to the packages collection and infrastructure in 2021:
 	Updated time/ruby-tzinfo-data to 1.2021.1 [taca 2021-01-25]
 	Updated lang/execline to 2.7.0.1 [schmonz 2021-01-25]
 	Updated sysutils/s6 to 2.10.0.1 [schmonz 2021-01-25]
+	Added sysutils/sfm version 0.1.2 [pin 2021-01-25]
+	Updated chat/loudmouth to 1.5.4 [wiz 2021-01-25]
+	Updated devel/kdiff3 to 1.8.5 [gutteridge 2021-01-26]
+	Updated devel/py-test to 6.2.2 [adam 2021-01-26]
+	Updated www/py-django-cors-headers to 3.7.0 [adam 2021-01-26]
+	Updated devel/py-google-api-core to 1.25.1 [adam 2021-01-26]
+	Updated finance/py-braintree to 4.6.0 [adam 2021-01-26]
