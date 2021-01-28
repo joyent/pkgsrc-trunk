@@ -43,6 +43,7 @@ CONFIGURE_ARGS+=	--program-prefix=g
 BINUTILS_PREFIX=	${PREFIX}/${MACHINE_GNU_PLATFORM}
 
 # Joyent changes to avoid pulling in unwanted dependencies.
+CONFIGURE_ARGS+=		--disable-ld
 CONFIGURE_ARGS+=		--without-zlib
 OVERRIDE_DIRDEPTH.depcomp=	-1
 
