@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3322 2021/01/24 19:09:21 maya Exp $
+# $NetBSD: Makefile,v 1.3325 2021/01/27 16:17:20 jperkin Exp $
 #
 
 COMMENT=	Development utilities
@@ -808,6 +808,7 @@ SUBDIR+=	libmimedir
 SUBDIR+=	libmm
 SUBDIR+=	libmowgli
 SUBDIR+=	libmtp
+SUBDIR+=	libnet
 SUBDIR+=	libnet10
 SUBDIR+=	libnet11
 SUBDIR+=	libnfc
@@ -918,6 +919,7 @@ SUBDIR+=	lua-posix
 SUBDIR+=	lua-repl
 SUBDIR+=	lua-rings
 SUBDIR+=	lua-rocks
+SUBDIR+=	lua-safer
 SUBDIR+=	lua-say
 SUBDIR+=	lua-sdl2
 SUBDIR+=	lua-std-_debug
@@ -2716,6 +2718,7 @@ SUBDIR+=	re2
 SUBDIR+=	re2c
 SUBDIR+=	readline
 SUBDIR+=	rebar
+SUBDIR+=	rebar21
 SUBDIR+=	rebar3
 SUBDIR+=	refinecvs
 SUBDIR+=	reftools
