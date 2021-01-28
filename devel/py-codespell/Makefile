@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.2 2020/06/10 14:54:33 wiz Exp $
+# $NetBSD: Makefile,v 1.5 2021/01/26 20:40:57 wiz Exp $
 
-DISTNAME=	codespell-1.17.1
+DISTNAME=	codespell-2.0.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=c/codespell/}
@@ -12,9 +12,14 @@ LICENSE=	gnu-gpl-v2
 
 USE_LANGUAGES=	# none
 
+PYTHON_VERSIONS_INCOMPATIBLE=	27
+
+PYTHON_VERSIONED_DEPENDENCIES+=	test:test
+
 post-install:
 	${MV} ${DESTDIR}${PREFIX}/bin/codespell \
 		${DESTDIR}${PREFIX}/bin/codespell-${PYVERSSUFFIX}
 
 .include "../../lang/python/egg.mk"
+.include "../../lang/python/versioned_dependencies.mk"
 .include "../../mk/bsd.pkg.mk"

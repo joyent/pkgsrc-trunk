@@ -1,4 +1,4 @@
-$NetBSD: distinfo,v 1.74 2021/01/16 09:00:23 jperkin Exp $
+$NetBSD: distinfo,v 1.76 2021/01/19 16:51:30 brook Exp $
 
 SHA1 (krb5-1.18.3.tar.gz) = fdbb31fab5bdea24fc464d09bdbc245740648f1a
 RMD160 (krb5-1.18.3.tar.gz) = b8a3c3542433442e18984456773b0a2749fc6282

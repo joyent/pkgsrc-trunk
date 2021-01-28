@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.927 2021/01/13 16:41:53 jperkin Exp $
+# $NetBSD: Makefile,v 1.932 2021/01/26 13:31:54 pin Exp $
 #
 
 COMMENT=	System utilities
@@ -183,6 +183,7 @@ SUBDIR+=	dtc
 SUBDIR+=	dtpstree
 SUBDIR+=	dupeguru
 SUBDIR+=	duplicity
+SUBDIR+=	dust
 SUBDIR+=	dvd+rw-tools
 SUBDIR+=	dvdisaster
 SUBDIR+=	dvdrecord
@@ -383,6 +384,7 @@ SUBDIR+=	logrider
 SUBDIR+=	logrot
 SUBDIR+=	logrotate
 SUBDIR+=	lsd
+SUBDIR+=	lsfp
 SUBDIR+=	lsof
 SUBDIR+=	lvm2
 SUBDIR+=	lxmenu-data
@@ -576,12 +578,14 @@ SUBDIR+=	ruby-capistrano-harrow
 SUBDIR+=	ruby-capistrano-stats
 SUBDIR+=	ruby-chef
 SUBDIR+=	ruby-chef-config
+SUBDIR+=	ruby-chef-telemetry
 SUBDIR+=	ruby-chef-utils
 SUBDIR+=	ruby-chef-zero
 SUBDIR+=	ruby-childprocess
 SUBDIR+=	ruby-directory-watcher
 SUBDIR+=	ruby-facter
 SUBDIR+=	ruby-fssm
+SUBDIR+=	ruby-inspec-core
 SUBDIR+=	ruby-listen
 SUBDIR+=	ruby-notify
 SUBDIR+=	ruby-puppet-resource_api
@@ -604,6 +608,7 @@ SUBDIR+=	screentest
 SUBDIR+=	scsiinfo
 SUBDIR+=	service-config
 SUBDIR+=	setquota
+SUBDIR+=	sfm
 SUBDIR+=	sformat
 SUBDIR+=	shc
 SUBDIR+=	shelldap

@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.2 2021/01/11 18:31:10 schmonz Exp $
+# $NetBSD: options.mk,v 1.4 2021/01/22 17:16:45 schmonz Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.s6-networking
 PKG_SUPPORTED_OPTIONS+=	execline tls
@@ -15,8 +15,8 @@ CONFIGURE_ARGS+=	--disable-execline
 PLIST_VARS=		tls
 .if !empty(PKG_OPTIONS:Mtls)
 PLIST.tls=		yes
-.  include "../../security/libretls/buildlink3.mk"
-CONFIGURE_ARGS+=	--enable-ssl=libressl
+.  include "../../security/bearssl/buildlink3.mk"
+CONFIGURE_ARGS+=	--enable-ssl=bearssl
 
 PKG_USERS_VARS+=	UCSPI_SSL_USER
 PKG_GROUPS_VARS+=	UCSPI_SSL_GROUP
@@ -26,7 +26,7 @@ PKG_USERS+=		${UCSPI_SSL_USER}:${UCSPI_SSL_GROUP}
 SUBST_CLASSES+=		paths
 SUBST_STAGE.paths=	pre-configure
 SUBST_FILES.paths=	s6-pkgsrc-cadir
-SUBST_VARS.paths=	SH SETENV SSLDIR
+SUBST_VARS.paths=	SH SETENV SSLCERTS
 
 post-extract:
 	for f in s6-pkgsrc-cadir; do \

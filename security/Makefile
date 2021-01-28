@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.798 2021/01/16 19:59:13 triaxx Exp $
+# $NetBSD: Makefile,v 1.800 2021/01/23 10:59:55 pin Exp $
 #
 
 COMMENT=	Security tools
@@ -404,6 +404,7 @@ SUBDIR+=	pinepgp
 SUBDIR+=	pius
 SUBDIR+=	pkcs11-helper
 SUBDIR+=	pks
+SUBDIR+=	pleaser
 SUBDIR+=	policykit
 SUBDIR+=	policykit-gnome
 SUBDIR+=	polkit
@@ -587,6 +588,7 @@ SUBDIR+=	ruby-shadow
 SUBDIR+=	ruby-simple_oauth
 SUBDIR+=	ruby-sshkey
 SUBDIR+=	ruby-sshkit
+SUBDIR+=	ruby-sslshake
 SUBDIR+=	ruby-tcpwrap
 SUBDIR+=	ruby-twitter_oauth
 SUBDIR+=	rvault

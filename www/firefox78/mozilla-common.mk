@@ -1,4 +1,4 @@
-# $NetBSD: mozilla-common.mk,v 1.7 2020/12/31 20:04:14 nia Exp $
+# $NetBSD: mozilla-common.mk,v 1.9 2021/01/27 05:24:11 nia Exp $
 #
 # common Makefile fragment for mozilla packages based on gecko 2.0.
 #
@@ -16,6 +16,9 @@ USE_TOOLS+=		pkg-config perl gmake autoconf213 unzip zip
 UNLIMIT_RESOURCES+=	datasize virtualsize
 
 USE_LANGUAGES+=		c c++
+
+# ERROR: Only GCC 7.1 or newer is supported (found version 5.5.0).
+GCC_REQD+=		7
 
 TOOL_DEPENDS+=		cbindgen>=0.14.2:../../devel/cbindgen
 .if ${MACHINE_ARCH} == "sparc64"
@@ -53,6 +56,7 @@ USE_TOOLS+=		bsdtar
 CXXFLAGS+=		-mstackrealign
 .endif
 
+CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}third_party/python/glean_parser/Makefile
 CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}security/nss/tests/libpkix/libpkix.sh
 CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}security/nss/tests/multinit/multinit.sh
 CHECK_PORTABILITY_SKIP+=	${MOZILLA_DIR}js/src/tests/update-test262.sh

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.621 2021/01/06 00:54:37 js Exp $
+# $NetBSD: Makefile,v 1.623 2021/01/23 20:36:58 js Exp $
 #
 
 COMMENT=	Audio tools
