@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2021/01/20 21:02:13 adam Exp $
+# $NetBSD: Makefile,v 1.3 2021/01/30 10:15:15 wiz Exp $
 
 DISTNAME=	stone-3.2.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
@@ -12,6 +12,7 @@ LICENSE=	mit
 
 DEPENDS+=	${PYPKGPREFIX}-ply>=3.4:../../devel/py-ply
 DEPENDS+=	${PYPKGPREFIX}-six>=1.3.0:../../lang/py-six
+BUILD_DEPENDS+=	${PYPKGPREFIX}-test-runner-[0-9]*:../../devel/py-test-runner
 
 USE_LANGUAGES=	# none
 
