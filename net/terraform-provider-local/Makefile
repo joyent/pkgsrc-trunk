@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.10 2021/01/23 14:23:08 bsiegert Exp $
+# $NetBSD: Makefile,v 1.12 2021/02/01 16:54:00 tpaul Exp $
 
 DISTNAME=	terraform-provider-local-1.4.0
 PKGREVISION=	9

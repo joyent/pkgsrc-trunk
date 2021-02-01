@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.30 2021/01/26 11:22:13 jperkin Exp $
+# $NetBSD: Makefile,v 1.32 2021/01/30 08:24:07 jperkin Exp $
 
 DISTNAME=	arping-2.21
 PKGREVISION=	1

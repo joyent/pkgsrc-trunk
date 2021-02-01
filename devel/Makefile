@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3325 2021/01/27 16:17:20 jperkin Exp $
+# $NetBSD: Makefile,v 1.3328 2021/01/29 20:37:02 ryoon Exp $
 #
 
 COMMENT=	Development utilities
@@ -502,6 +502,7 @@ SUBDIR+=	google-api-go-client
 SUBDIR+=	google-glog
 SUBDIR+=	googletest
 SUBDIR+=	gopls
+SUBDIR+=	got
 SUBDIR+=	gperf
 SUBDIR+=	gperftools
 SUBDIR+=	gprbuild-aux
@@ -2209,6 +2210,7 @@ SUBDIR+=	py-boltons
 SUBDIR+=	py-boost
 SUBDIR+=	py-bugzilla
 SUBDIR+=	py-buildbot
+SUBDIR+=	py-buildbot-badges
 SUBDIR+=	py-buildbot-console-view
 SUBDIR+=	py-buildbot-grid-view
 SUBDIR+=	py-buildbot-pkg
@@ -2655,6 +2657,7 @@ SUBDIR+=	py-traitlets
 SUBDIR+=	py-treq
 SUBDIR+=	py-tryton
 SUBDIR+=	py-trytond
+SUBDIR+=	py-tubes
 SUBDIR+=	py-txaio
 SUBDIR+=	py-txgithub
 SUBDIR+=	py-txrequests

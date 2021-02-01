@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.158 2021/01/04 14:52:58 nia Exp $
+# $NetBSD: Makefile,v 1.160 2021/01/29 07:37:07 pin Exp $
 #
 
 COMMENT=	X11 window managers, configuration tools, and themes
@@ -79,6 +79,7 @@ SUBDIR+=	quartz-wm
 SUBDIR+=	qvwm
 SUBDIR+=	ratpoison
 SUBDIR+=	sawfish
+SUBDIR+=	sdorfehs
 SUBDIR+=	selectwm
 SUBDIR+=	skhd
 SUBDIR+=	skippy
