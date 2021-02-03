@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2021,v 1.752 2021/02/01 20:38:20 schmonz Exp $
+$NetBSD: CHANGES-2021,v 1.770 2021/02/03 13:17:53 adam Exp $
 
 Changes to the packages collection and infrastructure in 2021:
 
@@ -913,3 +913,21 @@ Changes to the packages collection and infrastructure in 2021:
 	Updated lang/openjdk11 to 1.11.0.10.9 [ryoon 2021-02-01]
 	Updated devel/mob to 1.2.0 [schmonz 2021-02-01]
 	Updated devel/py-approvaltests to 0.3.1 [schmonz 2021-02-01]
+	Added sysutils/krusader to 2.7.2 [markd 2021-02-02]
+	Updated devel/php-xdebug to 3.0.2 [taca 2021-02-02]
+	Updated www/drupal7 to 7.78 [taca 2021-02-02]
+	Updated www/drupal8 to 8.9.13 [taca 2021-02-02]
+	Updated databases/ruby-sequel to 5.41.0 [taca 2021-02-02]
+	Updated archivers/arqiver to 0.7.0 [pin 2021-02-02]
+	Updated sysutils/sfm to 0.2.0 [pin 2021-02-02]
+	Updated textproc/py-Levenshtein to 0.12.2 [gutteridge 2021-02-03]
+	Updated www/lighttpd to 1.4.59 [schmonz 2021-02-03]
+	Updated devel/ocaml-optint to 0.0.4nb1 [jaapb 2021-02-03]
+	Updated textproc/aspell-en to 2020.12.07.0 [nia 2021-02-03]
+	Updated audio/cmus to 2.9.1 [nia 2021-02-03]
+	Updated fonts/terminus-font to 4.49.1 [nia 2021-02-03]
+	Updated graphics/feh to 3.6.3 [nia 2021-02-03]
+	Added textproc/inih version 52 [nia 2021-02-03]
+	Updated graphics/imv to 4.2.0 [nia 2021-02-03]
+	Updated www/nghttp2 to 1.43.0 [adam 2021-02-03]
+	Updated www/curl to 7.75.0 [adam 2021-02-03]
