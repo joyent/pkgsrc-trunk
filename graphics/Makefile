@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.920 2021/01/29 11:40:24 pin Exp $
+# $NetBSD: Makefile,v 1.923 2021/02/12 02:53:40 markd Exp $
 #
 
 COMMENT=	Graphics tools and libraries
@@ -32,6 +32,7 @@ SUBDIR+=	R-jpeg
 SUBDIR+=	R-labeling
 SUBDIR+=	R-latex2exp
 SUBDIR+=	R-latticeExtra
+SUBDIR+=	R-manipulateWidget
 SUBDIR+=	R-munsell
 SUBDIR+=	R-png
 SUBDIR+=	R-polyclip
@@ -60,6 +61,7 @@ SUBDIR+=	blender
 SUBDIR+=	blender-lts
 SUBDIR+=	blinkenthemes
 SUBDIR+=	blinkentools
+SUBDIR+=	box2d
 SUBDIR+=	breeze-icons
 SUBDIR+=	cairo
 SUBDIR+=	cairo-gobject
@@ -728,6 +730,8 @@ SUBDIR+=	tex-pstricks
 SUBDIR+=	tex-pstricks-add
 SUBDIR+=	tex-pstricks-add-doc
 SUBDIR+=	tex-pstricks-doc
+SUBDIR+=	tex-qrcode
+SUBDIR+=	tex-qrcode-doc
 SUBDIR+=	tex-repere
 SUBDIR+=	tex-repere-doc
 SUBDIR+=	tex-roex

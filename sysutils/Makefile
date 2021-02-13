@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.935 2021/02/04 08:34:36 wiz Exp $
+# $NetBSD: Makefile,v 1.938 2021/02/12 13:43:14 pin Exp $
 #
 
 COMMENT=	System utilities
@@ -147,6 +147,7 @@ SUBDIR+=	dbus-python-common
 SUBDIR+=	dbus-sharp
 SUBDIR+=	dbus-sharp-glib
 SUBDIR+=	dc-tools
+SUBDIR+=	ddiff
 SUBDIR+=	dd_rescue
 SUBDIR+=	dd_rhelp
 SUBDIR+=	ddrescue
@@ -172,6 +173,7 @@ SUBDIR+=	dmg2img
 SUBDIR+=	dmidecode
 SUBDIR+=	dmsdos
 SUBDIR+=	dog
+SUBDIR+=	dolphin
 SUBDIR+=	dosfstools
 SUBDIR+=	dptutil
 SUBDIR+=	dtb-arm-exynos5422
@@ -552,6 +554,7 @@ SUBDIR+=	rcm
 SUBDIR+=	rconfig
 SUBDIR+=	rdfind
 SUBDIR+=	rdiff-backup
+SUBDIR+=	refi
 SUBDIR+=	rename
 SUBDIR+=	renameutils
 SUBDIR+=	restic

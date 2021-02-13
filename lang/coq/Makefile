@@ -1,13 +1,12 @@
-# $NetBSD: Makefile,v 1.136 2020/11/05 09:08:33 ryoon Exp $
+# $NetBSD: Makefile,v 1.138 2021/02/09 22:38:30 dholland Exp $
 #
 
-DISTNAME=	coq-8.10.2
-PKGREVISION=	6
+DISTNAME=	coq-8.12.2
 CATEGORIES=	lang math
 MASTER_SITES=	${MASTER_SITE_GITHUB:=coq/}
 GITHUB_TAG=	V${PKGVERSION_NOREV:S/_/+/}
 
-MAINTAINER=	jaapb@NetBSD.org
+MAINTAINER=	dholland@NetBSD.org
 HOMEPAGE=	https://coq.inria.fr/
 COMMENT=	Theorem prover which extracts programs from proofs
 LICENSE=	gnu-lgpl-v2.1
@@ -26,6 +25,12 @@ CONFIGURE_ARGS+=	-coqdocdir ${PREFIX}/share/texmf-dist/tex/latex/coq
 CONFIGURE_ARGS+=	-flambda-opts '-O3 -unbox-closures'
 
 BUILDLINK_API_DEPENDS.ocaml+=	ocaml>=3.10
+
+# datestamp for reproducible builds (this ends up in compiled proofs)
+# Use the upstream release date plus (arbitrarily) 11 days, the latter
+# being a venture to hopefully avoid accepting compiled proof files from
+# elsewhere that likely are not in fact compatible.
+MAKE_ENV+=		SOURCE_DATE_EPOCH=20201222
 
 .include "../../mk/bsd.prefs.mk"
 .include "../../mk/ocaml.mk"

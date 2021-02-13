@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.20370 2021/02/05 09:29:10 adam Exp $
+$NetBSD: TODO,v 1.20382 2021/02/13 09:21:07 ryoon Exp $
 
 Suggested new packages
 ======================
@@ -391,7 +391,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o afterstep-2.2.12
 	o aide-0.16
 	o akonadi-16.08.1
-	o alacritty-0.12.0
 	o alephone-20150620
 	o alevt-1.6.2
 	o alsa-lib-1.2.4
@@ -555,7 +554,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o fakeroot-1.6.5
 	o felt-3.07 [wip]
 	o fet-5.28.6
-	o fetchyahoo-2.14.0
 	o filerunner-14.06.18.10
 	o flashplayer-0.4.13
 	o flow-tools-0.411
@@ -588,7 +586,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o genius-1.0.25
 	o gens-2.15.5
 	o gfract-0.33
-	o ghc-9.0
 	o ghdl-0.33
 	o gkrellm-2.3.5
 	o gkrellm-multiping-2.0.13
@@ -627,6 +624,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o gok-2.30.1
 	o golem-0.0.6
 	o goocanvas-2.0.2
+	o gopls-0.6.5
 	o gossip-0.31
 	o gourmet-0.13.3
 	o gperiodic-3.0.2
@@ -637,8 +635,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o gromacs-5.1.2
 	o gss-1.0.3
 	o gst-plugins1-omx-1.10.0
-	o gstreamer1-1.18.2 [wip]
-	o gstreamer1-1.18.3
+	o gstreamer1-1.18.3 [wip]
 	o gthumb-3.4.0
 	o gtk4+-4.0 [wip]
 	o gtkglarea-2.1.0
@@ -681,6 +678,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o imapsync-1.678
 	o imp-6.2.12
 	o include-what-you-use-0.15
+	o influxdb-2.0.3
 	o ingo-3.2.8
 	o input-pad-1.4.2
 	o iozone-3.434
@@ -746,6 +744,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o libmcs-0.7.2
 	o libmilter-8.16.0.16
 	o libmtag-0.3.6
+	o libnumbertext-1.0.7
 	o liboobs-2.32.0
 	o liboop-1.0.1
 	o libpgm-5.2.122
@@ -906,7 +905,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o pidgin-icb-20100207
 	o pim6dd-20040819a
 	o pim6sd-20040824a
-	o pinentry-1.1.1
 	o pinfo-0.6.10
 	o pks-0.9.6
 	o plan-1.10.1
@@ -916,6 +914,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o podcastdl-0.3.3
 	o policyd-weight-0.1.15.2
 	o poppass-4.0.14
+	o poppler-21.02.0
 	o postal-0.72
 	o pound-3.0d
 	o povray-3.7.0.0
@@ -926,10 +925,10 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o prelude-lml-3.1.0
 	o prelude-manager-3.1.0
 	o profit-2.5.3
+	o prometheus-2.24.1
 	o psmisc-22.20
 	o pspp-0.10.1
 	o ptlib-2.16.2
-	o pulseaudio-14.2
 	o pvs-6.0
 	o pwlib-1.11.1
 	o py-HappyDoc-3.0
@@ -1100,7 +1099,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o vera-1.23
 	o vfu-4.09
 	o vicq-0.4.2
-	o vim-8.2
 	o vinagre-3.16.1
 	o vino-3.16.0
 	o virt-manager-1.3.2
@@ -1114,7 +1112,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o wap-utils-1.4.1
 	o wcalc-2.4
 	o websvn-2.6.0
-	o weewm-0.01
 	o whowatch-1.8.5
 	o windowlab-1.40
 	o wine-5.0
@@ -1173,8 +1170,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o zabbix-4.4.4
 	o zabbix-frontend-4.4.4
 	o zenicb-1.31 (needs merge with lots of local changes)
-	o zig-0.7.1
-	o zim-0.65
+	o zig-0.7.1 [needs llvm-11.x]
 	o zoneminder-1.34.21
 	o zopeedit-0.8
 

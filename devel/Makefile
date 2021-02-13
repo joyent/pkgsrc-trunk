@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3330 2021/02/04 07:12:58 jnemeth Exp $
+# $NetBSD: Makefile,v 1.3333 2021/02/11 20:35:57 markd Exp $
 #
 
 COMMENT=	Development utilities
@@ -688,6 +688,7 @@ SUBDIR+=	kdoctools
 SUBDIR+=	ki18n
 SUBDIR+=	kidletime
 SUBDIR+=	kio
+SUBDIR+=	kio-extras
 SUBDIR+=	kitemmodels
 SUBDIR+=	knotifications
 SUBDIR+=	knotifyconfig
@@ -2203,6 +2204,7 @@ SUBDIR+=	py-bcolz
 SUBDIR+=	py-behave
 SUBDIR+=	py-binaryornot
 SUBDIR+=	py-bintrees
+SUBDIR+=	py-bitarray
 SUBDIR+=	py-bitstring
 SUBDIR+=	py-blessings
 SUBDIR+=	py-blinker
@@ -2345,6 +2347,7 @@ SUBDIR+=	py-guppy3
 SUBDIR+=	py-h5py
 SUBDIR+=	py-hamcrest
 SUBDIR+=	py-hash
+SUBDIR+=	py-hexbytes
 SUBDIR+=	py-hg-evolve
 SUBDIR+=	py-hg-fastimport
 SUBDIR+=	py-hg-git

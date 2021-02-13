@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.153 2021/01/04 22:34:54 wiz Exp $
+# $NetBSD: Makefile,v 1.155 2021/02/07 06:25:31 ryoon Exp $
 
-DISTNAME=	pulseaudio-14.0
+DISTNAME=	pulseaudio-14.2
+PKGREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	https://freedesktop.org/software/pulseaudio/releases/
 EXTRACT_SUFX=	.tar.xz
@@ -35,8 +36,8 @@ PKGCONFIG_OVERRIDE+=	libpulse.pc.in
 
 TOOL_DEPENDS+=	p5-XML-Parser>=2.31nb1:../../textproc/p5-XML-Parser
 
-REPLACE_BASH=	shell-completion/bash/pulseaudio git-version-gen
-REPLACE_BASH=	src/utils/pa-info
+REPLACE_BASH+=	shell-completion/bash/pulseaudio git-version-gen
+REPLACE_BASH+=	src/utils/pa-info
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -69,7 +70,8 @@ CONFIGURE_ARGS+=	--disable-neon-opt
 .include "../../devel/libatomic_ops/buildlink3.mk"
 .endif
 
-PLIST_SUBST+=		PULSELIBVER=14.0
+# Version number in patch-configure.ac.must be changed too.
+PLIST_SUBST+=		PULSELIBVER=14.2
 PLIST_VARS+=		alsa bonjour coreaudio evdev oss sun
 
 # Build module-mmkbd-evdev.so under Linux

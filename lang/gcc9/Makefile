@@ -1,11 +1,14 @@
-# $NetBSD: Makefile,v 1.26 2021/02/05 10:28:40 maya Exp $
+# $NetBSD: Makefile,v 1.29 2021/02/13 15:56:17 maya Exp $
 
 GCC_PKGNAME=	gcc9
 .include "version.mk"
-PKGREVISION=	5
 
 DISTNAME=	gcc-${GCC9_DIST_VERSION}
 PKGNAME=	${GCC_PKGNAME}-${GCC9_DIST_VERSION}
+## When bumping the PKGREVISION of this package the PKGREVISION of
+## lang/gcc9-libs needs to be bumped to be at least 1 more than the
+## PKGREVISION of this package!
+PKGREVISION=	6
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GNU:=gcc/gcc-${GCC9_VERSION}/}
 EXTRACT_SUFX=	.tar.xz
@@ -190,8 +193,8 @@ post-install:
 	|| (cd ${DESTDIR}${GCC9_PREFIX}/bin && ${LN} -f gcc cc)
 
 GENERATE_PLIST+= \
-        cd ${DESTDIR}${PREFIX} && \
-        ${FIND} ${GCC_SUBPREFIX} \( -type f -o -type l \) -print | ${SORT};
+	cd ${DESTDIR}${PREFIX} && \
+	${FIND} ${GCC9_SUBPREFIX} \( -type f -o -type l \) -print | ${SORT};
 
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../lang/python/application.mk"
