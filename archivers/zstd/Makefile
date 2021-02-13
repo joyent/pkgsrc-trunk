@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.33 2021/01/05 07:38:22 wiz Exp $
+# $NetBSD: Makefile,v 1.37 2021/02/11 10:36:22 nia Exp $
 
 DISTNAME=	zstd-1.4.8
 CATEGORIES=	archivers
@@ -24,7 +24,13 @@ MAKE_JOBS_SAFE=		no
 
 .include "../../mk/bsd.prefs.mk"
 
-.if ${OPSYS} != "Linux"
+# see HASH in lib/Makefile
+.if ${OPSYS} == "NetBSD"
+# https://github.com/facebook/zstd/pull/2492
+MAKE_ENV+=		HASH="md5 -n"
+.elif ${OPSYS} != "Linux" && \
+    ${OPSYS} != "Darwin" && \
+    ${OPSYS} != "OpenBSD"
 TOOL_DEPENDS+=		coreutils>=0:../../sysutils/coreutils
 MAKE_ENV+=		HASH=gmd5sum
 .endif
@@ -37,6 +43,8 @@ MAKE_FLAGS+=		mandir=${PREFIX}/${PKGMANDIR}
 MAKE_FLAGS+=		INSTALL=${INSTALL:Q}
 
 BUILD_TARGET=		allmost
+# stat -c error
+# https://github.com/facebook/zstd/issues/2493
 TEST_TARGET=		test
 
 .include "../../archivers/lz4/buildlink3.mk"

@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.8 2020/11/06 12:15:54 nia Exp $
+# $NetBSD: Makefile,v 1.10 2021/02/06 13:56:35 maya Exp $
 
 DISTNAME=	love-0.9.2-linux-src
 PKGNAME=	${DISTNAME:S/-linux-src//:S/love/love09/}
-PKGREVISION=	4
+PKGREVISION=	5
 CATEGORIES=	games lua
-MASTER_SITES=	https://bitbucket.org/rude/love/downloads/
+MASTER_SITES=	${MASTER_SITE_GITHUB:=love2d/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://love2d.org/
@@ -22,6 +22,10 @@ GNU_CONFIGURE_PREFIX=		${PREFIX}/love0.9
 GNU_CONFIGURE_MANDIR=		${PREFIX}/love0.9/${PKGMANDIR}/
 BUILDLINK_PASSTHRU_DIRS+=	${PREFIX}/love0.9/lib
 BUILDLINK_PASSTHRU_RPATHDIRS+=	${PREFIX}/love0.9/lib
+
+INSTALLATION_DIRS+=	bin
+post-install:
+	${LN} -sf ../love0.9/bin/love ${DESTDIR}${PREFIX}/bin/love0.9
 
 .include "options.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1504 2021/02/05 14:41:45 mef Exp $
+# $NetBSD: Makefile,v 1.1507 2021/02/12 09:33:19 adam Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -89,6 +89,7 @@ SUBDIR+=	curl
 SUBDIR+=	cvsweb
 SUBDIR+=	dansguardian
 SUBDIR+=	davical
+SUBDIR+=	ddgr
 SUBDIR+=	deforaos-surfer
 SUBDIR+=	dillo
 SUBDIR+=	drraw
@@ -768,6 +769,7 @@ SUBDIR+=	py-httpie
 SUBDIR+=	py-httplib2
 SUBDIR+=	py-httptools
 SUBDIR+=	py-httpx
+SUBDIR+=	py-httpx-socks
 SUBDIR+=	py-hyperframe
 SUBDIR+=	py-hyperlink
 SUBDIR+=	py-idna

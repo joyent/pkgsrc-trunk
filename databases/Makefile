@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.620 2020/12/05 09:04:58 otis Exp $
+# $NetBSD: Makefile,v 1.621 2021/02/11 13:54:46 jperkin Exp $
 
 COMMENT=	Databases
 
@@ -115,6 +115,7 @@ SUBDIR+=	mysql57-client
 SUBDIR+=	mysql57-server
 SUBDIR+=	mysql80-client
 SUBDIR+=	mysql80-server
+SUBDIR+=	mysqld_exporter
 SUBDIR+=	mysqltuner
 SUBDIR+=	mytop
 SUBDIR+=	nss-pgsql

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1192 2021/02/03 10:28:41 nia Exp $
+# $NetBSD: Makefile,v 1.1194 2021/02/12 08:16:35 pin Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -464,6 +464,7 @@ SUBDIR+=	libyaml
 SUBDIR+=	link-grammar
 SUBDIR+=	lit2epub
 SUBDIR+=	log4cpp
+SUBDIR+=	lok
 SUBDIR+=	lout
 SUBDIR+=	lowdown
 SUBDIR+=	lq-sp
@@ -922,6 +923,7 @@ SUBDIR+=	py-pallets-sphinx-themes
 SUBDIR+=	py-pandocfilters
 SUBDIR+=	py-parse
 SUBDIR+=	py-parse_type
+SUBDIR+=	py-parsimonious
 SUBDIR+=	py-pdf-parser
 SUBDIR+=	py-pdfrw
 SUBDIR+=	py-peg2

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.800 2021/01/23 10:59:55 pin Exp $
+# $NetBSD: Makefile,v 1.803 2021/02/08 11:18:09 mef Exp $
 #
 
 COMMENT=	Security tools
@@ -12,9 +12,11 @@ SUBDIR+=	HElib
 SUBDIR+=	KeePass
 SUBDIR+=	PACK
 SUBDIR+=	PortableSigner
+SUBDIR+=	R-argon2
 SUBDIR+=	R-askpass
 SUBDIR+=	R-credentials
 SUBDIR+=	R-digest
+SUBDIR+=	R-getPass
 SUBDIR+=	R-openssl
 SUBDIR+=	TweetNaCl
 SUBDIR+=	acmesh
@@ -399,7 +401,7 @@ SUBDIR+=	pinentry-fltk
 SUBDIR+=	pinentry-gnome3
 SUBDIR+=	pinentry-gtk2
 SUBDIR+=	pinentry-mac
-SUBDIR+=	pinentry-qt4
+SUBDIR+=	pinentry-qt5
 SUBDIR+=	pinepgp
 SUBDIR+=	pius
 SUBDIR+=	pkcs11-helper

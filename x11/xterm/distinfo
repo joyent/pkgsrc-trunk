@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.89 2021/01/01 13:35:14 pin Exp $
+$NetBSD: distinfo,v 1.91 2021/02/11 09:02:52 wiz Exp $
 
-SHA1 (xterm-363.tgz) = 82f0e5bdae44268fc0cf8275f47a1a732aaee995
-RMD160 (xterm-363.tgz) = 54ced4d077a8b46106a467e0491f75138c760279
-SHA512 (xterm-363.tgz) = e9148f144e5e38597c84ccd82033f4fb83a9dd222c4cecf7498e31065e7d0148c89631290e5f804fcd9d2d55f59f4fd271aaf220eb636fbe38ae245ea6537871
-Size (xterm-363.tgz) = 1442520 bytes
+SHA1 (xterm-366.tgz) = 1ec2fc8b5ee63d5a0d1c69cf7898624f280f6342
+RMD160 (xterm-366.tgz) = c3a18eeac36609c24f9ea1556fc630bb38dd90c8
+SHA512 (xterm-366.tgz) = ffab7e0970b92a25488bd57da2dfe2856279208c489a632e0e92788deec2a4f99510f76e1c88e55f389dfe984c323add0fab31b04d2a1d774ce6d3b2c9c642ef
+Size (xterm-366.tgz) = 1445992 bytes

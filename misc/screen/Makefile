@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.116 2020/08/02 10:59:13 kim Exp $
+# $NetBSD: Makefile,v 1.118 2021/02/12 22:53:14 cjep Exp $
 
 DISTNAME=	screen-4.8.0
 PKGREVISION=	3

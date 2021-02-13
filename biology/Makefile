@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.62 2021/01/22 17:09:00 bacon Exp $
+# $NetBSD: Makefile,v 1.65 2021/02/12 00:24:35 gutteridge Exp $
 #
 
 COMMENT=	Software for the biological sciences
@@ -51,6 +51,8 @@ SUBDIR+=	primer3
 SUBDIR+=	profit
 SUBDIR+=	puzzle
 SUBDIR+=	py-biopython
+SUBDIR+=	py-cutadapt
+SUBDIR+=	py-dnaio
 SUBDIR+=	py-mol
 SUBDIR+=	py-pydicom
 SUBDIR+=	rasmol
