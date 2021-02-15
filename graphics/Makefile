@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.923 2021/02/12 02:53:40 markd Exp $
+# $NetBSD: Makefile,v 1.925 2021/02/14 11:51:57 nros Exp $
 #
 
 COMMENT=	Graphics tools and libraries
@@ -72,6 +72,7 @@ SUBDIR+=	cambevao
 SUBDIR+=	camediaplay
 SUBDIR+=	camlimages
 SUBDIR+=	cdlabelgen
+SUBDIR+=	charls
 SUBDIR+=	cheese
 SUBDIR+=	cinepaint
 SUBDIR+=	circos
@@ -129,6 +130,7 @@ SUBDIR+=	exiftags
 SUBDIR+=	exiv2
 SUBDIR+=	extrema
 SUBDIR+=	faba-icon-theme
+SUBDIR+=	farbfeld
 SUBDIR+=	fbm
 SUBDIR+=	feh
 SUBDIR+=	fly
