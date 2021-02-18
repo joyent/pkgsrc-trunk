@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1507 2021/02/12 09:33:19 adam Exp $
+# $NetBSD: Makefile,v 1.1513 2021/02/17 10:14:24 adam Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -648,7 +648,6 @@ SUBDIR+=	py-cfscrape
 SUBDIR+=	py-channels
 SUBDIR+=	py-cheroot
 SUBDIR+=	py-cherrypy
-SUBDIR+=	py-cherrypy17
 SUBDIR+=	py-clearsilver
 SUBDIR+=	py-cloudfiles
 SUBDIR+=	py-cookies
@@ -751,7 +750,6 @@ SUBDIR+=	py-flask-webpack
 SUBDIR+=	py-flask-wtf
 SUBDIR+=	py-flup
 SUBDIR+=	py-furl
-SUBDIR+=	py-gdata
 SUBDIR+=	py-genshi
 SUBDIR+=	py-google-api-python-client
 SUBDIR+=	py-google-apitools
@@ -858,10 +856,13 @@ SUBDIR+=	ramaze
 SUBDIR+=	rekonq
 SUBDIR+=	ruby-actioncable52
 SUBDIR+=	ruby-actioncable60
+SUBDIR+=	ruby-actioncable61
 SUBDIR+=	ruby-actionpack52
 SUBDIR+=	ruby-actionpack60
+SUBDIR+=	ruby-actionpack61
 SUBDIR+=	ruby-actionview52
 SUBDIR+=	ruby-actionview60
+SUBDIR+=	ruby-actionview61
 SUBDIR+=	ruby-borges
 SUBDIR+=	ruby-capybara
 SUBDIR+=	ruby-clearsilver
@@ -938,6 +939,7 @@ SUBDIR+=	ruby-rack16
 SUBDIR+=	ruby-rails-html-sanitizer
 SUBDIR+=	ruby-rails52
 SUBDIR+=	ruby-rails60
+SUBDIR+=	ruby-rails61
 SUBDIR+=	ruby-raindrops
 SUBDIR+=	ruby-request_store
 SUBDIR+=	ruby-rest-client
@@ -1007,6 +1009,11 @@ SUBDIR+=	tscrape
 SUBDIR+=	tuir
 SUBDIR+=	typo3_62
 SUBDIR+=	uhttpmock
+SUBDIR+=	unit
+SUBDIR+=	unit-perl
+SUBDIR+=	unit-php
+SUBDIR+=	unit-python
+SUBDIR+=	unit-ruby
 SUBDIR+=	urlget
 SUBDIR+=	urlgrabber
 SUBDIR+=	varnish

@@ -1,0 +1,16 @@
+$NetBSD: patch-Makefile,v 1.1 2021/02/16 13:12:39 adam Exp $
+
+We install init scripts ourselves.
+
+--- Makefile.orig	2015-03-31 20:50:58.000000000 +0000
++++ Makefile
+@@ -20,9 +20,6 @@ install-bin:
+ install-etc:
+ 	cd etc $(AND) $(MAKE) install
+ 
+-install-init:
+-	cd init $(AND) $(MAKE) install
+-
+ install-man:
+ 	cd man $(AND) $(MAKE) install
+ 

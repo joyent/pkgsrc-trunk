@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.20382 2021/02/13 09:21:07 ryoon Exp $
+$NetBSD: TODO,v 1.20397 2021/02/18 10:34:30 wiz Exp $
 
 Suggested new packages
 ======================
@@ -624,7 +624,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o gok-2.30.1
 	o golem-0.0.6
 	o goocanvas-2.0.2
-	o gopls-0.6.5
 	o gossip-0.31
 	o gourmet-0.13.3
 	o gperiodic-3.0.2
@@ -675,6 +674,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o icewm-2.0.0
 	o icinga-base-2.12.3
 	o ike-2.0.1 [pkg/37032]
+	o ilmbase-2.5.5
 	o imapsync-1.678
 	o imp-6.2.12
 	o include-what-you-use-0.15
@@ -744,7 +744,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o libmcs-0.7.2
 	o libmilter-8.16.0.16
 	o libmtag-0.3.6
-	o libnumbertext-1.0.7
 	o liboobs-2.32.0
 	o liboop-1.0.1
 	o libpgm-5.2.122
@@ -752,7 +751,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o libpreludedb-3.1.0
 	o libquantum-1.1.0 [pkg/43728, development release]
 	o libressl-3.2.0
-	o libstemmer-2.1.0
 	o libtecla-1.6.3
 	o libvirt-2.3
 	o lincvs-2.1.4 [now called CrossVC]
@@ -845,6 +843,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o opal-3.16.2
 	o openafs-1.8
 	o opencsg-1.4.0
+	o openexr-2.5.5
 	o openh323-1.19.1
 	o openmortal-0.7.1
 	o openslp-2.0.0
@@ -925,7 +924,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o prelude-lml-3.1.0
 	o prelude-manager-3.1.0
 	o profit-2.5.3
-	o prometheus-2.24.1
 	o psmisc-22.20
 	o pspp-0.10.1
 	o ptlib-2.16.2
@@ -988,9 +986,8 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o rt4-4.4.0
 	o rtty-4.0 [at ftp://ftp.isc.org/isc/rtty/]
 	o rubber-1.4
-	o ruby-3.0.0
 	o rump-20131213
-	o rust-1.49.0
+	o rust-1.50.0
 	o sabayon-2.30.1
 	o sablecc-3.7
 	o sarg-2.4.0
@@ -1027,7 +1024,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o sparse-0.5.0
 	o spcaview-20060501
 	o spl-1.0pre6
-	o sqlrelay-1.8.0
 	o squeak-5.0
 	o squeak-vm-4.10.2.2765
 	o sqwebmail-5.8.2

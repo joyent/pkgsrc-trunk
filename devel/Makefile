@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3333 2021/02/11 20:35:57 markd Exp $
+# $NetBSD: Makefile,v 1.3338 2021/02/17 14:16:57 fcambus Exp $
 #
 
 COMMENT=	Development utilities
@@ -160,6 +160,7 @@ SUBDIR+=	bcc
 SUBDIR+=	bfg
 SUBDIR+=	bglibs
 SUBDIR+=	bin86
+SUBDIR+=	binaryen
 SUBDIR+=	binutils
 SUBDIR+=	bison
 SUBDIR+=	blame
@@ -856,6 +857,7 @@ SUBDIR+=	libtool-base
 SUBDIR+=	libtool-fortran
 SUBDIR+=	libtool-info
 SUBDIR+=	libts
+SUBDIR+=	libunit
 SUBDIR+=	libusb
 SUBDIR+=	libusb-compat
 SUBDIR+=	libusb1
@@ -2747,12 +2749,16 @@ SUBDIR+=	ruby-SDL
 SUBDIR+=	ruby-abstract
 SUBDIR+=	ruby-activejob52
 SUBDIR+=	ruby-activejob60
+SUBDIR+=	ruby-activejob61
 SUBDIR+=	ruby-activemodel52
 SUBDIR+=	ruby-activemodel60
+SUBDIR+=	ruby-activemodel61
 SUBDIR+=	ruby-activestorage52
 SUBDIR+=	ruby-activestorage60
+SUBDIR+=	ruby-activestorage61
 SUBDIR+=	ruby-activesupport52
 SUBDIR+=	ruby-activesupport60
+SUBDIR+=	ruby-activesupport61
 SUBDIR+=	ruby-algorithms
 SUBDIR+=	ruby-amstd
 SUBDIR+=	ruby-assistance
@@ -2885,6 +2891,7 @@ SUBDIR+=	ruby-pycall
 SUBDIR+=	ruby-racc
 SUBDIR+=	ruby-railties52
 SUBDIR+=	ruby-railties60
+SUBDIR+=	ruby-railties61
 SUBDIR+=	ruby-randexp
 SUBDIR+=	ruby-rb-fsevent
 SUBDIR+=	ruby-rb-inotify
@@ -3087,6 +3094,7 @@ SUBDIR+=	vera++
 SUBDIR+=	verifast
 SUBDIR+=	visualvm
 SUBDIR+=	vtcl
+SUBDIR+=	wabt
 SUBDIR+=	waf
 SUBDIR+=	wayland
 SUBDIR+=	wayland-protocols

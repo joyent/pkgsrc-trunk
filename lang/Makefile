@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.590 2021/02/09 13:20:09 ryoon Exp $
+# $NetBSD: Makefile,v 1.592 2021/02/16 13:16:38 adam Exp $
 #
 
 COMMENT=	Programming languages
@@ -177,7 +177,6 @@ SUBDIR+=	nim
 SUBDIR+=	nodejs
 SUBDIR+=	nodejs10
 SUBDIR+=	nodejs12
-SUBDIR+=	nodejs8
 SUBDIR+=	npm
 SUBDIR+=	nqp
 SUBDIR+=	nuitka
@@ -265,6 +264,8 @@ SUBDIR+=	ruby26
 SUBDIR+=	ruby26-base
 SUBDIR+=	ruby27
 SUBDIR+=	ruby27-base
+SUBDIR+=	ruby30
+SUBDIR+=	ruby30-base
 SUBDIR+=	runawk
 SUBDIR+=	rust
 SUBDIR+=	rust-bin
