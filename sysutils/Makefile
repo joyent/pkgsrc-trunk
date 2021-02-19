@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.938 2021/02/12 13:43:14 pin Exp $
+# $NetBSD: Makefile,v 1.940 2021/02/18 14:55:32 martin Exp $
 #
 
 COMMENT=	System utilities
@@ -147,9 +147,9 @@ SUBDIR+=	dbus-python-common
 SUBDIR+=	dbus-sharp
 SUBDIR+=	dbus-sharp-glib
 SUBDIR+=	dc-tools
-SUBDIR+=	ddiff
 SUBDIR+=	dd_rescue
 SUBDIR+=	dd_rhelp
+SUBDIR+=	ddiff
 SUBDIR+=	ddrescue
 SUBDIR+=	decode-dimms
 SUBDIR+=	deforaos-browser
@@ -727,6 +727,7 @@ SUBDIR+=	u-boot-orangepi-plus2e
 SUBDIR+=	u-boot-orangepi-zero
 SUBDIR+=	u-boot-orangepi-zero-plus
 SUBDIR+=	u-boot-pandaboard
+SUBDIR+=	u-boot-pico-pi-imx7d
 SUBDIR+=	u-boot-pine-h64
 SUBDIR+=	u-boot-pine64
 SUBDIR+=	u-boot-pinebook
