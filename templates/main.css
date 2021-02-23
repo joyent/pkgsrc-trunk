@@ -1,0 +1,65 @@
+/* $NetBSD: main.css,v 1.5 2021/02/22 09:43:58 nia Exp $ */
+
+body {
+	font-family: sans-serif;
+	background-color: #fff;
+	color: #000;
+}
+
+body, pre, code, samp {
+	font-size: 16px;
+}
+
+h1 {
+	font-size: 160%;
+}
+
+h2 {
+	font-size: 140%;
+}
+
+h3 {
+	font-size: 120%;
+}
+
+a:link {
+	color: #d43900;
+ 	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:visited {
+	color: #844;
+	text-decoration: none;
+}
+
+a:visited:hover {
+	text-decoration: underline;
+}
+
+th {
+	text-align: left;
+	font-weight: bold;
+}
+
+hr {
+	border: 0;
+	border-bottom: 1px solid #aaa;
+}
+
+#logo {
+	float: right;
+	border: 0;
+}
+
+.package-data {
+	list-style-type: none;
+	padding-left: 0;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	border-top: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
+}
