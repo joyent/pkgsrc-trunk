@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1196 2021/02/14 14:53:42 taca Exp $
+# $NetBSD: Makefile,v 1.1200 2021/02/25 01:38:55 gutteridge Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -799,6 +799,7 @@ SUBDIR+=	p5-native-hyperestraier
 SUBDIR+=	p5-podlators
 SUBDIR+=	p5-sdf
 SUBDIR+=	p5-yamcha
+SUBDIR+=	paperoni
 SUBDIR+=	par
 SUBDIR+=	pdfgrep
 SUBDIR+=	pear-Console_Table
@@ -1165,6 +1166,7 @@ SUBDIR+=	unicode-character-database
 SUBDIR+=	unicode-emoji
 SUBDIR+=	unroff
 SUBDIR+=	untex
+SUBDIR+=	upmendex
 SUBDIR+=	uriparser
 SUBDIR+=	urlview
 SUBDIR+=	verify-synopsis

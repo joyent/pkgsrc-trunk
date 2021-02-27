@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.940 2021/02/18 14:55:32 martin Exp $
+# $NetBSD: Makefile,v 1.942 2021/02/25 07:20:47 wiz Exp $
 #
 
 COMMENT=	System utilities
@@ -335,6 +335,7 @@ SUBDIR+=	i3status
 SUBDIR+=	i810switch
 SUBDIR+=	iat
 SUBDIR+=	idesk
+SUBDIR+=	imx_usb_loader
 SUBDIR+=	install-sh
 SUBDIR+=	intel-backlight
 SUBDIR+=	intel-microcode-netbsd

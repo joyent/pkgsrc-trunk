@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.262 2021/02/17 17:16:00 reinoud Exp $
+# $NetBSD: Makefile,v 1.264 2021/02/23 09:28:33 wiz Exp $
 
-DISTNAME=	qemu-5.1.0
-PKGREVISION=	13
+DISTNAME=	qemu-5.2.0
 CATEGORIES=	emulators
 MASTER_SITES=	https://download.qemu.org/
 EXTRACT_SUFX=	.tar.xz
@@ -10,6 +9,8 @@ MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.qemu-project.org/
 COMMENT=	CPU emulator using dynamic translation
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1 AND mit AND modified-bsd
+
+BUILD_DEPENDS+=	ninja-build-[0-9]*:../../devel/ninja-build
 
 USE_CURSES=		resize_term wide
 USE_LANGUAGES+=		c c++
@@ -26,6 +27,7 @@ SUBST_CLASSES+=			sphinx-build
 SUBST_STAGE.sphinx-build=	pre-configure
 SUBST_MESSAGE.sphinx-build=	Fix hardcoded sphinx-build
 SUBST_FILES.sphinx-build+=	configure
+SUBST_FILES.sphinx-build+=	docs/meson.build
 SUBST_FILES.sphinx-build+=	roms/skiboot/doc/Makefile
 SUBST_FILES.sphinx-build+=	roms/u-boot/Documentation/Makefile
 SUBST_SED.sphinx-build+=	-e 's/sphinx-build/sphinx-build-${PYVERSSUFFIX}/g'
@@ -36,7 +38,7 @@ SUBST_SED.sphinx-build+=	-e 's/sphinx-build/sphinx-build-${PYVERSSUFFIX}/g'
 
 DISTFILES=		${DEFAULT_DISTFILES}
 DISTFILES+=		palcode-clipper
-SITES.palcode-clipper=	http://ftp.netbsd.org/pub/NetBSD/arch/alpha/qemu/
+SITES.palcode-clipper=	http://ftp.NetBSD.org/pub/NetBSD/arch/alpha/qemu/
 
 CONFIGURE_ARGS+=	--prefix=${PREFIX}
 CONFIGURE_ARGS+=	--interp-prefix=${PREFIX}/share/qemu
@@ -61,7 +63,6 @@ NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-arm
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-cris
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-hppa
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-i386
-NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-lm32
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-m68k
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-microblaze
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-microblazeel
@@ -82,14 +83,11 @@ NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-sh4eb
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-sparc
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-sparc64
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-tricore
-NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-unicore32
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-x86_64
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-xtensa
 NOT_PAX_MPROTECT_SAFE+=	bin/qemu-system-xtensaeb
 
 PKG_SYSCONFSUBDIR=	qemu
-
-REPLACE_PERL+=		scripts/texi2pod.pl
 
 INSTALLATION_DIRS=	${PKGMANDIR}/man1 share/doc/qemu
 
@@ -146,6 +144,14 @@ post-extract:
 	cp ${WRKDIR}/palcode-clipper ${WRKSRC}/pc-bios/palcode-clipper
 	cp ${FILESDIR}/hw-mips-mipssim_virtio.c ${WRKSRC}/hw/mips/mipssim_virtio.c
 
+do-build:
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} \
+		ninja -j ${_MAKE_JOBS_N:U1} -C build
+
+do-install:
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${INSTALL_ENV} \
+		ninja -j ${_MAKE_JOBS_N:U1} -C build install
+
 # Some dependencies aren't correct and this tries to be re-made on install,
 # failing due to configure bugs.
 post-build:
@@ -167,6 +173,7 @@ post-install:
 .include "../../archivers/lzo/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/jemalloc/buildlink3.mk"
+.include "../../devel/ncursesw/buildlink3.mk"
 .include "../../devel/snappy/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
@@ -176,7 +183,6 @@ post-install:
 .include "../../security/libgcrypt/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 .include "../../x11/pixman/buildlink3.mk"
-.include "../../mk/curses.buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
