@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3339 2021/02/20 22:25:50 ryoon Exp $
+# $NetBSD: Makefile,v 1.3343 2021/02/25 15:35:13 khorben Exp $
 #
 
 COMMENT=	Development utilities
@@ -2225,6 +2225,7 @@ SUBDIR+=	py-buildbot-www
 SUBDIR+=	py-bump2version
 SUBDIR+=	py-cachecontrol
 SUBDIR+=	py-cached-property
+SUBDIR+=	py-cachelib
 SUBDIR+=	py-cachetools
 SUBDIR+=	py-canonicaljson
 SUBDIR+=	py-capstone
@@ -2473,6 +2474,7 @@ SUBDIR+=	py-pyelftools
 SUBDIR+=	py-pygit2
 SUBDIR+=	py-pylint
 SUBDIR+=	py-pylint-plugin-utils
+SUBDIR+=	py-pylru
 SUBDIR+=	py-pyobjc
 SUBDIR+=	py-pyobjc-core
 SUBDIR+=	py-pyobjc-framework-AVFoundation
@@ -2592,10 +2594,12 @@ SUBDIR+=	py-ruamel-base
 SUBDIR+=	py-ruamel-ordereddict
 SUBDIR+=	py-ruamel-yaml
 SUBDIR+=	py-ruamel-yaml-clib
+SUBDIR+=	py-sarge
 SUBDIR+=	py-scandir
 SUBDIR+=	py-scard
 SUBDIR+=	py-selectors2
 SUBDIR+=	py-semantic_version
+SUBDIR+=	py-sentry-sdk
 SUBDIR+=	py-serpent
 SUBDIR+=	py-setuptools
 SUBDIR+=	py-setuptools-rust
