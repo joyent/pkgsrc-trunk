@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.592 2021/02/16 13:16:38 adam Exp $
+# $NetBSD: Makefile,v 1.594 2021/03/01 08:45:42 nia Exp $
 #
 
 COMMENT=	Programming languages
@@ -247,7 +247,6 @@ SUBDIR+=	quickjs
 SUBDIR+=	racket
 SUBDIR+=	racket-textual
 SUBDIR+=	rakudo
-SUBDIR+=	rakudo-star
 SUBDIR+=	rcfunge
 SUBDIR+=	rexx-imc
 SUBDIR+=	rexx-regina
@@ -295,6 +294,7 @@ SUBDIR+=	sr-examples
 SUBDIR+=	stalin
 SUBDIR+=	sun-jdk7
 SUBDIR+=	sun-jre7
+SUBDIR+=	surgescript
 SUBDIR+=	swi-prolog
 SUBDIR+=	swi-prolog-jpl
 SUBDIR+=	swi-prolog-lite
