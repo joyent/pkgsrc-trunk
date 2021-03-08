@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3344 2021/02/28 16:50:46 taca Exp $
+# $NetBSD: Makefile,v 1.3346 2021/03/08 00:07:55 taca Exp $
 #
 
 COMMENT=	Development utilities
@@ -2108,12 +2108,15 @@ SUBDIR+=	pear-Console_CommandLine
 SUBDIR+=	pedisassem
 SUBDIR+=	phabricator
 SUBDIR+=	php-composer
+SUBDIR+=	php-ffi
 SUBDIR+=	php-gearman
 SUBDIR+=	php-gettext
 SUBDIR+=	php-gmp
 SUBDIR+=	php-igbinary
 SUBDIR+=	php-libawl
 SUBDIR+=	php-memcache
+SUBDIR+=	php-memcache2
+SUBDIR+=	php-memcache4
 SUBDIR+=	php-memcached
 SUBDIR+=	php-mode
 SUBDIR+=	php-opcache

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.104 2021/02/20 21:53:53 ryoon Exp $
+# $NetBSD: Makefile,v 1.120 2021/03/06 05:09:17 ryoon Exp $
 #
 
 COMMENT=	Input method tools and libraries
@@ -23,6 +23,7 @@ SUBDIR+=	fcitx5-chinese-addons
 SUBDIR+=	fcitx5-configtool
 SUBDIR+=	fcitx5-gtk
 SUBDIR+=	fcitx5-hangul
+SUBDIR+=	fcitx5-kkc
 SUBDIR+=	fcitx5-libthai
 SUBDIR+=	fcitx5-lua
 SUBDIR+=	fcitx5-m17n
@@ -88,11 +89,26 @@ SUBDIR+=	novel-pinyin
 SUBDIR+=	p5-zinnia
 SUBDIR+=	py-input-pad
 SUBDIR+=	py-zinnia
+SUBDIR+=	rime-array
 SUBDIR+=	rime-bopomofo
 SUBDIR+=	rime-cangjie
+SUBDIR+=	rime-cantonese
+SUBDIR+=	rime-combo-pinyin
+SUBDIR+=	rime-double-pinyin
+SUBDIR+=	rime-emoji
+SUBDIR+=	rime-ipa
+SUBDIR+=	rime-jyutping
 SUBDIR+=	rime-luna-pinyin
+SUBDIR+=	rime-middle-chinese
+SUBDIR+=	rime-pinyin-simp
 SUBDIR+=	rime-prelude
+SUBDIR+=	rime-quick
+SUBDIR+=	rime-scj
+SUBDIR+=	rime-soutzoe
+SUBDIR+=	rime-stenotype
 SUBDIR+=	rime-terra-pinyin
+SUBDIR+=	rime-wubi
+SUBDIR+=	rime-wugniu
 SUBDIR+=	ruby-zinnia
 SUBDIR+=	scim
 SUBDIR+=	scim-anthy

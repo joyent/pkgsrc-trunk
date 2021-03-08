@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.20415 2021/03/05 11:01:31 nia Exp $
+$NetBSD: TODO,v 1.20423 2021/03/08 14:34:32 nia Exp $
 
 Suggested new packages
 ======================
@@ -367,7 +367,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o GMT-5.1.1
 	o GNUMail-1.2.2
 	o Gorm-1.2.22
-	o ImageMagick-7.0.11.1
+	o ImageMagick-7.0.11.2
 	o JBidwatcher-2.5.6 [wants launch4j]
 	o LPRng-core-3.8.35
 	o MesaLib-20.3.1
@@ -460,6 +460,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o calibre-5.5
 	o calligra-3.0.1 [in wip; koffice successor]
 	o cardboard-schedule-1.14c [at http://www.bright-green.com/downloads/]
+	o cascadia-ttf-2102.25
 	o catdoc-1.1
 	o catdoc-tk-1.1
 	o cddbd-1.5.2
@@ -536,7 +537,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o etach-1.4.1
 	o etm-3.0.43 [wip/py-etmtk]
 	o etm-891
-	o ettercap-0.7.6
 	o evas-buffer-1.7.10
 	o evas-edb-1.7.10
 	o evas-eet-1.7.10
@@ -622,7 +622,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o gnome-user-share-2.30.2
 	o gnopernicus-1.1.2
 	o gnu-crypto-2.1.0
-	o gnu-pw-mgr-2.0
 	o gnucap-20130423
 	o gobby-0.5.0
 	o gok-2.30.1
@@ -637,6 +636,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o grantlee-5.0.0
 	o greed-4.1
 	o gromacs-5.1.2
+	o grpc-1.36.2
 	o gss-1.0.3
 	o gst-plugins1-omx-1.10.0
 	o gstreamer1-1.18.3 [wip]
@@ -725,7 +725,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o knot-resolver-1.1.1
 	o kodi-16.1
 	o konversation-1.6
-	o krita-4.4.2
 	o kronolith-4.2.14
 	o ktorrent3-3.3.4
 	o labelnation-1.218
@@ -842,7 +841,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o nxtvepg-2.8.1
 	o oath-toolkit-2.6.5
 	o objc-3.3.1
-	o ocaml-4.11.2
 	o ocrad-0.25
 	o octave-6.1.0
 	o odbc-postgresql-09.03.0400
@@ -881,7 +879,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o pgbuildfarm-4.17
 	o phoronix-9.2.1
 	o phoronix-test-suite-10.0.1
-	o php-8.0.0
 	o php-basercms-4.4.2
 	o php-concrete5-8.5.4
 	o php-excel-1.8.2 [PHPSpreadsheet is sucessor]
@@ -922,7 +919,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o podcastdl-0.3.3
 	o policyd-weight-0.1.15.2
 	o poppass-4.0.14
-	o poppler-21.02.0
+	o poppler-21.03.0
 	o postal-0.72
 	o pound-3.0d
 	o povray-3.7.0.0
@@ -933,6 +930,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o prelude-lml-3.1.0
 	o prelude-manager-3.1.0
 	o profit-2.5.3
+	o protobuf-3.15.5
 	o psmisc-22.20
 	o pspp-0.10.1
 	o ptlib-2.16.2
@@ -943,8 +941,9 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o py-cassa-1.11.0
 	o py-configparser-5.0.0 [drops python-2.x support]
 	o py-ephem3-3.7.6.0
+	o py-google-api-python-client-2.0.0
 	o py-hgview-1.9.0
-	o py-hypothesis-6.3.4
+	o py-hypothesis-6.4.3
 	o py-input-pad-1.4.2
 	o py-keybinder-0.3.1
 	o py-markdown-3.2.2 [drops python-2.x support]
@@ -1145,7 +1144,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o xmltooling-2.6.0
 	o xmms-crossfade-0.3.14
 	o xmms-musepack-1.8.0 [http://dl.slik.org/musepack/xmms-musepack-1.8.0.tar.gz]
-	o xnap-2.5r3
 	o xorp-1.8.5
 	o xpaint-2.9.9
 	o xpmroot-2.7.0
@@ -1155,7 +1153,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o xrmap-flags-2.9
 	o xrmap-hymns-1.4
 	o xsc-1.6
-	o xsd-3.3.0
 	o xtraceroute-0.9.1
 	o xtux-20030306
 	o xview-3.2.1.4.25.5

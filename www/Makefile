@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1514 2021/03/02 19:47:46 pin Exp $
+# $NetBSD: Makefile,v 1.1518 2021/03/07 15:26:16 taca Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -71,7 +71,6 @@ SUBDIR+=	c-icap-modules
 SUBDIR+=	cadaver
 SUBDIR+=	caddy
 SUBDIR+=	calamaris
-SUBDIR+=	camping
 SUBDIR+=	cgic
 SUBDIR+=	cgicc
 SUBDIR+=	cgilib
@@ -217,11 +216,6 @@ SUBDIR+=	midori
 SUBDIR+=	mimetex
 SUBDIR+=	mini_httpd
 SUBDIR+=	mknmz-wwwoffle
-SUBDIR+=	mongrel
-SUBDIR+=	mongrel-cluster
-SUBDIR+=	mongrel-config
-SUBDIR+=	mongrel-console
-SUBDIR+=	mongrel-upload-progress
 SUBDIR+=	mono-xsp
 SUBDIR+=	moodle
 SUBDIR+=	motyl
@@ -956,7 +950,6 @@ SUBDIR+=	ruby-sawyer
 SUBDIR+=	ruby-selenium-webdriver
 SUBDIR+=	ruby-sinatra
 SUBDIR+=	ruby-sinatra-contrib
-SUBDIR+=	ruby-staticmatic
 SUBDIR+=	ruby-tag
 SUBDIR+=	ruby-typhoeus
 SUBDIR+=	ruby-unicorn
@@ -999,8 +992,6 @@ SUBDIR+=	swish-e
 SUBDIR+=	tcl-cgi
 SUBDIR+=	termtter
 SUBDIR+=	thin
-SUBDIR+=	thoth
-SUBDIR+=	thoth-delicious
 SUBDIR+=	thttpd
 SUBDIR+=	tidy
 SUBDIR+=	tinyproxy
