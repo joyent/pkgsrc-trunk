@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1384 2021/02/14 21:01:17 pin Exp $
+# $NetBSD: Makefile,v 1.1388 2021/03/08 13:06:36 adam Exp $
 #
 
 COMMENT=	Networking tools
@@ -20,9 +20,6 @@ SUBDIR+=	SDL_net
 SUBDIR+=	adns
 SUBDIR+=	aget
 SUBDIR+=	aiccu
-SUBDIR+=	airport2basestationconfig
-SUBDIR+=	airportbasestationconfig
-SUBDIR+=	airportmodemutility
 SUBDIR+=	amazon-ecs-cli
 SUBDIR+=	amule
 SUBDIR+=	aoe-vblade
@@ -49,8 +46,6 @@ SUBDIR+=	bind916
 SUBDIR+=	bing
 SUBDIR+=	bird
 SUBDIR+=	bird6
-SUBDIR+=	bittornado
-SUBDIR+=	bittornado-gui
 SUBDIR+=	bmon
 SUBDIR+=	bounce
 SUBDIR+=	bridged
@@ -137,7 +132,7 @@ SUBDIR+=	erlang-xmpp
 SUBDIR+=	ether2dns
 SUBDIR+=	etherape
 SUBDIR+=	ettercap
-SUBDIR+=	ettercap-NG
+SUBDIR+=	ettercap-gtk
 SUBDIR+=	exabgp
 SUBDIR+=	ez-ipupdate
 SUBDIR+=	fair-identd
@@ -1011,7 +1006,6 @@ SUBDIR+=	xfce4-wavelan-plugin
 SUBDIR+=	xipdump
 SUBDIR+=	xl2tpd
 SUBDIR+=	xmftp
-SUBDIR+=	xnap
 SUBDIR+=	xorp
 SUBDIR+=	xrmftp
 SUBDIR+=	xtraceroute

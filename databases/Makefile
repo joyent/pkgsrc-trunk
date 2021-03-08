@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.623 2021/02/17 09:59:27 adam Exp $
+# $NetBSD: Makefile,v 1.626 2021/03/07 15:11:01 taca Exp $
 
 COMMENT=	Databases
 
@@ -280,7 +280,7 @@ SUBDIR+=	php-pdo_pgsql
 SUBDIR+=	php-pdo_sqlite
 SUBDIR+=	php-pgsql
 SUBDIR+=	php-redis
-SUBDIR+=	php-redis3
+SUBDIR+=	php-redis4
 SUBDIR+=	php-rrd
 SUBDIR+=	php-sqlite3
 SUBDIR+=	php-sqlrelay
@@ -478,7 +478,6 @@ SUBDIR+=	ruby-mysql28
 SUBDIR+=	ruby-odbc
 SUBDIR+=	ruby-pg
 SUBDIR+=	ruby-pg_array_parser
-SUBDIR+=	ruby-postgres-pr
 SUBDIR+=	ruby-qdbm
 SUBDIR+=	ruby-rrdtool
 SUBDIR+=	ruby-sequel
