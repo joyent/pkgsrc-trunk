@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1518 2021/03/07 15:26:16 taca Exp $
+# $NetBSD: Makefile,v 1.1521 2021/03/11 03:09:31 gutteridge Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -217,6 +217,7 @@ SUBDIR+=	mimetex
 SUBDIR+=	mini_httpd
 SUBDIR+=	mknmz-wwwoffle
 SUBDIR+=	mono-xsp
+SUBDIR+=	monolith
 SUBDIR+=	moodle
 SUBDIR+=	motyl
 SUBDIR+=	mserv-php
@@ -681,7 +682,6 @@ SUBDIR+=	py-django-rest-framework-proxy
 SUBDIR+=	py-django-reversion
 SUBDIR+=	py-django-sekizai
 SUBDIR+=	py-django-sortedm2m
-SUBDIR+=	py-django-south
 SUBDIR+=	py-django-sql-explorer
 SUBDIR+=	py-django-tagging
 SUBDIR+=	py-django-taggit
