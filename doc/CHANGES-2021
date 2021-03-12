@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2021,v 1.1601 2021/03/11 19:25:41 fox Exp $
+$NetBSD: CHANGES-2021,v 1.1622 2021/03/12 15:28:51 tsutsui Exp $
 
 Changes to the packages collection and infrastructure in 2021:
 
@@ -2468,3 +2468,25 @@ Changes to the packages collection and infrastructure in 2021:
 	Updated security/ruby-metasploit-payloads to 2.0.38 [taca 2021-03-11]
 	Updated sysutils/u-boot-pine-h64 to 2021.01 [jakllsch 2021-03-11]
 	Updated textproc/bat to 0.18.0 [fox 2021-03-11]
+	Updated sysutils/macchina to 0.5.7 [pin 2021-03-11]
+	Updated sysutils/sfm to 0.4.3 [pin 2021-03-11]
+	Updated audio/spotify-qt to 3.5 [pin 2021-03-11]
+	Added net/nng version 1.4.0 [khorben 2021-03-12]
+	Updated graphics/kvantum to 0.19.0 [pin 2021-03-12]
+	Updated net/chrony to 4.0 [nia 2021-03-12]
+	Updated archivers/star to 1.6.1nb14 [micha 2021-03-12]
+	Updated emulators/mednaffe to 0.9.1 [nia 2021-03-12]
+	Updated fonts/cascadia-ttf to 2102.25 [wiz 2021-03-12]
+	Updated devel/gopls to 0.6.6 [wiz 2021-03-12]
+	Updated net/libfilezilla to 0.27.0 [wiz 2021-03-12]
+	Updated net/filezilla to 3.52.2 [wiz 2021-03-12]
+	Updated fonts/spleen to 1.9.0 [fcambus 2021-03-12]
+	Updated www/gitea to 1.13.4 [khorben 2021-03-12]
+	Updated databases/py-peewee to 3.14.3 [adam 2021-03-12]
+	Updated math/py-asteval to 0.9.23 [adam 2021-03-12]
+	Updated www/firefox to 86.0.1 [ryoon 2021-03-12]
+	Updated www/firefox-l10n to 86.0.1 [ryoon 2021-03-12]
+	Updated mail/thunderbird to 78.8.1 [ryoon 2021-03-12]
+	Updated mail/thunderbird-l10n to 78.8.1 [ryoon 2021-03-12]
+	Added devel/php-msgpack version 2.1.2 [tpaul 2021-03-12]
+	Updated net/sayaka to 3.5.0 [tsutsui 2021-03-12]
