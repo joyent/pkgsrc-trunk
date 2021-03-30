@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3349 2021/03/14 09:15:43 pho Exp $
+# $NetBSD: Makefile,v 1.3354 2021/03/30 09:44:25 markd Exp $
 #
 
 COMMENT=	Development utilities
@@ -736,6 +736,7 @@ SUBDIR+=	libcfg+
 SUBDIR+=	libcompizconfig
 SUBDIR+=	libconfig
 SUBDIR+=	libctl
+SUBDIR+=	libcutl
 SUBDIR+=	libdaemon
 SUBDIR+=	libdatrie
 SUBDIR+=	libdazzle
@@ -2145,6 +2146,7 @@ SUBDIR+=	pilrc
 SUBDIR+=	pipestatus
 SUBDIR+=	pkg-config
 SUBDIR+=	pkgconf
+SUBDIR+=	plasma-wayland-protocols
 SUBDIR+=	ply
 SUBDIR+=	pmccabe
 SUBDIR+=	poco
@@ -2158,6 +2160,7 @@ SUBDIR+=	protobuf-c
 SUBDIR+=	pstreams
 SUBDIR+=	pth
 SUBDIR+=	pthread-sem
+SUBDIR+=	purpose
 SUBDIR+=	pvs
 SUBDIR+=	pwlib
 SUBDIR+=	py-CppHeaderParser
@@ -2247,7 +2250,6 @@ SUBDIR+=	py-click
 SUBDIR+=	py-click-log
 SUBDIR+=	py-click-threading
 SUBDIR+=	py-clickclick
-SUBDIR+=	py-clint
 SUBDIR+=	py-codespell
 SUBDIR+=	py-codestyle
 SUBDIR+=	py-cogapp
@@ -2266,10 +2268,10 @@ SUBDIR+=	py-coverage
 SUBDIR+=	py-cparser
 SUBDIR+=	py-cpplint
 SUBDIR+=	py-crayons
-SUBDIR+=	py-cubes
 SUBDIR+=	py-curses
 SUBDIR+=	py-cursespanel
 SUBDIR+=	py-curtsies
+SUBDIR+=	py-cwcwidth
 SUBDIR+=	py-cyordereddict
 SUBDIR+=	py-cython
 SUBDIR+=	py-cytoolz

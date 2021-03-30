@@ -1,9 +1,10 @@
-# $NetBSD: Makefile,v 1.2 2021/02/27 20:14:02 ryoon Exp $
+# $NetBSD: Makefile,v 1.5 2021/03/28 13:13:50 mef Exp $
 
 DISTNAME=	libime-1.0.4
 CATEGORIES=	inputmethod
 MASTER_SITES=	https://download.fcitx-im.org/fcitx5/libime/
 EXTRACT_SUFX=	.tar.xz
+PKGREVISION=	1
 
 MAINTAINER=	ryoon@NetBSD.org
 HOMEPAGE=	https://github.com/fcitx/libime
@@ -13,7 +14,8 @@ LICENSE=	gnu-lgpl-v2.1
 DIST_SUBDIR=	${PKGNAME_NOREV}
 
 DICTDISTFILES+=	lm_sc.3gm.arpa-20140820.tar.bz2
-DICTDISTFILES+=	dict.utf8-20200715.tar.xz
+#ICTDISTFILES+=	dict.utf8-20200715.tar.xz
+DICTDISTFILES+=	dict.utf8-20210203.tar.xz
 DICTDISTFILES+=	table.tar.gz
 
 DISTFILES=	${DEFAULT_DISTFILES}
@@ -22,6 +24,8 @@ EXTRACT_ONLY=	${DEFAULT_DISTFILES}
 DISTFILES+=	${f}
 SITES.${f}=	https://download.fcitx-im.org/data/
 .endfor
+
+BUILD_DEPENDS+=	extra-cmake-modules-[0-9]*:../../devel/extra-cmake-modules
 
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++

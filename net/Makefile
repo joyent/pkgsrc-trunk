@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1392 2021/03/15 16:47:08 gdt Exp $
+# $NetBSD: Makefile,v 1.1394 2021/03/18 22:57:05 khorben Exp $
 #
 
 COMMENT=	Networking tools
@@ -40,6 +40,7 @@ SUBDIR+=	bandcamp-dl
 SUBDIR+=	barnyard
 SUBDIR+=	batchftp
 SUBDIR+=	bbk_cli
+SUBDIR+=	beanstalkd
 SUBDIR+=	bftpd
 SUBDIR+=	bind911
 SUBDIR+=	bind916
@@ -717,6 +718,7 @@ SUBDIR+=	py-ldapdomaindump
 SUBDIR+=	py-lexicon
 SUBDIR+=	py-libdnet
 SUBDIR+=	py-libpcap
+SUBDIR+=	py-magic-wormhole
 SUBDIR+=	py-medusa
 SUBDIR+=	py-metar
 SUBDIR+=	py-moto

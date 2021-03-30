@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.115 2021/01/09 19:50:53 gdt Exp $
+# $NetBSD: Makefile,v 1.117 2021/03/27 23:49:17 mef Exp $
 #
 
-VERSION=		1.8
+VERSION=		1.9
 DISTNAME=		viking-${VERSION}
-PKGREVISION=		7
 CATEGORIES=		geography
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=viking/}${VERSION}/
 EXTRACT_SUFX=		.tar.bz2
@@ -13,6 +12,8 @@ HOMEPAGE=		https://sourceforge.net/projects/viking/
 COMMENT=		Viking manages GPS data, supports OpenStreetMap and geocaching
 
 LICENSE=		gnu-gpl-v2
+
+BUILD_DEPENDS+=		itstool-[0-9]*:../../textproc/itstool
 
 # viking says it "will" use c++11, and mapnik (not yet included) needs
 # c++11.
@@ -74,7 +75,7 @@ CONFIGURE_ARGS+=	--disable-zip
 .include "../../security/nettle/buildlink3.mk"
 # gnome-doc-utils is needed even if not building documentation
 .include "../../textproc/gnome-doc-utils/buildlink3.mk"
+.include "../../textproc/json-glib/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
-# \todo Consider gtk3, perhaps as an option.
-.include "../../x11/gtk2/buildlink3.mk"
+.include "../../x11/gtk3/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

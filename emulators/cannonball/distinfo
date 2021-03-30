@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.2 2019/10/24 00:32:36 fox Exp $
+$NetBSD: distinfo,v 1.4 2021/03/26 08:53:07 fox Exp $
 
-SHA1 (cannonball-0.3.20191023-b6aa525ddd552f96b43b3b3a6f69326a277206bd.tar.gz) = 3f75608aa20cae57ac0d3c2c1682d27ef1ed000b
-RMD160 (cannonball-0.3.20191023-b6aa525ddd552f96b43b3b3a6f69326a277206bd.tar.gz) = 9baba3b856e4de47a0639f0619f704e71bd60020
-SHA512 (cannonball-0.3.20191023-b6aa525ddd552f96b43b3b3a6f69326a277206bd.tar.gz) = 6b0226e9f9f2c60b7f202b7ff282181d4da4717acc162393a475b6c4e58da6198be41f789a7797e0ca9fac8b8d29b6b4f480ee75868b600b93ed55cea398a797
-Size (cannonball-0.3.20191023-b6aa525ddd552f96b43b3b3a6f69326a277206bd.tar.gz) = 278482 bytes
+SHA1 (cannonball-0.32.tar.gz) = f5996710cd235a51ccefe8904181a8085291434f
+RMD160 (cannonball-0.32.tar.gz) = b0447eec49fcadc2493c0bc05ced5a9121933cf2
+SHA512 (cannonball-0.32.tar.gz) = 6f843e38e7ef73feb3a517a8488d37aeb809db4372a1da3de7eaa48bcfa1722f6dad64dd0e52b5bde97fade265559f2a5238646e5b95f4a5c0ae7e10d782680f
+Size (cannonball-0.32.tar.gz) = 292602 bytes
