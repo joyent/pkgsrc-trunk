@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.499 2021/02/28 07:36:14 nia Exp $
+# $NetBSD: Makefile,v 1.502 2021/04/04 11:10:37 nia Exp $
 #
 
 COMMENT=	Games
@@ -109,6 +109,7 @@ SUBDIR+=	eboard
 SUBDIR+=	einstein-puzzle
 SUBDIR+=	endless-sky
 SUBDIR+=	enigma
+SUBDIR+=	eternal-lands
 SUBDIR+=	etlegacy
 SUBDIR+=	etlegacy-data
 SUBDIR+=	etlegacy-server
@@ -306,6 +307,7 @@ SUBDIR+=	nudoku
 SUBDIR+=	nxengine-evo
 SUBDIR+=	omega
 SUBDIR+=	onscripter
+SUBDIR+=	openarena
 SUBDIR+=	openhexagon
 SUBDIR+=	openjk
 SUBDIR+=	openmortal
@@ -403,6 +405,7 @@ SUBDIR+=	ufoai
 SUBDIR+=	unknown-horizons
 SUBDIR+=	uqm
 SUBDIR+=	urban
+SUBDIR+=	valyriatear
 SUBDIR+=	velena
 SUBDIR+=	violetland
 SUBDIR+=	vms-empire

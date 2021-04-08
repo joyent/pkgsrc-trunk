@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.946 2021/03/31 20:22:32 pin Exp $
+# $NetBSD: Makefile,v 1.948 2021/04/06 15:00:41 pin Exp $
 #
 
 COMMENT=	System utilities
@@ -717,6 +717,7 @@ SUBDIR+=	u-boot-libretech-all-h3-cc-h2-plus
 SUBDIR+=	u-boot-libretech-all-h3-cc-h3
 SUBDIR+=	u-boot-libretech-all-h3-cc-h5
 SUBDIR+=	u-boot-libretech-cc
+SUBDIR+=	u-boot-licheepi-zero
 SUBDIR+=	u-boot-nanopi-duo2
 SUBDIR+=	u-boot-nanopi-m1
 SUBDIR+=	u-boot-nanopi-neo
@@ -868,6 +869,7 @@ SUBDIR+=	xmbmon
 SUBDIR+=	xmeter
 SUBDIR+=	xnc
 SUBDIR+=	xosview
+SUBDIR+=	xplr
 SUBDIR+=	xps
 SUBDIR+=	xuvmstat
 SUBDIR+=	yank

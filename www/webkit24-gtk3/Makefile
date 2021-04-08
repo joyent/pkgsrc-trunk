@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.36 2020/11/06 15:30:11 nia Exp $
+# $NetBSD: Makefile,v 1.38 2021/04/03 10:19:03 cirnatdan Exp $
 
 PKGREVISION= 32
 .include "../../www/webkit24-gtk/Makefile.common"

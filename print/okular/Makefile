@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.108 2021/02/07 06:30:36 ryoon Exp $
+# $NetBSD: Makefile,v 1.111 2021/04/08 06:19:47 adam Exp $
 
 DISTNAME=	okular-${KAPPSVER}
-PKGREVISION=	7
+PKGREVISION=	1
 CATEGORIES=	print
 
 HOMEPAGE=	https://kde.org/applications/graphics/okular/
@@ -26,6 +26,7 @@ SUBST_SED.fix-moc=	-e 's;"${PREFIX}/include",;;g'
 .include "../../devel/chmlib/buildlink3.mk"
 .include "../../devel/kparts/buildlink3.mk"
 .include "../../devel/kpty/buildlink3.mk"
+.include "../../devel/purpose/buildlink3.mk"
 .include "../../devel/threadweaver/buildlink3.mk"
 .include "../../graphics/djvulibre-lib/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"

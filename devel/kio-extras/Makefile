@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2021/02/11 20:34:28 markd Exp $
+# $NetBSD: Makefile,v 1.3 2021/04/07 12:28:16 markd Exp $
 
 DISTNAME=	kio-extras-${KAPPSVER}
 CATEGORIES=	misc
@@ -20,6 +20,13 @@ SUBST_FILES.paths=	info/kde-info2html.conf
 SUBST_VARS.paths=	LOCALBASE
 SUBST_STAGE.paths=	pre-configure
 
+SUBST_CLASSES+=		fix-moc
+SUBST_STAGE.fix-moc=	post-configure
+SUBST_MESSAGE.fix-moc=	Cleaning up MOC includes
+SUBST_FILES.fix-moc=	_KDE_build/*/CMakeFiles/*_autogen.dir/AutogenInfo.json
+SUBST_NOOP_OK.fix-moc=	yes
+SUBST_SED.fix-moc=	-e 's;"${PREFIX}/include",;;g'
+
 .include "../../audio/taglib/buildlink3.mk"
 .include "../../databases/shared-mime-info/buildlink3.mk"
 .include "../../devel/gperf/buildlink3.mk"
@@ -30,7 +37,7 @@ SUBST_STAGE.paths=	pre-configure
 .include "../../net/kdnssd/buildlink3.mk"
 .include "../../net/kdsoap/buildlink3.mk"
 .include "../../net/openslp/buildlink3.mk"
-.include "../../net/samba/buildlink3.mk"
+.include "../../net/samba4/buildlink3.mk"
 .include "../../security/libssh/buildlink3.mk"
 .include "../../textproc/syntax-highlighting/buildlink3.mk"
 .include "../../www/khtml/buildlink3.mk"

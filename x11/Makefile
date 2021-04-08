@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.922 2021/04/01 21:03:50 pin Exp $
+# $NetBSD: Makefile,v 1.924 2021/04/06 08:34:00 tnn Exp $
 #
 
 COMMENT=	Packages to support the X window system
@@ -332,6 +332,7 @@ SUBDIR+=	py-pyperclip
 SUBDIR+=	py-qt4
 SUBDIR+=	py-qt5
 SUBDIR+=	py-qt5-qscintilla
+SUBDIR+=	py-qtgraph-qt5
 SUBDIR+=	py-qwt-qt5
 SUBDIR+=	py-sip
 SUBDIR+=	py-sip-qt4
@@ -453,6 +454,7 @@ SUBDIR+=	wterm
 SUBDIR+=	wxGTK28
 SUBDIR+=	wxGTK28-contrib
 SUBDIR+=	wxGTK30
+SUBDIR+=	wxGTK31
 SUBDIR+=	wxWindows-docs
 SUBDIR+=	x11perf
 SUBDIR+=	x11vnc
