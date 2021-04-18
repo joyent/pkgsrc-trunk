@@ -1,6 +1,6 @@
-# $NetBSD: build.mk,v 1.7 2021/03/12 08:39:10 nia Exp $
+# $NetBSD: build.mk,v 1.10 2021/04/17 08:25:15 nia Exp $
 
-BUILD_DEPENDS+=	meson-[0-9]*:../../devel/meson
+TOOL_DEPENDS+=	meson-[0-9]*:../../devel/meson
 
 CONFIGURE_DIRS?=	.
 BUILD_DIRS?=		${CONFIGURE_DIRS}
@@ -22,8 +22,12 @@ do-configure: meson-configure
 meson-configure:
 .for d in ${CONFIGURE_DIRS}
 	cd ${WRKSRC} && cd ${d} && ${SETENV} ${MAKE_ENV} meson \
-		--prefix ${PREFIX} --libdir lib --mandir ${PKGMANDIR} \
-		--sysconfdir ${PKG_SYSCONFDIR} --buildtype=plain ${MESON_ARGS} . output
+		--prefix ${PREFIX} \
+		--libdir lib \
+		--libexecdir libexec \
+		--mandir ${PKGMANDIR} \
+		--sysconfdir ${PKG_SYSCONFDIR} \
+		--buildtype=plain ${MESON_ARGS} . output
 .endfor
 
 do-build: meson-build
@@ -48,8 +52,6 @@ meson-test:
 	cd ${WRKSRC} && cd ${d} && ${SETENV} ${TEST_ENV} \
 	    ninja -j ${_MAKE_JOBS_N:U1} -C output test
 .endfor
-
-.include "../../lang/python/application.mk"
 
 _VARGROUPS+=		meson
 _PKG_VARS.meson=	CONFIGURE_DIRS

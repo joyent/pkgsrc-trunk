@@ -1,13 +1,21 @@
-/* $NetBSD: main.css,v 1.9 2021/04/05 10:30:04 nia Exp $ */
+/* $NetBSD: main.css,v 1.12 2021/04/13 15:04:03 nia Exp $ */
 
 body {
 	font-family: sans-serif;
 	background-color: #fff;
 	color: #000;
+	max-width: 1100px;
+	margin: auto;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 body, pre, code, samp {
 	font-size: 16px;
+}
+
+pre {
+	overflow-x: auto;
 }
 
 h1 {
@@ -52,7 +60,7 @@ hr {
 }
 
 #logo {
-	width: 200px;
+	width: 150px;
 	float: right;
 	border: 0;
 	margin-bottom: 1em;
@@ -82,7 +90,6 @@ th {
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
-		width: 150px;
 	}
 
 	th {

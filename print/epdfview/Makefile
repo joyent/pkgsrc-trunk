@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.110 2021/04/08 06:19:47 adam Exp $
+# $NetBSD: Makefile,v 1.112 2021/04/15 11:23:10 ryoon Exp $
 
 DISTNAME=	epdfview-0.1.8
-PKGREVISION=	85
+PKGREVISION=	87
 CATEGORIES=	print
 MASTER_SITES=	http://anduin.linuxfromscratch.org/BLFS/epdfview/
 EXTRACT_SUFX=	.tar.bz2

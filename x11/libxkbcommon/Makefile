@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.31 2021/04/05 12:44:47 wiz Exp $
+# $NetBSD: Makefile,v 1.34 2021/04/13 10:11:12 wiz Exp $
 
-DISTNAME=	libxkbcommon-1.2.0
+DISTNAME=	libxkbcommon-1.2.1
 CATEGORIES=	x11
 MASTER_SITES=	https://xkbcommon.org/download/
 EXTRACT_SUFX=	.tar.xz
@@ -10,9 +10,11 @@ HOMEPAGE=	https://xkbcommon.org/
 COMMENT=	Library to handle keyboard descriptions
 LICENSE=	mit
 
-USE_TOOLS+=	bison gmake pkg-config
+USE_TOOLS+=	bison pkg-config
 
 MESON_ARGS+=	-Denable-wayland=false
+
+PYTHON_FOR_BUILD_ONLY=	tool
 
 PKGCONFIG_OVERRIDE+=		output/meson-private/xkbcommon.pc
 PKGCONFIG_OVERRIDE+=		output/meson-private/xkbcommon-x11.pc

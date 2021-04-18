@@ -1,10 +1,13 @@
-$NetBSD: patch-nss_lib_freebl_md5.c,v 1.1 2019/05/05 22:47:28 ryoon Exp $
+$NetBSD: patch-nss_lib_freebl_md5.c,v 1.3 2021/04/15 08:54:54 wiz Exp $
 
-MD5_Update conflicts with openssl which may be dynamically loaded
-at runtime via libcups or libgssapi so causing a crash due to using
-the wrong binding.  So rename here to avoid conflict.
+Some symbols conflict with openssl.
+If nss is loaded first, it can call into openssl's code,
+which has different struct sizes. This can lead to weird
+coredumps.
 
---- nss/lib/freebl/md5.c.orig	2019-03-16 00:25:08.000000000 +0000
+https://groups.google.com/a/mozilla.org/g/dev-tech-crypto/c/Al0Pt0zhARE
+
+--- nss/lib/freebl/md5.c.orig	2021-03-18 14:22:42.000000000 +0000
 +++ nss/lib/freebl/md5.c
 @@ -205,7 +205,7 @@ MD5_HashBuf(unsigned char *dest, const u
      MD5Context cx;

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2021/02/25 18:50:50 ryoon Exp $
+# $NetBSD: Makefile,v 1.5 2021/04/14 11:13:35 cirnatdan Exp $
 
 DISTNAME=	gtk-4.0.3
 PKGNAME=	${DISTNAME:S/gtk/gtk4/}
@@ -13,7 +13,7 @@ LICENSE=	gnu-lgpl-v2.1
 
 TOOL_DEPENDS+=	gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
 
-# This packge invokes python3 command.
+# This package invokes python3 command.
 PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 .include "options.mk"
@@ -42,6 +42,7 @@ PRINT_PLIST_AWK+=	{ gsub(/\.${SOEXT}/, ".$${SOEXT}") }
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/gobject-introspection/buildlink3.mk"
 .include "../../devel/libexecinfo/buildlink3.mk"
+BUILDLINK_ABI_DEPENDS.pango+=	pango>=1.47.0
 .include "../../devel/pango/buildlink3.mk"
 .include "../../graphics/cairo/buildlink3.mk"
 .include "../../graphics/cairo-gobject/buildlink3.mk"

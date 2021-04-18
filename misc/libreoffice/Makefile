@@ -1,9 +1,10 @@
-# $NetBSD: Makefile,v 1.255 2021/04/05 10:17:21 ryoon Exp $
+# $NetBSD: Makefile,v 1.259 2021/04/15 11:23:09 ryoon Exp $
 
 VERREL=		7.1.2
 VERRC=		2
 VER=		${VERREL}.${VERRC}
 DISTNAME=	libreoffice-${VER}
+PKGREVISION=	4
 CATEGORIES=	misc
 MASTER_SITES=	http://download.documentfoundation.org/libreoffice/src/${VERREL}/
 EXTRACT_SUFX=	.tar.xz
@@ -145,6 +146,7 @@ WRKSRC=		${WRKDIR}/${LO_BOOTSTRAP}
 
 BUILD_DEPENDS+=		p5-Archive-Zip-[0-9]*:../../archivers/p5-Archive-Zip
 DEPENDS+=		${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
+DEPENDS+=		xdg-utils-[0-9]*:../../misc/xdg-utils
 
 # dmake scripts use relative path with -rpath-link ld arguments, which
 # is a no-go with normal pkgsrc wrappers.
@@ -208,7 +210,7 @@ CONFIGURE_ARGS+=	--with-boost-libdir=${BUILDLINK_PREFIX.boost-libs}/lib
 CONFIGURE_ARGS+=	--with-system-libs
 CONFIGURE_ARGS+=	--with-system-dicts
 CONFIGURE_ARGS+=	--with-vendor="pkgsrc"
-CONFIGURE_ARGS+=	--with-tls="nss"
+CONFIGURE_ARGS+=	--with-tls="openssl"
 CONFIGURE_ARGS+=	--without-doxygen
 CONFIGURE_ARGS+=	--without-junit
 CONFIGURE_ARGS+=	--without-krb5

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.807 2021/03/19 08:13:06 adam Exp $
+# $NetBSD: Makefile,v 1.814 2021/04/13 15:19:55 nia Exp $
 #
 
-COMMENT=	Security tools
+COMMENT=	Security and cryptography tools and libraries
 
 SUBDIR+=	2fa
 SUBDIR+=	Bastille
@@ -50,7 +50,6 @@ SUBDIR+=	codecrypt
 SUBDIR+=	courier-authlib
 SUBDIR+=	crack
 SUBDIR+=	cracklib
-SUBDIR+=	credns
 SUBDIR+=	crypto++
 SUBDIR+=	cvm
 SUBDIR+=	cy2-anonymous
@@ -83,7 +82,6 @@ SUBDIR+=	duo-unix
 SUBDIR+=	easy-rsa
 SUBDIR+=	ecap_clamav_adapter
 SUBDIR+=	egd
-SUBDIR+=	engine-pkcs11
 SUBDIR+=	ent
 SUBDIR+=	erlang-epam
 SUBDIR+=	erlang-fast_tls
@@ -522,13 +520,11 @@ SUBDIR+=	qca2-qt5-ossl
 SUBDIR+=	qgpgme
 SUBDIR+=	qident
 SUBDIR+=	qoauth
-SUBDIR+=	qore-asn1-module
 SUBDIR+=	qore-ssh2-module
 SUBDIR+=	qore-xmlsec-module
 SUBDIR+=	qt4-qtkeychain
 SUBDIR+=	qt5-qtkeychain
 SUBDIR+=	racoon2
-SUBDIR+=	rainbowcrack
 SUBDIR+=	rats
 SUBDIR+=	rc5des
 SUBDIR+=	rid
@@ -597,7 +593,6 @@ SUBDIR+=	scrypt
 SUBDIR+=	seahorse
 SUBDIR+=	seccure
 SUBDIR+=	secpanel
-SUBDIR+=	sfs
 SUBDIR+=	skey
 SUBDIR+=	sks
 SUBDIR+=	sleuthkit
@@ -613,7 +608,6 @@ SUBDIR+=	softhsm2
 SUBDIR+=	spiped
 SUBDIR+=	sqlmap
 SUBDIR+=	srm
-SUBDIR+=	srp_client
 SUBDIR+=	ssdeep
 SUBDIR+=	ssh-askpass
 SUBDIR+=	ssh-ip-tunnel

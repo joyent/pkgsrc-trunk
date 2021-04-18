@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.270 2021/04/07 13:21:28 wiz Exp $
+# $NetBSD: Makefile,v 1.276 2021/04/08 15:24:35 nia Exp $
 
 DISTNAME=	qemu-5.2.0
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	emulators
 MASTER_SITES=	https://download.qemu.org/
 EXTRACT_SUFX=	.tar.xz
@@ -11,15 +11,13 @@ HOMEPAGE=	http://www.qemu-project.org/
 COMMENT=	CPU emulator using dynamic translation
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1 AND mit AND modified-bsd
 
-BUILD_DEPENDS+=	ninja-build-[0-9]*:../../devel/ninja-build
+TOOL_DEPENDS+=	ninja-build-[0-9]*:../../devel/ninja-build
 
 USE_CURSES=		resize_term wide
 USE_LANGUAGES+=		c c++
-USE_TOOLS+=		bison flex gmake makeinfo perl:build pod2man pkg-config
+USE_TOOLS+=		bison flex makeinfo perl:build pod2man pkg-config
 UNLIMIT_RESOURCES=	datasize
 HAS_CONFIGURE=		yes
-
-GMAKE_REQD=		4.1 # needed for docs
 
 PYTHON_VERSIONED_DEPENDENCIES=	sphinx:tool
 
@@ -91,6 +89,16 @@ PKG_SYSCONFSUBDIR=	qemu
 
 INSTALLATION_DIRS=	${PKGMANDIR}/man1 share/doc/qemu
 
+.include "../../mk/oss.buildlink3.mk"
+
+.if ${OSS_TYPE} != "none"
+SUBST_CLASSES+=		oss
+SUBST_STAGE.oss=	pre-configure
+SUBST_MESSAGE.oss=	Correcting the path to the OSS device.
+SUBST_FILES.oss+=	audio/ossaudio.c
+SUBST_SED.oss+=		-e "s,/dev/dsp,${DEVOSSAUDIO},g"
+.endif
+
 UE_ARCHS+=		aarch64 aarch64_be
 UE_ARCHS+=		alpha arm armeb cris
 UE_ARCHS+=		hppa
@@ -98,10 +106,9 @@ UE_ARCHS+=		i386
 UE_ARCHS+=		m68k microblaze microblazeel
 UE_ARCHS+=		mips mips64 mips64el mipsel mipsn32 mipsn32el
 UE_ARCHS+=		nios2
-UE_ARCHS+=		or1k ppc ppc64 ppc64le ppc64abi32
+UE_ARCHS+=		or1k ppc ppc64 ppc64le
 UE_ARCHS+=		riscv32 riscv64
 UE_ARCHS+=		s390x sh4 sh4eb sparc sparc32plus sparc64
-UE_ARCHS+=		tilegx
 UE_ARCHS+=		x86_64 xtensa xtensaeb
 
 .if ${OPSYS} == "NetBSD"
@@ -122,15 +129,13 @@ PLIST.nbd=			yes
 USER_EMUL=			${UE_ARCHS}
 PLIST.bridge-helper=		yes
 PLIST.nbd=			yes
-PLIST.ivshmem=			yes
 PLIST.pr-helper=		yes
 .elif !empty(MACHINE_PLATFORM:MSunOS-5.11-*)
-PLIST.ivshmem=			yes
 PLIST.nbd=			yes
 CONFIGURE_ARGS+=		--disable-coroutine-pool
 .endif
 
-PLIST_VARS+=		${UE_ARCHS} bridge-helper ivshmem keymap nbd pr-helper
+PLIST_VARS+=		${UE_ARCHS} bridge-helper keymap nbd pr-helper
 .for pvar in ${USER_EMUL}
 PLIST.${pvar}=		yes
 .endfor
@@ -141,6 +146,8 @@ PLIST_SRC=	PLIST ${WRKDIR}/PLIST.STATIC
 PRINT_PLIST_AWK+=	/\/_static\// { next; }
 
 TEST_TARGET=		check
+
+PYTHON_FOR_BUILD_ONLY=	tool
 
 post-extract:
 	cp ${WRKDIR}/palcode-clipper ${WRKSRC}/pc-bios/palcode-clipper
@@ -168,10 +175,6 @@ post-install:
 	cd ${DESTDIR}${PREFIX} && \
 	${FIND} share/doc/qemu -path '*/_static/*' -type f -print > ${WRKDIR}/PLIST.STATIC
 
-# On Darwin, qemu uses CoreAudio
-.if ${OPSYS} != "Darwin"
-.include "../../mk/oss.buildlink3.mk"
-.endif
 .include "../../archivers/lzo/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/jemalloc/buildlink3.mk"
@@ -179,7 +182,7 @@ post-install:
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/tool.mk"
 .include "../../lang/python/versioned_dependencies.mk"
 .include "../../security/libgcrypt/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"

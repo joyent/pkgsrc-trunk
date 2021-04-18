@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.22 2020/10/06 19:51:16 wiz Exp $
+# $NetBSD: Makefile,v 1.24 2021/04/14 07:28:18 wiz Exp $
 
-PKGREVISION= 20
+PKGREVISION= 21
 .include "../../meta-pkgs/libdbusmenu/Makefile.common"
 
 PKGNAME=	${DISTNAME:S/-/-gtk3-/}
@@ -24,6 +24,7 @@ BUILDLINK_TRANSFORM+=	rm:-Werror
 .include "../../devel/libdbusmenu-glib/buildlink3.mk"
 BUILDLINK_DEPMETHOD.gobject-introspection+=	build
 .include "../../devel/gobject-introspection/buildlink3.mk"
+BUILDLINK_DEPMETHOD.vala?=	build
 .include "../../lang/vala/buildlink3.mk"
 .include "../../x11/gtk3/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.180 2021/02/22 19:46:05 fcambus Exp $
+# $NetBSD: Makefile,v 1.183 2021/04/16 16:20:47 ryoon Exp $
 #
 
-COMMENT=	Archivers
+COMMENT=	Archivers and compression tools
 
 SUBDIR+=	9e
 SUBDIR+=	R-zip
@@ -96,8 +96,10 @@ SUBDIR+=	php-pecl-zip
 SUBDIR+=	php-zip
 SUBDIR+=	php-zlib
 SUBDIR+=	pigz
+SUBDIR+=	pixz
 SUBDIR+=	ppmd
 SUBDIR+=	ppunpack
+SUBDIR+=	pxz
 SUBDIR+=	py-brotli
 SUBDIR+=	py-brotlipy
 SUBDIR+=	py-bz2file

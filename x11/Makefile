@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.924 2021/04/06 08:34:00 tnn Exp $
+# $NetBSD: Makefile,v 1.926 2021/04/16 13:59:10 cirnatdan Exp $
 #
 
 COMMENT=	Packages to support the X window system
 
-SUBDIR+=	9term
 SUBDIR+=	XaoS
 SUBDIR+=	Xaw-Xpm
 SUBDIR+=	Xbae
@@ -197,6 +196,7 @@ SUBDIR+=	kxmlgui
 SUBDIR+=	labltk
 SUBDIR+=	lemonbar
 SUBDIR+=	lesstif
+SUBDIR+=	libgdm
 SUBDIR+=	libFS
 SUBDIR+=	libICE
 SUBDIR+=	libSM

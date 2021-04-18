@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.27 2016/12/18 22:58:35 adam Exp $
+# $NetBSD: Makefile,v 1.29 2021/04/17 09:20:47 nia Exp $
 
 MPG123_MODULE=	nas
 

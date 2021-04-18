@@ -1,0 +1,15 @@
+$NetBSD: patch-Demos_embed_Makefile,v 1.1 2021/04/14 19:25:15 adam Exp $
+
+Add missing rpath.
+
+--- Demos/embed/Makefile.orig	2021-04-14 15:24:45.000000000 +0000
++++ Demos/embed/Makefile
+@@ -33,7 +33,7 @@ paths:
+ 	@echo "SYSLIBS=$(SYSLIBS)"
+ 
+ embedded: embedded.o
+-	$(LINKCC) -o $@ $^ -L$(LIBDIR1) -L$(LIBDIR2) -l$(PYLIB) $(LIBS) $(SYSLIBS) $(LINKFORSHARED)
++	$(LINKCC) -o $@ $^ -L$(LIBDIR1) -L$(LIBDIR2) -l$(PYLIB) $(LIBS) $(SYSLIBS) $(LINKFORSHARED) -Wl,-R$(LIBDIR1)
+ 
+ embedded.o: embedded.c
+ 	$(CC) -c $^ -I$(INCDIR) -I$(PLATINCDIR)

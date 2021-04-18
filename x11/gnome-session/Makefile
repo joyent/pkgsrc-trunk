@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.200 2020/12/04 04:56:16 riastradh Exp $
+# $NetBSD: Makefile,v 1.202 2021/04/15 10:30:42 cirnatdan Exp $
 
 DISTNAME=		gnome-session-3.38.0
 PKGREVISION=		1
@@ -38,6 +38,8 @@ MESON_ARGS+=		-Dsystemd_session=disable
 MESON_ARGS+=		-Dsystemd_journal=false
 MESON_ARGS+=		-Dconsolekit=true
 
+PYTHON_FOR_BUILD_ONLY=	tool
+
 .include "../../devel/meson/build.mk"
 .include "../../graphics/MesaLib/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
@@ -47,8 +49,6 @@ BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.16.0
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../graphics/libepoxy/buildlink3.mk"
 .include "../../textproc/libxslt/buildlink3.mk"
-.include "../../security/policykit/buildlink3.mk"
-.include "../../security/policykit-gnome/buildlink3.mk"
 .include "../../sysutils/dbus/buildlink3.mk"
 BUILDLINK_API_DEPENDS.dbus-glib+=	dbus-glib>=0.76
 .include "../../sysutils/dbus-glib/buildlink3.mk"
