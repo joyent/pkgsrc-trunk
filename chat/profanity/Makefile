@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.8 2021/01/23 13:08:11 nia Exp $
+# $NetBSD: Makefile,v 1.10 2021/04/21 13:24:27 adam Exp $
 
 DISTNAME=	profanity-0.9.5
-PKGREVISION=	4
+PKGREVISION=	6
 CATEGORIES=	chat
 MASTER_SITES=	https://profanity-im.github.io/
 

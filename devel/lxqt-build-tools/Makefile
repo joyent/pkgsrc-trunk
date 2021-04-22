@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.11 2020/12/07 11:26:45 pin Exp $
+# $NetBSD: Makefile,v 1.13 2021/04/21 11:41:28 adam Exp $
 
-DISTNAME=	lxqt-build-tools-0.8.0
+DISTNAME=	lxqt-build-tools-0.9.0
+PKGREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=lxqt/}
 GITHUB_RELEASE=	${PKGVERSION_NOREV}
@@ -12,7 +13,7 @@ COMMENT=	LXQt build tools
 LICENSE=	modified-bsd
 
 USE_CMAKE=	yes
-USE_TOOLS+=	pkg-config
+USE_TOOLS+=	pkg-config perl
 USE_LANGUAGES=	c c++ # Needed to satisfy cmake
 
 CONFIGURE_DIRS=	build

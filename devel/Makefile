@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3357 2021/04/08 19:47:05 markd Exp $
+# $NetBSD: Makefile,v 1.3359 2021/04/19 01:55:49 wen Exp $
 #
 
 COMMENT=	Development utilities
@@ -1176,6 +1176,7 @@ SUBDIR+=	p5-BackPAN-Index
 SUBDIR+=	p5-Bit-Vector
 SUBDIR+=	p5-CHI
 SUBDIR+=	p5-CLASS
+SUBDIR+=	p5-CLI-Osprey
 SUBDIR+=	p5-CPAN-Changes
 SUBDIR+=	p5-CPAN-Checksums
 SUBDIR+=	p5-CPAN-Common-Index
@@ -1955,6 +1956,7 @@ SUBDIR+=	p5-Test-Inter
 SUBDIR+=	p5-Test-Kwalitee
 SUBDIR+=	p5-Test-LeakTrace
 SUBDIR+=	p5-Test-LectroTest
+SUBDIR+=	p5-Test-Lib
 SUBDIR+=	p5-Test-LoadAllModules
 SUBDIR+=	p5-Test-Log4perl
 SUBDIR+=	p5-Test-LongString

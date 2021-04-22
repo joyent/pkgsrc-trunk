@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.71 2020/12/04 04:56:06 riastradh Exp $
+# $NetBSD: Makefile,v 1.73 2021/04/21 13:25:03 adam Exp $
 
 DISTNAME=		dvdauthor-0.7.2
-PKGREVISION=		29
+PKGREVISION=		31
 CATEGORIES=		multimedia
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=dvdauthor/}
 

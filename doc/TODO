@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.20494 2021/04/17 07:47:03 nia Exp $
+$NetBSD: TODO,v 1.20506 2021/04/21 09:17:49 wiz Exp $
 
 Suggested new packages
 ======================
@@ -200,10 +200,6 @@ Suggested new packages
 	sharatype [pkg/36217]
 	http://ftp.45.free.net/pub/fonts/type1/
 	Cyrillic fonts for a2ps (a part of sharatype project)
-
-	xmms-cdread [pkg/36220]
-	ftp://mud.stack.nl/pub/OuterSpace/willem/
-	XMMS input plugin that reads audio data from CDs
 
 	ioquake3-demo [pkg/36367]
 
@@ -453,7 +449,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o calc-2.11.10.1
 	o calcoo-2.1.0
 	o calibre-4.11.0 [started in wip; needs QtWebEngineCore]
-	o calibre-5.14
+	o calibre-5.16
 	o calligra-3.0.1 [in wip; koffice successor]
 	o cardboard-schedule-1.14c [at http://www.bright-green.com/downloads/]
 	o catdoc-1.1
@@ -597,7 +593,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o gmake-4.3 [cannot build firefox/openjdk11 etc.]
 	o gnet1-1.1.9
 	o gnetman-20050429
-	o gnome-3.38.0
 	o gnome-applets-3.14.0
 	o gnome-bluetooth-2.30.0
 	o gnome-chess-3.12.3
@@ -631,8 +626,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o gromacs-5.1.2
 	o gss-1.0.3
 	o gst-plugins1-omx-1.10.0
-	o gstreamer1-1.18.3 [wip]
-	o gstreamer1-1.18.4
+	o gstreamer1-1.18.4 [wip]
 	o gthumb-3.4.0
 	o gtk4+-4.0 [wip]
 	o gtkglarea-2.1.0
@@ -724,7 +718,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o lcc-4.2
 	o ldapsdk-6.0.7
 	o lgeneral-1.3.1
-	o libatomic-10.3.0
 	o libbpg-0.9.6
 	o libcarddav-14.0.4
 	o libdrm-2.4.102
@@ -845,7 +838,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o openmortal-0.7.1
 	o openslp-2.0.0
 	o opensmtpd-6.0.0
-	o openssh-8.5
+	o openssh-8.6
 	o openvas-libraries-8.0.8
 	o opera-26
 	o oroborus-2.0.18
@@ -920,7 +913,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o prelude-lml-3.1.0
 	o prelude-manager-3.1.0
 	o profit-2.5.3
-	o protobuf-3.15.8
 	o psmisc-22.20
 	o pspp-0.10.1
 	o ptlib-2.16.2
@@ -931,9 +923,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o py-cassa-1.11.0
 	o py-configparser-5.0.0 [drops python-2.x support]
 	o py-ephem3-3.7.6.0
-	o py-google-api-python-client-2.0.0
 	o py-hgview-1.9.0
-	o py-hypothesis-6.8.9
 	o py-input-pad-1.4.2
 	o py-keybinder-0.3.1
 	o py-markdown-3.2.2 [drops python-2.x support]

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.34 2021/04/12 13:10:09 nia Exp $
+# $NetBSD: Makefile,v 1.37 2021/04/21 11:40:23 adam Exp $
 
 DISTNAME=	libchamplain-0.12.20
 PKGNAME=	${DISTNAME:S/ain/ain012/}
-PKGREVISION=	4
+PKGREVISION=	6
 CATEGORIES=	geography
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/libchamplain/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -23,7 +23,7 @@ PYTHON_FOR_BUILD_ONLY=	tool
 
 # TODO:
 # add vala option?
-# add introspection option?
+.include "options.mk"
 
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
