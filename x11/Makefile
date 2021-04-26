@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.927 2021/04/18 09:44:18 nia Exp $
+# $NetBSD: Makefile,v 1.929 2021/04/24 11:15:13 wiz Exp $
 #
 
 COMMENT=	Packages to support the X Window System
@@ -196,7 +196,6 @@ SUBDIR+=	kxmlgui
 SUBDIR+=	labltk
 SUBDIR+=	lemonbar
 SUBDIR+=	lesstif
-SUBDIR+=	libgdm
 SUBDIR+=	libFS
 SUBDIR+=	libICE
 SUBDIR+=	libSM
@@ -232,6 +231,7 @@ SUBDIR+=	libdesktop-agnostic
 SUBDIR+=	libdrm
 SUBDIR+=	libfakekey
 SUBDIR+=	libfm-qt
+SUBDIR+=	libgdm
 SUBDIR+=	libgnomekbd
 SUBDIR+=	libkactivities4
 SUBDIR+=	libkscreen
@@ -653,7 +653,6 @@ SUBDIR+=	xpenguins
 SUBDIR+=	xphoon
 SUBDIR+=	xplanet
 SUBDIR+=	xpmicons
-SUBDIR+=	xpmroot
 SUBDIR+=	xpns
 SUBDIR+=	xpostit
 SUBDIR+=	xpr

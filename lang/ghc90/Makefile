@@ -1,8 +1,9 @@
-# $NetBSD: Makefile,v 1.2 2021/02/16 15:41:36 ryoon Exp $
+# $NetBSD: Makefile,v 1.6 2021/04/26 07:41:21 pho Exp $
 # -----------------------------------------------------------------------------
 # Package metadata
 #
 DISTNAME=	ghc-9.0.1-src
+PKGREVISION=	1
 PKGNAME=	${DISTNAME:S/-src$//}
 CATEGORIES=	lang
 MASTER_SITES=	https://downloads.haskell.org/~ghc/${PKGVERSION_NOREV}/
@@ -23,11 +24,11 @@ CONFLICTS+=	ghc-[0-9]*
 # you want to build them yourself, follow instructions in
 # BOOTSTRAP.txt and ./bootstrap.mk
 #BROKEN_EXCEPT_ON_PLATFORM+=	Darwin-*-powerpc # Not available yet
-BROKEN_EXCEPT_ON_PLATFORM+=	Darwin-*-x86_64
+#BROKEN_EXCEPT_ON_PLATFORM+=	Darwin-*-x86_64  # Not available yet
 BROKEN_EXCEPT_ON_PLATFORM+=	FreeBSD-*-i386
-BROKEN_EXCEPT_ON_PLATFORM+=	FreeBSD-*-x86_64
+#BROKEN_EXCEPT_ON_PLATFORM+=	FreeBSD-*-x86_64 # Not available yet
 BROKEN_EXCEPT_ON_PLATFORM+=	NetBSD-*-x86_64
-BROKEN_EXCEPT_ON_PLATFORM+=	SunOS-*-x86_64
+#BROKEN_EXCEPT_ON_PLATFORM+=	SunOS-*-x86_64   # Not available yet
 
 
 # -----------------------------------------------------------------------------
@@ -43,18 +44,10 @@ EXTRACT_ONLY=	${DEFAULT_DISTFILES}
 # -----------------------------------------------------------------------------
 # Tools
 #
-# The runtime dependency on perl is due to the evil splitter
-# (lib/${PKGNAME_NOREV}/ghc-split).
-USE_TOOLS+=			autoconf gmake perl:run
+USE_TOOLS+=			autoconf gmake
 GNU_CONFIGURE=			yes
 USE_GNU_CONFIGURE_HOST=		no
 USE_LIBTOOL=			yes
-
-# TODO: Disable the splitter entirely so that we can drop the runtime
-# dependency on perl. The purpose of the splitter is to perform a dead
-# code elimination by breaking .o files into many pieces. This only
-# makes sense when linking executables statically, which is rarely
-# done these days.
 
 
 # -----------------------------------------------------------------------------
@@ -77,7 +70,6 @@ CONFIGURE_ARGS+=	${CONFIGURE_ARGS.common}
 CONFIGURE_ENV+= \
 	ac_cv_prog_fp_prog_ar=${AR:Q} \
 	ac_cv_prog_LIBTOOL=libtool \
-	PerlCmd=${PERL5:Q} \
 	CC=${CC:Q} \
 	LD=${LD:Q}
 
@@ -103,30 +95,25 @@ CONFIGURE_ENV+= \
 # -----------------------------------------------------------------------------
 # Security
 #
-# The runtime system of GHC (rts) tends to conflict with PaX MPROTECT
-# because it needs to generate various kinds of code at run time. The
-# RTS linker, whose job is to load *static* objects at run time,
-# doesn't play nice with ASLR either because it relies on
-# mmap(MAP_FIXED). This means most executables produced by GHC need
-# them to be disabled. Perhaps we should patch rts/sm/Storage.c so
-# that it uses ffi_closure_alloc(3) on every platform, not just Linux,
-# and also drop support for static library loading and switch to
-# dynamic libraries entirely.  (Partially done:
-# https://gitlab.haskell.org/ghc/ghc/merge_requests/2498)
-.for f in ghc ghc-iserv ghc-iserv-dyn ghc-iserv-prof ghc-pkg haddock hpc hsc2hs runghc
+# The runtime system of GHC (rts) has a functionality called "RTS
+# linker" whose job is to load and execute *static* objects (.a and .o
+# files) at run time. It cannot survive PaX MPROTECT because
+# preloadObjectFile() in rts/linker.c tries to mmap pages with w+x. It
+# doesn't play nice with ASLR either because mmapForLinker() in
+# rts/linker.c wants to mmap pages in the lower 32-bit area on 64-bit
+# platforms.
+#
+# Luckily for us, the RTS linker is only used when the GHC executable
+# (or any user programs which uses GHC API as an interpreter, not a
+# compiler) is statically linked, which is no longer the case except
+# for ghc-iserv and ghc-iesrv-prof. They are launched when ghci is
+# started with -fexternal-interpreter without -dynamic, and their
+# purpose is to run non-PIC code from a dynamically linked ghci using
+# the evil RTS linker.
+.for f in ghc-iserv ghc-iserv-prof
 NOT_PAX_MPROTECT_SAFE+=	lib/${PKGNAME_NOREV}/bin/${f}
 NOT_PAX_ASLR_SAFE+=	lib/${PKGNAME_NOREV}/bin/${f}
 .endfor
-# Additional note: Now that DYNAMIC_GHC_PROGRAMS is enabled by
-# default, we no longer need to disable PaX ASLR because the RTS
-# linker is not used... except for ghc-iserv. The program is launched
-# when ghci is started with -fexternal-interpreter without
-# -dynamic. Its purpose is to run non-PIC code from a dynamically
-# linked ghci, and therefore still uses RTS linker. Also note that RTS
-# linker requires PaX mprotect to be disabled too. This means that
-# once the merge request mentioned above is merged to the upstream, we
-# can at least enable PaX mprotect and PaX ASLR for all the
-# executables except ghc-iserv and ghc-iserv-prof.
 
 
 # -----------------------------------------------------------------------------
@@ -198,9 +185,6 @@ GENERATE_PLIST+= \
 # Sanity checks
 #
 
-# There is an unused script which don't pass the portability test.
-CHECK_PORTABILITY_SKIP+=	distrib/prep-bin-dist-mingw
-
 # Dynamically linked Haskell executables and libraries have rpaths to
 # dependent Haskell libraries, but the problem is that they are
 # specified with $ORIGIN, which isn't currently supported by
@@ -216,9 +200,11 @@ CHECK_SHLIBS_SKIP+=		lib/${PKGNAME_NOREV}/bin/${f}
 .endfor
 
 # ghc57207_0.s: failed to add inputs for merge: Resource temporarily unavailable
+# XXX: On which platform? Is it still an issue?
 CTF_FILES_SKIP+=		*/libHS*-ghc${PKGVERSION_NOREV}.*
 
 # ld: fatal: relocation error ... relocation requires reference symbol
+# XXX: On which platform? Is it still an issue?
 STRIP_FILES_SKIP+=		lib/${PKGNAME_NOREV}/libHSrts.a
 
 

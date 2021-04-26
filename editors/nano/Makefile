@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.95 2021/03/03 23:35:57 schwarz Exp $
+# $NetBSD: Makefile,v 1.97 2021/04/23 18:18:02 nia Exp $
 
 DISTNAME=	nano-5.6.1
 CATEGORIES=	editors
@@ -12,6 +12,7 @@ LICENSE=	gnu-gpl-v3
 
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		msgfmt msgmerge xgettext gmake
+USE_TOOLS+=		pkg-config
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--enable-color
 CONFIGURE_ARGS+=	--enable-multibuffer

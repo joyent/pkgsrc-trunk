@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1206 2021/04/06 14:11:11 adam Exp $
+# $NetBSD: Makefile,v 1.1216 2021/04/25 04:07:33 pho Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -297,6 +297,7 @@ SUBDIR+=	hs-Glob
 SUBDIR+=	hs-HsYAML
 SUBDIR+=	hs-annotated-wl-pprint
 SUBDIR+=	hs-ansi-wl-pprint
+SUBDIR+=	hs-appar
 SUBDIR+=	hs-attoparsec
 SUBDIR+=	hs-blaze-html
 SUBDIR+=	hs-blaze-markup
@@ -305,7 +306,11 @@ SUBDIR+=	hs-cassava
 SUBDIR+=	hs-cassava-megaparsec
 SUBDIR+=	hs-cgrep
 SUBDIR+=	hs-cheapskate
+SUBDIR+=	hs-citeproc
 SUBDIR+=	hs-cmark-gfm
+SUBDIR+=	hs-commonmark
+SUBDIR+=	hs-commonmark-extensions
+SUBDIR+=	hs-commonmark-pandoc
 SUBDIR+=	hs-css-text
 SUBDIR+=	hs-csv
 SUBDIR+=	hs-doclayout
@@ -325,10 +330,13 @@ SUBDIR+=	hs-lucid
 SUBDIR+=	hs-megaparsec
 SUBDIR+=	hs-pandoc-types
 SUBDIR+=	hs-polyparse
+SUBDIR+=	hs-prettyprinter
+SUBDIR+=	hs-prettyprinter-ansi-terminal
 SUBDIR+=	hs-regex-base
 SUBDIR+=	hs-regex-pcre
 SUBDIR+=	hs-regex-posix
 SUBDIR+=	hs-regex-tdfa
+SUBDIR+=	hs-rfc5051
 SUBDIR+=	hs-shakespeare
 SUBDIR+=	hs-skylighting
 SUBDIR+=	hs-skylighting-core
@@ -340,6 +348,8 @@ SUBDIR+=	hs-unicode-show
 SUBDIR+=	hs-unicode-transforms
 SUBDIR+=	hs-wcwidth
 SUBDIR+=	hs-xml
+SUBDIR+=	hs-xml-conduit
+SUBDIR+=	hs-xml-types
 SUBDIR+=	hs-yaml
 SUBDIR+=	html
 SUBDIR+=	html2text
