@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.45 2020/08/31 18:09:49 wiz Exp $
+# $NetBSD: Makefile,v 1.47 2021/04/30 18:52:05 pho Exp $
 # -----------------------------------------------------------------------------
 # Package metadata
 #
 DISTNAME=	ghc-7.10.3-src
-PKGREVISION=	4
+PKGREVISION=	5
 PKGNAME=	${DISTNAME:S/-src$//}
 CATEGORIES=	lang
 MASTER_SITES=	https://downloads.haskell.org/~ghc/${PKGVERSION_NOREV}/
@@ -163,15 +163,6 @@ GENERATE_PLIST+= \
 # There is an unused script which don't pass the portability test.
 CHECK_PORTABILITY_SKIP+=	distrib/prep-bin-dist-mingw
 
-# Dynamically linked Haskell executables and libraries have rpaths to
-# dependent Haskell libraries, but the problem is that they are
-# specified with $ORIGIN, which isn't currently supported by
-# ../../mk/check/check-shlibs-elf.awk.
-CHECK_SHLIBS_SKIP+=		*/libHS*-ghc${PKGVERSION_NOREV}.*
-.for f in ghc ghc-pkg haddock hpc hsc2hs runghc
-CHECK_SHLIBS_SKIP+=		lib/${PKGNAME_NOREV}/bin/${f}
-.endfor
-
 # ghc57207_0.s: failed to add inputs for merge: Resource temporarily unavailable
 CTF_FILES_SKIP+=		*/libHS*-ghc${PKGVERSION_NOREV}.*
 
@@ -193,7 +184,7 @@ BUILD_DEPENDS+=	compat80-[0-9]*:../../emulators/compat80
 # In a sandboxed build environment, we have to reach over to the
 # installed libraries themselves, since the symlinks compat80 adds
 # to the /usr tree can't be applied.
-ALL_ENV+=	LD_LIBRARY_PATH=${PREFIX:Q}/emul/netbsd/usr/lib:${FILESDIR}
+ALL_ENV+=	LD_LIBRARY_PATH=${PREFIX:Q}/emul/netbsd/usr/lib
 .endif
 
 .include "../../converters/libiconv/buildlink3.mk"

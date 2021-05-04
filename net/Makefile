@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1399 2021/04/24 17:54:25 pho Exp $
+# $NetBSD: Makefile,v 1.1401 2021/05/01 14:41:22 pin Exp $
 #
 
 COMMENT=	Networking tools
@@ -353,6 +353,7 @@ SUBDIR+=	lua-copas
 SUBDIR+=	lua-socket
 SUBDIR+=	mDNSResponder
 SUBDIR+=	mDNSResponder-nss
+SUBDIR+=	maguro
 SUBDIR+=	maradns
 SUBDIR+=	mate-user-share
 SUBDIR+=	mbrowse
@@ -536,7 +537,6 @@ SUBDIR+=	p5-Net-Frame-Layer-IPv6
 SUBDIR+=	p5-Net-Frame-Simple
 SUBDIR+=	p5-Net-GitHub
 SUBDIR+=	p5-Net-Gnats
-SUBDIR+=	p5-Net-Google
 SUBDIR+=	p5-Net-Google-AuthSub
 SUBDIR+=	p5-Net-Google-Code
 SUBDIR+=	p5-Net-INET6Glue

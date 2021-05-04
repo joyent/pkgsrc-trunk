@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.929 2021/04/24 11:15:13 wiz Exp $
+# $NetBSD: Makefile,v 1.932 2021/04/27 17:09:59 wiz Exp $
 #
 
 COMMENT=	Packages to support the X Window System
@@ -396,7 +396,6 @@ SUBDIR+=	qwtplot3d-qt4
 SUBDIR+=	ratmen
 SUBDIR+=	redshift
 SUBDIR+=	rendercheck
-SUBDIR+=	renderproto9
 SUBDIR+=	rep-gtk2
 SUBDIR+=	rgb
 SUBDIR+=	rofi
@@ -424,7 +423,6 @@ SUBDIR+=	ssystem
 SUBDIR+=	st-term
 SUBDIR+=	stalonetray
 SUBDIR+=	startup-notification
-SUBDIR+=	startup-notification010
 SUBDIR+=	sxhkd
 SUBDIR+=	tabbed
 SUBDIR+=	tile
@@ -483,7 +481,6 @@ SUBDIR+=	xcb-util-keysyms
 SUBDIR+=	xcb-util-renderutil
 SUBDIR+=	xcb-util-wm
 SUBDIR+=	xcb-util-xrm
-SUBDIR+=	xcb-util036
 SUBDIR+=	xclip
 SUBDIR+=	xclipboard
 SUBDIR+=	xcmsdb

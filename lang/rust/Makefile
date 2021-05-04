@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.234 2021/04/24 08:27:59 schmonz Exp $
+# $NetBSD: Makefile,v 1.236 2021/04/27 10:31:52 pho Exp $
 
 DISTNAME=	rustc-1.50.0-src
 PKGNAME=	${DISTNAME:S/rustc/rust/:S/-src//}
@@ -463,6 +463,10 @@ fix-darwin-install-name:
 		install_name_tool -id `${ECHO} $$f | ${SED} -e 's,${DESTDIR},,g'` $$f; \
 	done
 .endif
+
+# MacOS X 10.7 is the oldest supported version. See
+# ${WRKSRC}/src/bootstrap/lib.rs
+MAKE_ENV.Darwin+=	MACOSX_DEPLOYMENT_TARGET="10.7"
 
 GENERATE_PLIST+=	${FIND} ${DESTDIR}${PREFIX} \( -type f -o -type l \) -print | \
 			${SED} -e 's,${DESTDIR}${PREFIX}/,,' | ${SORT} ;

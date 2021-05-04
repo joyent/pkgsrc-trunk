@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.494 2021/04/20 20:40:47 thor Exp $
+# $NetBSD: Makefile,v 1.498 2021/04/29 23:31:41 thor Exp $
 
 COMMENT=	Mathematics
 
@@ -59,7 +59,6 @@ SUBDIR+=	R-gdata
 SUBDIR+=	R-generics
 SUBDIR+=	R-genetics
 SUBDIR+=	R-geoR
-SUBDIR+=	R-geoRglm
 SUBDIR+=	R-goftest
 SUBDIR+=	R-gss
 SUBDIR+=	R-gstat
@@ -115,7 +114,6 @@ SUBDIR+=	R-tidyr
 SUBDIR+=	R-units
 SUBDIR+=	R-urca
 SUBDIR+=	R-vctrs
-SUBDIR+=	R-wle
 SUBDIR+=	R-xtable
 SUBDIR+=	R-xts
 SUBDIR+=	R-zeallot
@@ -168,9 +166,9 @@ SUBDIR+=	fftpack
 SUBDIR+=	ffts
 SUBDIR+=	fftw
 SUBDIR+=	fftw2
-SUBDIR+=	fftwf
 SUBDIR+=	fgmp
 SUBDIR+=	fityk
+SUBDIR+=	flann-lib
 SUBDIR+=	fplll
 SUBDIR+=	fricas
 SUBDIR+=	funst

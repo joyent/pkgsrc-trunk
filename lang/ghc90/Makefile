@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.6 2021/04/26 07:41:21 pho Exp $
+# $NetBSD: Makefile,v 1.12 2021/05/01 09:04:57 pho Exp $
 # -----------------------------------------------------------------------------
 # Package metadata
 #
 DISTNAME=	ghc-9.0.1-src
-PKGREVISION=	1
+PKGREVISION=	4
 PKGNAME=	${DISTNAME:S/-src$//}
 CATEGORIES=	lang
 MASTER_SITES=	https://downloads.haskell.org/~ghc/${PKGVERSION_NOREV}/
@@ -23,12 +23,11 @@ CONFLICTS+=	ghc-[0-9]*
 # binaries sufficient to bootstrap compilers for each platforms. If
 # you want to build them yourself, follow instructions in
 # BOOTSTRAP.txt and ./bootstrap.mk
-#BROKEN_EXCEPT_ON_PLATFORM+=	Darwin-*-powerpc # Not available yet
-#BROKEN_EXCEPT_ON_PLATFORM+=	Darwin-*-x86_64  # Not available yet
+BROKEN_EXCEPT_ON_PLATFORM+=	Darwin-*-x86_64
 BROKEN_EXCEPT_ON_PLATFORM+=	FreeBSD-*-i386
-#BROKEN_EXCEPT_ON_PLATFORM+=	FreeBSD-*-x86_64 # Not available yet
+BROKEN_EXCEPT_ON_PLATFORM+=	FreeBSD-*-x86_64
 BROKEN_EXCEPT_ON_PLATFORM+=	NetBSD-*-x86_64
-#BROKEN_EXCEPT_ON_PLATFORM+=	SunOS-*-x86_64   # Not available yet
+BROKEN_EXCEPT_ON_PLATFORM+=	SunOS-*-x86_64
 
 
 # -----------------------------------------------------------------------------
@@ -185,20 +184,6 @@ GENERATE_PLIST+= \
 # Sanity checks
 #
 
-# Dynamically linked Haskell executables and libraries have rpaths to
-# dependent Haskell libraries, but the problem is that they are
-# specified with $ORIGIN, which isn't currently supported by
-# ../../mk/check/check-shlibs-elf.awk.
-#
-# Note that arguments like "-Wl,-rpath,$ORIGIN/.." are usually dropped
-# by the "cleanup" phase of wrappers. This is not the case in GHC
-# because GHC uses @file syntax while linking objects, and our
-# wrappers does nothing about it.
-CHECK_SHLIBS_SKIP+=		*/libHS*-ghc${PKGVERSION_NOREV}.*
-.for f in ghc ghc-iserv-dyn ghc-pkg haddock hpc hsc2hs runghc
-CHECK_SHLIBS_SKIP+=		lib/${PKGNAME_NOREV}/bin/${f}
-.endfor
-
 # ghc57207_0.s: failed to add inputs for merge: Resource temporarily unavailable
 # XXX: On which platform? Is it still an issue?
 CTF_FILES_SKIP+=		*/libHS*-ghc${PKGVERSION_NOREV}.*
@@ -225,7 +210,15 @@ BUILD_DEPENDS+=	compat80-[0-9]*:../../emulators/compat80
 # In a sandboxed build environment, we have to reach over to the
 # installed libraries themselves, since the symlinks compat80 adds
 # to the /usr tree can't be applied.
-ALL_ENV+=	LD_LIBRARY_PATH=${PREFIX}/emul/netbsd/usr/lib:${WRKDIR}/lib:${FILESDIR}
+ALL_ENV+=	LD_LIBRARY_PATH=${PREFIX}/emul/netbsd/usr/lib:${WRKDIR}/lib
+# XXX: ${WRKDIR}/lib is a temporary workaround for compat80 not having
+# libterminfo.so.1. See ./bootstrap.mk
+.endif
+
+# On Solaris-based platforms our bootkit tends to depend on
+# pkgsrc-installed shlibs.
+.if ${OPSYS} == "SunOS"
+ALL_ENV+=	LD_LIBRARY_PATH=${PREFIX}/lib
 .endif
 
 .include "../../converters/libiconv/buildlink3.mk"

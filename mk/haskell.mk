@@ -1,4 +1,4 @@
-# $NetBSD: haskell.mk,v 1.29 2021/04/23 03:57:16 pho Exp $
+# $NetBSD: haskell.mk,v 1.33 2021/05/01 16:14:19 pho Exp $
 #
 # This Makefile fragment handles Haskell Cabal packages.
 # Package configuration, building, installation, registration and
@@ -111,6 +111,13 @@ HASKELL_ENABLE_HADDOCK_DOCUMENTATION?=	yes
 
 .include "../../lang/ghc88/buildlink3.mk"
 
+# Some Cabal packages requires preprocessors to build, and we don't
+# want them to implicitly depend on such tools. Place dummy scripts by
+# default.
+.include "../../mk/haskell/tools/alex.mk"
+.include "../../mk/haskell/tools/cpphs.mk"
+.include "../../mk/haskell/tools/happy.mk"
+
 # Tools
 _HASKELL_BIN=		${BUILDLINK_PREFIX.ghc:U${PREFIX}}/bin/ghc
 _HASKELL_PKG_BIN=	${BUILDLINK_PREFIX.ghc:U${PREFIX}}/bin/ghc-pkg
@@ -215,6 +222,22 @@ WARNINGS+=	"[haskell.mk] Set HS_UPDATE_PLIST=yes to update it automatically."
 # is much faster, we try it and then fall back to static linkage if
 # that didn't work.
 do-configure:
+# Cabal packages are expected to have either Setup.hs or Setup.lhs,
+# but its existence is not mandatory these days because the standard
+# way to build a cabal package is to use the cabal-install command,
+# which is not always available to us. As a result some packages
+# actually lack it. The problem is that its expected content depends
+# on the build-type field in *.cabal so we have to read it.
+	${RUN} if ! ${TEST} -f ${WRKSRC}/Setup.hs -o -f ${WRKSRC}/Setup.lhs; then \
+		buildType=`${AWK} -f ../../mk/haskell/build-type.awk ${WRKSRC}/*.cabal`; \
+		${SH} ../../mk/haskell/gen-setup.sh "$$buildType" > ${WRKDIR}/.setup.hs; \
+		ret=$$?; \
+		if ${TEST} $$ret -eq 0; then \
+			${MV} -f ${WRKDIR}/.setup.hs ${WRKSRC}/Setup.hs; \
+		else \
+			exit $$ret; \
+		fi; \
+	fi
 	${RUN} ${_ULIMIT_CMD} cd ${WRKSRC} && \
 		( ${_HASKELL_BIN:Q} ${_HASKELL_BUILD_SETUP_OPTS} --make Setup -dynamic || \
 			${_HASKELL_BIN:Q} ${_HASKELL_BUILD_SETUP_OPTS} --make Setup -static )

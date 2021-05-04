@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.1 2018/11/16 14:12:42 kleink Exp $
+@comment $NetBSD: PLIST,v 1.3 2021/04/29 13:15:32 joerg Exp $
 bin/weasyprint${PYVERSSUFFIX}
 ${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
 ${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
