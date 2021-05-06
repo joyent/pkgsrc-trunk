@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.928 2021/04/09 09:07:41 pin Exp $
+# $NetBSD: Makefile,v 1.931 2021/05/04 14:34:46 prlw1 Exp $
 #
 
 COMMENT=	Graphics tools and libraries
@@ -193,6 +193,7 @@ SUBDIR+=	gimp-warp-sharp
 SUBDIR+=	gimp2-wideangle
 SUBDIR+=	giram
 SUBDIR+=	girara
+SUBDIR+=	gl2ps
 SUBDIR+=	gle
 SUBDIR+=	glew
 SUBDIR+=	glfw
@@ -437,6 +438,7 @@ SUBDIR+=	paper-icon-theme
 SUBDIR+=	papirus-folders
 SUBDIR+=	papirus-icon-theme
 SUBDIR+=	pastel
+SUBDIR+=	pcl
 SUBDIR+=	pdfpc
 SUBDIR+=	pdiff
 SUBDIR+=	pear-Image_Canvas
@@ -808,7 +810,6 @@ SUBDIR+=	viu
 SUBDIR+=	vnc2swf
 SUBDIR+=	vp
 SUBDIR+=	vtk
-SUBDIR+=	vtk-data
 SUBDIR+=	vtk-docs
 SUBDIR+=	vulkan-headers
 SUBDIR+=	wcslib

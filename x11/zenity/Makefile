@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.96 2021/03/30 11:00:38 cirnatdan Exp $
+# $NetBSD: Makefile,v 1.99 2021/05/04 08:51:01 cirnatdan Exp $
 #
 
 DISTNAME=	zenity-3.32.0
+PKGREVISION=	1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/zenity/3.32/}
 EXTRACT_SUFX=	.tar.xz
@@ -14,10 +15,10 @@ LICENSE=	gnu-lgpl-v2
 USE_PKGLOCALEDIR=	yes
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		gmake intltool msgfmt pkg-config autoreconf autoconf
-USE_TOOLS+=		automake gm4 aclocal xgettext autopoint
+USE_TOOLS+=		automake gm4 aclocal xgettext autopoint itstool
 
-BUILD_DEPENDS+=		gnome-common-[0-9]*:../../devel/gnome-common
-BUILD_DEPENDS+=		yelp-tools-[0-9]*:../../textproc/yelp-tools
+TOOL_DEPENDS+=		yelp-tools-[0-9]*:../../textproc/yelp-tools
+TOOL_DEPENDS+=		autoconf-archive-[0-9]*:../../devel/autoconf-archive
 
 pre-configure:
 	${RUN} cd ${WRKSRC} && ./autogen.sh

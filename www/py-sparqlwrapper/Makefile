@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.7 2021/04/16 12:18:42 adam Exp $
+# $NetBSD: Makefile,v 1.9 2021/05/05 09:54:42 adam Exp $
 
 DISTNAME=	SPARQLWrapper-1.8.5
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:tl}
@@ -12,9 +12,9 @@ LICENSE=	w3c
 
 DEPENDS+=	${PYPKGPREFIX}-rdflib>=4.0:../../textproc/py-rdflib
 
-PYTHON_VERSIONS_INCOMPATIBLE=	27	# py-networkx via py-rdflib
-
 USE_LANGUAGES=	# none
+
+PYTHON_VERSIONS_INCOMPATIBLE=	27	# py-networkx via py-rdflib
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

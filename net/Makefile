@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1401 2021/05/01 14:41:22 pin Exp $
+# $NetBSD: Makefile,v 1.1405 2021/05/05 16:52:22 pho Exp $
 #
 
 COMMENT=	Networking tools
@@ -236,6 +236,7 @@ SUBDIR+=	hdl-dump
 SUBDIR+=	hesiod
 SUBDIR+=	hf6to4
 SUBDIR+=	hlfl
+SUBDIR+=	hoogle
 SUBDIR+=	host
 SUBDIR+=	howl
 SUBDIR+=	hping
@@ -244,8 +245,11 @@ SUBDIR+=	hs-connection
 SUBDIR+=	hs-iproute
 SUBDIR+=	hs-mime-types
 SUBDIR+=	hs-network
+SUBDIR+=	hs-network-byte-order
+SUBDIR+=	hs-network-info
 SUBDIR+=	hs-network-uri
 SUBDIR+=	hs-resolv
+SUBDIR+=	hs-simple-sendfile
 SUBDIR+=	hs-socks
 SUBDIR+=	httping
 SUBDIR+=	httpstat

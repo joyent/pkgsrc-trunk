@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1527 2021/04/25 06:56:09 wiz Exp $
+# $NetBSD: Makefile,v 1.1538 2021/05/05 16:04:00 pho Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -82,6 +82,7 @@ SUBDIR+=	clearsilver-base
 SUBDIR+=	clisp-fastcgi
 SUBDIR+=	contao35
 SUBDIR+=	cppcms
+SUBDIR+=	cratuity
 SUBDIR+=	crawl
 SUBDIR+=	cronolog
 SUBDIR+=	curl
@@ -152,10 +153,20 @@ SUBDIR+=	heel
 SUBDIR+=	hiawatha
 SUBDIR+=	horde
 SUBDIR+=	hs-HTTP
+SUBDIR+=	hs-bsb-http-chunked
 SUBDIR+=	hs-cookie
 SUBDIR+=	hs-http-client
 SUBDIR+=	hs-http-client-tls
+SUBDIR+=	hs-http-conduit
+SUBDIR+=	hs-http-date
 SUBDIR+=	hs-http-types
+SUBDIR+=	hs-http2
+SUBDIR+=	hs-js-flot
+SUBDIR+=	hs-js-jquery
+SUBDIR+=	hs-wai
+SUBDIR+=	hs-wai-logger
+SUBDIR+=	hs-warp
+SUBDIR+=	hs-warp-tls
 SUBDIR+=	hs-xss-sanitize
 SUBDIR+=	htdavlock
 SUBDIR+=	htdig
