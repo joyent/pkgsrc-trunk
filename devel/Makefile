@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3384 2021/05/05 15:49:34 pho Exp $
+# $NetBSD: Makefile,v 1.3386 2021/05/09 08:28:36 bsiegert Exp $
 #
 
 COMMENT=	Development utilities
@@ -500,7 +500,6 @@ SUBDIR+=	gob2
 SUBDIR+=	gobject-introspection
 SUBDIR+=	golangci-lint
 SUBDIR+=	golint
-SUBDIR+=	google-api-go-client
 SUBDIR+=	google-glog
 SUBDIR+=	googletest
 SUBDIR+=	gopls
@@ -2271,8 +2270,10 @@ SUBDIR+=	py-cheetah
 SUBDIR+=	py-cheetah3
 SUBDIR+=	py-cle
 SUBDIR+=	py-click
+SUBDIR+=	py-click-didyoumean
 SUBDIR+=	py-click-log
 SUBDIR+=	py-click-plugins
+SUBDIR+=	py-click-repl
 SUBDIR+=	py-click-threading
 SUBDIR+=	py-clickclick
 SUBDIR+=	py-codespell

@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.3 2021/05/03 17:29:58 thor Exp $
+# $NetBSD: buildlink3.mk,v 1.5 2021/05/08 22:03:14 thor Exp $
 
 BUILDLINK_TREE+=	pcl
 
@@ -12,9 +12,6 @@ BUILDLINK_PKGSRCDIR.pcl?=	../../graphics/pcl
 .include "../../devel/boost-libs/buildlink3.mk"
 .include "../../devel/libusb1/buildlink3.mk"
 .include "../../math/flann-lib/buildlink3.mk"
-# waiting for VTK update, not usable yet
-#.include "../../graphics/vtk/buildlink3.mk"
-#.include "../../graphics/glew/buildlink3.mk"
 .include "../../math/eigen3/buildlink3.mk"
 .include "../../math/qhull/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
@@ -22,6 +19,14 @@ BUILDLINK_PKGSRCDIR.pcl?=	../../graphics/pcl
 # Not used correctly right now, see
 # https://github.com/PointCloudLibrary/pcl/issues/4744
 #.include "../../devel/metslib/buildlink3.mk"
+
+pkgbase := pcl
+.include "../../mk/pkg-build-options.mk"
+
+.if ${PKG_BUILD_OPTIONS.pcl:Mvtk}
+.include "../../graphics/vtk/buildlink3.mk"
+.include "../../graphics/glew/buildlink3.mk"
+.endif
 
 .endif # PCL_BUILDLINK3_MK
 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1405 2021/05/05 16:52:22 pho Exp $
+# $NetBSD: Makefile,v 1.1408 2021/05/11 08:56:24 khorben Exp $
 #
 
 COMMENT=	Networking tools
@@ -198,7 +198,6 @@ SUBDIR+=	gnugk
 SUBDIR+=	go-dns
 SUBDIR+=	go-dnstap
 SUBDIR+=	go-framestream
-SUBDIR+=	go-grpc
 SUBDIR+=	go-net
 SUBDIR+=	go-ovh
 SUBDIR+=	go-tcplisten
@@ -696,7 +695,6 @@ SUBDIR+=	py-dns
 SUBDIR+=	py-dnsdiag
 SUBDIR+=	py-dpkt
 SUBDIR+=	py-dropbox
-SUBDIR+=	py-eventlib
 SUBDIR+=	py-flower
 SUBDIR+=	py-foolscap
 SUBDIR+=	py-gandi.cli
@@ -745,6 +743,7 @@ SUBDIR+=	py-ptt
 SUBDIR+=	py-pychromecast
 SUBDIR+=	py-pyftpdlib
 SUBDIR+=	py-pylint-celery
+SUBDIR+=	py-pynng
 SUBDIR+=	py-pypiserver
 SUBDIR+=	py-pysendfile
 SUBDIR+=	py-python-socks

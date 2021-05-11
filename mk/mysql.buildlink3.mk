@@ -1,4 +1,4 @@
-# $NetBSD: mysql.buildlink3.mk,v 1.28 2020/10/20 21:53:31 otis Exp $
+# $NetBSD: mysql.buildlink3.mk,v 1.30 2021/05/08 19:53:28 jdolecek Exp $
 #
 # This file is included by packages that require some version of the
 # MySQL database client.
@@ -9,7 +9,7 @@
 #	The preferred MySQL version.
 #
 #	Possible: 80 57 56
-#		  mariadb55
+#		  mariadb55 mariadb104
 #		  percona80 percona57 percona56
 #		  percona80-cluster percona57-cluster
 #	Default: 57
@@ -55,7 +55,7 @@ BUILD_DEFS+=			MYSQL_VERSION_DEFAULT
 BUILD_DEFS_EFFECTS+=		MYSQL_VERSION MYSQL_PKG_PREFIX
 
 # The available MySQL packages:
-_PKG_MYSQLS=			80 57 56 mariadb55
+_PKG_MYSQLS=			80 57 56 mariadb55 mariadb104
 _PKG_MYSQLS+=			percona80 percona57 percona56
 _PKG_MYSQLS+=			percona80-cluster percona57-cluster
 
@@ -77,6 +77,10 @@ _MYSQL_PKG_PREFIX.56=		mysql56
 _MYSQL_PKGBASE.mariadb55=	mariadb-client-5.5.*
 _MYSQL_PKGSRCDIR.mariadb55=	../../databases/mariadb55-client
 _MYSQL_PKG_PREFIX.mariadb55=	mariadb55
+
+_MYSQL_PKGBASE.mariadb104=	mariadb-client-10.4.*
+_MYSQL_PKGSRCDIR.mariadb104=	../../databases/mariadb104-client
+_MYSQL_PKG_PREFIX.mariadb104=	mariadb104
 
 _MYSQL_PKGBASE.percona80=	percona-client-8.0.*
 _MYSQL_PKGSRCDIR.percona80=	../../joyent/percona80-client

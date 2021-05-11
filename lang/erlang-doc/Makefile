@@ -1,15 +1,15 @@
-# $NetBSD: Makefile,v 1.20 2021/03/31 13:43:08 triaxx Exp $
+# $NetBSD: Makefile,v 1.24 2021/05/09 02:03:27 gutteridge Exp $
 
 DISTNAME=		otp_doc_html_${DIST_VERSION_MAJOR}.${DIST_VERSION_MINOR}
 PKGNAME=		${DISTNAME:S/otp_doc_html_/erlang-doc-/}
-PKGREVISION=		3
+PKGREVISION=		5
 CATEGORIES=		lang
-MASTER_SITES=		http://www.erlang.org/download/
+MASTER_SITES=		https://www.erlang.org/download/
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		https://www.erlang.org/
 COMMENT=		Documentation for Erlang, a concurrent functional programming language
-LICENSE=	apache-2.0
+LICENSE=		apache-2.0
 
 DIST_SUBDIR=		erlang
 
