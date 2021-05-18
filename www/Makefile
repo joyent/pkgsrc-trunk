@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1539 2021/05/07 10:38:05 kleink Exp $
+# $NetBSD: Makefile,v 1.1541 2021/05/13 12:01:00 nia Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -794,6 +794,7 @@ SUBDIR+=	py-notebook
 SUBDIR+=	py-parsel
 SUBDIR+=	py-paste
 SUBDIR+=	py-pelican
+SUBDIR+=	py-priority
 SUBDIR+=	py-protego
 SUBDIR+=	py-publicsuffix2
 SUBDIR+=	py-purl
@@ -1006,7 +1007,6 @@ SUBDIR+=	thttpd
 SUBDIR+=	tidy
 SUBDIR+=	tinyproxy
 SUBDIR+=	trac
-SUBDIR+=	trafficserver
 SUBDIR+=	tscrape
 SUBDIR+=	tuir
 SUBDIR+=	typo3_62

@@ -1,19 +1,40 @@
-# $NetBSD: options.mk,v 1.5 2021/05/07 12:31:22 thor Exp $
+# $NetBSD: options.mk,v 1.11 2021/05/16 10:16:26 nia Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.fftw
-# fftw (double) and fftwf (single) are always built, you can add
-# fftwl (long) and fftwq (quad).
-PKG_SUPPORTED_OPTIONS=	fftw-fortran openmp mpi fftw-long fftw-quad
-# Enable fortran support by default on platforms supported by lang/g95.
-.if (${MACHINE_ARCH} == i386 || ${MACHINE_ARCH} == x86_64 || \
-	${MACHINE_ARCH} == ia64 || !empty(MACHINE_ARCH:Mpowerpc*) || \
-	${MACHINE_ARCH} == hppa || !empty(MACHINE_ARCH:Msparc*) || \
-	${MACHINE_ARCH} == alpha || !empty(MACHINE_ARCH:Mmips*))
-# ...but disable it until lang/g95 issue is resolved.
-#PKG_SUGGESTED_OPTIONS=	fftw-fortran
+PKG_SUPPORTED_OPTIONS=	fftw-fortran openmp mpi
+
+.include "../../mk/bsd.prefs.mk"
+
+.if !empty(PKGSRC_COMPILER:M*gcc*) || !empty(PKGSRC_COMPILER:M*clang*)
+PKG_SUPPORTED_OPTIONS+=	simd
+.  if ${MACHINE_ARCH} == "x86_64"
+PKG_SUPPORTED_OPTIONS+=	avx
+.  endif
+PKG_SUGGESTED_OPTIONS+=	simd
 .endif
 
 .include "../../mk/bsd.options.mk"
+
+.if !empty(PKG_OPTIONS:Mavx)
+GCC_REQD+=		4.9
+.  for opt in avx avx2 avx512 avx-128-fma
+FFTW_FLOAT_OPTS+=	--enable-${opt}
+FFTW_DOUBLE_OPTS+=	--enable-${opt}
+.  endfor
+.endif
+
+.if !empty(PKG_OPTIONS:Msimd)
+# Generic compiler vector abstractions (GCC extension).
+FFTW_FLOAT_OPTS+=	--enable-generic-simd128 --enable-generic-simd256
+FFTW_DOUBLE_OPTS+=	--enable-generic-simd128 --enable-generic-simd256
+.  if !empty(MACHINE_ARCH:Mpowerpc*)
+FFTW_FLOAT_OPTS+=	--enable-altivec
+.  endif
+.  if ${MACHINE_ARCH} == "x86_64"
+FFTW_FLOAT_OPTS+=	--enable-sse2
+FFTW_DOUBLE_OPTS+=	--enable-sse2
+.  endif
+.endif
 
 .if !empty(PKG_OPTIONS:Mfftw-fortran)
 USE_LANGUAGES+=		fortran77
@@ -27,21 +48,9 @@ PLIST.omp=		yes
 CONFIGURE_ARGS+=	--enable-openmp
 .endif
 
-PLIST_VARS+=	mpi
+PLIST_VARS+=		mpi
 .if !empty(PKG_OPTIONS:Mmpi)
-PLIST.mpi=	yes
+PLIST.mpi=		yes
 CONFIGURE_ARGS+=	--enable-mpi
 .include "../../mk/mpi.buildlink3.mk"
-.endif
-
-PLIST_VARS+=	long quad
-
-.if !empty(PKG_OPTIONS:Mfftw-long)
-FFTW_PRECISION+=	long-double
-PLIST.long=		yes
-.endif
-
-.if !empty(PKG_OPTIONS:Mfftw-quad)
-FFTW_PRECISION+=	quad-precision
-PLIST.quad=		yes
 .endif

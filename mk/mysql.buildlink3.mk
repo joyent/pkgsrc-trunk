@@ -1,4 +1,4 @@
-# $NetBSD: mysql.buildlink3.mk,v 1.30 2021/05/08 19:53:28 jdolecek Exp $
+# $NetBSD: mysql.buildlink3.mk,v 1.32 2021/05/13 15:29:04 jdolecek Exp $
 #
 # This file is included by packages that require some version of the
 # MySQL database client.
@@ -9,7 +9,7 @@
 #	The preferred MySQL version.
 #
 #	Possible: 80 57 56
-#		  mariadb55 mariadb104
+#		  mariadb104
 #		  percona80 percona57 percona56
 #		  percona80-cluster percona57-cluster
 #	Default: 57
@@ -55,12 +55,12 @@ BUILD_DEFS+=			MYSQL_VERSION_DEFAULT
 BUILD_DEFS_EFFECTS+=		MYSQL_VERSION MYSQL_PKG_PREFIX
 
 # The available MySQL packages:
-_PKG_MYSQLS=			80 57 56 mariadb55 mariadb104
+_PKG_MYSQLS=			80 57 56 mariadb104
 _PKG_MYSQLS+=			percona80 percona57 percona56
 _PKG_MYSQLS+=			percona80-cluster percona57-cluster
 
 # Package-settable variables.   XXX: hardcoded duplicate to avoid pkglint errors
-MYSQL_VERSIONS_ACCEPTED?=	57 ${_PKG_MYSQLS:Nmariadb55}
+MYSQL_VERSIONS_ACCEPTED?=	57 ${_PKG_MYSQLS}
 
 _MYSQL_PKGBASE.80=		mysql-client-8.0.*
 _MYSQL_PKGSRCDIR.80=		../../databases/mysql80-client
@@ -73,10 +73,6 @@ _MYSQL_PKG_PREFIX.57=		mysql57
 _MYSQL_PKGBASE.56=		mysql-client-5.6.*
 _MYSQL_PKGSRCDIR.56=		../../databases/mysql56-client
 _MYSQL_PKG_PREFIX.56=		mysql56
-
-_MYSQL_PKGBASE.mariadb55=	mariadb-client-5.5.*
-_MYSQL_PKGSRCDIR.mariadb55=	../../databases/mariadb55-client
-_MYSQL_PKG_PREFIX.mariadb55=	mariadb55
 
 _MYSQL_PKGBASE.mariadb104=	mariadb-client-10.4.*
 _MYSQL_PKGSRCDIR.mariadb104=	../../databases/mariadb104-client

@@ -1,0 +1,32 @@
+$NetBSD: patch-makeinclude.in,v 1.1 2021/05/17 10:38:48 micha Exp $
+
+Use libtool.
+Upstream will not merge this (libtool is listed as not acceptable).
+
+--- makeinclude.in.orig	2021-05-04 17:36:17.000000000 +0000
++++ makeinclude.in
+@@ -152,20 +152,20 @@ UNINSTALL_DESKTOP = @UNINSTALL_DESKTOP@
+ 
+ .o$(EXEEXT):
+ 	echo Linking $@...
+-	$(CXX) $(ARCHFLAGS) $(LDFLAGS) $< $(LINKFLTK) $(LDLIBS) -o $@
++	$(LIBTOOL) --mode=link $(CXX) $(ARCHFLAGS) $(LDFLAGS) $< $(LINKFLTK) $(LDLIBS) -o $@
+ 	$(OSX_ONLY) ../fltk-config --post $@
+ 
+ .c.o:
+ 	echo Compiling $<...
+-	$(CC) -I.. $(ARCHFLAGS) @PNGINC@ @JPEGINC@ @ZLIBINC@ $(CFLAGS) -c $< -o $@
++	$(LIBTOOL) --mode=compile $(CC) -I.. $(ARCHFLAGS) @PNGINC@ @JPEGINC@ @ZLIBINC@ $(CFLAGS) -c $< -o $@
+ 
+ .cxx.o:
+ 	echo Compiling $<...
+-	$(CXX) -I.. $(ARCHFLAGS) @PNGINC@ @JPEGINC@ @ZLIBINC@ $(CXXFLAGS) -c $< -o $@
++	$(LIBTOOL) --mode=compile $(CXX) -I.. $(ARCHFLAGS) @PNGINC@ @JPEGINC@ @ZLIBINC@ $(CXXFLAGS) -c $< -o $@
+ 
+ .mm.o:
+ 	echo Compiling $<...
+-	$(CXX) -I.. $(ARCHFLAGS) $(CXXFLAGS) -x objective-c++ -c $< -o $@
++	$(LIBTOOL) --mode=compile $(CXX) -I.. $(ARCHFLAGS) $(CXXFLAGS) -x objective-c++ -c $< -o $@
+ 
+ 
+ .man.0 .man.1 .man.3 .man.6:

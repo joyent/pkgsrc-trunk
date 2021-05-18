@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.9 2021/04/29 23:30:15 thor Exp $
+# $NetBSD: buildlink3.mk,v 1.11 2021/05/15 11:05:29 nia Exp $
 
 BUILDLINK_TREE+=	fftw
 

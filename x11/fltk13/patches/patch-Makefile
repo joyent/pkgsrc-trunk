@@ -1,0 +1,30 @@
+$NetBSD: patch-Makefile,v 1.1 2021/05/17 10:38:48 micha Exp $
+
+Remove "test" from directory list to build.
+
+--- Makefile.orig	2021-05-04 17:36:17.000000000 +0000
++++ Makefile
+@@ -16,7 +16,7 @@
+ 
+ include makeinclude
+ 
+-DIRS = $(IMAGEDIRS) src $(CAIRODIR) fluid test documentation
++DIRS = $(IMAGEDIRS) src $(CAIRODIR) fluid documentation
+ 
+ all: makeinclude fltk-config
+ 	for dir in $(DIRS); do\
+@@ -24,6 +24,14 @@ all: makeinclude fltk-config
+ 		(cd $$dir; $(MAKE) $(MFLAGS)) || exit 1;\
+ 	done
+ 
++test: makeinclude
++	dir=test;\
++	echo "=== making $$dir ===";\
++	if test ! -f $$dir/makedepend; then\
++		touch $$dir/makedepend;\
++	fi;\
++	(cd $$dir; $(MAKE) $(MFLAGS)) || break;\
++
+ install: makeinclude
+ 	-mkdir -p $(DESTDIR)$(bindir)
+ 	$(RM) $(DESTDIR)$(bindir)/fltk-config

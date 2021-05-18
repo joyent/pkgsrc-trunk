@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3386 2021/05/09 08:28:36 bsiegert Exp $
+# $NetBSD: Makefile,v 1.3392 2021/05/16 16:38:44 bsiegert Exp $
 #
 
 COMMENT=	Development utilities
@@ -402,9 +402,7 @@ SUBDIR+=	gnustep-examples
 SUBDIR+=	gnustep-make
 SUBDIR+=	gnustep-objc
 SUBDIR+=	gnustep-objc-lf2
-SUBDIR+=	go-afero
 SUBDIR+=	go-amber
-SUBDIR+=	go-appengine
 SUBDIR+=	go-argv
 SUBDIR+=	go-assert
 SUBDIR+=	go-blackfriday
@@ -414,7 +412,6 @@ SUBDIR+=	go-cast
 SUBDIR+=	go-check
 SUBDIR+=	go-cli
 SUBDIR+=	go-cmp
-SUBDIR+=	go-cobra
 SUBDIR+=	go-colorable
 SUBDIR+=	go-colortext
 SUBDIR+=	go-colour
@@ -429,7 +426,6 @@ SUBDIR+=	go-flags-svent
 SUBDIR+=	go-fnmatch
 SUBDIR+=	go-fs
 SUBDIR+=	go-fsnotify
-SUBDIR+=	go-fsync
 SUBDIR+=	go-gitmap
 SUBDIR+=	go-glog
 SUBDIR+=	go-gls
@@ -491,7 +487,6 @@ SUBDIR+=	go-thrift
 SUBDIR+=	go-tmc
 SUBDIR+=	go-tools
 SUBDIR+=	go-try
-SUBDIR+=	go-viper
 SUBDIR+=	go-walker
 SUBDIR+=	go-wordwrap
 SUBDIR+=	go-xerrors
@@ -2650,7 +2645,6 @@ SUBDIR+=	py-sortedcontainers
 SUBDIR+=	py-speaklater
 SUBDIR+=	py-stem
 SUBDIR+=	py-stevedore
-SUBDIR+=	py-stompclient
 SUBDIR+=	py-stsci.distutils
 SUBDIR+=	py-subprocess32
 SUBDIR+=	py-subversion

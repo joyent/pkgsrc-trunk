@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.19 2021/02/10 10:20:01 nia Exp $
+# $NetBSD: Makefile,v 1.21 2021/05/13 10:16:19 nia Exp $
 
-VERSION=		1.0
+VERSION=		1.0.1
 DISTNAME=		luasec-${VERSION}
 PKGNAME=		${DISTNAME:S/luasec/${LUA_PKGPREFIX}-sec/}
 CATEGORIES=		security
@@ -17,7 +17,6 @@ DEPENDS+=		${LUA_PKGPREFIX}-socket>=2.0:../../net/lua-socket
 
 USE_TOOLS+=		gmake
 
-#RKSRC=			${WRKDIR}/luasec-${DISTNAME}
 INSTALLATION_DIRS+=	${LUA_CDIR} ${LUA_LDIR}
 
 BUILD_TARGET.SunOS=	solaris

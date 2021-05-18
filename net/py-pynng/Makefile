@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.1 2021/05/11 08:56:00 khorben Exp $
+# $NetBSD: Makefile,v 1.4 2021/05/14 12:31:52 nia Exp $
 
 DISTNAME=	pynng-0.7.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
+PKGREVISION=	1
 CATEGORIES=	net python
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/pynng/}
 
@@ -10,7 +11,14 @@ HOMEPAGE=	https://github.com/codypiersall/pynng
 COMMENT=	Ergonomic bindings for nanomsg next generation (nng) in Python
 LICENSE=	mit
 
-PYTHON_VERSIONS_ACCEPTED=	39 38 37 36
+USE_TOOLS+=	cmake
 
+TOOL_DEPENDS+=	${PYPKGPREFIX}-test-runner-[0-9]*:../../devel/py-test-runner
+DEPENDS+=	${PYPKGPREFIX}-sniffio-[0-9]*:../../misc/py-sniffio
+
+PYTHON_VERSIONS_INCOMPATIBLE=	27
+
+.include "../../devel/libatomic/buildlink3.mk"
 .include "../../lang/python/egg.mk"
+.include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
