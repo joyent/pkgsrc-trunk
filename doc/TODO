@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.20637 2021/05/17 16:10:23 ryoon Exp $
+$NetBSD: TODO,v 1.20650 2021/05/20 12:23:34 wiz Exp $
 
 Suggested new packages
 ======================
@@ -365,12 +365,11 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o GNUMail-1.2.2
 	o Gorm-1.2.26
 	o HElib-2.1.0
-	o ImageMagick-7.0.11.12
 	o ImageMagick6-6.9.12.8
 	o Inter-UI-3.18
 	o JBidwatcher-2.5.6 [wants launch4j]
 	o LPRng-core-3.8.35
-	o MesaLib-21.0.2
+	o MesaLib-21.1.1
 	o MoarVM-2021.03
 	o OdfConverter-4.0
 	o PACK-0.0.4
@@ -766,6 +765,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o darktable-3.4
 	o dash-0.5.11.3
 	o dateutils-0.4.8
+	o dav1d-0.9
 	o dcc-2.3.167
 	o dd_rescue-1.46
 	o dd_rhelp-0.3.0
@@ -904,7 +904,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o fuse-unionfs-2.1
 	o fvwm-devel-2.7.0
 	o fvwm2-themes-0.7.0
-	o fzf-0.27.0
 	o gajim-plugin-omemo-2.8.4
 	o gallery3-3.0.9
 	o gammu-1.42.0
@@ -915,6 +914,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o gcal-4.1
 	o gcc-mips-current-7.1.0
 	o gcc11-11.1.0
+	o gcc8-8.5
 	o gcin-1.5.5
 	o gcloud-golang-metadata-0.12.0
 	o gcombust-0.1.55
@@ -1051,7 +1051,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o golem-0.0.6
 	o goocanvas-2.0.2
 	o google-glog-2.2.2
-	o gopls-0.6.11
 	o goreman-0.3.7
 	o gossip-0.31
 	o got-0.52
@@ -1319,10 +1318,8 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o libgiigic-1.1.2
 	o libgnomekbd-3.4.0.2
 	o libgphoto2-2.5.16
-	o libheif-1.12.0
 	o libhidapi-0.10.1
 	o libiconv-1.16
-	o libidn2-2.3.1
 	o libisoburn-1.5.4
 	o libisofs-1.5.4
 	o libixp-0.5 [breaks wmii-3.6, wait for compatible version; see also wmii+ixp entry]
@@ -1353,7 +1350,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o libretro-sameboy-0.14.3
 	o libslang-2.2.4
 	o libspatialite-5.0.1
-	o libtasn1-4.17.0
 	o libtecla-1.6.3
 	o libthai-0.2.2
 	o libtrace-4.0.16
@@ -1900,7 +1896,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o podcastdl-0.3.3
 	o policyd-weight-0.1.15.2
 	o poppass-4.0.14
-	o poppler-21.05.0
 	o posh-0.14.1
 	o postal-0.72
 	o postgres_exporter-0.9.0
@@ -1957,7 +1952,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o py-angr-9.0.6852
 	o py-astroplan-0.8
 	o py-astroquery-0.4
-	o py-cairo118-1.20.0
 	o py-cares-3.1.1
 	o py-cassa-1.11.0
 	o py-claripy-9.0.6852
@@ -1983,7 +1977,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o py-marisa-0.2.6
 	o py-markdown-3.2.2 [drops python-2.x support]
 	o py-mautrix-0.9.1
-	o py-mercurial-5.8
 	o py-moin-1.9.11
 	o py-munkres-1.1.4
 	o py-musicbrainz-0.7.4
@@ -2015,7 +2008,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o py-syslog-ng-3.31.2
 	o py-terminator-2.1.1
 	o py-tokyocabinet-0.6
-	o py-tortoisehg-5.7.1
 	o py-treq-21.1.0
 	o py-uliweb-0.6
 	o py-unpaddedbase64-2.1.0
@@ -2104,7 +2096,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o ruby-redmine-gitmike-theme-1.2.1
 	o ruby-redmine41-4.2.0
 	o rump-20131213
-	o rust-1.51.0
+	o rust-1.52.1
 	o rvault-0.4
 	o rvm-1.20
 	o sabayon-2.30.1
@@ -2256,7 +2248,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o tomboy-1.10.2
 	o top-3.8beta1
 	o topgit-0.8
-	o tor-browser-10.0.16
 	o toxcore-0.2.12
 	o trafficserver-9.0.1
 	o translate-toolkit-3.3.4
@@ -2406,6 +2397,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o xrmap-flags-2.9
 	o xrmap-hymns-1.4
 	o xsc-1.6
+	o xscreensaver-6.00
 	o xteddy-2.2
 	o xtermcontrol-3.7
 	o xtrace-1.4.0

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.17 2021/04/25 10:50:57 nia Exp $
+# $NetBSD: Makefile,v 1.20 2021/05/19 10:12:34 nia Exp $
 
 DISTNAME=	rust-1.50.0
 PKGNAME=	${DISTNAME:S/rust/rust-bin/1}
@@ -8,11 +8,12 @@ DIST_SUBDIR=	${PKGNAME_NOREV}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://rust-lang.org/
-COMMENT=	Safe, concurrent, practical language (official binaries)
+COMMENT=	Safe, concurrent, practical language (pre-built distribution)
 LICENSE=	mit OR apache-2.0
 
 CONFLICTS+=	rust-[0-9]*
 
+# Rust upstream provided binaries
 ONLY_FOR_PLATFORM+=	Darwin-*-x86_64
 ONLY_FOR_PLATFORM+=	FreeBSD-*-x86_64
 ONLY_FOR_PLATFORM+=	NetBSD-*-x86_64
@@ -20,11 +21,23 @@ ONLY_FOR_PLATFORM+=	Linux-*-aarch64
 ONLY_FOR_PLATFORM+=	Linux-*-i386
 ONLY_FOR_PLATFORM+=	Linux-*-x86_64
 
+# he@NetBSD.org provided binaries
+ONLY_FOR_PLATFORM+=	NetBSD-*-aarch64
+ONLY_FOR_PLATFORM+=	NetBSD-*-earmv7hf
+ONLY_FOR_PLATFORM+=	NetBSD-*-i386
+ONLY_FOR_PLATFORM+=	NetBSD-*-powerpc
+ONLY_FOR_PLATFORM+=	NetBSD-*-sparc64
+
+NETBSD_REPO=	https://cdn.NetBSD.org/pub/pkgsrc/distfiles/LOCAL_PORTS/rust/
+
 CHECK_RELRO_SKIP+=	lib/rustlib/*/bin/*
 
 # The NetBSD bootstraps are built for NetBSD 8 (because rust doesn't
 # build on 7).  Mark earlier versions as broken.
 BROKEN_ON_PLATFORM+=	NetBSD-[1-7].*-*
+
+# Bootstraps built for 9.0.
+BROKEN_ON_PLATFORM+=	NetBSD-8.*-earmv7hf
 
 NO_BUILD=	yes
 USE_TOOLS+=	bash
@@ -38,6 +51,8 @@ INSTALLATION_DIRS=	bin ${PKGMANDIR} share/doc/cargo/bash_completion.d
 .include "../../mk/bsd.prefs.mk"
 
 DISTFILES:=	# empty
+
+# Rust upstream provided binaries
 
 .if !empty(MACHINE_PLATFORM:MDarwin-*-x86_64) || make(distinfo) || make(makesum) || make(mdi)
 RUST_ARCH:=	x86_64-apple-darwin
@@ -72,6 +87,45 @@ RUST_ARCH:=	x86_64-unknown-netbsd
 DISTFILES:=	${DISTFILES} ${DISTNAME}-${RUST_ARCH}.tar.gz
 .endif
 
+# NetBSD provided binaries:
+
+.if !empty(MACHINE_PLATFORM:MNetBSD-*-aarch64) || make(distinfo) || make(makesum) || make(mdi)
+RUST_ARCH:=	aarch64-unknown-netbsd
+DISTFILES:=	${DISTFILES} ${DISTNAME}-${RUST_ARCH}.tar.gz
+SITES.${DISTNAME}-${RUST_ARCH}.tar.gz= \
+		${NETBSD_REPO}
+.endif
+.if !empty(MACHINE_PLATFORM:MNetBSD-*-earmv7hf) || make(distinfo) || make(makesum) || make(mdi)
+RUST_ARCH:=	armv7-unknown-netbsd-eabihf
+DISTFILES:=	${DISTFILES} ${DISTNAME}-${RUST_ARCH}.tar.gz
+SITES.${DISTNAME}-${RUST_ARCH}.tar.gz= \
+		${NETBSD_REPO}
+.endif
+.if !empty(MACHINE_PLATFORM:MNetBSD-*-i386) || make(distinfo) || make(makesum) || make(mdi)
+RUST_ARCH:=	i586-unknown-netbsd
+DISTFILES:=	${DISTFILES} ${DISTNAME}-${RUST_ARCH}.tar.gz
+SITES.${DISTNAME}-${RUST_ARCH}.tar.gz= \
+		${NETBSD_REPO}
+.endif
+.if !empty(MACHINE_PLATFORM:MNetBSD-*-powerpc) || make(distinfo) || make(makesum) || make(mdi)
+RUST_ARCH:=	powerpc-unknown-netbsd90
+DISTFILES:=	${DISTFILES} ${DISTNAME}-${RUST_ARCH}.tar.gz
+SITES.${DISTNAME}-${RUST_ARCH}.tar.gz= \
+		${NETBSD_REPO}
+.  if !empty(OS_VERSION:M8.*)
+RUST_ARCH:=	powerpc-unknown-netbsd
+DISTFILES:=	${DISTFILES} ${DISTNAME}-${RUST_ARCH}.tar.gz
+SITES.${DISTNAME}-${RUST_ARCH}.tar.gz= \
+		${NETBSD_REPO}
+.  endif
+.endif
+.if !empty(MACHINE_PLATFORM:MNetBSD-*-sparc64) || make(distinfo) || make(makesum) || make(mdi)
+RUST_ARCH:=	sparc64-unknown-netbsd
+DISTFILES:=	${DISTFILES} ${DISTNAME}-${RUST_ARCH}.tar.gz
+SITES.${DISTNAME}-${RUST_ARCH}.tar.gz= \
+		${NETBSD_REPO}
+.endif
+
 do-install:
 	cd ${WRKSRC} && env PKGMANDIR=${PKGMANDIR} bash ./install.sh \
 	--destdir=${DESTDIR} --prefix=${PREFIX}
@@ -93,7 +147,7 @@ fix-darwin-install-name:
 	done
 .  endfor
 .  for bin in lldb lldb-mi llvm-nm llvm-objcopy llvm-objdump 	\
-		llvm-profdata llvm-readobj llvm-size llvm-strip	
+		llvm-profdata llvm-readobj llvm-size llvm-strip
 	otool -XL ${DESTDIR}${PREFIX}/lib/rustlib/${RUST_ARCH}/bin/${bin} \
 	    | ${GREP} '@rpath' | while read rpath rest; do		\
 		install_name_tool -change $$rpath			\
@@ -117,13 +171,23 @@ TOOL_DEPENDS+=		patchelf-[0-9]*:../../devel/patchelf
 
 # The llvm utilities need a specific libstdc++ version from compat80
 .  if ${OPSYS} == "NetBSD" && empty(OS_VERSION:M[0-8].*)
+.    if ${MACHINE_ARCH} != "aarch64" && ${MACHINE_ARCH} != "earmv7hf" && \
+        ${MACHINE_ARCH} != "powerpc"
 DEPENDS+=		compat80-[0-9]*:../../emulators/compat80
 RUST_LLVM_RPATH=	${PREFIX}/emul/netbsd/usr/lib:${PREFIX}/lib
 FORCE_RPATH=
+.    else
+RUST_LLVM_RPATH=	${PREFIX}/lib
+.    endif
 .  else
 # ld.elf_so in NetBSD 8.x only obeys RPATH, not RUNPATH, so force RPATH there.
 RUST_LLVM_RPATH=	${PREFIX}/lib
 FORCE_RPATH=		--force-rpath
+.  endif
+
+.  if !empty(MACHINE_PLATFORM:MNetBSD-*-powerpc) || \
+      !empty(MACHINE_PLATFORM:MNetBSD-*-i386)
+.    include "../../devel/libatomic/buildlink3.mk"
 .  endif
 
 .PHONY: fix-relative-rpath
