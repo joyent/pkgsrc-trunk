@@ -1,0 +1,54 @@
+$NetBSD: patch-Makefile,v 1.1 2021/05/20 19:24:15 nia Exp $
+
+Honor CC/CFLAGS/LDFLAGS.
+
+--- Makefile.orig	2000-11-26 19:24:37.000000000 +0000
++++ Makefile
+@@ -13,28 +13,34 @@ SRCS = boxes.c buttons.c checkfile.c dir
+ OBJS = $(SRCS:.c=.o)
+ SHELL = /bin/sh
+ 
+-CC = gcc
+-LDFLAGS = 
++#CC = gcc
++#LDFLAGS = 
+ 
+ ########## CHOOSE YOUR ARCHITECTURE:    (NOTE: also see bplaysrc/Makefile!)
+ 
++OS= $(shell uname -s)
++
++ifeq ($(OS), Linux)
+ # For Linux (and maybe others), use these:
+-CFLAGS = -Wall -O2 -DTURBO_MEDIAN -DTURBO_BUFFER
++CFLAGS += -Wall -DTURBO_MEDIAN -DTURBO_BUFFER
+ DEPS = $(OBJS) makebplay
+ LIBS = -lncurses -lm
+ COPY_A = -a
+-
++else
++ifeq (,$(filter-out NetBSD DragonFly SunOS,$(OS)))
+ # For FreeBSD (and maybe others), use these:
+-#CFLAGS = -Wall -O2 -DTURBO_MEDIAN -DTURBO_BUFFER
+-#DEPS = $(OBJS) makebplay
+-#LIBS = -lncurses -lm
+-#COPY_A = -p
+-
++CFLAGS += -Wall -DTURBO_MEDIAN -DTURBO_BUFFER -DOLD_CURSES
++DEPS = $(OBJS) makebplay
++LIBS = -lcurses -lm
++COPY_A = -p
++else
+ # For IRIX (and maybe others), use these:
+-#CFLAGS = -Wall -O2 -DTURBO_MEDIAN -DTURBO_BUFFER -DSWAP_ENDIAN -DOLD_CURSES
+-#DEPS = $(OBJS)
+-#LIBS = -lcurses -lm
+-#COPY_A = -a
++CFLAGS += -Wall -DTURBO_MEDIAN -DTURBO_BUFFER -DSWAP_ENDIAN -DOLD_CURSES
++DEPS = $(OBJS)
++LIBS = -lcurses -lm
++COPY_A = -a
++endif
++endif
+ 
+ ##########
+ 

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.932 2021/05/12 09:03:29 wiz Exp $
+# $NetBSD: Makefile,v 1.935 2021/05/21 16:38:58 nia Exp $
 #
 
 COMMENT=	Graphics tools and libraries
@@ -72,6 +72,7 @@ SUBDIR+=	cambevao
 SUBDIR+=	camediaplay
 SUBDIR+=	camlimages
 SUBDIR+=	cdlabelgen
+SUBDIR+=	cglm
 SUBDIR+=	charls
 SUBDIR+=	cheese
 SUBDIR+=	cinepaint
@@ -195,6 +196,7 @@ SUBDIR+=	gimp2-wideangle
 SUBDIR+=	giram
 SUBDIR+=	girara
 SUBDIR+=	gl2ps
+SUBDIR+=	glad
 SUBDIR+=	gle
 SUBDIR+=	glew
 SUBDIR+=	glfw
@@ -818,7 +820,6 @@ SUBDIR+=	wld
 SUBDIR+=	wm-icons
 SUBDIR+=	wmphoto
 SUBDIR+=	wxsvg
-SUBDIR+=	x11rec
 SUBDIR+=	xart
 SUBDIR+=	xbmbrowser
 SUBDIR+=	xdot

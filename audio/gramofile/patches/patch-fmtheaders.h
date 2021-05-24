@@ -1,0 +1,93 @@
+$NetBSD: patch-fmtheaders.h,v 1.1 2021/05/20 19:24:15 nia Exp $
+
+Use fixed sizes for fields.
+
+--- fmtheaders.h.orig	2000-03-28 21:07:26.000000000 +0000
++++ fmtheaders.h
+@@ -2,21 +2,22 @@
+ #define _FMTHEADERS_H	1
+ 
+ #include <sys/types.h>
++#include <stdint.h>
+ 
+ /* Definitions for .VOC files */
+ 
+ #define VOC_MAGIC	"Creative Voice File\032"
+ 
+-#define DATALEN(bp)	((u_long)(bp.BlockLen[0]) | \
+-                         ((u_long)(bp.BlockLen[1]) << 8) | \
+-                         ((u_long)(bp.BlockLen[2]) << 16) )
++#define DATALEN(bp)	((uint32_t)(bp.BlockLen[0]) | \
++                         ((uint32_t)(bp.BlockLen[1]) << 8) | \
++                         ((uint32_t)(bp.BlockLen[2]) << 16) )
+ 
+ typedef struct vochead
+   {
+     u_char Magic[20];		/* must be VOC_MAGIC */
+-    u_short BlockOffset;	/* Offset to first block from top of file */
+-    u_short Version;		/* VOC-file version */
+-    u_short IDCode;		/* complement of version + 0x1234 */
++    uint16_t BlockOffset;	/* Offset to first block from top of file */
++    uint16_t Version;		/* VOC-file version */
++    uint16_t IDCode;		/* complement of version + 0x1234 */
+   }
+ vochead;
+ 
+@@ -36,7 +37,7 @@ blockT1;
+ 
+ typedef struct blockT8
+   {
+-    u_short TimeConstant;
++    uint16_t TimeConstant;
+     u_char PackMethod;
+     u_char VoiceMode;
+   }
+@@ -44,10 +45,10 @@ blockT8;
+ 
+ typedef struct blockT9
+   {
+-    u_int SamplesPerSec;
++    uint SamplesPerSec;
+     u_char BitsPerSample;
+     u_char Channels;
+-    u_short Format;
++    uint16_t Format;
+     u_char reserved[4];
+   }
+ blockT9;
+@@ -62,21 +63,21 @@ blockT9;
+  */
+ typedef struct wavhead
+   {
+-    u_long main_chunk;		/* 'RIFF' */
+-    u_long length;		/* Length of rest of file */
+-    u_long chunk_type;		/* 'WAVE' */
+-
+-    u_long sub_chunk;		/* 'fmt ' */
+-    u_long sc_len;		/* length of sub_chunk, =16 (rest of chunk) */
+-    u_short format;		/* should be 1 for PCM-code */
+-    u_short modus;		/* 1 Mono, 2 Stereo */
+-    u_long sample_fq;		/* frequence of sample */
+-    u_long byte_p_sec;
+-    u_short byte_p_spl;		/* samplesize; 1 or 2 bytes */
+-    u_short bit_p_spl;		/* 8, 12 or 16 bit */
++    uint32_t main_chunk;		/* 'RIFF' */
++    uint32_t length;			/* Length of rest of file */
++    uint32_t chunk_type;		/* 'WAVE' */
++
++    uint32_t sub_chunk;			/* 'fmt ' */
++    uint32_t sc_len;			/* length of sub_chunk, =16 (rest of chunk) */
++    uint16_t format;			/* should be 1 for PCM-code */
++    uint16_t modus;			/* 1 Mono, 2 Stereo */
++    uint32_t sample_fq;			/* frequence of sample */
++    uint32_t byte_p_sec;
++    uint16_t byte_p_spl;		/* samplesize; 1 or 2 bytes */
++    uint16_t bit_p_spl;			/* 8, 12 or 16 bit */
+ 
+-    u_long data_chunk;		/* 'data' */
+-    u_long data_length;		/* samplecount (lenth of rest of block?) */
++    uint32_t data_chunk;		/* 'data' */
++    uint32_t data_length;		/* samplecount (lenth of rest of block?) */
+   }
+ wavhead;
+ 

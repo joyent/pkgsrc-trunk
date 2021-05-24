@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.20650 2021/05/20 12:23:34 wiz Exp $
+$NetBSD: TODO,v 1.20671 2021/05/23 19:32:34 nia Exp $
 
 Suggested new packages
 ======================
@@ -578,6 +578,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o afterstep-2.2.12
 	o aide-0.16
 	o akonadi-16.08.1
+	o alacritty-0.8.0
 	o album-4.17
 	o alephone-20150620
 	o alevt-1.6.2
@@ -587,6 +588,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o amiwm-0.21p2
 	o ampache-4.2.5
 	o anope-2.0.9
+	o ansible-4.0
 	o ansifilter-2.9
 	o antiright-8.6
 	o ap-Embperl-1.3.6
@@ -695,7 +697,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o calc-2.11.10.1
 	o calcoo-2.1.0
 	o calibre-4.11.0 [started in wip; needs QtWebEngineCore]
-	o calibre-5.17
+	o calibre-5.18
 	o calligra-3.0.1 [in wip; koffice successor]
 	o camlp4-4.12
 	o camlp5-714
@@ -765,7 +767,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o darktable-3.4
 	o dash-0.5.11.3
 	o dateutils-0.4.8
-	o dav1d-0.9
 	o dcc-2.3.167
 	o dd_rescue-1.46
 	o dd_rhelp-0.3.0
@@ -828,13 +829,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o epubcheck-4.0.2
 	o erfa-1.7.3
 	o eric5-5.4.6
-	o erlang-eimp-1.0.20
-	o erlang-fast_xml-1.1.46
-	o erlang-luerl-0.4
-	o erlang-mqtree-1.0.13
-	o erlang-p1_pgsql-1.1.11
-	o erlang-sqlite3-1.1.12
-	o erlang-xmpp-1.5.3
 	o errcheck-1.6.0
 	o es-0.83
 	o esh-0.8.5
@@ -1061,13 +1055,13 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o gradle-7.0
 	o grafana-7.5.4
 	o grafx2-2.8.3097
-	o gramofile-1.6P
 	o grantlee-5.0.0
 	o graphene-1.10.6
 	o greed-4.2
 	o grep-3.6
 	o gromacs-2021.1
 	o groonga-11.0.1
+	o grpc-1.38.0
 	o gsl-2.6
 	o gss-1.0.3
 	o gst-plugins0.10-bad-0.11.90
@@ -1112,7 +1106,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o heimdal-7.7.0
 	o herisvm-0.8.2
 	o hesiod-3.2.1
-	o hevea-2.35
 	o heyu-2.9.0
 	o hiawatha-10.8.1
 	o hiredis-1.0.0
@@ -1141,7 +1134,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o icinga-base-2.12.3
 	o idzebra-2.2.2
 	o ike-2.0.1 [pkg/37032]
-	o ilmbase-3.0.1
+	o ilmbase-3.0.3
 	o imapfilter-2.7.5
 	o imapsync-1.727
 	o imp-6.2.12
@@ -1394,7 +1387,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o man-pages-5.11
 	o mapcode-2.5.5
 	o mapserver-7.6.2
-	o mariadb-connector-c-3.1.12
 	o marisa-0.2.6
 	o matcha-sns-1.3.8
 	o maelstrom-x11-2.0.7
@@ -1493,7 +1485,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o netbt-hcidump-5.58
 	o netramet-50
 	o newmail-1.0.2
-	o nginx-1.20.0
 	o nickle-2.90
 	o nios2-binutils-2.36.1
 	o nnn-4.0
@@ -1619,7 +1610,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o opencsg-1.4.2
 	o opendnssec-2.1.8
 	o opendoas-6.8.1
-	o openexr-3.0.1
+	o openexr-3.0.3
 	o opengrok-1.7.1
 	o openh323-1.19.1
 	o openimageio-2.2.13.1
@@ -1834,6 +1825,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o pdp11-aout-gcc-9.3.0
 	o pdsh-2.32
 	o pear-SOAP-0.14.0
+	o perl5-5.34.0
 	o pessulus-2.30.3
 	o pg_repack-1.4.6
 	o pgadmin4-1.0
@@ -1968,7 +1960,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o py-goocalendar-0.7.2
 	o py-hgview-1.9.0
 	o py-hyperscan-0.2.0
-	o py-hypothesis-6.12.0
+	o py-hypothesis-6.13.1
 	o py-incremental-21.3.0
 	o py-input-pad-1.4.2
 	o py-keybinder-0.3.2
@@ -1978,6 +1970,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o py-markdown-3.2.2 [drops python-2.x support]
 	o py-mautrix-0.9.1
 	o py-moin-1.9.11
+	o py-more-itertools-8.8.0
 	o py-munkres-1.1.4
 	o py-musicbrainz-0.7.4
 	o py-musicbrainz-ngs-0.7.1
@@ -2182,6 +2175,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o strace-4.23
 	o stratagus-2.2.5.5
 	o streamtuner-2.2.0
+	o sudo-1.9.7
 	o sunclock-3.57 [https://github.com/mdoege/Sunclock]
 	o sup-0.4
 	o superlu-5.2.2
@@ -2231,6 +2225,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o terraform-provider-null-3.1.0
 	o terraform-provider-random-3.1.0
 	o tetrinetx-1.40c
+	o texlab-3.0.1
 	o texworks-0.6.6
 	o tfmxplay-1.1.6
 	o threadingbuildingblocks-2021.2.0
