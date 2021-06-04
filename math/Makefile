@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.500 2021/05/20 07:52:37 wiz Exp $
+# $NetBSD: Makefile,v 1.503 2021/06/03 10:45:23 pin Exp $
 
 COMMENT=	Mathematics
 
@@ -219,7 +219,7 @@ SUBDIR+=	ipopt
 SUBDIR+=	isl
 SUBDIR+=	itpp
 SUBDIR+=	kalgebra
-SUBDIR+=	kalk
+SUBDIR+=	kalker
 SUBDIR+=	kcalc
 SUBDIR+=	kissfft
 SUBDIR+=	lapack
@@ -405,6 +405,7 @@ SUBDIR+=	py-z3solver
 SUBDIR+=	qalculate
 SUBDIR+=	qalculate-gtk
 SUBDIR+=	qhull
+SUBDIR+=	qrupdate
 SUBDIR+=	quadpack
 SUBDIR+=	randlib
 SUBDIR+=	ranger

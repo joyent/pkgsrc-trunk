@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.935 2021/05/21 16:38:58 nia Exp $
+# $NetBSD: Makefile,v 1.939 2021/05/31 22:31:10 wiz Exp $
 #
 
 COMMENT=	Graphics tools and libraries
@@ -66,6 +66,7 @@ SUBDIR+=	breeze-icons
 SUBDIR+=	cairo
 SUBDIR+=	cairo-gobject
 SUBDIR+=	cairomm
+SUBDIR+=	cairomm1.16
 SUBDIR+=	cal3d
 SUBDIR+=	cal3d-examples
 SUBDIR+=	cambevao
@@ -218,9 +219,6 @@ SUBDIR+=	gnome-themes-standard
 SUBDIR+=	gnuplot
 SUBDIR+=	go-gift
 SUBDIR+=	go-image
-SUBDIR+=	go-imaging
-SUBDIR+=	go-resize
-SUBDIR+=	go-smartcrop
 SUBDIR+=	gocr
 SUBDIR+=	goocanvas2
 SUBDIR+=	gource

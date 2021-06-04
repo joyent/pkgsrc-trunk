@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.550 2021/05/17 07:48:27 pin Exp $
+# $NetBSD: Makefile,v 1.552 2021/06/03 14:54:17 taca Exp $
 #
 
 COMMENT=	Miscellaneous utilities
@@ -302,7 +302,6 @@ SUBDIR+=	rpm
 SUBDIR+=	ruby-ansi
 SUBDIR+=	ruby-args_parser
 SUBDIR+=	ruby-bundler
-SUBDIR+=	ruby-bundler1
 SUBDIR+=	ruby-colorator
 SUBDIR+=	ruby-colorize
 SUBDIR+=	ruby-columnize
@@ -316,7 +315,6 @@ SUBDIR+=	ruby-launchy
 SUBDIR+=	ruby-license-acceptance
 SUBDIR+=	ruby-memoizable
 SUBDIR+=	ruby-method_source
-SUBDIR+=	ruby-mimemagic
 SUBDIR+=	ruby-mini_portile2
 SUBDIR+=	ruby-naught
 SUBDIR+=	ruby-ohai

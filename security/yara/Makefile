@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.10 2021/05/14 11:47:57 nia Exp $
+# $NetBSD: Makefile,v 1.12 2021/05/30 01:22:05 khorben Exp $
 
-DISTNAME=	yara-${VERSION}
-PKGREVISION=	1
+DISTNAME=	yara-4.1.1
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GITHUB:=VirusTotal/}
 
 COMMENT=	Pattern matching swiss knife for malware researchers
+LICENSE=	modified-bsd
 
 USE_TOOLS+=	pkg-config automake autoreconf flex
 USE_LIBTOOL=	yes

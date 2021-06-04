@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.1 2021/05/23 15:32:47 nia Exp $
+# $NetBSD: Makefile.common,v 1.5 2021/05/30 16:33:30 nia Exp $
 #
 # used by databases/mariadb105-client/Makefile
 # used by databases/mariadb105-server/Makefile
@@ -14,7 +14,6 @@ LICENSE=	gnu-gpl-v2
 
 DISTINFO_FILE?=	${.CURDIR}/../../databases/mariadb105-client/distinfo
 PATCHDIR?=	${.CURDIR}/../../databases/mariadb105-client/patches
-MESSAGE_SRC+=	${.CURDIR}/../../databases/mariadb105-client/MESSAGE
 
 USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
@@ -24,32 +23,13 @@ PLIST_SRC=	${PLIST_SRC_DFLT}
 
 .include "../../mk/bsd.prefs.mk"
 
-# home directory (location of the databases)
-.if !empty(MYSQL_DATADIR)
-MARIADB_DATADIR?=	${MYSQL_DATADIR}
-.else
-MARIADB_DATADIR?=	${VARBASE}/db/mariadb
-.endif
-
-# default character set
-.if !empty(MYSQL_CHARSET)
-MARIADB_CHARSET?=	${MYSQL_CHARSET}
-.else
-MARIADB_CHARSET?=	utf8mb4
-.endif
-
-# additional character set to be compiled in
-.if !empty(MYSQL_COLLATION)
-MARIADB_COLLATION?=	${MYSQL_COLLATION}
-.else
-MARIADB_COLLATION?=	utf8mb4_unicode_ci
-.endif
-
-.if !empty(MYSQL_EXTRA_CHARSET)
-MARIADB_EXTRA_CHARSET?=	${MYSQL_EXTRA_CHARSET}
-.else
-MARIADB_EXTRA_CHARSET?=	all
-.endif
+#
+# Use MySQL defaults if set.
+#
+MARIADB_DATADIR?=	${MYSQL_DATADIR:U${VARBASE}/db/mariadb}
+MARIADB_CHARSET?=	${MYSQL_CHARSET:Uutf8mb4}
+MARIADB_COLLATION?=	${MYSQL_COLLATION:Uutf8mb4_unicode_ci}
+MARIADB_EXTRA_CHARSET?=	${MYSQL_EXTRA_CHARSET:Uall}
 
 BUILD_DEFS+=		VARBASE
 
@@ -104,9 +84,7 @@ CMAKE_ARGS+=		-DTOKUDB_OK=OFF
 CMAKE_ARGS+=		-DDTRACE_FLAGS="-${ABI}"
 .endif
 
-CPPFLAGS.NetBSD+=	-D_NETBSD_SOURCE
-
-CPPFLAGS.SunOS+=	-fPIC
+CFLAGS.SunOS+=		-fPIC
 
 REPLACE_PERL+=		scripts/mytop.sh
 REPLACE_PERL+=		sql-bench/*.sh
@@ -130,4 +108,5 @@ PKGCONFIG_OVERRIDE+=	libmariadb/mariadb_config/libmariadb.pc.in
 .include "../../mk/curses.buildlink3.mk"
 .include "../../mk/dlopen.buildlink3.mk"
 BUILDLINK_TRANSFORM+=	opt:-ldl:${BUILDLINK_LDADD.dl:Q}
+.include "../../mk/krb5.buildlink3.mk"
 .include "../../mk/readline.buildlink3.mk"

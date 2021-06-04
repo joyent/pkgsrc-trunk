@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.41 2021/05/20 12:23:24 wiz Exp $
+# $NetBSD: Makefile,v 1.43 2021/06/03 06:54:59 nia Exp $
 
 DISTNAME=	zstd-1.5.0
 CATEGORIES=	archivers
@@ -42,6 +42,9 @@ MAKE_FLAGS+=		INSTALL=${INSTALL:Q}
 
 BUILD_TARGET=		allmost
 TEST_TARGET=		test
+
+# Needed for nanosleep() on Solaris 10, PR pkg/56225
+LDFLAGS.SunOS+=		-lrt
 
 .include "../../archivers/lz4/buildlink3.mk"
 .include "../../archivers/xz/buildlink3.mk"

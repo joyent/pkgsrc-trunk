@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1227 2021/05/13 09:50:27 wiz Exp $
+# $NetBSD: Makefile,v 1.1230 2021/05/31 22:31:25 wiz Exp $
 #
 
 COMMENT=	Text processing utilities (does not include desktop publishing)
@@ -471,6 +471,7 @@ SUBDIR+=	libxls
 SUBDIR+=	libxlsxwriter
 SUBDIR+=	libxml
 SUBDIR+=	libxml++
+SUBDIR+=	libxml++5.0
 SUBDIR+=	libxml2
 SUBDIR+=	libxslt
 SUBDIR+=	libyaml
@@ -514,6 +515,7 @@ SUBDIR+=	metauml
 SUBDIR+=	migemo
 SUBDIR+=	migemo-elisp
 SUBDIR+=	miller
+SUBDIR+=	molybdenum
 SUBDIR+=	multimarkdown
 SUBDIR+=	mxml
 SUBDIR+=	mythes
@@ -853,6 +855,7 @@ SUBDIR+=	py-anyjson
 SUBDIR+=	py-babelfish
 SUBDIR+=	py-biplist
 SUBDIR+=	py-black
+SUBDIR+=	py-bracex
 SUBDIR+=	py-cElementTree
 SUBDIR+=	py-cabocha
 SUBDIR+=	py-cmTemplate
@@ -996,6 +999,7 @@ SUBDIR+=	py-ujson
 SUBDIR+=	py-uritemplate
 SUBDIR+=	py-validators
 SUBDIR+=	py-vobject
+SUBDIR+=	py-wcmatch
 SUBDIR+=	py-webencodings
 SUBDIR+=	py-xapian
 SUBDIR+=	py-xlrd

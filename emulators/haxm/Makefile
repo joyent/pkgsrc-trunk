@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.17 2021/02/05 16:18:51 kamil Exp $
+# $NetBSD: Makefile,v 1.19 2021/05/31 12:58:50 nia Exp $
 
 DISTNAME=	haxm-7.5.6
 CATEGORIES=	emulators
@@ -12,6 +12,7 @@ LICENSE=	modified-bsd
 
 ONLY_FOR_PLATFORM=	NetBSD-*-x86_64
 OSVERSION_SPECIFIC=	YES
+USE_BSD_MAKEFILE=	YES
 
 BUILD_DEPENDS+=	nasm-[0-9]*:../../devel/nasm
 
@@ -31,7 +32,8 @@ PKG_FAIL_REASON+=	"BSDSRCDIR/sys specifies non-existing directory ${BSDSRCDIR}/s
 
 .include "../../mk/compiler.mk"
 
-CFLAGS+=	-Wno-error=address-of-packed-member
+MAKE_FLAGS+=	NOCLANGERROR=1
+MAKE_FLAGS+=	NOGCCERROR=1
 
 KMOD=		haxm.kmod
 KMODULEDIR=	stand/${MACHINE}/${OS_VERSION}/modules/haxm

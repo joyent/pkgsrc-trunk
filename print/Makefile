@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.808 2021/05/04 14:12:05 prlw1 Exp $
+# $NetBSD: Makefile,v 1.810 2021/06/03 04:30:44 markd Exp $
 #
 
 COMMENT=	Desktop publishing
@@ -135,6 +135,7 @@ SUBDIR+=	py-latexcodec
 SUBDIR+=	py-octoprint
 SUBDIR+=	py-octoprint-filecheck
 SUBDIR+=	py-octoprint-firmwarecheck
+SUBDIR+=	py-octoprint-pisupport
 SUBDIR+=	py-pisa
 SUBDIR+=	py-pslib
 SUBDIR+=	py-reportlab
@@ -272,6 +273,7 @@ SUBDIR+=	tex-babel-dutch
 SUBDIR+=	tex-babel-english
 SUBDIR+=	tex-babel-esperanto
 SUBDIR+=	tex-babel-estonian
+SUBDIR+=	tex-babel-finnish
 SUBDIR+=	tex-babel-french
 SUBDIR+=	tex-babel-friulan
 SUBDIR+=	tex-babel-galician

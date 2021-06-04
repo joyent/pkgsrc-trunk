@@ -1,36 +1,19 @@
-# $NetBSD: Makefile,v 1.5 2021/05/24 19:49:29 wiz Exp $
+# $NetBSD: Makefile,v 1.7 2021/05/26 11:24:56 nia Exp $
 
 PKGNAME=	${DISTNAME:S/-/-server-/}
-PKGREVISION=	3
+PKGREVISION=	4
 COMMENT=	MariaDB 10.4, a free MySQL compatible database (server)
 
 CONFLICTS=	mysql-server-[0-9]*
 
 .include "../../databases/mariadb104-client/Makefile.common"
 
-CMAKE_ARGS+=		-DPYTHON_SHEBANG=${PYTHONBIN}
-
 BUILD_DEFS+=		VARBASE
 
 .include "../../mk/bsd.fast.prefs.mk"
 
-.if !empty(MYSQL_DATADIR)
-MARIADB_DATADIR?=	${MYSQL_DATADIR}
-.else
-MARIADB_DATADIR?=	${VARBASE}/db/mariadb
-.endif
-
-.if !empty(MYSQL_USER)
-MARIADB_USER?=		${MYSQL_USER}
-.else
-MARIADB_USER?=		mariadb
-.endif
-
-.if !empty(MYSQL_GROUP)
-MARIADB_GROUP?=		${MYSQL_GROUP}
-.else
-MARIADB_GROUP?=		mariadb
-.endif
+MARIADB_USER?=		${MYSQL_USER:Umariadb}
+MARIADB_GROUP?=		${MYSQL_GROUP:Umariadb}
 
 PKG_USERS_VARS+=	MARIADB_USER
 PKG_GROUPS_VARS+=	MARIADB_GROUP
@@ -63,15 +46,10 @@ post-install:
 	${CHMOD} +x ${DESTDIR}${PREFIX}/bin/mysql_install_db
 
 .include "options.mk"
-.include "../../archivers/lz4/buildlink3.mk"
+.include "../../archivers/bzip2/buildlink3.mk"
+.include "../../archivers/xz/buildlink3.mk"
 .include "../../databases/mariadb104-client/buildlink3.mk"
-.include "../../devel/boost-libs/buildlink3.mk"
 .include "../../devel/libexecinfo/buildlink3.mk"
-.include "../../devel/libjudy/buildlink3.mk"
-.include "../../devel/msgpack/buildlink3.mk"
-.include "../../devel/pcre/buildlink3.mk"
-.include "../../devel/snappy/buildlink3.mk"
-.include "../../lang/python/application.mk"
 .include "../../security/tcp_wrappers/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

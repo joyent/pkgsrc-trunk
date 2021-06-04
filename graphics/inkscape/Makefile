@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.232 2021/05/24 19:52:22 wiz Exp $
+# $NetBSD: Makefile,v 1.234 2021/06/04 08:19:29 wiz Exp $
 
 DISTNAME=	inkscape-1.0.2
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	graphics
 MASTER_SITES=	https://media.inkscape.org/dl/resources/file/
 EXTRACT_SUFX=	.tar.xz
@@ -14,15 +14,15 @@ LICENSE=	gnu-gpl-v2
 WRKSRC=		${WRKDIR}/inkscape-1.0.2_2021-01-15_e86c870879
 
 .if !exists(/usr/bin/iconv)
-BUILD_DEPENDS+=	libiconv-[0-9]*:../../converters/libiconv
+BUILD_DEPENDS+=		libiconv-[0-9]*:../../converters/libiconv
 .endif
-DEPENDS+=	adwaita-icon-theme>0:../../graphics/adwaita-icon-theme
-DEPENDS+=	${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
+DEPENDS+=		adwaita-icon-theme>0:../../graphics/adwaita-icon-theme
+DEPENDS+=		${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 # for inkex.py, needed by most python extension scripts
-DEPENDS+=	${PYPKGPREFIX}-lxml-[0-9]*:../../textproc/py-lxml
+DEPENDS+=		${PYPKGPREFIX}-lxml-[0-9]*:../../textproc/py-lxml
 # for desktop
-TOOL_DEPENDS+=	gettext-tools-[0-9]*:../../devel/gettext-tools
-TOOLS_PLATFORM.msgfmt= # empty
+TOOL_DEPENDS+=		gettext-tools-[0-9]*:../../devel/gettext-tools
+TOOLS_PLATFORM.msgfmt=	# empty
 
 EXTRACT_USING=		bsdtar
 GCC_REQD+=		4.5.2
