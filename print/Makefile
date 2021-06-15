@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.810 2021/06/03 04:30:44 markd Exp $
+# $NetBSD: Makefile,v 1.814 2021/06/07 01:12:38 markd Exp $
 #
 
 COMMENT=	Desktop publishing
@@ -749,6 +749,8 @@ SUBDIR+=	tex-fwlw
 SUBDIR+=	tex-fwlw-doc
 SUBDIR+=	tex-g-brief
 SUBDIR+=	tex-g-brief-doc
+SUBDIR+=	tex-gckanbun
+SUBDIR+=	tex-gckanbun-doc
 SUBDIR+=	tex-gentle-doc
 SUBDIR+=	tex-gentombow
 SUBDIR+=	tex-gentombow-doc
@@ -966,6 +968,8 @@ SUBDIR+=	tex-latex-brochure-doc
 SUBDIR+=	tex-latex-course-doc
 SUBDIR+=	tex-latex-doc
 SUBDIR+=	tex-latex-doc-ptr-doc
+SUBDIR+=	tex-latex-firstaid-dev
+SUBDIR+=	tex-latex-firstaid-dev-doc
 SUBDIR+=	tex-latex-graphics-companion-doc
 SUBDIR+=	tex-latex-referenz-doc
 SUBDIR+=	tex-latex-tabellen-doc
@@ -1197,6 +1201,8 @@ SUBDIR+=	tex-pdfescape
 SUBDIR+=	tex-pdfescape-doc
 SUBDIR+=	tex-pdflscape
 SUBDIR+=	tex-pdflscape-doc
+SUBDIR+=	tex-pdfmanagement-testphase
+SUBDIR+=	tex-pdfmanagement-testphase-doc
 SUBDIR+=	tex-pdfpages
 SUBDIR+=	tex-pdfpages-doc
 SUBDIR+=	tex-pdftex
@@ -1460,7 +1466,6 @@ SUBDIR+=	tex-texdoctk
 SUBDIR+=	tex-texdoctk-doc
 SUBDIR+=	tex-texinfo
 SUBDIR+=	tex-texlive-common-doc
-SUBDIR+=	tex-texlive-docindex-doc
 SUBDIR+=	tex-texlive-en-doc
 SUBDIR+=	tex-texlive-scripts
 SUBDIR+=	tex-texlive-scripts-doc

@@ -1,26 +1,37 @@
-# $NetBSD: Makefile,v 1.36 2020/08/24 04:52:24 gutteridge Exp $
+# $NetBSD: Makefile,v 1.39 2021/06/11 21:30:39 gutteridge Exp $
 
-DISTNAME=	blackbox-0.65.0
-PKGREVISION=	7
+DISTNAME=	blackbox-0.77
+PKGREVISION=	1
 CATEGORIES=	wm x11
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=blackboxwm/}
+MASTER_SITES=	${MASTER_SITE_GITHUB:=bbidulock/}
+GITHUB_PROJECT=	blackboxwm
+GITHUB_RELEASE=	${PKGVERSION_NOREV}
+EXTRACT_SUFX=	.tar.lz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://github.com/bradleythughes/blackbox
+HOMEPAGE=	https://github.com/bbidulock/blackboxwm
 COMMENT=	Small and fast X11 window manager
 LICENSE=	mit
 
-DEPENDS+=	bsetroot>=0.1nb1:../../wm/bsetroot
+CONFLICTS=	bsetroot-[0-9]*
+CONFLICTS+=	blackbox70-[0-9]*
+SUPERSEDES+=	blackbox70-[0-9]*
+PREV_PKGPATH=	wm/blackbox70
 
-CONFLICTS+=	blackbox70>=0.70.1
-
-USE_LANGUAGES=	c c++
+USE_LANGUAGES=	c c++03
+USE_LIBTOOL=	yes
+USE_TOOLS+=	pkg-config
 GNU_CONFIGURE=	YES
+
+REPLACE_SH=	util/bsetbg
+
+CXXFLAGS.Linux+=	-fpermissive
+CXXFLAGS.SunOS+=	-fpermissive
 
 BUILDLINK_DEPMETHOD.libXt?=	build
 
-.include "../../devel/gettext-lib/buildlink3.mk"
-.include "../../x11/libSM/buildlink3.mk"
+.include "options.mk"
+
 .include "../../x11/libX11/buildlink3.mk"
 .include "../../x11/libXt/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

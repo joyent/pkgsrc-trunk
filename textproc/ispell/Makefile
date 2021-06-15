@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.29 2021/01/24 15:53:02 nia Exp $
-#
+# $NetBSD: Makefile,v 1.31 2021/06/10 23:43:26 gutteridge Exp $
 
-DISTNAME=	ispell-3.4.02
+.include	"Makefile.common"
+
 CATEGORIES=	textproc
 MASTER_SITES=	https://www.cs.hmc.edu/~geoff/tars/
 
@@ -21,7 +21,6 @@ MAKE_JOBS_SAFE=	no
 .if exists(/usr/include/inttypes.h) && empty(MACHINE_PLATFORM:MIRIX-5.3-*)
 CFLAGS+=	-DHAVE_INTTYPES_H
 .endif
-
 
 .if ${OPSYS} == "SunOS"
 EXTRADICT=	/usr/dict/words

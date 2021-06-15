@@ -67,12 +67,13 @@ I. The pkgsrc user's guide
 
             5.1.1. Finding binary packages
             5.1.2. Installing binary packages
-            5.1.3. Deinstalling packages
-            5.1.4. Getting information about installed packages
-            5.1.5. Checking for security vulnerabilities in installed packages
-            5.1.6. Finding if newer versions of your installed packages are in
+            5.1.3. Updating packages
+            5.1.4. Deinstalling packages
+            5.1.5. Getting information about installed packages
+            5.1.6. Checking for security vulnerabilities in installed packages
+            5.1.7. Finding if newer versions of your installed packages are in
                 pkgsrc
-            5.1.7. Other administrative functions
+            5.1.8. Other administrative functions
 
         5.2. Building packages from source
 
@@ -328,7 +329,7 @@ II. The pkgsrc developer's guide
 
             21.4.1. C, C++, and Fortran
             21.4.2. Java
-            21.4.3. Packages containing perl scripts
+            21.4.3. Packages containing Perl scripts
             21.4.4. Packages containing shell scripts
             21.4.5. Other programming languages
 
@@ -347,21 +348,18 @@ II. The pkgsrc developer's guide
             21.6.3. Installing highscore files
             21.6.4. Adding DESTDIR support to packages
             21.6.5. Packages with hardcoded paths to other interpreters
-            21.6.6. Packages installing perl modules
+            21.6.6. Packages installing Perl modules
             21.6.7. Packages installing info files
             21.6.8. Packages installing man pages
-            21.6.9. Packages installing GConf data files
-            21.6.10. Packages installing scrollkeeper/rarian data files
-            21.6.11. Packages installing X11 fonts
-            21.6.12. Packages installing GTK2 modules
-            21.6.13. Packages installing SGML or XML data
-            21.6.14. Packages installing extensions to the MIME database
-            21.6.15. Packages using intltool
-            21.6.16. Packages installing startup scripts
-            21.6.17. Packages installing TeX modules
-            21.6.18. Packages supporting running binaries in emulation
-            21.6.19. Packages installing hicolor theme icons
-            21.6.20. Packages installing desktop files
+            21.6.9. Packages installing X11 fonts
+            21.6.10. Packages installing SGML or XML data
+            21.6.11. Packages installing extensions to the MIME database
+            21.6.12. Packages using intltool
+            21.6.13. Packages installing startup scripts
+            21.6.14. Packages installing TeX modules
+            21.6.15. Packages supporting running binaries in emulation
+            21.6.16. Packages installing hicolor icons
+            21.6.17. Packages installing desktop files
 
         21.7. Marking packages as having problems
 
@@ -721,12 +719,13 @@ Table of Contents
 
         5.1.1. Finding binary packages
         5.1.2. Installing binary packages
-        5.1.3. Deinstalling packages
-        5.1.4. Getting information about installed packages
-        5.1.5. Checking for security vulnerabilities in installed packages
-        5.1.6. Finding if newer versions of your installed packages are in
+        5.1.3. Updating packages
+        5.1.4. Deinstalling packages
+        5.1.5. Getting information about installed packages
+        5.1.6. Checking for security vulnerabilities in installed packages
+        5.1.7. Finding if newer versions of your installed packages are in
             pkgsrc
-        5.1.7. Other administrative functions
+        5.1.8. Other administrative functions
 
     5.2. Building packages from source
 
@@ -1053,11 +1052,12 @@ Table of Contents
 
     5.1.1. Finding binary packages
     5.1.2. Installing binary packages
-    5.1.3. Deinstalling packages
-    5.1.4. Getting information about installed packages
-    5.1.5. Checking for security vulnerabilities in installed packages
-    5.1.6. Finding if newer versions of your installed packages are in pkgsrc
-    5.1.7. Other administrative functions
+    5.1.3. Updating packages
+    5.1.4. Deinstalling packages
+    5.1.5. Getting information about installed packages
+    5.1.6. Checking for security vulnerabilities in installed packages
+    5.1.7. Finding if newer versions of your installed packages are in pkgsrc
+    5.1.8. Other administrative functions
 
 5.2. Building packages from source
 
@@ -1091,8 +1091,8 @@ yourself, which is explained in Section 4.2, "Bootstrapping pkgsrc".
 5.1.1. Finding binary packages
 
 To install binary packages, you first need to know from where to get them. The
-first place where you should look is on the main pkgsrc FTP server in the
-directory /pub/pkgsrc/packages.
+first place where you should look is on the main pkgsrc CDN in the directory /
+pub/pkgsrc/packages.
 
 This directory contains binary packages for multiple platforms. First, select
 your operating system. (Ignore the directories with version numbers attached to
@@ -1110,17 +1110,16 @@ tools for managing binary packages and the database of installed packages).
 
 In the directory from the last section, there is a subdirectory called All/,
 which contains all the binary packages that are available for the platform,
-excluding those that may not be distributed via FTP or CDROM (depending on
-which medium you are using).
+excluding those that may not be distributed via HTTP or FTP.
 
 To install packages directly from an FTP or HTTP server, run the following
 commands in a Bourne-compatible shell (be sure to su to root first):
 
-# PATH="/usr/pkg/sbin:$PATH"
-
-# PKG_PATH="http://cdn.NetBSD.org/pub/pkgsrc/packages"
+# PATH="/usr/pkg/sbin:/usr/pkg/bin:$PATH"
+# PKG_PATH="https://cdn.NetBSD.org/pub/pkgsrc/packages"
 # PKG_PATH="$PKG_PATH/OPSYS/ARCH/VERSIONS/All/"
 # export PATH PKG_PATH
+# pkg_add pkgin
 
 Instead of URLs, you can also use local paths, for example if you are
 installing from a set of CDROMs, DVDs or an NFS-mounted repository. If you want
@@ -1129,48 +1128,55 @@ in PKG_PATH.
 
 After these preparations, installing a package is very easy:
 
-# pkg_add libreoffice
-# pkg_add ap24-php71-*
+# pkgin search nginx
+nginx-1.19.6         Lightweight HTTP server and mail proxy server
+nginx-1.18.0nb8      Lightweight HTTP server and mail proxy server
+# pkgin install zsh nginx-1.19.6 vim
 
-Note that any prerequisite packages needed to run the package in question will
-be installed, too, assuming they are present where you install from.
+Note that pkgin is a user-friendly frontend to the pkg_* tools.
 
-Adding packages might install vulnerable packages. Thus you should run 
-pkg_admin audit regularly, especially after installing new packages, and verify
-that the vulnerabilities are acceptable for your configuration.
+Any prerequisite packages needed to run the package in question will be
+installed, too, assuming they are present in the repository.
 
 After you've installed packages, be sure to have /usr/pkg/bin and /usr/pkg/sbin
 in your PATH so you can actually start the just installed program.
 
-5.1.3. Deinstalling packages
+5.1.3. Updating packages
+
+To update binary packages, it is recommended that you use pkgin upgrade. This
+will compare the remote package repository to your locally installed packages
+and safely replace any older packages.
+
+Note that pkgsrc is released as quarterly branches. If you are updating to a
+newer quarterly branch of pkgsrc, you may need to adjust the repository in /usr
+/pkg/etc/pkgin/repositories.conf.
+
+5.1.4. Deinstalling packages
 
 To deinstall a package, it does not matter whether it was installed from source
-code or from a binary package. The pkg_delete command does not know it anyway.
-To delete a package, you can just run pkg_delete package-name. The package name
-can be given with or without version number. Wildcards can also be used to
-deinstall a set of packages, for example *emacs*. Be sure to include them in
-quotes, so that the shell does not expand them before pkg_delete sees them.
+code or from a binary package. Neither the pkgin or the pkg_delete command need
+to know.
 
-The -r option is very powerful: it removes all the packages that require the
-package in question and then removes the package itself. For example:
+To delete a package, you can just run pkgin remove package-name. The package
+name can be given with or without version number.
 
-# pkg_delete -r jpeg
-
-
-will remove jpeg and all the packages that used it; this allows upgrading the
-jpeg package.
-
-5.1.4. Getting information about installed packages
+5.1.5. Getting information about installed packages
 
 The pkg_info shows information about installed packages or binary package
-files.
+files. As with other management tools, it works with packages installed from
+source or binaries.
 
-5.1.5. Checking for security vulnerabilities in installed packages
+5.1.6. Checking for security vulnerabilities in installed packages
 
-The pkgsrc Security Team and Packages Groups maintain a list of known security
+The pkgsrc Security Team and Packages Groups maintain a list of known
 vulnerabilities to packages which are (or have been) included in pkgsrc. The
-list is available from the NetBSD FTP site at http://ftp.NetBSD.org/pub/NetBSD/
+list is available from the NetBSD CDN at https://cdn.NetBSD.org/pub/NetBSD/
 packages/vulns/pkg-vulnerabilities.
+
+Please note that not every "vulnerability" with a CVE assignment is exploitable
+in every configuration. Some bugs are marked as active simply because an fix
+was not marked as such. Operating system specific hardening and mitigation
+features may also reduce the impact of bugs.
 
 Through pkg_admin fetch-pkg-vulnerabilities, this list can be downloaded
 automatically, and a security audit of all packages installed on a system can
@@ -1212,20 +1218,17 @@ check_pkg_vulnerabilities=YES
 
 see daily.conf(5) and security.conf(5) for more details.
 
-5.1.6. Finding if newer versions of your installed packages are in pkgsrc
+5.1.7. Finding if newer versions of your installed packages are in pkgsrc
 
 Install pkgtools/lintpkgsrc and run lintpkgsrc with the "-i" argument to check
-if your packages are up-to-date, e.g.
+if any packages are stale, e.g.
 
 % lintpkgsrc -i
 ...
 Version mismatch: 'tcsh' 6.09.00 vs 6.10.00
 
 
-You can then use make update to update the package on your system and rebuild
-any dependencies.
-
-5.1.7. Other administrative functions
+5.1.8. Other administrative functions
 
 The pkg_admin executes various administrative functions on the package system.
 
@@ -2575,7 +2578,7 @@ following two tools (installed as part of the pkgtools/pkg_install package):
     by output to stdout, including a description of the type of vulnerability,
     and a URL containing more information.
 
-Use of these tools is strongly recommended! See Section 5.1.5, "Checking for
+Use of these tools is strongly recommended! See Section 5.1.6, "Checking for
 security vulnerabilities in installed packages" for instructions on how to
 automate checking and reporting.
 
@@ -2825,7 +2828,7 @@ Table of Contents
 
         21.4.1. C, C++, and Fortran
         21.4.2. Java
-        21.4.3. Packages containing perl scripts
+        21.4.3. Packages containing Perl scripts
         21.4.4. Packages containing shell scripts
         21.4.5. Other programming languages
 
@@ -2844,21 +2847,18 @@ Table of Contents
         21.6.3. Installing highscore files
         21.6.4. Adding DESTDIR support to packages
         21.6.5. Packages with hardcoded paths to other interpreters
-        21.6.6. Packages installing perl modules
+        21.6.6. Packages installing Perl modules
         21.6.7. Packages installing info files
         21.6.8. Packages installing man pages
-        21.6.9. Packages installing GConf data files
-        21.6.10. Packages installing scrollkeeper/rarian data files
-        21.6.11. Packages installing X11 fonts
-        21.6.12. Packages installing GTK2 modules
-        21.6.13. Packages installing SGML or XML data
-        21.6.14. Packages installing extensions to the MIME database
-        21.6.15. Packages using intltool
-        21.6.16. Packages installing startup scripts
-        21.6.17. Packages installing TeX modules
-        21.6.18. Packages supporting running binaries in emulation
-        21.6.19. Packages installing hicolor theme icons
-        21.6.20. Packages installing desktop files
+        21.6.9. Packages installing X11 fonts
+        21.6.10. Packages installing SGML or XML data
+        21.6.11. Packages installing extensions to the MIME database
+        21.6.12. Packages using intltool
+        21.6.13. Packages installing startup scripts
+        21.6.14. Packages installing TeX modules
+        21.6.15. Packages supporting running binaries in emulation
+        21.6.16. Packages installing hicolor icons
+        21.6.17. Packages installing desktop files
 
     21.7. Marking packages as having problems
 
@@ -2955,7 +2955,10 @@ mostly historical and has no further meaning.
     Usually it is the pkgsrc directory name together with the version number.
     It must match the regular expression ^[A-Za-z0-9][A-Za-z0-9-_.+]*$, that
     is, it starts with a letter or digit, and contains only letters, digits,
-    dashes, underscores, dots and plus signs.
+    dashes, underscores, dots and plus signs. New packages should have entirely
+    lower-case names, with the exception of some that must follow pre-existing
+    conventions (e.g. R packages begin with R-). You can use the :tl variable
+    modifier to lower-case the package name.
 
   * CATEGORIES is a list of categories which the package fits in. You can
     choose any of the top-level directories of pkgsrc for it.
@@ -6033,7 +6036,7 @@ Table of Contents
 
     21.4.1. C, C++, and Fortran
     21.4.2. Java
-    21.4.3. Packages containing perl scripts
+    21.4.3. Packages containing Perl scripts
     21.4.4. Packages containing shell scripts
     21.4.5. Other programming languages
 
@@ -6052,21 +6055,18 @@ Table of Contents
     21.6.3. Installing highscore files
     21.6.4. Adding DESTDIR support to packages
     21.6.5. Packages with hardcoded paths to other interpreters
-    21.6.6. Packages installing perl modules
+    21.6.6. Packages installing Perl modules
     21.6.7. Packages installing info files
     21.6.8. Packages installing man pages
-    21.6.9. Packages installing GConf data files
-    21.6.10. Packages installing scrollkeeper/rarian data files
-    21.6.11. Packages installing X11 fonts
-    21.6.12. Packages installing GTK2 modules
-    21.6.13. Packages installing SGML or XML data
-    21.6.14. Packages installing extensions to the MIME database
-    21.6.15. Packages using intltool
-    21.6.16. Packages installing startup scripts
-    21.6.17. Packages installing TeX modules
-    21.6.18. Packages supporting running binaries in emulation
-    21.6.19. Packages installing hicolor theme icons
-    21.6.20. Packages installing desktop files
+    21.6.9. Packages installing X11 fonts
+    21.6.10. Packages installing SGML or XML data
+    21.6.11. Packages installing extensions to the MIME database
+    21.6.12. Packages using intltool
+    21.6.13. Packages installing startup scripts
+    21.6.14. Packages installing TeX modules
+    21.6.15. Packages supporting running binaries in emulation
+    21.6.16. Packages installing hicolor icons
+    21.6.17. Packages installing desktop files
 
 21.7. Marking packages as having problems
 
@@ -7007,9 +7007,9 @@ variables:
     implementation dependency. It may be used to set JAVA_HOME to a good value
     if the program needs this variable to be defined.
 
-21.4.3. Packages containing perl scripts
+21.4.3. Packages containing Perl scripts
 
-If your package contains interpreted perl scripts, add "perl" to the USE_TOOLS
+If your package contains interpreted Perl scripts, add "perl" to the USE_TOOLS
 variable and set REPLACE_PERL to ensure that the proper interpreter path is
 set. REPLACE_PERL should contain a list of scripts, relative to WRKSRC, that
 you want adjusted. Every occurrence of */bin/perl in a she-bang line will be
@@ -7018,7 +7018,7 @@ replaced with the full path to the perl executable.
 If a particular version of perl is needed, set the PERL5_REQD variable to the
 version number. The default is "5.0".
 
-See Section 21.6.6, "Packages installing perl modules" for information about
+See Section 21.6.6, "Packages installing Perl modules" for information about
 handling perl modules.
 
 21.4.4. Packages containing shell scripts
@@ -7388,7 +7388,7 @@ as root ("destdir") or the package can install as non-root user ("user-destdir"
 21.6.5. Packages with hardcoded paths to other interpreters
 
 Your package may also contain scripts with hardcoded paths to other
-interpreters besides (or as well as) perl. To correct the full pathname to the
+interpreters besides (or as well as) Perl. To correct the full pathname to the
 script interpreter, you need to set the following definitions in your Makefile
 (we shall use tclsh in this example):
 
@@ -7402,7 +7402,7 @@ Note
 
 Before March 2006, these variables were called _REPLACE.* and _REPLACE_FILES.*.
 
-21.6.6. Packages installing perl modules
+21.6.6. Packages installing Perl modules
 
 Makefiles of packages providing perl5 modules should include the Makefile
 fragment ../../lang/perl5/module.mk. It provides a do-configure target for the
@@ -7489,50 +7489,7 @@ use of --mandir, you can set GNU_CONFIGURE_MANDIR as needed.
 See Section 19.5, "Man page compression" for information on installation of
 compressed manual pages.
 
-21.6.9. Packages installing GConf data files
-
-If a package installs .schemas or .entries files, used by GConf, you need to
-take some extra steps to make sure they get registered in the database:
-
- 1. Include ../../devel/GConf/schemas.mk instead of its buildlink3.mk file.
-    This takes care of rebuilding the GConf database at installation and
-    deinstallation time, and tells the package where to install GConf data
-    files using some standard configure arguments. It also disallows any access
-    to the database directly from the package.
-
- 2. Ensure that the package installs its .schemas files under ${PREFIX}/share/
-    gconf/schemas. If they get installed under ${PREFIX}/etc, you will need to
-    manually patch the package.
-
- 3. Check the PLIST and remove any entries under the etc/gconf directory, as
-    they will be handled automatically. See Section 10.13, "How do I change the
-    location of configuration files?" for more information.
-
- 4. Define the GCONF_SCHEMAS variable in your Makefile with a list of all
-    .schemas files installed by the package, if any. Names must not contain any
-    directories in them.
-
- 5. Define the GCONF_ENTRIES variable in your Makefile with a list of all
-    .entries files installed by the package, if any. Names must not contain any
-    directories in them.
-
-21.6.10. Packages installing scrollkeeper/rarian data files
-
-If a package installs .omf files, used by scrollkeeper/rarian, you need to take
-some extra steps to make sure they get registered in the database:
-
- 1. Include ../../mk/omf-scrollkeeper.mk instead of rarian's buildlink3.mk
-    file. This takes care of rebuilding the scrollkeeper database at
-    installation and deinstallation time, and disallows any access to it
-    directly from the package.
-
- 2. Check the PLIST and remove any entries under the libdata/scrollkeeper
-    directory, as they will be handled automatically.
-
- 3. Remove the share/omf directory from the PLIST. It will be handled by
-    rarian. (make print-PLIST does this automatically.)
-
-21.6.11. Packages installing X11 fonts
+21.6.9. Packages installing X11 fonts
 
 If a package installs font files, you will need to rebuild the fonts database
 in the directory where they get installed at installation and deinstallation
@@ -7546,30 +7503,7 @@ Note that you should not create new directories for fonts; instead use the
 standard ones to avoid that the user needs to manually configure his X server
 to find them.
 
-21.6.12. Packages installing GTK2 modules
-
-If a package installs GTK2 immodules or loaders, you need to take some extra
-steps to get them registered in the GTK2 database properly:
-
- 1. Include ../../x11/gtk2/modules.mk instead of its buildlink3.mk file. This
-    takes care of rebuilding the database at installation and deinstallation
-    time.
-
- 2. Set GTK2_IMMODULES=YES if your package installs GTK2 immodules.
-
- 3. Set GTK2_LOADERS=YES if your package installs GTK2 loaders.
-
- 4. Patch the package to not touch any of the GTK2 databases directly. These
-    are:
-
-      + libdata/gtk-2.0/gdk-pixbuf.loaders
-
-      + libdata/gtk-2.0/gtk.immodules
-
- 5. Check the PLIST and remove any entries under the libdata/gtk-2.0 directory,
-    as they will be handled automatically.
-
-21.6.13. Packages installing SGML or XML data
+21.6.10. Packages installing SGML or XML data
 
 If a package installs SGML or XML data files that need to be registered in
 system-wide catalogs (like DTDs, sub-catalogs, etc.), you need to take some
@@ -7595,7 +7529,7 @@ extra steps:
     (specifically, arguments recognized by the 'add' action). Note that you
     will normally not use this variable.
 
-21.6.14. Packages installing extensions to the MIME database
+21.6.11. Packages installing extensions to the MIME database
 
 If a package provides extensions to the MIME database by installing .xml files
 inside ${PREFIX}/share/mime/packages, you need to take some extra steps to
@@ -7616,7 +7550,7 @@ ensure that the database is kept consistent with respect to these new files:
  3. Remove any share/mime/* directories from the PLIST. They will be handled by
     the shared-mime-info package.
 
-21.6.15. Packages using intltool
+21.6.12. Packages using intltool
 
 If a package uses intltool during its build, add intltool to the USE_TOOLS,
 which forces it to use the intltool package provided by pkgsrc, instead of the
@@ -7626,7 +7560,7 @@ This tracks intltool's build-time dependencies and uses the latest available
 version; this way, the package benefits of any bug fixes that may have appeared
 since it was released.
 
-21.6.16. Packages installing startup scripts
+21.6.13. Packages installing startup scripts
 
 If a package contains a rc.d script, it won't be copied into the startup
 directory by default, but you can enable it, by adding the option
@@ -7634,7 +7568,7 @@ PKG_RCD_SCRIPTS=YES in mk.conf. This option will copy the scripts into /etc/
 rc.d when a package is installed, and it will automatically remove the scripts
 when the package is deinstalled.
 
-21.6.17. Packages installing TeX modules
+21.6.14. Packages installing TeX modules
 
 If a package installs TeX packages into the texmf tree, the ls-R database of
 the tree needs to be updated.
@@ -7660,7 +7594,7 @@ into ${PREFIX}/share/texmf-dist, not ${PREFIX}/share/texmf.
  3. Make sure that none of ls-R databases are included in PLIST, as they will
     be removed only by the kpathsea package.
 
-21.6.18. Packages supporting running binaries in emulation
+21.6.15. Packages supporting running binaries in emulation
 
 There are some packages that provide libraries and executables for running
 binaries from a one operating system on a different one (if the latter supports
@@ -7674,7 +7608,7 @@ linker. Since the standard dynamic linker is run, this fails for emulation
 packages, because the libraries used by the emulation are not in the standard
 directories.
 
-21.6.19. Packages installing hicolor theme icons
+21.6.16. Packages installing hicolor icons
 
 If a package installs images under the share/icons/hicolor and/or updates the
 share/icons/hicolor/icon-theme.cache database, you need to take some extra
@@ -7691,7 +7625,7 @@ that the cache database is rebuilt:
 The best way to verify that the PLIST is correct with respect to the last two
 points is to regenerate it using make print-PLIST.
 
-21.6.20. Packages installing desktop files
+21.6.17. Packages installing desktop files
 
 If a package installs .desktop files under share/applications and these include
 MIME information (MimeType key), you need to take extra steps to ensure that
@@ -7842,19 +7776,15 @@ Table 22.1. PLIST handling for GNOME packages
 +-----------------------------------------------------------------------------+
 |             If the package...             |             Then...             |
 |-------------------------------------------+---------------------------------|
-|                                           |See Section 21.6.10, "Packages   |
-|Installs OMF files under share/omf.        |installing scrollkeeper/rarian   |
-|                                           |data files".                     |
-|-------------------------------------------+---------------------------------|
-|Installs icons under the share/icons/      |See Section 21.6.19, "Packages   |
-|hicolor hierarchy or updates share/icons/  |installing hicolor theme icons". |
+|Installs icons under the share/icons/      |See Section 21.6.16, "Packages   |
+|hicolor hierarchy or updates share/icons/  |installing hicolor icons".       |
 |hicolor/icon-theme.cache.                  |                                 |
 |-------------------------------------------+---------------------------------|
-|                                           |See Section 21.6.14, "Packages   |
+|                                           |See Section 21.6.11, "Packages   |
 |Installs files under share/mime/packages.  |installing extensions to the MIME|
 |                                           |database".                       |
 |-------------------------------------------+---------------------------------|
-|Installs .desktop files under share/       |See Section 21.6.20, "Packages   |
+|Installs .desktop files under share/       |See Section 21.6.17, "Packages   |
 |applications and these include MIME        |installing desktop files".       |
 |information.                               |                                 |
 +-----------------------------------------------------------------------------+

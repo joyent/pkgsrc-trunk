@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.503 2021/06/03 10:45:23 pin Exp $
+# $NetBSD: Makefile,v 1.507 2021/06/15 06:55:40 thor Exp $
 
 COMMENT=	Mathematics
 
@@ -89,6 +89,7 @@ SUBDIR+=	R-plyr
 SUBDIR+=	R-poweRlaw
 SUBDIR+=	R-prettyunits
 SUBDIR+=	R-prob
+SUBDIR+=	R-proxy
 SUBDIR+=	R-psych
 SUBDIR+=	R-quadprog
 SUBDIR+=	R-quantreg
@@ -139,6 +140,7 @@ SUBDIR+=	calcoo
 SUBDIR+=	cantor
 SUBDIR+=	capc-calc
 SUBDIR+=	cblas
+SUBDIR+=	cblas64
 SUBDIR+=	cgal
 SUBDIR+=	classias
 SUBDIR+=	clisp-pari
@@ -183,7 +185,6 @@ SUBDIR+=	genius
 SUBDIR+=	glpk
 SUBDIR+=	gnome-calculator
 SUBDIR+=	gnumeric112
-SUBDIR+=	go-stats
 SUBDIR+=	go-units
 SUBDIR+=	gp-autpgrp
 SUBDIR+=	gp-factint
@@ -223,7 +224,9 @@ SUBDIR+=	kalker
 SUBDIR+=	kcalc
 SUBDIR+=	kissfft
 SUBDIR+=	lapack
+SUBDIR+=	lapack64
 SUBDIR+=	lapacke
+SUBDIR+=	lapacke64
 SUBDIR+=	libffm
 SUBDIR+=	libint
 SUBDIR+=	libixion
@@ -263,6 +266,9 @@ SUBDIR+=	octave
 SUBDIR+=	odepack
 SUBDIR+=	openaxiom
 SUBDIR+=	openblas
+SUBDIR+=	openblas64
+SUBDIR+=	openblas64_openmp
+SUBDIR+=	openblas64_pthread
 SUBDIR+=	openblas_openmp
 SUBDIR+=	openblas_pthread
 SUBDIR+=	openfst
@@ -289,7 +295,6 @@ SUBDIR+=	p5-Math-FFT
 SUBDIR+=	p5-Math-GMP
 SUBDIR+=	p5-Math-Int128
 SUBDIR+=	p5-Math-Int64
-SUBDIR+=	p5-Math-Interpolate
 SUBDIR+=	p5-Math-Matrix
 SUBDIR+=	p5-Math-MatrixReal
 SUBDIR+=	p5-Math-Pari

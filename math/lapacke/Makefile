@@ -1,14 +1,18 @@
-# $NetBSD: Makefile,v 1.1 2021/04/20 20:40:47 thor Exp $
+# $NetBSD: Makefile,v 1.3 2021/06/15 04:41:52 thor Exp $
 
-COMMENT=		C interface to a LAPACK library
+MAINTAINER=	thomas.orgis@uni-hamburg.de
+COMMENT=	C interface to the reference LAPACK library
+PKGREVISION=	2
+
 LAPACK_COMPONENT=	lapacke
 LAPACK_COMPONENT_CMAKE_ARGS=	\
 	-DUSE_OPTIMIZED_BLAS=ON \
-	-DBLAS_LIBRARIES=${BLAS_LIBS:Q} \
+	-DBLAS_LIBRARIES=-lblas \
 	-DUSE_OPTIMIZED_LAPACK=ON \
-	-DLAPACK_LIBRARIES=${LAPACK_LIBS:Q} \
+	-DLAPACK_LIBRARIES=-llapack \
 	-DCBLAS=OFF -DLAPACKE=ON
 
-.include "../../mk/blas.buildlink3.mk"
+.include "../../math/lapack/buildlink3.mk"
+
 .include "../../math/lapack/Makefile.common"
 .include "../../mk/bsd.pkg.mk"

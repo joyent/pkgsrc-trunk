@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.1 2019/08/09 20:52:49 brook Exp $
+# $NetBSD: Makefile,v 1.5 2021/06/09 14:11:06 mef Exp $
 
 R_PKGNAME=	shiny
-R_PKGVER=	1.3.2
+R_PKGVER=	1.6.0
 CATEGORIES=	www
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -18,6 +18,19 @@ DEPENDS+=	R-digest>=0.6.20:../../security/R-digest
 DEPENDS+=	R-htmltools>=0.3.6:../../textproc/R-htmltools
 DEPENDS+=	R-jsonlite>=0.9.16:../../textproc/R-jsonlite
 DEPENDS+=	R-httpuv>=1.5.0:../../www/R-httpuv
+DEPENDS+=	R-fastmap-[0-9]*:../../devel/R-fastmap
+DEPENDS+=	R-commonmark-[0-9]*:../../textproc/R-commonmark
+DEPENDS+=	R-bslib-[0-9]*:../../www/R-bslib
+DEPENDS+=	R-cachem-[0-9]*:../../devel/R-cachem
+DEPENDS+=	R-xtable-[0-9]*:../../math/R-xtable
+DEPENDS+=	R-withr-[0-9]*:../../devel/R-withr
+DEPENDS+=	R-glue-[0-9]*:../../devel/R-glue
+DEPENDS+=	R-ellipsis-[0-9]*:../../math/R-ellipsis
+DEPENDS+=	R-lifecycle-[0-9]*:../../devel/R-lifecycle
+
+#  'Cairo', 'testthat', 'ggplot2', 'reactlog', 'shinytest', 'future',
+#  'dygraphs', 'ragg', 'showtext'
+TEST_DEPENDS+=	R-testthat-[0-9]*:../../devel/R-testthat
 
 USE_LANGUAGES=	# none
 

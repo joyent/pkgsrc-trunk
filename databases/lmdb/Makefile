@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.18 2021/03/16 19:49:15 adam Exp $
+# $NetBSD: Makefile,v 1.20 2021/06/14 09:04:23 adam Exp $
 
 .include "../../databases/openldap/Makefile.version"
 
@@ -25,6 +25,11 @@ INSTALLATION_DIRS+=	${PKGMANDIR}/man1
 TEST_TARGET=		test
 
 .include "../../mk/bsd.prefs.mk"
+
+.if ${OPSYS} == "SunOS" && (${OS_VERSION} == "5.9" || ${OS_VERSION} == "5.10")
+LDFLAGS+=	-lrt
+.endif
+
 .if ${OPSYS} == "Darwin"
 MAKE_FLAGS+=	SOEXT=.dylib
 MAKE_FLAGS+=	SOLIBS=-install_name\ ${PREFIX}/lib/liblmdb.dylib

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.939 2021/05/31 22:31:10 wiz Exp $
+# $NetBSD: Makefile,v 1.941 2021/06/08 01:43:55 mef Exp $
 #
 
 COMMENT=	Graphics tools and libraries
@@ -28,6 +28,7 @@ SUBDIR+=	R-ggplot2
 SUBDIR+=	R-ggtern
 SUBDIR+=	R-ggthemes
 SUBDIR+=	R-gridExtra
+SUBDIR+=	R-isoband
 SUBDIR+=	R-jpeg
 SUBDIR+=	R-labeling
 SUBDIR+=	R-latex2exp
@@ -37,6 +38,7 @@ SUBDIR+=	R-munsell
 SUBDIR+=	R-png
 SUBDIR+=	R-polyclip
 SUBDIR+=	R-scales
+SUBDIR+=	R-thematic
 SUBDIR+=	R-viridis
 SUBDIR+=	R-viridisLite
 SUBDIR+=	SDL2_gfx

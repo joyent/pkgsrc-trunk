@@ -1,17 +1,20 @@
-# $NetBSD: Makefile,v 1.1547 2021/06/03 14:29:33 taca Exp $
+# $NetBSD: Makefile,v 1.1555 2021/06/12 08:26:01 nia Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
 
 SUBDIR+=	R-RCurl
+SUBDIR+=	R-bslib
 SUBDIR+=	R-curl
 SUBDIR+=	R-diffviewer
 SUBDIR+=	R-gh
 SUBDIR+=	R-htmlwidgets
 SUBDIR+=	R-httpuv
 SUBDIR+=	R-httr
+SUBDIR+=	R-jquerylib
 SUBDIR+=	R-miniUI
 SUBDIR+=	R-rvest
+SUBDIR+=	R-sass
 SUBDIR+=	R-shiny
 SUBDIR+=	R-shinyjs
 SUBDIR+=	R-webshot
@@ -24,7 +27,6 @@ SUBDIR+=	album
 SUBDIR+=	album_themes
 SUBDIR+=	analog
 SUBDIR+=	ap-auth-kerb
-SUBDIR+=	ap-auth-mellon
 SUBDIR+=	ap-authnz-crowd
 SUBDIR+=	ap-mono
 SUBDIR+=	ap-php
@@ -76,7 +78,6 @@ SUBDIR+=	cgicc
 SUBDIR+=	cgilib
 SUBDIR+=	cgit
 SUBDIR+=	checkbot
-SUBDIR+=	cherokee
 SUBDIR+=	clearsilver
 SUBDIR+=	clearsilver-base
 SUBDIR+=	clisp-fastcgi
@@ -125,7 +126,6 @@ SUBDIR+=	gitea
 SUBDIR+=	gitweb
 SUBDIR+=	gnurl
 SUBDIR+=	go-ace
-SUBDIR+=	go-cssmin
 SUBDIR+=	go-fasthttp
 SUBDIR+=	go-ffuf
 SUBDIR+=	go-gogs-client
@@ -136,10 +136,7 @@ SUBDIR+=	go-mux
 SUBDIR+=	go-parse
 SUBDIR+=	go-spritewell
 SUBDIR+=	go-tocss
-SUBDIR+=	go-toml-burntsushi
-SUBDIR+=	go-toml-pelletier
 SUBDIR+=	go-urlesc
-SUBDIR+=	go-webhooks
 SUBDIR+=	goaccess
 SUBDIR+=	grafana
 SUBDIR+=	gtkasp2php

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1410 2021/06/02 19:59:46 wiz Exp $
+# $NetBSD: Makefile,v 1.1413 2021/06/13 08:31:59 nia Exp $
 #
 
 COMMENT=	Networking tools
@@ -198,7 +198,6 @@ SUBDIR+=	go-dns
 SUBDIR+=	go-dnstap
 SUBDIR+=	go-framestream
 SUBDIR+=	go-net
-SUBDIR+=	go-ovh
 SUBDIR+=	go-tcplisten
 SUBDIR+=	go-websocket
 SUBDIR+=	gofish
@@ -539,7 +538,6 @@ SUBDIR+=	p5-Net-Frame-Layer-ICMPv6
 SUBDIR+=	p5-Net-Frame-Layer-IPv6
 SUBDIR+=	p5-Net-Frame-Simple
 SUBDIR+=	p5-Net-GitHub
-SUBDIR+=	p5-Net-Gnats
 SUBDIR+=	p5-Net-Google-AuthSub
 SUBDIR+=	p5-Net-Google-Code
 SUBDIR+=	p5-Net-INET6Glue
@@ -695,6 +693,7 @@ SUBDIR+=	py-dns
 SUBDIR+=	py-dnsdiag
 SUBDIR+=	py-dpkt
 SUBDIR+=	py-dropbox
+SUBDIR+=	py-ec2instanceconnectcli
 SUBDIR+=	py-flower
 SUBDIR+=	py-foolscap
 SUBDIR+=	py-gandi.cli
