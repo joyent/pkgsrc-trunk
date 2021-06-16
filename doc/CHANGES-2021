@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2021,v 1.3457 2021/06/15 06:56:12 thor Exp $
+$NetBSD: CHANGES-2021,v 1.3466 2021/06/16 00:08:04 js Exp $
 
 Changes to the packages collection and infrastructure in 2021:
 
@@ -5533,3 +5533,14 @@ Changes to the packages collection and infrastructure in 2021:
 	Updated math/py-numpy to 1.20.3nb1 [thor 2021-06-15]
 	Updated math/py-numpy16 to 1.16.6nb3 [thor 2021-06-15]
 	Updated math/R to 4.1.0nb1 [thor 2021-06-15]
+	Added textproc/zet version 0.1.1 [pin 2021-06-15]
+	Removed filesystems/fuse-djmount [adam 2021-06-15]
+	Updated textproc/py-humanize to 3.9.0 [adam 2021-06-15]
+	Updated graphics/leptonica to 1.81.1 [adam 2021-06-15]
+	Updated devel/cmake to 3.20.4 [adam 2021-06-15]
+	mk/bsd.pkg.mk: started freeze for pkgsrc-2021Q2 branch [gdt 2021-06-15]
+	Updated devel/libxtend to 0.1.2.28 [bacon 2021-06-15]
+	Updated biology/biolibc to 0.1.3.2 [bacon 2021-06-15]
+	Added biology/peak-classifier version 0.1.1 [bacon 2021-06-15]
+	Updated net/nyx to 2.1.0nb2 [wiz 2021-06-15]
+	Updated devel/fossil to 2.15.2 [js 2021-06-16]
