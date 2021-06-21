@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2021,v 1.3466 2021/06/16 00:08:04 js Exp $
+$NetBSD: CHANGES-2021,v 1.3479 2021/06/21 07:12:16 pin Exp $
 
 Changes to the packages collection and infrastructure in 2021:
 
@@ -5544,3 +5544,16 @@ Changes to the packages collection and infrastructure in 2021:
 	Added biology/peak-classifier version 0.1.1 [bacon 2021-06-15]
 	Updated net/nyx to 2.1.0nb2 [wiz 2021-06-15]
 	Updated devel/fossil to 2.15.2 [js 2021-06-16]
+	Updated shells/bash to 5.1.8nb2 [jperkin 2021-06-16]
+	Updated sysutils/auto-admin to 0.7.5 [bacon 2021-06-16]
+	Updated devel/cdecl to 2.5nb3 [dholland 2021-06-16]
+	Updated net/bind916 to 9.16.17 [otis 2021-06-17]
+	Updated pkgtools/pkglint to 21.2.0 [rillig 2021-06-17]
+	Updated net/bind911 to 9.11.33 [otis 2021-06-17]
+	Updated sysutils/xplr to 0.14.2 [pin 2021-06-17]
+	Updated sysutils/broot to 1.6.0 [pin 2021-06-17]
+	Updated x11/kitty to 0.21.1 [pin 2021-06-18]
+	Updated textproc/py-feedparser to 6.0.6 [schmonz 2021-06-18]
+	Updated textproc/ruby-terminal-table to 2.0.0nb1 [taca 2021-06-19]
+	Updated net/bind916 to 9.16.18 [otis 2021-06-19]
+	Updated net/yaydl to 0.6.6 [pin 2021-06-21]
