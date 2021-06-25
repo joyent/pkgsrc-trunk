@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1555 2021/06/12 08:26:01 nia Exp $
+# $NetBSD: Makefile,v 1.1557 2021/06/24 10:38:20 pin Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -602,6 +602,7 @@ SUBDIR+=	php-apcu_bc
 SUBDIR+=	php-basercms
 SUBDIR+=	php-concrete5
 SUBDIR+=	php-curl
+SUBDIR+=	php-dotclear
 SUBDIR+=	php-fpm
 SUBDIR+=	php-glpi
 SUBDIR+=	php-http
@@ -1047,6 +1048,7 @@ SUBDIR+=	wslay
 SUBDIR+=	www6to4
 SUBDIR+=	wwwcount
 SUBDIR+=	wwwoffle
+SUBDIR+=	xurl
 SUBDIR+=	yahttp
 SUBDIR+=	yaws
 SUBDIR+=	z-push

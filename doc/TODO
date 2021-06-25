@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.20798 2021/06/20 07:43:18 wiz Exp $
+$NetBSD: TODO,v 1.20804 2021/06/24 21:40:17 wiz Exp $
 
 Suggested new packages
 ======================
@@ -398,7 +398,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o R-countrycode-1.2.0
 	o R-crayon-1.4.1
 	o R-crosstalk-1.1.1
-	o R-data.table-1.14.0
 	o R-date-1.2.39
 	o R-deldir-0.2.10
 	o R-digest-0.6.27
@@ -990,7 +989,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o gperiodic-3.0.2
 	o gps-17.0
 	o gradle-7.0
-	o grafana-8.0
 	o grafx2-2.8.3097
 	o grantlee-5.0.0
 	o graphene-1.10.6
@@ -1044,7 +1042,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o hesiod-3.2.1
 	o heyu-2.9.0
 	o hiawatha-10.8.1
-	o hiredis-1.0.0
 	o hitch-1.7.0
 	o hivex-1.3.19
 	o hmmer-3.1b2
@@ -1259,7 +1256,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o libdwarf-20210305
 	o libepoxy-1.5.5
 	o libextractor-1.11
-	o libffcall-2.4
 	o libflash-0.4.13
 	o libgfshare-2.0.0
 	o libgiigic-1.1.2
@@ -1306,7 +1302,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o libxdg-basedir-1.2.3
 	o libxlsxwriter-1.0.3
 	o libyang-1.0.225
-	o libzip-1.8.0
 	o libzookeeper-3.7.0
 	o libzrtpcpp-4.6.6
 	o lilypond-2.22.1
@@ -1760,7 +1755,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o parrot-8.1.0
 	o pcc-1.1.0
 	o pcc-current-20210421
-	o pcre-8.45
 	o pdf-redact-tools-0.1.2
 	o pdfpc-4.4.1
 	o pdmenu-1.2.87

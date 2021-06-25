@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.827 2021/06/09 17:04:26 abs Exp $
+# $NetBSD: Makefile,v 1.829 2021/06/23 21:07:42 wiz Exp $
 #
 
 COMMENT=	Security and cryptography tools and libraries
@@ -468,6 +468,7 @@ SUBDIR+=	py-google-auth-httplib2
 SUBDIR+=	py-google-auth-oauthlib
 SUBDIR+=	py-google-reauth
 SUBDIR+=	py-gssapi
+SUBDIR+=	py-hkdf
 SUBDIR+=	py-hsm
 SUBDIR+=	py-itsdangerous
 SUBDIR+=	py-josepy
@@ -503,6 +504,7 @@ SUBDIR+=	py-simplesha3
 SUBDIR+=	py-slowaes
 SUBDIR+=	py-smbpasswd
 SUBDIR+=	py-solo
+SUBDIR+=	py-spake2
 SUBDIR+=	py-stix
 SUBDIR+=	py-tlslite
 SUBDIR+=	py-trustme
