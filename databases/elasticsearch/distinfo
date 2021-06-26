@@ -1,14 +1,21 @@
 $NetBSD: distinfo,v 1.49 2020/04/21 16:06:19 jperkin Exp $
 
-SHA1 (elasticsearch-6.8.8.tar.gz) = dbe27b9dec378ac79dae67500dbfdf4b7ae5865f
-RMD160 (elasticsearch-6.8.8.tar.gz) = 099a901c0022c8f99e3f38cf1c00df4b31f0324b
-SHA512 (elasticsearch-6.8.8.tar.gz) = c703d6230a42b77fb0f169158afbc18517118375e341ef889c231acc0f096a44716ba4fc1a2558fd000b0ceff4d9c3aff2f2c792f2c2ae92f0e7f82c6a70eaec
-Size (elasticsearch-6.8.8.tar.gz) = 149927766 bytes
-SHA1 (jna-4.5.1.tar.gz) = 883e6250817ab73fbefd61320dff00f3350c896d
-RMD160 (jna-4.5.1.tar.gz) = 353462bf559cc368e739dd04a0e7652db2079911
-SHA512 (jna-4.5.1.tar.gz) = 057e185011dc492fef3e9273f8df8dc9971752337bb39b6fa1d53d305bb2ff52e8408b96bddc288cbbd2ae08c126904fa278276dd79d93801bcac361adda8300
-Size (jna-4.5.1.tar.gz) = 73024055 bytes
-SHA1 (patch-bin_elasticsearch-env) = 7d8f71c6c1a99168cc4a7322e054ddc8fe94b68e
-SHA1 (patch-config_elasticsearch.yml) = f66dad65dec48a45a4d52b685d6e3ab29de62cf2
-SHA1 (patch-jna_build.xml) = d7c743ed8056109b9101c6550d9a4df7a7b05b58
-SHA1 (patch-jna_native_Makefile) = 617b669a8748c2ec3998275d8531500b8f2cda89
+SHA1 (elasticsearch-7.13.2.tar.gz) = 5bc1bc67e6ac5797a28b67f9063897669d47bfb9
+RMD160 (elasticsearch-7.13.2.tar.gz) = 23988fffc20ce5024715618afee4549edf26cd6e
+SHA512 (elasticsearch-7.13.2.tar.gz) = 1fdb9af46383daae3f7ca3cfbd458e29fb2b3abe525a6e2ef1ff11e68354601008d2e721303480fc15f044abff2e85fb3e017c31f4c6a9dfe7d1016ab458ee10
+Size (elasticsearch-7.13.2.tar.gz) = 53774452 bytes
+SHA1 (patch-buildSrc_src_main_java_org_elasticsearch_gradle_ElasticsearchDistribution.java) = b7f830f0dc7be6df43043499218e57a05695ded1
+SHA1 (patch-buildSrc_src_main_java_org_elasticsearch_gradle_Jdk.java) = 38bf1b0cc5dc4b4e1fde4bfb9ff152ad3e97bb66
+SHA1 (patch-buildSrc_src_main_java_org_elasticsearch_gradle_OS.java) = ce473c4cf8f4a074182b1e33f27202de1f8fcec9
+SHA1 (patch-buildSrc_src_main_java_org_elasticsearch_gradle_VersionProperties.java) = 4452a962c0098c3e3e5b50dda5b4381ebdf20458
+SHA1 (patch-buildSrc_src_main_java_org_elasticsearch_gradle_info_GlobalBuildInfoPlugin.java) = bec322182a5b9354999550674252c0612cbaa181
+SHA1 (patch-buildSrc_src_main_java_org_elasticsearch_gradle_internal_InternalDistributionBwcSetupPlugin.java) = 49f6d2391faf66871dbf7ba14ca9dcac19acc26c
+SHA1 (patch-distribution_archives_build.gradle) = b4b20d8961646f0bd79f488ededf98b9965d7aac
+SHA1 (patch-distribution_build.gradle) = e6f9c354998c6e8ff49f2023d4b497aa99d665c0
+SHA1 (patch-distribution_src_bin_elasticsearch-env) = a3a6c35752fd69220dbb5a893fa2c426ad343c16
+SHA1 (patch-distribution_src_config_elasticsearch.yml) = c583703f07db3c8c358310eaeb7d551e43d9359d
+SHA1 (patch-server_src_main_java_org_elasticsearch_Build.java) = d271f4b205cac55c9c4a65901fd76a6ec6a3a06b
+SHA1 (patch-server_src_main_java_org_elasticsearch_cluster_metadata_SingleNodeShutdownMetadata.java) = 94eba0f2d5494034607ab96820c5b414d9c36ef0
+SHA1 (patch-server_src_main_java_org_elasticsearch_cluster_node_DiscoveryNode.java) = 7a78c9abe03d0c557c783f773a3a2ab43f2e31c2
+SHA1 (patch-settings.gradle) = dcceb3df69e25f91231f25b4ca55158d851a8603
+SHA1 (patch-x-pack_plugin_searchable-snapshots_src_main_java_org_elasticsearch_xpack_searchablesnapshots_store_input_MetadataCachingIndexInput.java) = 73b1b5d7e898fd70bd0e227e065fb7c46841d20f

@@ -1,0 +1,24 @@
+$NetBSD$
+
+--- distribution/src/config/elasticsearch.yml.orig	2021-06-10 18:41:11.000000000 +0000
++++ distribution/src/config/elasticsearch.yml
+@@ -30,11 +30,11 @@
+ #
+ # Path to directory where to store the data (separate multiple locations by comma):
+ #
+-${path.data}
++path.data: @ES_DBDIR@
+ #
+ # Path to log files:
+ #
+-${path.logs}
++path.logs: @ES_LOGDIR@
+ #
+ # ----------------------------------- Memory -----------------------------------
+ #
+@@ -80,3 +80,5 @@ ${path.logs}
+ # Require explicit names when deleting indices:
+ #
+ #action.destructive_requires_name: true
++
++xpack.ml.enabled: false

@@ -1,0 +1,48 @@
+$NetBSD$
+
+--- distribution/build.gradle.orig	2021-06-10 18:41:11.000000000 +0000
++++ distribution/build.gradle
+@@ -270,7 +270,7 @@ configure(subprojects.findAll { ['archiv
+ 
+   // Setup all required JDKs
+   project.jdks {
+-    ['darwin', 'windows', 'linux'].each { platform ->
++    ['darwin', 'windows', 'linux', 'sunos'].each { platform ->
+       (platform == 'linux' || platform == 'darwin' ? ['x64', 'aarch64'] : ['x64']).each { architecture ->
+         "bundled_${platform}_${architecture}" {
+           it.platform = platform
+@@ -348,7 +348,7 @@ configure(subprojects.findAll { ['archiv
+             it.mode = 0644
+           }
+         }
+-        List excludePlatforms = ['linux-x86_64', 'linux-aarch64', 'windows-x86_64', 'darwin-x86_64', 'darwin-aarch64']
++        List excludePlatforms = ['linux-x86_64', 'linux-aarch64', 'windows-x86_64', 'darwin-x86_64', 'darwin-aarch64', 'sunos-x86_64']
+         if (platform != null) {
+           excludePlatforms.remove(excludePlatforms.indexOf(platform))
+         } else {
+@@ -547,7 +547,7 @@ subprojects {
+       'loggc': [
+         'deb': packagingLoggc,
+         'rpm': packagingLoggc,
+-        'def': 'logs/gc.log'
++        'def': packagingLoggc,
+       ],
+ 
+       'heap.dump.path': [
+@@ -559,7 +559,7 @@ subprojects {
+       'error.file': [
+         'deb': "-XX:ErrorFile=/var/log/elasticsearch/hs_err_pid%p.log",
+         'rpm': "-XX:ErrorFile=/var/log/elasticsearch/hs_err_pid%p.log",
+-        'def': "-XX:ErrorFile=logs/hs_err_pid%p.log"
++        'def': "-XX:ErrorFile=/var/log/elasticsearch/hs_err_pid%p.log"
+       ],
+ 
+       'stopping.timeout': [
+@@ -629,6 +629,7 @@ subprojects {
+  'archives:darwin-aarch64-tar',
+  'archives:linux-aarch64-tar',
+  'archives:linux-tar',
++ 'archives:sunos-tar',
+  'archives:integ-test-zip',
+  'packages:rpm', 'packages:deb',
+  'packages:aarch64-rpm', 'packages:aarch64-deb',
