@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.829 2021/06/23 21:07:42 wiz Exp $
+# $NetBSD: Makefile,v 1.832 2021/07/01 06:04:47 nia Exp $
 #
 
 COMMENT=	Security and cryptography tools and libraries
@@ -108,7 +108,6 @@ SUBDIR+=	go-asn1-ber
 SUBDIR+=	go-crypt
 SUBDIR+=	go-crypto
 SUBDIR+=	go-mkcert
-SUBDIR+=	go-sftp
 SUBDIR+=	go-xxhash
 SUBDIR+=	google-authenticator
 SUBDIR+=	gpa
@@ -205,6 +204,7 @@ SUBDIR+=	libstark
 SUBDIR+=	libtasn1
 SUBDIR+=	libtcpa
 SUBDIR+=	libtomcrypt
+SUBDIR+=	libuecc
 SUBDIR+=	libykneomgr
 SUBDIR+=	libyubikey
 SUBDIR+=	log2timeline
@@ -224,6 +224,7 @@ SUBDIR+=	mbedtls
 SUBDIR+=	mcrypt
 SUBDIR+=	md4-collision
 SUBDIR+=	md5-collision
+SUBDIR+=	mdigest
 SUBDIR+=	merkletree
 SUBDIR+=	mhash
 SUBDIR+=	minisign

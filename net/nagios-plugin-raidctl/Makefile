@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.6 2020/01/26 17:31:52 rillig Exp $
+# $NetBSD: Makefile,v 1.8 2021/06/29 00:09:57 tnn Exp $
 #
 
+DISTNAME=	check_raidctl-0.1
 PKGNAME=	nagios-plugin-raidctl-${DISTNAME:C/.*-//}
 PKGREVISION=	1
-DISTNAME=	check_raidctl-0.1
 CATEGORIES=	net
 MASTER_SITES=	http://ftp.espci.fr/pub/nagios-local/
 EXTRACT_SUFX=	.tgz
@@ -12,6 +12,8 @@ MAINTAINER=	manu@NetBSD.org
 HOMEPAGE=	https://ftp.espci.fr/pub/nagios-local/
 COMMENT=	RAIDframe monitoring plugin for Nagios
 LICENSE=	modified-bsd
+
+ONLY_FOR_PLATFORM=	NetBSD-*-* OpenBSD-*-*
 
 INSTALLATION_DIRS+=	libexec/nagios
 

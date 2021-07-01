@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.113 2021/05/27 06:39:35 wiz Exp $
+# $NetBSD: Makefile,v 1.115 2021/07/01 07:24:56 wiz Exp $
 
 DISTNAME=	nspr-${NSPR_RELEASE:S/.0$//}
-NSPR_RELEASE=	4.31.0
+NSPR_RELEASE=	4.32.0
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_MOZILLA_ALL:=nspr/releases/v${NSPR_RELEASE:S/.0$//}/src/}
 
@@ -63,18 +63,9 @@ SO_SUFFIX=		so.1.0
 .endif
 PLIST_SUBST+=		SO_SUFFIX=${SO_SUFFIX:Q}
 
-PLIST_VARS+=		sun4u_32
-# see nspr/pr/src/md/unix/Makefile.in
-# for the bit about 32-bit sun4u machines installing an extra file.
-# That is why we have this specific test and modify the PLIST
 .if ${OPSYS} == "SunOS"
 .  if defined(ABI) && ${ABI} == "64"
 CONFIGURE_ARGS+=	--enable-64bit
-.  else
-HW_CLASS!=		${UNAME} -m
-.    if ${HW_CLASS} == "sun4u"
-PLIST.sun4u_32=		yes
-.    endif
 .  endif
 .endif
 

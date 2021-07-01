@@ -1,25 +1,15 @@
-$NetBSD: patch-CMakeLists.txt,v 1.5 2020/10/22 13:47:34 tnn Exp $
+$NetBSD: patch-CMakeLists.txt,v 1.7 2021/06/27 08:51:34 tnn Exp $
 
-Don't use hardcoded paths for finding libcrypto and libssl.
+Don't generate the "version" file. It can get picked up as a
+C++ header in the current directory.
 
---- CMakeLists.txt.orig	2020-08-25 14:19:22.000000000 +0000
+--- CMakeLists.txt.orig	2021-06-08 13:44:14.000000000 +0000
 +++ CMakeLists.txt
-@@ -301,17 +301,8 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Window
-         ${OPENSSL_ROOT}/lib/libssl.lib
-         ${OPENSSL_ROOT}/lib/libcrypto.lib
-     )
--elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
--    set (OPENSSL_ROOT /usr/local/opt/openssl)
--    include_directories (BEFORE SYSTEM ${OPENSSL_ROOT}/include)
--    set (OPENSSL_LIBS
--        ${OPENSSL_ROOT}/lib/libssl.a
--        ${OPENSSL_ROOT}/lib/libcrypto.a
--    )
--elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux|.*BSD|DragonFly")
--    set (OPENSSL_LIBS ssl crypto)
- else()
--    message (FATAL_ERROR "Couldn't find OpenSSL")
-+    set (OPENSSL_LIBS ssl crypto)
+@@ -420,7 +420,6 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Linux|
+     else()
+         install(FILES res/synergy.desktop DESTINATION share/applications)
+     endif()
+-    generate_versionfile()
  endif()
  
- #
+ else()

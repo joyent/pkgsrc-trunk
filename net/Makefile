@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1413 2021/06/13 08:31:59 nia Exp $
+# $NetBSD: Makefile,v 1.1417 2021/07/01 06:03:40 nia Exp $
 #
 
 COMMENT=	Networking tools
@@ -137,6 +137,7 @@ SUBDIR+=	ettercap-gtk
 SUBDIR+=	exabgp
 SUBDIR+=	ez-ipupdate
 SUBDIR+=	fair-identd
+SUBDIR+=	fastd
 SUBDIR+=	fehqlibs
 SUBDIR+=	fetch
 SUBDIR+=	filezilla
@@ -196,7 +197,6 @@ SUBDIR+=	gnome-vfs-smb
 SUBDIR+=	gnugk
 SUBDIR+=	go-dns
 SUBDIR+=	go-dnstap
-SUBDIR+=	go-framestream
 SUBDIR+=	go-net
 SUBDIR+=	go-tcplisten
 SUBDIR+=	go-websocket
@@ -721,6 +721,8 @@ SUBDIR+=	py-lexicon
 SUBDIR+=	py-libdnet
 SUBDIR+=	py-libpcap
 SUBDIR+=	py-magic-wormhole
+SUBDIR+=	py-magic-wormhole-mailbox-server
+SUBDIR+=	py-magic-wormhole-transit-relay
 SUBDIR+=	py-medusa
 SUBDIR+=	py-metar
 SUBDIR+=	py-moto

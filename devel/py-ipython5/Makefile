@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.10 2021/06/10 07:03:53 adam Exp $
+# $NetBSD: Makefile,v 1.12 2021/07/01 14:54:01 nia Exp $
 
 DISTNAME=	ipython-5.10.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
