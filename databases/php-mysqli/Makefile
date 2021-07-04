@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.14 2021/06/23 20:33:08 nia Exp $
+# $NetBSD: Makefile,v 1.16 2021/07/02 15:19:30 nia Exp $
 
-PKGREVISION=		1
+PKGREVISION=		2
 MODNAME=		mysqli
 CATEGORIES+=		databases
 COMMENT=		PHP5 extension for MySQL 4.1 and later databases
@@ -9,18 +9,6 @@ MAINTAINER=		pkgsrc-users@NetBSD.org
 
 CONFLICTS=	php-mysqli-[0-9]*
 
-PKG_OPTIONS_VAR=	PKG_OPTIONS.php-mysqli
-PKG_SUPPORTED_OPTIONS=	mysqlnd
-PKG_SUGGESTED_OPTIONS=	# empty
-
-.include "../../mk/bsd.options.mk"
-
-.if !empty(PKG_OPTIONS:Mmysqlnd)
-CONFIGURE_ARGS+=	--with-${MODNAME}=shared,mysqlnd
-.else
-.  include "../../mk/mysql.buildlink3.mk"
-CONFIGURE_ARGS+=	--with-${MODNAME}=${BUILDLINK_PREFIX.mysql-client}/bin/mysql_config
-.endif
-
+.include "options.mk"
 .include "../../lang/php/ext.mk"
 .include "../../mk/bsd.pkg.mk"

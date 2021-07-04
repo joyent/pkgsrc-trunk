@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.20836 2021/07/01 07:34:47 wiz Exp $
+$NetBSD: TODO,v 1.20845 2021/07/04 10:06:33 wiz Exp $
 
 Suggested new packages
 ======================
@@ -691,7 +691,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o dap-3.10
 	o dar-2.4.14
 	o darcs-2.16.3
-	o darktable-3.4
+	o darktable-3.6
 	o dateutils-0.4.8
 	o dcc-2.3.167
 	o dd_rescue-1.46
@@ -840,10 +840,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o gcloud-golang-metadata-0.12.0
 	o gcombust-0.1.55
 	o gdb7-7.12
-	o gdm-2.32.2
-	o gdm-3.0.3
-	o gearboy-3.3.0
-	o gearsystem-3.3.0
 	o geeklog-2.2.1sr1
 	o genius-1.0.26
 	o gens-2.15.5
@@ -903,20 +899,16 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o gnutime-1.9
 	o go-afero-1.6.0
 	o go-appengine-1.6.7
-	o go-argv-0.1.0
 	o go-asn1-ber-1.5.3
 	o go-blackfriday-2.1.0
 	o go-buffruneio-0.3.0
-	o go-cast-1.3.1
 	o go-chroma-0.8.2
 	o go-cli-2.3.0
 	o go-cmp-0.5.5
 	o go-cobra-1.1.3
 	o go-colorable-0.1.8
-	o go-cpuid-2.0.6
 	o go-diff-1.2.0
 	o go-dns-1.1.41
-	o go-emoji-2.2.8
 	o go-errors-0.9.1
 	o go-ffuf-1.3.0
 	o go-fsnotify-1.4.9
@@ -1065,7 +1057,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o icinga-base-2.12.3
 	o idzebra-2.2.2
 	o ike-2.0.1 [pkg/37032]
-	o ilmbase-3.0.4
+	o ilmbase-3.0.5
 	o imapfilter-2.7.5
 	o imapsync-1.727
 	o imp-6.2.12
@@ -1075,7 +1067,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o influxdb-2.0.4
 	o inform-6.34
 	o ingo-3.2.8
-	o inkscape-1.1 [wip]
 	o inn-2.6.4
 	o input-pad-1.4.2
 	o ioping-1.2
@@ -1238,6 +1229,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o libdwarf-20210305
 	o libepoxy-1.5.5
 	o libextractor-1.11
+	o libffi-3.4.2
 	o libflash-0.4.13
 	o libgfshare-2.0.0
 	o libgiigic-1.1.2
@@ -1270,8 +1262,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o librelp-1.10.0
 	o libressl-3.3.2
 	o libretro-core-info-1.9.1
-	o libretro-gearboy-3.3.0
-	o libretro-gearsystem-3.3.0
 	o libretro-sameboy-0.14.3
 	o libslang-2.2.4
 	o libspatialite-5.0.1
@@ -1318,7 +1308,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o magic-8.3.154
 	o magit-3.0
 	o maim-5.7.4
-	o mame-0.233
 	o man-pages-5.11
 	o mapcode-2.5.5
 	o mapserver-7.6.2
@@ -1379,7 +1368,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o mixxx-2.2.4
 	o modular-xorg-xquartz-1.20.9
 	o modular-xorg-xwayland-21.1.0
-	o mongo-c-driver-1.17.5.1
 	o monit-5.28.0
 	o mono-nat-1.1.0
 	o monocypher-3.1.2
@@ -1537,7 +1525,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o opencsg-1.4.2
 	o opendnssec-2.1.8
 	o opendoas-6.8.1
-	o openexr-3.0.4
+	o openexr-3.0.5
 	o opengrok-1.7.1
 	o openh323-1.19.1
 	o openimageio-2.2.13.1
@@ -1802,6 +1790,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o podcastdl-0.3.3
 	o policyd-weight-0.1.15.2
 	o poppass-4.0.14
+	o poppler-21.07.0
 	o posh-0.14.1
 	o postal-0.72
 	o postgres_exporter-0.9.0
@@ -2009,7 +1998,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o secpanel-0.6.1
 	o send-pr-4.0
 	o sendfile-20010424
-	o sendmail-8.16.1
 	o sendmail-cidrexpand-8.16.0.16
 	o sendmail-qtool-8.16.0.16
 	o ser-0.9.6
