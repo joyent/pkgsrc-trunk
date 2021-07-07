@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3442 2021/07/03 09:49:50 nia Exp $
+# $NetBSD: Makefile,v 1.3451 2021/07/06 17:19:04 schmonz Exp $
 #
 
 COMMENT=	Development utilities
@@ -425,15 +425,10 @@ SUBDIR+=	go-golang-lru
 SUBDIR+=	go-gopkgs
 SUBDIR+=	go-goptlib
 SUBDIR+=	go-goreturns
-SUBDIR+=	go-gospel
 SUBDIR+=	go-gox
-SUBDIR+=	go-hashstructure
-SUBDIR+=	go-homedir
 SUBDIR+=	go-humanize
-SUBDIR+=	go-ini
 SUBDIR+=	go-iochan
 SUBDIR+=	go-isatty
-SUBDIR+=	go-jwalterweatherman
 SUBDIR+=	go-jwt-go
 SUBDIR+=	go-kr-pretty
 SUBDIR+=	go-levenshtein
@@ -460,11 +455,8 @@ SUBDIR+=	go-termbox
 SUBDIR+=	go-testify
 SUBDIR+=	go-textseg
 SUBDIR+=	go-thrift
-SUBDIR+=	go-tmc
 SUBDIR+=	go-tools
 SUBDIR+=	go-try
-SUBDIR+=	go-walker
-SUBDIR+=	go-wordwrap
 SUBDIR+=	go-xerrors
 SUBDIR+=	go-yaml
 SUBDIR+=	gob2
@@ -696,6 +688,7 @@ SUBDIR+=	kservice
 SUBDIR+=	ktexteditor
 SUBDIR+=	kwayland
 SUBDIR+=	kyua
+SUBDIR+=	lazygit
 SUBDIR+=	lcc
 SUBDIR+=	lcdis
 SUBDIR+=	lcov
