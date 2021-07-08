@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3451 2021/07/06 17:19:04 schmonz Exp $
+# $NetBSD: Makefile,v 1.3460 2021/07/08 08:33:21 adam Exp $
 #
 
 COMMENT=	Development utilities
@@ -437,23 +437,15 @@ SUBDIR+=	go-mod
 SUBDIR+=	go-nbreader
 SUBDIR+=	go-osext
 SUBDIR+=	go-pflag
-SUBDIR+=	go-pkgconfig
 SUBDIR+=	go-properties
 SUBDIR+=	go-protobuf
 SUBDIR+=	go-pty
-SUBDIR+=	go-quicktest
-SUBDIR+=	go-radix
-SUBDIR+=	go-repr
 SUBDIR+=	go-review
 SUBDIR+=	go-sanitized_anchor_name
-SUBDIR+=	go-shuffle
 SUBDIR+=	go-siphash
-SUBDIR+=	go-spew
-SUBDIR+=	go-sync
 SUBDIR+=	go-sys
 SUBDIR+=	go-termbox
 SUBDIR+=	go-testify
-SUBDIR+=	go-textseg
 SUBDIR+=	go-thrift
 SUBDIR+=	go-tools
 SUBDIR+=	go-try
@@ -2174,6 +2166,7 @@ SUBDIR+=	py-aiocontextvars
 SUBDIR+=	py-aiofiles
 SUBDIR+=	py-aiounittest
 SUBDIR+=	py-angr
+SUBDIR+=	py-anyio
 SUBDIR+=	py-anytree
 SUBDIR+=	py-apipkg
 SUBDIR+=	py-appdirs
