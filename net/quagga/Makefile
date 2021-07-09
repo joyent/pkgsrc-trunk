@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.67 2021/02/01 20:51:24 gdt Exp $
+# $NetBSD: Makefile,v 1.69 2021/05/24 19:53:36 wiz Exp $
 #
 DISTNAME=	quagga-1.2.4
-PKGREVISION=	4
+PKGREVISION=	5
 CATEGORIES=	net
 MASTER_SITES=	http://download.savannah.gnu.org/releases/quagga/
 
@@ -25,6 +25,8 @@ CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR:Q}
 CONFIGURE_ARGS+=	--enable-exampledir=${PREFIX}/share/examples/quagga
 #CONFIGURE_ARGS+=	--enable-pkgsrcrcdir=${PREFIX}/${RCD_SCRIPTS_EXAMPLEDIR}
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE}/run/zebra
+# Requires libcares
+CONFIGURE_ARGS+=	--disable-nhrpd
 
 BUILD_DEFS+=		VARBASE
 

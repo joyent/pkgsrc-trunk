@@ -1,9 +1,10 @@
-# $NetBSD: Makefile,v 1.7 2021/03/07 19:49:12 he Exp $
+# $NetBSD: Makefile,v 1.10 2021/05/14 11:47:29 nia Exp $
 #
 
 VERSION=	2.6.1
 DISTNAME=	softhsm-${VERSION}
 PKGNAME=	softhsm2-${VERSION}
+PKGREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	http://www.opendnssec.org/files/source/
 
@@ -47,4 +48,5 @@ pre-install:
 USE_BUILTIN.sqlite3=NO
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../security/botan-devel/buildlink3.mk"
+.include "../../security/openssl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.46 2021/02/27 04:19:46 ryoon Exp $
+# $NetBSD: Makefile,v 1.49 2021/04/21 13:24:54 adam Exp $
 
 PKGNAME=	${DISTNAME:S/mozc-/mozc-renderer-/}
-PKGREVISION=	1
+PKGREVISION=	3
 
 CONFLICTS+=	ibus-mozc<=1.13.1651.102
 
@@ -9,6 +9,9 @@ INSTALLATION_DIRS+=	libexec share/icons
 
 DEPENDS+=	xdg-utils-[0-9]*:../../misc/xdg-utils
 DEPENDS+=	mozc-server-[0-9]*:../../inputmethod/mozc-server
+
+pre-configure:
+	${RM} ${WRKSRC}/unix/uim/uim.gyp
 
 do-build:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} \

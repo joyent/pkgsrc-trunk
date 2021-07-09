@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.1 2020/01/15 15:51:22 pho Exp $
+# $NetBSD: Makefile,v 1.3 2021/05/03 19:01:15 pho Exp $
 
-DISTNAME=	hslua-module-text-0.2.1
+DISTNAME=	hslua-module-text-0.3.0.1
+PKGREVISION=	1
 CATEGORIES=	textproc
 
 MAINTAINER=	pho@cielonegro.org

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.6 2020/08/31 12:46:21 nia Exp $
+# $NetBSD: Makefile,v 1.8 2021/06/06 16:59:51 nia Exp $
 
-DISTNAME=	gemrb-0.8.7
+DISTNAME=	gemrb-0.8.8
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GITHUB:=gemrb/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -17,6 +17,7 @@ USE_TOOLS+=	pkg-config
 GCC_REQD+=	4.7 # -std=gnu++11
 
 LDFLAGS+=	${COMPILER_RPATH_FLAG}${PREFIX}/lib/gemrb
+LDFLAGS+=	-lm # ldexpf
 
 CMAKE_ARGS+=	-DDISABLE_WERROR=ON
 CMAKE_ARGS+=	-DUSE_LIBVLC=OFF

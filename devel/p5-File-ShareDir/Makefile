@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.23 2020/08/31 18:08:03 wiz Exp $
+# $NetBSD: Makefile,v 1.25 2021/05/24 19:50:42 wiz Exp $
 
-DISTNAME=	File-ShareDir-1.116
+DISTNAME=	File-ShareDir-1.118
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	3
+PKGREVISION=	4
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=File/}
 
@@ -11,6 +11,7 @@ HOMEPAGE=	https://metacpan.org/release/File-ShareDir
 COMMENT=	Get a generic path to the share directory
 LICENSE=	${PERL5_LICENSE}
 
+BUILD_DEPENDS+=	p5-File-ShareDir-Install-[0-9]*:../../devel/p5-File-ShareDir-Install
 DEPENDS+=	p5-Class-Inspector>=1.12:../../devel/p5-Class-Inspector
 
 USE_LANGUAGES=		# empty

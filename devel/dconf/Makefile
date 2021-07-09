@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.60 2020/12/04 20:45:08 nia Exp $
+# $NetBSD: Makefile,v 1.63 2021/05/02 11:06:12 nia Exp $
 
 DISTNAME=	dconf-0.36.0
-PKGREVISION=	3
+PKGREVISION=	5
 CATEGORIES=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/dconf/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -11,13 +11,13 @@ HOMEPAGE=	https://wiki.gnome.org/Projects/dconf
 COMMENT=	Backend for gsettings
 LICENSE=	gnu-lgpl-v2.1
 
-TOOL_DEPENDS+=	gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
 BUILD_DEPENDS+=	libxslt-[0-9]*:../../textproc/libxslt
 BUILD_DEPENDS+=	docbook-xsl-[0-9]*:../../textproc/docbook-xsl
 
 USE_LANGUAGES=	c99
-USE_TOOLS+=	pkg-config
+USE_TOOLS+=	pkg-config gdbus-codegen
 
+PYTHON_FOR_BUILD_ONLY=	tool
 REPLACE_PYTHON+=	*.py
 
 # gtk-doc wants to run dconf-scan, but that does not find its library libdconf.so.1

@@ -1,6 +1,10 @@
 #!@SMF_METHOD_SHELL@
 #
+<<<<<<< HEAD
 # $NetBSD: mysqld.sh,v 1.1 2016/09/16 06:49:12 adam Exp $
+=======
+# $NetBSD: mysqld.sh,v 1.1 2021/05/13 15:25:20 jdolecek Exp $
+>>>>>>> netbsd/trunk
 #
 # Init script for mysqld.
 #

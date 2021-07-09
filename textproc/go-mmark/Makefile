@@ -1,21 +1,25 @@
-# $NetBSD: Makefile,v 1.29 2021/01/23 14:23:12 bsiegert Exp $
+# $NetBSD: Makefile,v 1.33 2021/06/06 12:19:00 bsiegert Exp $
 
-DISTNAME=	mmark-1.3.6
+DISTNAME=	mmark-2.2.10
 PKGNAME=	go-${DISTNAME}
-PKGREVISION=	26
-MASTER_SITES=	${MASTER_SITE_GITHUB:=miekg/}
+PKGREVISION=	1
+MASTER_SITES=	${MASTER_SITE_GITHUB:=mmarkdown/}
 CATEGORIES=	textproc
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 GITHUB_PROJECT=	${PKGBASE:S/^go-//}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/miekg/mmark
-COMMENT=	Mmark: a powerful markdown processor in Go geared towards the IETF
+COMMENT=	Powerful markdown processor in Go geared towards the IETF
 LICENSE=	2-clause-bsd
 
-GO_DIST_BASE=	${DISTNAME}
-GO_SRCPATH=	github.com/miekg/mmark
+GO_BUILD_PATTERN=	.
+INSTALLATION_DIRS+=	man/man1
 
-.include "../../www/go-toml-burntsushi/buildlink3.mk"
-.include "../../lang/go/go-package.mk"
+.include "go-modules.mk"
+
+post-install:
+	${INSTALL_MAN} ${WRKSRC}/mmark.1 ${DESTDIR}${PREFIX}/man/man1
+
+.include "../../lang/go/go-module.mk"
 .include "../../mk/bsd.pkg.mk"

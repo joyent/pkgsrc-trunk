@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.84 2021/01/01 08:19:02 ryoon Exp $
+# $NetBSD: Makefile,v 1.87 2021/04/24 14:12:17 thor Exp $
 
 BOOST_PACKAGE=		libs
 BOOST_COMMENT=		(binary libraries)
@@ -48,10 +48,13 @@ PLIST.longdbl=		yes
 .endif
 
 # libboost_stacktrace_backtrace requires libbacktrace.
-# FIXME: The condition needs to be refined for non-Debian/Ubuntu
-# platforms shipped with libbacktrace.
-.if ${OPSYS} == "Linux" && (exists(/etc/debian_version) || exists(/etc/devuan_version))
+# FIXME: Test on non-Linux. It should just work.
+TEST_BACKTRACE_CMD=	${PKGSRC_SETENV} ${MAKE_ENV} ${TOOLS_PLATFORM.sh} \
+  ${FILESDIR}/test-backtrace.sh '${CXX} ${CXXFLAGS} ${CPPFLAGS}'
+.if !defined(_PKGSRC_BARRIER)
+.if ${OPSYS} == "Linux" && ${TEST_BACKTRACE_CMD:sh} == "yes"
 PLIST.backtrace=	yes
+.endif
 .endif
 
 UNLIMIT_RESOURCES+=	stacksize
@@ -71,6 +74,7 @@ do-build: bjam-build
 do-install: boost-install-libs
 
 .include "../../archivers/bzip2/buildlink3.mk"
+.include "../../archivers/zstd/buildlink3.mk"
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../textproc/expat/buildlink3.mk"

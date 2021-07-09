@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.224 2021/01/01 08:24:45 ryoon Exp $
+# $NetBSD: Makefile,v 1.237 2021/07/02 12:42:59 adam Exp $
 
-DISTNAME=	inkscape-1.0.1
-PKGREVISION=	4
+DISTNAME=	inkscape-1.1
 CATEGORIES=	graphics
 MASTER_SITES=	https://media.inkscape.org/dl/resources/file/
 EXTRACT_SUFX=	.tar.xz
@@ -11,18 +10,18 @@ HOMEPAGE=	https://www.inkscape.org/
 COMMENT=	Scalable Vector Graphics (SVG) editor
 LICENSE=	gnu-gpl-v2
 
-WRKSRC=		${WRKDIR}/inkscape-1.0.1_2020-09-07_3bc2e813f5
+WRKSRC=		${WRKDIR}/inkscape-1.1_2021-05-24_c4e8f9ed74
 
 .if !exists(/usr/bin/iconv)
-BUILD_DEPENDS+=	libiconv-[0-9]*:../../converters/libiconv
+BUILD_DEPENDS+=		libiconv-[0-9]*:../../converters/libiconv
 .endif
-DEPENDS+=	adwaita-icon-theme>0:../../graphics/adwaita-icon-theme
-DEPENDS+=	${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
+DEPENDS+=		adwaita-icon-theme>0:../../graphics/adwaita-icon-theme
+DEPENDS+=		${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 # for inkex.py, needed by most python extension scripts
-DEPENDS+=	${PYPKGPREFIX}-lxml-[0-9]*:../../textproc/py-lxml
+DEPENDS+=		${PYPKGPREFIX}-lxml-[0-9]*:../../textproc/py-lxml
 # for desktop
-TOOL_DEPENDS+=	gettext-tools-[0-9]*:../../devel/gettext-tools
-TOOLS_PLATFORM.msgfmt= # empty
+TOOL_DEPENDS+=		gettext-tools-[0-9]*:../../devel/gettext-tools
+TOOLS_PLATFORM.msgfmt=	# empty
 
 EXTRACT_USING=		bsdtar
 GCC_REQD+=		4.5.2
@@ -31,7 +30,7 @@ GCC_REQD+=		4.5.2
 LDFLAGS+=		${COMPILER_RPATH_FLAG}${PREFIX}/lib/inkscape
 
 USE_CMAKE=		yes
-USE_LANGUAGES=		c c++11
+USE_LANGUAGES=		c c++17
 USE_LIBTOOL=		yes
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		intltool msgfmt msgmerge perl pkg-config
@@ -41,8 +40,6 @@ REPLACE_PERL+=		share/extensions/*.p[lm]
 REPLACE_PERL+=		share/templates/create_defaults.pl
 
 UNLIMIT_RESOURCES=	datasize
-
-LDFLAGS.DragonFly=	-lX11
 
 PYTHON_VERSIONS_INCOMPATIBLE=	27
 
@@ -57,6 +54,12 @@ SUBST_MESSAGE.pycmd=	Replacing COMMAND python in CMakeFiles.
 SUBST_FILES.pycmd+=	share/*/CMakeLists.txt
 SUBST_SED.pycmd=	-e "s,COMMAND python3,COMMAND ${PYTHONBIN},g"
 
+SUBST_CLASSES+=		xdg
+SUBST_STAGE.xdg=	pre-configure
+SUBST_MESSAGE.xdg=	Replacing xdg search path.
+SUBST_FILES.xdg+=	src/inkscape-main.cpp
+SUBST_SED.xdg=		-e 's,xdg_data_dirs = "/usr/local/share/:/usr/share/",xdg_data_dirs = "'${PREFIX}'/share/",'
+
 REPLACE_PYTHON+=	share/extensions/*.py
 
 CHECK_INTERPRETER_SKIP+=	share/inkscape/extensions/genpofiles.sh
@@ -68,8 +71,6 @@ CMAKE_ARGS+=	-DPACKAGE_LOCALE_DIR=${PREFIX}/${PKGLOCALEDIR}/locale
 
 MANCOMPRESSED=	yes
 
-.include "options.mk"
-
 .include "../../mk/bsd.prefs.mk"
 .if ${OPSYS} == "Darwin"
 CMAKE_ARGS+=	-DIntl_INCLUDE_DIR=${BUILDLINK_PREFIX.gettext}/include
@@ -80,7 +81,16 @@ CMAKE_ARGS+=	-DIntl_INCLUDE_DIR=${BUILDLINK_PREFIX.gettext}/include
 # (gettext translation file dependency not correctly expressed in cmake?)
 # Run the script post-build to ensure all files are generated.
 post-build:
-	cd ${WRKSRC} && ${PYTHONBIN} ./share/templates/create_default_templates.py . .
+	cd ${WRKSRC} && ${PYTHONBIN} share/templates/create_default_templates.py . .
+
+.if ${OPSYS} == "Darwin"
+.PHONY: fix-darwin-install-name
+post-install: fix-darwin-install-name
+fix-darwin-install-name:
+	install_name_tool -change ${PREFIX}/lib/libinkscape_base.dylib \
+		${PREFIX}/lib/inkscape/libinkscape_base.dylib \
+		${DESTDIR}${PREFIX}/bin/inkscape
+.endif
 
 BUILDLINK_API_DEPENDS.boehm-gc+=	boehm-gc>=7.4
 .include "../../converters/libcdr/buildlink3.mk"
@@ -89,11 +99,14 @@ BUILDLINK_API_DEPENDS.boehm-gc+=	boehm-gc>=7.4
 .include "../../converters/libwpg/buildlink3.mk"
 .include "../../devel/boehm-gc/buildlink3.mk"
 .include "../../devel/boost-headers/buildlink3.mk"
-.include "../../devel/gdl/buildlink3.mk"
 .include "../../devel/googletest/buildlink3.mk"
+BUILDLINK_API_DEPENDS.libsigcpp+=	libsigc++>=2.0.12
 .include "../../devel/libsigc++/buildlink3.mk"
+BUILDLINK_API_DEPENDS.pango+=	pango>=1.42
 .include "../../devel/pango/buildlink3.mk"
-.include "../../mk/jpeg.buildlink3.mk"
+BUILDLINK_API_DEPENDS.harfbuzz+=	harfbuzz>=2.2
+.include "../../fonts/harfbuzz/buildlink3.mk"
+.include "../../graphics/freetype2/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../graphics/lcms2/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
@@ -105,12 +118,13 @@ BUILDLINK_API_DEPENDS.boehm-gc+=	boehm-gc>=7.4
 .include "../../print/poppler-includes/buildlink3.mk"
 .include "../../textproc/aspell/buildlink3.mk"
 .include "../../textproc/gtkspell3/buildlink3.mk"
-.include "../../textproc/libxml2/buildlink3.mk"
-.include "../../textproc/libxslt/buildlink3.mk"
+BUILDLINK_API_DEPENDS.gtkmm3+=	gtkmm3>=3.24
 .include "../../x11/gtkmm3/buildlink3.mk"
-.include "../../x11/libXext/buildlink3.mk"
-
+.if ${PKG_BUILD_OPTIONS.gtk3:Mquartz}
+.include "../../x11/gtk-mac-integration/buildlink3.mk"
+.endif
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../lang/python/application.mk"
 .include "../../mk/atomic64.mk"
+.include "../../mk/jpeg.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

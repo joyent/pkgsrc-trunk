@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.122 2020/07/17 23:38:56 wiz Exp $
+# $NetBSD: Makefile,v 1.125 2021/03/30 16:16:03 ryoon Exp $
 
 DISTNAME=	dbus-1.12.20
+PKGREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus/
 
@@ -22,15 +23,17 @@ PKGCONFIG_OVERRIDE=	dbus-1.pc.in
 
 BUILD_DEFS+=		VARBASE PKG_SYSCONFBASE
 
-OWN_DIRS_PERMS+=	${VARBASE}/db/dbus ${DBUS_USER} ${DBUS_GROUP} 0755
+OWN_DIRS_PERMS+=	${VARBASE}/lib/dbus ${DBUS_USER} ${DBUS_GROUP} 0755
 SPECIAL_PERMS+=		libexec/dbus-daemon-launch-helper ${REAL_ROOT_USER} ${DBUS_GROUP} 4511
 
 SMF_METHODS=	dbus
 SMF_NAME=	dbus
 
-MESSAGE_SRC+=	MESSAGE
-
 .include "../../mk/bsd.prefs.mk"
+
+.if ${INIT_SYSTEM} == "rc.d"
+MESSAGE_SRC+=	MESSAGE.rcd
+.endif
 
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE:Q}
 
@@ -106,6 +109,6 @@ post-install:
 
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
-BUILDLINK_ABI_DEPENDS.expat+=	expat>=2.1.0
+BUILDLINK_API_DEPENDS.expat+=	expat>=2.1.0
 .include "../../textproc/expat/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

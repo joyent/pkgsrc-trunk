@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.104 2020/11/05 09:08:08 ryoon Exp $
+# $NetBSD: Makefile,v 1.106 2021/05/02 10:24:48 nia Exp $
 
 DISTNAME=	gbrainy-2.4.1
 PKGNAME=	gbrainy-2.41
-PKGREVISION=	6
+PKGREVISION=	7
 CATEGORIES=	games
 MASTER_SITES=	https://gent.softcatala.org/jmas/gbrainy/
 
@@ -17,9 +17,7 @@ GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_LANGUAGES=	c
 USE_TOOLS+=	gmake intltool pkg-config bash:run
-USE_TOOLS+=	msgfmt msgmerge xgettext
-
-TOOL_DEPENDS+=	itstool-[0-9]*:../../textproc/itstool
+USE_TOOLS+=	msgfmt msgmerge xgettext itstool
 
 BUILDLINK_API_DEPENDS.cairo+=	cairo>=1.2.0
 

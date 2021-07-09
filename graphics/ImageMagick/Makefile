@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.284 2020/12/06 10:33:39 wiz Exp $
+# $NetBSD: Makefile,v 1.293 2021/06/10 10:03:44 wiz Exp $
 
 .include "Makefile.common"
 
 PKGNAME=	ImageMagick-${DISTVERSION}
 
 MAINTAINER=	adam@NetBSD.org
-COMMENT=	Package for display and interactive manipulation of images
+COMMENT=	Package for display and non-interactive manipulation of images
 
 CONFLICTS=	geomview<1.8.1nb2  # used to have a program named 'animate'
 

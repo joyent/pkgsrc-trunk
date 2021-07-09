@@ -1,4 +1,4 @@
-$NetBSD: patch-setup.py,v 1.1 2018/11/16 14:12:42 kleink Exp $
+$NetBSD: patch-setup.py,v 1.3 2021/04/29 13:15:32 joerg Exp $
 
 Adjust script path to allow multiple Python version installs.
 

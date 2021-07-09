@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.6 2020/07/14 12:46:02 adam Exp $
+@comment $NetBSD: PLIST,v 1.10 2021/07/05 19:05:30 adam Exp $
 ${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
 ${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
 ${PYSITELIB}/${EGG_INFODIR}/dependency_links.txt
@@ -14,6 +14,8 @@ ${PYSITELIB}/humanize/filesize.pyo
 ${PYSITELIB}/humanize/i18n.py
 ${PYSITELIB}/humanize/i18n.pyc
 ${PYSITELIB}/humanize/i18n.pyo
+${PYSITELIB}/humanize/locale/ca_ES/LC_MESSAGES/humanize.mo
+${PYSITELIB}/humanize/locale/ca_ES/LC_MESSAGES/humanize.po
 ${PYSITELIB}/humanize/locale/de_DE/LC_MESSAGES/humanize.mo
 ${PYSITELIB}/humanize/locale/de_DE/LC_MESSAGES/humanize.po
 ${PYSITELIB}/humanize/locale/es_ES/LC_MESSAGES/humanize.mo
@@ -44,12 +46,16 @@ ${PYSITELIB}/humanize/locale/ru_RU/LC_MESSAGES/humanize.mo
 ${PYSITELIB}/humanize/locale/ru_RU/LC_MESSAGES/humanize.po
 ${PYSITELIB}/humanize/locale/sk_SK/LC_MESSAGES/humanize.mo
 ${PYSITELIB}/humanize/locale/sk_SK/LC_MESSAGES/humanize.po
+${PYSITELIB}/humanize/locale/sl_SI/LC_MESSAGES/humanize.mo
+${PYSITELIB}/humanize/locale/sl_SI/LC_MESSAGES/humanize.po
+${PYSITELIB}/humanize/locale/sv_SE/LC_MESSAGES/humanize.mo
+${PYSITELIB}/humanize/locale/sv_SE/LC_MESSAGES/humanize.po
 ${PYSITELIB}/humanize/locale/tr_TR/LC_MESSAGES/humanize.mo
 ${PYSITELIB}/humanize/locale/tr_TR/LC_MESSAGES/humanize.po
 ${PYSITELIB}/humanize/locale/uk_UA/LC_MESSAGES/humanize.mo
 ${PYSITELIB}/humanize/locale/uk_UA/LC_MESSAGES/humanize.po
-${PYSITELIB}/humanize/locale/vi_VI/LC_MESSAGES/humanize.mo
-${PYSITELIB}/humanize/locale/vi_VI/LC_MESSAGES/humanize.po
+${PYSITELIB}/humanize/locale/vi_VN/LC_MESSAGES/humanize.mo
+${PYSITELIB}/humanize/locale/vi_VN/LC_MESSAGES/humanize.po
 ${PYSITELIB}/humanize/locale/zh_CN/LC_MESSAGES/humanize.mo
 ${PYSITELIB}/humanize/locale/zh_CN/LC_MESSAGES/humanize.po
 ${PYSITELIB}/humanize/number.py

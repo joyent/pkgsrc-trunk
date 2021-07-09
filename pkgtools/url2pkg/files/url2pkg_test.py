@@ -1,4 +1,4 @@
-# $NetBSD: url2pkg_test.py,v 1.27 2020/10/17 22:39:01 rillig Exp $
+# $NetBSD: url2pkg_test.py,v 1.31 2021/05/25 17:56:24 rillig Exp $
 
 import pytest
 from url2pkg import *
@@ -431,6 +431,31 @@ def test_Generator_adjust_site_GitHub_archive():
     ]
 
 
+def test_Generator_adjust_site_GitHub_archive_tag():
+    url = 'https://github.com/org/proj/archive/refs/tags/1.0.0.tar.gz'
+
+    lines = Generator(url).generate_Makefile()
+    assert detab(lines) == [
+        mkcvsid,
+        '',
+        'GITHUB_PROJECT= proj',
+        'GITHUB_TAG=     refs/tags/1.0.0',
+        'DISTNAME=       1.0.0',
+        'PKGNAME=        ${GITHUB_PROJECT}-${DISTNAME}',
+        'CATEGORIES=     pkgtools',
+        'MASTER_SITES=   ${MASTER_SITE_GITHUB:=org/}',
+        'DIST_SUBDIR=    ${GITHUB_PROJECT}',
+        '',
+        'MAINTAINER=     INSERT_YOUR_MAIL_ADDRESS_HERE # or use pkgsrc-users@NetBSD.org',
+        'HOMEPAGE=       https://github.com/org/proj/',
+        'COMMENT=        TODO: Short description of the package',
+        '#LICENSE=       # TODO: (see mk/license.mk)',
+        '',
+        '# url2pkg-marker (please do not remove this line.)',
+        ".include \"../../mk/bsd.pkg.mk\"",
+    ]
+
+
 def test_Generator_adjust_site_GitHub_release__containing_project_name():
     url = 'https://github.com/org/proj/releases/download/1.0.0/proj.zip'
 
@@ -685,12 +710,12 @@ def test_Adjuster_read_dependencies():
 
     adjuster = Adjuster(g, '', Lines())
     adjuster.makefile_lines.add('# url2pkg-marker')
-    adjuster.read_dependencies(cmd, env, '.', '')
+    adjuster.read_dependencies(cmd, env, '.', '', '')
 
     assert os.getenv('URL2PKG_DEPENDENCIES') is None
     assert adjuster.depends == ['package>=112.0:../../pkgtools/pkglint']
     assert adjuster.bl3_lines == [
-        'BUILDLINK_API_DEPENDS.x11-links+=\tx11-links>=120.0',
+        'BUILDLINK_API_DEPENDS.x11-links+=\tpackage>=120.0',
         ".include \"../../pkgtools/x11-links/buildlink3.mk\"",
     ]
     assert adjuster.build_depends == [
@@ -707,7 +732,7 @@ def test_Adjuster_read_dependencies():
         'HOMEPAGE=       https://homepage.example.org/',
         '#LICENSE=       BSD # (from Python package)',
         '',
-        'BUILDLINK_API_DEPENDS.x11-links+=       x11-links>=120.0',
+        'BUILDLINK_API_DEPENDS.x11-links+=       package>=120.0',
         '.include "../../pkgtools/x11-links/buildlink3.mk"'
     ]
 
@@ -721,10 +746,10 @@ def test_Adjuster_read_dependencies__lookup_with_prefix():
     cmd = "printf '%s\n' \"$URL2PKG_DEPENDENCIES\""
 
     adjuster = Adjuster(g, '', Lines())
-    adjuster.read_dependencies(cmd, env, '.', 'py-')
+    adjuster.read_dependencies(cmd, env, '.', 'py-', '${PYPKGPREFIX}-')
 
     assert adjuster.depends == [
-        'py-pyobjc-framework-Quartz>=0:../../devel/py-pyobjc-framework-Quartz',
+        '${PYPKGPREFIX}-pyobjc-framework-Quartz>=0:../../devel/py-pyobjc-framework-Quartz',
     ]
 
 

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.56 2020/12/04 20:45:34 nia Exp $
+# $NetBSD: Makefile,v 1.59 2021/04/21 13:25:08 adam Exp $
 
 DISTNAME=	glib-networking-2.64.3
-PKGREVISION=	1
+PKGREVISION=	3
 CATEGORIES=	net gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/glib-networking/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -11,10 +11,11 @@ HOMEPAGE=	https://www.gnome.org/
 COMMENT=	Network-related giomodules for glib
 LICENSE=	gnu-lgpl-v2
 
-USE_TOOLS+=	pkg-config gmake gettext
+USE_TOOLS+=	pkg-config gettext
 
 CPPFLAGS.SunOS+=	-D__EXTENSIONS__
 
+PYTHON_FOR_BUILD_ONLY=	tool
 REPLACE_PYTHON+=	meson_post_install.py
 
 .include "options.mk"

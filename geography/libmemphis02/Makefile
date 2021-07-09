@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.12 2021/01/18 23:50:45 mef Exp $
+# $NetBSD: Makefile,v 1.14 2021/04/19 16:00:42 wiz Exp $
 
 DISTNAME=	memphis-0.2.3
 PKGNAME=	libmemphis02-0.2.3
-PKGREVISION=	8
+PKGREVISION=	9
 CATEGORIES=	geography
 MASTER_SITES=	${MASTER_SITE_GITHUB:=jiuka/}
 GITHUB_PROJECT=	memphis
@@ -25,6 +25,8 @@ pre-configure:
 	libtoolize --copy; aclocal -I m4; \
 	autoheader ; \
 	automake -a --foreign -i --add-missing; autoconf
+
+.include "options.mk"
 
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../graphics/cairo/buildlink3.mk"

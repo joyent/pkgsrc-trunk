@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.1 2017/08/21 13:26:14 nils Exp $
+# $NetBSD: Makefile,v 1.3 2021/03/28 10:06:29 nia Exp $
 
 DISTNAME=		ronn-0.7.3
 PKGNAME=		${RUBY_PKGPREFIX}-${DISTNAME}
+PKGREVISION=		1
 CATEGORIES=		devel textproc
 
 MAINTAINER=		nils@NetBSD.org
@@ -17,9 +18,21 @@ RUBYGEM_OPTIONS+=	--format-executable
 
 INSTALLATION_DIRS+=	${PKGMANDIR}/man1 ${PKGMANDIR}/man7
 
+post-build:
+	${SED} -e 's/ronn(1)/ronn${RUBY_SUFFIX}(1)/g' \
+	    -e 's/ronn\\-format(7)/ronn\-format${RUBY_SUFFIX}(7)/g' \
+	    ${WRKSRC}/man/ronn.1 > \
+	    ${WRKDIR}/ronn${RUBY_SUFFIX}.1
+	${SED} -e 's/ronn(1)/ronn${RUBY_SUFFIX}(1)/g' \
+	    -e 's/ronn\\-format(7)/ronn\-format${RUBY_SUFFIX}(7)/g' \
+	    ${WRKSRC}/man/ronn-format.7 > \
+	    ${WRKDIR}/ronn-format${RUBY_SUFFIX}.7
+
 post-install:
-	${LN} -sf ${PREFIX}/${GEM_LIBDIR}/man/ronn.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/ronn.1
-	${LN} -sf ${PREFIX}/${GEM_LIBDIR}/man/ronn-format.7 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man7/ronn-format.7
+	${INSTALL_MAN} ${WRKDIR}/ronn${RUBY_SUFFIX}.1 \
+	    ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/ronn${RUBY_SUFFIX}.1
+	${INSTALL_MAN} ${WRKDIR}/ronn-format${RUBY_SUFFIX}.7 \
+	    ${DESTDIR}${PREFIX}/${PKGMANDIR}/man7/ronn-format${RUBY_SUFFIX}.7
 
 .include "../../lang/ruby/gem.mk"
 .include "../../mk/bsd.pkg.mk"

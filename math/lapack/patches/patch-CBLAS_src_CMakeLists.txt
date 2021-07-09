@@ -1,25 +1,34 @@
-$NetBSD: patch-CBLAS_src_CMakeLists.txt,v 1.1 2020/10/12 21:51:57 bacon Exp $
+$NetBSD: patch-CBLAS_src_CMakeLists.txt,v 1.4 2021/05/13 07:52:05 thor Exp $
 
-Support combined build of shared and static libraries.
+- Support combined build of shared and static libraries.
+- Link CBLAS with Fortran compiler to fix build on NetBSD.
 
---- CBLAS/src/CMakeLists.txt.orig	2017-11-13 04:15:54.000000000 +0000
+--- CBLAS/src/CMakeLists.txt.orig	2021-03-25 18:25:15.000000000 +0000
 +++ CBLAS/src/CMakeLists.txt
-@@ -126,3 +126,18 @@ target_include_directories(cblas PUBLIC
+@@ -116,7 +116,6 @@ list(REMOVE_DUPLICATES SOURCES)
+ add_library(${CBLASLIB} ${SOURCES})
+ set_target_properties(
+   ${CBLASLIB} PROPERTIES
+-  LINKER_LANGUAGE C
+   VERSION ${LAPACK_VERSION}
+   SOVERSION ${LAPACK_MAJOR_VERSION}
+   )
+@@ -129,3 +128,18 @@ target_include_directories(${CBLASLIB} P
  )
- target_link_libraries(cblas PRIVATE ${BLAS_LIBRARIES})
- lapack_install_library(cblas)
+ target_link_libraries(${CBLASLIB} PRIVATE ${BLAS_LIBRARIES})
+ lapack_install_library(${CBLASLIB})
 +
 +if(BUILD_SHARED_LIBS AND BUILD_STATIC_LIBS)
-+  add_library(cblas_static STATIC ${SOURCES})
++  add_library(${CBLASLIB}_static STATIC ${SOURCES})
 +  set_target_properties(
-+    cblas_static PROPERTIES
-+    LINKER_LANGUAGE C
-+    OUTPUT_NAME cblas
++    ${CBLASLIB}_static PROPERTIES
++    OUTPUT_NAME ${CBLASLIB}
 +    )
-+  target_include_directories(cblas_static PUBLIC
++  target_include_directories(${CBLASLIB}_static PUBLIC
 +    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../include>
 +    $<INSTALL_INTERFACE:include>
 +  )
-+  target_link_libraries(cblas_static PRIVATE ${BLAS_LIBRARIES})
-+  lapack_install_library(cblas_static)
++  target_link_libraries(${CBLASLIB}_static PRIVATE ${BLAS_LIBRARIES})
++  lapack_install_library(${CBLASLIB}_static)
 +endif()
++

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.118 2020/12/04 04:55:56 riastradh Exp $
+# $NetBSD: Makefile,v 1.121 2021/04/21 13:24:46 adam Exp $
 
 DISTNAME=	darktable-3.0.0
-PKGREVISION=	12
+PKGREVISION=	14
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_GITHUB:=darktable-org/}
 GITHUB_PROJECT=	darktable
@@ -78,6 +78,7 @@ BUILDLINK_API_DEPENDS.zlib+=	zlib>=1.2.11
 .include "../../graphics/GraphicsMagick/buildlink3.mk"
 .include "../../graphics/exiv2/buildlink3.mk"
 .include "../../graphics/gegl/buildlink3.mk"
+.include "../../graphics/librsvg/buildlink3.mk"
 .include "../../graphics/lensfun/buildlink3.mk"
 .include "../../graphics/lcms2/buildlink3.mk"
 .include "../../graphics/openexr/buildlink3.mk"

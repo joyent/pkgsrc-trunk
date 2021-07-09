@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.33 2020/11/27 19:40:36 adam Exp $
+@comment $NetBSD: PLIST,v 1.35 2021/05/07 18:45:04 adam Exp $
 bin/lexicon-${PYVERSSUFFIX}
 ${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
 ${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
@@ -63,6 +63,9 @@ ${PYSITELIB}/lexicon/providers/conoha.pyo
 ${PYSITELIB}/lexicon/providers/constellix.py
 ${PYSITELIB}/lexicon/providers/constellix.pyc
 ${PYSITELIB}/lexicon/providers/constellix.pyo
+${PYSITELIB}/lexicon/providers/ddns.py
+${PYSITELIB}/lexicon/providers/ddns.pyc
+${PYSITELIB}/lexicon/providers/ddns.pyo
 ${PYSITELIB}/lexicon/providers/digitalocean.py
 ${PYSITELIB}/lexicon/providers/digitalocean.pyc
 ${PYSITELIB}/lexicon/providers/digitalocean.pyo
@@ -138,6 +141,9 @@ ${PYSITELIB}/lexicon/providers/hover.pyo
 ${PYSITELIB}/lexicon/providers/infoblox.py
 ${PYSITELIB}/lexicon/providers/infoblox.pyc
 ${PYSITELIB}/lexicon/providers/infoblox.pyo
+${PYSITELIB}/lexicon/providers/infomaniak.py
+${PYSITELIB}/lexicon/providers/infomaniak.pyc
+${PYSITELIB}/lexicon/providers/infomaniak.pyo
 ${PYSITELIB}/lexicon/providers/internetbs.py
 ${PYSITELIB}/lexicon/providers/internetbs.pyc
 ${PYSITELIB}/lexicon/providers/internetbs.pyo
@@ -162,6 +168,9 @@ ${PYSITELIB}/lexicon/providers/luadns.pyo
 ${PYSITELIB}/lexicon/providers/memset.py
 ${PYSITELIB}/lexicon/providers/memset.pyc
 ${PYSITELIB}/lexicon/providers/memset.pyo
+${PYSITELIB}/lexicon/providers/mythicbeasts.py
+${PYSITELIB}/lexicon/providers/mythicbeasts.pyc
+${PYSITELIB}/lexicon/providers/mythicbeasts.pyo
 ${PYSITELIB}/lexicon/providers/namecheap.py
 ${PYSITELIB}/lexicon/providers/namecheap.pyc
 ${PYSITELIB}/lexicon/providers/namecheap.pyo
@@ -276,6 +285,9 @@ ${PYSITELIB}/lexicon/tests/providers/test_conoha.pyo
 ${PYSITELIB}/lexicon/tests/providers/test_constellix.py
 ${PYSITELIB}/lexicon/tests/providers/test_constellix.pyc
 ${PYSITELIB}/lexicon/tests/providers/test_constellix.pyo
+${PYSITELIB}/lexicon/tests/providers/test_ddns.py
+${PYSITELIB}/lexicon/tests/providers/test_ddns.pyc
+${PYSITELIB}/lexicon/tests/providers/test_ddns.pyo
 ${PYSITELIB}/lexicon/tests/providers/test_digitalocean.py
 ${PYSITELIB}/lexicon/tests/providers/test_digitalocean.pyc
 ${PYSITELIB}/lexicon/tests/providers/test_digitalocean.pyo
@@ -351,6 +363,9 @@ ${PYSITELIB}/lexicon/tests/providers/test_hover.pyo
 ${PYSITELIB}/lexicon/tests/providers/test_infoblox.py
 ${PYSITELIB}/lexicon/tests/providers/test_infoblox.pyc
 ${PYSITELIB}/lexicon/tests/providers/test_infoblox.pyo
+${PYSITELIB}/lexicon/tests/providers/test_infomaniak.py
+${PYSITELIB}/lexicon/tests/providers/test_infomaniak.pyc
+${PYSITELIB}/lexicon/tests/providers/test_infomaniak.pyo
 ${PYSITELIB}/lexicon/tests/providers/test_internetbs.py
 ${PYSITELIB}/lexicon/tests/providers/test_internetbs.pyc
 ${PYSITELIB}/lexicon/tests/providers/test_internetbs.pyo
@@ -375,6 +390,9 @@ ${PYSITELIB}/lexicon/tests/providers/test_luadns.pyo
 ${PYSITELIB}/lexicon/tests/providers/test_memset.py
 ${PYSITELIB}/lexicon/tests/providers/test_memset.pyc
 ${PYSITELIB}/lexicon/tests/providers/test_memset.pyo
+${PYSITELIB}/lexicon/tests/providers/test_mythicbeasts.py
+${PYSITELIB}/lexicon/tests/providers/test_mythicbeasts.pyc
+${PYSITELIB}/lexicon/tests/providers/test_mythicbeasts.pyo
 ${PYSITELIB}/lexicon/tests/providers/test_namecheap.py
 ${PYSITELIB}/lexicon/tests/providers/test_namecheap.pyc
 ${PYSITELIB}/lexicon/tests/providers/test_namecheap.pyo

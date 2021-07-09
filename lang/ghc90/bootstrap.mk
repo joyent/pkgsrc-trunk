@@ -1,4 +1,4 @@
-# $NetBSD: bootstrap.mk,v 1.1 2021/02/09 13:18:36 ryoon Exp $
+# $NetBSD: bootstrap.mk,v 1.10 2021/05/21 01:45:00 pho Exp $
 # -----------------------------------------------------------------------------
 # Select a bindist of bootstrapping compiler on a per-platform basis.
 #
@@ -13,65 +13,58 @@
 .include "../../mk/bsd.prefs.mk"
 
 # Notes on version dependencies:
-# * GHC 8.8.1 requires 8.4 or later to bootstrap.
+# * GHC 9.0.1 requires 8.8 or later to bootstrap.
+# * GHC 8.8.4 requires 8.4 or later to bootstrap.
 # * GHC 8.4.4 requires 8.0 or later to bootstrap.
 # * GHC 8.0.2 requires 7.8 or later to bootstrap.
 # * GHC 7.10.3 requires 7.6 or later to bootstrap.
 
-########################################################################
-# Please note that GHC 8.8.1 fails to build itself due to this bug:    #
-# https://gitlab.haskell.org/ghc/ghc/issues/17146                      #
-#                                                                      #
-# It is expected to be fixed in 8.8.2 but until that we must bootstrap #
-# it with 8.4.4. WE MUST NOT REMOVE lang/ghc84 UNTIL THAT.             #
-########################################################################
-
-.if !empty(MACHINE_PLATFORM:MDarwin-*-powerpc) || make(distinfo) || make (makesum) || make(mdi)
-#BOOT_VERSION:=	8.4.4
-#BOOT_ARCHIVE:=	ghc-${BOOT_VERSION}-boot-powerpc-apple-darwin.tar.xz
-#DISTFILES:=	${DISTFILES} ${BOOT_ARCHIVE} # Available in LOCAL_PORTS
+.if !empty(MACHINE_PLATFORM:MDarwin-*-x86_64) || make(distinfo) || make (makesum) || make(mdi)
+BOOT_VERSION:=	9.0.1
+BOOT_ARCHIVE:=	ghc-${BOOT_VERSION}-boot-x86_64-apple-darwin.tar.xz
+DISTFILES:=	${DISTFILES} ${BOOT_ARCHIVE} # Available in LOCAL_PORTS
 .endif
 
-#.if !empty(MACHINE_PLATFORM:MDarwin-*-x86_64) || make(distinfo) || make (makesum) || make(mdi)
-#BOOT_VERSION:=	8.4.4
-#BOOT_ARCHIVE:=	ghc-${BOOT_VERSION}-boot-x86_64-apple-darwin.tar.xz
-#DISTFILES:=	${DISTFILES} ${BOOT_ARCHIVE} # Available in LOCAL_PORTS
-#.endif
+.if !empty(MACHINE_PLATFORM:MFreeBSD-*-i386) || make(distinfo) || make (makesum) || make(mdi)
+BOOT_VERSION:=	9.0.1
+BOOT_ARCHIVE:=	ghc-${BOOT_VERSION}-boot-i386-unknown-freebsd.tar.xz
+DISTFILES:=	${DISTFILES} ${BOOT_ARCHIVE} # Available in LOCAL_PORTS
+.endif
 
-#.if !empty(MACHINE_PLATFORM:MFreeBSD-*-i386) || make(distinfo) || make (makesum) || make(mdi)
-#BOOT_VERSION:=	8.4.4
-#BOOT_ARCHIVE:=	ghc-${BOOT_VERSION}-boot-i386-unknown-freebsd.tar.xz
-#DISTFILES:=	${DISTFILES} ${BOOT_ARCHIVE} # Available in LOCAL_PORTS
-#.endif
+.if !empty(MACHINE_PLATFORM:MFreeBSD-*-x86_64) || make(distinfo) || make(makesum) || make(mdi)
+BOOT_VERSION:=	9.0.1
+BOOT_ARCHIVE:=	ghc-${BOOT_VERSION}-boot-x86_64-unknown-freebsd.tar.xz
+DISTFILES:=	${DISTFILES} ${BOOT_ARCHIVE} # Available in LOCAL_PORTS
+.endif
 
-#.if !empty(MACHINE_PLATFORM:MFreeBSD-*-x86_64) || make(distinfo) || make(makesum) || make(mdi)
-#BOOT_VERSION:=	8.4.4
-#BOOT_ARCHIVE:=	ghc-${BOOT_VERSION}-boot-x86_64-unknown-freebsd.tar.xz
-#DISTFILES:=	${DISTFILES} ${BOOT_ARCHIVE} # Available in LOCAL_PORTS
-#.endif
+.if !empty(MACHINE_PLATFORM:MNetBSD-*-aarch64) || make(distinfo) || make(makesum) || make(mdi)
+# Cross-compiled from x86_64 on a QEMU guest. It took days to compile...
+BOOT_VERSION:=	9.0.1
+BOOT_ARCHIVE:=	ghc-${BOOT_VERSION}-boot-aarch64-unknown-netbsd.tar.xz
+DISTFILES:=	${DISTFILES} ${BOOT_ARCHIVE} # Available in LOCAL_PORTS
+.endif
 
-.if !empty(MACHINE_PLATFORM:MNetBSD-*-x86_64) || make(distinfo) || make (makesum) || make(mdi)
+.if !empty(MACHINE_PLATFORM:MNetBSD-*-x86_64) || make(distinfo) || make(makesum) || make(mdi)
 BOOT_VERSION:=	8.10.4
 BOOT_ARCHIVE:=	ghc-${BOOT_VERSION}-boot-x86_64-unknown-netbsd.tar.xz
 DISTFILES:=	${DISTFILES} ${BOOT_ARCHIVE} # Available in LOCAL_PORTS
-.  if !empty(MACHINE_PLATFORM:MNetBSD-9.99*-x86_64) || make(distinfo) || make (makesum) || make(mdi)
+.  if !empty(MACHINE_PLATFORM:MNetBSD-9.99.*-x86_64) || make(distinfo) || make (makesum) || make(mdi)
+# XXX: emulators/compat80 appears to lack libterminfo.so.1 used by
+# this bootkit.
 DISTFILES+=	netbsd-9.0-amd64-libterminfo.tar.gz
 EXTRACT_ONLY+=	netbsd-9.0-amd64-libterminfo.tar.gz
+SITES.netbsd-9.0-amd64-libterminfo.tar.gz?=	${MASTER_SITE_LOCAL}
 .  endif
 .endif
 
-#.if !empty(MACHINE_PLATFORM:MSunOS-*-i386) || make(distinfo) || make (makesum) || make(mdi)
-#BOOT_VERSION:=	8.4.4
-#BOOT_ARCHIVE:=	ghc-${BOOT_VERSION}-boot-i386-unknown-solaris2.tar.xz
-#DISTFILES:=	${DISTFILES} ${BOOT_ARCHIVE} # Available in LOCAL_PORTS
-#.endif
-
-#.if !empty(MACHINE_PLATFORM:MSunOS-*-x86_64) || make(distinfo) || make (makesum) || make(mdi)
-#BOOT_VERSION:=		8.4.4
-#BOOT_ARCHIVE:=		ghc-${BOOT_VERSION}-boot-x86_64-unknown-solaris2.tar.xz
+.if !empty(MACHINE_PLATFORM:MSunOS-*-x86_64) || make(distinfo) || make (makesum) || make(mdi)
+# Built on OmniOS r151036-a13510b579 + gcc10. Hope it works on other
+# Solaris-based platforms as well.
+BOOT_VERSION:=		9.0.1
+BOOT_ARCHIVE:=		ghc-${BOOT_VERSION}-boot-x86_64-unknown-solaris2.tar.xz
 #SITES.${BOOT_ARCHIVE}=	https://us-east.manta.joyent.com/pkgsrc/public/pkg-bootstraps/
-#DISTFILES:=		${DISTFILES} ${BOOT_ARCHIVE}
-#.endif
+DISTFILES:=		${DISTFILES} ${BOOT_ARCHIVE} # Available in LOCAL_PORTS
+.endif
 
 .if empty(BOOT_ARCHIVE)
 BOOT_ARCHIVE:=		ghc-${BOOT_VERSION}-boot-unknown.tar.xz
@@ -81,20 +74,28 @@ PKG_FAIL_REASON+=	"internal error: unsupported platform"
 # For package developers, please do not upload any bootkits unsafely
 # built. That is, machines shared with someone or on a cloud hosting
 # service should be avoided for building bootkits.
-.for i in ${DISTFILES:M*-boot-*} netbsd-9.0-amd64-libterminfo.tar.gz
+.for i in ${DISTFILES:M*-boot-*}
 SITES.${i}?=	${MASTER_SITE_LOCAL}
 .endfor
 
-# Existence of libelf makes LeadingUnderscore being "NO", which is
-# incorrect for this platform. See ${WRKSRC}/aclocal.m4
-# (FP_LEADING_UNDERSCORE)
-.if ${OPSYS} == "Darwin"
-CONFLICTS+=	libelf-[0-9]*
+# Current bootstrap binary kit for SunOS is built with GNU libiconv
+# and ncurses6.
+.if !empty(MACHINE_PLATFORM:MSunOS-*)
+BUILD_DEPENDS+=	libiconv>=1.9.1:../../converters/libiconv
+BUILD_DEPENDS+=	ncurses>=6.0:../../devel/ncurses
 .endif
 
-# current bootstrap binary kit for SmartOS is built with ncurses5
-.if !empty(MACHINE_PLATFORM:MSunOS-*) && ${OS_VARIANT:U} == "SmartOS"
-BUILD_DEPENDS+=	ncurses>=5.0:../../devel/ncurses
+# On OmniOS, if one tries to create a hard link with the default ln(1)
+# whose target is itself a symbolic link, it creates a hard link to
+# the symbolic link without first resolving it. ${WRKSRC}/configure.ac
+# doesn't work as expected in this case. Maybe we should do this in
+# ../../mk/platform/SunOS.mk but I'm not sure if it's really safe to
+# do.
+.if ${OPSYS} == "SunOS" && ${OS_VARIANT:U} == "OmniOS"
+TOOLS_PLATFORM.ln=	/usr/xpg4/bin/ln
+# Also cpp is missing from /usr/bin. Why? This leads
+# ${WRKSRC}/libffi/configure to fail.
+TOOLS_PLATFORM.cpp=	/usr/lib/cpp
 .endif
 
 
@@ -104,15 +105,15 @@ BUILD_DEPENDS+=	ncurses>=5.0:../../devel/ncurses
 # Install a bootstrapping compiler directly into TOOLS_DIR so that
 # ./configure can find it.
 #
-USE_TOOLS+=	gmake xzcat xz gtar
+USE_TOOLS+=	gmake xzcat xz gtar cpp
 
 pre-configure:
 	${RUN}${TEST} -f ${DISTDIR}/${DIST_SUBDIR}/${BOOT_ARCHIVE} || \
 	${FAIL_MSG}  "Put your trusted bootstrap archive as ${DISTDIR}/${DIST_SUBDIR}/${BOOT_ARCHIVE}"
 
 	@${PHASE_MSG} "Extracting bootstrapping compiler for ${PKGNAME}"
-	${RUN}${MKDIR} ${WRKDIR}/build-extract
-	${RUN}cd ${WRKDIR}/build-extract && \
+	${RUN}${MKDIR} ${WRKDIR}/bootkit-dist
+	${RUN}cd ${WRKDIR}/bootkit-dist && \
 		${XZCAT} ${DISTDIR}/${DIST_SUBDIR}/${BOOT_ARCHIVE} | \
 		${GTAR} -xf -
 
@@ -120,7 +121,7 @@ pre-configure:
 # configured, otherwise it will produce executables with no rpath and
 # fail at the configure phase.
 	@${PHASE_MSG} "Preparing bootstrapping compiler for ${PKGNAME}"
-	${RUN}cd ${WRKDIR}/build-extract/ghc-${BOOT_VERSION}-boot && \
+	${RUN}cd ${WRKDIR}/bootkit-dist/ghc-${BOOT_VERSION}-boot && \
 		${PKGSRC_SETENV} ${CONFIGURE_ENV} ${SH} ./configure \
 			--prefix=${TOOLS_DIR:Q} && \
 		${PKGSRC_SETENV} ${MAKE_ENV} ${MAKE_PROGRAM} install

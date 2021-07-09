@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.67 2021/03/01 19:23:07 gdt Exp $
+# $NetBSD: buildlink3.mk,v 1.71 2021/05/03 16:28:46 gdt Exp $
 
 BUILDLINK_TREE+=	gdal-lib
 
@@ -6,7 +6,7 @@ BUILDLINK_TREE+=	gdal-lib
 GDAL_LIB_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.gdal-lib+=	gdal-lib>=3.0.0
-BUILDLINK_ABI_DEPENDS.gdal-lib+=	gdal-lib>=3.2.1
+BUILDLINK_ABI_DEPENDS.gdal-lib+=	gdal-lib>=3.3.0
 BUILDLINK_PKGSRCDIR.gdal-lib?=		../../geography/gdal-lib
 
 pkgbase := gdal-lib
@@ -26,6 +26,8 @@ pkgbase := gdal-lib
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../geography/geos/buildlink3.mk"
 .include "../../geography/proj/buildlink3.mk"
+.include "../../math/qhull/buildlink3.mk"
+.include "../../geography/libgeotiff/buildlink3.mk"
 .include "../../graphics/giflib/buildlink3.mk"
 .include "../../graphics/libwebp/buildlink3.mk"
 .include "../../graphics/openjpeg/buildlink3.mk"

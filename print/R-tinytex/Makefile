@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.1 2020/01/13 10:07:38 mef Exp $
+# $NetBSD: Makefile,v 1.3 2021/06/05 07:51:33 mef Exp $
 
 R_PKGNAME=	tinytex
-R_PKGVER=	0.18
+R_PKGVER=	0.32
 CATEGORIES=	print
 
 MAINTAINER=	pkgsrc-users@NetBSD.org

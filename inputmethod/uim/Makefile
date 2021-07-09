@@ -1,12 +1,14 @@
-# $NetBSD: Makefile,v 1.165 2020/11/05 09:08:32 ryoon Exp $
+# $NetBSD: Makefile,v 1.168 2021/04/21 11:42:05 adam Exp $
 
-PKGREVISION= 7
+PKGREVISION= 1
 .include "../../inputmethod/uim/Makefile.common"
 
 COMMENT=	Multilingual input method library
 LICENSE=	modified-bsd
 
 CONFLICTS+=	uim-qt4-immodule-[0-9]*
+
+.include "../../graphics/librsvg/tool.mk"
 
 GNU_CONFIGURE=	YES
 USE_LIBTOOL=	YES
@@ -32,10 +34,10 @@ UIM_MODULES=	anthy-utf8 skk tutcode byeoru latin elatin xmload \
 BUILD_DEFS+=	PKG_SYSCONFBASE
 
 CONFIGURE_ARGS+=	--disable-emacs
-CONFIGURE_ARGS+=	--disable-fep
 CONFIGURE_ARGS+=	--disable-kde4-applet
 CONFIGURE_ARGS+=	--disable-gnome-applet
 CONFIGURE_ARGS+=	--disable-gnome3-applet
+CONFIGURE_ARGS+=	--enable-maintainer-mode # for source code from Git
 CONFIGURE_ARGS+=	--with-libgcroots=installed
 CONFIGURE_ARGS+=	--with-anthy-utf8
 CONFIGURE_ARGS+=	--with-sqlite3
@@ -68,12 +70,6 @@ post-install:
 
 .include "options.mk"
 
-SUBST_CLASSES+=		gtk
-SUBST_STAGE.gtk=	post-configure
-SUBST_MESSAGE.gtk=	Correcting executable name in .desktop file
-SUBST_FILES.gtk+=	uim.desktop
-SUBST_SED.gtk+=		-e "s,uim-pref-gtk,${UIM_PREF_PROGRAM},g"
-
 .include "modules.mk"
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../databases/sqlite3/buildlink3.mk"
@@ -82,4 +78,8 @@ SUBST_SED.gtk+=		-e "s,uim-pref-gtk,${UIM_PREF_PROGRAM},g"
 BUILDLINK_API_DEPENDS.libgcroots+=	libgcroots>=0.2.3
 .include "../../devel/libgcroots/buildlink3.mk"
 .include "../../inputmethod/anthy/buildlink3.mk"
+.include "../../lang/ruby/rubyversion.mk"
+BUILDLINK_DEPMETHOD.${RUBY_BASE}=	build
+.include "../../lang/ruby/buildlink3.mk"
+.include "../../mk/curses.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

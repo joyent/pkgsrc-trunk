@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.23 2020/11/05 09:07:33 ryoon Exp $
+# $NetBSD: Makefile,v 1.27 2021/05/03 08:34:36 wiz Exp $
 
 DISTNAME=	farstream-0.2.9
-PKGREVISION=	4
+PKGREVISION=	7
 CATEGORIES=	chat multimedia
-MASTER_SITES=	http://freedesktop.org/software/farstream/releases/farstream/
+MASTER_SITES=	https://freedesktop.org/software/farstream/releases/farstream/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.freedesktop.org/wiki/Software/Farstream/
@@ -12,9 +12,12 @@ LICENSE=	gnu-lgpl-v2.1
 
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
-USE_TOOLS+=	gmake pkg-config
+USE_TOOLS+=	gmake pkg-config autoconf automake autoreconf
 
 PKGCONFIG_OVERRIDE+=	farstream.pc.in
+
+pre-configure:
+	cd ${WRKSRC} && autoreconf -fiv
 
 BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.16.0
 .include "../../devel/glib2/buildlink3.mk"

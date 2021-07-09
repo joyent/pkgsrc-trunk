@@ -1,15 +1,15 @@
-$NetBSD: patch-aclocal.m4,v 1.1 2021/02/09 13:18:36 ryoon Exp $
+$NetBSD: patch-aclocal.m4,v 1.5 2021/05/22 09:10:36 pho Exp $
+
+Hunk #0:
+  Remove _AC_PROG_CC_C99 macro that is removed in autoconf-2.71 to fix
+  build failure.
+
+  Already fixed in the upstream:
+  https://gitlab.haskell.org/ghc/ghc/-/merge_requests/4987
 
 Hunk #1:
-  Remove _AC_PROG_CC_C99 macro that is removed in autoconf-2.71
-  to fix build failure.
-
-Hunk #2:
-  Support SunOS/x86_64.
-
-Hunk #3:
-  Canonicalize OS name netbsd* to "netbsd":
-  https://gitlab.haskell.org/ghc/ghc/merge_requests/2496
+  Mark the stack as non-executable on NetBSD/aarch64.
+  https://gitlab.haskell.org/ghc/ghc/-/merge_requests/5805
 
 --- aclocal.m4.orig	2021-01-26 14:49:54.000000000 +0000
 +++ aclocal.m4
@@ -31,13 +31,14 @@ Hunk #3:
      dnl restore saved state
      FP_COPY_SHELLVAR([fp_save_CC],[CC])
      FP_COPY_SHELLVAR([fp_save_CFLAGS],[CFLAGS])
-@@ -2141,6 +2130,9 @@ AC_DEFUN([GHC_CONVERT_OS],[
-       openbsd*)
-         $3="openbsd"
+@@ -759,6 +748,10 @@ AC_DEFUN([FPTOOLS_SET_C_LD_FLAGS],
+         $3="$$3 -Wl,-z,noexecstack"
+         $4="$$4 -z noexecstack"
          ;;
-+      netbsd*)
-+        $3="netbsd"
-+        ;;
-       # As far as I'm aware, none of these have relevant variants
-       freebsd|dragonfly|hpux|linuxaout|kfreebsdgnu|freebsd2|mingw32|darwin|nextstep2|nextstep3|sunos4|ultrix|haiku)
-         $3="$1"
++    aarch64*netbsd*)
++        $3="$$3 -Wl,-z,noexecstack"
++	$4="$$4 -z noexecstack"
++	;;
+ 
+     powerpc-ibm-aix*)
+         # We need `-D_THREAD_SAFE` to unlock the thread-local `errno`.

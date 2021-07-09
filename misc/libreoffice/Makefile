@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.254 2021/03/10 16:07:53 ryoon Exp $
+# $NetBSD: Makefile,v 1.265 2021/06/23 20:33:13 nia Exp $
 
-VERREL=		7.1.1
+VERREL=		7.1.3
 VERRC=		2
 VER=		${VERREL}.${VERRC}
 DISTNAME=	libreoffice-${VER}
-PKGREVISION=	1
+PKGREVISION=	3
 CATEGORIES=	misc
 MASTER_SITES=	http://download.documentfoundation.org/libreoffice/src/${VERREL}/
 EXTRACT_SUFX=	.tar.xz
@@ -146,6 +146,7 @@ WRKSRC=		${WRKDIR}/${LO_BOOTSTRAP}
 
 BUILD_DEPENDS+=		p5-Archive-Zip-[0-9]*:../../archivers/p5-Archive-Zip
 DEPENDS+=		${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
+DEPENDS+=		xdg-utils-[0-9]*:../../misc/xdg-utils
 
 # dmake scripts use relative path with -rpath-link ld arguments, which
 # is a no-go with normal pkgsrc wrappers.
@@ -327,7 +328,7 @@ BUILDLINK_API_DEPENDS.libetonyek+=	libetonyek>=0.1.2
 .include "../../converters/libzmf/buildlink3.mk"
 .include "../../converters/orcus/buildlink3.mk"
 .include "../../databases/db4/buildlink3.mk"
-.include "../../databases/mysql57-client/buildlink3.mk"
+.include "../../mk/mysql.buildlink3.mk"
 .include "../../databases/shared-mime-info/buildlink3.mk"
 .include "../../databases/unixodbc/buildlink3.mk"
 .include "../../devel/apr-util/buildlink3.mk"

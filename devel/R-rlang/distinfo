@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.8 2021/01/01 03:24:52 mef Exp $
+$NetBSD: distinfo,v 1.10 2021/06/05 13:06:41 mef Exp $
 
-SHA1 (R/rlang_0.4.9.tar.gz) = e6be9cdd95608dc1ceb04bdca46084f0e2e17af4
-RMD160 (R/rlang_0.4.9.tar.gz) = 5488e89c3167ae27119dc4d7e8e3a56af7ef6721
-SHA512 (R/rlang_0.4.9.tar.gz) = cf8d1c12918449dc0104bc27e76a13057b68d3f8bd31c06ddbf2df811ee366cc34287cad69d6d695bfedddc85b9dd6e0fe9d6878cf130a295c15cebc075d362a
-Size (R/rlang_0.4.9.tar.gz) = 865299 bytes
+SHA1 (R/rlang_0.4.11.tar.gz) = 78f42444ff0b62cd302ed61d59384def3a281a04
+RMD160 (R/rlang_0.4.11.tar.gz) = 6135b5c5a0b37f1a1bc640ca192b174fbd568dc8
+SHA512 (R/rlang_0.4.11.tar.gz) = 0448a104034a9f14dd735b1abfd3aa823abaad9a7ee96ca89393b15f2c54dd24f27712cb59e30393c3afeccb834471f3940259e864236212b3b4c797008d79b4
+Size (R/rlang_0.4.11.tar.gz) = 861727 bytes

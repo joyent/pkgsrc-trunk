@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.21 2020/11/05 09:07:02 ryoon Exp $
+# $NetBSD: Makefile,v 1.24 2021/05/02 09:37:50 nia Exp $
 
-DISTNAME=	libbluray-1.2.1
+DISTNAME=	libbluray-1.3.0
 PKGREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	http://download.videolan.org/pub/videolan/libbluray/${PKGVERSION_NOREV}/
@@ -17,6 +17,8 @@ GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--disable-bdjava-jar
 CONFIGURE_ARGS+=	--disable-optimizations
 PKGCONFIG_OVERRIDE+=	src/libbluray.pc.in
+
+CPPFLAGS.SunOS+=	-D__EXTENSIONS__
 
 # provide jni_md.h for other architectures
 post-extract:

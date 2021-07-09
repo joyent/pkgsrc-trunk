@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.34 2021/01/12 11:20:53 prlw1 Exp $
+# $NetBSD: Makefile,v 1.37 2021/05/02 10:24:48 nia Exp $
 
 DISTNAME=	gnome-sudoku-3.38.0
+PKGREVISION=	1
 CATEGORIES=	games gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gnome-sudoku/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -12,7 +13,10 @@ LICENSE=	gnu-gpl-v3
 
 USE_LANGUAGES=		c c++11
 USE_PKGLOCALEDIR=	yes
-USE_TOOLS+=		msgfmt pkg-config
+USE_TOOLS+=		msgfmt pkg-config itstool
+
+PYTHON_FOR_BUILD_ONLY=    tool
+.include "../../lang/python/tool.mk"
 
 # Requires --desktop in msgfmt.
 _TOOLS_USE_PKGSRC.msgfmt=	yes
@@ -21,7 +25,6 @@ post-extract:
 	cd ${WRKSRC}/help/C && ${CHMOD} 0644 *.page legal.xml figures/*.png
 
 REPLACE_PYTHON+=	build-aux/post_install.py
-BUILD_DEPENDS+=		itstool-[0-9]*:../../textproc/itstool
 
 BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.40.0
 .include "../../devel/glib2/schemas.mk"

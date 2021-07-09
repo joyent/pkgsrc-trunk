@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.3 2021/02/17 08:07:03 bsiegert Exp $
+@comment $NetBSD: PLIST,v 1.6 2021/06/05 12:40:07 bsiegert Exp $
 bin/go${GOVERSSUFFIX}
 bin/gofmt${GOVERSSUFFIX}
 go116/AUTHORS
@@ -280,8 +280,15 @@ go116/misc/cgo/testplugin/testdata/issue25756/main.go
 go116/misc/cgo/testplugin/testdata/issue25756/plugin/c-life.c
 go116/misc/cgo/testplugin/testdata/issue25756/plugin/life.go
 go116/misc/cgo/testplugin/testdata/issue25756/plugin/life.h
+go116/misc/cgo/testplugin/testdata/issue44956/base/base.go
+go116/misc/cgo/testplugin/testdata/issue44956/main.go
+go116/misc/cgo/testplugin/testdata/issue44956/plugin1.go
+go116/misc/cgo/testplugin/testdata/issue44956/plugin2.go
 go116/misc/cgo/testplugin/testdata/method/main.go
 go116/misc/cgo/testplugin/testdata/method/plugin.go
+go116/misc/cgo/testplugin/testdata/method2/main.go
+go116/misc/cgo/testplugin/testdata/method2/p/p.go
+go116/misc/cgo/testplugin/testdata/method2/plugin.go
 go116/misc/cgo/testplugin/testdata/plugin1/plugin1.go
 go116/misc/cgo/testplugin/testdata/plugin2/plugin2.go
 go116/misc/cgo/testplugin/testdata/sub/plugin1/plugin1.go
@@ -886,6 +893,7 @@ go116/src/archive/zip/testdata/go-with-datadesc-sig.zip
 go116/src/archive/zip/testdata/gophercolor16x16.png
 go116/src/archive/zip/testdata/readme.notzip
 go116/src/archive/zip/testdata/readme.zip
+go116/src/archive/zip/testdata/subdir.zip
 go116/src/archive/zip/testdata/symlink.zip
 go116/src/archive/zip/testdata/test-trailing-junk.zip
 go116/src/archive/zip/testdata/test.zip
@@ -2112,6 +2120,7 @@ go116/src/cmd/go/testdata/script/mod_get_latest_pseudo.txt
 go116/src/cmd/go/testdata/script/mod_get_local.txt
 go116/src/cmd/go/testdata/script/mod_get_main.txt
 go116/src/cmd/go/testdata/script/mod_get_major.txt
+go116/src/cmd/go/testdata/script/mod_get_missing_ziphash.txt
 go116/src/cmd/go/testdata/script/mod_get_moved.txt
 go116/src/cmd/go/testdata/script/mod_get_newcycle.txt
 go116/src/cmd/go/testdata/script/mod_get_none.txt
@@ -2174,6 +2183,7 @@ go116/src/cmd/go/testdata/script/mod_install_pkg_version.txt
 go116/src/cmd/go/testdata/script/mod_install_versioned.txt
 go116/src/cmd/go/testdata/script/mod_internal.txt
 go116/src/cmd/go/testdata/script/mod_invalid_path.txt
+go116/src/cmd/go/testdata/script/mod_invalid_path_plus.txt
 go116/src/cmd/go/testdata/script/mod_invalid_version.txt
 go116/src/cmd/go/testdata/script/mod_issue35317.txt
 go116/src/cmd/go/testdata/script/mod_lazy_downgrade.txt
@@ -2230,6 +2240,7 @@ go116/src/cmd/go/testdata/script/mod_replace_readonly.txt
 go116/src/cmd/go/testdata/script/mod_require_exclude.txt
 go116/src/cmd/go/testdata/script/mod_retention.txt
 go116/src/cmd/go/testdata/script/mod_retract.txt
+go116/src/cmd/go/testdata/script/mod_retract_fix_version.txt
 go116/src/cmd/go/testdata/script/mod_retract_incompatible.txt
 go116/src/cmd/go/testdata/script/mod_retract_pseudo_base.txt
 go116/src/cmd/go/testdata/script/mod_retract_rationale.txt
@@ -2260,6 +2271,7 @@ go116/src/cmd/go/testdata/script/mod_tidy_old.txt
 go116/src/cmd/go/testdata/script/mod_tidy_quote.txt
 go116/src/cmd/go/testdata/script/mod_tidy_replace.txt
 go116/src/cmd/go/testdata/script/mod_tidy_sum.txt
+go116/src/cmd/go/testdata/script/mod_tidy_too_new.txt
 go116/src/cmd/go/testdata/script/mod_upgrade_patch.txt
 go116/src/cmd/go/testdata/script/mod_vcs_missing.txt
 go116/src/cmd/go/testdata/script/mod_vendor.txt
@@ -9148,6 +9160,10 @@ go116/test/fixedbugs/issue4396b.go
 go116/test/fixedbugs/issue4399.go
 go116/test/fixedbugs/issue4405.go
 go116/test/fixedbugs/issue4429.go
+go116/test/fixedbugs/issue44355.dir/a.go
+go116/test/fixedbugs/issue44355.dir/b.go
+go116/test/fixedbugs/issue44355.go
+go116/test/fixedbugs/issue44378.go
 go116/test/fixedbugs/issue4448.go
 go116/test/fixedbugs/issue4452.go
 go116/test/fixedbugs/issue4458.go
@@ -9158,6 +9174,7 @@ go116/test/fixedbugs/issue4495.go
 go116/test/fixedbugs/issue4510.dir/f1.go
 go116/test/fixedbugs/issue4510.dir/f2.go
 go116/test/fixedbugs/issue4510.go
+go116/test/fixedbugs/issue45175.go
 go116/test/fixedbugs/issue4517a.go
 go116/test/fixedbugs/issue4517b.go
 go116/test/fixedbugs/issue4517c.go

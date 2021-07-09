@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.47 2021/01/24 20:29:04 adam Exp $
+$NetBSD: distinfo,v 1.49 2021/06/01 05:29:23 adam Exp $
 
-SHA1 (fonttools-4.18.2.zip) = a77bb036103283019fc323c3cb2854c5eb92c4ff
-RMD160 (fonttools-4.18.2.zip) = 166a339d9ebad80e51b2e0d7fc671533a66e9908
-SHA512 (fonttools-4.18.2.zip) = 15ffb30ed8d9a1373def7db95bd8bbbb7399be817a2b96ebb45dea98f2cd6350ef042aaf419cbdd911c426ad6fc1204df40b46013bfe95e0bb73e9bbf1c41773
-Size (fonttools-4.18.2.zip) = 4336655 bytes
+SHA1 (fonttools-4.24.4.zip) = 6d1c999bcae5cee3251cb626e16ba048b4419e24
+RMD160 (fonttools-4.24.4.zip) = ab74b166b118fc2699b1d3835cf6d7d0324df47c
+SHA512 (fonttools-4.24.4.zip) = 4eaac9423df302f006ca80ea4ce58ea0e2762a2fecfd84fb117b50222ab3fc3a842c36e30fe7eba0f7200d15472ae3c6d5d38e3d9473e9bfbf07712ea9e6bba6
+Size (fonttools-4.24.4.zip) = 4434215 bytes

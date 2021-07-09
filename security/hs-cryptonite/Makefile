@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.1 2020/01/17 00:17:32 pho Exp $
+# $NetBSD: Makefile,v 1.3 2021/05/03 19:01:10 pho Exp $
 
-DISTNAME=	cryptonite-0.26
+DISTNAME=	cryptonite-0.28
+PKGREVISION=	1
 CATEGORIES=	security
 
 MAINTAINER=	pho@cielonegro.org

@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.73 2020/12/04 20:45:37 nia Exp $
+# $NetBSD: Makefile,v 1.76 2021/06/23 19:50:34 bacon Exp $
 
 DISTNAME=		ganglia-3.7.2
 PKGNAME=		ganglia-monitor-core-3.7.2
-PKGREVISION=		14
+PKGREVISION=		16
 CATEGORIES=		parallel net
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=ganglia/}
 
-MAINTAINER=		bacon@NetBSD.org
+MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://ganglia.sourceforge.net/
 COMMENT=		Ganglia cluster monitor, monitoring daemon
 LICENSE=		modified-bsd

@@ -1,4 +1,4 @@
-$NetBSD: patch-library_std_src_sys_unix_thread.rs,v 1.1 2020/11/13 20:35:58 he Exp $
+$NetBSD: patch-library_std_src_sys_unix_thread.rs,v 1.3 2021/05/26 09:21:39 he Exp $
 
 Fix stack-clash on SunOS.
 
@@ -9,7 +9,7 @@ Fix stack-clash on SunOS.
          PAGE_SIZE.store(page_size, Ordering::Relaxed);
  
 -        if cfg!(all(target_os = "linux", not(target_env = "musl"))) {
-+        if cfg!(any(all(target_os = "linux", not(target_env = "musl")), target_os = "solaris")) {
++        if cfg!(any(target_os = "solaris", all(target_os = "linux", not(target_env = "musl")))) {
              // Linux doesn't allocate the whole stack right away, and
              // the kernel has its own stack-guard mechanism to fault
              // when growing too close to an existing mapping.  If we map

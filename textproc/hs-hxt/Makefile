@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.1 2020/01/17 16:21:37 pho Exp $
+# $NetBSD: Makefile,v 1.3 2021/05/03 19:01:15 pho Exp $
 
-DISTNAME=	hxt-9.3.1.18
+DISTNAME=	hxt-9.3.1.22
+PKGREVISION=	1
 CATEGORIES=	textproc
 
 MAINTAINER=	pho@cielonegro.org
@@ -10,7 +11,6 @@ LICENSE=	mit
 .include "../../textproc/hs-hxt-charproperties/buildlink3.mk"
 .include "../../textproc/hs-hxt-regex-xmlschema/buildlink3.mk"
 .include "../../textproc/hs-hxt-unicode/buildlink3.mk"
-.include "../../net/hs-network/buildlink3.mk"
 .include "../../net/hs-network-uri/buildlink3.mk"
 .include "../../mk/haskell.mk"
 .include "../../mk/bsd.pkg.mk"

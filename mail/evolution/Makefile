@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.251 2020/11/05 09:06:58 ryoon Exp $
+# $NetBSD: Makefile,v 1.256 2021/05/02 11:06:13 nia Exp $
 
 DISTNAME=	evolution-3.34.1
-PKGREVISION=	7
+PKGREVISION=	10
 CATEGORIES=	mail gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/evolution/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -12,13 +12,11 @@ COMMENT=	Mail and calendar client from GNOME
 LICENSE=	gnu-gpl-v2
 
 USE_CMAKE=	yes
-USE_TOOLS+=	pkg-config
+USE_TOOLS+=	pkg-config itstool
 USE_TOOLS+=	intltool msgfmt msgmerge xgettext
+USE_TOOLS+=	gdbus-codegen
 
 DEPENDS+=	highlight-[0-9]*:../../textproc/highlight
-
-TOOL_DEPENDS+=	gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
-TOOL_DEPENDS+=	itstool-[0-9]*:../../textproc/itstool
 
 LDFLAGS+=	${COMPILER_RPATH_FLAG}${PREFIX}/lib/evolution
 

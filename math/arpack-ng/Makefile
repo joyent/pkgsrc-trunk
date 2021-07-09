@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.4 2020/11/30 13:23:55 nia Exp $
+# $NetBSD: Makefile,v 1.6 2021/06/23 18:10:19 thor Exp $
 
-DISTNAME=	arpack-ng-3.7.0
+DISTNAME=	arpack-ng-3.8.0
 PKGREVISION=	1
 CATEGORIES=	math
 MASTER_SITES=	${MASTER_SITE_GITHUB:=opencollab/}
@@ -13,18 +13,20 @@ LICENSE=	original-bsd
 USE_LANGUAGES=	c fortran
 USE_CMAKE=	yes
 
-# Required to build with gfortran 10. Fixed upstream in
-# https://github.com/opencollab/arpack-ng/commit/9418632214
-.if !empty(POSSIBLE_GFORTRAN_VERSION:M1*)
-FFLAGS+=	-fallow-argument-mismatch
-.endif
-
 OBJDIR=		obj
 
 CONFIGURE_DIRS=	${OBJDIR}
 
 CMAKE_ARG_PATH=	..
 CMAKE_ARGS+=	-DBUILD_SHARED_LIBS:BOOL=ON
+
+BLAS_ACCEPTED=	netlib openblas
+.include "../../mk/blas.buildlink3.mk"
+.if ${BLAS_TYPE} == "netlib"
+CMAKE_ARGS+=	-DBLA_VENDOR=Generic
+.elif ${BLAS_TYPE} == "openblas"
+CMAKE_ARGS+=	-DBLA_VENDOR=OpenBLAS
+.endif
 
 TEST_TARGET=	test
 
@@ -33,5 +35,4 @@ pre-configure:
 
 INSTALLATION_DIRS=	lib
 
-.include "../../mk/blas.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

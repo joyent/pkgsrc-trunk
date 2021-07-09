@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.8 2021/03/07 09:55:09 taca Exp $
+$NetBSD: distinfo,v 1.11 2021/05/30 11:27:04 taca Exp $
 
-SHA1 (train-core-3.5.2.gem) = 31cb1b7dc7a08e5b9e39f469e6aa9f1f72467dce
-RMD160 (train-core-3.5.2.gem) = ebcf0d54d3e9b1180b5e3b0613efe2e93338d852
-SHA512 (train-core-3.5.2.gem) = 46d9aae23dc4fcb165875d8a5a41b76425a3d8711a7a5c8780ffe8b0a0c0306a292922e04d0a96853179a5b154da87897abf54ec9834f40b5c3317aaea12190b
-Size (train-core-3.5.2.gem) = 45056 bytes
+SHA1 (train-core-3.7.2.gem) = 4614907921a910d0661bb3b894cf283c3c91a269
+RMD160 (train-core-3.7.2.gem) = 771a38b478065d0104319fa2491e86fea576e432
+SHA512 (train-core-3.7.2.gem) = 59f4fa1de1086e5ff8720aed53519ee4f30d20d5394321bf727f392ff575b80c8963c9efdc5b0e7b4ff65b808071fbaaa582c7f17de9ebe37d39ee7d39b73361
+Size (train-core-3.7.2.gem) = 45568 bytes

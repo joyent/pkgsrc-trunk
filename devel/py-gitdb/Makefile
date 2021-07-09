@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.2 2020/09/25 08:28:26 adam Exp $
+# $NetBSD: Makefile,v 1.4 2021/04/02 08:44:46 adam Exp $
 
-DISTNAME=	gitdb-4.0.5
+DISTNAME=	gitdb-4.0.7
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=g/gitdb/}
@@ -10,7 +10,7 @@ HOMEPAGE=	https://github.com/gitpython-developers/gitdb
 COMMENT=	Git Object Database
 LICENSE=	modified-bsd
 
-DEPENDS+=	${PYPKGPREFIX}-smmap-[0-9]*:../../devel/py-smmap
+DEPENDS+=	${PYPKGPREFIX}-smmap>=3.0.1:../../devel/py-smmap
 
 USE_LANGUAGES=	# none
 

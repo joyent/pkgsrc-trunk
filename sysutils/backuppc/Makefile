@@ -1,14 +1,14 @@
-# $NetBSD: Makefile,v 1.16 2020/11/07 14:53:30 tnn Exp $
+# $NetBSD: Makefile,v 1.18 2021/06/23 20:23:18 tnn Exp $
 
 DISTNAME=	BackupPC-4.4.0
-PKGREVISION=	2
+PKGREVISION=	3
 PKGNAME=	${DISTNAME:tl}
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GITHUB:=backuppc/}
 GITHUB_RELEASE=	${PKGVERSION_NOREV}
 
 MAINTAINER=	tnn@NetBSD.org
-HOMEPAGE=	http://backuppc.sourceforge.net/
+HOMEPAGE=	https://backuppc.github.io/backuppc/
 COMMENT=	Fast, agentless backup system supporting *NIX, Windows and OSX clients
 LICENSE=	gnu-gpl-v3
 

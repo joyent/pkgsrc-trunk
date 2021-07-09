@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.16 2021/02/23 11:43:30 adam Exp $
+@comment $NetBSD: PLIST,v 1.18 2021/06/05 07:09:27 adam Exp $
 ${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
 ${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
 ${PYSITELIB}/${EGG_INFODIR}/dependency_links.txt
@@ -140,6 +140,15 @@ ${PYSITELIB}/stripe/api_resources/file.pyo
 ${PYSITELIB}/stripe/api_resources/file_link.py
 ${PYSITELIB}/stripe/api_resources/file_link.pyc
 ${PYSITELIB}/stripe/api_resources/file_link.pyo
+${PYSITELIB}/stripe/api_resources/identity/__init__.py
+${PYSITELIB}/stripe/api_resources/identity/__init__.pyc
+${PYSITELIB}/stripe/api_resources/identity/__init__.pyo
+${PYSITELIB}/stripe/api_resources/identity/verification_report.py
+${PYSITELIB}/stripe/api_resources/identity/verification_report.pyc
+${PYSITELIB}/stripe/api_resources/identity/verification_report.pyo
+${PYSITELIB}/stripe/api_resources/identity/verification_session.py
+${PYSITELIB}/stripe/api_resources/identity/verification_session.pyc
+${PYSITELIB}/stripe/api_resources/identity/verification_session.pyo
 ${PYSITELIB}/stripe/api_resources/invoice.py
 ${PYSITELIB}/stripe/api_resources/invoice.pyc
 ${PYSITELIB}/stripe/api_resources/invoice.pyo
@@ -281,6 +290,9 @@ ${PYSITELIB}/stripe/api_resources/subscription_item.pyo
 ${PYSITELIB}/stripe/api_resources/subscription_schedule.py
 ${PYSITELIB}/stripe/api_resources/subscription_schedule.pyc
 ${PYSITELIB}/stripe/api_resources/subscription_schedule.pyo
+${PYSITELIB}/stripe/api_resources/tax_code.py
+${PYSITELIB}/stripe/api_resources/tax_code.pyc
+${PYSITELIB}/stripe/api_resources/tax_code.pyo
 ${PYSITELIB}/stripe/api_resources/tax_id.py
 ${PYSITELIB}/stripe/api_resources/tax_id.pyc
 ${PYSITELIB}/stripe/api_resources/tax_id.pyo

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2021/02/18 00:15:46 gutteridge Exp $
+# $NetBSD: Makefile,v 1.4 2021/04/21 11:40:38 adam Exp $
 
 DISTNAME=	dolphin-${KAPPSVER}
 PKGREVISION=	1
@@ -20,16 +20,6 @@ REPLACE_RUBY+=	src/settings/services/servicemenudeinstallation
 .include "../../lang/ruby/replace.mk"
 
 USE_TOOLS+=	msgmerge
-
-SUBST_CLASSES+=		xdg
-SUBST_STAGE.xdg=	pre-configure
-SUBST_MESSAGE.xdg=	Install via examples dir.
-SUBST_FILES.xdg=	src/CMakeLists.txt
-SUBST_SED.xdg=		-e 's:{KDE_INSTALL_CONFDIR}:{KDE_INSTALL_XDG_EX_DIR}:'
-
-MAKE_DIRS+=	${PKG_SYSCONFDIR}/xdg
-CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/servicemenu.knsrc \
-		${PKG_SYSCONFDIR}/xdg/servicemenu.knsrc
 
 MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/_KDE_build/bin
 

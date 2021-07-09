@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.200 2020/12/04 04:56:16 riastradh Exp $
+# $NetBSD: Makefile,v 1.205 2021/05/02 11:06:15 nia Exp $
 
-DISTNAME=		gnome-session-3.38.0
-PKGREVISION=		1
+DISTNAME=		gnome-session-40.1.1
 CATEGORIES=		x11 gnome
-MASTER_SITES=		${MASTER_SITE_GNOME:=sources/${PKGBASE}/${PKGVERSION_NOREV:R}/}
+MASTER_SITES=		${MASTER_SITE_GNOME:=sources/${PKGBASE}/${PKGVERSION_NOREV:R:R}/}
 EXTRACT_SUFX=		.tar.xz
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
@@ -11,11 +10,11 @@ HOMEPAGE=		https://gitlab.gnome.org/GNOME/gnome-session
 COMMENT=		GNOME3 session management utilities
 LICENSE=		gnu-gpl-v2
 
-TOOL_DEPENDS+=		gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
 TOOL_DEPENDS+=		libxslt-[0-9]*:../../textproc/libxslt
 TOOL_DEPENDS+=		xmlto-[0-9]*:../../textproc/xmlto
 
 USE_TOOLS+=		pkg-config msgfmt xgettext
+USE_TOOLS+=		gdbus-codegen
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -38,6 +37,8 @@ MESON_ARGS+=		-Dsystemd_session=disable
 MESON_ARGS+=		-Dsystemd_journal=false
 MESON_ARGS+=		-Dconsolekit=true
 
+PYTHON_FOR_BUILD_ONLY=	tool
+
 .include "../../devel/meson/build.mk"
 .include "../../graphics/MesaLib/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
@@ -47,12 +48,11 @@ BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.16.0
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../graphics/libepoxy/buildlink3.mk"
 .include "../../textproc/libxslt/buildlink3.mk"
-.include "../../security/policykit/buildlink3.mk"
-.include "../../security/policykit-gnome/buildlink3.mk"
 .include "../../sysutils/dbus/buildlink3.mk"
 BUILDLINK_API_DEPENDS.dbus-glib+=	dbus-glib>=0.76
 .include "../../sysutils/dbus-glib/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
+.include "../../devel/dconf/database.mk"
 .include "../../sysutils/gsettings-desktop-schemas/buildlink3.mk"
 .include "../../sysutils/gnome-settings-daemon/buildlink3.mk"
 .include "../../textproc/json-glib/buildlink3.mk"

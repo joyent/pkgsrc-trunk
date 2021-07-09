@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.1 2020/01/19 12:37:21 pho Exp $
+# $NetBSD: Makefile,v 1.3 2021/05/03 19:00:56 pho Exp $
 
-DISTNAME=	code-page-0.2
+DISTNAME=	code-page-0.2.1
+PKGREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	pho@cielonegro.org

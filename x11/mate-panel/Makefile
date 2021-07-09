@@ -1,23 +1,17 @@
-# $NetBSD: Makefile,v 1.38 2020/11/05 09:09:26 ryoon Exp $
+# $NetBSD: Makefile,v 1.41 2021/05/03 23:48:39 gutteridge Exp $
 
-PYTHON_VERSIONS_ACCEPTED=	27
-PKGREVISION= 1
 .include "../../meta-pkgs/mate/Makefile.common"
 
-DISTNAME=	mate-panel-${VERSION:R}.1
+DISTNAME=	mate-panel-${VERSION:R}.2
 CATEGORIES=	x11
 
 COMMENT=	MATE panel application
 
-TOOL_DEPENDS+=		itstool-[0-9]*:../../textproc/itstool
 TOOL_DEPENDS+=		libxml2-[0-9]*:../../textproc/libxml2 # for xmllint
 
 PKGCONFIG_OVERRIDE+=	libmate-panel-applet/libmatepanelapplet-4.0.pc.in
 
 CONFIGURE_ARGS+=	--with-in-process-applets=all
-
-PYTHON_FOR_BUILD_ONLY=	yes
-.include "../../lang/python/tool.mk"
 
 .include "options.mk"
 

@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.2 2021/01/16 00:02:07 triaxx Exp $
+# $NetBSD: Makefile,v 1.4 2021/06/03 12:34:28 gdt Exp $
 
 DISTNAME=	idna-6.1.1
+PKGREVISION=	2
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=benoitc/}
 
@@ -16,10 +17,17 @@ WRKSRC=		${WRKDIR}/${PKGNAME_NOREV}
 REBAR=		${PREFIX}/bin/rebar3
 
 do-build:
-	cd ${WRKSRC} && ${REBAR} compile
+	cd ${WRKSRC} && REBAR_CACHE_DIR=${WRKDIR}/rebar ${REBAR} compile
 
 pre-install:
 	${MV} ${WRKSRC}/_build/default/lib/idna/ebin ${WRKSRC}
+	# Apparently this package depends on unicode_util_compat, but
+	# doesn't say that in the README.md, and includes (by
+	# downloading from the net at build time) a version.  Rather
+	# than fixing this, wait until the next release which will no
+	# longer have this problem.
+	# https://github.com/benoitc/erlang-idna/issues/39
+	${MV} ${WRKSRC}/_build/default/lib/unicode_util_compat/ebin/* ${WRKSRC}/ebin
 	${RM} -rf ${WRKSRC}/_build
 
 .include "../../lang/erlang/module.mk"

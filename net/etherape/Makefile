@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.109 2020/08/17 20:19:44 leot Exp $
+# $NetBSD: Makefile,v 1.111 2021/05/02 10:24:51 nia Exp $
 
-DISTNAME=	etherape-0.9.18
-PKGREVISION=	3
+DISTNAME=	etherape-0.9.19
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=etherape/}
 
@@ -10,10 +9,9 @@ HOMEPAGE=	https://etherape.sourceforge.io/
 COMMENT=	Graphical network monitor
 LICENSE=	gnu-gpl-v2 # or later
 
-TOOL_DEPENDS+=	itstool-[0-9]*:../../textproc/itstool
 TOOL_DEPENDS+=	libxml2-[0-9]*:../../textproc/libxml2
 
-USE_TOOLS+=	gmake pkg-config
+USE_TOOLS+=	gmake pkg-config itstool
 USE_TOOLS+=	msgfmt msgmerge xgettext
 GNU_CONFIGURE=	yes
 

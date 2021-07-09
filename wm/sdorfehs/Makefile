@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2021/01/28 22:18:57 pin Exp $
+# $NetBSD: Makefile,v 1.3 2021/05/01 14:42:46 pin Exp $
 
 DISTNAME=	sdorfehs-1.1
 CATEGORIES=	wm

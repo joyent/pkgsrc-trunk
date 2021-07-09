@@ -1,5 +1,6 @@
-# $NetBSD: Makefile,v 1.268 2021/01/25 09:33:19 wiz Exp $
+# $NetBSD: Makefile,v 1.271 2021/05/29 13:04:21 rin Exp $
 
+PKGREVISION= 2
 .include "license.mk"
 .include "Makefile.common"
 
@@ -89,6 +90,11 @@ SUBST_CLASSES+=		toolsbin
 SUBST_STAGE.toolsbin=	pre-configure
 SUBST_FILES.toolsbin=	Configure
 SUBST_VARS.toolsbin=	TOOLS_RM
+
+SUBST_CLASSES+=		pwd
+SUBST_STAGE.pwd=	pre-configure
+SUBST_FILES.pwd=	dist/PathTools/Cwd.pm
+SUBST_SED.pwd+=		-e "s,/bin/pwd,${TOOLS_PLATFORM.pwd},g"
 
 .if ${OPSYS} == "Darwin" || ${OPSYS} == "Cygwin"
 #

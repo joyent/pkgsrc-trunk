@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2021/01/29 11:39:38 pin Exp $
+# $NetBSD: Makefile,v 1.3 2021/07/05 09:09:23 pin Exp $
 
 DISTNAME=	oxipng-4.0.3
 CATEGORIES=	graphics

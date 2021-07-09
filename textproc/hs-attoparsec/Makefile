@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.13 2020/01/11 09:34:21 pho Exp $
+# $NetBSD: Makefile,v 1.15 2021/05/03 19:01:12 pho Exp $
 
-DISTNAME=	attoparsec-0.13.2.3
+DISTNAME=	attoparsec-0.14.1
 PKGREVISION=	1
 CATEGORIES=	textproc
 

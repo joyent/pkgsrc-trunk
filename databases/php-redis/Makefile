@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.13 2021/03/07 13:02:29 taca Exp $
+# $NetBSD: Makefile,v 1.15 2021/03/29 00:09:35 taca Exp $
 #
 
 MODNAME=	redis
@@ -25,4 +25,7 @@ CFLAGS+=	-Wno-error=return-type
 .endif
 
 .include "../../lang/php/ext.mk"
+.if ${PKG_PHP_MAJOR_VERS} < 8
+.include "../../textproc/php-json/buildlink3.mk"
+.endif
 .include "../../mk/bsd.pkg.mk"

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2021/02/28 16:50:02 taca Exp $
+# $NetBSD: Makefile,v 1.4 2021/06/02 16:04:39 taca Exp $
 
 DISTNAME=	redmine-${RM_VERSION}
 PKGNAME=	${RUBY_PKGPREFIX}-${DISTNAME:S/redmine/redmine${RM_VER}/}
@@ -10,11 +10,11 @@ HOMEPAGE=	https://www.redmine.org/
 COMMENT=	Flexible project management web application
 LICENSE=	gnu-gpl-v2 # and so on.
 
-RM_VERSION=	4.1.1
+RM_VERSION=	4.1.3
 
 NO_BUILD=	yes
 
-RUBY_VERSIONS_ACCEPTED=	25 26
+RUBY_VERSIONS_ACCEPTED=	26
 
 RUBY_RAILS_ACCEPTED=	52
 
@@ -29,10 +29,9 @@ DEPENDS+=	${RUBY_PKGPREFIX}-request_store>=1.4.1:../../www/ruby-request_store
 DEPENDS+=	${RUBY_PKGPREFIX}-mini_mime>=1.0.1<1.1:../../mail/ruby-mini_mime
 DEPENDS+=	${RUBY_PKGPREFIX}-actionpack${RUBY_RAILS}-xml_parser>=2.0:../../textproc/ruby-actionpack-xml_parser
 DEPENDS+=	${RUBY_PKGPREFIX}-roadie-rails${RUBY_RAILS}>=2.1.0:../../mail/ruby-roadie-rails
-DEPENDS+=	${RUBY_PKGPREFIX}-mimemagic-[0-9]*:../../misc/ruby-mimemagic
 DEPENDS+=	${RUBY_PKGPREFIX}-mail>=2.7.1<2.8:../../mail/ruby-mail
 DEPENDS+=	${RUBY_PKGPREFIX}-csv>=3.1.1<3.2:../../textproc/ruby-csv
-DEPENDS+=	${RUBY_PKGPREFIX}-nokogiri>=1.10.0:../../textproc/ruby-nokogiri
+DEPENDS+=	${RUBY_PKGPREFIX}-nokogiri>=1.11.0:../../textproc/ruby-nokogiri
 DEPENDS+=	${RUBY_PKGPREFIX}-i18n>=1.6.0:../../devel/ruby-i18n
 DEPENDS+=	${RUBY_PKGPREFIX}-rbpdf>=1.20.0<1.21:../../print/ruby-rbpdf
 #DEPENDS+=	${RUBY_PKGPREFIX}-tzinfo-data>=1:../../time/ruby-tzinfo-data
@@ -40,7 +39,7 @@ DEPENDS+=	${RUBY_PKGPREFIX}-net-ldap>=0.16.0:../../net/ruby-net-ldap
 DEPENDS+=	${RUBY_PKGPREFIX}-ruby-openid>=2.9.2<2.10:../../security/ruby-ruby-openid
 DEPENDS+=	${RUBY_PKGPREFIX}-rack-openid>=1.4.2:../../security/ruby-rack-openid
 DEPENDS+=	${RUBY_PKGPREFIX}-mini-magick>=4.9.5:../../graphics/ruby-mini-magick
-DEPENDS+=	${RUBY_PKGPREFIX}-redcarpet>=3.5.0<3.6:../../textproc/ruby-redcarpet
+DEPENDS+=	${RUBY_PKGPREFIX}-redcarpet>=3.5.1<3.6:../../textproc/ruby-redcarpet
 
 .include "options.mk"
 

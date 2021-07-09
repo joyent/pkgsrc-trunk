@@ -1,0 +1,4 @@
+@comment $NetBSD: PLIST,v 1.2 2021/05/09 09:45:09 nia Exp $
+bin/ossmix
+share/doc/ossmix/COPYING
+share/doc/ossmix/ossmix.man

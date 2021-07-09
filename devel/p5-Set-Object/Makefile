@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.25 2020/08/31 18:08:49 wiz Exp $
+# $NetBSD: Makefile,v 1.27 2021/05/24 19:51:31 wiz Exp $
 
-DISTNAME=	Set-Object-1.40
+DISTNAME=	Set-Object-1.41
 PKGNAME=	p5-${DISTNAME}
 PKGREVISION=	1
 CATEGORIES=	devel perl5

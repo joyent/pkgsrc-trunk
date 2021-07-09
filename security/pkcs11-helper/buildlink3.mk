@@ -1,4 +1,4 @@
-# $NetBSD: buildlink3.mk,v 1.18 2020/05/22 10:55:50 adam Exp $
+# $NetBSD: buildlink3.mk,v 1.23 2021/05/02 08:16:41 nia Exp $
 
 BUILDLINK_TREE+=	pkcs11-helper
 
@@ -6,19 +6,22 @@ BUILDLINK_TREE+=	pkcs11-helper
 PKCS11_HELPER_BUILDLINK3_MK:=
 
 BUILDLINK_API_DEPENDS.pkcs11-helper+=	pkcs11-helper>=1.06
-BUILDLINK_ABI_DEPENDS.pkcs11-helper+=	pkcs11-helper>=1.10nb13
+BUILDLINK_ABI_DEPENDS.pkcs11-helper+=	pkcs11-helper>=1.27.0nb3
 BUILDLINK_PKGSRCDIR.pkcs11-helper?=	../../security/pkcs11-helper
 
 pkgbase := pkcs11-helper
 .include "../../mk/pkg-build-options.mk"
 
-.if !empty(PKG_BUILD_OPTIONS.pkcs11-helper:Mopenssl)
+.if ${PKG_BUILD_OPTIONS.pkcs11-helper:Mopenssl}
 .  include "../../security/openssl/buildlink3.mk"
 .endif
-.if !empty(PKG_BUILD_OPTIONS.pkcs11-helper:Mgnutls)
+.if ${PKG_BUILD_OPTIONS.pkcs11-helper:Mgnutls}
 .  include "../../security/gnutls/buildlink3.mk"
 .endif
-.if !empty(PKG_BUILD_OPTIONS.pkcs11-helper:Mnss)
+.if ${PKG_BUILD_OPTIONS.pkcs11-helper:Mmbedtls}
+.  include "../../security/mbedtls/buildlink3.mk"
+.endif
+.if ${PKG_BUILD_OPTIONS.pkcs11-helper:Mnss}
 .  include "../../devel/nss/buildlink3.mk"
 .endif
 

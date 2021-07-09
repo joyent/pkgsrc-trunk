@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.2 2021/01/30 23:29:50 bacon Exp $
+@comment $NetBSD: PLIST,v 1.5 2021/06/16 21:15:55 bacon Exp $
 sbin/auto-ad-adduser
 sbin/auto-add-fdesc-mount
 sbin/auto-add-group
@@ -11,7 +11,6 @@ sbin/auto-admin-banner
 sbin/auto-amend-fstab
 sbin/auto-append-line
 sbin/auto-ask
-sbin/auto-autofs-media-setup
 sbin/auto-autofs-nfs-setup
 sbin/auto-automount-setup
 sbin/auto-backup-file
@@ -61,7 +60,6 @@ sbin/auto-idrac-config
 sbin/auto-idrac-passwd
 sbin/auto-insert-line
 sbin/auto-install-infiniband-modules
-sbin/auto-install-linux-flash
 sbin/auto-install-linux_base
 sbin/auto-install-media-distname
 sbin/auto-install-packages
@@ -80,6 +78,7 @@ sbin/auto-mark-install-from-source
 sbin/auto-mark-package-critical
 sbin/auto-media-format
 sbin/auto-mount-any
+sbin/auto-mount-noautos
 sbin/auto-network-restart
 sbin/auto-nfs-add-share
 sbin/auto-nfs-client-setup
@@ -93,6 +92,7 @@ sbin/auto-passwd-user-expiration
 sbin/auto-password-status
 sbin/auto-pkg-branch
 sbin/auto-pkg-latest
+sbin/auto-pkgsrc-branch
 sbin/auto-pkgsrc-delete-all
 sbin/auto-pkgsrc-dir
 sbin/auto-pkgsrc-prefix
@@ -130,6 +130,7 @@ sbin/auto-transfer-pw
 sbin/auto-unlock-local-pw
 sbin/auto-unlock-user
 sbin/auto-update-infiniband-modules
+sbin/auto-update-pkgsrc
 sbin/auto-update-system
 sbin/auto-user-admin
 sbin/auto-useradd

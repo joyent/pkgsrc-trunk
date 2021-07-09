@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.92 2020/11/05 09:09:06 ryoon Exp $
+# $NetBSD: Makefile,v 1.95 2021/05/24 19:54:09 wiz Exp $
 
 DISTNAME=	brasero-3.12.2
-PKGREVISION=	6
+PKGREVISION=	8
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/brasero/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -14,11 +14,10 @@ LICENSE=	gnu-gpl-v2
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
 USE_TOOLS+=	intltool pkg-config perl
-USE_TOOLS+=	msgfmt xgettext
+USE_TOOLS+=	msgfmt xgettext itstool
 USE_TOOLS+=	gmake
 
 TOOL_DEPENDS+=	p5-XML-LibXML>=1.58:../../textproc/p5-XML-LibXML
-TOOL_DEPENDS+=	itstool-[0-9]*:../../textproc/itstool
 
 CONFIGURE_ARGS+=	--disable-nautilus
 CONFIGURE_ARGS+=	--enable-compile-warnings=minimum # Disable Werror

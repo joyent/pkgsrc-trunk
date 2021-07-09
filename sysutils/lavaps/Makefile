@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.53 2020/08/31 18:11:28 wiz Exp $
+# $NetBSD: Makefile,v 1.55 2021/05/24 19:54:12 wiz Exp $
 #
 
 DISTNAME=	lavaps-2.7
-PKGREVISION=	16
+PKGREVISION=	17
 CATEGORIES=	sysutils x11
 MASTER_SITES=	http://www.isi.edu/~johnh/SOFTWARE/LAVAPS/
 
@@ -13,7 +13,7 @@ COMMENT=	Lava lamp of currently running processes
 MAKE_JOBS_SAFE=		no
 
 USE_LANGUAGES=	c c++
-USE_TOOLS+=	perl pod2man pod2html
+USE_TOOLS+=	perl pod2man pod2html gmake
 
 GNU_CONFIGURE=		YES
 CONFIGURE_ARGS+=	--with-tcltk \

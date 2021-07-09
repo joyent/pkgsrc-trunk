@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.19 2021/01/08 21:09:08 triaxx Exp $
+# $NetBSD: Makefile,v 1.21 2021/07/03 21:02:45 thor Exp $
 
-DISTNAME=	p11-kit-0.23.22
+DISTNAME=	p11-kit-0.24.0
 PKGREVISION=	1
 CATEGORIES=	security
 #MASTER_SITES=	http://p11-glue.freedesktop.org/releases/
@@ -44,5 +44,6 @@ CONF_FILES+=		share/examples/p11-kit/pkcs11.conf.example \
 			${PKG_SYSCONFDIR}/pkcs11.conf
 
 .include "../../devel/libffi/buildlink3.mk"
+.include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../security/libtasn1/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

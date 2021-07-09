@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.31 2021/02/24 11:10:11 adam Exp $
+# $NetBSD: Makefile,v 1.35 2021/07/06 07:04:11 adam Exp $
 
-DISTNAME=	node-v12.21.0
+DISTNAME=	node-v12.22.3
 EXTRACT_SUFX=	.tar.xz
 
 USE_LANGUAGES=	c gnu++14
@@ -10,8 +10,10 @@ USE_LANGUAGES=	c gnu++14
 # XXX: figure out a way to add rpaths to torque
 MAKE_ENV+=	LD_LIBRARY_PATH=${PREFIX}/lib
 
+CONFIGURE_ARGS+=	--shared-brotli
 CONFIGURE_ARGS+=	--shared-nghttp2
-CONFIGURE_ARGS+=	--with-intl=system-icu
+# ICU 69.1: error: 'createInstance' is a private member of 'icu_69::ListFormatter'
+#CONFIGURE_ARGS+=	--with-intl=system-icu
 
 PYTHON_VERSIONS_ACCEPTED=	27
 
@@ -26,7 +28,8 @@ CXXFLAGS+=	-mstackrealign
 .include "../../lang/nodejs/options.mk"
 
 .include "../../lang/nodejs/Makefile.common"
-.include "../../textproc/icu/buildlink3.mk"
+.include "../../archivers/brotli/buildlink3.mk"
+#.include "../../textproc/icu/buildlink3.mk"
 # Requires nghttp2_option_set_max_settings
 BUILDLINK_API_DEPENDS.nghttp2+=	nghttp2>=1.41.0
 .include "../../www/nghttp2/buildlink3.mk"

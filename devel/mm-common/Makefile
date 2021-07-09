@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.9 2020/12/04 20:45:11 nia Exp $
+# $NetBSD: Makefile,v 1.11 2021/05/31 20:28:11 wiz Exp $
 
-DISTNAME=	mm-common-1.0.0
-PKGREVISION=	1
+DISTNAME=	mm-common-1.0.3
 CATEGORIES=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/mm-common/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -11,17 +10,10 @@ HOMEPAGE=	https://www.gtkmm.org/
 COMMENT=	Provides build infrastructure utilities for GNOME C++ libraries
 LICENSE=	gnu-gpl-v2
 
-USE_TOOLS+=	gzip pkg-config
 USE_LANGUAGES=	c++
+USE_TOOLS+=	gzip pkg-config
 
 PYTHON_VERSIONS_INCOMPATIBLE=	27
-
-PKGCONFIG_OVERRIDE+=	doctags/mm-common-libstdc++-uninstalled.pc.in
-PKGCONFIG_OVERRIDE+=	doctags/mm-common-libstdc++.pc.in
-PKGCONFIG_OVERRIDE+=	skeletonmm/skeleton/skeletonmm-uninstalled.pc.in
-PKGCONFIG_OVERRIDE+=	skeletonmm/skeleton/skeletonmm.pc.in
-PKGCONFIG_OVERRIDE+=	util/mm-common-util-uninstalled.pc.in
-PKGCONFIG_OVERRIDE+=	util/mm-common-util.pc.in
 
 SUBST_CLASSES+=		python3
 SUBST_FILES.python3=	meson.build

@@ -1,18 +1,19 @@
-# $NetBSD: Makefile,v 1.14 2021/03/08 08:13:05 jaapb Exp $
+# $NetBSD: Makefile,v 1.19 2021/06/24 15:16:09 gdt Exp $
 
-DISTNAME=	unison-2.51.3.70
-PKGREVISION=	5
+DISTNAME=	unison-2.51.3.99
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=bcpierce00/}
-GITHUB_TAG=     9ec70d5050eff62166e51d380fa44154f17c49ac
+# actually 2.51.4
+GITHUB_TAG=     f29b364cad83c71f5620c0df3b9b0049b62d2d60
 
-MAINTAINER=	pkgsrc-users@NetBSD.org
+MAINTAINER=	gdt@NetBSD.org
 HOMEPAGE=	https://www.cis.upenn.edu/~bcpierce/unison/
 COMMENT=	File-synchronization tool
 LICENSE=	gnu-gpl-v3
 
 USE_TOOLS+=	gmake bash
 MAKE_FLAGS+=	CFLAGS=""
+MAKE_ENV+=	HOME=${WRKDIR:Q}
 
 .include "options.mk"
 
@@ -37,7 +38,6 @@ INSTALLATION_DIRS+=	share/doc/unison
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/src/unison ${DESTDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/src/BUGS.txt ${DESTDIR}${PREFIX}/share/doc/unison
 	${INSTALL_MAN} ${WRKSRC}/src/CONTRIB ${DESTDIR}${PREFIX}/share/doc/unison
 	${INSTALL_MAN} ${WRKSRC}/src/COPYING ${DESTDIR}${PREFIX}/share/doc/unison
 	${INSTALL_MAN} ${WRKSRC}/src/NEWS ${DESTDIR}${PREFIX}/share/doc/unison

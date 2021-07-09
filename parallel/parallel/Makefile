@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.19 2020/11/24 18:14:20 nia Exp $
+# $NetBSD: Makefile,v 1.21 2021/05/24 19:53:41 wiz Exp $
 #
 
-DISTNAME=	parallel-20201122
+DISTNAME=	parallel-20210422
+PKGREVISION=	1
 CATEGORIES=	parallel
 MASTER_SITES=	${MASTER_SITE_GNU:=parallel/}
 EXTRACT_SUFX=	.tar.bz2
@@ -20,14 +21,16 @@ REPLACE_SH+=	src/env_parallel src/parset
 GNU_CONFIGURE=	yes
 USE_LANGUAGES=	# none
 
-DOCDIR=		${PREFIX}/share/doc/parallel
-DOCFILES=	NEWS README COPYING
+INSTALLATION_DIRS+=	share/doc/parallel/LICENSES
 
 CHECK_INTERPRETER_SKIP+=	bin/env_parallel.*
 
 post-install:
-.for i in ${DOCFILES}
-	${INSTALL_DATA} ${WRKSRC}/${i} ${DESTDIR}${DOCDIR}/
-.endfor
+	${INSTALL_DATA} ${WRKSRC}/NEWS \
+		${DESTDIR}${PREFIX}/share/doc/${PKGBASE}
+	${INSTALL_DATA} ${WRKSRC}/README \
+		${DESTDIR}${PREFIX}/share/doc/${PKGBASE}
+	${INSTALL_DATA} ${WRKSRC}/LICENSES/*.txt \
+		${DESTDIR}${PREFIX}/share/doc/${PKGBASE}/LICENSES
 
 .include "../../mk/bsd.pkg.mk"

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2020/10/01 08:36:50 pin Exp $
+# $NetBSD: Makefile,v 1.4 2021/05/08 19:31:52 pin Exp $
 
 DISTNAME=	fff-2.2
 CATEGORIES=	sysutils

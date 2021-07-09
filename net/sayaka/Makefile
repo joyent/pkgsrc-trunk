@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.30 2021/03/12 15:27:55 tsutsui Exp $
+# $NetBSD: Makefile,v 1.34 2021/05/14 12:11:55 nia Exp $
 
-DISTNAME=	sayaka-3.5.0
-#PKGREVISION=	0
+DISTNAME=	sayaka-3.5.1
+PKGREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=isaki68k/}
 GITHUB_PROJECT=	${DISTNAME:S/-${PKGVERSION_NOREV}//}
@@ -14,6 +14,7 @@ LICENSE=	modified-bsd AND mit
 
 GNU_CONFIGURE=		yes
 USE_LANGUAGES+=		c99 c++17
+USE_TOOLS+=		pkg-config
 BUILD_TARGET=		sayaka
 
 INSTALLATION_DIRS+=	bin
@@ -23,6 +24,10 @@ INSTALLATION_DIRS+=	bin
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/src/sayaka ${DESTDIR}${PREFIX}/bin
 
+.include "../../mk/bsd.prefs.mk"
+.if ${OPSYS} == "Linux"
+.  include "../../devel/libbsd/buildlink3.mk"
+.endif
 .include "../../graphics/png/buildlink3.mk"
 .include "../../security/mbedtls/buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"

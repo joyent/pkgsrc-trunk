@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.10 2020/12/04 04:56:20 riastradh Exp $
+# $NetBSD: Makefile,v 1.12 2021/06/22 08:29:55 nia Exp $
 
 DISTNAME=	slim-1.3.6
-PKGREVISION=	6
+PKGREVISION=	7
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=slim.berlios/}
 
@@ -14,7 +14,6 @@ USE_TOOLS+=	pkg-config
 USE_LANGUAGES=	c c++
 
 USE_CMAKE=	yes
-CMAKE_ARGS=	-DUSE_CONSOLEKIT:Bool=Yes
 
 AUTO_MKDIRS=	yes
 RCD_SCRIPTS+=	slim
@@ -31,6 +30,7 @@ SUBST_VARS.paths+=	X11BASE
 CONF_FILES+=	share/examples/slim/slim.conf \
 		${PKG_SYSCONFDIR}/slim.conf
 
+.include "options.mk"
 .include "../../x11/libX11/buildlink3.mk"
 .include "../../x11/libXft/buildlink3.mk"
 .include "../../x11/libXmu/buildlink3.mk"
@@ -40,6 +40,5 @@ CONF_FILES+=	share/examples/slim/slim.conf \
 .include "../../graphics/png/buildlink3.mk"
 .include "../../graphics/freetype2/buildlink3.mk"
 .include "../../fonts/fontconfig/buildlink3.mk"
-.include "../../sysutils/consolekit/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

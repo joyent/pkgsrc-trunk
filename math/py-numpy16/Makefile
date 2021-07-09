@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.5 2020/10/12 21:52:03 bacon Exp $
+# $NetBSD: Makefile,v 1.7 2021/06/15 04:41:53 thor Exp $
 
 DISTNAME=	numpy-1.16.6
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-PKGREVISION=	1
+PKGREVISION=	3
 CATEGORIES=	math python
 MASTER_SITES=	${MASTER_SITE_PYPI:=n/numpy/}
 EXTRACT_SUFX=	.zip
@@ -21,7 +21,8 @@ TEST_DEPENDS+=	${PYPKGPREFIX}-nose-[0-9]*:../../devel/py-nose
 PYTHON_VERSIONED_DEPENDENCIES=	test:test
 
 USE_LANGUAGES=		c fortran
-MAKE_ENV+=		ATLAS=None
+
+.include "../../math/py-numpy/Makefile.make_env"
 
 REPLACE_PYTHON+=	*.py */*.py */*/*.py */*/*/*.py */*/*/*/*.py
 
@@ -39,6 +40,10 @@ PYSETUPBUILDARGS+=	--fcompiler=gnu
 # This package bypasses the wrappers and calls the compilers directly when
 # linking, so ensure that we pass through requisite options.
 LDFLAGS+=		${_COMPILER_ABI_FLAG.${ABI}}
+
+BLAS_ACCEPTED=		${_BLAS_TYPES} accelerate.framework
+BLAS_C_INTERFACE=	yes
+CPPFLAGS+=		${BLAS_INCLUDES}
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -59,9 +64,5 @@ BUILDLINK_API_DEPENDS.py-cython+=	${PYPKGPREFIX}-cython>=0.29.2
 .include "../../lang/python/application.mk"
 .include "../../lang/python/egg.mk"
 .include "../../lang/python/versioned_dependencies.mk"
-# Consider allowing mk/blas.buildlink3.mk to handle Accelerate.framework
-.if ${OPSYS} != "Darwin"
-# blas and lapack are not needed; numpy will use Accelerate.framework
 .include "../../mk/blas.buildlink3.mk"
-.endif
 .include "../../mk/bsd.pkg.mk"

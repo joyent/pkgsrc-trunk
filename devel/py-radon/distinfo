@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.9 2020/10/03 06:08:06 adam Exp $
+$NetBSD: distinfo,v 1.12 2021/05/24 09:15:46 adam Exp $
 
-SHA1 (radon-4.3.2.tar.gz) = 3feb4402b4446a8793dbc168fec8ccf004851fde
-RMD160 (radon-4.3.2.tar.gz) = 6c7fd18d945879c4fd274ecb007d25254e809485
-SHA512 (radon-4.3.2.tar.gz) = 212fb20f5bc3cfdcf3485ff05861fee5253afa5e4be6fe14e89335918fbb9b0f88d5699027ad593a91b30c49c818fec209f32555cf4be0102045a7abbdc07508
-Size (radon-4.3.2.tar.gz) = 1872404 bytes
+SHA1 (radon-4.5.2.tar.gz) = eccbfebf505bc8d343013856b3e4619c6cc83f75
+RMD160 (radon-4.5.2.tar.gz) = 9261f162b21d33ecd8c9f967b6a04ed2348457ce
+SHA512 (radon-4.5.2.tar.gz) = 247fcd715ed3dfb889a73889fb5be8dc159673beb3abe1e1ba5170b8caadb85ad405ebd05f6a9080a6097f1c731b83b9dbe8b7f564f2a39b1b7cb0239f445813
+Size (radon-4.5.2.tar.gz) = 1873164 bytes

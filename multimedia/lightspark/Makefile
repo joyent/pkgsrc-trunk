@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.15 2020/12/31 20:04:12 nia Exp $
+# $NetBSD: Makefile,v 1.17 2021/04/21 13:25:05 adam Exp $
 
-DISTNAME=	lightspark-0.8.3
+DISTNAME=	lightspark-0.8.4.1
+PKGREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_GITHUB:=lightspark/}
 
@@ -27,7 +28,6 @@ CONF_FILES+=	${PREFIX}/share/examples/lightspark/xdg/lightspark.conf \
 .include "../../archivers/xz/buildlink3.mk"
 .include "../../audio/SDL2_mixer/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
-.include "../../devel/glibmm/buildlink3.mk"
 .include "../../devel/pango/buildlink3.mk"
 .include "../../devel/pcre/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.41 2021/02/26 10:12:41 triaxx Exp $
+# $NetBSD: Makefile,v 1.48 2021/06/23 20:03:51 tnn Exp $
 
-DISTNAME=	grafana-7.4.3
+DISTNAME=	grafana-8.0.3
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GITHUB:=grafana/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -41,6 +41,12 @@ SUBST_SED.fix-cfg+=	-e 's,^;\(logs = \).*,\1${LOGDIR},g'
 SUBST_SED.fix-cfg+=	-e 's,^;\(plugins = \).*,\1${PLUGINDIR},g'
 SUBST_SED.fix-cfg+=	-e 's,^;\(static_root_path = \).*,\1${PUBLICDIR},g'
 SUBST_VARS.fix-cfg=	DATADIR PKG_SYSCONFDIR PREFIX
+
+SUBST_CLASSES+=		build
+SUBST_STAGE.build=	pre-build
+SUBST_MESSAGE.build=	Fixing go path in build.go
+SUBST_FILES.build=	build.go
+SUBST_VARS.build=	GO
 
 BUILD_DEFS+=		GRAFANA_USER GRAFANA_GROUP VARBASE
 FILES_SUBST+=		GRAFANA_USER=${GRAFANA_USER:Q}

@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.85 2021/03/10 16:58:05 jperkin Exp $
+# $NetBSD: Makefile,v 1.89 2021/06/13 18:36:31 adam Exp $
 
 .include "../../devel/git/Makefile.common"
 
 PKGNAME=	git-base-${GIT_VERSION}
-PKGREVISION=	1
 COMMENT=	GIT Tree History Storage Tool (base package)
 
 CONFLICTS+=	scmgit-base-[0-9]*
@@ -113,7 +112,7 @@ post-install:
 
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
-BUILDLINK_API_DEPENDS.pcre2?=	pcre2>=10.34
+BUILDLINK_API_DEPENDS.pcre2+=	pcre2>=10.34
 .include "../../devel/pcre2/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../lang/perl5/buildlink3.mk"

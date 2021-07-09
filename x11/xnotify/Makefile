@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3 2020/12/01 07:59:26 pin Exp $
+# $NetBSD: Makefile,v 1.5 2021/05/02 20:05:24 pin Exp $
 
 DISTNAME=	xnotify-0.8.1
 CATEGORIES=	x11

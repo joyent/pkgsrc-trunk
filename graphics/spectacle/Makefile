@@ -1,13 +1,14 @@
-# $NetBSD: Makefile,v 1.14 2021/02/07 06:30:28 ryoon Exp $
+# $NetBSD: Makefile,v 1.16 2021/04/21 11:41:59 adam Exp $
 
 DISTNAME=	spectacle-${KAPPSVER}
-PKGREVISION=	6
+PKGREVISION=	1
 CATEGORIES=	graphics
 
 HOMEPAGE=	https://kde.org/applications/graphics/kruler/
 COMMENT=	KDE screenshot capture utility
 LICENSE=	gnu-gpl-v2 AND gnu-fdl-v1.2 AND gnu-lgpl-v2
 
+KAPPSVER=	20.12.3
 .include "../../meta-pkgs/kde/applications.mk"
 
 BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
@@ -16,6 +17,7 @@ USE_TOOLS+=	msgmerge pkg-config
 
 .include "../../devel/kdeclarative/buildlink3.mk"
 .include "../../devel/kwayland/buildlink3.mk"
+.include "../../devel/purpose/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../graphics/libkipi/buildlink3.mk"
 .include "../../net/knewstuff/buildlink3.mk"

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.100 2020/11/05 09:08:57 ryoon Exp $
+# $NetBSD: Makefile,v 1.103 2021/05/02 10:24:51 nia Exp $
 #
 
 DISTNAME=	vinagre-3.6.2
-PKGREVISION=	58
+PKGREVISION=	60
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/vinagre/3.6/}
 EXTRACT_SUFX=	.tar.xz
@@ -12,11 +12,9 @@ HOMEPAGE=	https://projects.gnome.org/vinagre/
 COMMENT=	VNC client for GNOME
 LICENSE=	gnu-gpl-v3
 
-BUILD_DEPENDS+=	itstool-[0-9]*:../../textproc/itstool
-
 GNU_CONFIGURE=	yes
 USE_LIBTOOL=	yes
-USE_TOOLS+=	gmake intltool pkg-config
+USE_TOOLS+=	gmake intltool pkg-config itstool
 USE_TOOLS+=	msgfmt msgmerge xgettext
 USE_LANGUAGES=	c99 c++
 

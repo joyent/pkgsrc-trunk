@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.46 2020/08/31 18:10:34 wiz Exp $
+# $NetBSD: Makefile,v 1.48 2021/05/24 19:53:18 wiz Exp $
 
 DISTNAME=	gnome-nettool-3.8.1
-PKGREVISION=	4
+PKGREVISION=	5
 CATEGORIES=	net gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gnome-nettool/3.8/}
 EXTRACT_SUFX=	.tar.xz
@@ -11,13 +11,12 @@ HOMEPAGE=	https://gitlab.gnome.org/GNOME/gnome-nettool
 COMMENT=	GNOME interface for various network tools
 LICENSE=	gnu-gpl-v2
 
-TOOL_DEPENDS+=	itstool-[0-9]*:../../textproc/itstool
 TOOL_DEPENDS+=	libxml2-[0-9]*:../../textproc/libxml2
 TOOL_DEPENDS+=	p5-XML-LibXML>=1.58:../../textproc/p5-XML-LibXML
 
 GNU_CONFIGURE=	yes
 
-USE_TOOLS+=	pkg-config perl gmake
+USE_TOOLS+=	pkg-config perl gmake itstool
 USE_TOOLS+=	intltool msgfmt msgmerge xgettext
 
 .include "../../devel/glib2/schemas.mk"

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.201 2020/11/05 09:09:20 ryoon Exp $
+# $NetBSD: Makefile,v 1.204 2021/05/02 11:06:15 nia Exp $
 
 DISTNAME=	epiphany-3.36.2
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	www gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/epiphany/3.36/}
 EXTRACT_SUFX=	.tar.xz
@@ -11,10 +11,8 @@ HOMEPAGE=	https://wiki.gnome.org/Apps/Web
 COMMENT=	Web browser for the GNOME desktop
 LICENSE=	gnu-gpl-v2
 
-TOOL_DEPENDS+=	gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
-TOOL_DEPENDS+=	itstool-[0-9]*:../../textproc/itstool
-
-USE_TOOLS+=	pkg-config msgfmt xgettext
+USE_TOOLS+=	pkg-config msgfmt xgettext itstool
+USE_TOOLS+=	gdbus-codegen
 
 MESON_ARGS+=	-Dunit_tests=disabled
 

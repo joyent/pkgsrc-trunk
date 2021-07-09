@@ -1,4 +1,4 @@
-$NetBSD: patch-hw_xwayland_xwayland-input.c,v 1.2 2019/10/29 22:46:39 nia Exp $
+$NetBSD: patch-hw_xwayland_xwayland-input.c,v 1.4 2021/06/24 18:43:08 tnn Exp $
 
 Support non-evdev platforms.
 

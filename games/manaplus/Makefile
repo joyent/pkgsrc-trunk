@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.12 2020/11/05 09:08:13 ryoon Exp $
+# $NetBSD: Makefile,v 1.15 2021/06/06 16:35:42 nia Exp $
 
-DISTNAME=	manaplus-1.9.3.23
-PKGREVISION=	9
+DISTNAME=	manaplus-2.1.3.17
 CATEGORIES=	games
 MASTER_SITES=	http://download.evolonline.org/manaplus/download/${PKGVERSION_NOREV}/
 EXTRACT_SUFX=	.tar.xz
@@ -34,6 +33,7 @@ CONFIGURE_ARGS+=	--with-sdl2
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../fonts/SDL2_ttf/buildlink3.mk"
 .include "../../graphics/SDL2_image/buildlink3.mk"
+.include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
 .include "../../net/SDL2_net/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"

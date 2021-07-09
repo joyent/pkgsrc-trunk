@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.158 2021/02/21 15:42:40 adam Exp $
+# $NetBSD: Makefile,v 1.165 2021/05/24 19:56:00 wiz Exp $
 
-DISTNAME=	gtk+-3.24.25
+DISTNAME=	gtk+-3.24.29
 PKGNAME=	${DISTNAME:S/gtk/gtk3/}
+PKGREVISION=	1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gtk+/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -11,13 +12,15 @@ HOMEPAGE=	https://www.gtk.org/
 COMMENT=	GIMP Toolkit v3 - libraries for building X11 user interfaces
 LICENSE=	gnu-lgpl-v2.1
 
+# "error: 'for' loop initial declarations are only allowed in C99 mode"
 USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		ggrep gmake perl pkg-config bash xgettext msgmerge
+USE_TOOLS+=		gdbus-codegen
 GNU_CONFIGURE=		yes
 PTHREAD_AUTO_VARS=	yes
-TOOL_DEPENDS+=		gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
+
 TOOL_DEPENDS+=		gettext-tools>=0.19.4nb1:../../devel/gettext-tools
 
 # There is no logic in gettext.mk to detect the native version of xgettext,
@@ -52,7 +55,8 @@ BUILD_DIRS=		. demos/gtk-demo
 CONFIGURE_ENV.DragonFly+=	ac_cv_func_isinf=yes
 CONFIGURE_ENV.DragonFly+=	ac_cv_func_isnan=yes
 
-CFLAGS.SunOS+=		-std=gnu99
+# "error: 'for' loop initial declarations are only allowed in C99 mode"
+CFLAGS+=		-std=gnu99
 
 CPPFLAGS+=		-DPREFIX="\"${PREFIX}\""
 

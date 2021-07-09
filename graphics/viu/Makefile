@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2020/12/18 13:10:13 pin Exp $
+# $NetBSD: Makefile,v 1.4 2021/07/03 10:08:42 pin Exp $
 
 DISTNAME=	viu-1.3.0
 CATEGORIES=	graphics

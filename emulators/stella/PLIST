@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.15 2021/02/10 11:55:22 nia Exp $
+@comment $NetBSD: PLIST,v 1.17 2021/04/21 08:19:28 nia Exp $
 bin/stella
 share/applications/stella.desktop
 share/doc/stella/Announce.txt
@@ -10,12 +10,10 @@ share/doc/stella/Readme.txt
 share/doc/stella/Todo.txt
 share/doc/stella/debugger.html
 share/doc/stella/graphics/Stella_icon.png
-share/doc/stella/graphics/basic_settings.png
 share/doc/stella/graphics/cheat.png
 share/doc/stella/graphics/chucky_cheese.png
 share/doc/stella/graphics/circuit.png
 share/doc/stella/graphics/commandmenu.png
-share/doc/stella/graphics/commandsmenu_r77.png
 share/doc/stella/graphics/console.png
 share/doc/stella/graphics/debugger_audiotab.png
 share/doc/stella/graphics/debugger_bankcomplex.png
@@ -70,7 +68,6 @@ share/doc/stella/graphics/options_misc_dark.png
 share/doc/stella/graphics/options_misc_light.png
 share/doc/stella/graphics/options_ui.png
 share/doc/stella/graphics/options_video.png
-share/doc/stella/graphics/options_video_dbgcolors.png
 share/doc/stella/graphics/options_video_palettes.png
 share/doc/stella/graphics/options_video_tv.png
 share/doc/stella/graphics/pacman.png

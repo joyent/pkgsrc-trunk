@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.9 2020/10/12 21:52:03 bacon Exp $
+# $NetBSD: Makefile,v 1.12 2021/06/29 08:42:01 nia Exp $
 
-DISTNAME=	netCDF4-1.5.3
+DISTNAME=	netCDF4-1.5.6
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-PKGREVISION=	1
 CATEGORIES=	math python
 MASTER_SITES=	${MASTER_SITE_PYPI:=n/netCDF4/}
 
@@ -20,6 +19,8 @@ SUBST_STAGE.paths=	pre-configure
 SUBST_SED.paths+=	-e 's,/usr/local,${PREFIX},g'
 SUBST_FILES.paths+=	setup.py
 SUBST_MESSAGE.paths=	Fixing header search paths.
+
+PYTHON_VERSIONS_INCOMPATIBLE+=	36	# py-numpy
 
 do-test:
 	cd ${WRKSRC}/test && ${SETENV} ${TEST_ENV} ${PYTHONBIN} run_all.py

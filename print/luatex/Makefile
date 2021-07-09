@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.100 2020/11/21 09:34:57 wiz Exp $
+# $NetBSD: Makefile,v 1.107 2021/06/13 07:27:42 nia Exp $
 
-PKGREVISION= 3
 .include "../../print/texlive/Makefile.common"
 
-PKGNAME=	luatex-1.12.0
+PKGNAME=	luatex-1.13.0
 CATEGORIES=	print
 
 HOMEPAGE=	https://www.tug.org/web2c/
@@ -11,7 +10,7 @@ COMMENT=	Extended version of pdfTeX using Lua
 LICENSE=	gnu-gpl-v2
 
 EXTRACT_ELEMENTS+=	${DISTNAME}/libs/lua53
-EXTRACT_ELEMENTS+=	${DISTNAME}/libs/luajit
+EXTRACT_ELEMENTS+=	${DISTNAME}/libs/pplib
 EXTRACT_ELEMENTS+=	${DISTNAME}/texk/web2c
 
 USE_LANGUAGES=		c99 c++11
@@ -36,7 +35,6 @@ CONFIGURE_ARGS+=	--disable-web-progs
 CONFIGURE_ARGS+=	--disable-xetex
 CONFIGURE_ARGS+=	--enable-luatex
 CONFIGURE_ARGS+=	--enable-web2c
-CONFIGURE_ARGS+=	--with-system-poppler
 CONFIGURE_ARGS+=	--with-fontconfig-includes=${BUILDLINK_PREFIX.fontconfig}/include
 CONFIGURE_ARGS+=	--with-fontconfig-libdir=${BUILDLINK_PREFIX.fontconfig}/lib
 CONFIGURE_ARGS+=	--with-system-kpathsea
@@ -59,7 +57,7 @@ CONFIGURE_ARGS+=	--with-gmp-libdir=${BUILDLINK_PREFIX.gmp}/lib
 CONFIGURE_ARGS+=	--without-x
 
 CONFIGURE_DIRS=		libs/lua53
-CONFIGURE_DIRS+=	libs/luajit
+CONFIGURE_DIRS+=	libs/pplib
 CONFIGURE_DIRS+=	texk/web2c
 
 INSTALLATION_DIRS+=	bin lib
@@ -68,9 +66,6 @@ SUBST_CLASSES+=		prefix
 SUBST_STAGE.prefix=	post-configure
 SUBST_FILES.prefix=	libs/lua53/lua53-src/src/luaconf.h
 SUBST_VARS.prefix=	PREFIX
-
-# patched in Makefile.in
-CHECK_PORTABILITY_SKIP+=	libs/luajit/Makefile.am
 
 CPPFLAGS.SunOS+=	-D_XOPEN_SOURCE_EXTENDED=0
 
@@ -90,7 +85,5 @@ do-install:
 .include "../../math/mpfr/buildlink3.mk"
 BUILDLINK_API_DEPENDS.kpathsea+= kpathsea>=6.3.2
 .include "../../print/kpathsea/buildlink3.mk"
-.include "../../print/poppler/buildlink3.mk"
-.include "../../print/poppler-includes/buildlink3.mk"
 .include "../../x11/pixman/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.9 2021/01/03 19:02:52 wiz Exp $
+# $NetBSD: Makefile,v 1.11 2021/06/07 14:03:14 wiz Exp $
 
-VERSION=	11.1.7
+VERSION=	11.2.8
 DISTNAME=	noscript-${VERSION}
 PKGNAME=	tor-browser-${DISTNAME}
 CATEGORIES=	security www

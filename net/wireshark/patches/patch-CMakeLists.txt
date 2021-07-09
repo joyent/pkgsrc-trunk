@@ -1,14 +1,10 @@
-$NetBSD: patch-CMakeLists.txt,v 1.4 2020/09/15 10:19:20 wiz Exp $
+$NetBSD: patch-CMakeLists.txt,v 1.6 2021/04/23 07:14:44 adam Exp $
 
 Do not make application bundle on Darwin.
-Avoid
-	CMake Error at CMakeLists.txt:3021 (install):
-  	install FILES given directory
-  	"${WRKDIR}/.buildlink/cmake-Modules" to install.
 
---- CMakeLists.txt.orig	2020-08-12 17:53:19.000000000 +0000
+--- CMakeLists.txt.orig	2021-04-21 17:14:36.000000000 +0000
 +++ CMakeLists.txt
-@@ -1359,7 +1359,7 @@ else ()
+@@ -1425,7 +1425,7 @@ else ()
  	set(EXTCAP_INSTALL_LIBDIR "${CMAKE_INSTALL_LIBDIR}/${PROJECT_NAME}/extcap" CACHE INTERNAL "The extcap dir")
  endif()
  
@@ -17,7 +13,7 @@ Avoid
  	#
  	# As https://developer.apple.com/library/archive/technotes/tn2206/_index.html
  	# says,
-@@ -2278,7 +2278,11 @@ if(BUILD_wireshark AND QT_FOUND)
+@@ -2378,7 +2378,11 @@ if(BUILD_wireshark AND QT_FOUND)
  		${MINIZIP_LIBRARIES}
  	)
  
@@ -30,7 +26,7 @@ Avoid
  	if(WIN32)
  		set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT wireshark)
  	endif()
-@@ -3210,12 +3214,12 @@ endif()
+@@ -3317,12 +3321,12 @@ endif()
  
  install(
  	FILES

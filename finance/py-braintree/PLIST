@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.14 2020/03/17 20:02:47 adam Exp $
+@comment $NetBSD: PLIST,v 1.16 2021/05/06 04:34:47 adam Exp $
 ${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
 ${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
 ${PYSITELIB}/${EGG_INFODIR}/dependency_links.txt
@@ -119,6 +119,9 @@ ${PYSITELIB}/braintree/dispute_details/__init__.pyo
 ${PYSITELIB}/braintree/dispute_details/evidence.py
 ${PYSITELIB}/braintree/dispute_details/evidence.pyc
 ${PYSITELIB}/braintree/dispute_details/evidence.pyo
+${PYSITELIB}/braintree/dispute_details/paypal_message.py
+${PYSITELIB}/braintree/dispute_details/paypal_message.pyc
+${PYSITELIB}/braintree/dispute_details/paypal_message.pyo
 ${PYSITELIB}/braintree/dispute_details/status_history.py
 ${PYSITELIB}/braintree/dispute_details/status_history.pyc
 ${PYSITELIB}/braintree/dispute_details/status_history.pyo
@@ -230,6 +233,9 @@ ${PYSITELIB}/braintree/local_payment.pyo
 ${PYSITELIB}/braintree/local_payment_completed.py
 ${PYSITELIB}/braintree/local_payment_completed.pyc
 ${PYSITELIB}/braintree/local_payment_completed.pyo
+${PYSITELIB}/braintree/local_payment_reversed.py
+${PYSITELIB}/braintree/local_payment_reversed.pyc
+${PYSITELIB}/braintree/local_payment_reversed.pyo
 ${PYSITELIB}/braintree/masterpass_card.py
 ${PYSITELIB}/braintree/masterpass_card.pyc
 ${PYSITELIB}/braintree/masterpass_card.pyo

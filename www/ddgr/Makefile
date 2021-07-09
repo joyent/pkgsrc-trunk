@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2021/02/11 11:16:37 pin Exp $
+# $NetBSD: Makefile,v 1.3 2021/06/02 17:20:14 pin Exp $
 
 DISTNAME=	ddgr-1.9
 CATEGORIES=	www

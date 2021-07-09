@@ -1,4 +1,4 @@
-$NetBSD: patch-hw_kdrive_ephyr_hostx.c,v 1.1 2020/09/28 01:08:15 khorben Exp $
+$NetBSD: patch-hw_kdrive_ephyr_hostx.c,v 1.3 2021/06/24 18:43:08 tnn Exp $
 
 Fix Xephyr visual with -parent option
 

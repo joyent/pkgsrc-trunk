@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.66 2020/12/04 04:56:02 riastradh Exp $
+# $NetBSD: Makefile,v 1.68 2021/05/24 19:52:52 wiz Exp $
 
 DISTNAME=	prayer-1.3.5
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	mail www
-MASTER_SITES=	ftp://ftp.csx.cam.ac.uk/pub/software/email/prayer/
+MASTER_SITES=	# ftp://ftp.csx.cam.ac.uk/pub/software/email/prayer/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 #HOMEPAGE=	http://www-uxsup.csx.cam.ac.uk/~dpc22/prayer/

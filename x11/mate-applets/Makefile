@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.38 2020/12/04 04:56:19 riastradh Exp $
+# $NetBSD: Makefile,v 1.40 2021/05/02 10:24:53 nia Exp $
 
 PYTHON_VERSIONS_ACCEPTED=	27
 
-PKGREVISION= 6
+PKGREVISION= 7
 .include "../../meta-pkgs/mate/Makefile.common"
 
 DISTNAME=	mate-applets-${VERSION}
@@ -11,7 +11,6 @@ CATEGORIES=	x11
 COMMENT=	MATE panel applets
 
 DEPENDS+=	${PYPKGPREFIX}-gobject3-[0-9]*:../../devel/py-gobject3
-TOOL_DEPENDS+=	itstool-[0-9]*:../../textproc/itstool
 TOOL_DEPENDS+=	libxml2-[0-9]*:../../textproc/libxml2 # for xmllint
 
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}

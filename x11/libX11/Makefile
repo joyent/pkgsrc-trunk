@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.56 2020/11/20 20:42:53 wiz Exp $
+# $NetBSD: Makefile,v 1.58 2021/06/06 21:05:08 wiz Exp $
 
-DISTNAME=		libX11-1.7.0
+DISTNAME=		libX11-1.7.2
 CATEGORIES=		x11 devel
 MASTER_SITES=		${MASTER_SITE_XORG:=lib/}
 EXTRACT_SUFX=		.tar.bz2

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.5 2020/02/02 06:37:33 adam Exp $
+# $NetBSD: Makefile,v 1.9 2021/05/30 08:12:34 adam Exp $
 
-DISTNAME=	django-formtools-2.2
+DISTNAME=	django-formtools-2.3
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	www python
 MASTER_SITES=	${MASTER_SITE_PYPI:=d/django-formtools/}
@@ -10,7 +10,8 @@ HOMEPAGE=	https://django-formtools.readthedocs.io/
 COMMENT=	Collection of assorted utilities for specific form use cases
 LICENSE=	mit
 
-DEPENDS+=	${PYPKGPREFIX}-django>=1.11:../../www/py-django
+TOOL_DEPENDS+=	${PYPKGPREFIX}-setuptools_scm-[0-9]*:../../devel/py-setuptools_scm
+DEPENDS+=	${PYPKGPREFIX}-django>=2.2:../../www/py-django2
 
 USE_LANGUAGES=	# none
 

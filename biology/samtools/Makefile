@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.10 2020/12/04 20:45:00 nia Exp $
+# $NetBSD: Makefile,v 1.12 2021/05/24 19:49:11 wiz Exp $
 
-DISTNAME=	samtools-1.10
-PKGREVISION=	2
+DISTNAME=	samtools-1.12
+PKGREVISION=	1
 CATEGORIES=	biology
 MASTER_SITES=	${MASTER_SITE_GITHUB:=samtools/}
 
@@ -26,7 +26,7 @@ SUBST_FILES.bash+=	test/test.pl
 
 REPLACE_PERL+=		misc/*.pl
 REPLACE_PERL+=		test/*.pl
-REPLACE_PERL+=		misc/plot-bamstats
+REPLACE_PERL+=		misc/plot-bamstats misc/plot-ampliconstats
 REPLACE_LUA+=		misc/*.lua
 
 CONFIGURE_ARGS+=	--with-htslib=system

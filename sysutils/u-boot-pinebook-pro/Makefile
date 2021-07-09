@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.8 2020/04/02 09:12:54 tnn Exp $
+# $NetBSD: Makefile,v 1.11 2021/06/25 08:28:57 mrg Exp $
 
 PKGREVISION=		5
 
@@ -8,6 +8,6 @@ UBOOT_BIN=		idbloader.img rksd_loader.img rkspi_loader.img u-boot.itb
 
 UBOOT_INSTALLBOOT_PLIST=	installboot.plist
 
-U_BOOT_IMAGE_TYPE=	rk3399
+UBOOT_IMAGE_TYPE=	rk3399
 
 .include "../../sysutils/u-boot/u-boot-rockchip.mk"

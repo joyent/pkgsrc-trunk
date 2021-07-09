@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.71 2021/02/24 09:04:58 wiz Exp $
+# $NetBSD: Makefile,v 1.75 2021/05/20 09:32:37 wiz Exp $
 
-DISTNAME=		tortoisehg-5.7
+DISTNAME=		tortoisehg-5.8
 PKGNAME=		${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=		devel python
 MASTER_SITES=		https://www.mercurial-scm.org/release/tortoisehg/targz/
@@ -10,11 +10,12 @@ HOMEPAGE=		https://tortoisehg.bitbucket.io/
 COMMENT=		GUI for Mercurial
 LICENSE=		gnu-gpl-v2
 
+USE_TOOLS+=		pax
+
 REPLACE_PYTHON+=	thg
 
 BUILD_DEPENDS+=	${PYPKGPREFIX}-sphinx>=1.3.4nb1<2:../../textproc/py-sphinx1
 DEPENDS+=	${PYPKGPREFIX}-iniparse>=0.4:../../textproc/py-iniparse
-DEPENDS+=	${PYPKGPREFIX}-pygments>=1.6:../../textproc/py-pygments
 DEPENDS+=	${PYPKGPREFIX}-mercurial>=5.0.0:../../devel/py-mercurial
 
 thg_icon=		/share/pixmaps/tortoisehg/icons/thg_logo.ico
@@ -29,6 +30,8 @@ INSTALLATION_DIRS+=	share/doc/tortoisehg
 
 PYTHON_SELF_CONFLICT=	yes
 
+PYTHON_VERSIONED_DEPENDENCIES=	pygments
+
 pre-build:
 	${RUN} cd ${WRKSRC}/doc && ${MAKE_PROGRAM} SPHINXBUILD=sphinx-build-${PYVERSSUFFIX} html
 	${RUN} rm ${WRKSRC}/doc/build/html/.buildinfo
@@ -39,10 +42,11 @@ pre-build:
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/contrib/thg.desktop ${DESTDIR}${PREFIX}/share/applications/thg.desktop
 	${INSTALL_DATA} ${WRKSRC}/COPYING.txt ${DESTDIR}${PREFIX}/share/doc/tortoisehg
-	cd ${WRKSRC}/doc/build && pax -pp -rw html ${DESTDIR}${PREFIX}/share/doc/tortoisehg
+	cd ${WRKSRC}/doc/build && ${PAX} -pp -rw html ${DESTDIR}${PREFIX}/share/doc/tortoisehg
 
 .include "../../lang/python/application.mk"
 .include "../../lang/python/distutils.mk"
+.include "../../lang/python/versioned_dependencies.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../x11/py-qt5-qscintilla/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

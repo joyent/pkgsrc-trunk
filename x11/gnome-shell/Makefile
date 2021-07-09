@@ -1,26 +1,27 @@
-# $NetBSD: Makefile,v 1.4 2021/02/07 06:30:40 ryoon Exp $
+# $NetBSD: Makefile,v 1.12 2021/07/03 19:12:10 cirnatdan Exp $
 
-DISTNAME=	gnome-shell-3.38.1
-PKGREVISION=	3
+DISTNAME=	gnome-shell-40.2
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/${PKGBASE}/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
 
-MAINTAINER=	dan@alt.md
+MAINTAINER=	cirnatdan@NetBSD.org
 HOMEPAGE=	https://wiki.gnome.org/Projects/GnomeShell
 COMMENT=	Next generation GNOME shell
 LICENSE=	gnu-gpl-v2
 
-USE_TOOLS+=	pkg-config perl msgfmt xgettext
+USE_TOOLS+=	pkg-config perl msgfmt xgettext gdbus-codegen
 
 MESON_ARGS+=	-Dnetworkmanager=false
 MESON_ARGS+=	-Dsystemd=false
 MESON_ARGS+=	-Dextensions_app=false
 MESON_ARGS+=	-Dextensions_tool=false
+MESON_ARGS+=	-Dman=true
 
 TOOL_DEPENDS+=	sassc>=3.6:../../www/sassc
 TOOL_DEPENDS+=	asciidoc-[0-9]*:../../textproc/asciidoc
-TOOL_DEPENDS+=	gdbus-codegen>=2.64:../../devel/gdbus-codegen
+
+DEPENDS+=	libgdm>=40.0:../../x11/libgdm
 
 MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output/subprojects/gvc
 
@@ -42,6 +43,9 @@ post-extract:
 	cp ${FILESDIR}/*.xml ${WRKSRC}/data/dbus-interfaces/
 
 .include "../../devel/meson/build.mk"
+BUILDLINK_API_DEPENDS.libgweather+=	libgweather>=40.0
+.include "../../devel/libgweather/buildlink3.mk"
+.include "../../x11/gtk4/buildlink3.mk"
 .include "../../archivers/gnome-autoar/buildlink3.mk"
 .include "../../audio/pulseaudio/buildlink3.mk"
 .include "../../devel/at-spi2-atk/buildlink3.mk"

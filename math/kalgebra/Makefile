@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.54 2021/02/07 06:30:29 ryoon Exp $
+# $NetBSD: Makefile,v 1.56 2021/04/21 11:42:10 adam Exp $
 
 DISTNAME=	kalgebra-${KAPPSVER}
-PKGREVISION=	6
+PKGREVISION=	1
 CATEGORIES=	math
 
 HOMEPAGE=	https://kde.org/applications/education/kalgebra/
@@ -21,5 +21,6 @@ USE_TOOLS+=	msgmerge
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../x11/qt5-qtbase/buildlink3.mk"
+CMAKE_ARGS+=	-DCMAKE_DISABLE_FIND_PACKAGE_Qt5WebEngineWidgets:BOOL=TRUE
 #.include "../../x11/qt5-qtwebengine/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

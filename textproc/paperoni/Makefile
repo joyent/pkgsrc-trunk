@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.1 2021/02/24 13:17:28 pin Exp $
+# $NetBSD: Makefile,v 1.4 2021/06/24 08:47:13 pin Exp $
 
-DISTNAME=	v0.3.0-alpha1
-PKGNAME=	paperoni-0.3.0
+DISTNAME=	v0.5.0-alpha1
+PKGNAME=	paperoni-0.5.0
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=hipstermojo/}
-GITHUB_PROJECT= paperoni
-GITHUB_TAG=	v0.3.0-alpha1
+GITHUB_PROJECT=	paperoni
+GITHUB_TAG=	v0.5.0-alpha1
 
 MAINTAINER=	pin@NetBSD.org
 HOMEPAGE=	https://github.com/hipstermojo/paperoni/

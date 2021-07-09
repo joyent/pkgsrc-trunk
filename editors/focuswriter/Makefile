@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.9 2021/02/07 06:30:19 ryoon Exp $
+# $NetBSD: Makefile,v 1.11 2021/04/24 19:43:41 pin Exp $
 
 DISTNAME=	focuswriter-1.7.6
-PKGREVISION=	6
+PKGREVISION=	7
 CATEGORIES=	editors
 MASTER_SITES=	${MASTER_SITE_GITHUB:=gottcode/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
-MAINTAINER=	pin@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://gottcode.org/focuswriter/
 COMMENT=	Simple, distraction-free writing environment
 LICENSE=	gnu-gpl-v3

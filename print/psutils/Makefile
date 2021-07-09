@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.49 2020/08/31 18:11:03 wiz Exp $
+# $NetBSD: Makefile,v 1.51 2021/05/24 19:53:48 wiz Exp $
 
 DISTNAME=	psutils-p17
 PKGNAME=	psutils-1.17
-PKGREVISION=	10
+PKGREVISION=	11
 CATEGORIES=	print
 MASTER_SITES=	ftp://ftp.knackered.org/pub/psutils/
 
@@ -19,7 +19,7 @@ BUILD_DEFS+=	PAPERSIZE
 .if !defined(PAPERSIZE)
 PKG_FAIL_REASON+=	"PAPERSIZE must be defined by the pkgsrc user."
 .else
-.  if ${PAPERSIZE} != "A4" && ${PAPERSIZE} != "Letter"
+.  if ${PAPERSIZE} != "A4" && ${PAPERSIZE} != "a4" && ${PAPERSIZE} != "Letter"
 PKG_FAIL_REASON+=	"Invalid PAPERSIZE (${PAPERSIZE}). Choose one of A4 or Letter."
 .  endif
 .endif

@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.231 2021/02/13 07:09:29 mef Exp $
+# $NetBSD: Makefile,v 1.237 2021/06/18 19:35:13 nia Exp $
 
 DISTNAME=	seamonkey-${SM_VER}.source
 PKGNAME=	seamonkey-${SM_VER:S/b/beta/}
+PKGREVISION=	4
 SM_VER=		2.53.6
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_MOZILLA:=seamonkey/releases/${SM_VER}/source/}
@@ -15,7 +16,7 @@ LICENSE=	mpl-2.0
 BUILD_DEPENDS+=	nasm>=2.13:../../devel/nasm
 
 WRKSRC=		${WRKDIR}/${DISTNAME:S/.source//}
-MOZILLA_DIR=	
+MOZILLA_DIR=
 PLIST_SRC+=	${PLIST_SRC_DFLT}
 USE_LANGUAGES+=	c c++
 USE_TOOLS+=	unzip pax
@@ -76,14 +77,19 @@ INSTALLATION_DIRS+=	lib/seamonkey/extensions
 INSTALLATION_DIRS+=	share/applications
 INSTALLATION_DIRS+=	share/icons/hicolor/32x32/apps
 
+# error: Cannot set `RUSTC_BOOTSTRAP=1` from build script of `packed_simd v0.3.4 (https://github.com/hsivonen/packed_simd?rev=0917fe780032a6bbb23d71be545f9c1834128d75#0917fe78)`.
+# note: Crates cannot set `RUSTC_BOOTSTRAP` themselves, as doing so would subvert the stability guarantees of Rust for your project.
+# help: If you're sure you want to do this in your project, set the environment variable `RUSTC_BOOTSTRAP=packed_simd` before running cargo instead.
+MAKE_ENV+=	RUSTC_BOOTSTRAP="packed_simd,encoding_rs"
+
 post-extract:
 	${CP} ${FILESDIR}/cubeb_sun.c ${WRKSRC}/${MOZILLA_DIR}/media/libcubeb/src
 
 pre-configure:
 	cd ${WRKSRC} && mkdir ${OBJDIR}
-	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} autoconf
-##	cd ${WRKSRC}/${MOZILLA_DIR} && ${SETENV} ${CONFIGURE_ENV} autoconf
-#	cd ${WRKSRC}/${MOZILLA_DIR}/js/src && ${SETENV} ${CONFIGURE_ENV} autoconf
+	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} autoconf-2.13
+##	cd ${WRKSRC}/${MOZILLA_DIR} && ${SETENV} ${CONFIGURE_ENV} autoconf-2.13
+#	cd ${WRKSRC}/${MOZILLA_DIR}/js/src && ${SETENV} ${CONFIGURE_ENV} autoconf-2.13
 	${SED}	-e 's/@MOZ_APP_DISPLAYNAME@/SeaMonkey/g' \
 		-e 's/@MOZ_APP_NAME@/seamonkey/g' \
 		${WRKSRC}/${MOZILLA_DIR}/toolkit/mozapps/installer/linux/rpm/mozilla.desktop > \

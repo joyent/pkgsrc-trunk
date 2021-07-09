@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.7 2021/03/09 08:58:23 nia Exp $
+# $NetBSD: Makefile,v 1.10 2021/05/09 14:48:09 taca Exp $
 
-DISTNAME=	chef-utils-16.10.17
+DISTNAME=	chef-utils-16.13.16
 CATEGORIES=	sysutils
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -9,9 +9,6 @@ COMMENT=	Basic utility functions for Core Chef development
 LICENSE=	apache-2.0
 
 USE_LANGUAGES=	# none
-
-# "chef-utils requires Ruby version >= 2.6.0."
-RUBY_VERSIONS_INCOMPATIBLE=	25
 
 .include "../../lang/ruby/gem.mk"
 .include "../../mk/bsd.pkg.mk"

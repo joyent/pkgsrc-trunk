@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.123 2020/11/05 09:08:21 ryoon Exp $
+# $NetBSD: Makefile,v 1.126 2021/05/24 19:52:21 wiz Exp $
 
 # Note that upstream has replaced tarballs without changing the
 # version number (e.g., 0.19.2 had two different tarballs).
@@ -6,7 +6,7 @@
 # updating pkgsrc.
 DISTNAME=		ufraw-0.22
 PKGNAME=		gimp-${DISTNAME}
-PKGREVISION=		20
+PKGREVISION=		22
 CATEGORIES=		graphics
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=ufraw/}
 
@@ -48,6 +48,7 @@ PKG_SUGGESTED_OPTIONS=	lensfun
 .include "../../graphics/gimp/buildlink3.mk"
 .include "../../graphics/gtkimageview/buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"
+.include "../../graphics/jasper/buildlink3.mk"
 .include "../../graphics/lcms2/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
 .include "../../graphics/tiff/buildlink3.mk"

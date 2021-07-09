@@ -1,9 +1,12 @@
-# $NetBSD: Makefile,v 1.63 2021/02/27 04:19:46 ryoon Exp $
+# $NetBSD: Makefile,v 1.66 2021/04/21 13:24:54 adam Exp $
 
 PKGNAME=	${DISTNAME:S/mozc-/mozc-server-/}
-PKGREVISION=	1
+PKGREVISION=	3
 
 INSTALLATION_DIRS+=	libexec
+
+pre-configure:
+	${RM} ${WRKSRC}/unix/uim/uim.gyp
 
 do-build:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} \

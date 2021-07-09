@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.38 2021/02/07 06:30:18 ryoon Exp $
+# $NetBSD: Makefile,v 1.41 2021/04/21 11:41:25 adam Exp $
 
 DISTNAME=	kapptemplate-${KAPPSVER}
-PKGREVISION=	6
+PKGREVISION=	1
 CATEGORIES=	devel
 
 HOMEPAGE=	https://kde.org/applications/development/kapptemplate/
@@ -12,7 +12,7 @@ LICENSE=	gnu-gpl-v2 AND gnu-fdl-v1.2
 
 BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
 
-USE_TOOLS+=	msgmerge
+USE_TOOLS+=	gmake msgmerge
 
 .include "../../devel/kio/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.55 2019/07/21 11:51:24 nia Exp $
+# $NetBSD: Makefile,v 1.57 2021/03/15 16:18:32 ryoon Exp $
 #
 
 DISTNAME=	bzip2-1.0.8

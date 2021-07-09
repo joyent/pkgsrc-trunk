@@ -1,11 +1,9 @@
-# $NetBSD: Makefile,v 1.14 2021/01/25 11:34:51 nia Exp $
+# $NetBSD: Makefile,v 1.19 2021/05/24 19:55:57 wiz Exp $
 
-DISTNAME=	squid-4.13
+DISTNAME=	squid-4.15
 PKGREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://www.squid-cache.org/Versions/v4/
-MASTER_SITES+=	ftp://ftp.squid-cache.org/pub/squid/
-MASTER_SITES+=	ftp://ftp.squid-cache.org/pub/archive/4/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org

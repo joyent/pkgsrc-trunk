@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.27 2020/11/05 09:09:06 ryoon Exp $
+# $NetBSD: Makefile,v 1.31 2021/06/23 20:33:17 nia Exp $
 
 DISTNAME=	cfengine-3.15.2
-PKGREVISION=	1
+PKGREVISION=	4
 CATEGORIES=	sysutils
 MASTER_SITES=	https://cfengine-package-repos.s3.amazonaws.com/tarballs/
 
@@ -104,5 +104,6 @@ post-install:
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../textproc/libyaml/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
+.include "../../mk/pam.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.8 2020/10/27 08:58:13 nia Exp $
+# $NetBSD: options.mk,v 1.10 2021/04/25 07:51:24 mrg Exp $
 
 PKG_OPTIONS_VAR=		PKG_OPTIONS.mpg123
 PKG_OPTIONS_OPTIONAL_GROUPS=	fpu
@@ -8,7 +8,7 @@ PKG_OPTIONS_GROUP.fpu=		mpg123-with-fpu
 
 .include "../../mk/bsd.fast.prefs.mk"
 
-.if ${MACHINE_ARCH} == "aarch64"
+.if ${MACHINE_CPU} == "aarch64"
 PKG_OPTIONS_GROUP.fpu+=		mpg123-neon64 mpg123-aarch64
 PKG_SUGGESTED_OPTIONS+=		mpg123-aarch64
 .elif ${MACHINE_ARCH} == "powerpc"
@@ -30,7 +30,7 @@ CONFIGURE_ARGS+=	--with-cpu=altivec
 .elif !empty(PKG_OPTIONS:Mmpg123-neon64)
 CONFIGURE_ARGS+=	--with-cpu=neon64
 .elif !empty(PKG_OPTIONS:Mmpg123-aarch64)
-CONFIGURE_ARGS+=	--with-cup=aarch64
+CONFIGURE_ARGS+=	--with-cpu=aarch64
 .else
 CONFIGURE_ARGS+=	--with-cpu=generic_nofpu
 .endif

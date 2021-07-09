@@ -1,4 +1,4 @@
-# $NetBSD: Haiku.mk,v 1.15 2018/10/11 08:30:16 adam Exp $
+# $NetBSD: Haiku.mk,v 1.17 2021/03/15 16:17:59 ryoon Exp $
 #
 # Variable definitions for the Haiku operating system.
 
@@ -61,6 +61,11 @@ _STRIPFLAG_CC?=		${_INSTALL_UNSTRIPPED:D:U-s}	# cc(1) option to strip
 _STRIPFLAG_INSTALL?=	${_INSTALL_UNSTRIPPED:D:U-s}	# install(1) option to strip
 
 _OPSYS_CAN_CHECK_SHLIBS=	no # can't use readelf in check/bsd.check-vars.mk
+
+# Haiku does not support hardlink as of R1/beta2. Use symlink always.
+TOOLS_ARGS.ln=			-s
+
+_OPSYS_SUPPORTS_CWRAPPERS=	yes
 
 # check for maximum command line length and set it in configure's environment,
 # to avoid a test required by the libtool script that takes forever.

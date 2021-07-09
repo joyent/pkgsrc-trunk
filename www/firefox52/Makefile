@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.63 2021/02/07 06:30:40 ryoon Exp $
+# $NetBSD: Makefile,v 1.68 2021/06/18 18:29:57 nia Exp $
 
 FIREFOX_VER=		${MOZ_BRANCH}${MOZ_BRANCH_MINOR}
 MOZ_BRANCH=		52.9
@@ -6,7 +6,7 @@ MOZ_BRANCH_MINOR=	.0esr
 
 DISTNAME=	firefox-${FIREFOX_VER}.source
 PKGNAME=	firefox${MOZ_BRANCH:C/\..*$//}-${MOZ_BRANCH}${MOZ_BRANCH_MINOR:S/b/beta/:S/esr//}
-PKGREVISION=	34
+PKGREVISION=	38
 CATEGORIES=	www
 MASTER_SITES+=	${MASTER_SITE_MOZILLA:=firefox/releases/${FIREFOX_VER}/source/}
 MASTER_SITES+=	${MASTER_SITE_MOZILLA_ALL:=firefox/releases/${FIREFOX_VER}/source/}
@@ -69,8 +69,8 @@ post-extract:
 	${CP} ${FILESDIR}/cubeb_sun.c ${WRKSRC}/media/libcubeb/src
 
 pre-configure:
-	cd ${WRKSRC} && autoconf
-	cd ${WRKSRC}/js/src && autoconf
+	cd ${WRKSRC} && autoconf-2.13
+	cd ${WRKSRC}/js/src && autoconf-2.13
 	cd ${WRKSRC} && mkdir ${OBJDIR}
 	cd ${WRKSRC}/${OBJDIR} && touch old-configure.vars
 

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.74 2020/11/05 09:08:43 ryoon Exp $
+# $NetBSD: Makefile,v 1.76 2021/05/02 10:24:50 nia Exp $
 
 DISTNAME=		yelp-3.32.0
-PKGREVISION=		8
+PKGREVISION=		9
 CATEGORIES=		misc gnome
 MASTER_SITES=		${MASTER_SITE_GNOME:=sources/yelp/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=		.tar.xz
@@ -11,12 +11,10 @@ HOMEPAGE=		https://www.gnome.org/
 COMMENT=		Mallard capable help browser
 LICENSE=		gnu-gpl-v2 AND apache-2.0
 
-USE_TOOLS+=		gmake intltool msgfmt pkg-config
+USE_TOOLS+=		gmake intltool msgfmt pkg-config itstool
 USE_LIBTOOL=		yes
 USE_PKGLOCALEDIR=	yes
 GNU_CONFIGURE=		yes
-
-BUILD_DEPENDS+=		itstool-[0-9]*:../../textproc/itstool
 
 # Requires --desktop in msgfmt.
 _TOOLS_USE_PKGSRC.msgfmt=	yes

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.90 2020/11/05 09:06:54 ryoon Exp $
+# $NetBSD: Makefile,v 1.94 2021/07/08 21:29:49 markd Exp $
 
-DISTNAME=	gegl-0.4.26
-PKGREVISION=	1
+DISTNAME=	gegl-0.4.30
+PKGREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	https://download.gimp.org/pub/gegl/0.4/
 EXTRACT_SUFX=	.tar.xz
@@ -16,21 +16,16 @@ MESON_ARGS+=	-Dlibv4l=disabled
 MESON_ARGS+=	-Dlibv4l2=disabled
 
 USE_LANGUAGES=	c c++
-USE_TOOLS+=	pkg-config xgettext
-USE_TOOLS+=	bash
+USE_TOOLS+=	bash pkg-config xgettext
 
 PKGCONFIG_OVERRIDE+=	gegl.pc.in
 
 PYTHON_FOR_BUILD_ONLY=	tool
 
 .include "../../mk/bsd.prefs.mk"
-
-PLIST_VARS+=		Darwin not_Darwin
 .if ${OPSYS} == "Darwin"
-PLIST.Darwin=		yes
 PLIST_SUBST+=		SOEXT="dylib"
 .else
-PLIST.not_Darwin=	yes
 PLIST_SUBST+=		SOEXT="so"
 .endif
 
@@ -47,7 +42,6 @@ pre-build:
 .include "../../devel/SDL2/buildlink3.mk"
 BUILDLINK_API_DEPENDS.babl+=	babl>=0.1.72
 .include "../../graphics/babl/buildlink3.mk"
-.include "../../mk/jpeg.buildlink3.mk"
 .include "../../graphics/gdk-pixbuf2/buildlink3.mk"
 .include "../../graphics/lcms2/buildlink3.mk"
 .include "../../graphics/openexr/buildlink3.mk"
@@ -57,4 +51,5 @@ BUILDLINK_API_DEPENDS.babl+=	babl>=0.1.72
 .include "../../lang/python/tool.mk"
 .include "../../textproc/json-glib/buildlink3.mk"
 .include "../../mk/dlopen.buildlink3.mk"
+.include "../../mk/jpeg.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -1,8 +1,9 @@
-# $NetBSD: Makefile,v 1.2 2021/01/05 09:52:21 pin Exp $
+# $NetBSD: Makefile,v 1.6 2021/07/08 13:21:12 pin Exp $
 
-DISTNAME=	bk-0.5.2
+DISTNAME=	bk-0.5.3
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=aeosynth/}
+GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	pin@NetBSD.org
 HOMEPAGE=	https://github.com/aeosynth/bk/

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.46 2020/10/08 22:51:55 leot Exp $
+# $NetBSD: Makefile,v 1.48 2021/04/21 13:25:18 adam Exp $
 #
 
 DISTNAME=	zathura-pdf-mupdf-0.3.6
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	print
 MASTER_SITES=	https://pwmt.org/projects/zathura-pdf-mupdf/download/
 EXTRACT_SUFX=	.tar.xz
@@ -18,6 +18,8 @@ USE_TOOLS+=	pkg-config
 MESON_ARGS+=	-D link-external=true
 
 CPPFLAGS+=	-D_XOPEN_SOURCE=600
+
+PYTHON_FOR_BUILD_ONLY=	tool
 
 .include "../../devel/meson/build.mk"
 .include "../../graphics/cairo/buildlink3.mk"

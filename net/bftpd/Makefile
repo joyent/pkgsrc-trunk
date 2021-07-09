@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.26 2020/08/10 13:49:15 nia Exp $
+# $NetBSD: Makefile,v 1.28 2021/06/12 08:10:52 nia Exp $
 
-DISTNAME=	bftpd-5.6
+DISTNAME=	bftpd-5.7
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=bftpd/}
 
@@ -11,6 +11,8 @@ LICENSE=	gnu-gpl-v2
 
 GNU_CONFIGURE=	YES
 USE_TOOLS+=	gmake
+
+MAKE_FLAGS+=	LDFLAGS=${LDFLAGS:Q}
 
 WRKSRC=		${WRKDIR}/bftpd
 
@@ -33,6 +35,8 @@ SUBST_SED.sysconf+=	-e 's|normally /etc/|normally ${PKG_SYSCONFDIR}/|g'
 INSTALLATION_DIRS=	sbin ${PKGMANDIR}/man8 share/examples/bftpd
 
 BUILD_DEFS+=		VARBASE
+
+OWN_DIRS+=		${VARBASE}/run/bftpd
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/bftpd ${DESTDIR}${PREFIX}/sbin

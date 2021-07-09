@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.48 2020/11/29 23:12:43 dbj Exp $
+# $NetBSD: Makefile,v 1.50 2021/06/27 08:12:28 tnn Exp $
 #
 
 COMMENT=	Wireless communication tools and applications
@@ -21,7 +21,9 @@ SUBDIR+=	gnuradio-digital
 SUBDIR+=	gnuradio-doxygen
 SUBDIR+=	gnuradio-dtv
 SUBDIR+=	gnuradio-fec
+SUBDIR+=	gnuradio-network
 SUBDIR+=	gnuradio-qtgui
+SUBDIR+=	gnuradio-soapy-sdr
 SUBDIR+=	gnuradio-trellis
 SUBDIR+=	gnuradio-uhd
 SUBDIR+=	gnuradio-utils

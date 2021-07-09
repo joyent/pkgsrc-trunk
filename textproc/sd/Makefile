@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2021/01/31 15:57:00 pin Exp $
+# $NetBSD: Makefile,v 1.3 2021/07/05 08:40:19 pin Exp $
 
 DISTNAME=	sd-0.7.6
 CATEGORIES=	textproc

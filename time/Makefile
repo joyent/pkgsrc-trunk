@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.219 2021/02/21 09:44:50 markd Exp $
+# $NetBSD: Makefile,v 1.222 2021/05/05 15:15:11 pho Exp $
 #
 
 COMMENT=	Clocks, calendars, daily planners and other time related applications
@@ -38,8 +38,10 @@ SUBDIR+=	hs-clock
 SUBDIR+=	hs-hourglass
 SUBDIR+=	hs-old-time
 SUBDIR+=	hs-time-compat
+SUBDIR+=	hs-time-manager
 SUBDIR+=	hs-timezone-olson
 SUBDIR+=	hs-timezone-series
+SUBDIR+=	hs-unix-time
 SUBDIR+=	ical
 SUBDIR+=	ical2rem
 SUBDIR+=	jday
@@ -173,6 +175,7 @@ SUBDIR+=	py-trytond-timesheet-cost
 SUBDIR+=	py-tzdata
 SUBDIR+=	py-tzlocal
 SUBDIR+=	py-vdirsyncer
+SUBDIR+=	quest-tui
 SUBDIR+=	rclock
 SUBDIR+=	rem2ics
 SUBDIR+=	remind

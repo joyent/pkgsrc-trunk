@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.4 2021/02/07 06:30:20 ryoon Exp $
+# $NetBSD: Makefile,v 1.6 2021/05/14 06:53:47 nia Exp $
 
 DISTNAME=	bsnes-115
-PKGREVISION=	3
+PKGREVISION=	4
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_GITHUB:=bsnes-emu/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -72,5 +72,6 @@ INSTALL_MAKE_FLAGS+=	prefix=${DESTDIR}${PREFIX}
 .  include "../../x11/libX11/buildlink3.mk"
 .  include "../../x11/libXext/buildlink3.mk"
 .  include "../../x11/libXrandr/buildlink3.mk"
+.  include "../../x11/libXv/buildlink3.mk"
 .endif
 .include "../../mk/bsd.pkg.mk"

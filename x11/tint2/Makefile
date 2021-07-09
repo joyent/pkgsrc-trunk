@@ -1,15 +1,14 @@
-# $NetBSD: Makefile,v 1.55 2020/11/05 09:09:28 ryoon Exp $
+# $NetBSD: Makefile,v 1.58 2021/06/27 07:13:47 nia Exp $
 
-DISTNAME=		tint2-v16.7
+DISTNAME=		tint2-v17.0.1
 PKGNAME=		${DISTNAME:S/-v/-/}
-PKGREVISION=		5
 CATEGORIES=		x11
 MASTER_SITES=		https://gitlab.com/o9000/tint2/-/archive/v${PKGVERSION_NOREV}/
 EXTRACT_SUFX=		.tar.bz2
 
 MAINTAINER=		fernandotcl@gmail.com
 HOMEPAGE=		https://gitlab.com/o9000/tint2
-COMMENT=		Lightweight panel/taskbar for Linux and BSD
+COMMENT=		Lightweight panel/taskbar for X11
 LICENSE=		gnu-gpl-v2
 
 USE_LANGUAGES=		c c++ # XXX CMake. pkg does not really need c++
@@ -34,7 +33,7 @@ post-install:
 .include "../../graphics/imlib2/buildlink3.mk"
 .include "../../graphics/librsvg/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
-.include "../../x11/gtk2/buildlink3.mk"
+.include "../../x11/gtk3/buildlink3.mk"
 .include "../../x11/libXcomposite/buildlink3.mk"
 .include "../../x11/libXdamage/buildlink3.mk"
 .include "../../x11/libXinerama/buildlink3.mk"

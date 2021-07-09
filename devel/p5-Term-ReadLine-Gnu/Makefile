@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.1 2020/09/06 11:54:38 wiz Exp $
+# $NetBSD: Makefile,v 1.4 2021/07/04 09:00:15 wen Exp $
 
-DISTNAME=	Term-ReadLine-Gnu-1.36
+DISTNAME=	Term-ReadLine-Gnu-1.42
 PKGNAME=	p5-${DISTNAME}
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=Term/}

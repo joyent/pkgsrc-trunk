@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.196 2021/03/03 12:05:41 nia Exp $
+# $NetBSD: Makefile,v 1.199 2021/05/24 19:52:34 wiz Exp $
 
-DISTNAME=	mono-6.12.0.107
+DISTNAME=	mono-6.12.0.122
+PKGREVISION=	2
 CATEGORIES=	lang
 MASTER_SITES=	https://download.mono-project.com/sources/mono/
 EXTRACT_SUFX=	.tar.xz
@@ -39,7 +40,7 @@ PKGCONFIG_OVERRIDE+=	mono-uninstalled.pc.in data/cecil.pc.in
 PKGCONFIG_OVERRIDE+=	data/dotnet.pc.in data/dotnet35.pc.in data/mint.pc.in
 PKGCONFIG_OVERRIDE+=	data/monodoc.pc.in
 PKGCONFIG_OVERRIDE+=	data/mono-cairo.pc.in data/mono-lineeditor.pc.in
-PKGCONFIG_OVERRIDE+=	data/mono-nunit.pc.in data/mono-options.pc.in
+PKGCONFIG_OVERRIDE+=	data/mono-options.pc.in
 PKGCONFIG_OVERRIDE+=	data/mono.pc.in
 PKGCONFIG_OVERRIDE+=	data/reactive.pc.in
 PKGCONFIG_OVERRIDE+=	data/system.web.extensions_1.0.pc.in
@@ -61,12 +62,9 @@ REPLACE_BASH+=	mcs/class/Mono.Cairo/Samples/gtk/compile.sh
 REPLACE_BASH+=	mcs/class/Mono.Cairo/Samples/png/compile.sh
 REPLACE_BASH+=	mcs/class/Mono.Cairo/Samples/win32/compile.sh
 REPLACE_BASH+=	mcs/class/Mono.Cairo/Samples/x11/compile.sh
-REPLACE_BASH+=	libgc/mkinstalldirs
 REPLACE_BASH+=	mcs/mkinstalldirs mkinstalldirs
 
 EGDIR=		${PREFIX}/share/examples/mono
-
-EGDIR_CONF_FILES= \
 
 .for conf in \
 	2.0/Browsers/Compat.browser \
@@ -99,7 +97,7 @@ MAKE_DIRS+=	${PKG_SYSCONFDIR}/mono/4.5/Browsers
 MAKE_DIRS+=	${PKG_SYSCONFDIR}/mono/mconfig
 
 # Uses [[ ... ]], not needed during the build.
-SKIP_PORTABILITY_CHECK+=	acceptance-tests/microbench-perf.sh.in
+CHECK_PORTABILITY_SKIP+=	acceptance-tests/microbench-perf.sh.in
 
 TEST_TARGET=	check
 

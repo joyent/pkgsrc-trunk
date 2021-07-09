@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.41 2020/11/29 22:08:56 dbj Exp $
+# $NetBSD: Makefile,v 1.43 2021/05/24 19:56:05 wiz Exp $
 
 DISTNAME=	wxWidgets-3.0.5.1
 PKGNAME=	${DISTNAME:S/wxWidgets/wxGTK30/}
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GITHUB:=wxWidgets/}
 GITHUB_PROJECT=	wxWidgets
@@ -11,7 +11,7 @@ EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	dbj@NetBSD.org
 HOMEPAGE=	https://www.wxwidgets.org/
-COMMENT=	Cross-platform wxWidgets GUI library
+COMMENT=	Cross-platform wxWidgets GUI library (3.0 branch)
 # LGPLv2 with additional permission; http://opensource.org/licenses/wxwindows
 LICENSE=	gnu-lgpl-v2
 

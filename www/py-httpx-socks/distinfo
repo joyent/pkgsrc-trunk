@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.1 2021/02/12 08:19:59 adam Exp $
+$NetBSD: distinfo,v 1.3 2021/07/07 09:53:36 adam Exp $
 
-SHA1 (httpx-socks-0.3.1.tar.gz) = 29b491f7c38b39d294d467ab4f00e4c367e793a4
-RMD160 (httpx-socks-0.3.1.tar.gz) = aee6a9f90ce15785f66bdfe126d00e0212dc4a4b
-SHA512 (httpx-socks-0.3.1.tar.gz) = d31b64065f2e148e1a93355dd9fc3674d89b1f65b93ef7e77ae4357f73132fbc5469c2fbbdee504235bd560dd6ab95033fe592e47301da93b99bb2d1f597ff38
-Size (httpx-socks-0.3.1.tar.gz) = 7850 bytes
+SHA1 (httpx-socks-0.4.1.tar.gz) = ac5a72d64780ddbd76f1fd5267196f2cecb72f99
+RMD160 (httpx-socks-0.4.1.tar.gz) = a63538ae0ed8e36fc6af63c96a97fe3454622981
+SHA512 (httpx-socks-0.4.1.tar.gz) = 6bc64da0ca22b336414b8d8170623731f017b667a05e91921123bfb64d116235e4952ab65f5b42c99ab79585113dcb19320e57415d67811a4367dfc725ce181d
+Size (httpx-socks-0.4.1.tar.gz) = 7921 bytes

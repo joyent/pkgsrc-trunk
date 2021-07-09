@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.2 2020/09/20 15:44:04 taca Exp $
+# $NetBSD: Makefile,v 1.4 2021/05/29 15:04:31 taca Exp $
 
-DISTNAME=	iruby-0.4.0
+DISTNAME=	iruby-0.7.0
 CATEGORIES=	devel
 
 MAINTAINER=	ryoon@NetBSD.org
@@ -10,7 +10,7 @@ LICENSE=	mit
 
 DEPENDS+=	${RUBY_PKGPREFIX}-bond>=0.5.1:../../devel/ruby-bond
 DEPENDS+=	${RUBY_PKGPREFIX}-data_uri>=0.1.0:../../www/ruby-data_uri
-DEPENDS+=	${RUBY_PKGPREFIX}-mimemagic>=0.3.5:../../misc/ruby-mimemagic
+DEPENDS+=	${RUBY_PKGPREFIX}-mime-types>=3.3.1:../../mail/ruby-mime-types
 DEPENDS+=	${RUBY_PKGPREFIX}-multi_json>=1.11:../../textproc/ruby-multi_json
 
 DEPENDS+=	${RUBY_PKGPREFIX}-pycall>=1.3.1:../../devel/ruby-pycall
@@ -20,6 +20,8 @@ DEPENDS+=	${RUBY_PKGPREFIX}-ffi-rzmq-[0-9]*:../../net/ruby-ffi-rzmq
 DEPENDS+=	${PYPKGPREFIX}-ipython>=6.0.0:../../devel/py-ipython
 
 USE_LANGUAGES=	# none
+
+RUBYGEM_OPTIONS+=	--format-executable
 
 SUBST_CLASSES+=		python
 SUBST_STAGE.python=	pre-configure

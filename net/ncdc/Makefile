@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.19 2020/11/05 09:08:54 ryoon Exp $
+# $NetBSD: Makefile,v 1.22 2021/05/14 13:04:15 nia Exp $
 
 DISTNAME=	ncdc-1.22.1
-PKGREVISION=	6
+PKGREVISION=	8
 CATEGORIES=	net
 MASTER_SITES=	https://dev.yorhel.nl/download/
 
@@ -18,5 +18,5 @@ USE_TOOLS+=	pkg-config
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../security/gnutls/buildlink3.mk"
-.include "../../devel/ncurses/buildlink3.mk"
+.include "../../devel/ncursesw/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

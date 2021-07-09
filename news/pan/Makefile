@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.108 2020/08/31 18:10:56 wiz Exp $
+# $NetBSD: Makefile,v 1.112 2021/05/24 19:53:40 wiz Exp $
 
 DISTNAME=		pan-0.146
-PKGREVISION=		5
+PKGREVISION=		7
 CATEGORIES=		news
 MASTER_SITES=		http://pan.rebelbase.com/download/releases/${DISTNAME:C/pan-//}/source/
 EXTRACT_SUFX=		.tar.bz2
@@ -11,9 +11,7 @@ HOMEPAGE=		http://pan.rebelbase.com/
 COMMENT=		Newsreader for GTK2
 LICENSE=		gnu-gpl-v2
 
-TOOL_DEPENDS+=		itstool-[0-9]*:../../textproc/itstool
-
-USE_TOOLS+=		gmake msgfmt perl pkg-config
+USE_TOOLS+=		gmake msgfmt perl pkg-config itstool
 USE_LANGUAGES=		c c++
 USE_PKGLOCALEDIR=	YES
 GNU_CONFIGURE=		YES
@@ -25,6 +23,10 @@ LIBS+=			-lcompat
 .endif
 
 LIBS.SunOS+=	-lsocket -liconv
+
+# temporary fix for GLib 2.68 breakage
+# https://gitlab.gnome.org/GNOME/glib/-/merge_requests/1963
+CXXFLAGS+=	-DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_2_66
 
 # "Build" these files out of thin air, since base msgfmt doesn't know
 # about --xml --desktop.

@@ -1,4 +1,4 @@
-# $NetBSD: cross.mk,v 1.3 2020/07/16 09:35:37 jperkin Exp $
+# $NetBSD: cross.mk,v 1.7 2021/05/31 10:17:53 he Exp $
 
 # These settings may be used to cross-build rust.
 #
@@ -17,15 +17,18 @@
 #CROSS_ROOT=		/u/macppc
 #CROSS_ROOT=		/u/9.0-macppc
 #CROSS_ROOT=		/u/evbarm64
+#CROSS_ROOT=		/u/evbarm64eb
 #CROSS_ROOT=		/u/i386
+#CROSS_ROOT=		/
 #MAKE_ENV+=		CROSS_ROOT=${CROSS_ROOT}
 
 # The GNU cross target designation
 #GNU_CROSS_TARGET=	armv7--netbsdelf-eabihf
 #GNU_CROSS_TARGET=	sparc64--netbsd
-#GNU_CROSS_TARGET=	i486--netbsdelf
 #GNU_CROSS_TARGET=	powerpc--netbsd
 #GNU_CROSS_TARGET=	aarch64--netbsd
+#GNU_CROSS_TARGET=	aarch64_be--netbsd
+#GNU_CROSS_TARGET=	i486--netbsdelf
 #MAKE_ENV+=		GNU_CROSS_TARGET=${GNU_CROSS_TARGET}
 
 # To cross-build rust, you need to specify
@@ -36,7 +39,9 @@
 #TARGET=		sparc64-unknown-netbsd
 #TARGET=		powerpc-unknown-netbsd
 #TARGET=		aarch64-unknown-netbsd
+#TARGET=		aarch64_be-unknown-netbsd
 #TARGET=		i686-unknown-netbsd
+#TARGET=		i586-unknown-netbsd
 #
 #SCRIPTS=		${WRKDIR}/scripts
 #CONFIGURE_ARGS+=	--host=${TARGET}
@@ -44,7 +49,9 @@
 #CONFIGURE_ARGS+=	--set=target.${TARGET}.cc=${SCRIPTS}/gcc-wrap
 #CONFIGURE_ARGS+=	--set=target.${TARGET}.cxx=${SCRIPTS}/c++-wrap
 #CONFIGURE_ARGS+=	--set=target.${TARGET}.linker=${SCRIPTS}/gcc-wrap
+# Pick one:
 #CONFIGURE_ARGS+=	--set=target.${TARGET}.ar=${CROSS_ROOT}/tools/bin/${GNU_CROSS_TARGET}-ar
+#CONFIGURE_ARGS+=	--set=target.${TARGET}.ar=${SCRIPTS}/ar-wrap
 
 # May be required when cross-building on NetBSD
 #MAKE_ENV+=		OPENSSL_DIR=/usr

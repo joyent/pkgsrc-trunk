@@ -1,24 +1,22 @@
-# $NetBSD: Makefile,v 1.33 2017/09/06 10:40:36 wiz Exp $
+# $NetBSD: Makefile,v 1.36 2021/05/14 10:17:11 nia Exp $
 
-DISTNAME=	xsnow-1.42
-PKGREVISION=	5
+DISTNAME=	xsnow-3.2.2
+PKGREVISION=	1
 CATEGORIES=	x11
-#MASTER_SITES=	http://dropmix.xs4all.nl/rick/Xsnow/
+MASTER_SITES=	https://www.ratrabbit.nl/downloads/xsnow/
 
 MAINTAINER=	is@NetBSD.org
-#HOMEPAGE=	http://dropmix.xs4all.nl/rick/Xsnow/
+HOMEPAGE=	https://www.ratrabbit.nl/ratrabbit/xsnow/index.html
 COMMENT=	Create a snowy and Santa-y desktop
+LICENSE=	gnu-gpl-v3
 
-USE_FEATURES=	snprintf
-USE_IMAKE=	yes
+USE_LANGUAGES=	c c++
+USE_TOOLS+=	pkg-config
+GNU_CONFIGURE=	yes
 
-.include "../../mk/bsd.prefs.mk"
-
-.if !empty(MISSING_FEATURES:Msnprintf)
-IMAKEOPTS+=	-DExtraLibraries=${LIBS:Q}
-.endif
-
-.include "../../x11/libXext/buildlink3.mk"
+.include "../../textproc/libxml2/buildlink3.mk"
+.include "../../x11/gtk3/buildlink3.mk"
+.include "../../x11/libX11/buildlink3.mk"
 .include "../../x11/libXpm/buildlink3.mk"
 .include "../../x11/libXt/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

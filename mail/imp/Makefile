@@ -1,11 +1,10 @@
-# $NetBSD: Makefile,v 1.66 2019/05/23 19:23:06 rillig Exp $
+# $NetBSD: Makefile,v 1.68 2021/05/14 13:49:28 nia Exp $
 
 DISTNAME=	imp-h3-${IMPVER}
 PKGNAME=	imp-${IMPVER}
 PKGREVISION=	2
 CATEGORIES=	mail www
-MASTER_SITES=	http://ftp.horde.org/pub/imp/
-MASTER_SITES+=	ftp://ftp.horde.org/pub/imp/
+#MASTER_SITES+=	ftp://ftp.horde.org/pub/imp/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.horde.org/imp/
@@ -103,7 +102,7 @@ do-install:
 		${INSTALL_DATA_DIR} ${DESTDIR}${IMPDIR}/${d}
 .endfor
 .for d in ${PAXDIRS}
-		cd ${WRKSRC}/${d} && pax -rwpam . ${DESTDIR}${IMPDIR}/${d}
+		cd ${WRKSRC}/${d} && ${PAX} -rwpam . ${DESTDIR}${IMPDIR}/${d}
 .endfor
 	${INSTALL_DATA} ${WRKSRC}/config/*.dist ${DESTDIR}${IMPDIR}/config
 	${INSTALL_DATA} ${WRKSRC}/*.php ${DESTDIR}${IMPDIR}

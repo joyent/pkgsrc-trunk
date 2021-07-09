@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.41 2021/03/11 09:53:19 adam Exp $
+# $NetBSD: Makefile,v 1.44 2021/05/13 12:31:55 adam Exp $
 
-DISTNAME=	ansible-3.1.0
+DISTNAME=	ansible-3.4.0
 CATEGORIES=	sysutils python
 MASTER_SITES=	${MASTER_SITE_PYPI:=a/ansible/}
 
@@ -19,6 +19,9 @@ REPLACE_PYTHON+=	ansible_collections/*/*/.azure-pipelines/scripts/*.py
 REPLACE_PYTHON+=	ansible_collections/*/*/tests/*/*.py
 REPLACE_PYTHON+=	ansible_collections/*/*/tests/*/*/*.py
 REPLACE_PYTHON+=	ansible_collections/*/*/tests/*/*/*/*.py
+REPLACE_PYTHON+=	ansible_collections/community/digitalocean/scripts/inventory/*.py
+REPLACE_PYTHON+=	ansible_collections/community/general/scripts/inventory/*.py
+REPLACE_PYTHON+=	ansible_collections/community/general/scripts/vault/*.py
 REPLACE_PYTHON+=	ansible_collections/community/general/tests/integration/targets/django_manage/files/base_test/*/*/*.py
 REPLACE_PYTHON+=	ansible_collections/community/okd/ci/downstream_fragments.py
 REPLACE_PYTHON+=	ansible_collections/ngine_io/cloudstack/scripts/inventory/cloudstack.py

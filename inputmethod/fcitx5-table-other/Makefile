@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.2 2021/03/02 13:24:54 ryoon Exp $
+# $NetBSD: Makefile,v 1.4 2021/04/21 13:24:53 adam Exp $
 
 DISTNAME=	fcitx5-table-other-5.0.3
+PKGREVISION=	1
 CATEGORIES=	inputmethod
 MASTER_SITES=	https://download.fcitx-im.org/fcitx5/fcitx5-table-other/
 EXTRACT_SUFX=	.tar.xz
@@ -19,5 +20,6 @@ USE_CMAKE=		yes
 USE_PKGLOCALEDIR=	yes
 USE_LANGUAGES=		# none
 
+.include "../../devel/boost-libs/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

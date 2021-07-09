@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.110 2021/01/09 21:17:37 adam Exp $
+# $NetBSD: Makefile,v 1.113 2021/07/08 21:27:07 markd Exp $
 
 DISTNAME=	hugin-2020.0.0
+PKGREVISION=	3
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=hugin/}
 EXTRACT_SUFX=	.tar.bz2
@@ -41,12 +42,16 @@ SUBST_SED.apple=	-e 's,(APPLE),(ELPPA),g'
 post-extract:
 	${MKDIR} ${WRKDIR}/build
 
+# Doesn't define the ZLIB::ZLIB target needed by OpenEXR 3
+post-patch:
+	rm ${WRKSRC}/CMakeModules/FindZLIB.cmake
+
 .include "../../mk/bsd.prefs.mk"
 
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../devel/boost-headers/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
-.include "../../devel/swig2/buildlink3.mk"
+.include "../../devel/swig3/buildlink3.mk"
 .include "../../devel/tclap/buildlink3.mk"
 .include "../../graphics/exiv2/buildlink3.mk"
 .include "../../graphics/glew/buildlink3.mk"

@@ -1,0 +1,7 @@
+METSlib is an OO (Object Oriented) metaheuristics optimization
+framework in C++ designed to make easy implementing or adapting
+models. The model is modular: all the implemented search algorithms
+can be applied to the same model.
+
+Once the model is implemented one can test some Tabu Search Strategies
+or Simulated Annealing or other local search based search strategies.

@@ -1,4 +1,4 @@
-# $NetBSD: mozilla-common.mk,v 1.198 2021/02/23 18:28:29 tsutsui Exp $
+# $NetBSD: mozilla-common.mk,v 1.203 2021/07/02 10:51:16 tnn Exp $
 #
 # common Makefile fragment for mozilla packages based on gecko 2.0.
 #
@@ -21,10 +21,12 @@ USE_LANGUAGES+=		c c++
 GCC_REQD+=		7
 
 TOOL_DEPENDS+=		cbindgen>=0.16.0:../../devel/cbindgen
-.if ${MACHINE_ARCH} == "sparc64"
-CONFIGURE_ARGS+=	--disable-nodejs
-.else
+
+.if defined(FIREFOX_MAINTAINER) && !defined(MAINTAINER_INTERNAL)
 TOOL_DEPENDS+=		nodejs-[0-9]*:../../lang/nodejs
+USE_TOOLS+=		diff
+.else
+CONFIGURE_ENV+=		NODEJS="${FILESDIR}/node-wrapper.sh"
 .endif
 
 TOOL_DEPENDS+=		${PYPKGPREFIX}-sqlite3-[0-9]*:../../databases/py-sqlite3
@@ -114,7 +116,11 @@ ALL_ENV+=		SHELL=${CONFIG_SHELL:Q}
 
 # Build outside ${WRKSRC}
 # Try to avoid conflict with config/makefiles/xpidl/Makefile.in
+.if ${MAINTAINER_INTERNAL:Uno} == "yes
+OBJDIR=			../no-node-build
+.else
 OBJDIR=			../build
+.endif
 CONFIGURE_DIRS=		${OBJDIR}
 CONFIGURE_SCRIPT=	${WRKSRC}/configure
 
@@ -165,7 +171,7 @@ BUILDLINK_API_DEPENDS.libevent+=	libevent>=1.1
 BUILDLINK_API_DEPENDS.nspr+=	nspr>=4.26
 .include "../../devel/nspr/buildlink3.mk"
 .include "../../textproc/icu/buildlink3.mk"
-BUILDLINK_API_DEPENDS.nss+=	nss>=3.61
+BUILDLINK_API_DEPENDS.nss+=	nss>=3.63
 .include "../../devel/nss/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 #.include "../../mk/jpeg.buildlink3.mk"

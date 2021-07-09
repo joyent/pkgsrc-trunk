@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.11 2021/02/14 22:16:22 markd Exp $
+# $NetBSD: Makefile,v 1.13 2021/06/07 00:25:36 markd Exp $
 
 DISTNAME=	collection-langeuropean
-PKGNAME=	texlive-${DISTNAME}-2020pre1
+PKGNAME=	texlive-${DISTNAME}-2021pre1
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
-TEXLIVE_REV=	56895
+TEXLIVE_REV=	58626
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.tug.org/texlive/
@@ -20,7 +20,7 @@ DEPENDS+=	tex-babel-croatian-[0-9]*:../../print/tex-babel-croatian
 DEPENDS+=	tex-babel-danish-[0-9]*:../../print/tex-babel-danish
 DEPENDS+=	tex-babel-dutch-[0-9]*:../../print/tex-babel-dutch
 DEPENDS+=	tex-babel-estonian-[0-9]*:../../print/tex-babel-estonian
-# depend babel-finnish
+DEPENDS+=	tex-babel-finnish-[0-9]*:../../print/tex-babel-finnish
 DEPENDS+=	tex-babel-friulan-[0-9]*:../../print/tex-babel-friulan
 DEPENDS+=	tex-babel-hungarian-[0-9]*:../../print/tex-babel-hungarian
 DEPENDS+=	tex-babel-icelandic-[0-9]*:../../print/tex-babel-icelandic

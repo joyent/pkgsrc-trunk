@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.106 2021/02/11 11:11:11 pin Exp $
+# $NetBSD: Makefile,v 1.108 2021/05/17 11:12:53 thor Exp $
 #
 
 COMMENT=	Software for geographical-related uses
@@ -46,6 +46,7 @@ SUBDIR+=	gpspoint
 SUBDIR+=	gpsutils
 SUBDIR+=	gpxsee
 SUBDIR+=	kplex
+SUBDIR+=	laszip
 SUBDIR+=	libchamplain012
 SUBDIR+=	libdrg
 SUBDIR+=	libgeotiff
@@ -76,6 +77,7 @@ SUBDIR+=	p5-Geo-Mercator
 SUBDIR+=	p5-Geo-ShapeFile
 SUBDIR+=	p5-Geo-Weather
 SUBDIR+=	p5-Geography-Countries
+SUBDIR+=	pdal-lib
 SUBDIR+=	proj
 SUBDIR+=	proj-doc
 SUBDIR+=	py-country

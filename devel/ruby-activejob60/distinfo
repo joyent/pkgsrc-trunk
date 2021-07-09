@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.7 2021/02/11 14:30:06 taca Exp $
+$NetBSD: distinfo,v 1.10 2021/07/04 06:58:37 taca Exp $
 
-SHA1 (activejob-6.0.3.5.gem) = 9ead2b19c2c9934f83dac05e038bbbe8b449eee4
-RMD160 (activejob-6.0.3.5.gem) = 045917dae0b827f3c925521926809472a0a8bfc6
-SHA512 (activejob-6.0.3.5.gem) = 53ca4b8f556f813aa3d727676df0a6672c2c878e7c0e982699abeb3c5bc0631a43894cbc178a013254bf0dd8ca7c7580117aec5f7c5f225b8418a2774c7a1659
-Size (activejob-6.0.3.5.gem) = 31744 bytes
+SHA1 (activejob-6.0.4.gem) = 4f8ed4237df31fef3866a3e7a478f2581ee56a8e
+RMD160 (activejob-6.0.4.gem) = 8bafb09978c6e8ce727813ffd29e5c04f5312d5c
+SHA512 (activejob-6.0.4.gem) = 6d567a9b1c396015f8bdcf46b1efe569c088cd4fa627ab632dc22a47ddc31abd2ef3bfb9e61a8d27510105b8a0856e7aabeae7cc222cc32f1859d3c303c3af5d
+Size (activejob-6.0.4.gem) = 31744 bytes

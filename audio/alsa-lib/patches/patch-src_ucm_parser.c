@@ -1,10 +1,10 @@
-$NetBSD: patch-src_ucm_parser.c,v 1.7 2017/06/27 15:51:39 jperkin Exp $
+$NetBSD: patch-src_ucm_parser.c,v 1.9 2021/06/28 10:10:50 wiz Exp $
 
 * SunOS has no dirent d_type
 
---- src/ucm/parser.c.orig	2017-06-01 06:27:36.000000000 +0000
+--- src/ucm/parser.c.orig	2020-06-29 10:51:08.000000000 +0000
 +++ src/ucm/parser.c
-@@ -1476,7 +1476,13 @@ static int filename_filter(const struct
+@@ -2220,7 +2220,13 @@ static int filename_filter(const struct 
  {
  	if (dirent == NULL)
  		return 0;

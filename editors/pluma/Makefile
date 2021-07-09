@@ -1,15 +1,16 @@
-# $NetBSD: Makefile,v 1.35 2020/12/04 20:45:15 nia Exp $
+# $NetBSD: Makefile,v 1.41 2021/06/12 17:30:59 gutteridge Exp $
 
 PYTHON_VERSIONS_INCOMPATIBLE=	27
 
-DISTNAME=	pluma-${VERSION:R}.1
-PKGREVISION=	1
+PKGREVISION= 3
+.include "../../meta-pkgs/mate/Makefile.common"
+
+DISTNAME=	pluma-${VERSION:R}.2
 CATEGORIES=	editors
 
 COMMENT=	Small and lightweight UTF-8 text editor for MATE
 
 USE_TOOLS+=	bash:run perl
-TOOL_DEPENDS+=	itstool-[0-9]*:../../textproc/itstool
 TOOL_DEPENDS+=	libxml2-[0-9]*:../../textproc/libxml2 # for xmllint
 
 PKGCONFIG_OVERRIDE+=	data/pluma.pc.in
@@ -28,5 +29,4 @@ post-install:
 .include "../../x11/mate-desktop/buildlink3.mk"
 .include "../../x11/gtksourceview3/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
-.include "../../meta-pkgs/mate/Makefile.common"
 .include "../../mk/bsd.pkg.mk"

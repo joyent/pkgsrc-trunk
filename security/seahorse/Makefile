@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.163 2020/12/01 11:22:53 nia Exp $
+# $NetBSD: Makefile,v 1.167 2021/05/26 12:29:50 nia Exp $
 
 DISTNAME=	seahorse-3.38.0.1
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/${PKGBASE}/3.38/}
+PKGREVISION=	2
 CATEGORIES=	security gnome
 EXTRACT_SUFX=	.tar.xz
 
@@ -10,10 +11,8 @@ HOMEPAGE=	https://wiki.gnome.org/Apps/Seahorse
 COMMENT=	GNOME encryption interface
 LICENSE=	gnu-gpl-v2
 
-TOOL_DEPENDS+=	gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
-TOOL_DEPENDS+=	itstool-[0-9]*:../../textproc/itstool
-
-USE_TOOLS+=	pkg-config msgfmt xgettext
+USE_TOOLS+=	pkg-config msgfmt xgettext itstool
+USE_TOOLS+=	gdbus-codegen
 
 # Why does it want specific point releases?
 MESON_ARGS+=	-Dcheck-compatible-gpg=false

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.29 2021/03/04 08:09:31 adam Exp $
+# $NetBSD: Makefile,v 1.34 2021/06/29 13:32:42 adam Exp $
 
-DISTNAME=	grpcio-1.36.1
+DISTNAME=	grpcio-1.38.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	net python
 MASTER_SITES=	${MASTER_SITE_PYPI:=g/grpcio/}
@@ -14,9 +14,10 @@ DEPENDS+=	${PYPKGPREFIX}-six>=1.5.2:../../lang/py-six
 
 PYTHON_VERSIONS_INCOMPATIBLE=	27
 
-USE_LANGUAGES+=	c99 c++11
+USE_LANGUAGES=	c99 c++11
 USE_TOOLS+=	gmake pkg-config
 
+.include "../../devel/abseil/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../net/grpc/buildlink3.mk"
 .include "../../net/libcares/buildlink3.mk"

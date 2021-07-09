@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.38 2021/02/27 16:40:59 wiz Exp $
+# $NetBSD: Makefile,v 1.43 2021/06/03 06:54:59 nia Exp $
 
-DISTNAME=	zstd-1.4.8
+DISTNAME=	zstd-1.5.0
 CATEGORIES=	archivers
 MASTER_SITES=	${MASTER_SITE_GITHUB:=facebook/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -20,20 +20,18 @@ CHECK_PORTABILITY_SKIP+=	tests/playTests.sh
 # ld: ../lib/libzstd.a: error adding symbols: file format not recognized
 # reported as
 # https://github.com/facebook/zstd/issues/2453
-MAKE_JOBS_SAFE=		no
+#MAKE_JOBS_SAFE=		no
 
 .include "../../mk/bsd.prefs.mk"
 
-# see HASH in lib/Makefile
-.if ${OPSYS} == "NetBSD"
-# https://github.com/facebook/zstd/pull/2492
-MAKE_ENV+=		HASH="md5 -n"
-.elif ${OPSYS} != "Linux" && \
-    ${OPSYS} != "Darwin" && \
-    ${OPSYS} != "OpenBSD"
-TOOL_DEPENDS+=		coreutils>=0:../../sysutils/coreutils
-MAKE_ENV+=		HASH=gmd5sum
-.endif
+# See HASH and BUILD_DIR in lib/Makefile and programs/Makefile.
+# Set BUILD_DIR so that HASH is not needed and there is no
+# need for coreutils as a dependency.
+# HASH is set to false because programs/Makefile try to
+# execute HASH in order to see if it exists but the result
+# is unused when BUILD_DIR is set.
+MAKE_ENV+=		BUILD_DIR=obj
+MAKE_ENV+=		HASH=${FALSE}
 
 USE_LANGUAGES=		c c++
 USE_TOOLS+=		ggrep gmake pkg-config
@@ -44,6 +42,9 @@ MAKE_FLAGS+=		INSTALL=${INSTALL:Q}
 
 BUILD_TARGET=		allmost
 TEST_TARGET=		test
+
+# Needed for nanosleep() on Solaris 10, PR pkg/56225
+LDFLAGS.SunOS+=		-lrt
 
 .include "../../archivers/lz4/buildlink3.mk"
 .include "../../archivers/xz/buildlink3.mk"

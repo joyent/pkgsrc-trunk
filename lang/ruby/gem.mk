@@ -1,4 +1,4 @@
-# $NetBSD: gem.mk,v 1.45 2021/01/11 11:21:31 taca Exp $
+# $NetBSD: gem.mk,v 1.47 2021/03/21 12:39:52 taca Exp $
 #
 # This Makefile fragment is intended to be included by packages that build
 # and install Ruby gems.

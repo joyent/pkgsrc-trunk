@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.46 2020/08/17 20:20:34 leot Exp $
+# $NetBSD: Makefile,v 1.48 2021/06/23 20:33:18 nia Exp $
 
-PKGREVISION= 5
+PKGREVISION= 7
 .include "../../x11/qt4-libs/Makefile.common"
 
 PKGNAME=	qt4-mysql-${QTVERSION}

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.9 2020/12/04 20:45:34 nia Exp $
+# $NetBSD: Makefile,v 1.12 2021/05/14 13:12:29 nia Exp $
 
 DISTNAME=	gupnp-1.2.2
 PKGNAME=	${DISTNAME:S/gupnp/gupnp12/}
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gupnp/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -12,9 +12,7 @@ HOMEPAGE=	http://www.gupnp.org/
 COMMENT=	Framework for UPnP devices (1.2 branch)
 LICENSE=	gnu-lgpl-v2
 
-GNU_CONFIGURE=	yes
-USE_LIBTOOL=	yes
-USE_TOOLS+=	gmake pkg-config
+USE_TOOLS+=	pkg-config
 
 REPLACE_PYTHON=	tools/gupnp-binding-tool-1.2
 
@@ -38,6 +36,7 @@ BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.58.0
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/gobject-introspection/buildlink3.mk"
 .include "../../lang/python/application.mk"
+.include "../../lang/vala/buildlink3.mk"
 BUILDLINK_API_DEPENDS.libsoup+=	libsoup>=2.48.0
 .include "../../net/libsoup/buildlink3.mk"
 .include "../../net/gssdp12/buildlink3.mk"

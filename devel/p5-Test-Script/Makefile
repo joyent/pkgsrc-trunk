@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.30 2020/09/08 13:09:57 wiz Exp $
+# $NetBSD: Makefile,v 1.33 2021/07/04 07:35:30 wen Exp $
 
-DISTNAME=	Test-Script-1.26
+DISTNAME=	Test-Script-1.29
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	1
-CATEGORIES=	perl5 devel
+CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=Test/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org

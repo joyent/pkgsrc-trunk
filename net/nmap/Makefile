@@ -1,6 +1,5 @@
-# $NetBSD: Makefile,v 1.144 2020/03/13 08:55:37 tnn Exp $
+# $NetBSD: Makefile,v 1.146 2021/04/16 06:55:33 adam Exp $
 
-PKGREVISION= 2
 .include "Makefile.common"
 
 COMMENT=	Network/port scanner with OS detection
@@ -12,7 +11,6 @@ USE_LANGUAGES=		c c++
 USE_LIBTOOL=		yes
 USE_TOOLS+=		gmake
 GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--with-liblinear=${BUILDLINK_PREFIX.liblinear}
 CONFIGURE_ARGS+=	--with-libpcap=${BUILDLINK_PREFIX.libpcap}
 CONFIGURE_ARGS+=	--with-libpcre=${BUILDLINK_PREFIX.pcre}
 CONFIGURE_ARGS+=	--with-openssl=${BUILDLINK_PREFIX.openssl}
@@ -64,7 +62,6 @@ post-install:
 	${RM} -f ${DESTDIR}${PREFIX}/bin/uninstall_*
 
 .include "../../devel/pcre/buildlink3.mk"
-.include "../../math/liblinear/buildlink3.mk"
 .include "../../net/libpcap/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
 .include "../../security/libssh2/buildlink3.mk"

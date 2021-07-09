@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2020/06/29 18:35:14 pin Exp $
+# $NetBSD: Makefile,v 1.3 2021/07/05 08:22:24 pin Exp $
 
 DISTNAME=	xdo-0.5.7
 CATEGORIES=	x11

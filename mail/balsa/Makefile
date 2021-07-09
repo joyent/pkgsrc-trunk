@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.162 2020/11/05 09:08:34 ryoon Exp $
+# $NetBSD: Makefile,v 1.167 2021/05/24 19:52:36 wiz Exp $
 
-DISTNAME=	balsa-2.6.1
-PKGREVISION=	5
+DISTNAME=	balsa-2.6.2
+PKGREVISION=	3
 CATEGORIES=	mail
 MASTER_SITES=	https://pawsa.fedorapeople.org/balsa/
 EXTRACT_SUFX=	.tar.bz2
@@ -12,12 +12,11 @@ COMMENT=	Email client using GTK3
 LICENSE=	gnu-gpl-v3
 
 USE_TOOLS+=	gmake intltool perl pkg-config
-USE_TOOLS+=	msgfmt msgmerge xgettext
+USE_TOOLS+=	msgfmt msgmerge xgettext itstool
 USE_LIBTOOL=	yes
 GNU_CONFIGURE=	yes
 
 TOOL_DEPENDS+=	p5-XML-Parser-[0-9]*:../../textproc/p5-XML-Parser
-TOOL_DEPENDS+=	itstool-[0-9]*:../../textproc/itstool
 TOOL_DEPENDS+=	libxslt-[0-9]*:../../textproc/libxslt
 TOOL_DEPENDS+=	yelp-tools-[0-9]*:../../textproc/yelp-tools
 
@@ -40,6 +39,6 @@ CONFIGURE_ARGS+=	--with-sqlite
 .include "../../textproc/enchant2/buildlink3.mk"
 .include "../../time/libical/buildlink3.mk"
 .include "../../x11/gtk3/buildlink3.mk"
-.include "../../x11/gtksourceview3/buildlink3.mk"
+.include "../../x11/gtksourceview4/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

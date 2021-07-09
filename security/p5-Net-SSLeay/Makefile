@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.96 2020/08/31 18:11:19 wiz Exp $
+# $NetBSD: Makefile,v 1.98 2021/05/24 19:54:04 wiz Exp $
 
-DISTNAME=	Net-SSLeay-1.88
+DISTNAME=	Net-SSLeay-1.90
 PKGNAME=	p5-${DISTNAME}
 PKGREVISION=	1
 CATEGORIES=	security perl5

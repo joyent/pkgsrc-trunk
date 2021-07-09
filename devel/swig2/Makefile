@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.15 2020/12/04 20:45:13 nia Exp $
+# $NetBSD: Makefile,v 1.17 2021/06/23 19:48:55 bacon Exp $
 
 DISTNAME=	swig-2.0.12
 PKGNAME=	${DISTNAME:S/swig-/swig2-/}
-PKGREVISION=	3
+PKGREVISION=	4
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=swig/}
 
-MAINTAINER=	bacon@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.swig.org/
 COMMENT=	Simplified Wrapper and Interface Generator (version 2)
 LICENSE=	2-clause-bsd

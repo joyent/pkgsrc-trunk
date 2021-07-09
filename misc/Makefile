@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.546 2021/03/04 04:32:30 jnemeth Exp $
+# $NetBSD: Makefile,v 1.552 2021/06/03 14:54:17 taca Exp $
 #
 
 COMMENT=	Miscellaneous utilities
@@ -47,6 +47,7 @@ SUBDIR+=	cstream
 SUBDIR+=	cuecat
 SUBDIR+=	cuetools
 SUBDIR+=	cw
+SUBDIR+=	deckster
 SUBDIR+=	dgpsip
 SUBDIR+=	dialog
 SUBDIR+=	dirdiff
@@ -84,8 +85,6 @@ SUBDIR+=	gkrellm-leds
 SUBDIR+=	gkrellm-moon
 SUBDIR+=	gkrellm-weather
 SUBDIR+=	gnuls
-SUBDIR+=	go-genproto
-SUBDIR+=	go-genproto-googleapis-rpc
 SUBDIR+=	goffice0.10
 SUBDIR+=	goffice0.8
 SUBDIR+=	gone
@@ -167,7 +166,6 @@ SUBDIR+=	libcdio-paranoia
 SUBDIR+=	libcec
 SUBDIR+=	libkdeedu
 SUBDIR+=	libkeduvocdocument
-SUBDIR+=	libkgeomap
 SUBDIR+=	libkkc-data
 SUBDIR+=	libkvkontakte
 SUBDIR+=	libmateweather
@@ -195,7 +193,6 @@ SUBDIR+=	mime-types
 SUBDIR+=	mirmon
 SUBDIR+=	mkcue
 SUBDIR+=	mmv
-SUBDIR+=	molden
 SUBDIR+=	moreutils
 SUBDIR+=	most
 SUBDIR+=	mousetweaks
@@ -305,7 +302,6 @@ SUBDIR+=	rpm
 SUBDIR+=	ruby-ansi
 SUBDIR+=	ruby-args_parser
 SUBDIR+=	ruby-bundler
-SUBDIR+=	ruby-bundler1
 SUBDIR+=	ruby-colorator
 SUBDIR+=	ruby-colorize
 SUBDIR+=	ruby-columnize
@@ -319,7 +315,6 @@ SUBDIR+=	ruby-launchy
 SUBDIR+=	ruby-license-acceptance
 SUBDIR+=	ruby-memoizable
 SUBDIR+=	ruby-method_source
-SUBDIR+=	ruby-mimemagic
 SUBDIR+=	ruby-mini_portile2
 SUBDIR+=	ruby-naught
 SUBDIR+=	ruby-ohai

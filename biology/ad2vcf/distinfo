@@ -1,0 +1,6 @@
+$NetBSD: distinfo,v 1.2 2021/06/11 17:06:54 bacon Exp $
+
+SHA1 (ad2vcf-0.1.3.tar.gz) = 8a5b049ce3f2d8b14e092c279f2e9586e3b68c4d
+RMD160 (ad2vcf-0.1.3.tar.gz) = 1caa71a6e25a4e9d1e7aa6e067a4b40eb0800cf8
+SHA512 (ad2vcf-0.1.3.tar.gz) = b16eefdd6f62fc44e2505b47f1bd159bce6313cb1cc658cf64c316a60ec39c297577767274ceeb7b65483b1ac613adc2775784ecbba3c22fb9e8d79779537d7e
+Size (ad2vcf-0.1.3.tar.gz) = 14484 bytes

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.156 2021/02/20 22:10:39 ryoon Exp $
+# $NetBSD: Makefile,v 1.159 2021/05/24 19:49:08 wiz Exp $
 
 DISTNAME=	pulseaudio-14.2
-PKGREVISION=	1
+PKGREVISION=	3
 CATEGORIES=	audio
 MASTER_SITES=	https://freedesktop.org/software/pulseaudio/releases/
 EXTRACT_SUFX=	.tar.xz
@@ -135,7 +135,7 @@ pre-configure:
 	set -e; cd ${WRKSRC}; \
 	aclocal; autoheader; automake -a --foreign -i; autoconf
 
-.if ${OPSYS} != "Darwin"
+.if ${OPSYS} != Linux && ${OPSYS} != "Darwin"
 .include "../../sysutils/consolekit/buildlink3.mk"
 .endif
 .include "../../audio/libsndfile/buildlink3.mk"

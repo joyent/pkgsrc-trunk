@@ -1,11 +1,9 @@
-# $NetBSD: Makefile,v 1.17 2021/01/25 12:51:49 adam Exp $
+# $NetBSD: Makefile,v 1.20 2021/06/14 09:04:23 adam Exp $
 
 .include "../../databases/openldap/Makefile.version"
 
-PKGREVISION=	2
-
 # get the version from libraries/liblmdb/lmdb.h
-PKGNAME=	lmdb-0.9.27
+PKGNAME=	lmdb-0.9.29
 CATEGORIES=	databases
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -27,6 +25,11 @@ INSTALLATION_DIRS+=	${PKGMANDIR}/man1
 TEST_TARGET=		test
 
 .include "../../mk/bsd.prefs.mk"
+
+.if ${OPSYS} == "SunOS" && (${OS_VERSION} == "5.9" || ${OS_VERSION} == "5.10")
+LDFLAGS+=	-lrt
+.endif
+
 .if ${OPSYS} == "Darwin"
 MAKE_FLAGS+=	SOEXT=.dylib
 MAKE_FLAGS+=	SOLIBS=-install_name\ ${PREFIX}/lib/liblmdb.dylib

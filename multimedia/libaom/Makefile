@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.10 2020/12/23 15:03:09 gdt Exp $
+# $NetBSD: Makefile,v 1.14 2021/06/28 11:52:41 nia Exp $
 
 PKGNAME=	libaom-1.0.0
-PKGREVISION=	3
+PKGREVISION=	4
 DISTNAME=	aom-d14c5bb4f336ef1842046089849dee4a301fbbf0
 CATEGORIES=	multimedia
 #MASTER_SITES=	-https://aomedia.googlesource.com/aom/+archive/d14c5bb4f336ef1842046089849dee4a301fbbf0.tar.gz
@@ -30,7 +30,6 @@ CMAKE_ARGS+=	-DENABLE_DECODE_PERF_TESTS:BOOL=OFF
 CMAKE_ARGS+=	-DENABLE_EXAMPLES:BOOL=ON
 CMAKE_ARGS+=	-DENABLE_DOCS:BOOL=OFF
 CMAKE_ARGS+=	-DENABLE_GOMA:BOOL=OFF
-CMAKE_ARGS+=	-DENABLE_NASM:BOOL=ON
 CMAKE_ARGS+=	-DENABLE_TESTS:BOOL=OFF
 CMAKE_ARGS+=	-DENABLE_TOOLS:BOOL=OFF
 CMAKE_ARGS+=	-DENABLE_WERROR:BOOL=OFF
@@ -38,13 +37,33 @@ CMAKE_ARGS+=	-DENABLE_WERROR:BOOL=OFF
 .include "../../mk/bsd.prefs.mk"
 
 .if !empty(MACHINE_PLATFORM:MNetBSD-*-*arm*) \
-  || !empty(MACHINE_PLATFORM:MNetBSD-*-aarch64) \
+  || !empty(MACHINE_PLATFORM:MNetBSD-*-aarch64*) \
   || !empty(MACHINE_PLATFORM:MDarwin-*-aarch64)
 CMAKE_ARGS+=	-DCONFIG_RUNTIME_CPU_DETECT=0
 .endif
 
+.if !empty(MACHINE_ARCH:Mmips64*)
+CMAKE_ARGS+=	-DAOM_TARGET_CPU="mips64"
+.elif !empty(MACHINE_ARCH:Mmips*)
+CMAKE_ARGS+=	-DAOM_TARGET_CPU="mips"
+.elif !empty(MACHINE_ARCH:Mpowerpc*)
+CMAKE_ARGS+=	-DAOM_TARGET_CPU="ppc"
+.elif ${MACHINE_ARCH} == "earmv7hf"
+CFLAGS+=	-mfpu=neon
+CMAKE_ARGS+=	-DAOM_TARGET_CPU="armv7"
+.elif ${MACHINE_ARCH} == "aarch64"
+CMAKE_ARGS+=	-DAOM_TARGET_CPU="arm64"
+.elif ${MACHINE_ARCH} == "x86_64"
+CMAKE_ARGS+=	-DAOM_TARGET_CPU="x86_64"
+.elif ${MACHINE_ARCH} == "i386"
+CMAKE_ARGS+=	-DAOM_TARGET_CPU="x86"
+.else
+CMAKE_ARGS+=	-DAOM_TARGET_CPU="generic"
+.endif
+
 .if ${MACHINE_ARCH} == x86_64 || ${MACHINE_ARCH} == i386
-BUILD_DEPENDS+=	nasm>=2.13:../../devel/nasm
+CMAKE_ARGS+=	-DENABLE_NASM:BOOL=ON
+TOOL_DEPENDS+=	nasm>=2.13:../../devel/nasm
 .endif
 
 .include "../../mk/bsd.pkg.mk"

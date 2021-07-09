@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.45 2021/02/07 06:30:22 ryoon Exp $
+# $NetBSD: Makefile,v 1.47 2021/04/21 11:41:41 adam Exp $
 
 DISTNAME=	katomic-${KAPPSVER}
-PKGREVISION=	6
+PKGREVISION=	1
 CATEGORIES=	games
 
 HOMEPAGE=	https://kde.org/applications/games/katomic/
@@ -15,16 +15,6 @@ BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
 USE_TOOLS+=	msgmerge
 
 REPLACE_PERL+=	katomic-levelset-upd.pl
-
-SUBST_CLASSES+=		xdg
-SUBST_STAGE.xdg=	pre-configure
-SUBST_MESSAGE.xdg=	Install via examples dir.
-SUBST_FILES.xdg=	CMakeLists.txt
-SUBST_SED.xdg=		-e 's:{KDE_INSTALL_CONFDIR}:{KDE_INSTALL_XDG_EX_DIR}:'
-
-MAKE_DIRS+=	${PKG_SYSCONFDIR}/xdg
-CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/katomic.knsrc \
-		${PKG_SYSCONFDIR}/xdg/katomic.knsrc
 
 .include "../../games/libkdegames/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"

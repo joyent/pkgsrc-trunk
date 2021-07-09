@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.499 2021/02/28 07:36:14 nia Exp $
+# $NetBSD: Makefile,v 1.505 2021/05/04 08:21:11 fcambus Exp $
 #
 
 COMMENT=	Games
@@ -44,6 +44,7 @@ SUBDIR+=	batrachians
 SUBDIR+=	battalion
 SUBDIR+=	battleball
 SUBDIR+=	billardgl
+SUBDIR+=	black-hole-solver
 SUBDIR+=	blindmine
 SUBDIR+=	blinken
 SUBDIR+=	blokus
@@ -109,6 +110,7 @@ SUBDIR+=	eboard
 SUBDIR+=	einstein-puzzle
 SUBDIR+=	endless-sky
 SUBDIR+=	enigma
+SUBDIR+=	eternal-lands
 SUBDIR+=	etlegacy
 SUBDIR+=	etlegacy-data
 SUBDIR+=	etlegacy-server
@@ -289,6 +291,7 @@ SUBDIR+=	moria
 SUBDIR+=	mrrescue
 SUBDIR+=	naev
 SUBDIR+=	nagi
+SUBDIR+=	nbsdgames
 SUBDIR+=	nethack
 SUBDIR+=	nethack-lib
 SUBDIR+=	nethack-tty
@@ -306,6 +309,7 @@ SUBDIR+=	nudoku
 SUBDIR+=	nxengine-evo
 SUBDIR+=	omega
 SUBDIR+=	onscripter
+SUBDIR+=	openarena
 SUBDIR+=	openhexagon
 SUBDIR+=	openjk
 SUBDIR+=	openmortal
@@ -395,6 +399,7 @@ SUBDIR+=	tetrinetx
 SUBDIR+=	thew
 SUBDIR+=	tileworld
 SUBDIR+=	toppler
+SUBDIR+=	trader
 SUBDIR+=	tscp
 SUBDIR+=	tuxmath
 SUBDIR+=	tuxracer
@@ -403,6 +408,7 @@ SUBDIR+=	ufoai
 SUBDIR+=	unknown-horizons
 SUBDIR+=	uqm
 SUBDIR+=	urban
+SUBDIR+=	valyriatear
 SUBDIR+=	velena
 SUBDIR+=	violetland
 SUBDIR+=	vms-empire

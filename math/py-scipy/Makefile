@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.43 2020/10/12 21:52:04 bacon Exp $
+# $NetBSD: Makefile,v 1.49 2021/05/03 17:55:01 adam Exp $
 
-DISTNAME=	scipy-1.5.2
+DISTNAME=	scipy-1.6.3
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-PKGREVISION=	1
 CATEGORIES=	math python
 MASTER_SITES=	${MASTER_SITE_PYPI:=s/scipy/}
 
@@ -32,11 +31,15 @@ FFLAGS+=	-fPIC
 
 LDFLAGS.Darwin+=	-headerpad_max_install_names
 
-PYTHON_VERSIONS_INCOMPATIBLE=	27
+PYTHON_VERSIONS_INCOMPATIBLE=	36 27
 
 REPLACE_PYTHON+=	scipy/sparse/linalg/isolve/tests/test_gcrotmk.py
 
 .include "../../mk/bsd.prefs.mk"
+
+post-extract:
+	${CHMOD} -R g-w ${WRKSRC}
+	${CHMOD} 0644 ${WRKSRC}/scipy/optimize/_shgo_lib/sobol_vec.gz
 
 .if ${OPSYS} == "Darwin"
 .PHONY: fix-darwin-install-name
@@ -61,7 +64,6 @@ do-test:
 .include "../../devel/py-pybind11/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../lang/python/distutils.mk"
-.include "../../mk/blas.buildlink3.mk"
 .include "../../math/fftw/buildlink3.mk"
 BUILDLINK_API_DEPENDS.py-numpy+=	${PYPKGPREFIX}-numpy>=1.17.3
 .include "../../math/py-numpy/buildlink3.mk"

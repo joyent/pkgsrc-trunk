@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.58 2021/02/07 06:30:08 ryoon Exp $
+# $NetBSD: Makefile,v 1.60 2021/04/21 11:40:24 adam Exp $
 
 DISTNAME=	kdegraphics-mobipocket-${KAPPSVER}
-PKGREVISION=	6
+PKGREVISION=	1
 CATEGORIES=	graphics
 
 HOMEPAGE=	https://kde.org/applications/graphics/

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.59 2020/09/13 14:16:30 leot Exp $
+# $NetBSD: Makefile,v 1.62 2021/06/09 20:20:09 adam Exp $
 
 DISTNAME=	ghostscript-${GS_VERSION}
 PKGNAME=	${DISTNAME:S/ghostscript/ghostscript-agpl/}
@@ -31,6 +31,7 @@ INSTALL_TARGET=		soinstall
 
 CONFIGURE_ARGS+=	--enable-openjpeg
 CONFIGURE_ARGS+=	--with-system-libtiff
+CONFIGURE_ARGS+=	--without-tesseract
 CONFIGURE_ENV+=		LPLIBDIR=${PREFIX}/lib
 CONFIGURE_ENV.HPUX+=	ac_cv_func_fopen64=no
 

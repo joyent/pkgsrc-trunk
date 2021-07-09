@@ -1,11 +1,10 @@
-# $NetBSD: Makefile,v 1.51 2020/08/31 18:10:10 wiz Exp $
+# $NetBSD: Makefile,v 1.54 2021/05/24 19:52:54 wiz Exp $
 
 DISTNAME=	turba-h3-${TURBAVER}
 PKGNAME=	turba-${TURBAVER}
-PKGREVISION=	10
+PKGREVISION=	11
 CATEGORIES=	mail www
-MASTER_SITES=	http://ftp.horde.org/pub/turba/
-MASTER_SITES+=	ftp://ftp.horde.org/pub/turba/
+#MASTER_SITES+=	ftp://ftp.horde.org/pub/turba/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.horde.org/turba/
@@ -94,7 +93,7 @@ do-install:
 .	endfor
 
 .	for d in ${PAXDIRS}
-		cd ${WRKSRC}/${d:Q} && pax -rwpma . \
+		cd ${WRKSRC}/${d:Q} && ${PAX} -rwpma . \
 			${DESTDIR}${TURBADIR}/${d:Q}
 .	endfor
 

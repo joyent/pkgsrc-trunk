@@ -1,13 +1,15 @@
-# $NetBSD: Makefile,v 1.26 2020/11/09 23:45:39 gutteridge Exp $
+# $NetBSD: Makefile,v 1.29 2021/05/24 19:56:02 wiz Exp $
 
+PKGREVISION= 1
 .include "../../meta-pkgs/mate/Makefile.common"
 
 DISTNAME=	mate-terminal-${VERSION:R}.1
 CATEGORIES=	x11
 
+USE_TOOLS+=	perl:run
+
 COMMENT=	MATE terminal emulator application
 
-TOOL_DEPENDS+=	itstool-[0-9]*:../../textproc/itstool
 TOOL_DEPENDS+=	libxml2-[0-9]*:../../textproc/libxml2 # for xmllint
 
 .include "options.mk"

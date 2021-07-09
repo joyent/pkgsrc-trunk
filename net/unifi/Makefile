@@ -1,6 +1,8 @@
-# $NetBSD: Makefile,v 1.19 2020/08/30 06:03:53 tnn Exp $
+# $NetBSD: Makefile,v 1.22 2021/06/01 15:04:12 gdt Exp $
 
-DISTNAME=	unifi-5.14.23
+# Update to 6.2 (wip) is on hold pending reports that the greater
+# Unifi world thinks it is stable enough. -- gdt, 2021-06-01
+DISTNAME=	unifi-6.0.45
 CATEGORIES=	net
 MASTER_SITES=	-http://dl.ubnt.com/unifi/${PKGVERSION_NOREV}/UniFi.unix.zip
 EXTRACT_SUFX=	.zip
@@ -45,7 +47,7 @@ INSTALLATION_DIRS=	unifi
 # Emulated JDK doesn't work due to epoll issues.  Also, would require
 # matching emulated native libraries, and we only compile actual
 # native libaries.
-PKG_JVMS_ACCEPTED=	openjdk8
+PKG_JVMS_ACCEPTED=	openjdk11 openjdk8
 PKGSRC_MAKE_ENV+=	JAVA_HOME=${PKG_JAVA_HOME}
 USE_LANGUAGES=		c c++	# for snappy JNI library
 USE_TOOLS+=		gmake pax
@@ -76,6 +78,30 @@ post-extract:
 	find ${WRKSRC} -type f -print0 | xargs -0 chmod -x
 	mkdir ${WRKDIR}/${SNAPPY_JAVA}/target
 	ln -s ${WRKDIR}/${SNAPPY} ${WRKDIR}/${SNAPPY_JAVA}/target
+# drop platform specific binaries
+# as far as we know, these are for cloud access to your controller
+	ls -R ${WRKDIR}/UniFi/lib/native
+	rm -rf ${WRKDIR}/UniFi/lib/native/Windows
+.if (${OPSYS} != "Linux")
+	rm -rf ${WRKDIR}/UniFi/lib/native/Linux
+.else
+.if (${MACHINE_ARCH} != "aarch64")
+	rm -rf ${WRKDIR}/UniFi/lib/native/Linux/aarch64
+.endif
+.if (${MACHINE_ARCH} != "armv7")
+	rm -rf ${WRKDIR}/UniFi/lib/native/Linux/armv7
+.endif
+.if (${MACHINE_ARCH} != "x86_64")
+	rm -rf ${WRKDIR}/UniFi/lib/native/Linux/x86_64
+.endif
+.endif
+.if (${OPSYS} != "Darwin")
+	rm -rf ${WRKDIR}/UniFi/lib/native/Mac
+.else
+.if (${MACHINE_ARCH} != "x86_64")
+	rm -rf ${WRKDIR}/UniFi/lib/native/Mac/x86_64
+.endif
+.endif
 
 do-build:
 # bundled mongod is a linux binary; replace with symlink to native binary

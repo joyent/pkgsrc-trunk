@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2020/12/21 11:59:16 pin Exp $
+# $NetBSD: Makefile,v 1.3 2021/07/05 08:47:45 pin Exp $
 
 DISTNAME=	pastel-0.8.0
 CATEGORIES=	graphics

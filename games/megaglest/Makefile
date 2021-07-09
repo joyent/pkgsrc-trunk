@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.11 2020/11/05 09:08:13 ryoon Exp $
+# $NetBSD: Makefile,v 1.14 2021/06/20 21:47:59 nia Exp $
 
 DISTNAME=	megaglest-3.13.0
-PKGREVISION=	10
+PKGREVISION=	12
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_GITHUB:=MegaGlest/}
 GITHUB_PROJECT=	megaglest-source
@@ -12,10 +12,9 @@ HOMEPAGE=	https://megaglest.org/
 COMMENT=	3D real-time-strategy game with seven factions
 LICENSE=	gnu-gpl-v3
 
-EXTRACT_USING=	bsdtar
 USE_CMAKE=	yes
 USE_TOOLS+=	pkg-config
-USE_LANGUAGES=	c c++03
+USE_LANGUAGES=	c c++
 
 DEPENDS+=	megaglest-data>=${PKGVERSION_NOREV}:../../games/megaglest-data
 

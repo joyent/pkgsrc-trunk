@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.29 2020/08/31 18:07:43 wiz Exp $
+# $NetBSD: Makefile,v 1.31 2021/05/24 19:50:22 wiz Exp $
 
-DISTNAME=	Config-Tiny-2.24
+DISTNAME=	Config-Tiny-2.26
 PKGNAME=	p5-${DISTNAME}
 PKGREVISION=	1
 CATEGORIES=	devel perl5

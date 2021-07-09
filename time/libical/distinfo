@@ -1,10 +1,7 @@
-$NetBSD: distinfo,v 1.15 2020/11/07 10:30:20 nia Exp $
+$NetBSD: distinfo,v 1.17 2021/04/19 11:04:52 nia Exp $
 
-SHA1 (libical-3.0.8.tar.gz) = d2a9cecb9b8d825d5b6989e44b424235a27173a7
-RMD160 (libical-3.0.8.tar.gz) = 1b5fa93675e74e6721107214202ab922fd5a164c
-SHA512 (libical-3.0.8.tar.gz) = ce015e6d4c1c7cb4af7b45748ce8251c663f80f6a4357ddff6a97796642619abe882f4cadeca10cabeb1b25577869f436da15bca882e032eb3ff0475f6010d8b
-Size (libical-3.0.8.tar.gz) = 881462 bytes
-SHA1 (patch-ConfigureChecks.cmake) = fe6d75c6217a303aefb6aaaef1d6f1eca883bc75
-SHA1 (patch-config.h.cmake) = ae5ae3dd64a0fddf4929d925627412b04852975e
-SHA1 (patch-src_libical_icalrecur.c) = bca2a5ce3868522aacbe7f59a43283063b0c91b0
-SHA1 (patch-src_libical_icaltz-util.c) = eb3b6d1d63faf138897968d4e2c4ee8da4ada15a
+SHA1 (libical-3.0.10.tar.gz) = ed9a3bcff30d543c6caae019f4333f6af55934ed
+RMD160 (libical-3.0.10.tar.gz) = c7ade4170aa750f95e93eba5b36a897d8d5edf01
+SHA512 (libical-3.0.10.tar.gz) = e32ccaff9b8a501f340567a1221c580023e4ed79918519bfa88aee2c0e8b62f5ea37e10907f2eb6fbd346a57408708a74e30aaf9a57a8d711eae30ddc974ddd0
+Size (libical-3.0.10.tar.gz) = 889470 bytes
+SHA1 (patch-src_libical_icaltz-util.c) = 3dd41fa9d3ea99d4821219e425a65b5249c1b060

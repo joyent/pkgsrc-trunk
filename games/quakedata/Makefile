@@ -1,11 +1,10 @@
-# $NetBSD: Makefile,v 1.28 2018/01/14 17:34:01 rillig Exp $
+# $NetBSD: Makefile,v 1.30 2021/04/22 09:23:58 nia Exp $
 
 DISTNAME=	quake106
 PKGNAME=	quakedata-1.0
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	games
 MASTER_SITES=	ftp://ftp.fu-berlin.de/pc/msdos/games/idgames/idstuff/quake/
-MASTER_SITES+=	ftp://ftp.idsoftware.com/idstuff/quake/
 EXTRACT_SUFX=	.zip
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -18,17 +17,16 @@ NO_SRC_ON_CDROM=	${RESTRICTED}
 NO_BIN_ON_CDROM=	${RESTRICTED}
 NO_BIN_ON_FTP=		${RESTRICTED}
 
-BUILD_DEPENDS+=	lha-[0-9]*:../../archivers/lha
+TOOL_DEPENDS+=		lhasa-[0-9]*:../../archivers/lhasa
 
 EXTRACT_ELEMENTS=	resource.*
 
 WRKSRC=		${WRKDIR}
 NO_BUILD=	YES
-USE_TOOLS+=	lha
 
 post-extract:
 	cd ${WRKSRC} && ${CAT} resource.dat resource.1 > resource.exe
-	cd ${WRKDIR} && ${LHA} xfq resource.exe id1/pak0.pak
+	cd ${WRKDIR} && ${PREFIX}/bin/lha xfq resource.exe id1/pak0.pak
 
 do-install:
 	${INSTALL_DATA_DIR} ${DESTDIR}${PREFIX}/share/quake/id1

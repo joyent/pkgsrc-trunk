@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.66 2020/12/04 20:45:34 nia Exp $
+# $NetBSD: Makefile,v 1.70 2021/05/03 08:34:06 wiz Exp $
 
 DISTNAME=	gupnp-1.0.3
-PKGREVISION=	9
+PKGREVISION=	11
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gupnp/1.0/}
 EXTRACT_SUFX=	.tar.xz
@@ -38,9 +38,9 @@ BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.39.90
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/gobject-introspection/buildlink3.mk"
 .include "../../lang/python/application.mk"
-BUILDLINK_API_DEPENDS.libsoup+=	libsoup>=2.48.0
 .include "../../net/libsoup/buildlink3.mk"
 BUILDLINK_API_DEPENDS.gssdp+=	gssdp>=0.14.15
 .include "../../net/gssdp/buildlink3.mk"
+.include "../../lang/vala/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

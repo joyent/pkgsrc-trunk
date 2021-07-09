@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.127 2021/01/04 12:23:32 wiz Exp $
+# $NetBSD: Makefile,v 1.131 2021/06/05 08:50:31 wiz Exp $
 
 COMMENT=	Screen saver and locker for the X window system
+PKGREVISION=	4
 
 CONFLICTS+=	xscreensaver-gnome<4.14
 
@@ -12,14 +13,10 @@ CONFIGURE_ARGS+=	--without-gtk
 #CONFIGURE_ARGS+=	--with-xml=${BUILDLINK_PREFIX.libxml2}
 CONFIGURE_ARGS+=	--with-configdir=${PREFIX}/libexec/xscreensaver/config
 
-EGDIR=			${PREFIX}/share/examples/xscreensaver
-MESSAGE_SUBST+=		EGDIR=${EGDIR:Q}
-
-INSTALLATION_DIRS=	${EGDIR}/pam.d
+INSTALLATION_DIRS=	share/doc/${PKGBASE}
 
 post-install:
-	${INSTALL_DATA} ${FILESDIR}/pam-xscreensaver-NetBSD \
-	    ${DESTDIR}${EGDIR}/pam.d/xscreensaver-NetBSD
+	${INSTALL_DATA} ${FILESDIR}/README.pkgsrc ${DESTDIR}${PREFIX}/share/doc/${PKGBASE}
 
 .include "../../graphics/png/buildlink3.mk"
 .include "../../x11/libXScrnSaver/buildlink3.mk"

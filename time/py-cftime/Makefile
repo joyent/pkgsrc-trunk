@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.2 2020/10/12 21:52:04 bacon Exp $
+# $NetBSD: Makefile,v 1.5 2021/06/29 08:42:02 nia Exp $
 
-DISTNAME=	cftime-1.1.3
+DISTNAME=	cftime-1.5.0
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-PKGREVISION=	1
 CATEGORIES=	time python
 MASTER_SITES=	${MASTER_SITE_PYPI:=c/cftime/}
 
@@ -11,6 +10,7 @@ HOMEPAGE=	https://github.com/Unidata/cftime
 COMMENT=	Time-handling functionality
 LICENSE=	gnu-gpl-v3
 
+TEST_DEPENDS+=	${PYPKGPREFIX}-test-cov-[0-9]*:../../devel/py-test-cov
 TEST_DEPENDS+=	${PYPKGPREFIX}-test-runner-[0-9]*:../../devel/py-test-runner
 
 # This pulls too many unnecessary dependencies.
@@ -18,6 +18,8 @@ TEST_DEPENDS+=	${PYPKGPREFIX}-test-runner-[0-9]*:../../devel/py-test-runner
 
 do-test:
 	cd ${WRKSRC} && ${SETENV} ${TEST_ENV} pytest-${PYVERSSUFFIX} test
+
+PYTHON_VERSIONS_INCOMPATIBLE+=	36	# py-numpy
 
 .include "../../devel/py-cython/buildlink3.mk"
 .include "../../lang/python/egg.mk"

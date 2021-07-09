@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.120 2021/02/07 06:30:32 ryoon Exp $
+# $NetBSD: Makefile,v 1.122 2021/05/14 13:20:16 nia Exp $
 #
 
 DISTNAME=	avidemux_2.5.4
 PKGNAME=	${DISTNAME:S/_/-/}
-PKGREVISION=	53
+PKGREVISION=	54
 CATEGORIES=	multimedia
 MASTER_SITES=	http://download.berlios.de/avidemux/
 
@@ -37,6 +37,7 @@ SUBST_STAGE.audio=	pre-configure
 SUBST_FILES.audio=	plugins/ADM_audioDevices/Oss/ADM_deviceoss.cpp
 SUBST_SED.audio=	-e "s|\\/dev\\/dsp|${DEVOSSAUDIO}|g"
 SUBST_MESSAGE.audio=	Fixing hardcoded audio device.
+SUBST_NOOP_OK.audio=	yes
 
 BUILDLINK_TRANSFORM+=	opt:-ldl:${BUILDLINK_LDADD.dl:M*}
 

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.12 2020/12/04 04:55:56 riastradh Exp $
+# $NetBSD: Makefile,v 1.14 2021/06/22 15:09:00 nia Exp $
 
 DISTNAME=	colord-1.3.5
-PKGREVISION=	9
+PKGREVISION=	10
 CATEGORIES=	graphics gnome
 MASTER_SITES=	https://www.freedesktop.org/software/colord/releases/
 EXTRACT_SUFX=	.tar.xz
@@ -23,6 +23,9 @@ BUILD_DEFS+=	VARBASE
 
 PKGCONFIG_OVERRIDE+=	lib/colorhug/colorhug.pc.in
 PKGCONFIG_OVERRIDE+=	lib/colord/colord.pc.in
+
+# XXX dependency for man pages missing from pkgsrc
+CONFIGURE_ENV+=		ac_cv_path_DOCBOOK2MAN=no
 
 CONFIGURE_ARGS+=	--disable-gusb
 CONFIGURE_ARGS+=	--disable-udev

@@ -1,9 +1,11 @@
-# $NetBSD: Makefile,v 1.18 2020/08/31 18:06:39 wiz Exp $
+# $NetBSD: Makefile,v 1.21 2021/05/24 19:49:11 wiz Exp $
 
-DISTNAME=	htslib-1.10.2
+DISTNAME=	htslib-1.12
 PKGREVISION=	2
 CATEGORIES=	biology
-MASTER_SITES=	${MASTER_SITE_GITHUB:=samtools/}
+# Github-generated distfiles are incomplete, use custom tarballs instead
+MASTER_SITES=	https://github.com/samtools/htslib/releases/download/${PKGVERSION_NOREV}/
+EXTRACT_SUFX=	.tar.bz2
 
 MAINTAINER=	bacon@NetBSD.org
 HOMEPAGE=	https://www.htslib.org/
@@ -23,6 +25,7 @@ REPLACE_PERL+=		test/*.pl
 CONFIGURE_ARGS+=	--enable-libcurl
 PKGCONFIG_OVERRIDE=	htslib.pc.in
 TEST_TARGET=		test
+MAKE_ENV+=		BUILT_TEST_PROGRAMS=''
 
 pre-configure:
 	cd ${WRKSRC} && autoreconf -if

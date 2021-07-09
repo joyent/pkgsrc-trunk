@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.28 2021/02/03 15:15:18 taca Exp $
+@comment $NetBSD: PLIST,v 1.31 2021/06/03 15:09:37 taca Exp $
 bin/puppet${RUBY_SUFFIX}
 ${GEM_HOME}/cache/${GEM_NAME}.gem
 ${GEM_LIBDIR}/CODEOWNERS
@@ -538,6 +538,9 @@ ${GEM_LIBDIR}/lib/puppet/network/http/api/indirection_type.rb
 ${GEM_LIBDIR}/lib/puppet/network/http/api/master.rb
 ${GEM_LIBDIR}/lib/puppet/network/http/api/master/v3.rb
 ${GEM_LIBDIR}/lib/puppet/network/http/api/master/v3/environments.rb
+${GEM_LIBDIR}/lib/puppet/network/http/api/server.rb
+${GEM_LIBDIR}/lib/puppet/network/http/api/server/v3.rb
+${GEM_LIBDIR}/lib/puppet/network/http/api/server/v3/environments.rb
 ${GEM_LIBDIR}/lib/puppet/network/http/connection.rb
 ${GEM_LIBDIR}/lib/puppet/network/http/error.rb
 ${GEM_LIBDIR}/lib/puppet/network/http/handler.rb
@@ -1564,6 +1567,7 @@ ${GEM_LIBDIR}/spec/fixtures/unit/provider/service/smf/svcs_fmri.out
 ${GEM_LIBDIR}/spec/fixtures/unit/provider/service/smf/svcs_instances.out
 ${GEM_LIBDIR}/spec/fixtures/unit/provider/service/smf/svcs_multiple_fmris.out
 ${GEM_LIBDIR}/spec/fixtures/unit/provider/service/systemd/list_unit_files_services
+${GEM_LIBDIR}/spec/fixtures/unit/provider/service/systemd/list_unit_files_services_vendor_preset
 ${GEM_LIBDIR}/spec/fixtures/unit/provider/user/aix/aix_passwd_file.out
 ${GEM_LIBDIR}/spec/fixtures/unit/reports/tagmail/tagmail_email.conf
 ${GEM_LIBDIR}/spec/fixtures/unit/reports/tagmail/tagmail_failers.conf
@@ -1651,10 +1655,8 @@ ${GEM_LIBDIR}/spec/integration/util/windows/security_spec.rb
 ${GEM_LIBDIR}/spec/integration/util/windows/user_spec.rb
 ${GEM_LIBDIR}/spec/integration/util_spec.rb
 ${GEM_LIBDIR}/spec/lib/matchers/containment_matchers.rb
-${GEM_LIBDIR}/spec/lib/matchers/include.rb
 ${GEM_LIBDIR}/spec/lib/matchers/include_in_order.rb
 ${GEM_LIBDIR}/spec/lib/matchers/include_in_order_spec.rb
-${GEM_LIBDIR}/spec/lib/matchers/include_spec.rb
 ${GEM_LIBDIR}/spec/lib/matchers/json.rb
 ${GEM_LIBDIR}/spec/lib/matchers/match_tokens2.rb
 ${GEM_LIBDIR}/spec/lib/matchers/relationship_graph_matchers.rb
@@ -1704,6 +1706,7 @@ ${GEM_LIBDIR}/spec/shared_behaviours/things_that_declare_options.rb
 ${GEM_LIBDIR}/spec/shared_contexts/checksum.rb
 ${GEM_LIBDIR}/spec/shared_contexts/digests.rb
 ${GEM_LIBDIR}/spec/shared_contexts/https.rb
+${GEM_LIBDIR}/spec/shared_contexts/provider.rb
 ${GEM_LIBDIR}/spec/shared_contexts/types_setup.rb
 ${GEM_LIBDIR}/spec/shared_examples/rhel_package_provider.rb
 ${GEM_LIBDIR}/spec/spec_helper.rb
@@ -1979,8 +1982,9 @@ ${GEM_LIBDIR}/spec/unit/network/format_spec.rb
 ${GEM_LIBDIR}/spec/unit/network/format_support_spec.rb
 ${GEM_LIBDIR}/spec/unit/network/formats_spec.rb
 ${GEM_LIBDIR}/spec/unit/network/http/api/indirected_routes_spec.rb
-${GEM_LIBDIR}/spec/unit/network/http/api/master/v3/environments_spec.rb
-${GEM_LIBDIR}/spec/unit/network/http/api/master/v3_spec.rb
+${GEM_LIBDIR}/spec/unit/network/http/api/master_spec.rb
+${GEM_LIBDIR}/spec/unit/network/http/api/server/v3/environments_spec.rb
+${GEM_LIBDIR}/spec/unit/network/http/api/server/v3_spec.rb
 ${GEM_LIBDIR}/spec/unit/network/http/api_spec.rb
 ${GEM_LIBDIR}/spec/unit/network/http/connection_spec.rb
 ${GEM_LIBDIR}/spec/unit/network/http/error_spec.rb
@@ -2074,10 +2078,8 @@ ${GEM_LIBDIR}/spec/unit/pops/parser/epp_parser_spec.rb
 ${GEM_LIBDIR}/spec/unit/pops/parser/evaluating_parser_spec.rb
 ${GEM_LIBDIR}/spec/unit/pops/parser/lexer2_spec.rb
 ${GEM_LIBDIR}/spec/unit/pops/parser/locator_spec.rb
-${GEM_LIBDIR}/spec/unit/pops/parser/parse_application_spec.rb
 ${GEM_LIBDIR}/spec/unit/pops/parser/parse_basic_expressions_spec.rb
 ${GEM_LIBDIR}/spec/unit/pops/parser/parse_calls_spec.rb
-${GEM_LIBDIR}/spec/unit/pops/parser/parse_capabilities_spec.rb
 ${GEM_LIBDIR}/spec/unit/pops/parser/parse_conditionals_spec.rb
 ${GEM_LIBDIR}/spec/unit/pops/parser/parse_containers_spec.rb
 ${GEM_LIBDIR}/spec/unit/pops/parser/parse_functions_spec.rb
@@ -2085,7 +2087,6 @@ ${GEM_LIBDIR}/spec/unit/pops/parser/parse_heredoc_spec.rb
 ${GEM_LIBDIR}/spec/unit/pops/parser/parse_lambda_spec.rb
 ${GEM_LIBDIR}/spec/unit/pops/parser/parse_plan_spec.rb
 ${GEM_LIBDIR}/spec/unit/pops/parser/parse_resource_spec.rb
-${GEM_LIBDIR}/spec/unit/pops/parser/parse_site_spec.rb
 ${GEM_LIBDIR}/spec/unit/pops/parser/parser_rspec_helper.rb
 ${GEM_LIBDIR}/spec/unit/pops/parser/parser_spec.rb
 ${GEM_LIBDIR}/spec/unit/pops/parser/parsing_typed_parameters_spec.rb

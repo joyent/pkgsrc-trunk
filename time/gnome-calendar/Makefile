@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.3 2020/11/17 15:31:51 nia Exp $
+# $NetBSD: Makefile,v 1.9 2021/05/02 11:06:15 nia Exp $
 
-DISTNAME=	gnome-calendar-3.38.1
-MASTER_SITES=	${MASTER_SITE_GNOME:=/sources/${PKGBASE}/${PKGVERSION_NOREV:R}/}
+DISTNAME=	gnome-calendar-40.0
+MASTER_SITES=	${MASTER_SITE_GNOME:=sources/${PKGBASE}/${PKGVERSION_NOREV:R}/}
+PKGREVISION=	3
 CATEGORIES=	time gnome
 EXTRACT_SUFX=	.tar.xz
 
@@ -10,9 +11,8 @@ HOMEPAGE=	https://wiki.gnome.org/Apps/Calendar/
 COMMENT=	Calendar application for GNOME
 LICENSE=	gnu-gpl-v3
 
-TOOL_DEPENDS+=	gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
-
 USE_TOOLS+=	pkg-config msgfmt xgettext
+USE_TOOLS+=	gdbus-codegen
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -21,11 +21,13 @@ USE_TOOLS+=	pkg-config msgfmt xgettext
 TOOLS_PLATFORM.msgfmt=
 .endif
 
+PYTHON_FOR_BUILD_ONLY=	tool
+
 .include "../../devel/meson/build.mk"
 .include "../../devel/glib2/schemas.mk"
 .include "../../devel/libdazzle/buildlink3.mk"
 .include "../../devel/libgweather/buildlink3.mk"
-.include "../../devel/libhandy/buildlink3.mk"
+.include "../../devel/libhandy1/buildlink3.mk"
 .include "../../geography/geoclue/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../mail/evolution-data-server/buildlink3.mk"

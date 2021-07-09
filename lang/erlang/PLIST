@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.45 2021/02/20 01:02:29 gutteridge Exp $
+@comment $NetBSD: PLIST,v 1.50 2021/05/09 00:02:37 gutteridge Exp $
 bin/ct_run
 bin/dialyzer
 bin/epmd
@@ -2638,6 +2638,7 @@ lib/erlang/lib/ssl-${VERSION.ssl}/ebin/ssl_app.beam
 lib/erlang/lib/ssl-${VERSION.ssl}/ebin/ssl_certificate.beam
 lib/erlang/lib/ssl-${VERSION.ssl}/ebin/ssl_cipher.beam
 lib/erlang/lib/ssl-${VERSION.ssl}/ebin/ssl_cipher_format.beam
+lib/erlang/lib/ssl-${VERSION.ssl}/ebin/ssl_client_session_cache_db.beam
 lib/erlang/lib/ssl-${VERSION.ssl}/ebin/ssl_config.beam
 lib/erlang/lib/ssl-${VERSION.ssl}/ebin/ssl_connection_sup.beam
 lib/erlang/lib/ssl-${VERSION.ssl}/ebin/ssl_crl.beam
@@ -2660,7 +2661,6 @@ lib/erlang/lib/ssl-${VERSION.ssl}/ebin/ssl_server_session_cache.beam
 lib/erlang/lib/ssl-${VERSION.ssl}/ebin/ssl_server_session_cache_db.beam
 lib/erlang/lib/ssl-${VERSION.ssl}/ebin/ssl_server_session_cache_sup.beam
 lib/erlang/lib/ssl-${VERSION.ssl}/ebin/ssl_session.beam
-lib/erlang/lib/ssl-${VERSION.ssl}/ebin/ssl_session_cache.beam
 lib/erlang/lib/ssl-${VERSION.ssl}/ebin/ssl_session_cache_api.beam
 lib/erlang/lib/ssl-${VERSION.ssl}/ebin/ssl_srp_primes.beam
 lib/erlang/lib/ssl-${VERSION.ssl}/ebin/ssl_sup.beam
@@ -2723,6 +2723,7 @@ lib/erlang/lib/ssl-${VERSION.ssl}/src/ssl_certificate.erl
 lib/erlang/lib/ssl-${VERSION.ssl}/src/ssl_cipher.erl
 lib/erlang/lib/ssl-${VERSION.ssl}/src/ssl_cipher.hrl
 lib/erlang/lib/ssl-${VERSION.ssl}/src/ssl_cipher_format.erl
+lib/erlang/lib/ssl-${VERSION.ssl}/src/ssl_client_session_cache_db.erl
 lib/erlang/lib/ssl-${VERSION.ssl}/src/ssl_config.erl
 lib/erlang/lib/ssl-${VERSION.ssl}/src/ssl_connection.hrl
 lib/erlang/lib/ssl-${VERSION.ssl}/src/ssl_connection_sup.erl
@@ -2749,7 +2750,6 @@ lib/erlang/lib/ssl-${VERSION.ssl}/src/ssl_server_session_cache.erl
 lib/erlang/lib/ssl-${VERSION.ssl}/src/ssl_server_session_cache_db.erl
 lib/erlang/lib/ssl-${VERSION.ssl}/src/ssl_server_session_cache_sup.erl
 lib/erlang/lib/ssl-${VERSION.ssl}/src/ssl_session.erl
-lib/erlang/lib/ssl-${VERSION.ssl}/src/ssl_session_cache.erl
 lib/erlang/lib/ssl-${VERSION.ssl}/src/ssl_session_cache_api.erl
 lib/erlang/lib/ssl-${VERSION.ssl}/src/ssl_srp.hrl
 lib/erlang/lib/ssl-${VERSION.ssl}/src/ssl_srp_primes.erl

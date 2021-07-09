@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.59 2021/03/09 03:00:40 wen Exp $
+# $NetBSD: Makefile,v 1.62 2021/07/05 10:22:06 wen Exp $
 
-DISTNAME=	Dancer2-0.300005
+DISTNAME=	Dancer2-0.301004
 PKGNAME=	p5-${DISTNAME}
 CATEGORIES=	www perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/C/CR/CROMEDOME/}
@@ -21,12 +21,13 @@ BUILD_DEPENDS+=	p5-Test-Fatal>=0:../../devel/p5-Test-Fatal
 BUILD_DEPENDS+=	p5-File-ShareDir-Install>=0.06:../../devel/p5-File-ShareDir-Install
 BUILD_DEPENDS+=	p5-LWP-Protocol-PSGI>=0.06:../../www/p5-LWP-Protocol-PSGI
 
-DEPENDS+=	p5-App-Cmd>=0:../../devel/p5-App-Cmd
+DEPENDS+=	p5-CLI-Osprey>=0:../../devel/p5-CLI-Osprey
 DEPENDS+=	p5-Capture-Tiny>=0.12:../../devel/p5-Capture-Tiny
 DEPENDS+=	p5-Crypt-URandom>=0:../../security/p5-Crypt-URandom
 DEPENDS+=	p5-Config-Any>=0:../../devel/p5-Config-Any
 #DEPENDS+=	{perl>=5.9.3,p5-Digest-SHA>=0}:../../security/p5-Digest-SHA
 DEPENDS+=	p5-File-Share>=0:../../devel/p5-File-Share
+DEPENDS+=	p5-File-Which>=0:../../devel/p5-File-Which
 DEPENDS+=	p5-Hash-Merge-Simple>=0:../../devel/p5-Hash-Merge-Simple
 DEPENDS+=	p5-HTTP-Body>=0:../../www/p5-HTTP-Body
 DEPENDS+=	p5-HTTP-Date>=0:../../www/p5-HTTP-Date

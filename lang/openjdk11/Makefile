@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.30 2021/02/01 15:51:55 ryoon Exp $
+# $NetBSD: Makefile,v 1.34 2021/06/27 08:53:54 tnn Exp $
 
 DISTNAME=	openjdk-jdk11u-${GITHUB_TAG:C/\+/-/}
 PKGNAME=	openjdk11-1.${GITHUB_TAG:C/\+/./:C/jdk-([.0-9]+).*/\1/}
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GITHUB:=battleblow/}
 GITHUB_PROJECT=	openjdk-jdk11u
-GITHUB_TAG=	jdk-11.0.10+9-1
+GITHUB_TAG=	jdk-11.0.11+9-1
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://openjdk.java.net/
@@ -17,8 +17,10 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 JAVA_NAME=	openjdk11
 JAVA_HOME=	${PREFIX}/java/${JAVA_NAME}
-JAVA_WRAPPERS=	jar java javac javadoc javah javap jcmd jhat jmap jps jstack \
-		keytool orbd policytool rmid rmiregistry servertool tnameserv
+JAVA_WRAPPERS=	jar jarsigner java javac javadoc javap jcmd jconsole jdb \
+		jdeprscan jdeps jfr jimage jinfo jlink jmap jmod jps \
+		jrunscript jshell jstack jstat jstatd keytool rmid \
+		rmiregistry serialver
 
 BUILD_DEPENDS+=		mozilla-rootcerts>=1.0.20140820nb2:../../security/mozilla-rootcerts
 
@@ -66,9 +68,14 @@ CONFIGURE_ARGS+=	--with-default-make-target=product-images
 # It is intentional to use CONFIGURE_ARGS instead of CONFIGURE_ENV here.
 CONFIGURE_ARGS+=	USER=pkgsrc
 
+.include "../../mk/bsd.prefs.mk"
+
 # Avoid build errors when JAVA_HOME and CLASSPATH are defined by user.
 MAKE_ENV+=	JAVA_HOME=
 MAKE_ENV+=	CLASSPATH=
+.if !empty(MACHINE_PLATFORM:MNetBSD-9.99.8[1-9]-*)
+ALL_ENV+=	SED="sed -g"
+.endif
 
 BUILD_OPSYS=			${OPSYS:C/.*BSD/bsd/:S/DragonFly/bsd/:S/SunOS/solaris/:S/Linux/linux/}
 BUILD_ARCH=			${MACHINE_ARCH:S/i386/x86/:S/sparc64/sparcv9/:C/^e?arm.*$/arm/}
@@ -115,6 +122,16 @@ SUBST_MESSAGE.fontpaths=	fixing font paths
 SUBST_FILES.fontpaths=		make/data/fontconfig/bsd.fontconfig.properties
 SUBST_FILES.fontpaths+=		src/java.desktop/unix/native/common/awt/fontpath.c
 SUBST_VARS.fontpaths=		PREFIX BUILDLINK_PREFIX.fontconfig
+
+.if ${OPSYS} == "NetBSD"
+# NetBSD's EVFILT_* are different from FreeBSD/OpenBSD's values.
+SUBST_CLASSES+=			kqueue
+SUBST_STAGE.kqueue=		pre-configure
+SUBST_MESSAGE.kqueue=		fixing kqueue filter values
+SUBST_FILES.kqueue=		src/java.base/bsd/classes/sun/nio/ch/KQueue.java
+SUBST_SED.kqueue=		-e 's/static final int EVFILT_READ  = -1;/static final int EVFILT_READ  = 0;/'
+SUBST_SED.kqueue+=		-e 's/static final int EVFILT_WRITE = -2;/static final int EVFILT_WRITE = 1;/'
+.endif
 
 PLIST_VARS+=			aot internal_vm_compiler jvmci
 .if ${MACHINE_ARCH} == "x86_64"

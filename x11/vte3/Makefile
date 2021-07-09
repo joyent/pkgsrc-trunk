@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.35 2021/01/24 10:29:39 kamil Exp $
+# $NetBSD: Makefile,v 1.41 2021/04/21 13:25:33 adam Exp $
 
 DISTNAME=	vte-0.60.3
 PKGNAME=	${DISTNAME:S/vte/vte3/}
-PKGREVISION=	7
+PKGREVISION=	10
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/vte/0.60/}
 EXTRACT_SUFX=	.tar.xz
@@ -15,7 +15,6 @@ LICENSE=	gnu-lgpl-v2
 PKGCONFIG_OVERRIDE_STAGE=	post-configure
 PKGCONFIG_OVERRIDE+=		output/meson-private/vte-2.91.pc
 
-GNU_CONFIGURE=		yes
 USE_TOOLS+=		msgfmt pkg-config bash
 USE_LANGUAGES=		c c++17
 # for c++17
@@ -31,6 +30,8 @@ CONF_FILES+=		${PREFIX}/share/examples/profile.d/vte.sh \
 CONF_FILES+=		${PREFIX}/share/examples/profile.d/vte.csh \
 			${PKG_SYSCONFDIR}/profile.d/vte.csh
 
+PYTHON_FOR_BUILD_ONLY=	tool
+
 .include "options.mk"
 .include "../../devel/meson/build.mk"
 .include "../../converters/fribidi/buildlink3.mk"
@@ -39,6 +40,7 @@ CONF_FILES+=		${PREFIX}/share/examples/profile.d/vte.csh \
 .include "../../devel/pango/buildlink3.mk"
 .include "../../devel/pcre2/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
+BUILDLINK_DEPMETHOD.vala?=	build
 .include "../../lang/vala/buildlink3.mk"
 .include "../../security/gnutls/buildlink3.mk"
 .include "../../x11/gtk3/buildlink3.mk"

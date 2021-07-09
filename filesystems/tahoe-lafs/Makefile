@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.42 2020/12/04 20:45:18 nia Exp $
+# $NetBSD: Makefile,v 1.51 2021/03/19 14:30:23 gdt Exp $
 
 DISTNAME=	tahoe-lafs-1.12.1
-PKGREVISION=	2
+PKGREVISION=	3
 CATEGORIES=	filesystems
 MASTER_SITES=	https://tahoe-lafs.org/source/tahoe-lafs/tarballs/
 EXTRACT_SUFX=	.tar.bz2
@@ -33,7 +33,7 @@ DEPENDS+=	${PYPKGPREFIX}-twisted>=16.1.0:../../net/py-twisted
 DEPENDS+=	${PYPKGPREFIX}-asn1>=0.1.8:../../security/py-asn1
 DEPENDS+=	${PYPKGPREFIX}-asn1-modules>=0.0.5:../../security/py-asn1-modules
 DEPENDS+=	${PYPKGPREFIX}-characteristic>=14.0.0:../../devel/py-characteristic
-DEPENDS+=	${PYPKGPREFIX}-crypto-[0-9]*:../../security/py-crypto
+DEPENDS+=	${PYPKGPREFIX}-cryptodome-[0-9]*:../../security/py-cryptodome
 DEPENDS+=	${PYPKGPREFIX}-cryptopp>=0.6.0:../../security/py-cryptopp
 DEPENDS+=	${PYPKGPREFIX}-OpenSSL>=0.14:../../security/py-OpenSSL
 DEPENDS+=	${PYPKGPREFIX}-nevow>=0.11.1:../../www/py-nevow

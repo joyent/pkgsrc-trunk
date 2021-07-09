@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.3 2020/10/13 16:35:44 pho Exp $
+# $NetBSD: Makefile,v 1.5 2021/05/03 19:01:07 pho Exp $
 
-DISTNAME=	idris-1.3.2
+DISTNAME=	idris-1.3.3
 PKGNAME=	${DISTNAME}
-PKGREVISION=	2
+PKGREVISION=	1
 CATEGORIES=	lang
 
 MAINTAINER=	pho@cielonegro.org
@@ -36,11 +36,6 @@ HASKELL_OPTIMIZATION_LEVEL=	1
 # even with -O1. Setting it to -O0 may seem desirable, but that makes
 # the resulting compiler way too slow.
 MAKE_JOBS_SAFE=	NO
-
-# bin/idris cannot survive PaX MPROTECT because of GHC rts not being
-# safe. We can hopefully get rid of this in the near future. See also
-# ../../lang/ghc88/Makefile
-NOT_PAX_MPROTECT_SAFE+=	bin/idris
 
 .include "options.mk"
 

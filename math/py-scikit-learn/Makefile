@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.12 2020/10/12 21:52:04 bacon Exp $
+# $NetBSD: Makefile,v 1.15 2021/05/31 07:03:31 thor Exp $
 
 DISTNAME=	scikit-learn-0.22.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
@@ -15,19 +15,12 @@ DEPENDS+=	${PYPKGPREFIX}-joblib>=0.11:../../devel/py-joblib
 DEPENDS+=	${PYPKGPREFIX}-scipy>=0.17.0:../../math/py-scipy
 TEST_DEPENDS+=	${PYPKGPREFIX}-test-runner-[0-9]*:../../devel/py-test-runner
 
-# XXX: OpenMP is not portable
-MAKE_ENV+=	SKLEARN_NO_OPENMP=1
-
 USE_LANGUAGES=	c c++ fortran
 
-PYTHON_VERSIONS_INCOMPATIBLE=	27
+PYTHON_VERSIONS_INCOMPATIBLE=	36 27	# py-scipy
 
 .include "../../devel/py-cython/buildlink3.mk"
 .include "../../lang/python/egg.mk"
-# Consider letting mk/blas.buildlink3.mk handle this check
-.if !exists(/System/Library/Frameworks/Accelerate.framework)
-.include "../../mk/blas.buildlink3.mk"
-.endif
 BUILDLINK_API_DEPENDS.py-numpy+=	${PYPKGPREFIX}-numpy>=1.11.0
 .include "../../math/py-numpy/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

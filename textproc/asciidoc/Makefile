@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.58 2021/02/18 10:14:27 wiz Exp $
+# $NetBSD: Makefile,v 1.60 2021/05/01 10:03:33 nia Exp $
 
 DISTNAME=	asciidoc-9.1.0
+PKGREVISION=	2
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=asciidoc/}
 GITHUB_PROJECT=	asciidoc-py3
@@ -57,7 +58,7 @@ do-install:
 	${INSTALL_MAN} ${WRKSRC}/doc/a2x.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/
 	${INSTALL_DATA} ${WRKSRC}/doc/asciidoc.txt ${DESTDIR}${DOCDIR}
 	cd ${WRKSRC} && pax -wr -pma *.conf filters docbook-xsl/*.xsl \
-		stylesheets/*.css javascripts/*.js images/* dblatex/* \
+		stylesheets/*.css javascripts/*.js images/* dblatex/* themes/* \
 		${DESTDIR}${PREFIX}/share/asciidoc/.
 
 do-test:

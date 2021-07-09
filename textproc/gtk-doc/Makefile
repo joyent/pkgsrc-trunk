@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.84 2020/12/04 20:45:44 nia Exp $
+# $NetBSD: Makefile,v 1.86 2021/05/02 10:24:52 nia Exp $
 
 DISTNAME=	gtk-doc-1.32
-PKGREVISION=	5
+PKGREVISION=	6
 CATEGORIES=	textproc gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gtk-doc/${PKGVERSION_NOREV}/}
 EXTRACT_SUFX=	.tar.xz
@@ -16,7 +16,6 @@ DEPENDS+=	docbook-xsl>=1.68.1:../../textproc/docbook-xsl
 DEPENDS+=	${PYPKGPREFIX}-anytree-[0-9]*:../../devel/py-anytree
 DEPENDS+=	${PYPKGPREFIX}-lxml-[0-9]*:../../textproc/py-lxml
 DEPENDS+=	${PYPKGPREFIX}-pygments-[0-9]*:../../textproc/py-pygments
-BUILD_DEPENDS+=	itstool-[0-9]*:../../textproc/itstool
 TEST_DEPENDS+=	${PYPKGPREFIX}-mock-[0-9]*:../../devel/py-mock
 TEST_DEPENDS+=	${PYPKGPREFIX}-parameterized-[0-9]*:../../devel/py-parameterized
 
@@ -24,6 +23,7 @@ GNU_CONFIGURE=		YES
 PKGCONFIG_OVERRIDE=	gtk-doc.pc.in
 CONFIGURE_ARGS+=	--with-xml-catalog=${XML_DEFAULT_CATALOG:Q}
 USE_TOOLS+=		gmake pkg-config:run msgfmt
+USE_TOOLS+=		itstool
 
 SUBST_CLASSES+=		fix-pc
 SUBST_STAGE.fix-pc=	pre-configure

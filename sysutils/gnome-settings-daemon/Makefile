@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.77 2021/02/07 06:30:37 ryoon Exp $
+# $NetBSD: Makefile,v 1.82 2021/05/24 19:54:11 wiz Exp $
 
 DISTNAME=	gnome-settings-daemon-3.38.1
-PKGREVISION=	3
+PKGREVISION=	6
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/${PKGBASE}/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -11,10 +11,10 @@ HOMEPAGE=	https://gitlab.gnome.org/GNOME/gnome-settings-daemon
 COMMENT=	GNOME settings daemon
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1
 
-TOOL_DEPENDS+=	gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
 TOOL_DEPENDS+=	docbook-xsl-[0-9]*:../../textproc/docbook-xsl
 
 USE_TOOLS+=	pkg-config msgfmt xgettext perl
+USE_TOOLS+=	gdbus-codegen
 
 CONFLICTS+=	gnome-control-center<2.22.0
 
@@ -68,6 +68,8 @@ CONF_FILES+=	${PREFIX}/share/examples/xdg/autostart/org.gnome.SettingsDaemon.Wwa
 		${PKG_SYSCONFDIR}/xdg/autostart/org.gnome.SettingsDaemon.Wwan.desktop
 CONF_FILES+=	${PREFIX}/share/examples/xdg/autostart/org.gnome.SettingsDaemon.XSettings.desktop \
 		${PKG_SYSCONFDIR}/xdg/autostart/org.gnome.SettingsDaemon.XSettings.desktop
+
+PYTHON_FOR_BUILD_ONLY=	tool
 
 .include "../../devel/meson/build.mk"
 .include "../../audio/pulseaudio/buildlink3.mk"

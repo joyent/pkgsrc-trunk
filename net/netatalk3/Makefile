@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.37 2020/12/04 20:45:35 nia Exp $
+# $NetBSD: Makefile,v 1.40 2021/05/24 19:53:21 wiz Exp $
 
 DISTNAME=	netatalk-3.1.12
 PKGNAME=	${DISTNAME:C/-/3-/}
-PKGREVISION=	14
+PKGREVISION=	16
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=netatalk/}
 EXTRACT_SUFX=	.tar.bz2
@@ -61,8 +61,9 @@ REPLACE_PYTHON+=	contrib/shell_utils/afpstats
 REPLACE_PYTHON+=	libevent/event_rpcgen.py
 
 PLIST_VARS+=		ea
-.if ${OPSYS} == "SunOS" || ${OPSYS} == "DragonFly" || ${OPSYS} == "Linux" || \
-	(${OPSYS} == "NetBSD" && empty(OS_VERSION:M[0-6].[0-8].*))
+.if ${OPSYS} == "FreeBSD" || ${OPSYS} == "DragonFly" \
+	|| ${OPSYS} == "SunOS" || ${OPSYS} == "Linux" \
+	|| (${OPSYS} == "NetBSD" && empty(OS_VERSION:M[0-6].[0-8].*))
 PLIST.ea=		yes
 .endif
 

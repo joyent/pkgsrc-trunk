@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.102 2020/11/05 09:08:08 ryoon Exp $
+# $NetBSD: Makefile,v 1.104 2021/05/24 19:52:16 wiz Exp $
 
 DISTNAME=	gcompris-17.05
-PKGREVISION=	7
+PKGREVISION=	9
 CATEGORIES=	games
 MASTER_SITES=	https://gcompris.net/download/gtk/src/
 EXTRACT_SUFX=	.tar.bz2

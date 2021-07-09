@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.24 2021/02/20 13:54:46 bsiegert Exp $
+# $NetBSD: Makefile,v 1.26 2021/07/03 10:29:26 thor Exp $
 
 .include "../../lang/go/version.mk"
 
 DISTNAME=	go${GO14_VERSION}.src
 PKGNAME=	go14-${GO14_VERSION}
-PKGREVISION=	12
+PKGREVISION=	13
 CATEGORIES=	lang
 MASTER_SITES=	https://storage.googleapis.com/golang/
 PATCH_SITES=	https://codereview.appspot.com/download/
@@ -15,7 +15,7 @@ COMMENT=	The Go programming language
 LICENSE=	modified-bsd
 
 WRKSRC=		${WRKDIR}/go
-USE_TOOLS+=	bash:run perl:run pax touch
+USE_TOOLS+=	bash:run perl:run pax touch awk
 
 # uses ulimit -T
 BUILD_DEPENDS+=	bash>=4.2nb3:../../shells/bash
@@ -66,6 +66,8 @@ REPLACE_PERL+=	src/net/http/cgi/testdata/test.cgi
 REPLACE_PERL+=	src/regexp/syntax/make_perl_groups.pl
 REPLACE_PERL+=	src/syscall/*.pl
 REPLACE_PERL+=	test/errchk
+
+REPLACE_AWK+=	src/cmd/gc/bisonerrors
 
 NOT_FOR_PLATFORM+=	*-*-aarch64
 NOT_FOR_PLATFORM+=	*-*-aarch64eb

@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.118 2021/03/04 10:40:58 nia Exp $
+# $NetBSD: Makefile,v 1.123 2021/05/02 11:06:12 nia Exp $
 
 DISTNAME=	audacious-plugins-4.1
+PKGREVISION=	4
 CATEGORIES=	audio
 MASTER_SITES=	https://distfiles.audacious-media-player.org/
 EXTRACT_SUFX=	.tar.bz2
@@ -47,7 +48,7 @@ PLIST_VARS+=	dbus
 .include "options.mk"
 .include "../../audio/audacious/buildlink3.mk"
 .if ${PKG_BUILD_OPTIONS.audacious:Mdbus}
-TOOL_DEPENDS+=	gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
+USE_TOOLS+=		gdbus-codegen
 PLIST.dbus=		yes
 .else
 CONFIGURE_ARGS+=	--disable-mpris2

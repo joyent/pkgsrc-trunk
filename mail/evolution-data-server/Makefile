@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.197 2020/11/08 00:56:53 mef Exp $
+# $NetBSD: Makefile,v 1.204 2021/05/24 19:52:40 wiz Exp $
 
 DISTNAME=	evolution-data-server-3.35.1
-PKGREVISION=	12
+PKGREVISION=	16
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/evolution-data-server/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -14,12 +14,11 @@ LICENSE=	gnu-gpl-v2
 USE_CMAKE=	yes
 USE_TOOLS+=	pkg-config perl:run
 USE_TOOLS+=	intltool msgfmt msgmerge xgettext
+USE_TOOLS+=	gdbus-codegen
 USE_LANGUAGES=	c c++14
 
 # C++14
 GCC_REQD+=	5
-
-TOOL_DEPENDS+=	gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
 
 CMAKE_ARGS+=	-DWITH_LIBDB=OFF
 CMAKE_ARGS+=	-DENABLE_GOA=OFF

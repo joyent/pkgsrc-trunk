@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.55 2021/01/10 20:36:48 adam Exp $
+# $NetBSD: Makefile,v 1.59 2021/07/02 09:49:42 adam Exp $
 
-DISTNAME=	dns-lexicon-3.5.3
+DISTNAME=	dns-lexicon-3.6.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/dns-//}
 CATEGORIES=	net python
 MASTER_SITES=	${MASTER_SITE_PYPI:=d/dns-lexicon/}
@@ -12,11 +12,9 @@ LICENSE=	mit
 
 DEPENDS+=	${PYPKGPREFIX}-beautifulsoup4>=4:../../www/py-beautifulsoup4
 DEPENDS+=	${PYPKGPREFIX}-cryptography>=2:../../security/py-cryptography
-DEPENDS+=	${PYPKGPREFIX}-future>=0:../../devel/py-future
 DEPENDS+=	${PYPKGPREFIX}-requests>=2:../../devel/py-requests
 DEPENDS+=	${PYPKGPREFIX}-tldextract>=3:../../net/py-tldextract
 DEPENDS+=	${PYPKGPREFIX}-yaml>=5:../../textproc/py-yaml
-TEST_DEPENDS+=	${PYPKGPREFIX}-mock>=2.0.0:../../devel/py-mock
 TEST_DEPENDS+=	${PYPKGPREFIX}-test-xdist>=1.26.1:../../devel/py-test-xdist
 
 PYTHON_VERSIONS_INCOMPATIBLE=	27
@@ -29,7 +27,7 @@ post-install:
 
 # Do not test providers
 do-test:
-	cd ${WRKSRC}/lexicon && pytest-${PYVERSSUFFIX} tests/test_*
+	cd ${WRKSRC}/lexicon && ${SETENV} ${TEST_ENV} pytest-${PYVERSSUFFIX} tests/test_*
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

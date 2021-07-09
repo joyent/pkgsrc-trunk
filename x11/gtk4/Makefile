@@ -1,9 +1,9 @@
-# $NetBSD: Makefile,v 1.3 2021/02/25 18:50:50 ryoon Exp $
+# $NetBSD: Makefile,v 1.8 2021/05/31 22:59:23 wiz Exp $
 
-DISTNAME=	gtk-4.0.3
+DISTNAME=	gtk-4.2.0
 PKGNAME=	${DISTNAME:S/gtk/gtk4/}
 CATEGORIES=	x11
-MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gtk/4.0/}
+MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gtk/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	ryoon@NetBSD.org
@@ -11,14 +11,12 @@ HOMEPAGE=	https://www.gtk.org/
 COMMENT=	Multi-platform toolkit for creating GUIs, version 4
 LICENSE=	gnu-lgpl-v2.1
 
-TOOL_DEPENDS+=	gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
-
-# This packge invokes python3 command.
+# This package invokes python3 command.
 PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 .include "options.mk"
 
-USE_TOOLS+=		pkg-config
+USE_TOOLS+=		pkg-config gdbus-codegen
 USE_PKGLOCALEDIR=	yes
 USE_LANGUAGES=		c c++
 
@@ -42,6 +40,7 @@ PRINT_PLIST_AWK+=	{ gsub(/\.${SOEXT}/, ".$${SOEXT}") }
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/gobject-introspection/buildlink3.mk"
 .include "../../devel/libexecinfo/buildlink3.mk"
+BUILDLINK_API_DEPENDS.pango+=	pango>=1.47.0
 .include "../../devel/pango/buildlink3.mk"
 .include "../../graphics/cairo/buildlink3.mk"
 .include "../../graphics/cairo-gobject/buildlink3.mk"

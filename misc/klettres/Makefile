@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.55 2021/02/07 06:30:31 ryoon Exp $
+# $NetBSD: Makefile,v 1.57 2021/04/21 11:42:14 adam Exp $
 
 DISTNAME=	klettres-${KAPPSVER}
-PKGREVISION=	6
+PKGREVISION=	1
 CATEGORIES=	misc
 
 HOMEPAGE=	https://kde.org/applications/education/klettres/
@@ -13,16 +13,6 @@ LICENSE=	gnu-lgpl-v2 AND gnu-gpl-v2 AND gnu-fdl-v1.2
 BUILD_DEPENDS+=	kdoctools>=5.19.0:../../devel/kdoctools
 
 USE_TOOLS+=	msgmerge
-
-SUBST_CLASSES+=		xdg
-SUBST_STAGE.xdg=	pre-configure
-SUBST_MESSAGE.xdg=	Install via examples dir.
-SUBST_FILES.xdg=	src/CMakeLists.txt
-SUBST_SED.xdg=		-e 's:{KDE_INSTALL_CONFDIR}:{KDE_INSTALL_XDG_EX_DIR}:'
-
-MAKE_DIRS+=	${PKG_SYSCONFDIR}/xdg
-CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/klettres.knsrc \
-		${PKG_SYSCONFDIR}/xdg/klettres.knsrc
 
 .include "../../net/knewstuff/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"

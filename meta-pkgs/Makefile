@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.111 2021/03/07 14:04:03 taca Exp $
+# $NetBSD: Makefile,v 1.114 2021/06/10 13:02:09 nia Exp $
 #
 
 COMMENT=	Collections of other packages
@@ -7,12 +7,14 @@ SUBDIR+=	boost
 SUBDIR+=	bulk-large
 SUBDIR+=	bulk-medium
 SUBDIR+=	bulk-small
+SUBDIR+=	bulk-test-boost
+SUBDIR+=	bulk-test-llvm
 SUBDIR+=	compiz-fusion
 SUBDIR+=	courier
 SUBDIR+=	deforaos-desktop
 SUBDIR+=	fxtv-capture
 SUBDIR+=	gimp-docs
-SUBDIR+=	gnome3
+SUBDIR+=	gnome
 SUBDIR+=	gnuradio
 SUBDIR+=	gnustep
 SUBDIR+=	gstreamer0.10-plugins

@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.12 2021/02/18 15:07:26 mef Exp $
+# $NetBSD: Makefile,v 1.14 2021/05/03 19:01:16 pho Exp $
 
 DISTNAME=	polyparse-1.13
+PKGREVISION=	1
 CATEGORIES=	textproc
 
 MAINTAINER=	szptvlfn@NetBSD.org
 COMMENT=	Variety of alternative parser combinator libraries
 LICENSE=	gnu-lgpl-v2.1
 
-BUILDLINK_API_DEPENDS.ghc+=	ghc<8.10
 .include "../../mk/haskell.mk"
 .include "../../mk/bsd.pkg.mk"

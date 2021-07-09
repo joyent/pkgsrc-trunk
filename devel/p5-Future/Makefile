@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.23 2020/08/31 18:08:06 wiz Exp $
+# $NetBSD: Makefile,v 1.25 2021/05/24 19:50:46 wiz Exp $
 
-DISTNAME=	Future-0.45
+DISTNAME=	Future-0.47
 PKGNAME=	p5-${DISTNAME}
 PKGREVISION=	1
 CATEGORIES=	devel perl5

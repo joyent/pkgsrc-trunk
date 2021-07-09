@@ -1,9 +1,9 @@
-# $NetBSD: options.mk,v 1.67 2020/12/16 20:32:01 otis Exp $
+# $NetBSD: options.mk,v 1.70 2021/06/01 10:53:46 adam Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.nginx
 PKG_SUPPORTED_OPTIONS=	array-var auth-request cache-purge dav debug
 PKG_SUPPORTED_OPTIONS+=	echo encrypted-session flv form-input
-PKG_SUPPORTED_OPTIONS+=	geoip gtools gzip headers-more http2
+PKG_SUPPORTED_OPTIONS+=	geoip geoip2 gtools gzip headers-more http2
 PKG_SUPPORTED_OPTIONS+=	image-filter luajit mail-proxy memcache
 PKG_SUPPORTED_OPTIONS+=	naxsi njs pcre perl push realip rtmp
 PKG_SUPPORTED_OPTIONS+=	secure-link set-misc slice ssl status
@@ -156,6 +156,16 @@ DISTFILES+=			${SETMISC_DISTFILE}
 CONFIGURE_ARGS+=		--add-module=../${SETMISC_DISTNAME}
 .endif
 
+.if !empty(PKG_OPTIONS:Mgeoip2) || make(makesum) || make(mdi) || make(distclean)
+GEOIP2_VERSION=			3.3
+GEOIP2_DISTNAME=		ngx_http_geoip2_module-${GEOIP2_VERSION}
+GEOIP2_DISTFILE=		${GEOIP2_DISTNAME}.tar.gz
+SITES.${GEOIP2_DISTFILE}=	-${MASTER_SITE_GITHUB:=leev/ngx_http_geoip2_module/archive/}${GEOIP2_VERSION}.tar.gz
+DISTFILES+=			${GEOIP2_DISTFILE}
+CONFIGURE_ARGS+=		--add-module=../${GEOIP2_DISTNAME}
+.include "../../geography/libmaxminddb/buildlink3.mk"
+.endif
+
 .if !empty(PKG_OPTIONS:Marray-var) || make(makesum) || make(mdi) || make(distclean)
 ARRAYVAR_VERSION=		0.05
 ARRAYVAR_DISTNAME=		array-var-nginx-module-${ARRAYVAR_VERSION}
@@ -201,7 +211,7 @@ CONFIGURE_ARGS+=	--without-http_uwsgi_module
 .endif
 
 .if !empty(PKG_OPTIONS:Mpush) || make(makesum) || make(mdi) || make(distclean)
-PUSH_VERSION=		1.2.7
+PUSH_VERSION=		1.2.8
 PUSH_DISTNAME=		nginx_http_push_module-${PUSH_VERSION}
 PUSH_DISTFILE=		${PUSH_DISTNAME}.tar.gz
 SITES.${PUSH_DISTFILE}=	-${MASTER_SITE_GITHUB:=slact/nchan/archive/}v${PUSH_VERSION}.tar.gz
@@ -262,7 +272,7 @@ CONFIGURE_ARGS+=	--with-stream --with-stream_ssl_preread_module
 .endif
 
 .if !empty(PKG_OPTIONS:Mrtmp) || make(makesum) || make(mdi) || make(distclean)
-RTMP_VERSION=		1.2.1
+RTMP_VERSION=		1.2.2
 RTMP_DISTNAME=		nginx-rtmp-module-${RTMP_VERSION}
 RTMP_DISTFILE=		${RTMP_DISTNAME}.tar.gz
 SITES.${RTMP_DISTFILE}=	-${MASTER_SITE_GITHUB:=arut/nginx-rtmp-module/archive/}v${RTMP_VERSION}.tar.gz

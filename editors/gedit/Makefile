@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.157 2020/12/04 20:45:15 nia Exp $
+# $NetBSD: Makefile,v 1.162 2021/06/06 13:37:13 nia Exp $
 
 DISTNAME=	gedit-3.36.2
-PKGREVISION=	4
+PKGREVISION=	6
 CATEGORIES=	editors gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gedit/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -13,7 +13,8 @@ LICENSE=	gnu-gpl-v2
 
 PREV_PKGPATH=	editors/gedit3
 
-USE_TOOLS+=			gmake gettext msgfmt perl pkg-config
+USE_TOOLS+=			gettext msgfmt perl pkg-config
+USE_TOOLS+=			itstool
 _TOOLS_USE_PKGSRC.msgfmt=	yes
 
 PYTHON_VERSIONS_INCOMPATIBLE=	27
@@ -26,7 +27,6 @@ MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output/gedit
 
 DEPENDS+=	adwaita-icon-theme-[0-9]*:../../graphics/adwaita-icon-theme
 DEPENDS+=	${PYPKGPREFIX}-gobject3-[0-9]*:../../devel/py-gobject3
-BUILD_DEPENDS+=	itstool-[0-9]*:../../textproc/itstool
 
 pre-configure:
 	${FIND} ${WRKSRC}/help -type f -exec ${CHMOD} 644 {} \;
@@ -49,7 +49,7 @@ BUILDLINK_API_DEPENDS.gtksourceview4+=	gtksourceview4>=4.0.2
 .include "../../x11/gtksourceview4/buildlink3.mk"
 .include "../../x11/libICE/buildlink3.mk"
 .include "../../x11/libSM/buildlink3.mk"
-
 .include "../../lang/python/application.mk"
 .include "../../lang/python/extension.mk"
+.include "../../lang/python/tool.mk"
 .include "../../mk/bsd.pkg.mk"

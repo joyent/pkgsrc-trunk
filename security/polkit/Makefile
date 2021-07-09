@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.31 2021/01/19 22:36:19 nia Exp $
+# $NetBSD: Makefile,v 1.36 2021/06/29 01:58:55 gutteridge Exp $
 
-DISTNAME=	polkit-0.118
+DISTNAME=	polkit-0.119
 PKGREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	http://www.freedesktop.org/software/polkit/releases/
@@ -10,8 +10,11 @@ HOMEPAGE=	https://www.freedesktop.org/wiki/Software/polkit
 COMMENT=	Authorization Manager
 LICENSE=	gnu-lgpl-v2
 
-BUILD_DEPENDS+=		libxslt-[0-9]*:../../textproc/libxslt
-BUILD_DEPENDS+=		docbook-xsl-[0-9]*:../../textproc/docbook-xsl
+TOOL_DEPENDS+=		gettext-m4-[0-9]*:../../devel/gettext-m4
+TOOL_DEPENDS+=		libxslt-[0-9]*:../../textproc/libxslt
+TOOL_DEPENDS+=		docbook-xsl-[0-9]*:../../textproc/docbook-xsl
+# autoreconf processing requires gtkdocize
+TOOL_DEPENDS+=		gtk-doc-[0-9]*:../../textproc/gtk-doc
 
 NOT_PAX_MPROTECT_SAFE=	lib/polkit-1/polkitd
 
@@ -20,7 +23,9 @@ GNU_CONFIGURE_STRICT=	no # has sub-configures
 USE_LANGUAGES=		c c++14
 USE_LIBTOOL=		yes
 USE_PKGLOCALEDIR=	yes
-USE_TOOLS+=		pkg-config intltool gmake msgfmt perl
+USE_TOOLS+=		pkg-config gmake perl
+USE_TOOLS+=		intltool msgfmt msgmerge xgettext
+USE_TOOLS+=		autoconf autoreconf automake
 
 # configure: error: *** A compiler with support for C++17 language features is required.
 GCC_REQD+=	7
@@ -32,6 +37,7 @@ CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--with-polkitd-user=${POLKITD_USER}
 CONFIGURE_ARGS+=	--disable-libsystemd-login
 CONFIGURE_ARGS+=	--disable-libelogind
+CONFIGURE_ARGS+=	--with-duktape
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -59,8 +65,6 @@ MAKE_DIRS+=		${PKG_SYSCONFDIR}/dbus-1/system.d
 SPECIAL_PERMS+=		lib/polkit-1/polkit-agent-helper-1 ${SETUID_ROOT_PERMS}
 SPECIAL_PERMS+=		bin/pkexec ${SETUID_ROOT_PERMS}
 
-CONF_FILES+=	${PREFIX}/share/examples/polkit/dbus-1/system.d/org.freedesktop.PolicyKit1.conf \
-		${PKG_SYSCONFDIR}/dbus-1/system.d/org.freedesktop.PolicyKit1.conf
 CONF_FILES+=	${PREFIX}/share/examples/polkit/polkit-1/rules.d/50-default.rules \
 		${PKG_SYSCONFDIR}/polkit-1/rules.d/50-default.rules
 
@@ -72,8 +76,10 @@ SUBST_FILES.paths+=	docs/man/pkexec.xml
 SUBST_FILES.paths+=	src/examples/org.freedesktop.policykit.examples.pkexec.policy.in
 SUBST_SED.paths+=	-e 's,/usr/bin/,${PREFIX}/bin/,g'
 
+pre-configure:
+	cd ${WRKSRC} && autoreconf -fi
 
-.include "../../lang/mozjs78/buildlink3.mk"
+.include "../../lang/libduktape/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../textproc/expat/buildlink3.mk"

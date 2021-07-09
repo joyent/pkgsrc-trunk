@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.44 2021/02/07 06:30:24 ryoon Exp $
+# $NetBSD: Makefile,v 1.46 2021/04/21 11:41:43 adam Exp $
 
 DISTNAME=	knavalbattle-${KAPPSVER}
-PKGREVISION=	6
+PKGREVISION=	1
 CATEGORIES=	games
 
 HOMEPAGE=	https://kde.org/applications/games/knavalbattle/

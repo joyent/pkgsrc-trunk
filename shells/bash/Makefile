@@ -1,7 +1,9 @@
-# $NetBSD: Makefile,v 1.96 2021/01/04 10:39:23 wiz Exp $
+# $NetBSD: Makefile,v 1.100 2021/06/16 12:30:04 jperkin Exp $
 
 BASH_VERSION=		5.1
-BASH_PATCHLEVEL=	4
+BASH_PATCHLEVEL=	8
+
+PKGREVISION=		2
 
 DISTNAME=	bash-${BASH_VERSION}
 PKGNAME=	bash-${BASH_VERSION}.${BASH_PATCHLEVEL}
@@ -10,6 +12,7 @@ MASTER_SITES=	${MASTER_SITE_GNU:=bash/}
 
 PATCH_SITES=	${MASTER_SITES:=bash-5.1-patches/}
 PATCHFILES+=	bash51-001 bash51-002 bash51-003 bash51-004
+PATCHFILES+=	bash51-005 bash51-006 bash51-007 bash51-008
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.gnu.org/software/bash/bash.html
@@ -21,7 +24,7 @@ TEXINFO_REQD=		4.1
 GNU_CONFIGURE=		yes
 MAKE_ENV+=		INSTALL_SCRIPT=${INSTALL_SCRIPT:Q}
 CONFIGURE_ARGS=		LOCAL_LDFLAGS=${EXPORT_SYMBOLS_LDFLAGS:M*:Q}
-CPPFLAGS+=		-DDEFAULT_PATH_VALUE="\"/usr/bin:/bin:${PREFIX}/bin:/usr/local/bin\""
+CPPFLAGS+=		-DDEFAULT_PATH_VALUE="\"/sbin:/usr/sbin:/usr/bin:/bin:${PREFIX}/sbin:${PREFIX}/bin:/usr/local/sbin:/usr/local/bin\""
 TEST_TARGET=		test
 
 PKGCONFIG_OVERRIDE=	support/bash.pc.in
@@ -30,20 +33,20 @@ INFO_FILES=		YES # PLIST
 PKG_SHELL=		bin/bash
 INSTALLATION_DIRS=	${PKGMANDIR}/man1
 
-# All features enabled by default.
-CONFIGURE_ARGS+=	--enable-readline
-CONFIGURE_ARGS+=	--enable-progcomp
-CONFIGURE_ARGS+=	--enable-process-substitution
-CONFIGURE_ARGS+=	--enable-history
-CONFIGURE_ARGS+=	--enable-help-builtin
-CONFIGURE_ARGS+=	--enable-extended-glob
-CONFIGURE_ARGS+=	--enable-dparen-arithmetic
-CONFIGURE_ARGS+=	--enable-directory-stack
-CONFIGURE_ARGS+=	--enable-debugger
-CONFIGURE_ARGS+=	--enable-cond-regexp
 CONFIGURE_ARGS+=	--enable-alias
-CONFIGURE_ARGS+=	--enable-brace-expansion
 CONFIGURE_ARGS+=	--enable-array-variables
+CONFIGURE_ARGS+=	--enable-brace-expansion
+CONFIGURE_ARGS+=	--enable-cond-regexp
+CONFIGURE_ARGS+=	--enable-debugger
+CONFIGURE_ARGS+=	--enable-directory-stack
+CONFIGURE_ARGS+=	--enable-dparen-arithmetic
+CONFIGURE_ARGS+=	--enable-extended-glob
+CONFIGURE_ARGS+=	--enable-function-import
+CONFIGURE_ARGS+=	--enable-help-builtin
+CONFIGURE_ARGS+=	--enable-history
+CONFIGURE_ARGS+=	--enable-process-substitution
+CONFIGURE_ARGS+=	--enable-progcomp
+CONFIGURE_ARGS+=	--enable-readline
 
 .include "../../mk/bsd.prefs.mk"
 .include "options.mk"

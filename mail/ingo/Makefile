@@ -1,11 +1,10 @@
-# $NetBSD: Makefile,v 1.27 2019/05/23 19:23:06 rillig Exp $
+# $NetBSD: Makefile,v 1.29 2021/05/14 13:49:13 nia Exp $
 
 DISTNAME=	ingo-h3-${INGOVER}
 PKGNAME=	ingo-${INGOVER}
 PKGREVISION=	2
 CATEGORIES=	mail www
-MASTER_SITES=	http://ftp.horde.org/pub/ingo/
-MASTER_SITES+=	ftp://ftp.horde.org/pub/ingo/
+#MASTER_SITES+=	ftp://ftp.horde.org/pub/ingo/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.horde.org/apps/ingo/
@@ -83,7 +82,7 @@ do-install:
 		${INSTALL_DATA_DIR} ${DESTDIR}${INGODIR}/${d:Q}
 .endfor
 .for d in ${PAXDIRS}
-		cd ${WRKSRC}/${d:Q} && pax -rwpma . ${DESTDIR}${INGODIR}/${d:Q}
+		cd ${WRKSRC}/${d:Q} && ${PAX} -rwpma . ${DESTDIR}${INGODIR}/${d:Q}
 .endfor
 	${INSTALL_DATA} ${WRKSRC}/config/*.dist ${DESTDIR}${INGODIR}/config
 	${INSTALL_DATA} ${WRKSRC}/*.php ${DESTDIR}${INGODIR}

@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.20 2020/08/31 18:12:26 wiz Exp $
+# $NetBSD: Makefile,v 1.22 2021/05/29 10:33:54 wen Exp $
 
-DISTNAME=	Time-Duration-Parse-0.15
+DISTNAME=	Time-Duration-Parse-0.16
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	2
 CATEGORIES=	devel perl5 time
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=Time/}
 
@@ -15,7 +14,6 @@ USE_LANGUAGES=	# empty
 PERL5_PACKLIST=	auto/Time/Duration/Parse/.packlist
 
 BUILD_DEPENDS+=	p5-Time-Duration-[0-9]*:../../time/p5-Time-Duration
-DEPENDS+=	p5-Exporter-Lite-[0-9]*:../../devel/p5-Exporter-Lite
 
 .include "../../lang/perl5/module.mk"
 .include "../../mk/bsd.pkg.mk"

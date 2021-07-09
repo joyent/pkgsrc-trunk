@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.88 2020/11/20 19:08:06 wiz Exp $
+# $NetBSD: Makefile,v 1.93 2021/05/20 11:49:47 wiz Exp $
 
 .include "../../print/poppler/Makefile.common"
 
@@ -8,7 +8,7 @@ COMMENT=	PDF rendering library (GLib wrapper)
 
 CONFLICTS+=	poppler<0.4.5nb1
 
-PKGCONFIG_OVERRIDE+=	${WRKSRC}/poppler-glib.pc.cmake
+PKGCONFIG_OVERRIDE+=	poppler-glib.pc.cmake
 
 .include "../../mk/bsd.prefs.mk"
 
@@ -35,7 +35,8 @@ CMAKE_ARGS+=	-DENABLE_LIBCURL=OFF
 CFLAGS.FreeBSD+=	-DLLONG_MAX=__LLONG_MAX
 
 # The result binary of g-ir-scanner cannot find libpoppler-glib.so.
-MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/glib
+# The second part is for Darwin: libpoppler-glib.dylib has @rpath before being installed.
+MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/glib:${BUILDLINK_PREFIX.poppler}/lib
 
 BUILDLINK_API_DEPENDS.poppler+=     poppler-${POPPLER_VERS}{,nb*}
 .include "../../print/poppler/buildlink3.mk"
@@ -47,12 +48,11 @@ INSTALLATION_DIRS+=	lib/pkgconfig
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/poppler-glib.pc ${DESTDIR}${PREFIX}/lib/pkgconfig
 
-.include "../../lang/python/tool.mk"
-BUILDLINK_ABI_DEPENDS.glib2+=	glib2>=2.41.0
+#.include "../../lang/python/tool.mk"
+BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.41.0
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/gobject-introspection/buildlink3.mk"
 .include "../../graphics/cairo-gobject/buildlink3.mk"
-#.include "../../textproc/gtk-doc/buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

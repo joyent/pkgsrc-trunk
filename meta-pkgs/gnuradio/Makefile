@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.22 2020/08/30 21:18:09 tnn Exp $
+# $NetBSD: Makefile,v 1.24 2021/06/27 08:14:45 tnn Exp $
 
 META_PACKAGE=	yes
 
@@ -15,6 +15,7 @@ HOMEPAGE=	https://www.gnu.org/software/gnuradio/
 COMMENT=	Collection of GNU Radio (meta package, easy to install whole thing)
 
 DEPENDS+=	gnuradio-channels-${VERSION}{,nb[0-9]*}:../../ham/gnuradio-channels
+DEPENDS+=	gnuradio-network-${VERSION}{,nb[0-9]*}:../../ham/gnuradio-network
 DEPENDS+=	gnuradio-companion-${VERSION}{,nb[0-9]*}:../../ham/gnuradio-companion
 DEPENDS+=	gnuradio-core-${VERSION}{,nb[0-9]*}:../../ham/gnuradio-core
 DEPENDS+=	gnuradio-ctrlport-${VERSION}{,nb[0-9]*}:../../ham/gnuradio-ctrlport
@@ -23,6 +24,7 @@ DEPENDS+=	gnuradio-doxygen-${VERSION}{,nb[0-9]*}:../../ham/gnuradio-doxygen
 DEPENDS+=	gnuradio-dtv-${VERSION}{,nb[0-9]*}:../../ham/gnuradio-dtv
 DEPENDS+=	gnuradio-fec-${VERSION}{,nb[0-9]*}:../../ham/gnuradio-fec
 DEPENDS+=	gnuradio-qtgui-${VERSION}{,nb[0-9]*}:../../ham/gnuradio-qtgui
+DEPENDS+=	gnuradio-soapy-sdr-${VERSION}{,nb[0-9]*}:../../ham/gnuradio-soapy-sdr
 DEPENDS+=	gnuradio-trellis-${VERSION}{,nb[0-9]*}:../../ham/gnuradio-trellis
 DEPENDS+=	gnuradio-uhd-${VERSION}{,nb[0-9]*}:../../ham/gnuradio-uhd
 DEPENDS+=	gnuradio-utils-${VERSION}{,nb[0-9]*}:../../ham/gnuradio-utils

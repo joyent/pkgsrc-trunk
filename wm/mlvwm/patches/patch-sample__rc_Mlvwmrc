@@ -1,0 +1,59 @@
+$NetBSD: patch-sample__rc_Mlvwmrc,v 1.1 2021/05/04 14:09:52 nia Exp $
+
+- Use pkgsrc icon search path.
+- Make this more friendly to NetBSD base X11.
+
+--- sample_rc/Mlvwmrc.orig	2019-08-01 17:02:29.000000000 +0000
++++ sample_rc/Mlvwmrc
+@@ -52,7 +52,7 @@ EdgeResistance 50 50
+ Compatible
+ 
+ # Set icon search path. It needs before "Style".
+-IconPath /usr/local/include/X11/pixmaps:/home2/tak/bin/pixmap
++IconPath @PREFIX@/share/mlvwm
+ IconMenuIcon label2.xpm
+ 
+ # Balloon help Settings
+@@ -80,9 +80,9 @@ END
+ Menu Apple, Icon label1.xpm, Stick
+ "About this Workstation..." NonSelect, Gray, Action About
+ "" NonSelect
+-"Terminal"	Icon mini-display.xpm, Action Exec "kterm" exec kterm -ls
+-"Editor"  Action Exec "mule" exec mule, Icon mini-edit.xpm
+-"calculator" Action Exec "xcal" exec xcalc, Icon mini-calc.xpm
++"Terminal"	Action Exec "kterm" exec xterm
++"Editor"  Action Exec "mule" exec xedit
++"calculator" Action Exec "xcal" exec xcalc
+ END
+ 
+ Menu def-File, Label "File", Left
+@@ -190,15 +190,15 @@ END
+ 
+ # Define the default window decoration
+ Style
+-"*" MiniIcon mini-cross.xpm, MaxmizeScale 90, MenuBar default
++"*" MaxmizeScale 90, MenuBar default
+ END
+ 
+ Style
+-"Emacs" MiniIcon mini-edit.xpm
+-"xv" MiniIcon mini-xv.xpm, EnableScroll
+-"XCalc" MiniIcon mini-calc.xpm
+-"Xarchie" MiniIcon mini.xarchie.xpm
+-"Xmag" MiniIcon mini.xmag.xpm
++"Emacs"
++"xv" EnableScroll
++"XCalc"
++"Xarchie"
++"Xmag"
+ "XMeter" NoSBarH, NoSBarV, NoResizeR, NoMinMaxR, NoTitle, NoCloseR
+ "XMeter" NoWinList, Sticky, SkipSelect
+ "*biff" NoSBarH, NoSBarV, NoResizeR, NoMinMaxR, NoWinList, NoCloseR
+@@ -208,5 +208,5 @@ Style
+ END
+ 
+ # Read other configuration
+-Read Mlvwmrc-Xterm
+-Read Mlvwmrc-Netscape
++#Read Mlvwmrc-Xterm
++#Read Mlvwmrc-Netscape

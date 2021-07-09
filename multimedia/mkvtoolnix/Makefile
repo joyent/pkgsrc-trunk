@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.170 2021/03/12 08:48:49 nia Exp $
+# $NetBSD: Makefile,v 1.177 2021/06/13 18:47:47 adam Exp $
 
-DISTNAME=	mkvtoolnix-55.0.0
+DISTNAME=	mkvtoolnix-58.0.0
 CATEGORIES=	multimedia
 MASTER_SITES=	https://mkvtoolnix.download/sources/
 EXTRACT_SUFX=	.tar.xz
@@ -13,7 +13,6 @@ LICENSE=	gnu-gpl-v2
 BUILD_DEPENDS+=	docbook-xsl>=1.79.1nb5:../../textproc/docbook-xsl
 BUILD_DEPENDS+=	po4a-[0-9]*:../../textproc/po4a
 BUILD_DEPENDS+=	${RUBY_BASE}>=${RUBY_VERSION}:${RUBY_SRCDIR}
-
 
 # 'The following features of the C++17 standards are not supported by c++:
 #  * file system library (C++17)
@@ -29,9 +28,6 @@ CONFIGURE_ARGS+=	--disable-optimization
 CONFIGURE_ARGS+=	--disable-precompiled-headers
 CONFIGURE_ARGS+=	--disable-update-check
 CONFIGURE_ARGS+=	--with-boost-libdir=${BUILDLINK_PREFIX.boost-libs}/lib
-CONFIGURE_ARGS+=	--with-boost-date-time=boost_date_time
-CONFIGURE_ARGS+=	--with-boost-filesystem=boost_filesystem
-CONFIGURE_ARGS+=	--with-boost-system=boost_system
 CONFIGURE_ARGS+=	--with-docbook-xsl-root=${PREFIX}/share/xsl/docbook
 
 REPLACE_LOCALEDIR_PATTERNS=	build-config.in

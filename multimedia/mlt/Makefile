@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.111 2020/11/05 09:08:48 ryoon Exp $
+# $NetBSD: Makefile,v 1.113 2021/04/21 11:42:21 adam Exp $
 
-DISTNAME=	mlt-6.20.0
-PKGREVISION=	4
+DISTNAME=	mlt-6.26.1
+PKGREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_GITHUB:=mltframework/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -12,7 +12,7 @@ COMMENT=	Open source multimedia framework
 LICENSE=	gnu-gpl-v2
 
 USE_TOOLS+=	pkg-config gmake
-USE_LANGUAGES=	c c++11
+USE_LANGUAGES=	c c++
 GNU_CONFIGURE=	YES
 
 CONFIGURE_ARGS+=	--enable-gpl
@@ -29,6 +29,8 @@ SUBST_SED.frei0r=	-e 's^/usr/lib/frei0r-1.*:^${BUILDLINK_PREFIX.frei0r}/lib/frei
 PKGCONFIG_OVERRIDE+=	mlt++.pc.in
 PKGCONFIG_OVERRIDE+=	mlt-framework.pc.in
 
+.include "../../audio/jack/buildlink3.mk"
+.include "../../audio/ladspa/buildlink3.mk"
 .include "../../audio/libebur128/buildlink3.mk"
 .include "../../audio/libsamplerate/buildlink3.mk"
 .include "../../audio/sox/buildlink3.mk"
@@ -37,6 +39,8 @@ PKGCONFIG_OVERRIDE+=	mlt-framework.pc.in
 .  include "../../devel/libatomic/buildlink3.mk"
 .endif
 .include "../../devel/SDL2/buildlink3.mk"
+.include "../../devel/pango/buildlink3.mk"
+.include "../../graphics/gdk-pixbuf2/buildlink3.mk"
 .include "../../graphics/libexif/buildlink3.mk"
 .include "../../multimedia/ffmpeg4/buildlink3.mk"
 .include "../../multimedia/frei0r/buildlink3.mk"

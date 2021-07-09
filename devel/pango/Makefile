@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.237 2021/01/11 09:43:21 prlw1 Exp $
+# $NetBSD: Makefile,v 1.241 2021/04/12 12:16:23 nia Exp $
 
-DISTNAME=	pango-1.48.0
+DISTNAME=	pango-1.48.4
 CATEGORIES=	devel fonts
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/pango/${PKGVERSION_NOREV:R}/}
 EXTRACT_SUFX=	.tar.xz
@@ -13,7 +13,7 @@ LICENSE=	gnu-lgpl-v2
 TOOL_DEPENDS+=		help2man-[0-9]*:../../converters/help2man
 
 USE_LANGUAGES=		c c++
-USE_TOOLS+=		gmake pkg-config
+USE_TOOLS+=		pkg-config
 INSTALLATION_DIRS=	${PKGMANDIR}/man1
 
 SUBST_CLASSES+=		wrksrc
@@ -36,6 +36,8 @@ MAKE_ENV+=			LD_LIBRARY_PATH=${WRKSRC}/output/${PKGBASE}
 
 CHECK_FILES_SKIP+=		${PREFIX}/libdata/pango/pango.modules
 CHECK_PORTABILITY_SKIP+=	docs/check.docs
+
+PYTHON_FOR_BUILD_ONLY=	tool
 
 BUILDLINK_TRANSFORM+=	rm:-Werror=implicit-fallthrough # clang10svn
 

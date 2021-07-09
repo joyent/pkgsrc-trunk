@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.1 2021/03/03 12:16:54 pin Exp $
+# $NetBSD: Makefile,v 1.5 2021/05/30 16:54:04 pin Exp $
 
-DISTNAME=	rates-0.2.0
+DISTNAME=	rates-0.5.0
 CATEGORIES=	finance
 MASTER_SITES=	${MASTER_SITE_GITHUB:=lunush/}
 
@@ -15,13 +15,8 @@ USE_LANGUAGES+=	c
 
 INSTALLATION_DIRS=	bin
 
-MAKE_ENV+=	OPENSSL_DIR=${BUILDLINK_PREFIX.openssl:Q}
-RUSTFLAGS+=	-C link-arg=${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.openssl}/lib
-MAKE_ENV+=	RUSTFLAGS=${RUSTFLAGS:Q}
-
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/target/release/rates ${DESTDIR}${PREFIX}/bin
 
 .include "../../lang/rust/cargo.mk"
-.include "../../security/openssl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

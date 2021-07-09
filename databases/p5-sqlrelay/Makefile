@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.32 2021/02/16 13:12:38 adam Exp $
+# $NetBSD: Makefile,v 1.35 2021/06/19 15:51:49 mef Exp $
 
 PKGNAME=	p5-${DISTNAME}
+PKGREVISION=	2
 COMMENT=	Perl module for SQL Relay
 
 .include "../../databases/sqlrelay/Makefile.common"
@@ -14,7 +15,7 @@ CONFIGURE_ARGS+=	--with-perl-prefix=${BUILDLINK_PREFIX.perl}
 CONFIGURE_ARGS+=	--with-perl-site-arch=${PERL5_INSTALLVENDORARCH}
 CONFIGURE_ARGS+=	--with-perl-site-lib=${PERL5_INSTALLVENDORLIB}
 
-LIBS+=		-lperl
+LIBS+=		-lperl -L${PREFIX}/${PERL5_SUB_INSTALLARCHLIB}/CORE
 
 BUILD_DIRS=		src/api/perl
 

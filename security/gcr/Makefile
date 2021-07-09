@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.14 2020/11/20 11:35:35 nia Exp $
+# $NetBSD: Makefile,v 1.18 2021/05/24 19:53:52 wiz Exp $
 
 DISTNAME=		gcr-3.38.0
+PKGREVISION=		2
 CATEGORIES=		security
 MASTER_SITES=		${MASTER_SITE_GNOME:=sources/gcr/3.38/}
 EXTRACT_SUFX=		.tar.xz
@@ -10,13 +11,13 @@ HOMEPAGE=		https://www.gnome.org/
 COMMENT=		Library for crypto UI and related tasks
 LICENSE=		gnu-gpl-v2
 
-BUILD_DEPENDS+=		gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
 BUILD_DEPENDS+=		gettext-m4-[0-9]*:../../devel/gettext-m4
 
 GNU_CONFIGURE=		yes
 USE_LIBTOOL=		yes
 USE_TOOLS+=		gmake intltool msgfmt perl pkg-config
 USE_TOOLS+=		aclocal autoconf automake autopoint
+USE_TOOLS+=		gdbus-codegen readlink
 
 CONFIGURE_ARGS+=	--enable-vala
 CONFIGURE_ARGS+=	--enable-gtk-doc

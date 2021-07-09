@@ -1,11 +1,10 @@
-# $NetBSD: Makefile.common,v 1.56 2021/01/03 15:06:00 adam Exp $
+# $NetBSD: Makefile.common,v 1.60 2021/06/05 17:30:01 thor Exp $
 #
+# used by audio/mpg123-jack/Makefile
 # used by audio/mpg123-nas/Makefile
-# used by audio/mpg123-oss/Makefile
 # used by audio/mpg123-pulse/Makefile
-# used by audio/mpg123-sun/Makefile
 
-DISTNAME=	mpg123-1.26.4
+DISTNAME=	mpg123-1.28.0
 PKGNAME?=	${DISTNAME:C/[[:alnum:]]*/&-${MPG123_MODULE}/}
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=mpg123/}
@@ -20,10 +19,14 @@ USE_LANGUAGES=		c99
 USE_LIBTOOL?=		yes
 USE_TOOLS+=		pkg-config gmake
 GNU_CONFIGURE?=		yes
-CONFIGURE_ARGS+=	--enable-modules=yes
-CONFIGURE_ARGS+=	--with-optimization=0	# our CFLAGS are good enough
-CONFIGURE_ENV+=		BUILD_${MPG123_MODULE:tu}=yes
-CONFIGURE_ENV+=		MPG123_MODULE=${MPG123_MODULE:Q}
+CONFIGURE_ARGS+=	--enable-modules=yes --with-audio=${MPG123_MODULE}
+
+# Be prepared for installing things like mpg123-pulse, mpg123-jack,
+# to have the modules picked up automatically. On a system with pulse,
+# you do not want to go through alsa by default.
+.if !empty(MPG123_TRY_MODULES)
+CONFIGURE_ARGS+=	--with-default-audio=${MPG123_TRY_MODULES}
+.endif
 
 DISTINFO_FILE=		${.CURDIR}/../../audio/mpg123/distinfo
 
@@ -34,11 +37,16 @@ INSTALLATION_DIRS+=	lib/mpg123
 LIBS+=			-lmpg123
 BUILD_TARGET=		src/libout123/modules/output_${MPG123_MODULE}.la
 PATCHDIR=		${.CURDIR}/../../audio/mpg123/patches
+.include "../../mk/bsd.prefs.mk"
+.  if ${OPSYS} == "Darwin"
+SOEXT=  dylib
+.  else
+SOEXT=  so
+.  endif
 do-install:
-	${LIBTOOL} --mode=install ${INSTALL_LIB} \
-		${WRKSRC}/src/libout123/modules/output_${MPG123_MODULE}.la \
-		${DESTDIR}${PREFIX}/lib/mpg123
+	mkdir -p ${DESTDIR}${PREFIX}/lib/mpg123
+	install ${WRKSRC}/src/libout123/modules/.libs/output_${MPG123_MODULE}.${SOEXT} \
+	  ${DESTDIR}${PREFIX}/lib/mpg123
 .endif
 
-#.include "../../devel/libltdl/buildlink3.mk"
 .include "../../mk/dlopen.buildlink3.mk"

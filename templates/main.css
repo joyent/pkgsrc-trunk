@@ -1,13 +1,21 @@
-/* $NetBSD: main.css,v 1.7 2021/03/11 15:07:33 nia Exp $ */
+/* $NetBSD: main.css,v 1.13 2021/04/21 10:17:16 nia Exp $ */
 
 body {
 	font-family: sans-serif;
 	background-color: #fff;
 	color: #000;
+	max-width: 1100px;
+	margin: auto;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 body, pre, code, samp {
 	font-size: 16px;
+}
+
+pre {
+	overflow-x: auto;
 }
 
 h1 {
@@ -48,12 +56,16 @@ th {
 hr {
 	border: 0;
 	border-bottom: 1px solid #aaa;
+	clear: both;
 }
 
 #logo {
+	width: 150px;
 	float: right;
 	border: 0;
+	margin-bottom: 1em;
 }
+
 
 .package-data {
 	list-style-type: none;
@@ -64,6 +76,23 @@ hr {
 	border-bottom: 1px solid #aaa;
 }
 
+.search-box label {
+	display: none;
+}
+
+.search-box input {
+	color: #000;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	padding: 3px;
+}
+
+.search-box input[type="Submit"] {
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
 nav {
 	margin-bottom: 1em;
 }
@@ -71,3 +100,17 @@ nav {
 th {
 	padding-right: 90px;
 }
+
+@media (max-width: 800px) {
+	#logo {
+		float: none;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	th {
+		padding-right: 0;
+	}
+}
+

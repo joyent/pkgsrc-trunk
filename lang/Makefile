@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.596 2021/03/07 13:49:19 taca Exp $
+# $NetBSD: Makefile,v 1.602 2021/06/12 14:29:24 bsiegert Exp $
 #
 
 COMMENT=	Programming languages
@@ -74,13 +74,7 @@ SUBDIR+=	gcc3-f77
 SUBDIR+=	gcc3-objc
 SUBDIR+=	gcc34
 SUBDIR+=	gcc44
-SUBDIR+=	gcc48
-SUBDIR+=	gcc48-libs
-SUBDIR+=	gcc49
-SUBDIR+=	gcc49-libs
-SUBDIR+=	gcc5
 SUBDIR+=	gcc5-aux
-SUBDIR+=	gcc5-libs
 SUBDIR+=	gcc6
 SUBDIR+=	gcc6-aux
 SUBDIR+=	gcc6-libs
@@ -104,9 +98,7 @@ SUBDIR+=	gnat_util
 SUBDIR+=	gnucobol
 SUBDIR+=	go
 SUBDIR+=	go-bin
-SUBDIR+=	go-hcl
 SUBDIR+=	go110
-SUBDIR+=	go114
 SUBDIR+=	go115
 SUBDIR+=	go116
 SUBDIR+=	go14
@@ -193,6 +185,7 @@ SUBDIR+=	oracle-jre8
 SUBDIR+=	ossp-js
 SUBDIR+=	owl-lisp
 SUBDIR+=	p2c
+SUBDIR+=	p5-Perl-LanguageServer
 SUBDIR+=	p5-Switch
 SUBDIR+=	parrot
 SUBDIR+=	pc-lisp
@@ -257,8 +250,6 @@ SUBDIR+=	ruby-cucumber-gherkin
 SUBDIR+=	ruby-doc-stdlib
 SUBDIR+=	ruby-execjs
 SUBDIR+=	ruby-rkelly-remix
-SUBDIR+=	ruby25
-SUBDIR+=	ruby25-base
 SUBDIR+=	ruby26
 SUBDIR+=	ruby26-base
 SUBDIR+=	ruby27

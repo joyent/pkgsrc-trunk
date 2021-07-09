@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.6 2020/10/15 13:49:22 adam Exp $
+# $NetBSD: Makefile,v 1.8 2021/06/29 08:34:18 nia Exp $
 
-DISTNAME=	nbformat-5.0.8
+DISTNAME=	nbformat-5.1.3
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	www python
 MASTER_SITES=	${MASTER_SITE_PYPI:=n/nbformat/}
@@ -20,10 +20,10 @@ TEST_DEPENDS+=	${PYPKGPREFIX}-testpath-[0-9]*:../../devel/py-testpath
 
 USE_LANGUAGES=	# none
 
-PYTHON_VERSIONS_INCOMPATIBLE=	27
+PYTHON_VERSIONS_INCOMPATIBLE=	27 36
 
 do-test:
-	cd ${WRKSRC} && pytest-${PYVERSSUFFIX}
+	cd ${WRKSRC} && ${SETENV} ${TEST_ENV} pytest-${PYVERSSUFFIX}
 
 .include "../../lang/python/distutils.mk"
 .include "../../mk/bsd.pkg.mk"

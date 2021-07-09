@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.5 2020/01/26 17:32:01 rillig Exp $
+# $NetBSD: Makefile,v 1.8 2021/04/29 23:43:27 joerg Exp $
 
 DISTNAME=	WeasyPrint-0.42.3
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:tl}
@@ -14,11 +14,11 @@ DEPENDS+=	pango-[0-9]*:../../devel/pango
 DEPENDS+=	${PYPKGPREFIX}-cairosvg>=1.0.20<2:../../converters/py27-cairosvg
 DEPENDS+=	${PYPKGPREFIX}-cairocffi>=0.5:../../graphics/py-cairocffi
 DEPENDS+=	${PYPKGPREFIX}-cffi>=0.6:../../devel/py-cffi
-DEPENDS+=	${PYPKGPREFIX}-cssselect2>=0.1:../../textproc/py-cssselect2
+DEPENDS+=	${PYPKGPREFIX}-cssselect2>=0.1:../../textproc/py27-cssselect2
 DEPENDS+=	${PYPKGPREFIX}-html5lib>=0.999999999:../../textproc/py-html5lib
 DEPENDS+=	${PYPKGPREFIX}-pdfrw>=0.4:../../textproc/py-pdfrw
-DEPENDS+=	${PYPKGPREFIX}-pyphen>=0.8:../../textproc/py-pyphen
-DEPENDS+=	${PYPKGPREFIX}-tinycss2>=0.5:../../textproc/py-tinycss2
+DEPENDS+=	${PYPKGPREFIX}-pyphen>=0.8:../../textproc/py27-pyphen
+DEPENDS+=	${PYPKGPREFIX}-tinycss2>=0.5:../../textproc/py27-tinycss2
 TEST_DEPENDS+=	${PYPKGPREFIX}-test-cov-[0-9]*:../../devel/py-test-cov
 TEST_DEPENDS+=	${PYPKGPREFIX}-test-flake8-[0-9]*:../../devel/py-test-flake8
 TEST_DEPENDS+=	${PYPKGPREFIX}-test-isort-[0-9]*:../../devel/py-test-isort

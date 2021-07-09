@@ -1,0 +1,2 @@
+@comment $NetBSD: PLIST,v 1.2 2021/04/23 15:40:30 pho Exp $
+bin/pointfree

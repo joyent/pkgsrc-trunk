@@ -85,11 +85,12 @@
 <dd><dl>
 <dt><span class="sect2"><a href="#finding-binary-packages">5.1.1. Finding binary packages</a></span></dt>
 <dt><span class="sect2"><a href="#installing-binary-packages">5.1.2. Installing binary packages</a></span></dt>
-<dt><span class="sect2"><a href="#using.pkg_delete">5.1.3. Deinstalling packages</a></span></dt>
-<dt><span class="sect2"><a href="#using.pkg_info">5.1.4. Getting information about installed packages</a></span></dt>
-<dt><span class="sect2"><a href="#vulnerabilities">5.1.5. Checking for security vulnerabilities in installed packages</a></span></dt>
-<dt><span class="sect2"><a href="#pkg_versions">5.1.6. Finding if newer versions of your installed packages are in pkgsrc</a></span></dt>
-<dt><span class="sect2"><a href="#using.pkg_admin">5.1.7. Other administrative functions</a></span></dt>
+<dt><span class="sect2"><a href="#using.pkgin_update">5.1.3. Updating packages</a></span></dt>
+<dt><span class="sect2"><a href="#using.pkg_delete">5.1.4. Deinstalling packages</a></span></dt>
+<dt><span class="sect2"><a href="#using.pkg_info">5.1.5. Getting information about installed packages</a></span></dt>
+<dt><span class="sect2"><a href="#vulnerabilities">5.1.6. Checking for security vulnerabilities in installed packages</a></span></dt>
+<dt><span class="sect2"><a href="#pkg_versions">5.1.7. Finding if newer versions of your installed packages are in pkgsrc</a></span></dt>
+<dt><span class="sect2"><a href="#using.pkg_admin">5.1.8. Other administrative functions</a></span></dt>
 </dl></dd>
 <dt><span class="sect1"><a href="#building-packages-from-source">5.2. Building packages from source</a></span></dt>
 <dd><dl>
@@ -338,7 +339,7 @@ builds)</a></span></dt>
 <dd><dl>
 <dt><span class="sect2"><a href="#basic-programming-languages">21.4.1. C, C++, and Fortran</a></span></dt>
 <dt><span class="sect2"><a href="#java-programming-language">21.4.2. Java</a></span></dt>
-<dt><span class="sect2"><a href="#perl-scripts">21.4.3. Packages containing perl scripts</a></span></dt>
+<dt><span class="sect2"><a href="#perl-scripts">21.4.3. Packages containing Perl scripts</a></span></dt>
 <dt><span class="sect2"><a href="#shell-scripts">21.4.4. Packages containing shell scripts</a></span></dt>
 <dt><span class="sect2"><a href="#other-programming-languages">21.4.5. Other programming languages</a></span></dt>
 </dl></dd>
@@ -357,22 +358,19 @@ builds)</a></span></dt>
 <dt><span class="sect2"><a href="#installing-score-files">21.6.3. Installing highscore files</a></span></dt>
 <dt><span class="sect2"><a href="#destdir-support">21.6.4. Adding DESTDIR support to packages</a></span></dt>
 <dt><span class="sect2"><a href="#hardcoded-paths">21.6.5. Packages with hardcoded paths to other interpreters</a></span></dt>
-<dt><span class="sect2"><a href="#perl-modules">21.6.6. Packages installing perl modules</a></span></dt>
+<dt><span class="sect2"><a href="#perl-modules">21.6.6. Packages installing Perl modules</a></span></dt>
 <dt><span class="sect2"><a href="#faq.info-files">21.6.7. Packages installing info files</a></span></dt>
 <dt><span class="sect2"><a href="#manpages">21.6.8. Packages installing man pages</a></span></dt>
-<dt><span class="sect2"><a href="#gconf-data-files">21.6.9. Packages installing GConf data files</a></span></dt>
-<dt><span class="sect2"><a href="#scrollkeeper-data-files">21.6.10. Packages installing scrollkeeper/rarian data files</a></span></dt>
-<dt><span class="sect2"><a href="#x11-fonts">21.6.11. Packages installing X11 fonts</a></span></dt>
-<dt><span class="sect2"><a href="#gtk2-modules">21.6.12. Packages installing GTK2 modules</a></span></dt>
-<dt><span class="sect2"><a href="#sgml-xml-data">21.6.13. Packages installing SGML or XML data</a></span></dt>
-<dt><span class="sect2"><a href="#mime-database">21.6.14. Packages installing extensions to the MIME database</a></span></dt>
-<dt><span class="sect2"><a href="#intltool">21.6.15. Packages using intltool</a></span></dt>
-<dt><span class="sect2"><a href="#startup-scripts">21.6.16. Packages installing startup scripts</a></span></dt>
-<dt><span class="sect2"><a href="#tex-packages">21.6.17. Packages installing TeX modules</a></span></dt>
-<dt><span class="sect2"><a href="#emulation-packages">21.6.18. Packages supporting running binaries in
+<dt><span class="sect2"><a href="#x11-fonts">21.6.9. Packages installing X11 fonts</a></span></dt>
+<dt><span class="sect2"><a href="#sgml-xml-data">21.6.10. Packages installing SGML or XML data</a></span></dt>
+<dt><span class="sect2"><a href="#mime-database">21.6.11. Packages installing extensions to the MIME database</a></span></dt>
+<dt><span class="sect2"><a href="#intltool">21.6.12. Packages using intltool</a></span></dt>
+<dt><span class="sect2"><a href="#startup-scripts">21.6.13. Packages installing startup scripts</a></span></dt>
+<dt><span class="sect2"><a href="#tex-packages">21.6.14. Packages installing TeX modules</a></span></dt>
+<dt><span class="sect2"><a href="#emulation-packages">21.6.15. Packages supporting running binaries in
     emulation</a></span></dt>
-<dt><span class="sect2"><a href="#hicolor-theme">21.6.19. Packages installing hicolor theme icons</a></span></dt>
-<dt><span class="sect2"><a href="#desktop-files">21.6.20. Packages installing desktop files</a></span></dt>
+<dt><span class="sect2"><a href="#hicolor-theme">21.6.16. Packages installing hicolor icons</a></span></dt>
+<dt><span class="sect2"><a href="#desktop-files">21.6.17. Packages installing desktop files</a></span></dt>
 </dl></dd>
 <dt><span class="sect1"><a href="#punting">21.7. Marking packages as having problems</a></span></dt>
 </dl></dd>
@@ -842,11 +840,12 @@ minutes!</p>
 <dd><dl>
 <dt><span class="sect2"><a href="#finding-binary-packages">5.1.1. Finding binary packages</a></span></dt>
 <dt><span class="sect2"><a href="#installing-binary-packages">5.1.2. Installing binary packages</a></span></dt>
-<dt><span class="sect2"><a href="#using.pkg_delete">5.1.3. Deinstalling packages</a></span></dt>
-<dt><span class="sect2"><a href="#using.pkg_info">5.1.4. Getting information about installed packages</a></span></dt>
-<dt><span class="sect2"><a href="#vulnerabilities">5.1.5. Checking for security vulnerabilities in installed packages</a></span></dt>
-<dt><span class="sect2"><a href="#pkg_versions">5.1.6. Finding if newer versions of your installed packages are in pkgsrc</a></span></dt>
-<dt><span class="sect2"><a href="#using.pkg_admin">5.1.7. Other administrative functions</a></span></dt>
+<dt><span class="sect2"><a href="#using.pkgin_update">5.1.3. Updating packages</a></span></dt>
+<dt><span class="sect2"><a href="#using.pkg_delete">5.1.4. Deinstalling packages</a></span></dt>
+<dt><span class="sect2"><a href="#using.pkg_info">5.1.5. Getting information about installed packages</a></span></dt>
+<dt><span class="sect2"><a href="#vulnerabilities">5.1.6. Checking for security vulnerabilities in installed packages</a></span></dt>
+<dt><span class="sect2"><a href="#pkg_versions">5.1.7. Finding if newer versions of your installed packages are in pkgsrc</a></span></dt>
+<dt><span class="sect2"><a href="#using.pkg_admin">5.1.8. Other administrative functions</a></span></dt>
 </dl></dd>
 <dt><span class="sect1"><a href="#building-packages-from-source">5.2. Building packages from source</a></span></dt>
 <dd><dl>
@@ -1003,7 +1002,7 @@ and dashes.</p>
 	quarterly basis from the current branch and only gets modified
 	for security updates. The names of the stable branches are built
 	from the year and the quarter, for example
-	<code class="literal">2020Q4</code>.</p>
+	<code class="literal">2021Q1</code>.</p>
 <p>The second step is to decide <span class="emphasis"><em>how</em></span> you
 	want to download pkgsrc. You can get it as a tar file or via CVS.
 	Both ways are described here.</p>
@@ -1029,11 +1028,11 @@ and dashes.</p>
 	respectively.
 	</p>
 <p>You can fetch the same files using FTP.</p>
-<p>The tar file for the stable branch 2020Q4 is in the
-	directory <code class="filename">pkgsrc-2020Q4</code> and is also called <a class="ulink" href="https://cdn.NetBSD.org/pub/pkgsrc/pkgsrc-2020Q4/pkgsrc.tar.gz" target="_top"><code class="filename">pkgsrc.tar.gz</code></a>.</p>
+<p>The tar file for the stable branch 2021Q1 is in the
+	directory <code class="filename">pkgsrc-2021Q1</code> and is also called <a class="ulink" href="https://cdn.NetBSD.org/pub/pkgsrc/pkgsrc-2021Q1/pkgsrc.tar.gz" target="_top"><code class="filename">pkgsrc.tar.gz</code></a>.</p>
 <p>To download the latest pkgsrc stable tarball, run:</p>
 <pre class="screen">
-<code class="prompt">$</code> <strong class="userinput"><code>ftp ftp://ftp.NetBSD.org/pub/pkgsrc/pkgsrc-2020Q4/pkgsrc.tar.gz</code></strong></pre>
+<code class="prompt">$</code> <strong class="userinput"><code>ftp ftp://ftp.NetBSD.org/pub/pkgsrc/pkgsrc-2021Q1/pkgsrc.tar.gz</code></strong></pre>
 <p>If you prefer, you can also fetch it using "wget", "curl",
 	or your web browser.</p>
 <p>Then, extract it with:</p>
@@ -1048,7 +1047,7 @@ and dashes.</p>
 <div class="titlepage"><div><div><h3 class="title">
 <a name="getting-via-cvs"></a>3.1.2. Via anonymous CVS</h3></div></div></div>
 <p>To fetch a specific pkgsrc stable branch, run:</p>
-<pre class="screen"><code class="prompt">$</code> <strong class="userinput"><code>cd /usr &amp;&amp; cvs -q -z2 -d anoncvs@anoncvs.NetBSD.org:/cvsroot checkout -r pkgsrc-2020Q4 -P pkgsrc</code></strong>
+<pre class="screen"><code class="prompt">$</code> <strong class="userinput"><code>cd /usr &amp;&amp; cvs -q -z2 -d anoncvs@anoncvs.NetBSD.org:/cvsroot checkout -r pkgsrc-2021Q1 -P pkgsrc</code></strong>
 </pre>
 <p>This will create the directory <code class="filename">pkgsrc/</code> 
 	in your <code class="filename">/usr/</code> directory and all the package source 
@@ -1133,7 +1132,7 @@ release -d
 	by adding the option <span class="quote">&#8220;<span class="quote">-A</span>&#8221;</span> after the
 	<span class="quote">&#8220;<span class="quote">update</span>&#8221;</span> keyword. To switch from the current branch
 	back to the stable branch, add the
-	<span class="quote">&#8220;<span class="quote">-rpkgsrc-2020Q4</span>&#8221;</span> option.</p>
+	<span class="quote">&#8220;<span class="quote">-rpkgsrc-2021Q1</span>&#8221;</span> option.</p>
 </div>
 <div class="sect3">
 <div class="titlepage"><div><div><h4 class="title">
@@ -1222,11 +1221,12 @@ release -d
 <dd><dl>
 <dt><span class="sect2"><a href="#finding-binary-packages">5.1.1. Finding binary packages</a></span></dt>
 <dt><span class="sect2"><a href="#installing-binary-packages">5.1.2. Installing binary packages</a></span></dt>
-<dt><span class="sect2"><a href="#using.pkg_delete">5.1.3. Deinstalling packages</a></span></dt>
-<dt><span class="sect2"><a href="#using.pkg_info">5.1.4. Getting information about installed packages</a></span></dt>
-<dt><span class="sect2"><a href="#vulnerabilities">5.1.5. Checking for security vulnerabilities in installed packages</a></span></dt>
-<dt><span class="sect2"><a href="#pkg_versions">5.1.6. Finding if newer versions of your installed packages are in pkgsrc</a></span></dt>
-<dt><span class="sect2"><a href="#using.pkg_admin">5.1.7. Other administrative functions</a></span></dt>
+<dt><span class="sect2"><a href="#using.pkgin_update">5.1.3. Updating packages</a></span></dt>
+<dt><span class="sect2"><a href="#using.pkg_delete">5.1.4. Deinstalling packages</a></span></dt>
+<dt><span class="sect2"><a href="#using.pkg_info">5.1.5. Getting information about installed packages</a></span></dt>
+<dt><span class="sect2"><a href="#vulnerabilities">5.1.6. Checking for security vulnerabilities in installed packages</a></span></dt>
+<dt><span class="sect2"><a href="#pkg_versions">5.1.7. Finding if newer versions of your installed packages are in pkgsrc</a></span></dt>
+<dt><span class="sect2"><a href="#using.pkg_admin">5.1.8. Other administrative functions</a></span></dt>
 </dl></dd>
 <dt><span class="sect1"><a href="#building-packages-from-source">5.2. Building packages from source</a></span></dt>
 <dd><dl>
@@ -1245,7 +1245,7 @@ and you can still use binary packages from someone else.</p>
 <div class="sect1">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
 <a name="using-pkg"></a>5.1. Using binary packages</h2></div></div></div>
-<p>On the <a class="ulink" href="http://cdn.NetBSD.org/" target="_top">cdn.NetBSD.org</a>
+<p>On the <a class="ulink" href="https://cdn.NetBSD.org/" target="_top">cdn.NetBSD.org</a>
   site and mirrors, there are collections of binary packages,
   ready to be installed. These binary packages have been built using the
   default settings for the directories, that is:</p>
@@ -1262,8 +1262,7 @@ and you can still use binary packages from someone else.</p>
 <a name="finding-binary-packages"></a>5.1.1. Finding binary packages</h3></div></div></div>
 <p>To install binary packages, you first need to know from where
     to get them. The first place where you should look is on the main
-    
-    pkgsrc FTP server in the directory <a class="ulink" href="http://cdn.NetBSD.org/pub/pkgsrc/packages/" target="_top"><code class="filename">/pub/pkgsrc/packages</code></a>.</p>
+    pkgsrc CDN in the directory <a class="ulink" href="https://cdn.NetBSD.org/pub/pkgsrc/packages/" target="_top"><code class="filename">/pub/pkgsrc/packages</code></a>.</p>
 <p>This directory contains binary packages for multiple
     platforms. First, select your operating system. (Ignore the
     directories with version numbers attached to it, they just exist for
@@ -1283,17 +1282,16 @@ and you can still use binary packages from someone else.</p>
 <p>In the directory from the last section, there is a
     subdirectory called <code class="filename">All/</code>, which contains all the
     binary packages that are available for the platform, excluding those
-    that may not be distributed via FTP or CDROM (depending on which
-    medium you are using).</p>
+    that may not be distributed via HTTP or FTP.</p>
 <p>To install packages directly from an FTP or HTTP server, run
     the following commands in a Bourne-compatible shell (be sure to
     <span class="command"><strong>su</strong></span> to root first):</p>
 <pre class="screen">
-<code class="prompt">#</code> <strong class="userinput"><code>PATH="/usr/pkg/sbin:$PATH"</code></strong>
-
-<code class="prompt">#</code> <strong class="userinput"><code>PKG_PATH="http://cdn.NetBSD.org/pub/pkgsrc/packages"</code></strong>
+<code class="prompt">#</code> <strong class="userinput"><code>PATH="/usr/pkg/sbin:/usr/pkg/bin:$PATH"</code></strong>
+<code class="prompt">#</code> <strong class="userinput"><code>PKG_PATH="https://cdn.NetBSD.org/pub/pkgsrc/packages"</code></strong>
 <code class="prompt">#</code> <strong class="userinput"><code>PKG_PATH="$PKG_PATH/<em class="replaceable"><code>OPSYS</code></em>/<em class="replaceable"><code>ARCH</code></em>/<em class="replaceable"><code>VERSIONS</code></em>/All/"</code></strong>
 <code class="prompt">#</code> <strong class="userinput"><code>export PATH PKG_PATH</code></strong>
+<code class="prompt">#</code> <strong class="userinput"><code>pkg_add pkgin</code></strong>
 </pre>
 <p>Instead of URLs, you can also use local paths, for example if
     you are installing from a set of CDROMs, DVDs or an NFS-mounted
@@ -1303,16 +1301,16 @@ and you can still use binary packages from someone else.</p>
 <p>After these preparations, installing a package is very
     easy:</p>
 <pre class="screen">
-<code class="prompt">#</code> <strong class="userinput"><code>pkg_add libreoffice</code></strong>
-<code class="prompt">#</code> <strong class="userinput"><code>pkg_add ap24-php71-*</code></strong>
+<code class="prompt">#</code> <strong class="userinput"><code>pkgin search nginx</code></strong>
+nginx-1.19.6         Lightweight HTTP server and mail proxy server
+nginx-1.18.0nb8      Lightweight HTTP server and mail proxy server
+<code class="prompt">#</code> <strong class="userinput"><code>pkgin install zsh nginx-1.19.6 vim</code></strong>
 </pre>
-<p>Note that any prerequisite packages needed to run the
+<p>Note that <span class="command"><strong>pkgin</strong></span> is a user-friendly frontend
+    to the <span class="command"><strong>pkg_*</strong></span> tools.</p>
+<p>Any prerequisite packages needed to run the
     package in question will be installed, too, assuming they are
-    present where you install from.</p>
-<p>Adding packages might install vulnerable packages.
-    Thus you should run <span class="command"><strong>pkg_admin audit</strong></span>
-    regularly, especially after installing new packages, and verify
-    that the vulnerabilities are acceptable for your configuration.</p>
+    present in the repository.</p>
 <p>After you've installed packages, be sure to have
     <code class="filename">/usr/pkg/bin</code> and <code class="filename">/usr/pkg/sbin</code> in your
     <code class="varname">PATH</code> so you can actually start the just
@@ -1320,45 +1318,51 @@ and you can still use binary packages from someone else.</p>
 </div>
 <div class="sect2">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="using.pkg_delete"></a>5.1.3. Deinstalling packages</h3></div></div></div>
+<a name="using.pkgin_update"></a>5.1.3. Updating packages</h3></div></div></div>
+<p>To update binary packages, it is recommended that you use
+    <span class="command"><strong>pkgin upgrade</strong></span>.  This will compare the remote
+    package repository to your locally installed packages and safely
+    replace any older packages.</p>
+<p>Note that pkgsrc is released as quarterly branches.
+    If you are updating to a newer quarterly branch of pkgsrc, you may
+    need to adjust the repository in
+    <code class="filename">/usr/pkg/etc/pkgin/repositories.conf</code>.</p>
+</div>
+<div class="sect2">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="using.pkg_delete"></a>5.1.4. Deinstalling packages</h3></div></div></div>
 <p>To deinstall a package, it does not matter whether it was
-    installed from source code or from a binary package. The
-    <span class="command"><strong>pkg_delete</strong></span> command does not know it anyway.
-    To delete a package, you can just run <span class="command"><strong>pkg_delete
+    installed from source code or from a binary package. Neither the
+    <span class="command"><strong>pkgin</strong></span> or the <span class="command"><strong>pkg_delete</strong></span>
+    command need to know.</p>
+<p>To delete a package, you can just run <span class="command"><strong>pkgin remove
     <em class="replaceable"><code>package-name</code></em></strong></span>. The package
-    name can be given with or without version number. Wildcards can
-    also be used to deinstall a set of packages, for example
-    <code class="literal">*emacs*</code>. Be sure to include them in quotes,
-    so that the shell does not expand them before
-    <code class="literal">pkg_delete</code> sees them.</p>
-<p>The <code class="option">-r</code> option is very powerful: it
-    removes all the packages that require the package in question
-    and then removes the package itself. For example:
-
-    </p>
-<pre class="screen">
-<code class="prompt">#</code> <strong class="userinput"><code>pkg_delete -r jpeg</code></strong>
-    </pre>
-<p>
-
-    will remove jpeg and all the packages that used it; this allows
-    upgrading the jpeg package.</p>
+    name can be given with or without version number.</p>
 </div>
 <div class="sect2">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="using.pkg_info"></a>5.1.4. Getting information about installed packages</h3></div></div></div>
+<a name="using.pkg_info"></a>5.1.5. Getting information about installed packages</h3></div></div></div>
 <p>The <span class="command"><strong>pkg_info</strong></span> shows information about
-    installed packages or binary package files.</p>
+    installed packages or binary package files.
+    As with other management tools, it works with packages installed
+    from source or binaries.</p>
 </div>
 <div class="sect2">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="vulnerabilities"></a>5.1.5. Checking for security vulnerabilities in installed packages</h3></div></div></div>
+<a name="vulnerabilities"></a>5.1.6. Checking for security vulnerabilities in installed packages</h3></div></div></div>
 <p>
       The pkgsrc Security Team and Packages Groups maintain a list of
-      known security vulnerabilities to packages which are (or have been)
+      known vulnerabilities to packages which are (or have been)
       included in pkgsrc.  The list is available from the NetBSD
-      
-      FTP site at <a class="ulink" href="http://ftp.NetBSD.org/pub/NetBSD/packages/vulns/pkg-vulnerabilities" target="_top">http://ftp.NetBSD.org/pub/NetBSD/packages/vulns/pkg-vulnerabilities</a>.
+      CDN at <a class="ulink" href="https://cdn.NetBSD.org/pub/NetBSD/packages/vulns/pkg-vulnerabilities" target="_top">https://cdn.NetBSD.org/pub/NetBSD/packages/vulns/pkg-vulnerabilities</a>.
+    </p>
+<p>
+      Please note that not every "vulnerability" with a CVE assignment is
+      exploitable in every configuration.
+      Some bugs are marked as active simply because an fix was not
+      marked as such.
+      Operating system specific hardening and mitigation features may also
+      reduce the impact of bugs.
     </p>
 <p>
       Through <span class="command"><strong>pkg_admin fetch-pkg-vulnerabilities</strong></span>,
@@ -1379,8 +1383,7 @@ and you can still use binary packages from someone else.</p>
     https://www.samba.org/samba/whatsnew/macroexploit.html</pre>
 <p>
       You may wish to have the
-      
-      <a class="ulink" href="http://ftp.NetBSD.org/pub/pkgsrc/distfiles/vulnerabilities" target="_top">vulnerabilities</a>
+      <a class="ulink" href="https://cdn.NetBSD.org/pub/pkgsrc/distfiles/vulnerabilities" target="_top">vulnerabilities</a>
       file downloaded daily so that
       it remains current.  This may be done by adding an appropriate entry
       to the root users <a class="citerefentry" href="https://man.NetBSD.org/NetBSD-9.1/i386/crontab.5"><span class="citerefentry"><span class="refentrytitle">crontab</span>(5)</span></a> entry.  For example the entry
@@ -1417,24 +1420,21 @@ check_pkg_vulnerabilities=YES
 </div>
 <div class="sect2">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="pkg_versions"></a>5.1.6. Finding if newer versions of your installed packages are in pkgsrc</h3></div></div></div>
+<a name="pkg_versions"></a>5.1.7. Finding if newer versions of your installed packages are in pkgsrc</h3></div></div></div>
 <p>
       Install <a href="https://cdn.NetBSD.org/pub/pkgsrc/current/pkgsrc/pkgtools/lintpkgsrc/README.html" target="_top"><code class="filename">pkgtools/lintpkgsrc</code></a> and run
       <span class="command"><strong>lintpkgsrc</strong></span> with the <span class="quote">&#8220;<span class="quote">-i</span>&#8221;</span>
-      argument to check if your packages are up-to-date, e.g.
+      argument to check if any packages are stale, e.g.
     </p>
 <pre class="screen">
 <code class="prompt">%</code> <strong class="userinput"><code>lintpkgsrc -i</code></strong>
 ...
 Version mismatch: 'tcsh' 6.09.00 vs 6.10.00
     </pre>
-<p>You can then use <span class="command"><strong>make update</strong></span> to update the
-    package on your system and rebuild any dependencies.
-    </p>
 </div>
 <div class="sect2">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="using.pkg_admin"></a>5.1.7. Other administrative functions</h3></div></div></div>
+<a name="using.pkg_admin"></a>5.1.8. Other administrative functions</h3></div></div></div>
 <p>The <span class="command"><strong>pkg_admin</strong></span> executes various
     administrative functions on the package system.</p>
 </div>
@@ -1765,7 +1765,7 @@ spelling mistakes) takes place.</p>
 <div class="sect1">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
 <a name="variables-affecting-installation"></a>6.3. Variables affecting the installation process</h2></div></div></div>
-<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><code class="varname">PKGSRC_KEEP_BIN_PKGSRC</code>:
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p><code class="varname">PKGSRC_KEEP_BIN_PKGS</code>:
                 By default, binary packages of built packages are
                 preserved in <code class="filename">${PACKAGES}/All</code>. Setting
 		this variable to "no" prevents this.</p></li></ul></div>
@@ -3017,7 +3017,7 @@ do this, refer to the following two tools (installed as part of the
     containing more information.</p></li>
 </ol></div>
 <p>Use of these tools is strongly recommended!
-See <a class="xref" href="#vulnerabilities" title="5.1.5. Checking for security vulnerabilities in installed packages">Section 5.1.5, &#8220;Checking for security vulnerabilities in installed packages&#8221;</a> for instructions on how to automate checking and
+See <a class="xref" href="#vulnerabilities" title="5.1.6. Checking for security vulnerabilities in installed packages">Section 5.1.6, &#8220;Checking for security vulnerabilities in installed packages&#8221;</a> for instructions on how to automate checking and
 reporting.</p>
 <p>If this database is installed, pkgsrc builds will use it to
 perform a security check before building any package.</p>
@@ -3279,7 +3279,7 @@ anymore, you can remove that file and run <span class="command"><strong>cvs -q u
 <dd><dl>
 <dt><span class="sect2"><a href="#basic-programming-languages">21.4.1. C, C++, and Fortran</a></span></dt>
 <dt><span class="sect2"><a href="#java-programming-language">21.4.2. Java</a></span></dt>
-<dt><span class="sect2"><a href="#perl-scripts">21.4.3. Packages containing perl scripts</a></span></dt>
+<dt><span class="sect2"><a href="#perl-scripts">21.4.3. Packages containing Perl scripts</a></span></dt>
 <dt><span class="sect2"><a href="#shell-scripts">21.4.4. Packages containing shell scripts</a></span></dt>
 <dt><span class="sect2"><a href="#other-programming-languages">21.4.5. Other programming languages</a></span></dt>
 </dl></dd>
@@ -3298,22 +3298,19 @@ anymore, you can remove that file and run <span class="command"><strong>cvs -q u
 <dt><span class="sect2"><a href="#installing-score-files">21.6.3. Installing highscore files</a></span></dt>
 <dt><span class="sect2"><a href="#destdir-support">21.6.4. Adding DESTDIR support to packages</a></span></dt>
 <dt><span class="sect2"><a href="#hardcoded-paths">21.6.5. Packages with hardcoded paths to other interpreters</a></span></dt>
-<dt><span class="sect2"><a href="#perl-modules">21.6.6. Packages installing perl modules</a></span></dt>
+<dt><span class="sect2"><a href="#perl-modules">21.6.6. Packages installing Perl modules</a></span></dt>
 <dt><span class="sect2"><a href="#faq.info-files">21.6.7. Packages installing info files</a></span></dt>
 <dt><span class="sect2"><a href="#manpages">21.6.8. Packages installing man pages</a></span></dt>
-<dt><span class="sect2"><a href="#gconf-data-files">21.6.9. Packages installing GConf data files</a></span></dt>
-<dt><span class="sect2"><a href="#scrollkeeper-data-files">21.6.10. Packages installing scrollkeeper/rarian data files</a></span></dt>
-<dt><span class="sect2"><a href="#x11-fonts">21.6.11. Packages installing X11 fonts</a></span></dt>
-<dt><span class="sect2"><a href="#gtk2-modules">21.6.12. Packages installing GTK2 modules</a></span></dt>
-<dt><span class="sect2"><a href="#sgml-xml-data">21.6.13. Packages installing SGML or XML data</a></span></dt>
-<dt><span class="sect2"><a href="#mime-database">21.6.14. Packages installing extensions to the MIME database</a></span></dt>
-<dt><span class="sect2"><a href="#intltool">21.6.15. Packages using intltool</a></span></dt>
-<dt><span class="sect2"><a href="#startup-scripts">21.6.16. Packages installing startup scripts</a></span></dt>
-<dt><span class="sect2"><a href="#tex-packages">21.6.17. Packages installing TeX modules</a></span></dt>
-<dt><span class="sect2"><a href="#emulation-packages">21.6.18. Packages supporting running binaries in
+<dt><span class="sect2"><a href="#x11-fonts">21.6.9. Packages installing X11 fonts</a></span></dt>
+<dt><span class="sect2"><a href="#sgml-xml-data">21.6.10. Packages installing SGML or XML data</a></span></dt>
+<dt><span class="sect2"><a href="#mime-database">21.6.11. Packages installing extensions to the MIME database</a></span></dt>
+<dt><span class="sect2"><a href="#intltool">21.6.12. Packages using intltool</a></span></dt>
+<dt><span class="sect2"><a href="#startup-scripts">21.6.13. Packages installing startup scripts</a></span></dt>
+<dt><span class="sect2"><a href="#tex-packages">21.6.14. Packages installing TeX modules</a></span></dt>
+<dt><span class="sect2"><a href="#emulation-packages">21.6.15. Packages supporting running binaries in
     emulation</a></span></dt>
-<dt><span class="sect2"><a href="#hicolor-theme">21.6.19. Packages installing hicolor theme icons</a></span></dt>
-<dt><span class="sect2"><a href="#desktop-files">21.6.20. Packages installing desktop files</a></span></dt>
+<dt><span class="sect2"><a href="#hicolor-theme">21.6.16. Packages installing hicolor icons</a></span></dt>
+<dt><span class="sect2"><a href="#desktop-files">21.6.17. Packages installing desktop files</a></span></dt>
 </dl></dd>
 <dt><span class="sect1"><a href="#punting">21.7. Marking packages as having problems</a></span></dt>
 </dl></dd>
@@ -3440,7 +3437,12 @@ sections.</p>
     regular expression
     <code class="varname">^[A-Za-z0-9][A-Za-z0-9-_.+]*$</code>, that is, it
     starts with a letter or digit, and contains only letters, digits,
-    dashes, underscores, dots and plus signs.</p></li>
+    dashes, underscores, dots and plus signs.
+    New packages should have entirely lower-case names, with the exception
+    of some that must follow pre-existing conventions
+    (e.g. R packages begin with <code class="varname">R-</code>).
+    You can use the <code class="code">:tl</code> variable modifier to lower-case
+    the package name.</p></li>
 <li class="listitem">
 <p><code class="varname">CATEGORIES</code> is a list of categories
     which the package fits in. You can choose any of the top-level
@@ -3876,10 +3878,30 @@ FILES_SUBST+=  SOMEVAR="somevalue"
 <dt><span class="term"><code class="filename">MESSAGE</code></span></dt>
 <dd>
 <p>This file is displayed after installation of the package.
-	    Useful for things like legal notices on almost-free
-	    software and hints for updating config files after
-	    installing modules for apache, PHP etc.
-	    Please note that you can modify variables in it easily by using
+	    While this was used often in the past, it has two
+	    problems: the display will be missed if many packages are
+	    intalled at once, and the person installing the package
+	    and the one using or configuring it may be different.  It
+	    should therefore be used only in exceptional circumstances
+	    where lasting negative consequences would result from
+	    someone not reading it.</p>
+<p>MESSAGE should not be used for:</p>
+<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
+<li class="listitem"><p>exhortations to read the documentation</p></li>
+<li class="listitem"><p>reminders to install rc.d files and set variables</p></li>
+<li class="listitem"><p>anything that should be explained in the
+	      installation/configuration documentation that should
+	      come with the package</p></li>
+</ul></div>
+<p>If the documentation provided by upstream needs
+	    enhancing, create e.g. files/README.pkgsrc and install it
+	    in the package's documentation directory.
+	    </p>
+<p>Note that MESSAGE is shown for all operating
+	    systems and all init systems.  If a MESSAGE is necessary,
+	    it should be narrowed to only those operating systems and
+	    init systems to which it applies.</p>
+<p>Note that you can modify variables in it easily by using
 	    <code class="varname">MESSAGE_SUBST</code> in the package's
 	    <code class="filename">Makefile</code>:</p>
 <pre class="programlisting">
@@ -4905,14 +4927,14 @@ ${FETCH_CMD} ${FETCH_BEFORE_ARGS} ${site}${file} ${FETCH_AFTER_ARGS}
 <dt><span class="term">readme</span></dt>
 <dd>
 <p>This target generates a
-	  <code class="filename">README.html</code> file, which can be
+	  <code class="filename">index.html</code> file, which can be
 	  viewed using a browser such as <a href="https://cdn.NetBSD.org/pub/pkgsrc/current/pkgsrc/www/firefox/README.html" target="_top"><code class="filename">www/firefox</code></a> or <a href="https://cdn.NetBSD.org/pub/pkgsrc/current/pkgsrc/www/links/README.html" target="_top"><code class="filename">www/links</code></a>.  The generated files
 	  contain references to any packages which are in the
 	  <code class="varname">PACKAGES</code> directory on the local
 	  host. The generated files can be made to refer to URLs
 	  based on <code class="varname">FTP_PKG_URL_HOST</code> and
 	  <code class="varname">FTP_PKG_URL_DIR</code>. For example, if I
-	  wanted to generate <code class="filename">README.html</code>
+	  wanted to generate <code class="filename">index.html</code>
 	  files which pointed to binary packages on the local
 	  machine, in the directory
 	  <code class="filename">/usr/packages</code>, set
@@ -4931,7 +4953,7 @@ ${FETCH_CMD} ${FETCH_BEFORE_ARGS} ${site}${file} ${FETCH_AFTER_ARGS}
 	  list of all packages currently available in the NetBSD
 	  Packages Collection, together with the category they belong
 	  to and a short description. This file is compiled from the
-	  <code class="filename">pkgsrc/*/README.html</code> files, so be sure
+	  <code class="filename">pkgsrc/*/index.html</code> files, so be sure
 	  to run this <span class="emphasis"><em>after</em></span> a <span class="command"><strong>make
 	  readme</strong></span>.</p></dd>
 <dt><span class="term">cdrom-readme</span></dt>
@@ -4939,7 +4961,7 @@ ${FETCH_CMD} ${FETCH_BEFORE_ARGS} ${site}${file} ${FETCH_AFTER_ARGS}
 	  <span class="quote">&#8220;<span class="quote">readme</span>&#8221;</span> target (see above), but is to be
 	  used when generating a pkgsrc tree to be written to a
 	  CD-ROM.  This target also produces
-	  <code class="filename">README.html</code> files, and can be made
+	  <code class="filename">index.html</code> files, and can be made
 	  to refer to URLs based on
 	  <code class="varname">CDROM_PKG_URL_HOST</code> and
 	  <code class="varname">CDROM_PKG_URL_DIR</code>.</p></dd>
@@ -7254,7 +7276,7 @@ environment variable to <code class="literal">NO</code>.</p>
 <dd><dl>
 <dt><span class="sect2"><a href="#basic-programming-languages">21.4.1. C, C++, and Fortran</a></span></dt>
 <dt><span class="sect2"><a href="#java-programming-language">21.4.2. Java</a></span></dt>
-<dt><span class="sect2"><a href="#perl-scripts">21.4.3. Packages containing perl scripts</a></span></dt>
+<dt><span class="sect2"><a href="#perl-scripts">21.4.3. Packages containing Perl scripts</a></span></dt>
 <dt><span class="sect2"><a href="#shell-scripts">21.4.4. Packages containing shell scripts</a></span></dt>
 <dt><span class="sect2"><a href="#other-programming-languages">21.4.5. Other programming languages</a></span></dt>
 </dl></dd>
@@ -7273,22 +7295,19 @@ environment variable to <code class="literal">NO</code>.</p>
 <dt><span class="sect2"><a href="#installing-score-files">21.6.3. Installing highscore files</a></span></dt>
 <dt><span class="sect2"><a href="#destdir-support">21.6.4. Adding DESTDIR support to packages</a></span></dt>
 <dt><span class="sect2"><a href="#hardcoded-paths">21.6.5. Packages with hardcoded paths to other interpreters</a></span></dt>
-<dt><span class="sect2"><a href="#perl-modules">21.6.6. Packages installing perl modules</a></span></dt>
+<dt><span class="sect2"><a href="#perl-modules">21.6.6. Packages installing Perl modules</a></span></dt>
 <dt><span class="sect2"><a href="#faq.info-files">21.6.7. Packages installing info files</a></span></dt>
 <dt><span class="sect2"><a href="#manpages">21.6.8. Packages installing man pages</a></span></dt>
-<dt><span class="sect2"><a href="#gconf-data-files">21.6.9. Packages installing GConf data files</a></span></dt>
-<dt><span class="sect2"><a href="#scrollkeeper-data-files">21.6.10. Packages installing scrollkeeper/rarian data files</a></span></dt>
-<dt><span class="sect2"><a href="#x11-fonts">21.6.11. Packages installing X11 fonts</a></span></dt>
-<dt><span class="sect2"><a href="#gtk2-modules">21.6.12. Packages installing GTK2 modules</a></span></dt>
-<dt><span class="sect2"><a href="#sgml-xml-data">21.6.13. Packages installing SGML or XML data</a></span></dt>
-<dt><span class="sect2"><a href="#mime-database">21.6.14. Packages installing extensions to the MIME database</a></span></dt>
-<dt><span class="sect2"><a href="#intltool">21.6.15. Packages using intltool</a></span></dt>
-<dt><span class="sect2"><a href="#startup-scripts">21.6.16. Packages installing startup scripts</a></span></dt>
-<dt><span class="sect2"><a href="#tex-packages">21.6.17. Packages installing TeX modules</a></span></dt>
-<dt><span class="sect2"><a href="#emulation-packages">21.6.18. Packages supporting running binaries in
+<dt><span class="sect2"><a href="#x11-fonts">21.6.9. Packages installing X11 fonts</a></span></dt>
+<dt><span class="sect2"><a href="#sgml-xml-data">21.6.10. Packages installing SGML or XML data</a></span></dt>
+<dt><span class="sect2"><a href="#mime-database">21.6.11. Packages installing extensions to the MIME database</a></span></dt>
+<dt><span class="sect2"><a href="#intltool">21.6.12. Packages using intltool</a></span></dt>
+<dt><span class="sect2"><a href="#startup-scripts">21.6.13. Packages installing startup scripts</a></span></dt>
+<dt><span class="sect2"><a href="#tex-packages">21.6.14. Packages installing TeX modules</a></span></dt>
+<dt><span class="sect2"><a href="#emulation-packages">21.6.15. Packages supporting running binaries in
     emulation</a></span></dt>
-<dt><span class="sect2"><a href="#hicolor-theme">21.6.19. Packages installing hicolor theme icons</a></span></dt>
-<dt><span class="sect2"><a href="#desktop-files">21.6.20. Packages installing desktop files</a></span></dt>
+<dt><span class="sect2"><a href="#hicolor-theme">21.6.16. Packages installing hicolor icons</a></span></dt>
+<dt><span class="sect2"><a href="#desktop-files">21.6.17. Packages installing desktop files</a></span></dt>
 </dl></dd>
 <dt><span class="sect1"><a href="#punting">21.7. Marking packages as having problems</a></span></dt>
 </dl>
@@ -8440,8 +8459,8 @@ pre-configure:
 </div>
 <div class="sect2">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="perl-scripts"></a>21.4.3. Packages containing perl scripts</h3></div></div></div>
-<p>If your package contains interpreted perl scripts, add
+<a name="perl-scripts"></a>21.4.3. Packages containing Perl scripts</h3></div></div></div>
+<p>If your package contains interpreted Perl scripts, add
     <span class="quote">&#8220;<span class="quote">perl</span>&#8221;</span> to the <code class="varname">USE_TOOLS</code> variable
     and set <code class="varname">REPLACE_PERL</code> to ensure that the proper
     interpreter path is set. <code class="varname">REPLACE_PERL</code> should
@@ -8452,7 +8471,7 @@ pre-configure:
 <p>If a particular version of perl is needed, set the
     <code class="varname">PERL5_REQD</code> variable to the version number.  The
     default is <span class="quote">&#8220;<span class="quote">5.0</span>&#8221;</span>.</p>
-<p>See <a class="xref" href="#perl-modules" title="21.6.6. Packages installing perl modules">Section 21.6.6, &#8220;Packages installing perl modules&#8221;</a> for information
+<p>See <a class="xref" href="#perl-modules" title="21.6.6. Packages installing Perl modules">Section 21.6.6, &#8220;Packages installing Perl modules&#8221;</a> for information
     about handling perl modules.</p>
 </div>
 <div class="sect2">
@@ -8938,7 +8957,7 @@ SPECIAL_PERMS+=         ${PREFIX}/bin/moon-buggy ${SETGID_GAMES_PERMS}
 <div class="titlepage"><div><div><h3 class="title">
 <a name="hardcoded-paths"></a>21.6.5. Packages with hardcoded paths to other interpreters</h3></div></div></div>
 <p>Your package may also contain scripts with hardcoded paths to
-      other interpreters besides (or as well as) perl.  To correct the
+      other interpreters besides (or as well as) Perl.  To correct the
       full pathname to the script interpreter, you need to set the
       following definitions in your <code class="filename">Makefile</code> (we
     shall use <span class="command"><strong>tclsh</strong></span> in this example):</p>
@@ -8958,7 +8977,7 @@ REPLACE_FILES.tcl=      # list of tcl scripts which need to be fixed,
 </div>
 <div class="sect2">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="perl-modules"></a>21.6.6. Packages installing perl modules</h3></div></div></div>
+<a name="perl-modules"></a>21.6.6. Packages installing Perl modules</h3></div></div></div>
 <p>Makefiles of packages providing perl5 modules should include
     the Makefile fragment
     <code class="filename">../../lang/perl5/module.mk</code>.  It provides a
@@ -9082,62 +9101,7 @@ PERL5_PACKLIST= auto/Pg/.packlist
 </div>
 <div class="sect2">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="gconf-data-files"></a>21.6.9. Packages installing GConf data files</h3></div></div></div>
-<p>If a package installs <code class="filename">.schemas</code> or
-    <code class="filename">.entries</code> files, used by GConf,
-    you need to take some extra steps to make sure they get registered
-    in the database:</p>
-<div class="orderedlist"><ol class="orderedlist" type="1">
-<li class="listitem"><p>Include <code class="filename">../../devel/GConf/schemas.mk</code>
-	instead of its <code class="filename">buildlink3.mk</code> file.  This
-	takes care of rebuilding the GConf database at installation and
-	deinstallation time, and tells the package where to install
-	GConf data files using some standard configure arguments.  It
-	also disallows any access to the database directly from the
-	package.</p></li>
-<li class="listitem"><p>Ensure that the package installs its
-	<code class="filename">.schemas</code> files under
-	<code class="filename">${PREFIX}/share/gconf/schemas</code>.  If they get
-	installed under <code class="filename">${PREFIX}/etc</code>, you will
-	need to manually patch the package.</p></li>
-<li class="listitem"><p>Check the PLIST and remove any entries under the etc/gconf
-	directory, as they will be handled automatically.  See
-	<a class="xref" href="#faq.conf" title="10.13. How do I change the location of configuration files?">Section 10.13, &#8220;How do I change the location of configuration files?&#8221;</a> for more information.</p></li>
-<li class="listitem"><p>Define the <code class="varname">GCONF_SCHEMAS</code> variable in
-	your <code class="filename">Makefile</code> with a list of all
-	<code class="filename">.schemas</code> files installed by the package, if
-	any.  Names must not contain any directories in them.</p></li>
-<li class="listitem"><p>Define the <code class="varname">GCONF_ENTRIES</code> variable in
-	your <code class="filename">Makefile</code> with a
-	list of all <code class="filename">.entries</code> files installed by the
-	package, if any. Names must not contain any directories in
-	them.</p></li>
-</ol></div>
-</div>
-<div class="sect2">
-<div class="titlepage"><div><div><h3 class="title">
-<a name="scrollkeeper-data-files"></a>21.6.10. Packages installing scrollkeeper/rarian data files</h3></div></div></div>
-<p>If a package installs <code class="filename">.omf</code> files, used by
-    scrollkeeper/rarian, you need to take some extra steps to make sure they
-    get registered in the database:</p>
-<div class="orderedlist"><ol class="orderedlist" type="1">
-<li class="listitem"><p>Include
-	<code class="filename">../../mk/omf-scrollkeeper.mk</code>
-	instead of rarian's <code class="filename">buildlink3.mk</code> file.  This
-	takes care of rebuilding the scrollkeeper database at
-	installation and deinstallation time, and disallows any access
-	to it directly from the package.</p></li>
-<li class="listitem"><p>Check the PLIST and remove any entries under the
-	<code class="filename">libdata/scrollkeeper</code> directory, as they
-	will be handled automatically.</p></li>
-<li class="listitem"><p>Remove the <code class="filename">share/omf</code> directory from
-	the PLIST.  It will be handled by rarian. (<span class="command"><strong>make
-	print-PLIST</strong></span> does this automatically.)</p></li>
-</ol></div>
-</div>
-<div class="sect2">
-<div class="titlepage"><div><div><h3 class="title">
-<a name="x11-fonts"></a>21.6.11. Packages installing X11 fonts</h3></div></div></div>
+<a name="x11-fonts"></a>21.6.9. Packages installing X11 fonts</h3></div></div></div>
 <p>If a package installs font files, you will need to rebuild
     the fonts database in the directory where they get installed at
     installation and deinstallation time.  This can be automatically
@@ -9154,35 +9118,7 @@ PERL5_PACKLIST= auto/Pg/.packlist
 </div>
 <div class="sect2">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="gtk2-modules"></a>21.6.12. Packages installing GTK2 modules</h3></div></div></div>
-<p>If a package installs GTK2 immodules or loaders, you need to
-    take some extra steps to get them registered in the GTK2 database
-    properly:</p>
-<div class="orderedlist"><ol class="orderedlist" type="1">
-<li class="listitem"><p>Include
-      <code class="filename">../../x11/gtk2/modules.mk</code> instead of its
-      <code class="filename">buildlink3.mk</code> file.  This takes care of
-      rebuilding the database at installation and deinstallation time.</p></li>
-<li class="listitem"><p>Set <code class="varname">GTK2_IMMODULES=YES</code> if
-      your package installs GTK2 immodules.</p></li>
-<li class="listitem"><p>Set <code class="varname">GTK2_LOADERS=YES</code> if your package installs
-      GTK2 loaders.</p></li>
-<li class="listitem">
-<p>Patch the package to not touch any of the GTK2
-      databases directly.  These are:</p>
-<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; ">
-<li class="listitem"><p><code class="filename">libdata/gtk-2.0/gdk-pixbuf.loaders</code></p></li>
-<li class="listitem"><p><code class="filename">libdata/gtk-2.0/gtk.immodules</code></p></li>
-</ul></div>
-</li>
-<li class="listitem"><p>Check the <code class="filename">PLIST</code> and remove
-      any entries under the <code class="filename">libdata/gtk-2.0</code>
-      directory, as they will be handled automatically.</p></li>
-</ol></div>
-</div>
-<div class="sect2">
-<div class="titlepage"><div><div><h3 class="title">
-<a name="sgml-xml-data"></a>21.6.13. Packages installing SGML or XML data</h3></div></div></div>
+<a name="sgml-xml-data"></a>21.6.10. Packages installing SGML or XML data</h3></div></div></div>
 <p>If a package installs SGML or XML data files that need to be
     registered in system-wide catalogs (like DTDs, sub-catalogs,
     etc.), you need to take some extra steps:</p>
@@ -9210,7 +9146,7 @@ PERL5_PACKLIST= auto/Pg/.packlist
 </div>
 <div class="sect2">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="mime-database"></a>21.6.14. Packages installing extensions to the MIME database</h3></div></div></div>
+<a name="mime-database"></a>21.6.11. Packages installing extensions to the MIME database</h3></div></div></div>
 <p>If a package provides extensions to the MIME database by
     installing <code class="filename">.xml</code> files inside
     <code class="filename">${PREFIX}/share/mime/packages</code>, you
@@ -9240,7 +9176,7 @@ PERL5_PACKLIST= auto/Pg/.packlist
 </div>
 <div class="sect2">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="intltool"></a>21.6.15. Packages using intltool</h3></div></div></div>
+<a name="intltool"></a>21.6.12. Packages using intltool</h3></div></div></div>
 <p>If a package uses intltool during its build, add
     <code class="literal">intltool</code> to the <code class="varname">USE_TOOLS</code>,
     which forces it to use the intltool package provided by pkgsrc,
@@ -9251,7 +9187,7 @@ PERL5_PACKLIST= auto/Pg/.packlist
 </div>
 <div class="sect2">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="startup-scripts"></a>21.6.16. Packages installing startup scripts</h3></div></div></div>
+<a name="startup-scripts"></a>21.6.13. Packages installing startup scripts</h3></div></div></div>
 <p>If a package contains a rc.d script, it won't be copied into
     the startup directory by default, but you can enable it, by adding
     the option <code class="varname">PKG_RCD_SCRIPTS=YES</code> in
@@ -9262,7 +9198,7 @@ PERL5_PACKLIST= auto/Pg/.packlist
 </div>
 <div class="sect2">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="tex-packages"></a>21.6.17. Packages installing TeX modules</h3></div></div></div>
+<a name="tex-packages"></a>21.6.14. Packages installing TeX modules</h3></div></div></div>
 <p>If a package installs TeX packages into the texmf tree,
     the <code class="filename">ls-R</code> database of the tree needs to be
     updated.</p>
@@ -9301,7 +9237,7 @@ PERL5_PACKLIST= auto/Pg/.packlist
 </div>
 <div class="sect2">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="emulation-packages"></a>21.6.18. Packages supporting running binaries in
+<a name="emulation-packages"></a>21.6.15. Packages supporting running binaries in
     emulation</h3></div></div></div>
 <p>There are some packages that provide libraries and
     executables for running binaries from a one operating system
@@ -9318,7 +9254,7 @@ PERL5_PACKLIST= auto/Pg/.packlist
 </div>
 <div class="sect2">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="hicolor-theme"></a>21.6.19. Packages installing hicolor theme icons</h3></div></div></div>
+<a name="hicolor-theme"></a>21.6.16. Packages installing hicolor icons</h3></div></div></div>
 <p>If a package installs images under the
     <code class="filename">share/icons/hicolor</code> and/or updates the
     <code class="filename">share/icons/hicolor/icon-theme.cache</code>
@@ -9340,7 +9276,7 @@ PERL5_PACKLIST= auto/Pg/.packlist
 </div>
 <div class="sect2">
 <div class="titlepage"><div><div><h3 class="title">
-<a name="desktop-files"></a>21.6.20. Packages installing desktop files</h3></div></div></div>
+<a name="desktop-files"></a>21.6.17. Packages installing desktop files</h3></div></div></div>
 <p>If a package installs <code class="filename">.desktop</code> files
       under <code class="filename">share/applications</code> and these include
       MIME information (MimeType key), you need to take extra steps to
@@ -9399,9 +9335,7 @@ achieving a completely clean deinstallation of installed software
 components.</p>
 <p>Given that pkgsrc is <a class="ulink" href="https://www.NetBSD.org/" target="_top">NetBSD</a>'s official packaging system,
 the above also means that great efforts are put into making GNOME work
-under this operating system.  Recently, <a class="ulink" href="https://www.dragonflybsd.org/" target="_top">DragonFly BSD</a> also adopted
-pkgsrc as its preferred packaging system, contributing lots of
-portability fixes to make GNOME build and install under it.</p>
+under this operating system.</p>
 <p>This chapter is aimed at pkgsrc developers and other people
 interested in helping our GNOME porting and packaging efforts.  It
 provides instructions on how to manage the existing packages and some
@@ -9530,25 +9464,21 @@ solution is given.  After applying the solution be sure to
 </tr></thead>
 <tbody>
 <tr>
-<td>Installs OMF files under <code class="filename">share/omf</code>.</td>
-<td>See <a class="xref" href="#scrollkeeper-data-files" title="21.6.10. Packages installing scrollkeeper/rarian data files">Section 21.6.10, &#8220;Packages installing scrollkeeper/rarian data files&#8221;</a>.</td>
-</tr>
-<tr>
 <td>Installs icons under the
         <code class="filename">share/icons/hicolor</code> hierarchy or updates
         <code class="filename">share/icons/hicolor/icon-theme.cache</code>.</td>
-<td>See <a class="xref" href="#hicolor-theme" title="21.6.19. Packages installing hicolor theme icons">Section 21.6.19, &#8220;Packages installing hicolor theme icons&#8221;</a>.</td>
+<td>See <a class="xref" href="#hicolor-theme" title="21.6.16. Packages installing hicolor icons">Section 21.6.16, &#8220;Packages installing hicolor icons&#8221;</a>.</td>
 </tr>
 <tr>
 <td>Installs files under
         <code class="filename">share/mime/packages</code>.</td>
-<td>See <a class="xref" href="#mime-database" title="21.6.14. Packages installing extensions to the MIME database">Section 21.6.14, &#8220;Packages installing extensions to the MIME database&#8221;</a>.</td>
+<td>See <a class="xref" href="#mime-database" title="21.6.11. Packages installing extensions to the MIME database">Section 21.6.11, &#8220;Packages installing extensions to the MIME database&#8221;</a>.</td>
 </tr>
 <tr>
 <td>Installs <code class="filename">.desktop</code> files under
         <code class="filename">share/applications</code> and these include MIME
         information.</td>
-<td>See <a class="xref" href="#desktop-files" title="21.6.20. Packages installing desktop files">Section 21.6.20, &#8220;Packages installing desktop files&#8221;</a>.</td>
+<td>See <a class="xref" href="#desktop-files" title="21.6.17. Packages installing desktop files">Section 21.6.17, &#8220;Packages installing desktop files&#8221;</a>.</td>
 </tr>
 </tbody>
 </table></div>
@@ -9655,13 +9585,13 @@ their attention on portability issues and to ensure that future versions
 can be built out-of-the box on NetBSD.  The less custom patches in
 pkgsrc, the easier further updates are.  Those developers in charge of
 issuing major GNOME updates will be grateful if you do that.</p>
-<p>The most common places to report bugs are the <a class="ulink" href="https://bugzilla.gnome.org/" target="_top">GNOME's Bugzilla</a> and the <a class="ulink" href="https://bugzilla.freedesktop.org/" target="_top">freedesktop.org's
-Bugzilla</a>.  Not all components use these to track bugs, but most
+<p>The most common places to report bugs are the <a class="ulink" href="https://gitlab.gnome.org/GNOME" target="_top">GNOME's GitLab</a> and the <a class="ulink" href="https://gitlab.freedesktop.org/explore/groups" target="_top">freedesktop.org's
+GitLab</a>.  Not all components use these to track bugs, but most
 of them do.  Do not be short on your reports: always provide detailed
 explanations of the current failure, how it can be improved to achieve
-maximum portability and, if at all possible, provide a patch against CVS
-head.  The more verbose you are, the higher chances of your patch being
-accepted.</p>
+maximum portability and, if at all possible, provide a patch against the
+main Git branch.  The more verbose you are, the higher chances of your
+patch being accepted.</p>
 <p>Also, please avoid using preprocessor magic to fix portability
 issues.  While the FreeBSD GNOME people are doing a great job in porting
 GNOME to their operating system, the official GNOME sources are now
@@ -11156,107 +11086,107 @@ source packages</h2></div></div></div>
 </tr>
 <tr>
 <td>ALL_ENV</td>
-<td>ALSA_PC</td>
-</tr>
-<tr>
 <td>ALTERNATIVES_SRC</td>
+</tr>
+<tr>
 <td>AMANDA_TMP</td>
-</tr>
-<tr>
 <td>AMANDA_USER</td>
+</tr>
+<tr>
 <td>AMANDA_VAR</td>
-</tr>
-<tr>
 <td>APACHE_GROUP</td>
+</tr>
+<tr>
 <td>APACHE_MODULE_NAME</td>
-</tr>
-<tr>
 <td>APACHE_MODULE_SRC</td>
+</tr>
+<tr>
 <td>APACHE_MODULE_SRCDIR</td>
-</tr>
-<tr>
 <td>APACHE_PKG_PREFIX</td>
+</tr>
+<tr>
 <td>APACHE_SUEXEC_CONFIGURE_ARGS</td>
-</tr>
-<tr>
 <td>APACHE_SUEXEC_DOCROOT</td>
+</tr>
+<tr>
 <td>APACHE_USER</td>
-</tr>
-<tr>
 <td>APPEND_ABI</td>
+</tr>
+<tr>
 <td>APPEND_ELF</td>
-</tr>
-<tr>
 <td>ARLA_CACHE</td>
+</tr>
+<tr>
 <td>AUDIT_PACKAGES_FLAGS</td>
-</tr>
-<tr>
 <td>AUTOCONF_REQD</td>
+</tr>
+<tr>
 <td>AUTOMAKE_OVERRIDE</td>
-</tr>
-<tr>
 <td>AUTOMAKE_REQD</td>
+</tr>
+<tr>
 <td>AUTO_MKDIRS</td>
-</tr>
-<tr>
 <td>BDB185_DEFAULT</td>
+</tr>
+<tr>
 <td>BDBBASE</td>
-</tr>
-<tr>
 <td>BDB_ACCEPTED</td>
+</tr>
+<tr>
 <td>BDB_DEFAULT</td>
-</tr>
-<tr>
 <td>BDB_LIBS</td>
+</tr>
+<tr>
 <td>BDB_TYPE</td>
+<td>BINCIMAP_GROUP</td>
 </tr>
 <tr>
+<td>BINCIMAP_USER</td>
 <td>BIND_DIR</td>
+</tr>
+<tr>
 <td>BIND_GROUP</td>
-</tr>
-<tr>
 <td>BIND_USER</td>
+</tr>
+<tr>
 <td>BINOWN</td>
-</tr>
-<tr>
 <td>BINPKG_SITES</td>
+</tr>
+<tr>
 <td>BIN_INSTALL_FLAGS</td>
-</tr>
-<tr>
 <td>BISON_PKGDATADIR</td>
+</tr>
+<tr>
 <td>BLAS_ACCEPTED</td>
-</tr>
-<tr>
 <td>BLAS_LIBS</td>
+</tr>
+<tr>
 <td>BLAS_TYPE</td>
-</tr>
-<tr>
 <td>BOOTSTRAP_DEPENDS</td>
+</tr>
+<tr>
 <td>BOOTSTRAP_SETUPTOOLS</td>
-</tr>
-<tr>
 <td>BROKEN</td>
+</tr>
+<tr>
 <td>BROKEN_EXCEPT_ON_PLATFORM</td>
-</tr>
-<tr>
 <td>BROKEN_ON_PLATFORM</td>
+</tr>
+<tr>
 <td>BSDSRCDIR</td>
-</tr>
-<tr>
 <td>BSDXSRCDIR</td>
+</tr>
+<tr>
 <td>BSD_MAKE_ENV</td>
-</tr>
-<tr>
 <td>BUILDLINK_AUTO_DIRS</td>
+</tr>
+<tr>
 <td>BUILDLINK_AUTO_VARS</td>
-</tr>
-<tr>
 <td>BUILDLINK_CFLAGS</td>
-<td>BUILDLINK_CONTENTS_FILTER</td>
 </tr>
 <tr>
+<td>BUILDLINK_CONTENTS_FILTER</td>
 <td>BUILDLINK_CPPFLAGS</td>
-<td>BUILDLINK_DEPMETHOD</td>
 </tr>
 <tr>
 <td>BUILDLINK_FILES</td>
@@ -11347,100 +11277,88 @@ source packages</h2></div></div></div>
 <td>CDROM_PKG_URL_HOST</td>
 </tr>
 <tr>
-<td>CHECKOUT_DATE</td>
 <td>CHECK_COMPILER</td>
-</tr>
-<tr>
 <td>CHECK_FAKEHOME</td>
+</tr>
+<tr>
 <td>CHECK_FILES</td>
-</tr>
-<tr>
 <td>CHECK_FILES_SKIP</td>
+</tr>
+<tr>
 <td>CHECK_FILES_STRICT</td>
-</tr>
-<tr>
 <td>CHECK_HEADERS</td>
+</tr>
+<tr>
 <td>CHECK_HEADERS_SKIP</td>
-</tr>
-<tr>
 <td>CHECK_INTERPRETER</td>
+</tr>
+<tr>
 <td>CHECK_INTERPRETER_SKIP</td>
-</tr>
-<tr>
 <td>CHECK_PERMS</td>
+</tr>
+<tr>
 <td>CHECK_PERMS_AUTOFIX</td>
-</tr>
-<tr>
 <td>CHECK_PERMS_SKIP</td>
+</tr>
+<tr>
 <td>CHECK_PORTABILITY</td>
-</tr>
-<tr>
 <td>CHECK_PORTABILITY_EXPERIMENTAL</td>
+</tr>
+<tr>
 <td>CHECK_PORTABILITY_SKIP</td>
-</tr>
-<tr>
 <td>CHECK_RELRO</td>
+</tr>
+<tr>
 <td>CHECK_RELRO_SKIP</td>
-</tr>
-<tr>
 <td>CHECK_RELRO_SUPPORTED</td>
+</tr>
+<tr>
 <td>CHECK_SHLIBS</td>
-</tr>
-<tr>
 <td>CHECK_SHLIBS_BLACKLIST</td>
+</tr>
+<tr>
 <td>CHECK_SHLIBS_SKIP</td>
-</tr>
-<tr>
 <td>CHECK_SHLIBS_SUPPORTED</td>
+</tr>
+<tr>
 <td>CHECK_SSP</td>
-</tr>
-<tr>
 <td>CHECK_SSP_SKIP</td>
+</tr>
+<tr>
 <td>CHECK_SSP_SUPPORTED</td>
-</tr>
-<tr>
 <td>CHECK_STRIPPED</td>
+</tr>
+<tr>
 <td>CHECK_STRIPPED_SKIP</td>
-</tr>
-<tr>
 <td>CHECK_WRKREF</td>
+</tr>
+<tr>
 <td>CHECK_WRKREF_EXTRA_DIRS</td>
-</tr>
-<tr>
 <td>CHECK_WRKREF_SKIP</td>
+</tr>
+<tr>
 <td>CLAMAV_DBDIR</td>
-</tr>
-<tr>
 <td>CLAMAV_GROUP</td>
+</tr>
+<tr>
 <td>CLAMAV_USER</td>
-</tr>
-<tr>
 <td>CLANGBASE</td>
+</tr>
+<tr>
 <td>CLEANDEPENDS</td>
-</tr>
-<tr>
 <td>CMAKE_DEPENDENCIES_REWRITE</td>
+</tr>
+<tr>
 <td>CMAKE_INSTALL_NAME_DIR</td>
-</tr>
-<tr>
 <td>CMAKE_INSTALL_PREFIX</td>
+</tr>
+<tr>
 <td>CMAKE_MODULE_PATH_OVERRIDE</td>
-</tr>
-<tr>
 <td>CMAKE_PKGSRC_BUILD_FLAGS</td>
+</tr>
+<tr>
 <td>CMAKE_PREFIX_PATH</td>
-</tr>
-<tr>
 <td>CMAKE_USE_GNU_INSTALL_DIRS</td>
-<td>COMMON_LISP_DOCFILES</td>
-</tr>
-<tr>
-<td>COMMON_LISP_EXAMPLES</td>
-<td>COMMON_LISP_EXTRAFILES</td>
-</tr>
-<tr>
-<td>COMMON_LISP_PACKAGES</td>
-<td>COMMON_LISP_SYSTEM</td>
 </tr>
 <tr>
 <td>COMPILER_RPATH_FLAG</td>
@@ -11503,264 +11421,236 @@ source packages</h2></div></div></div>
 <td>CURSES_TYPE</td>
 </tr>
 <tr>
-<td>CVS_EXTRACTDIR</td>
-<td>CVS_MODULE</td>
-</tr>
-<tr>
-<td>CVS_PROJECT</td>
-<td>CVS_REPOSITORIES</td>
-</tr>
-<tr>
-<td>CVS_ROOT</td>
-<td>CVS_ROOT_GNU</td>
-</tr>
-<tr>
-<td>CVS_ROOT_NONGNU</td>
-<td>CVS_ROOT_SOURCEFORGE</td>
-</tr>
-<tr>
-<td>CVS_TAG</td>
 <td>CXX</td>
-</tr>
-<tr>
 <td>CYRUS_GROUP</td>
+</tr>
+<tr>
 <td>CYRUS_IDLE</td>
-</tr>
-<tr>
 <td>CYRUS_USER</td>
+</tr>
+<tr>
 <td>DAEMONTOOLS_GROUP</td>
-</tr>
-<tr>
 <td>DAEMONTOOLS_LOG_USER</td>
+</tr>
+<tr>
 <td>DARWIN_NO_SYSTEM_LIBS</td>
-</tr>
-<tr>
 <td>DARWIN_REQUIRES_FILTER</td>
+</tr>
+<tr>
 <td>DBUS_GROUP</td>
-</tr>
-<tr>
 <td>DBUS_USER</td>
+</tr>
+<tr>
 <td>DEFANG_GROUP</td>
-</tr>
-<tr>
 <td>DEFANG_USER</td>
+</tr>
+<tr>
 <td>DEFAULT_ACCEPTABLE_LICENSES</td>
-</tr>
-<tr>
 <td>DEFAULT_DISTFILES</td>
+</tr>
+<tr>
 <td>DEFAULT_IRC_SERVER</td>
-</tr>
-<tr>
 <td>DEFAULT_SERIAL_DEVICE</td>
+</tr>
+<tr>
 <td>DEF_UMASK</td>
-</tr>
-<tr>
 <td>DEINSTALLDEPENDS</td>
+</tr>
+<tr>
 <td>DEINSTALL_SRC</td>
-</tr>
-<tr>
 <td>DEINSTALL_TEMPLATES</td>
+</tr>
+<tr>
 <td>DELAYED_ERROR_MSG</td>
-</tr>
-<tr>
 <td>DELAYED_WARNING_MSG</td>
+</tr>
+<tr>
 <td>DEPENDS</td>
-</tr>
-<tr>
 <td>DEPENDS_TARGET</td>
+</tr>
+<tr>
 <td>DEPENDS_TYPE</td>
-</tr>
-<tr>
 <td>DESTDIR</td>
+</tr>
+<tr>
 <td>DESTDIR_VARNAME</td>
-</tr>
-<tr>
 <td>DIALER_GROUP</td>
+</tr>
+<tr>
 <td>DIGEST_REQD</td>
-</tr>
-<tr>
 <td>DISTDIR</td>
+</tr>
+<tr>
 <td>DISTFILES</td>
-</tr>
-<tr>
 <td>DISTINFO_FILE</td>
+</tr>
+<tr>
 <td>DISTNAME</td>
-</tr>
-<tr>
 <td>DIST_PATH</td>
+</tr>
+<tr>
 <td>DIST_SUBDIR</td>
-</tr>
-<tr>
 <td>DJBDNS_AXFR_USER</td>
+</tr>
+<tr>
 <td>DJBDNS_CACHE_USER</td>
-</tr>
-<tr>
 <td>DJBDNS_DJBDNS_GROUP</td>
+</tr>
+<tr>
 <td>DJBDNS_LOG_USER</td>
-</tr>
-<tr>
 <td>DJBDNS_RBL_USER</td>
+</tr>
+<tr>
 <td>DJBDNS_TINY_USER</td>
-</tr>
-<tr>
 <td>DLOPEN_REQUIRE_PTHREADS</td>
+</tr>
+<tr>
 <td>DL_AUTO_VARS</td>
-</tr>
-<tr>
 <td>DL_CFLAGS</td>
+</tr>
+<tr>
 <td>DL_LDFLAGS</td>
-</tr>
-<tr>
 <td>DL_LIBS</td>
+</tr>
+<tr>
 <td>DNS</td>
-</tr>
-<tr>
 <td>DOCOWN</td>
+</tr>
+<tr>
 <td>DOWNLOADED_DISTFILE</td>
-</tr>
-<tr>
 <td>DT_LAYOUT</td>
+</tr>
+<tr>
 <td>DYNAMIC_SITES_CMD</td>
-</tr>
-<tr>
 <td>DYNAMIC_SITES_SCRIPT</td>
+</tr>
+<tr>
 <td>ECHO</td>
-</tr>
-<tr>
 <td>ECHO_N</td>
+</tr>
+<tr>
 <td>ELK_GUI</td>
-</tr>
-<tr>
 <td>EMACS_TYPE</td>
+</tr>
+<tr>
 <td>EMULDIR</td>
-</tr>
-<tr>
 <td>EMULSUBDIR</td>
+</tr>
+<tr>
 <td>EMULSUBDIRSLASH</td>
-</tr>
-<tr>
 <td>EMUL_ARCH</td>
+</tr>
+<tr>
 <td>EMUL_DISTRO</td>
-</tr>
-<tr>
 <td>EMUL_EXEC_FMT</td>
+</tr>
+<tr>
 <td>EMUL_IS_NATIVE</td>
-</tr>
-<tr>
 <td>EMUL_MODULES</td>
+</tr>
+<tr>
 <td>EMUL_OPSYS</td>
-</tr>
-<tr>
 <td>EMUL_PKG_FMT</td>
+</tr>
+<tr>
 <td>EMUL_PLATFORM</td>
-</tr>
-<tr>
 <td>EMUL_PLATFORMS</td>
+</tr>
+<tr>
 <td>EMUL_PREFER</td>
-</tr>
-<tr>
 <td>EMUL_REQD</td>
+</tr>
+<tr>
 <td>EMUL_TYPE</td>
-</tr>
-<tr>
 <td>ERROR_MSG</td>
+</tr>
+<tr>
 <td>EXIM_GROUP</td>
-</tr>
-<tr>
 <td>EXIM_USER</td>
+</tr>
+<tr>
 <td>EXPORT_SYMBOLS_LDFLAGS</td>
-</tr>
-<tr>
 <td>EXTRACTOR</td>
+</tr>
+<tr>
 <td>EXTRACT_CMD</td>
-</tr>
-<tr>
 <td>EXTRACT_CMD_DEFAULT</td>
+</tr>
+<tr>
 <td>EXTRACT_DIR</td>
-</tr>
-<tr>
 <td>EXTRACT_ELEMENTS</td>
+</tr>
+<tr>
 <td>EXTRACT_ENV</td>
-</tr>
-<tr>
 <td>EXTRACT_ONLY</td>
+</tr>
+<tr>
 <td>EXTRACT_OPTS</td>
-</tr>
-<tr>
 <td>EXTRACT_SUFX</td>
+</tr>
+<tr>
 <td>EXTRACT_USING</td>
-</tr>
-<tr>
 <td>FAIL</td>
+</tr>
+<tr>
 <td>FAILOVER_FETCH</td>
-</tr>
-<tr>
 <td>FAIL_MSG</td>
+</tr>
+<tr>
 <td>FAKE_NCURSES</td>
-</tr>
-<tr>
 <td>FAM</td>
+</tr>
+<tr>
 <td>FAM_ACCEPTED</td>
-</tr>
-<tr>
 <td>FAM_DEFAULT</td>
+</tr>
+<tr>
 <td>FAM_SERVER</td>
-</tr>
-<tr>
 <td>FCPATH</td>
+</tr>
+<tr>
 <td>FEATURE_CPPFLAGS</td>
-</tr>
-<tr>
 <td>FEATURE_LDFLAGS</td>
+</tr>
+<tr>
 <td>FEATURE_LIBS</td>
-</tr>
-<tr>
 <td>FETCH_AFTER_ARGS</td>
+</tr>
+<tr>
 <td>FETCH_BEFORE_ARGS</td>
-</tr>
-<tr>
 <td>FETCH_CMD</td>
+</tr>
+<tr>
 <td>FETCH_OUTPUT_ARGS</td>
-</tr>
-<tr>
 <td>FETCH_PROXY</td>
+</tr>
+<tr>
 <td>FETCH_RESUME_ARGS</td>
-</tr>
-<tr>
 <td>FETCH_TIMEOUT</td>
+</tr>
+<tr>
 <td>FETCH_USE_IPV4_ONLY</td>
-</tr>
-<tr>
 <td>FETCH_USING</td>
+</tr>
+<tr>
 <td>FILES_SUBST</td>
-</tr>
-<tr>
 <td>FILES_SUBST_SED</td>
+</tr>
+<tr>
 <td>FIX_SYSTEM_HEADERS</td>
-</tr>
-<tr>
 <td>FLUXBOX_USE_GNOME</td>
+</tr>
+<tr>
 <td>FLUXBOX_USE_KDE</td>
-</tr>
-<tr>
 <td>FLUXBOX_USE_XFT</td>
-<td>FLUXBOX_USE_XINERAMA</td>
 </tr>
 <tr>
-<td>FONTDIR</td>
+<td>FLUXBOX_USE_XINERAMA</td>
 <td>FONTS_DIRS</td>
 </tr>
 <tr>
 <td>FONTS_VERBOSE</td>
 <td>FOO_HACKS_MK</td>
-</tr>
-<tr>
-<td>FOSSIL_EXTRACTDIR</td>
-<td>FOSSIL_REPO</td>
-</tr>
-<tr>
-<td>FOSSIL_REPOSITORIES</td>
-<td>FOSSIL_VERSION</td>
 </tr>
 <tr>
 <td>FOX_USE_XUNICODE</td>
@@ -11819,8 +11709,12 @@ source packages</h2></div></div></div>
 <td>GEM_PATH</td>
 </tr>
 <tr>
+<td>GEM_PLUGINSDIR</td>
 <td>GEM_SPECFILE</td>
+</tr>
+<tr>
 <td>GENERATE_PLIST</td>
+<td>GHC</td>
 </tr>
 <tr>
 <td>GHOSTSCRIPT_REQD</td>
@@ -11828,67 +11722,47 @@ source packages</h2></div></div></div>
 </tr>
 <tr>
 <td>GITHUB_RELEASE</td>
+<td>GITHUB_SUBMODULES</td>
+</tr>
+<tr>
 <td>GITHUB_TAG</td>
-</tr>
-<tr>
 <td>GITHUB_TYPE</td>
-<td>GITLAB_PROJECT</td>
 </tr>
 <tr>
-<td>GITLAB_TAG</td>
-<td>GITLAB_TYPE</td>
-</tr>
-<tr>
-<td>GIT_BRANCH</td>
-<td>GIT_ENV</td>
-</tr>
-<tr>
-<td>GIT_EXTRACTDIR</td>
-<td>GIT_REPO</td>
-</tr>
-<tr>
-<td>GIT_REPOSITORIES</td>
-<td>GIT_REVISION</td>
-</tr>
-<tr>
-<td>GIT_TAG</td>
 <td>GNU</td>
-</tr>
-<tr>
 <td>GNU_CONFIGURE</td>
+</tr>
+<tr>
 <td>GNU_CONFIGURE_INFODIR</td>
-</tr>
-<tr>
 <td>GNU_CONFIGURE_MANDIR</td>
+</tr>
+<tr>
 <td>GNU_CONFIGURE_QUIET</td>
-</tr>
-<tr>
 <td>GNU_CONFIGURE_STRICT</td>
+</tr>
+<tr>
 <td>GODEP_REDIRECTS</td>
-</tr>
-<tr>
 <td>GO_BUILD_PATTERN</td>
+</tr>
+<tr>
 <td>GO_DEPS</td>
-</tr>
-<tr>
 <td>GO_DIST_BASE</td>
+</tr>
+<tr>
 <td>GO_MODULE_FILES</td>
-</tr>
-<tr>
 <td>GO_SRCPATH</td>
+</tr>
+<tr>
 <td>GO_VERSION_DEFAULT</td>
-</tr>
-<tr>
 <td>GROUP_SPECIFIC_PKGS</td>
+</tr>
+<tr>
 <td>GRUB_NETWORK_CARDS</td>
-</tr>
-<tr>
 <td>GRUB_PRESET_COMMAND</td>
-<td>GRUB_SCAN_ARGS</td>
 </tr>
 <tr>
+<td>GRUB_SCAN_ARGS</td>
 <td>GZIP</td>
-<td>HASKELL_COMPILER</td>
 </tr>
 <tr>
 <td>HASKELL_ENABLE_HADDOCK_DOCUMENTATION</td>
@@ -11903,187 +11777,171 @@ source packages</h2></div></div></div>
 <td>HEADER_TEMPLATES</td>
 </tr>
 <tr>
-<td>HG_REPO</td>
-<td>HG_REPOSITORIES</td>
-</tr>
-<tr>
-<td>HG_TAG</td>
 <td>HOMEPAGE</td>
-</tr>
-<tr>
 <td>HOST_PKGTOOLS_ARGS</td>
+</tr>
+<tr>
 <td>HOST_SPECIFIC_PKGS</td>
-</tr>
-<tr>
 <td>HOWL_GROUP</td>
+</tr>
+<tr>
 <td>HOWL_USER</td>
-</tr>
-<tr>
 <td>ICCBASE</td>
+</tr>
+<tr>
 <td>ICECAST_CHROOTDIR</td>
-</tr>
-<tr>
 <td>ICON_THEMES</td>
+</tr>
+<tr>
 <td>IDOBASE</td>
-</tr>
-<tr>
 <td>IGNORE_CCACHE</td>
+</tr>
+<tr>
 <td>IGNORE_INFO_DIRS</td>
-</tr>
-<tr>
 <td>IGNORE_INTERACTIVE_FETCH</td>
+</tr>
+<tr>
 <td>IMAKE</td>
-</tr>
-<tr>
 <td>IMAKEOPTS</td>
+</tr>
+<tr>
 <td>IMAKE_MAKE</td>
-</tr>
-<tr>
 <td>IMAKE_MANINSTALL</td>
+</tr>
+<tr>
 <td>IMAP_UW_CCLIENT_MBOX_FMT</td>
-</tr>
-<tr>
 <td>IMDICTDIR</td>
+</tr>
+<tr>
 <td>INCOMPAT_CURSES</td>
-</tr>
-<tr>
 <td>INFO_DIR</td>
+</tr>
+<tr>
 <td>INFO_FILES</td>
-</tr>
-<tr>
 <td>INFO_FILES_VERBOSE</td>
+</tr>
+<tr>
 <td>INFO_MSG</td>
-</tr>
-<tr>
 <td>INIT_SYSTEM</td>
+</tr>
+<tr>
 <td>INN_DATA_DIR</td>
-</tr>
-<tr>
 <td>INN_GROUP</td>
+</tr>
+<tr>
 <td>INN_USER</td>
-</tr>
-<tr>
 <td>INSTALLATION_DIRS</td>
+</tr>
+<tr>
 <td>INSTALLATION_DIRS_FROM_PLIST</td>
-</tr>
-<tr>
 <td>INSTALL_ENV</td>
+</tr>
+<tr>
 <td>INSTALL_SH_OVERRIDE</td>
-</tr>
-<tr>
 <td>INSTALL_SRC</td>
+</tr>
+<tr>
 <td>INSTALL_TEMPLATES</td>
-</tr>
-<tr>
 <td>INSTALL_UNSTRIPPED</td>
+</tr>
+<tr>
 <td>IRCD_HYBRID_IRC_GROUP</td>
-</tr>
-<tr>
 <td>IRCD_HYBRID_IRC_USER</td>
+</tr>
+<tr>
 <td>IRCD_HYBRID_MAXCONN</td>
-</tr>
-<tr>
 <td>IRCD_HYBRID_NICLEN</td>
+</tr>
+<tr>
 <td>IRCD_HYBRID_SYSLOG_EVENTS</td>
-</tr>
-<tr>
 <td>IRCD_HYBRID_SYSLOG_FACILITY</td>
+</tr>
+<tr>
 <td>IRCD_HYBRID_TOPICLEN</td>
-</tr>
-<tr>
 <td>IRIX</td>
+</tr>
+<tr>
 <td>IRRD_USE_PGP</td>
-</tr>
-<tr>
 <td>JABBERD_GROUP</td>
+</tr>
+<tr>
 <td>JABBERD_LOGDIR</td>
-</tr>
-<tr>
 <td>JABBERD_PIDDIR</td>
+</tr>
+<tr>
 <td>JABBERD_SPOOLDIR</td>
-</tr>
-<tr>
 <td>JABBERD_USER</td>
+</tr>
+<tr>
 <td>JAKARTA_HOME</td>
-</tr>
-<tr>
-<td>JAVA_APP_PATH</td>
-<td>JAVA_APP_TARGETS</td>
-</tr>
-<tr>
 <td>JAVA_BINPREFIX</td>
+</tr>
+<tr>
 <td>JAVA_CLASSPATH</td>
-</tr>
-<tr>
 <td>JAVA_HOME</td>
+</tr>
+<tr>
 <td>JAVA_LD_LIBRARY_PATH</td>
-</tr>
-<tr>
 <td>JAVA_NAME</td>
+</tr>
+<tr>
 <td>JAVA_UNLIMIT</td>
-</tr>
-<tr>
 <td>JAVA_WRAPPERS</td>
+</tr>
+<tr>
 <td>JPEG_ACCEPTED</td>
-</tr>
-<tr>
 <td>JPEG_DEFAULT</td>
+</tr>
+<tr>
 <td>KERBEROS</td>
-</tr>
-<tr>
 <td>KERMIT_SUID_UUCP</td>
+</tr>
+<tr>
 <td>KJS_USE_PCRE</td>
-</tr>
-<tr>
 <td>KNEWS_DOMAIN_FILE</td>
+</tr>
+<tr>
 <td>KNEWS_DOMAIN_NAME</td>
-</tr>
-<tr>
 <td>KRB5_ACCEPTED</td>
+</tr>
+<tr>
 <td>KRB5_DEFAULT</td>
-</tr>
-<tr>
 <td>LANGUAGES</td>
+</tr>
+<tr>
 <td>LAPACK_LIBS</td>
-</tr>
-<tr>
 <td>LATEX2HTML_ICONPATH</td>
+</tr>
+<tr>
 <td>LDCONFIG_ADD_CMD</td>
-</tr>
-<tr>
 <td>LDCONFIG_REMOVE_CMD</td>
+</tr>
+<tr>
 <td>LEAFNODE_DATA_DIR</td>
-</tr>
-<tr>
 <td>LEAFNODE_GROUP</td>
+</tr>
+<tr>
 <td>LEAFNODE_USER</td>
-</tr>
-<tr>
 <td>LIBDVDCSS_HOMEPAGE</td>
+</tr>
+<tr>
 <td>LIBDVDCSS_MASTER_SITES</td>
-</tr>
-<tr>
 <td>LIBRSVG_TYPE</td>
+</tr>
+<tr>
 <td>LIBTOOL</td>
-</tr>
-<tr>
 <td>LIBTOOLIZE_PLIST</td>
+</tr>
+<tr>
 <td>LIBTOOL_M4_OVERRIDE</td>
-</tr>
-<tr>
 <td>LIBUSB_TYPE</td>
+</tr>
+<tr>
 <td>LICENSE</td>
-</tr>
-<tr>
 <td>LINKER_RPATH_FLAG</td>
+</tr>
+<tr>
 <td>LINK_RPATH_FLAG</td>
-</tr>
-<tr>
-<td>LINUX_BASE_NODEPS</td>
-<td>LINUX_BASE_PREFERRED</td>
-</tr>
-<tr>
-<td>LINUX_BASE_REQUIRED</td>
 <td>LINUX_LOCALES</td>
 </tr>
 <tr>
@@ -12112,91 +11970,87 @@ source packages</h2></div></div></div>
 </tr>
 <tr>
 <td>MAJORDOMO_HOMEDIR</td>
-<td>MAJOR_OS_VERSION</td>
-</tr>
-<tr>
 <td>MAKEINFO_ARGS</td>
+</tr>
+<tr>
 <td>MAKE_DIRS</td>
-</tr>
-<tr>
 <td>MAKE_DIRS_PERMS</td>
+</tr>
+<tr>
 <td>MAKE_ENV</td>
-</tr>
-<tr>
 <td>MAKE_FILE</td>
+</tr>
+<tr>
 <td>MAKE_FLAGS</td>
-</tr>
-<tr>
 <td>MAKE_JOBS</td>
+</tr>
+<tr>
 <td>MAKE_JOBS_SAFE</td>
-</tr>
-<tr>
 <td>MAKE_PROGRAM</td>
+</tr>
+<tr>
 <td>MANCOMPRESSED_IF_MANZ</td>
-</tr>
-<tr>
 <td>MANINSTALL</td>
+</tr>
+<tr>
 <td>MANZ</td>
-</tr>
-<tr>
 <td>MASTER_SITES</td>
+</tr>
+<tr>
 <td>MASTER_SITE_BACKUP</td>
-</tr>
-<tr>
 <td>MASTER_SITE_LOCAL</td>
+</tr>
+<tr>
 <td>MASTER_SITE_MOZILLA</td>
-</tr>
-<tr>
 <td>MASTER_SITE_OVERRIDE</td>
+</tr>
+<tr>
 <td>MASTER_SITE_PERL_CPAN</td>
-</tr>
-<tr>
 <td>MASTER_SORT</td>
+</tr>
+<tr>
 <td>MASTER_SORT_RANDOM</td>
-</tr>
-<tr>
 <td>MASTER_SORT_REGEX</td>
+</tr>
+<tr>
 <td>MECAB_CHARSET</td>
-</tr>
-<tr>
 <td>MEDIATOMB_GROUP</td>
+</tr>
+<tr>
 <td>MEDIATOMB_USER</td>
-</tr>
-<tr>
 <td>MIPSPROBASE</td>
+</tr>
+<tr>
 <td>MIREDO_GROUP</td>
-</tr>
-<tr>
 <td>MIREDO_USER</td>
+</tr>
+<tr>
 <td>MISSING_FEATURES</td>
-</tr>
-<tr>
 <td>MKDIR</td>
+</tr>
+<tr>
 <td>MLDONKEY_GROUP</td>
-</tr>
-<tr>
 <td>MLDONKEY_HOME</td>
+</tr>
+<tr>
 <td>MLDONKEY_USER</td>
-</tr>
-<tr>
 <td>MONOTONE_GROUP</td>
+</tr>
+<tr>
 <td>MONOTONE_USER</td>
-</tr>
-<tr>
 <td>MOTIFBASE</td>
+</tr>
+<tr>
 <td>MOTIF_TYPE</td>
-</tr>
-<tr>
 <td>MOTIF_TYPE_DEFAULT</td>
+</tr>
+<tr>
 <td>MPI_TYPE</td>
-</tr>
-<tr>
 <td>MSGFMT_STRIP_MSGCTXT</td>
-<td>MSGFMT_STRIP_MSGID_PLURAL</td>
 </tr>
 <tr>
+<td>MSGFMT_STRIP_MSGID_PLURAL</td>
 <td>MTOOLS_ENABLE_FLOPPYD</td>
-<td>MUST</td>
 </tr>
 <tr>
 <td>MV</td>
@@ -12208,14 +12062,14 @@ source packages</h2></div></div></div>
 </tr>
 <tr>
 <td>MYSQL_GROUP</td>
-<td>MYSQL_PKGSRCDIR</td>
-</tr>
-<tr>
 <td>MYSQL_USER</td>
-<td>MYSQL_VERSION</td>
 </tr>
 <tr>
+<td>MYSQL_VERSION</td>
 <td>MYSQL_VERSIONS_ACCEPTED</td>
+</tr>
+<tr>
+<td>MYSQL_VERSIONS_ALL</td>
 <td>MYSQL_VERSION_DEFAULT</td>
 </tr>
 <tr>
@@ -12328,10 +12182,6 @@ source packages</h2></div></div></div>
 </tr>
 <tr>
 <td>OSX_TOLERATE_SDK_SKEW</td>
-<td>OS_HAVE_ALSA</td>
-</tr>
-<tr>
-<td>OS_HAVE_RCD</td>
 <td>OS_VARIANT</td>
 </tr>
 <tr>
@@ -12344,334 +12194,326 @@ source packages</h2></div></div></div>
 </tr>
 <tr>
 <td>OVERRIDE_GNU_CONFIG_SCRIPTS</td>
-<td>OVERRIDE_ROCKSPEC</td>
-</tr>
-<tr>
 <td>OWN_DIRS</td>
+</tr>
+<tr>
 <td>OWN_DIRS_PERMS</td>
-</tr>
-<tr>
 <td>P4GROUP</td>
+</tr>
+<tr>
 <td>P4PORT</td>
-</tr>
-<tr>
 <td>P4ROOT</td>
+</tr>
+<tr>
 <td>P4USER</td>
-</tr>
-<tr>
 <td>PACKAGES</td>
+</tr>
+<tr>
 <td>PALMOS_DEFAULT_SDK</td>
-</tr>
-<tr>
 <td>PAMBASE</td>
+</tr>
+<tr>
 <td>PAM_DEFAULT</td>
-</tr>
-<tr>
 <td>PAPERSIZE</td>
+</tr>
+<tr>
 <td>PASSIVE_FETCH</td>
-</tr>
-<tr>
 <td>PATCHDIR</td>
+</tr>
+<tr>
 <td>PATCHFILES</td>
-</tr>
-<tr>
 <td>PATCH_ARGS</td>
+</tr>
+<tr>
 <td>PATCH_DEBUG</td>
-</tr>
-<tr>
 <td>PATCH_DIST_ARGS</td>
+</tr>
+<tr>
 <td>PATCH_DIST_CAT</td>
-</tr>
-<tr>
 <td>PATCH_DIST_STRIP</td>
+</tr>
+<tr>
 <td>PATCH_FUZZ_FACTOR</td>
-</tr>
-<tr>
 <td>PATCH_STRIP</td>
+</tr>
+<tr>
 <td>PATH</td>
-</tr>
-<tr>
 <td>PCCBASE</td>
-<td>PEAR</td>
 </tr>
 <tr>
-<td>PEAR_CHANNEL</td>
-<td>PEAR_CHANNEL_ALIAS</td>
-</tr>
-<tr>
-<td>PEAR_CHANNEL_VERSION</td>
 <td>PEAR_CMD</td>
-</tr>
-<tr>
 <td>PEAR_LIB</td>
+</tr>
+<tr>
 <td>PEAR_PACKAGE_XML</td>
-</tr>
-<tr>
 <td>PERL5</td>
+</tr>
+<tr>
 <td>PERL5_CONFIGURE</td>
-</tr>
-<tr>
 <td>PERL5_CONFIGURE_DIRS</td>
+</tr>
+<tr>
 <td>PERL5_LDFLAGS</td>
-</tr>
-<tr>
 <td>PERL5_LICENSE</td>
+</tr>
+<tr>
 <td>PERL5_MODULE_TYPE</td>
-</tr>
-<tr>
 <td>PERL5_PACKLIST</td>
+</tr>
+<tr>
 <td>PERL5_PACKLIST_DIR</td>
-</tr>
-<tr>
 <td>PERL5_PERLBASE</td>
+</tr>
+<tr>
 <td>PERL5_SITEBASE</td>
-</tr>
-<tr>
 <td>PERL5_USE_PACKLIST</td>
+</tr>
+<tr>
 <td>PERL5_VENDORBASE</td>
-</tr>
-<tr>
 <td>PFCTL</td>
+</tr>
+<tr>
 <td>PFVAR_H</td>
-</tr>
-<tr>
 <td>PF_VERSION</td>
+</tr>
+<tr>
 <td>PGGROUP</td>
-</tr>
-<tr>
 <td>PGHOME</td>
+</tr>
+<tr>
 <td>PGPKGSRCDIR</td>
-</tr>
-<tr>
 <td>PGSQL_TYPE</td>
+</tr>
+<tr>
 <td>PGSQL_VERSION</td>
-</tr>
-<tr>
 <td>PGSQL_VERSIONS_ACCEPTED</td>
+</tr>
+<tr>
 <td>PGSQL_VERSION_DEFAULT</td>
-</tr>
-<tr>
 <td>PGUSER</td>
+</tr>
+<tr>
 <td>PG_LIB_EXT</td>
-</tr>
-<tr>
 <td>PHP</td>
+</tr>
+<tr>
 <td>PHPCOMMON_MK</td>
-</tr>
-<tr>
 <td>PHPPKGSRCDIR</td>
+</tr>
+<tr>
 <td>PHP_BASE_VERS</td>
-</tr>
-<tr>
 <td>PHP_CHECK_INSTALLED</td>
+</tr>
+<tr>
 <td>PHP_EXTENSION_DIR</td>
-</tr>
-<tr>
 <td>PHP_INITIAL_TEENY</td>
+</tr>
+<tr>
 <td>PHP_PKG_PREFIX</td>
-</tr>
-<tr>
 <td>PHP_VERSION</td>
+</tr>
+<tr>
 <td>PHP_VERSIONS_ACCEPTED</td>
-</tr>
-<tr>
 <td>PHP_VERSIONS_INCOMPATIBLE</td>
+</tr>
+<tr>
 <td>PHP_VERSION_DEFAULT</td>
-</tr>
-<tr>
 <td>PHP_VERSION_REQD</td>
+</tr>
+<tr>
 <td>PILRC_USE_GTK</td>
-</tr>
-<tr>
 <td>PKGCONFIG_BASE</td>
+</tr>
+<tr>
 <td>PKGCONFIG_FILE</td>
-</tr>
-<tr>
 <td>PKGCONFIG_OVERRIDE</td>
+</tr>
+<tr>
 <td>PKGCONFIG_OVERRIDE_STAGE</td>
-</tr>
-<tr>
 <td>PKGDIR</td>
+</tr>
+<tr>
 <td>PKGGNUDIR</td>
-</tr>
-<tr>
 <td>PKGINFODIR</td>
+</tr>
+<tr>
 <td>PKGLOCALEDIR</td>
-</tr>
-<tr>
 <td>PKGMANDIR</td>
+</tr>
+<tr>
 <td>PKGNAME</td>
-</tr>
-<tr>
 <td>PKGNAME_REQD</td>
+</tr>
+<tr>
 <td>PKGPATH</td>
-</tr>
-<tr>
 <td>PKGREVISION</td>
+</tr>
+<tr>
 <td>PKGSRC_BLAS_TYPES</td>
-</tr>
-<tr>
 <td>PKGSRC_CHANGES</td>
+</tr>
+<tr>
 <td>PKGSRC_COMPILER</td>
-</tr>
-<tr>
 <td>PKGSRC_KEEP_BIN_PKGS</td>
+</tr>
+<tr>
 <td>PKGSRC_LOCKTYPE</td>
-</tr>
-<tr>
 <td>PKGSRC_MAKE_ENV</td>
+</tr>
+<tr>
 <td>PKGSRC_MESSAGE_RECIPIENTS</td>
-</tr>
-<tr>
 <td>PKGSRC_MKPIE</td>
+</tr>
+<tr>
 <td>PKGSRC_MKREPRO</td>
-</tr>
-<tr>
 <td>PKGSRC_RUN_TEST</td>
+</tr>
+<tr>
 <td>PKGSRC_SETENV</td>
-</tr>
-<tr>
 <td>PKGSRC_SLEEPSECS</td>
+</tr>
+<tr>
 <td>PKGSRC_TODO</td>
-</tr>
-<tr>
 <td>PKGSRC_USE_CTF</td>
+</tr>
+<tr>
 <td>PKGSRC_USE_FORTIFY</td>
-</tr>
-<tr>
 <td>PKGSRC_USE_RELRO</td>
+</tr>
+<tr>
 <td>PKGSRC_USE_SSP</td>
-</tr>
-<tr>
 <td>PKGSRC_USE_STACK_CHECK</td>
+</tr>
+<tr>
 <td>PKGTASKS_DATAFILE</td>
-</tr>
-<tr>
 <td>PKGTOOLS_ARGS</td>
+</tr>
+<tr>
 <td>PKGTOOLS_ENV</td>
-</tr>
-<tr>
 <td>PKG_ALTERNATIVES</td>
+</tr>
+<tr>
 <td>PKG_APACHE</td>
-</tr>
-<tr>
 <td>PKG_APACHE_ACCEPTED</td>
+</tr>
+<tr>
 <td>PKG_APACHE_DEFAULT</td>
-</tr>
-<tr>
 <td>PKG_BEST_EXISTS</td>
+</tr>
+<tr>
 <td>PKG_BUILD_OPTIONS</td>
-</tr>
-<tr>
 <td>PKG_COMPRESSION</td>
+</tr>
+<tr>
 <td>PKG_CONFIG</td>
-</tr>
-<tr>
 <td>PKG_CONFIG_PERMS</td>
+</tr>
+<tr>
 <td>PKG_CREATE_USERGROUP</td>
-</tr>
-<tr>
 <td>PKG_DB_TMPDIR</td>
+</tr>
+<tr>
 <td>PKG_DEBUG_LEVEL</td>
-</tr>
-<tr>
 <td>PKG_DEFAULT_OPTIONS</td>
+</tr>
+<tr>
 <td>PKG_DESTDIR_SUPPORT</td>
-</tr>
-<tr>
 <td>PKG_DEVELOPER</td>
+</tr>
+<tr>
 <td>PKG_DISABLED_OPTIONS</td>
-</tr>
-<tr>
 <td>PKG_FATAL_ERRORS</td>
+</tr>
+<tr>
 <td>PKG_FC</td>
-</tr>
-<tr>
 <td>PKG_FILELIST_CMD</td>
+</tr>
+<tr>
 <td>PKG_GECOS</td>
-</tr>
-<tr>
 <td>PKG_GID</td>
+</tr>
+<tr>
 <td>PKG_GROUPS</td>
-</tr>
-<tr>
 <td>PKG_GROUPS_VARS</td>
+</tr>
+<tr>
 <td>PKG_HOME</td>
-</tr>
-<tr>
 <td>PKG_INIT_SCRIPTS</td>
+</tr>
+<tr>
 <td>PKG_JAVA_HOME</td>
-</tr>
-<tr>
 <td>PKG_JVM</td>
+</tr>
+<tr>
 <td>PKG_JVMS_ACCEPTED</td>
-</tr>
-<tr>
 <td>PKG_JVM_DEFAULT</td>
+</tr>
+<tr>
 <td>PKG_LEGACY_OPTIONS</td>
-</tr>
-<tr>
 <td>PKG_LIBTOOL</td>
+</tr>
+<tr>
 <td>PKG_OPTIONS</td>
-</tr>
-<tr>
 <td>PKG_OPTIONS_DEPRECATED_WARNINGS</td>
+</tr>
+<tr>
 <td>PKG_OPTIONS_LEGACY_OPTS</td>
-</tr>
-<tr>
 <td>PKG_OPTIONS_LEGACY_VARS</td>
+</tr>
+<tr>
 <td>PKG_OPTIONS_NONEMPTY_SETS</td>
-</tr>
-<tr>
 <td>PKG_OPTIONS_OPTIONAL_GROUPS</td>
+</tr>
+<tr>
 <td>PKG_OPTIONS_REQUIRED_GROUPS</td>
-</tr>
-<tr>
 <td>PKG_OPTIONS_VAR</td>
+</tr>
+<tr>
 <td>PKG_PHP</td>
-</tr>
-<tr>
 <td>PKG_PHP_MAJOR_VERS</td>
+</tr>
+<tr>
 <td>PKG_PHP_VERSION</td>
-</tr>
-<tr>
 <td>PKG_RCD_SCRIPTS</td>
+</tr>
+<tr>
 <td>PKG_REFCOUNT_DBDIR</td>
-</tr>
-<tr>
 <td>PKG_REGISTER_SHELLS</td>
+</tr>
+<tr>
 <td>PKG_RESUME_TRANSFERS</td>
-</tr>
-<tr>
 <td>PKG_SHELL</td>
+</tr>
+<tr>
 <td>PKG_SUGGESTED_OPTIONS</td>
-</tr>
-<tr>
 <td>PKG_SUPPORTED_OPTIONS</td>
+</tr>
+<tr>
 <td>PKG_SYSCONFBASE</td>
-</tr>
-<tr>
 <td>PKG_SYSCONFBASEDIR</td>
+</tr>
+<tr>
 <td>PKG_SYSCONFDIR</td>
-</tr>
-<tr>
 <td>PKG_SYSCONFDIR_PERMS</td>
+</tr>
+<tr>
 <td>PKG_SYSCONFSUBDIR</td>
-</tr>
-<tr>
 <td>PKG_SYSCONFVAR</td>
+</tr>
+<tr>
 <td>PKG_TOOLS_BIN</td>
-</tr>
-<tr>
 <td>PKG_UID</td>
+</tr>
+<tr>
 <td>PKG_UPDATE_FONTS_DB</td>
-</tr>
-<tr>
 <td>PKG_USERS</td>
-<td>PKG_USERS_VARS</td>
 </tr>
 <tr>
+<td>PKG_USERS_VARS</td>
 <td>PKG_VERBOSE</td>
+</tr>
+<tr>
+<td>PLEASE</td>
 <td>PLIST</td>
 </tr>
 <tr>
@@ -12780,10 +12622,6 @@ source packages</h2></div></div></div>
 </tr>
 <tr>
 <td>RASMOL_DEPTH</td>
-<td>RCD_DIR</td>
-</tr>
-<tr>
-<td>RCD_ORDER</td>
 <td>RCD_SCRIPTS</td>
 </tr>
 <tr>
@@ -12796,115 +12634,111 @@ source packages</h2></div></div></div>
 </tr>
 <tr>
 <td>RCD_SCRIPT_SRC</td>
-<td>RCD_SUBR</td>
-</tr>
-<tr>
 <td>RDOC</td>
+</tr>
+<tr>
 <td>READLINE_DEFAULT</td>
-</tr>
-<tr>
 <td>READLINE_TYPE</td>
+</tr>
+<tr>
 <td>REAL_ROOT_GROUP</td>
-</tr>
-<tr>
 <td>REAL_ROOT_USER</td>
+</tr>
+<tr>
 <td>RECURSIVE_MAKE</td>
-</tr>
-<tr>
 <td>RELAY_CTRL_DIR</td>
+</tr>
+<tr>
 <td>RELRO_SUPPORTED</td>
-</tr>
-<tr>
 <td>REPLACE_AWK</td>
+</tr>
+<tr>
 <td>REPLACE_BASH</td>
-</tr>
-<tr>
 <td>REPLACE_CSH</td>
+</tr>
+<tr>
 <td>REPLACE_KSH</td>
-</tr>
-<tr>
 <td>REPLACE_PERL</td>
+</tr>
+<tr>
 <td>REPLACE_PERL6</td>
-</tr>
-<tr>
 <td>REPLACE_PHP</td>
+</tr>
+<tr>
 <td>REPLACE_PYTHON</td>
-</tr>
-<tr>
 <td>REPLACE_RUBY</td>
+</tr>
+<tr>
 <td>REPLACE_RUBY_DIRS</td>
-</tr>
-<tr>
 <td>REPLACE_RUBY_PAT</td>
+</tr>
+<tr>
 <td>REPLACE_SH</td>
-</tr>
-<tr>
 <td>REPLACE_TEXLUA</td>
+</tr>
+<tr>
 <td>REQD_DIRS</td>
-</tr>
-<tr>
 <td>REQD_DIRS_PERMS</td>
+</tr>
+<tr>
 <td>REQD_FILES</td>
-</tr>
-<tr>
 <td>REQD_FILES_MODE</td>
+</tr>
+<tr>
 <td>REQD_FILES_PERMS</td>
-</tr>
-<tr>
 <td>RESOLV_AUTO_VARS</td>
+</tr>
+<tr>
 <td>RESOLV_LDFLAGS</td>
-</tr>
-<tr>
 <td>RESOLV_LIBS</td>
+</tr>
+<tr>
 <td>RM</td>
-</tr>
-<tr>
-<td>ROCKSPEC_NAME</td>
-<td>ROCKSPEC_SPECFILE</td>
-</tr>
-<tr>
 <td>ROOT_CMD</td>
+</tr>
+<tr>
 <td>ROOT_GROUP</td>
-</tr>
-<tr>
 <td>ROOT_USER</td>
+</tr>
+<tr>
 <td>RPCGEN</td>
-</tr>
-<tr>
 <td>RPM</td>
+</tr>
+<tr>
 <td>RPM2PKG_PLIST</td>
-</tr>
-<tr>
 <td>RPM2PKG_PREFIX</td>
+</tr>
+<tr>
 <td>RPM2PKG_STAGE</td>
-</tr>
-<tr>
 <td>RPM2PKG_STRIP</td>
+</tr>
+<tr>
 <td>RPM2PKG_SUBPREFIX</td>
-</tr>
-<tr>
 <td>RPMFILES</td>
+</tr>
+<tr>
 <td>RPMIGNOREPATH</td>
-</tr>
-<tr>
 <td>RPM_DB_PREFIX</td>
+</tr>
+<tr>
 <td>RSSH_CVS_PATH</td>
-</tr>
-<tr>
 <td>RSSH_RDIST_PATH</td>
+</tr>
+<tr>
 <td>RSSH_RSYNC_PATH</td>
-</tr>
-<tr>
 <td>RSSH_SCP_PATH</td>
+</tr>
+<tr>
 <td>RSSH_SFTP_SERVER_PATH</td>
-</tr>
-<tr>
 <td>RUBY</td>
-<td>RUBYGEM</td>
 </tr>
 <tr>
+<td>RUBYGEM</td>
 <td>RUBYGEM_NAME</td>
+</tr>
+<tr>
 <td>RUBYGEM_OPTIONS</td>
+<td>RUBYGEM_VERBOSE</td>
 </tr>
 <tr>
 <td>RUBY_ABI_VERSION</td>
@@ -12959,100 +12793,100 @@ source packages</h2></div></div></div>
 <td>RUBY_RAILS60_VERSION</td>
 </tr>
 <tr>
+<td>RUBY_RAILS61_VERSION</td>
 <td>RUBY_RAILS_ACCEPTED</td>
+</tr>
+<tr>
 <td>RUBY_RAILS_DEFAULT</td>
-</tr>
-<tr>
 <td>RUBY_RAILS_REQD</td>
+</tr>
+<tr>
 <td>RUBY_RAILS_STRICT_DEP</td>
-</tr>
-<tr>
 <td>RUBY_RIDIR</td>
+</tr>
+<tr>
 <td>RUBY_SETUP</td>
-</tr>
-<tr>
 <td>RUBY_SHLIB</td>
+</tr>
+<tr>
 <td>RUBY_SHLIBALIAS</td>
-</tr>
-<tr>
 <td>RUBY_SHLIBVER</td>
+</tr>
+<tr>
 <td>RUBY_SIMPLE_INSTALL</td>
-</tr>
-<tr>
 <td>RUBY_SITEARCHLIB</td>
+</tr>
+<tr>
 <td>RUBY_SITELIB</td>
-</tr>
-<tr>
 <td>RUBY_SITELIB_BASE</td>
+</tr>
+<tr>
 <td>RUBY_SITERIDIR</td>
-</tr>
-<tr>
 <td>RUBY_SLEXT</td>
+</tr>
+<tr>
 <td>RUBY_SRCDIR</td>
-</tr>
-<tr>
 <td>RUBY_STATICLIB</td>
+</tr>
+<tr>
 <td>RUBY_SUFFIX</td>
-</tr>
-<tr>
 <td>RUBY_SYSRIDIR</td>
+</tr>
+<tr>
 <td>RUBY_USE_PTHREAD</td>
-</tr>
-<tr>
 <td>RUBY_VENDORARCHLIB</td>
+</tr>
+<tr>
 <td>RUBY_VENDORLIB</td>
-</tr>
-<tr>
 <td>RUBY_VENDORLIB_BASE</td>
+</tr>
+<tr>
 <td>RUBY_VER</td>
-</tr>
-<tr>
 <td>RUBY_VERSION</td>
+</tr>
+<tr>
 <td>RUBY_VERSIONS_ACCEPTED</td>
-</tr>
-<tr>
 <td>RUBY_VERSIONS_INCOMPATIBLE</td>
+</tr>
+<tr>
 <td>RUBY_VERSION_DEFAULT</td>
-</tr>
-<tr>
 <td>RUBY_VERSION_REQD</td>
+</tr>
+<tr>
 <td>RUBY_VER_DIR</td>
-</tr>
-<tr>
 <td>RUN</td>
+</tr>
+<tr>
 <td>RUN_LDCONFIG</td>
-</tr>
-<tr>
 <td>SAWFISH_THEMES</td>
+</tr>
+<tr>
 <td>SCO</td>
-</tr>
-<tr>
 <td>SCREWS_GROUP</td>
+</tr>
+<tr>
 <td>SCREWS_USER</td>
-</tr>
-<tr>
 <td>SCRIPTS_ENV</td>
+</tr>
+<tr>
 <td>SCROLLKEEPER_DATADIR</td>
-</tr>
-<tr>
 <td>SCROLLKEEPER_REBUILDDB</td>
+</tr>
+<tr>
 <td>SCROLLKEEPER_UPDATEDB</td>
-</tr>
-<tr>
 <td>SDIST_PAWD</td>
+</tr>
+<tr>
 <td>SERIAL_DEVICES</td>
-</tr>
-<tr>
 <td>SETGIDGAME</td>
+</tr>
+<tr>
 <td>SETGID_GAMES_PERMS</td>
-</tr>
-<tr>
 <td>SETUID_ROOT_PERMS</td>
-<td>SH</td>
 </tr>
 <tr>
+<td>SH</td>
 <td>SHLIB</td>
-<td>SHORTNAME</td>
 </tr>
 <tr>
 <td>SIGN_PACKAGES</td>
@@ -13139,91 +12973,83 @@ source packages</h2></div></div></div>
 <td>SU_CMD</td>
 </tr>
 <tr>
-<td>SVN_EXTRACTDIR</td>
-<td>SVN_REPO</td>
-</tr>
-<tr>
-<td>SVN_REPOSITORIES</td>
-<td>SVN_REVISION</td>
-</tr>
-<tr>
+<td>SYSCONFBASE</td>
 <td>TBL</td>
+</tr>
+<tr>
 <td>TERMCAP_TYPE</td>
-</tr>
-<tr>
 <td>TERMINFO_DEFAULT</td>
+</tr>
+<tr>
 <td>TERMINFO_TYPE</td>
-</tr>
-<tr>
 <td>TEST</td>
+</tr>
+<tr>
 <td>TEST_DEPENDS</td>
-</tr>
-<tr>
 <td>TEST_DIRS</td>
+</tr>
+<tr>
 <td>TEST_ENV</td>
-</tr>
-<tr>
 <td>TEST_ENV_SHELL</td>
+</tr>
+<tr>
 <td>TEST_MAKE_CMD</td>
-</tr>
-<tr>
 <td>TEST_MAKE_FLAGS</td>
+</tr>
+<tr>
 <td>TEST_TARGET</td>
-</tr>
-<tr>
 <td>TEXLIVE_IGNORE_PATTERNS</td>
+</tr>
+<tr>
 <td>TEXLIVE_REV</td>
-</tr>
-<tr>
 <td>TEXLIVE_UNVERSIONED</td>
+</tr>
+<tr>
 <td>TEXMFSITE</td>
-</tr>
-<tr>
 <td>TEX_FORMATS</td>
+</tr>
+<tr>
 <td>TEX_HYPHEN_DAT</td>
-</tr>
-<tr>
 <td>TEX_HYPHEN_DEF</td>
+</tr>
+<tr>
 <td>TEX_TEXMF_DIRS</td>
-</tr>
-<tr>
 <td>THTTPD_LOG_FACILITY</td>
+</tr>
+<tr>
 <td>TINYDYN_USER</td>
-</tr>
-<tr>
 <td>TO</td>
+</tr>
+<tr>
 <td>TOOLS_ALIASES</td>
-</tr>
-<tr>
 <td>TOOLS_ALWAYS_WRAP</td>
+</tr>
+<tr>
 <td>TOOLS_ARGS</td>
-</tr>
-<tr>
 <td>TOOLS_BROKEN</td>
+</tr>
+<tr>
 <td>TOOLS_CMD</td>
-</tr>
-<tr>
 <td>TOOLS_CMDLINE_SED</td>
+</tr>
+<tr>
 <td>TOOLS_CREATE</td>
-</tr>
-<tr>
 <td>TOOLS_DIR</td>
+</tr>
+<tr>
 <td>TOOLS_FAIL</td>
-</tr>
-<tr>
 <td>TOOLS_GNU_MISSING</td>
+</tr>
+<tr>
 <td>TOOLS_LDCONFIG</td>
-</tr>
-<tr>
 <td>TOOLS_NOOP</td>
+</tr>
+<tr>
 <td>TOOLS_PATH</td>
-</tr>
-<tr>
 <td>TOOLS_SCRIPT</td>
-<td>TOOL_DEPENDS</td>
 </tr>
 <tr>
-<td>TTF_FONTDIR</td>
+<td>TOOL_DEPENDS</td>
 <td>TTF_FONTS_DIR</td>
 </tr>
 <tr>
@@ -13376,150 +13202,146 @@ source packages</h2></div></div></div>
 </tr>
 <tr>
 <td>XXX</td>
-<td>XXXX</td>
-</tr>
-<tr>
 <td>YES</td>
+</tr>
+<tr>
 <td>ZSH_STATIC</td>
-</tr>
-<tr>
 <td>__stdc__</td>
+</tr>
+<tr>
 <td>_vargroups</td>
-</tr>
-<tr>
 <td>accept</td>
+</tr>
+<tr>
 <td>acquire-localbase-lock</td>
-</tr>
-<tr>
 <td>acquire-lock</td>
+</tr>
+<tr>
 <td>add</td>
-</tr>
-<tr>
 <td>administrator</td>
+</tr>
+<tr>
 <td>alloca</td>
-</tr>
-<tr>
 <td>alternatives</td>
+</tr>
+<tr>
 <td>aslr</td>
-</tr>
-<tr>
 <td>asprintf</td>
+</tr>
+<tr>
 <td>atlas</td>
-</tr>
-<tr>
 <td>autoconf</td>
+</tr>
+<tr>
 <td>automake</td>
-</tr>
-<tr>
 <td>autoreconf</td>
+</tr>
+<tr>
 <td>awk</td>
-</tr>
-<tr>
 <td>bash</td>
+</tr>
+<tr>
 <td>big-endian</td>
-</tr>
-<tr>
 <td>bin-install</td>
+</tr>
+<tr>
 <td>bind</td>
-</tr>
-<tr>
 <td>binpkg-list</td>
+</tr>
+<tr>
 <td>blas</td>
-</tr>
-<tr>
 <td>bootstrap-depends</td>
+</tr>
+<tr>
 <td>broken</td>
-</tr>
-<tr>
 <td>broken_on_platform</td>
+</tr>
+<tr>
 <td>bsd</td>
-</tr>
-<tr>
 <td>bsd.prog.mk</td>
+</tr>
+<tr>
 <td>build</td>
-</tr>
-<tr>
 <td>build-env</td>
+</tr>
+<tr>
 <td>buildlink-directories</td>
-</tr>
-<tr>
 <td>buildlink-oss-soundcard-h</td>
+</tr>
+<tr>
 <td>c</td>
-</tr>
-<tr>
 <td>c++</td>
+</tr>
+<tr>
 <td>ccache</td>
-</tr>
-<tr>
 <td>cce</td>
+</tr>
+<tr>
 <td>cdefs</td>
-</tr>
-<tr>
 <td>ceil</td>
+</tr>
+<tr>
 <td>changes</td>
-</tr>
-<tr>
 <td>changes-entry</td>
+</tr>
+<tr>
 <td>changes-entry-noupdate</td>
-</tr>
-<tr>
 <td>check</td>
+</tr>
+<tr>
 <td>check-clean</td>
-</tr>
-<tr>
 <td>check-files</td>
+</tr>
+<tr>
 <td>check-files-clean</td>
-</tr>
-<tr>
 <td>check-vulnerable</td>
+</tr>
+<tr>
 <td>checksum</td>
-</tr>
-<tr>
 <td>checksum-phase</td>
+</tr>
+<tr>
 <td>clean</td>
-</tr>
-<tr>
 <td>clean-depends</td>
+</tr>
+<tr>
 <td>cleandir</td>
-</tr>
-<tr>
 <td>commit</td>
+</tr>
+<tr>
 <td>commit-changes-entry</td>
-</tr>
-<tr>
 <td>compact</td>
+</tr>
+<tr>
 <td>compiler</td>
-</tr>
-<tr>
 <td>conf</td>
+</tr>
+<tr>
 <td>config.guess</td>
-</tr>
-<tr>
 <td>config.sub</td>
+</tr>
+<tr>
 <td>configuration</td>
-</tr>
-<tr>
 <td>configure</td>
+</tr>
+<tr>
 <td>configure-env</td>
-</tr>
-<tr>
 <td>configure-help</td>
+</tr>
+<tr>
 <td>configure_args</td>
-</tr>
-<tr>
 <td>connect</td>
+</tr>
+<tr>
 <td>cos</td>
-</tr>
-<tr>
 <td>cputime</td>
+</tr>
+<tr>
 <td>create-usergroup</td>
-</tr>
-<tr>
 <td>csh</td>
-<td>ctf</td>
 </tr>
 <tr>
-<td>cvs</td>
+<td>ctf</td>
 <td>debug</td>
 </tr>
 <tr>
@@ -13568,23 +13390,19 @@ source packages</h2></div></div></div>
 </tr>
 <tr>
 <td>do-fetch</td>
-<td>do-install</td>
-</tr>
-<tr>
 <td>emul</td>
+</tr>
+<tr>
 <td>emul-distinfo</td>
-</tr>
-<tr>
 <td>emul-fetch</td>
+</tr>
+<tr>
 <td>emulation</td>
-</tr>
-<tr>
 <td>emulator</td>
-<td>enable</td>
 </tr>
 <tr>
+<td>enable</td>
 <td>endian</td>
-<td>endif</td>
 </tr>
 <tr>
 <td>enomem</td>
@@ -13620,67 +13438,59 @@ source packages</h2></div></div></div>
 </tr>
 <tr>
 <td>fortify_source</td>
-<td>fossil</td>
-</tr>
-<tr>
 <td>friend</td>
+</tr>
+<tr>
 <td>fts</td>
-</tr>
-<tr>
 <td>fts_close</td>
+</tr>
+<tr>
 <td>fts_open</td>
-</tr>
-<tr>
 <td>fts_read</td>
+</tr>
+<tr>
 <td>fts_set</td>
-</tr>
-<tr>
 <td>gcc</td>
+</tr>
+<tr>
 <td>gethostbyaddr</td>
-</tr>
-<tr>
 <td>gethostbyname</td>
+</tr>
+<tr>
 <td>gethostbyname2</td>
-</tr>
-<tr>
 <td>getopt_long</td>
+</tr>
+<tr>
 <td>getprogname</td>
-</tr>
-<tr>
 <td>getservbyname</td>
+</tr>
+<tr>
 <td>getservbyport</td>
-</tr>
-<tr>
 <td>getservent</td>
-<td>gettext</td>
 </tr>
 <tr>
-<td>git</td>
+<td>gettext</td>
 <td>github</td>
 </tr>
 <tr>
-<td>gitlab</td>
 <td>glob</td>
-</tr>
-<tr>
 <td>gnu</td>
+</tr>
+<tr>
 <td>gnu_configure_strict</td>
-</tr>
-<tr>
 <td>go</td>
+</tr>
+<tr>
 <td>go-deps</td>
-</tr>
-<tr>
 <td>golang</td>
+</tr>
+<tr>
 <td>guess-license</td>
-</tr>
-<tr>
 <td>hashbang</td>
-<td>heimdal</td>
 </tr>
 <tr>
+<td>heimdal</td>
 <td>help</td>
-<td>hg</td>
 </tr>
 <tr>
 <td>imake</td>
@@ -13748,210 +13558,206 @@ source packages</h2></div></div></div>
 </tr>
 <tr>
 <td>memory</td>
-<td>mercurial</td>
-</tr>
-<tr>
 <td>meta</td>
+</tr>
+<tr>
 <td>meta-package</td>
-</tr>
-<tr>
 <td>meta_package</td>
+</tr>
+<tr>
 <td>mit-krb5</td>
-</tr>
-<tr>
 <td>mk.conf</td>
+</tr>
+<tr>
 <td>mkl</td>
-</tr>
-<tr>
 <td>mount</td>
+</tr>
+<tr>
 <td>mprotect</td>
-</tr>
-<tr>
 <td>mremap</td>
+</tr>
+<tr>
 <td>nb</td>
-</tr>
-<tr>
 <td>nbcompat</td>
+</tr>
+<tr>
 <td>obstack</td>
-</tr>
-<tr>
 <td>obstack_ptr_grow</td>
+</tr>
+<tr>
 <td>occurs</td>
-</tr>
-<tr>
 <td>only</td>
+</tr>
+<tr>
 <td>openblas</td>
-</tr>
-<tr>
 <td>options</td>
+</tr>
+<tr>
 <td>options.mk</td>
-</tr>
-<tr>
 <td>order</td>
+</tr>
+<tr>
 <td>override</td>
-</tr>
-<tr>
 <td>override-intltool</td>
+</tr>
+<tr>
 <td>override-message-intltool</td>
-</tr>
-<tr>
 <td>package</td>
+</tr>
+<tr>
 <td>parallel</td>
-</tr>
-<tr>
 <td>path</td>
+</tr>
+<tr>
 <td>pax</td>
-</tr>
-<tr>
 <td>paxctl</td>
+</tr>
+<tr>
 <td>pbulk-index</td>
-</tr>
-<tr>
 <td>pc</td>
+</tr>
+<tr>
 <td>perl</td>
-</tr>
-<tr>
 <td>perl5</td>
+</tr>
+<tr>
 <td>perms</td>
-</tr>
-<tr>
 <td>php</td>
+</tr>
+<tr>
 <td>pkg-build-options</td>
-</tr>
-<tr>
 <td>pkg-config</td>
+</tr>
+<tr>
 <td>pkg_build_options</td>
-</tr>
-<tr>
 <td>platform</td>
+</tr>
+<tr>
 <td>plist</td>
-</tr>
-<tr>
 <td>post-extract</td>
+</tr>
+<tr>
 <td>post-fetch</td>
-</tr>
-<tr>
 <td>post-wrapper</td>
+</tr>
+<tr>
 <td>pre-build-checks-hook</td>
-</tr>
-<tr>
 <td>pre-configure</td>
+</tr>
+<tr>
 <td>pre-configure-checks-hook</td>
-</tr>
-<tr>
 <td>pre-extract</td>
+</tr>
+<tr>
 <td>pre-fetch</td>
-</tr>
-<tr>
 <td>print-go-deps</td>
+</tr>
+<tr>
 <td>print-plist</td>
-</tr>
-<tr>
 <td>print-summary-data</td>
+</tr>
+<tr>
 <td>privileged-install-hook</td>
-</tr>
-<tr>
 <td>pypi</td>
+</tr>
+<tr>
 <td>python</td>
-</tr>
-<tr>
 <td>readme-all</td>
+</tr>
+<tr>
 <td>recv</td>
-</tr>
-<tr>
 <td>recvfrom</td>
+</tr>
+<tr>
 <td>regcomp</td>
-</tr>
-<tr>
 <td>release-localbase-lock</td>
+</tr>
+<tr>
 <td>release-lock</td>
-</tr>
-<tr>
 <td>relro</td>
+</tr>
+<tr>
 <td>rename</td>
-</tr>
-<tr>
 <td>reorder</td>
+</tr>
+<tr>
 <td>replace</td>
-</tr>
-<tr>
 <td>replace_interpreter</td>
+</tr>
+<tr>
 <td>reproducible</td>
-</tr>
-<tr>
 <td>resolv</td>
+</tr>
+<tr>
 <td>root</td>
-</tr>
-<tr>
 <td>ruby</td>
+</tr>
+<tr>
 <td>send</td>
-</tr>
-<tr>
 <td>sendfile</td>
+</tr>
+<tr>
 <td>sendto</td>
-</tr>
-<tr>
 <td>setenv</td>
+</tr>
+<tr>
 <td>setgid</td>
-</tr>
-<tr>
 <td>setprogname</td>
+</tr>
+<tr>
 <td>setuid</td>
-</tr>
-<tr>
 <td>sh</td>
+</tr>
+<tr>
 <td>shebang</td>
-</tr>
-<tr>
 <td>show</td>
+</tr>
+<tr>
 <td>show-all</td>
-</tr>
-<tr>
 <td>show-build-defs</td>
+</tr>
+<tr>
 <td>show-depends</td>
-</tr>
-<tr>
 <td>show-deps</td>
+</tr>
+<tr>
 <td>show-distfiles</td>
-</tr>
-<tr>
 <td>show-downlevel</td>
+</tr>
+<tr>
 <td>show-subdir-var</td>
-</tr>
-<tr>
 <td>show-tools</td>
+</tr>
+<tr>
 <td>show-var</td>
-</tr>
-<tr>
 <td>show-vars</td>
+</tr>
+<tr>
 <td>snprintf</td>
-</tr>
-<tr>
 <td>socket</td>
+</tr>
+<tr>
 <td>ssp</td>
-</tr>
-<tr>
 <td>st_mode</td>
+</tr>
+<tr>
 <td>stage-install</td>
-</tr>
-<tr>
 <td>strcasestr</td>
+</tr>
+<tr>
 <td>strict</td>
-</tr>
-<tr>
 <td>strip</td>
+</tr>
+<tr>
 <td>strndup</td>
-</tr>
-<tr>
 <td>strnlen</td>
+</tr>
+<tr>
 <td>strsep</td>
-</tr>
-<tr>
 <td>subst</td>
-<td>substitutions</td>
 </tr>
 <tr>
-<td>subversion</td>
+<td>substitutions</td>
 <td>sun</td>
 </tr>
 <tr>
@@ -13959,76 +13765,76 @@ source packages</h2></div></div></div>
 <td>sunwspro</td>
 </tr>
 <tr>
-<td>svn</td>
 <td>symlink</td>
-</tr>
-<tr>
 <td>test</td>
+</tr>
+<tr>
 <td>test-env</td>
-</tr>
-<tr>
 <td>tex</td>
+</tr>
+<tr>
 <td>texlive</td>
-</tr>
-<tr>
 <td>tmp</td>
+</tr>
+<tr>
 <td>tool</td>
-</tr>
-<tr>
 <td>tools</td>
+</tr>
+<tr>
 <td>tools-libtool-m4-override</td>
-</tr>
-<tr>
 <td>type</td>
+</tr>
+<tr>
 <td>ulimit</td>
-</tr>
-<tr>
 <td>undefined</td>
+</tr>
+<tr>
 <td>undo-replace</td>
-</tr>
-<tr>
 <td>unlimit</td>
+</tr>
+<tr>
 <td>unprivileged</td>
-</tr>
-<tr>
 <td>unprivileged-install-hook</td>
+</tr>
+<tr>
 <td>unstripped</td>
-</tr>
-<tr>
 <td>update</td>
+</tr>
+<tr>
 <td>upload</td>
-</tr>
-<tr>
 <td>upload-distfiles</td>
+</tr>
+<tr>
 <td>use_tools</td>
-</tr>
-<tr>
 <td>user</td>
+</tr>
+<tr>
 <td>utimes</td>
-</tr>
-<tr>
 <td>vasprintf</td>
+</tr>
+<tr>
 <td>verbose</td>
-</tr>
-<tr>
 <td>vsnprintf</td>
+</tr>
+<tr>
 <td>warn</td>
-</tr>
-<tr>
 <td>warning</td>
+</tr>
+<tr>
 <td>warnings</td>
-</tr>
-<tr>
 <td>warnx</td>
+</tr>
+<tr>
 <td>wattr_off</td>
-</tr>
-<tr>
 <td>wattr_on</td>
-<td>work</td>
 </tr>
 <tr>
+<td>work</td>
 <td>wrapper</td>
+</tr>
+<tr>
 <td>wrkdir</td>
+<td> </td>
 </tr>
 </table>
 </div>

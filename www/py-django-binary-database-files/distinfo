@@ -1,8 +1,6 @@
-$NetBSD: distinfo,v 1.2 2020/08/19 00:29:46 joerg Exp $
+$NetBSD: distinfo,v 1.4 2021/05/25 04:46:40 adam Exp $
 
-SHA1 (django-binary-database-files-1.0.13-cedd9f4608eb0da343cf15cfcaf5400a0754cc28.tar.gz) = 74c359eff5cd2039a9bc2badf7f4de581439c4ad
-RMD160 (django-binary-database-files-1.0.13-cedd9f4608eb0da343cf15cfcaf5400a0754cc28.tar.gz) = 880660c927751ba1cb0def0b97f3b10915a8f893
-SHA512 (django-binary-database-files-1.0.13-cedd9f4608eb0da343cf15cfcaf5400a0754cc28.tar.gz) = a275dc6763f98baf1170c0e160e3b9f2c515af7ee1bfb1229d0106c634c9a77af3b399d8cac781692fad56355f83cc260fd7a22f610600dcd1bbaebd3ce11598
-Size (django-binary-database-files-1.0.13-cedd9f4608eb0da343cf15cfcaf5400a0754cc28.tar.gz) = 31835 bytes
-SHA1 (patch-binary__database__files_storage.py) = 76eed8510370dd17bddc671b13251581db556181
-SHA1 (patch-binary__database__files_tests_tests.py) = d578a3cbdfb53f8547f689c9e761113abc795fc3
+SHA1 (django-binary-database-files-1.0.15.tar.gz) = 3bfd69a8c292dfb6e36e78cacc9047336050835f
+RMD160 (django-binary-database-files-1.0.15.tar.gz) = f981b8f2e2917960db4a534ca2264c95cbc4f0e6
+SHA512 (django-binary-database-files-1.0.15.tar.gz) = 5fd0d1ad2cac0832327c635a2e0bb6e9322f3869668f5fefb4fd74eece800a32cc2c81320660939e69cef92a344c03073ef37d32315f46d6870273624de4093b
+Size (django-binary-database-files-1.0.15.tar.gz) = 34561 bytes

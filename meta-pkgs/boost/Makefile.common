@@ -1,4 +1,4 @@
-# $NetBSD: Makefile.common,v 1.89 2021/01/01 08:19:02 ryoon Exp $
+# $NetBSD: Makefile.common,v 1.91 2021/05/27 17:02:24 nia Exp $
 #
 # used by devel/boost-build/Makefile
 # used by devel/boost-docs/Makefile
@@ -10,7 +10,7 @@
 
 BOOST_PACKAGE?=		undefined
 BOOST_COMMENT?=		undefined
-BOOST_VERSION=		1.75.0
+BOOST_VERSION=		1.76.0
 BOOST_SHORT_VERSION=	${BOOST_VERSION:S/./_/:C/\..*$//}
 
 # Update mysql57-client/patches/patch-cmake_boost.cmake when updating version
@@ -42,16 +42,8 @@ USE_LANGUAGES=		c c++
 .include "../../mk/bsd.prefs.mk"
 
 # IMPORTANT: sync this with devel/boost-libs/buildlink3.mk
-# GCC 4.5 or later is required to build, and GCC 4.5 is not provided for OpenBSD
-.  if ${OPSYS} == "OpenBSD"
-.    if ${MACHINE_ARCH} != "sparc64"
-GCC_REQD+=		4.6
-.    endif
-.  elif ${LOWER_VENDOR} == "redhat"
-GCC_REQD+=		4.4
-.  else
-GCC_REQD+=		4.5
-.  endif
+# libstdc++5 is required to build "math" and "nowide".
+GCC_REQD+=		5
 
 PLIST_SUBST+=		BOOST_VERSION="${BOOST_VERSION}"
 

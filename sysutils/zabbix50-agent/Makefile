@@ -1,5 +1,6 @@
-# $NetBSD: Makefile,v 1.3 2020/12/03 14:17:25 otis Exp $
+# $NetBSD: Makefile,v 1.5 2021/04/21 13:25:25 adam Exp $
 
+PKGREVISION= 2
 .include "../../sysutils/zabbix50-server/Makefile.common"
 
 PKGNAME=	${DISTNAME:S/-/-agent-/}

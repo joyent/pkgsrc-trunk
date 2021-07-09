@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.30 2020/11/05 09:07:03 ryoon Exp $
+# $NetBSD: Makefile,v 1.32 2021/05/14 13:11:38 nia Exp $
 
 DISTNAME=	gupnp-dlna-0.10.3
-PKGREVISION=	16
+PKGREVISION=	17
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gupnp-dlna/0.10/}
 EXTRACT_SUFX=	.tar.xz
@@ -23,6 +23,7 @@ PKGCONFIG_OVERRIDE+=	gupnp-dlna-gst-2.0.pc.in
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../devel/gobject-introspection/buildlink3.mk"
+.include "../../lang/vala/buildlink3.mk"
 .include "../../net/gupnp/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../multimedia/gstreamer1/buildlink3.mk"

@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.247 2021/02/11 14:50:38 ryoon Exp $
+# $NetBSD: Makefile,v 1.254 2021/06/04 13:32:20 wiz Exp $
 
-DISTNAME=		vlc-3.0.12
+DISTNAME=		vlc-3.0.14
 PKGREVISION=		2
 CATEGORIES=		multimedia
 MASTER_SITES=		https://download.videolan.org/pub/videolan/vlc/${PKGVERSION_NOREV}/
@@ -27,9 +27,6 @@ PLIST_VARS+=		altivec cdrom egl oss v4l2 x86simd
 
 .include "../../mk/bsd.prefs.mk"
 .include "options.mk"
-
-BUILDLINK_API_DEPENDS.zlib+=		zlib>=1.2.0
-BUILDLINK_API_DEPENDS.vcdimager+=	vcdimager>=0.7.20nb1
 
 CONFIGURE_ENV=		LUAC=${PREFIX}/bin/luac5.2
 
@@ -178,8 +175,13 @@ CHECK_WRKREF_SKIP=	lib/libvlccore.a \
 
 MAKE_FLAGS+=	BUILDCC=${CC:Q}
 
+# The sed expression is a workaround for accepting NetBSD's libintl instead of gettext-lib
 pre-configure:
 	${RUN} cd ${WRKSRC} && ${SH} ./bootstrap
+	cd ${WRKSRC} && \
+		${SED} -e 's/#define __GNU_GETTEXT_SUPPORTED_REVISION.*/#define __GNU_GETTEXT_SUPPORTED_REVISION(x) 1/' \
+		       -e 's/#define __GNU_GETTEXT_SYMBOL_EXPRESSION.*/#define __GNU_GETTEXT_SYMBOL_EXPRESSION 0/' \
+			configure > configure.sed && ${MV} configure.sed configure
 
 .include "../../audio/flac/buildlink3.mk"
 .include "../../audio/fluidsynth/buildlink3.mk"
@@ -199,6 +201,7 @@ pre-configure:
 .include "../../devel/libmtp/buildlink3.mk"
 .include "../../devel/pcre/buildlink3.mk"
 .include "../../devel/protobuf/buildlink3.mk"
+BUILDLINK_API_DEPENDS.zlib+=		zlib>=1.2.0
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../fonts/fontconfig/buildlink3.mk"
 .include "../../fonts/harfbuzz/buildlink3.mk"

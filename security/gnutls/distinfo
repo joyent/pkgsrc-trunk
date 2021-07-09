@@ -1,9 +1,9 @@
-$NetBSD: distinfo,v 1.146 2020/12/03 12:27:38 nia Exp $
+$NetBSD: distinfo,v 1.148 2021/05/31 11:08:45 wiz Exp $
 
-SHA1 (gnutls-3.7.0.tar.xz) = d535ebe4ae157fb79dbc34a2cf17b5173906ea0e
-RMD160 (gnutls-3.7.0.tar.xz) = 764391c259d604a0267bb673649738bc3a495507
-SHA512 (gnutls-3.7.0.tar.xz) = 5cf1025f2d0a0cbf5a83dd7f3b22dafd1769f7c3349096c0272d08573bb5ff87f510e0e69b4bbb47dad1b64476aa5479804b2f4ceb2216cd747bbc53bf42d885
-Size (gnutls-3.7.0.tar.xz) = 6129176 bytes
+SHA1 (gnutls-3.7.2.tar.xz) = 02e12259680b6ad3ec973e0df6bf2cf0c5ef1100
+RMD160 (gnutls-3.7.2.tar.xz) = a095231e93c7e4e94d78e442e7f816b9748b24b1
+SHA512 (gnutls-3.7.2.tar.xz) = 5d01d561a05379da71e4847e30ba13c2abe09f7a5c4359fd539d8bd19abad0ce87120f82ee7b6264e787bd3edbc5ae16beffa892983cbc3d59f11a1811c10329
+Size (gnutls-3.7.2.tar.xz) = 6091508 bytes
 SHA1 (patch-configure) = 3653f74914f874aa369f62c8b267a46fd6b78eaa
 SHA1 (patch-lib_system_certs.c) = fba74b2834a36d66bddcd7d3405d0c91c1b14efc
 SHA1 (patch-src_libopts_autoopts_options.h) = ebeeafc834bce3b6b3f938e360b089e165ee4f9e

@@ -1,18 +1,22 @@
-@comment $NetBSD: PLIST,v 1.1 2021/02/08 06:57:04 adam Exp $
+@comment $NetBSD: PLIST,v 1.3 2021/06/13 17:29:37 adam Exp $
 ${PYSITELIB}/${EGG_FILE}
 ${PYSITELIB}/bitarray/__init__.py
 ${PYSITELIB}/bitarray/__init__.pyc
+${PYSITELIB}/bitarray/__init__.pyi
 ${PYSITELIB}/bitarray/__init__.pyo
 ${PYSITELIB}/bitarray/_bitarray.so
 ${PYSITELIB}/bitarray/_util.so
 ${PYSITELIB}/bitarray/bitarray.h
+${PYSITELIB}/bitarray/py.typed
 ${PYSITELIB}/bitarray/pythoncapi_compat.h
 ${PYSITELIB}/bitarray/test_bitarray.py
 ${PYSITELIB}/bitarray/test_bitarray.pyc
 ${PYSITELIB}/bitarray/test_bitarray.pyo
+${PYSITELIB}/bitarray/test_data.pickle
 ${PYSITELIB}/bitarray/test_util.py
 ${PYSITELIB}/bitarray/test_util.pyc
 ${PYSITELIB}/bitarray/test_util.pyo
 ${PYSITELIB}/bitarray/util.py
 ${PYSITELIB}/bitarray/util.pyc
+${PYSITELIB}/bitarray/util.pyi
 ${PYSITELIB}/bitarray/util.pyo

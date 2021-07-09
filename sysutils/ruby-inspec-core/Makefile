@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.4 2021/03/09 08:58:23 nia Exp $
+# $NetBSD: Makefile,v 1.10 2021/06/14 15:36:39 taca Exp $
 
-DISTNAME=	inspec-core-4.26.13
+DISTNAME=	inspec-core-4.37.25
 CATEGORIES=	sysutils
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -21,6 +21,7 @@ DEPENDS+=	${RUBY_PKGPREFIX}-mixlib-log>=3.0<4:../../devel/ruby-mixlib-log
 DEPENDS+=	${RUBY_PKGPREFIX}-sslshake>=1.2<2:../../security/ruby-sslshake
 DEPENDS+=	${RUBY_PKGPREFIX}-parallel>=1.9<2:../../misc/ruby-parallel
 DEPENDS+=	${RUBY_PKGPREFIX}-faraday>=0.9.0:../../www/ruby-faraday
+DEPENDS+=	${RUBY_PKGPREFIX}-faraday_middleware>=1.0<2:../../www/ruby-faraday_middleware
 DEPENDS+=	${RUBY_PKGPREFIX}-tty-table>=0.10<1:../../devel/ruby-tty-table
 DEPENDS+=	${RUBY_PKGPREFIX}-tty-prompt>=0.17<1:../../devel/ruby-tty-prompt
 DEPENDS+=	${RUBY_PKGPREFIX}-tomlrb>=1.2:../../devel/ruby-tomlrb
@@ -31,8 +32,6 @@ DEPENDS+=	${RUBY_PKGPREFIX}-multipart-post>=2.0<3:../../www/ruby-multipart-post
 DEPENDS+=	${RUBY_PKGPREFIX}-train-core>=3.0<4:../../net/ruby-train-core
 
 USE_LANGUAGES=	# none
-
-RUBY_VERSIONS_INCOMPATIBLE=	25 # ruby-chef-utils
 
 .include "../../lang/ruby/gem.mk"
 .include "../../mk/bsd.pkg.mk"

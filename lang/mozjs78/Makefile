@@ -1,13 +1,14 @@
-# $NetBSD: Makefile,v 1.16 2020/12/31 20:04:12 nia Exp $
+# $NetBSD: Makefile,v 1.21 2021/06/14 22:07:35 gutteridge Exp $
 
 DISTNAME=	mozjs78_78.4.0.orig
 PKGNAME=	${DISTNAME:S/_/-/:S/.orig//}
+PKGREVISION=	3
 CATEGORIES=	lang
 MASTER_SITES=	http://deb.debian.org/debian/pool/main/m/mozjs78/
 EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
-HOMEPAGE=	https://mozilla-spidermonkey.github.io/
+HOMEPAGE=	https://spidermonkey.dev/
 COMMENT=	SpiderMonkey JavaScript library (78.x branch)
 LICENSE=	mpl-1.1
 
@@ -33,9 +34,20 @@ CONFIGURE_ARGS+=	--disable-debug-symbols
 CONFIGURE_ARGS+=	--enable-strip
 CONFIGURE_ARGS+=	--with-intl-api
 # --disable-optimize
+
 # For rustc/cargo detection
+.include "../../mk/bsd.prefs.mk"
+
+# This is to work around build failures where an upstream configuration script
+# is confused by having more than one approximate match to MACHINE_GNU_PLATFORM
+# "i486" when attempting to select the Rust compiler target.
+.if !empty(MACHINE_PLATFORM:MNetBSD-*-i386)
+CONFIGURE_ARGS+=	--target=i586-unknown-netbsd
+CONFIGURE_ARGS+=	--host=i586-unknown-netbsd
+.else
 CONFIGURE_ARGS+=	--target=${MACHINE_GNU_PLATFORM}
 CONFIGURE_ARGS+=	--host=${MACHINE_GNU_PLATFORM}
+.endif
 
 BUILDLINK_TRANSFORM.SunOS+=	rm:-pie
 

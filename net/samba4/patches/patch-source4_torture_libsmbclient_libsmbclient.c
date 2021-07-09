@@ -1,4 +1,4 @@
-$NetBSD: patch-source4_torture_libsmbclient_libsmbclient.c,v 1.1 2020/11/12 06:37:18 adam Exp $
+$NetBSD: patch-source4_torture_libsmbclient_libsmbclient.c,v 1.3 2021/06/22 09:36:41 nia Exp $
 
 Compatibility fix.
 

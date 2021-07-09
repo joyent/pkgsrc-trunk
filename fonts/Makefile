@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.360 2021/02/22 20:49:36 wiz Exp $
+# $NetBSD: Makefile,v 1.362 2021/04/19 16:03:10 nia Exp $
 #
 
 COMMENT=	Fonts
@@ -46,6 +46,7 @@ SUBDIR+=	consolamono-ttf
 SUBDIR+=	courier-prime
 SUBDIR+=	croscorefonts
 SUBDIR+=	culmus
+SUBDIR+=	cursed_font
 SUBDIR+=	cyberbase-ttf
 SUBDIR+=	cyberbit-ttf
 SUBDIR+=	cyr-rfx-bulgarian-mik
@@ -861,7 +862,6 @@ SUBDIR+=	un-core-ttf
 SUBDIR+=	un-extra-ttf
 SUBDIR+=	uni-vga
 SUBDIR+=	unifont
-SUBDIR+=	unifraktur-ttf
 SUBDIR+=	unscii
 SUBDIR+=	uralic-ttf
 SUBDIR+=	urbanrenewal-ttf

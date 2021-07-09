@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.11 2020/09/08 13:16:39 wiz Exp $
+# $NetBSD: Makefile,v 1.13 2021/07/04 08:40:18 wen Exp $
 
-DISTNAME=	Test-EOL-2.00
+DISTNAME=	Test-EOL-2.02
 PKGNAME=	p5-${DISTNAME}
-PKGREVISION=	3
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN:=../../authors/id/E/ET/ETHER/}
 

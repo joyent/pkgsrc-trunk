@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.2 2017/09/04 18:00:55 wiz Exp $
+# $NetBSD: Makefile,v 1.4 2021/06/02 15:50:34 taca Exp $
 
 DISTNAME=	color-japanese-1.0.0
 CATEGORIES=	graphics
@@ -11,7 +11,7 @@ LICENSE=	mit
 DEPENDS+=	${RUBY_PKGPREFIX}-color-tools>0:../../graphics/ruby-color-tools
 DEPENDS+=	${RUBY_PKGPREFIX}-hoe>=1.2.0:../../devel/hoe
 
-CONFLICTS+=	ruby[1-9][0-9]-color-japanese-[0-9]*
+RUBYGEM_OPTIONS+=	--format-executable
 
 .include "../../lang/ruby/gem.mk"
 .include "../../mk/bsd.pkg.mk"

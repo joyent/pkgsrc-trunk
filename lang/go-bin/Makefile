@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.4 2020/12/19 14:28:56 bsiegert Exp $
+# $NetBSD: Makefile,v 1.6 2021/06/14 17:23:12 schmonz Exp $
 
 PKGNAME=	go-bin-1.14.2
-PKGREVISION=	1
+PKGREVISION=	3
 CATEGORIES=	lang
 MASTER_SITES=	https://dl.google.com/go/
 
@@ -18,7 +18,7 @@ WRKSRC=		${WRKDIR}/go
 
 REPLACE_PERL+=			src/*/*.pl src/*/*/*.pl
 REPLACE_PERL+=			src/net/http/cgi/testdata/test.cgi
-REPLACE_BASH+=			*/*.bash */*/*.bash */*/*/*.bash
+REPLACE_BASH+=			*/*.bash */*/*.bash */*/*/*.bash */*/*/*/*/*/*.bash
 REPLACE_BASH+=			*/*/*.sh */*/*/*.sh
 REPLACE_BASH+=			misc/arm/a misc/wasm/go_js_wasm_exec
 CHECK_INTERPRETER_SKIP+=	*/*.rc

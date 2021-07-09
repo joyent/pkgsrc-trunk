@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.49 2020/11/05 09:07:33 ryoon Exp $
+# $NetBSD: Makefile,v 1.53 2021/05/24 19:49:13 wiz Exp $
 
 DISTNAME=	hexchat-2.14.3
-PKGREVISION=	7
+PKGREVISION=	9
 CATEGORIES=	chat
 MASTER_SITES=	https://dl.hexchat.net/hexchat/
 EXTRACT_SUFX=	.tar.xz
@@ -12,6 +12,7 @@ COMMENT=	IRC client based on XChat
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2.1 AND mit
 
 USE_TOOLS+=	pkg-config msgfmt xgettext
+
 USE_LANGUAGES=	c c++
 
 # XXX fails without GNU msgfmt
@@ -37,7 +38,9 @@ PKGCONFIG_OVERRIDE+=	data/pkgconfig/hexchat-plugin.pc.in
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/pango/buildlink3.mk"
-.include "../../lang/python/pyversion.mk"
+# Whether Python is required strictly as a build tool or also at runtime is
+# determined in options.mk, and PYTHON_FOR_BUILD_ONLY is set there, if needed.
+.include "../../lang/python/tool.mk"
 .include "../../textproc/iso-codes/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../mk/dlopen.buildlink3.mk"

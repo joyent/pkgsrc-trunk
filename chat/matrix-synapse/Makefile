@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.18 2021/03/10 18:49:06 adam Exp $
+# $NetBSD: Makefile,v 1.30 2021/07/01 21:13:04 js Exp $
 
-DISTNAME=	matrix-synapse-1.28.0
+DISTNAME=	matrix-synapse-1.37.1
+PKGREVISION=	1
 CATEGORIES=	chat
 MASTER_SITES=	${MASTER_SITE_GITHUB:=matrix-org/}
 EGG_NAME=	matrix_synapse-${PKGVERSION_NOREV}
@@ -35,11 +36,12 @@ DEPENDS+=	${PYPKGPREFIX}-msgpack>=0.5.2:../../devel/py-msgpack
 DEPENDS+=	${PYPKGPREFIX}-phonenumbers>=8.2.0:../../textproc/py-phonenumbers
 DEPENDS+=	${PYPKGPREFIX}-six>=1.10:../../lang/py-six
 DEPENDS+=	${PYPKGPREFIX}-prometheus_client>=0.8.0:../../net/py-prometheus_client
-DEPENDS+=	${PYPKGPREFIX}-attrs>=19.1.0:../../devel/py-attrs
+DEPENDS+=	${PYPKGPREFIX}-attrs>=19.2.0:../../devel/py-attrs
 DEPENDS+=	${PYPKGPREFIX}-netaddr>=0.7.18:../../net/py-netaddr
 DEPENDS+=	${PYPKGPREFIX}-jinja2>=2.9:../../textproc/py-jinja2
 DEPENDS+=	${PYPKGPREFIX}-bleach>=1.4.3:../../www/py-bleach
 DEPENDS+=	${PYPKGPREFIX}-typing-extensions>=3.7.4:../../devel/py-typing-extensions
+DEPENDS+=	${PYPKGPREFIX}-ijson>=3.0:../../devel/py-ijson
 DEPENDS+=	${PYPKGPREFIX}-psycopg2>=2.7:../../databases/py-psycopg2
 DEPENDS+=	${PYPKGPREFIX}-lxml>=3.5.0:../../textproc/py-lxml
 
@@ -48,6 +50,8 @@ PYTHON_VERSIONED_DEPENDENCIES=	Pillow
 USE_LANGUAGES=	# none
 USE_TOOLS+=	perl:run
 REPLACE_PERL+=	scripts/sync_room_to_group.pl
+
+PKG_SYSCONFSUBDIR=	matrix-synapse
 
 SYNAPSE_USER?=	synapse
 SYNAPSE_GROUP?=	${SYNAPSE_USER}
@@ -68,8 +72,17 @@ RCD_SCRIPTS=	matrix-synapse
 
 FILES_SUBST+=	SYNAPSE_DATA=${SYNAPSE_DATA:Q}
 FILES_SUBST+=	SYNAPSE_USER=${SYNAPSE_USER:Q}
+FILES_SUBST+=	SYNAPSE_GROUP=${SYNAPSE_GROUP:Q}
 MESSAGE_SUBST+=	PYTHONBIN=${PYTHONBIN:Q}
 MESSAGE_SUBST+=	SYNAPSE_DATA=${SYNAPSE_DATA:Q}
+
+SYNAPSE_DEFAULT_CREATOR_PL?=	100
+SUBST_CLASSES+=			pl
+SUBST_STAGE.pl=			post-patch
+SUBST_FILES.pl=			synapse/handlers/room.py
+SUBST_VARS.pl=			SYNAPSE_DEFAULT_CREATOR_PL
+
+BUILD_DEFS+=			SYNAPSE_DEFAULT_CREATOR_PL
 
 .include "../../lang/python/egg.mk"
 .include "../../lang/python/versioned_dependencies.mk"

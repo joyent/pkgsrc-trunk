@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.58 2020/08/31 18:09:23 wiz Exp $
+# $NetBSD: Makefile,v 1.60 2021/05/24 19:52:06 wiz Exp $
 
 DISTNAME=	nvi-1.79
 PKGNAME=	nvi-m17n-1.79.20040608
-PKGREVISION=	9
+PKGREVISION=	10
 CATEGORIES=	editors
 MASTER_SITES=	http://www.bostic.com/files/
 
-PATCH_SITES=	ftp://ftp.itojun.org/pub/nvi/
+#PATCH_SITES=	ftp://ftp.itojun.org/pub/nvi/
 PATCHFILES=	nvi-m17n-1.79-20040608.diff.gz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org

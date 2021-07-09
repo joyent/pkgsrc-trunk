@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1 2020/11/12 09:05:13 pin Exp $
+# $NetBSD: Makefile,v 1.3 2021/05/02 20:06:33 pin Exp $
 
 DISTNAME=	tiramisu-1.0
 CATEGORIES=	sysutils

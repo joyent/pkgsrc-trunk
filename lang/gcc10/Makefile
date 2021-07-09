@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.8 2021/02/13 15:56:17 maya Exp $
+# $NetBSD: Makefile,v 1.12 2021/06/26 17:42:23 tnn Exp $
 
 GCC_PKGNAME=		gcc10
-PKGREVISION=		2
+PKGREVISION=		1
 .include		"version.mk"
 
 DISTNAME=	gcc-${GCC10_DIST_VERSION}
@@ -104,6 +104,8 @@ CONFIGURE_ARGS+=	--enable-long-long
 CONFIGURE_ARGS+=	--with-local-prefix=${GCC_PREFIX:Q}
 CONFIGURE_ARGS+=	--enable-threads=posix
 CONFIGURE_ARGS+=	--with-boot-ldflags=${BOOT_LDFLAGS:Q}
+CONFIGURE_ARGS+=	--with-system-zlib
+CONFIGURE_ARGS+=	--without-zstd
 # multilib on Darwin requires fat-binaries
 CONFIGURE_ARGS.Darwin+=	--disable-multilib
 .if !empty(OSX_SDK_PATH)
@@ -119,6 +121,9 @@ MAKE_ENV.NetBSD+=	ac_cv_func_uselocale=no
 MAKE_ENV.SunOS+=	ac_cv_func_mkostemp=no
 
 CONFIGURE_ARGS.DragonFly+=	--disable-bootstrap
+.if !empty(PKGSRC_COMPILER:Mclang)
+CONFIGURE_ARGS+=	--disable-bootstrap
+.endif
 
 .if !empty(MACHINE_PLATFORM:MNetBSD-*-i386) || !empty(MACHINE_PLATFORM:MLinux-*-i386)
 CONFIGURE_ARGS+=	--with-arch=i486 --with-tune=i486
@@ -191,16 +196,7 @@ GENERATE_PLIST+= \
 	cd ${DESTDIR}${PREFIX} && \
 	${FIND} ${GCC_SUBPREFIX} \( -type f -o -type l \) -print | ${SORT};
 
-CONFIGURE_ARGS+=	--without-zstd
-CHECK_BUILTIN.zlib:=	yes
-.include "../../devel/zlib/builtin.mk"
-CHECK_BUILTIN.zlib:=	no
-.if !empty(USE_BUILTIN.zlib:M[yY][eE][sS])
-CONFIGURE_ARGS+=	--with-system-zlib
 .include "../../devel/zlib/buildlink3.mk"
-.else
-CONFIGURE_ARGS+=	--without-system-zlib
-.endif
 .include "../../mk/dlopen.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

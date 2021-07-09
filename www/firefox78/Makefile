@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.21 2021/02/24 13:20:06 nia Exp $
+# $NetBSD: Makefile,v 1.31 2021/06/18 18:22:41 nia Exp $
 
 FIREFOX_VER=		${MOZ_BRANCH}${MOZ_BRANCH_MINOR}
-MOZ_BRANCH=		78.8
+MOZ_BRANCH=		78.11
 MOZ_BRANCH_MINOR=	.0esr
 
 DISTNAME=	firefox-${FIREFOX_VER}.source
@@ -99,8 +99,8 @@ SUBST_SED.cksum+=	-e 's,${from},${to},g'
 .endfor
 
 pre-configure:
-	cd ${WRKSRC} && autoconf
-	cd ${WRKSRC}/js/src && autoconf
+	cd ${WRKSRC} && autoconf-2.13
+	cd ${WRKSRC}/js/src && autoconf-2.13
 	cd ${WRKSRC} && mkdir ${OBJDIR}
 	cd ${WRKSRC}/${OBJDIR} && touch old-configure.vars
 	# Do not fetch Rust Cargo file via network during build

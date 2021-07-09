@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.52 2021/02/07 06:30:28 ryoon Exp $
+# $NetBSD: Makefile,v 1.56 2021/06/01 09:12:23 wiz Exp $
 
 DISTNAME=	luminance-hdr-2.6.0
-PKGREVISION=	1
+PKGREVISION=	5
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=qtpfsgui/}
 EXTRACT_SUFX=	.tar.bz2
@@ -25,7 +25,7 @@ CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE=Release
 .include "../../graphics/openexr/buildlink3.mk"
 .include "../../graphics/tiff/buildlink3.mk"
 .include "../../math/eigen3/buildlink3.mk"
-.include "../../math/fftwf/buildlink3.mk"
+.include "../../math/fftw/buildlink3.mk"
 .include "../../math/gsl/buildlink3.mk"
 .include "../../parallel/openmp/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"

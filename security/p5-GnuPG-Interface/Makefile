@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.34 2020/08/31 18:11:18 wiz Exp $
+# $NetBSD: Makefile,v 1.36 2021/05/24 19:54:03 wiz Exp $
 
-DISTNAME=		GnuPG-Interface-1.00
+DISTNAME=		GnuPG-Interface-1.02
 PKGNAME=		p5-${DISTNAME}
 PKGREVISION=		1
 CATEGORIES=		security perl5
@@ -15,9 +15,6 @@ LICENSE=		${PERL5_LICENSE}
 DEPENDS+=		p5-Moo-[0-9]*:../../devel/p5-Moo
 DEPENDS+=		p5-MooX-late>=0.100nb1:../../devel/p5-MooX-late
 DEPENDS+=		p5-MooX-HandlesVia-[0-9]*:../../devel/p5-MooX-HandlesVia
-# This should not be a direct dependency, but I didn't find which DEPENDS
-# should pull this in instead.
-DEPENDS+=		p5-Class-Tiny-[0-9]*:../../devel/p5-Class-Tiny
 
 PERL5_PACKLIST=		auto/GnuPG/Interface/.packlist
 

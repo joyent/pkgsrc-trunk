@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.15 2021/01/01 08:24:38 ryoon Exp $
+# $NetBSD: Makefile,v 1.18 2021/04/21 13:24:29 adam Exp $
 
 # This package is intentionally old to avoid:
 #   Server Side Public License
@@ -6,7 +6,7 @@
 # and further exists to support net/unifi.
 DISTNAME=	mongodb-src-r3.4.24
 PKGNAME=	${DISTNAME:S/src-r//}
-PKGREVISION=	6
+PKGREVISION=	8
 CATEGORIES=	databases
 MASTER_SITES=	http://fastdl.mongodb.org/src/
 
@@ -106,6 +106,8 @@ CONF_FILES+=		share/examples/mongodb/mongod.conf \
 # Copy system specific files for NetBSD and DragonFly
 post-extract:
 	${CHMOD} -R g-w ${WRKSRC}
+	${CP} -R ${WRKSRC}/src/third_party/mozjs-45/platform/aarch64/linux \
+		${WRKSRC}/src/third_party/mozjs-45/platform/aarch64/netbsd
 	${CP} -R ${WRKSRC}/src/third_party/mozjs-45/platform/x86_64/freebsd \
 		${WRKSRC}/src/third_party/mozjs-45/platform/x86_64/dragonfly
 	${CP} -R ${WRKSRC}/src/third_party/mozjs-45/platform/x86_64/openbsd \

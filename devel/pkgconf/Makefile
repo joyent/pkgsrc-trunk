@@ -1,8 +1,10 @@
-# $NetBSD: Makefile,v 1.15 2020/10/02 09:21:28 wiz Exp $
+# $NetBSD: Makefile,v 1.17 2021/04/29 11:00:15 thor Exp $
 
-DISTNAME=	pkgconf-1.7.3
+DISTNAME=	pkgconf-1.7.4
 CATEGORIES=	devel
 MASTER_SITES=	https://distfiles.dereferenced.org/pkgconf/
+
+PKGREVISION=	1
 
 MAINTAINER=	nico@orgrim.net
 HOMEPAGE=	https://github.com/pkgconf/pkgconf
@@ -27,12 +29,13 @@ PKGCONFIG_PATHS+=	/usr/lib/pkgconfig
 PKGCONFIG_PATHS+=	${X11BASE}/lib/pkgconfig
 .endif
 
-CONFIGURE_ARGS+=	--with-pkg-config-dir='${PKGCONFIG_PATHS:ts::Q}'
+CONFIGURE_ARGS+=	--with-pkg-config-dir=${PKGCONFIG_PATHS:ts::Q}
 
 # configure script incorrectly sets only _FILE_OFFSET_BITS=64
 CPPFLAGS.SunOS+=	-D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
 
 post-install:
-	${LN} -s ${DESTDIR}${PREFIX}/bin/pkgconf ${DESTDIR}${PREFIX}/bin/pkg-config
+	${LN} -s pkgconf ${DESTDIR}${PREFIX}/bin/pkg-config
+	${LN} -s pkgconf.1 ${DESTDIR}${PREFIX}/${PKGMANDIR}/man1/pkg-config.1
 
 .include "../../mk/bsd.pkg.mk"

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.624 2021/02/18 16:38:26 nia Exp $
+# $NetBSD: Makefile,v 1.633 2021/05/25 12:27:02 nia Exp $
 #
 
 COMMENT=	Audio tools, players, and libraries
@@ -294,6 +294,7 @@ SUBDIR+=	mbrolavox-us2
 SUBDIR+=	mbrolavox-us3
 SUBDIR+=	mikmod
 SUBDIR+=	milkytracker
+SUBDIR+=	minimp3
 SUBDIR+=	mixer.app
 SUBDIR+=	mixxx
 SUBDIR+=	mkcdtoc
@@ -318,10 +319,9 @@ SUBDIR+=	mpc
 SUBDIR+=	mpdas
 SUBDIR+=	mpegaudio
 SUBDIR+=	mpg123
+SUBDIR+=	mpg123-jack
 SUBDIR+=	mpg123-nas
-SUBDIR+=	mpg123-oss
 SUBDIR+=	mpg123-pulse
-SUBDIR+=	mpg123-sun
 SUBDIR+=	mpg321
 SUBDIR+=	mppenc
 SUBDIR+=	mserv
@@ -350,6 +350,11 @@ SUBDIR+=	openal-soft
 SUBDIR+=	opencore-amr
 SUBDIR+=	opus-tools
 SUBDIR+=	opusfile
+SUBDIR+=	ossinfo
+SUBDIR+=	ossmix
+SUBDIR+=	ossplay
+SUBDIR+=	osstest
+SUBDIR+=	ossxmix
 SUBDIR+=	p5-Audio-CD
 SUBDIR+=	p5-Audio-Scan
 SUBDIR+=	p5-Audio-Wav
@@ -411,6 +416,7 @@ SUBDIR+=	rhythmbox
 SUBDIR+=	rip
 SUBDIR+=	rosegarden
 SUBDIR+=	rsynth
+SUBDIR+=	rtunes
 SUBDIR+=	rubberband
 SUBDIR+=	ruby-mp3info
 SUBDIR+=	ruby-taglib
@@ -480,7 +486,6 @@ SUBDIR+=	wsoundprefs
 SUBDIR+=	wsoundserver
 SUBDIR+=	xanalyser
 SUBDIR+=	xcdplayer
-SUBDIR+=	xfce4-mixer
 SUBDIR+=	xfce4-xmms-plugin
 SUBDIR+=	xhippo
 SUBDIR+=	xine-alsa

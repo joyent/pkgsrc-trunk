@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.3 2021/02/18 15:07:27 mef Exp $
+# $NetBSD: Makefile,v 1.5 2021/05/03 19:01:10 pho Exp $
 
-DISTNAME=	cryptohash-sha256-0.11.101.0
+DISTNAME=	cryptohash-sha256-0.11.102.0
+PKGREVISION=	1
 CATEGORIES=	security
 
 MAINTAINER=	pho@cielonegro.org
 COMMENT=	Fast, pure and practical SHA-256 implementation
 LICENSE=	modified-bsd
 
-BUILDLINK_API_DEPENDS.ghc+=	ghc<8.10
 .include "../../mk/haskell.mk"
 .include "../../mk/bsd.pkg.mk"

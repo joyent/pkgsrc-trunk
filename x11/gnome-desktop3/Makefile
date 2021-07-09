@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.44 2020/11/17 11:35:19 nia Exp $
+# $NetBSD: Makefile,v 1.48 2021/06/30 09:36:33 cirnatdan Exp $
 
-DISTNAME=	gnome-desktop-3.38.1
+DISTNAME=	gnome-desktop-40.2
 PKGNAME=	${DISTNAME:S/desktop/desktop3/}
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/gnome-desktop/${PKGVERSION_NOREV:R}/}
@@ -11,9 +11,8 @@ HOMEPAGE=	https://www.gnome.org/
 COMMENT=	GNOME3 desktop-wide documents and libgnome-desktop library
 LICENSE=	gnu-gpl-v2 AND gnu-lgpl-v2 AND gnu-fdl-v1.1
 
-TOOL_DEPENDS+=		gdbus-codegen-[0-9]*:../../devel/gdbus-codegen
+USE_TOOLS+=		pkg-config xgettext gdbus-codegen
 
-USE_TOOLS+=		pkg-config xgettext
 PKGCONFIG_OVERRIDE+=	libgnome-desktop/gnome-desktop-3.0.pc.in
 
 MESON_ARGS+=		-Dsystemd=disabled
@@ -23,6 +22,8 @@ MESON_ARGS+=		-Ddate_in_gnome_version=false
 MESON_ARGS+=		-Ddesktop_docs=false
 MESON_ARGS+=		-Dgtk_doc=false
 MESON_ARGS+=		-Ddebug_tools=false
+
+PYTHON_FOR_BUILD_ONLY=	tool
 
 BUILDLINK_API_DEPENDS.glib2+=	glib2>=2.44.0
 .include "../../devel/glib2/buildlink3.mk"

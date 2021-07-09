@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.1 2020/01/17 15:46:39 pho Exp $
+# $NetBSD: Makefile,v 1.3 2021/05/03 19:01:15 pho Exp $
 
-DISTNAME=	hxt-charproperties-9.4.0.0
+DISTNAME=	hxt-charproperties-9.5.0.0
+PKGREVISION=	1
 CATEGORIES=	textproc
 
 MAINTAINER=	pho@cielonegro.org

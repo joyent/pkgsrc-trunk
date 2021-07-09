@@ -1,10 +1,9 @@
-# $NetBSD: Makefile,v 1.23 2020/08/31 18:09:34 wiz Exp $
-#
+# $NetBSD: Makefile,v 1.25 2021/05/24 19:52:17 wiz Exp $
 
 DISTNAME=	minami-1.0.2
-PKGREVISION=	9
+PKGREVISION=	10
 CATEGORIES=	games
-MASTER_SITES=	ftp://ftp.guru.gr.jp/pub/minami/
+MASTER_SITES=	http://www.guru.gr.jp/~issei/minami/
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	pkgsrc-users@NetBSD.org

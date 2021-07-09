@@ -1,5 +1,6 @@
-# $NetBSD: Makefile,v 1.276 2020/09/29 10:43:33 prlw1 Exp $
+# $NetBSD: Makefile,v 1.282 2021/06/30 14:26:11 prlw1 Exp $
 
+PKGREVISION=	1
 .include "Makefile.common"
 
 CATEGORIES=	devel gnome
@@ -10,13 +11,14 @@ COMMENT=	Some useful routines for C programming (glib2)
 MESON_ARGS+=	-Dinstalled_tests=false
 # Avoid linux dependency on libmount-dev
 MESON_ARGS+=	-Dlibmount=disabled
+MESON_ARGS+=	-Dlocalstatedir=${VARBASE}
 .if ${OPSYS} == "FreeBSD"
 MESON_ARGS+=	-Db_lundef=false
 .endif
 
 MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/output/gio:${WRKSRC}/output/glib:${WRKSRC}/output/gobject:${WRKSRC}/output/gmodule
 
-CPPFLAGS.SunOS+=	-D_XOPEN_SOURCE=600 -D__EXTENSIONS__
+CPPFLAGS.SunOS+=	-D_XOPEN_SOURCE=600 -D__EXTENSIONS__ -D__stub_epoll_create
 LDFLAGS.SunOS+=		-liconv -lintl -lnsl -lsocket
 LDFLAGS.FreeBSD+=	-liconv
 
@@ -39,13 +41,6 @@ FILES_SUBST+=		GLIB_COMPILE_SCHEMAS=${PREFIX}/bin/glib-compile-schemas
 FILES_SUBST+=		GLIB_SCHEMAS_DIR=${PREFIX}/share/glib-2.0/schemas
 
 BUILD_DEFS+=		VARBASE
-SUBST_CLASSES+=		dbusdb
-SUBST_MESSAGE.dbusdb=	Adjust dbus machine uuid path to dbus package
-SUBST_STAGE.dbusdb=	pre-configure
-SUBST_FILES.dbusdb=	gio/gdbusconnection.c
-SUBST_FILES.dbusdb+=	gio/gdbusprivate.c
-SUBST_FILES.dbusdb+=	po/*.po
-SUBST_SED.dbusdb=	-e 's,/var/lib/dbus,${VARBASE}/db/dbus,g'
 
 SUBST_CLASSES+=		xdg
 SUBST_MESSAGE.xdg=	Adjust XDG_DATA_DIRS so schemas and pixbuf loaders are found
