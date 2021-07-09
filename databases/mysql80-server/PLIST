@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-@comment $NetBSD$
-LICENSE.router
-README.router
-=======
 @comment $NetBSD: PLIST,v 1.1 2021/05/13 15:25:20 jdolecek Exp $
 bin/comp_err
->>>>>>> netbsd/trunk
 bin/ibd2sdi
 bin/innochecksum
 bin/my_print_defaults
@@ -13,49 +7,22 @@ bin/myisam_ftdump
 bin/myisamchk
 bin/myisamlog
 bin/myisampack
-<<<<<<< HEAD
-bin/mysql_secure_installation
-bin/mysql_ssl_rsa_setup
-=======
 bin/mysql_keyring_encryption_test
 bin/mysql_secure_installation
->>>>>>> netbsd/trunk
 bin/mysql_tzinfo_to_sql
 bin/mysql_upgrade
 bin/mysqld_multi
 bin/mysqld_safe
 bin/mysqldumpslow
 bin/mysqlrouter
-<<<<<<< HEAD
-bin/mysqlrouter_passwd
-bin/mysqlrouter_plugin_info
-=======
 bin/mysqlrouter_keyring
 bin/mysqlrouter_passwd
 bin/mysqlrouter_plugin_info
 bin/mysqltest
->>>>>>> netbsd/trunk
 bin/mysqltest_safe_process
 bin/mysqlxtest
 bin/perror
 bin/zlib_decompress
-<<<<<<< HEAD
-include/mysql/mysqlx_ername.h
-include/mysql/mysqlx_error.h
-include/mysql/mysqlx_version.h
-lib/libmysqlharness.a
-lib/libmysqlharness.so
-lib/libmysqlharness.so.1
-lib/libmysqlrouter.so
-lib/libmysqlrouter.so.1
-lib/libmysqlrouter_http.so
-lib/libmysqlrouter_http.so.1
-lib/libmysqlservices.a
-lib/mysql/plugin/adt_null.so
-lib/mysql/plugin/auth.so
-lib/mysql/plugin/auth_test_plugin.so
-lib/mysql/plugin/authentication_ldap_sasl_client.so
-=======
 docs/sample_mysqlrouter.conf
 include/mysql/mysqlx_ername.h
 include/mysql/mysqlx_error.h
@@ -75,27 +42,15 @@ ${PLIST.memcached}lib/mysql/plugin/libmemcached.so
 lib/mysql/plugin/adt_null.so
 lib/mysql/plugin/auth.so
 lib/mysql/plugin/auth_test_plugin.so
->>>>>>> netbsd/trunk
 lib/mysql/plugin/component_audit_api_message_emit.so
 lib/mysql/plugin/component_example_component1.so
 lib/mysql/plugin/component_example_component2.so
 lib/mysql/plugin/component_example_component3.so
-<<<<<<< HEAD
-=======
 lib/mysql/plugin/component_keyring_file.so
->>>>>>> netbsd/trunk
 lib/mysql/plugin/component_log_filter_dragnet.so
 lib/mysql/plugin/component_log_sink_json.so
 lib/mysql/plugin/component_log_sink_syseventlog.so
 lib/mysql/plugin/component_log_sink_test.so
-<<<<<<< HEAD
-lib/mysql/plugin/component_mysqlx_global_reset.so
-lib/mysql/plugin/component_pfs_example.so
-lib/mysql/plugin/component_pfs_example_component_population.so
-lib/mysql/plugin/component_test_audit_api_message.so
-lib/mysql/plugin/component_test_backup_lock_service.so
-lib/mysql/plugin/component_test_host_application_signal.so
-=======
 lib/mysql/plugin/component_mysqlbackup.so
 lib/mysql/plugin/component_mysqlx_global_reset.so
 lib/mysql/plugin/component_pfs_example.so
@@ -107,7 +62,6 @@ lib/mysql/plugin/component_test_backup_lock_service.so
 lib/mysql/plugin/component_test_component_deinit.so
 lib/mysql/plugin/component_test_host_application_signal.so
 lib/mysql/plugin/component_test_mysql_current_thread_reader.so
->>>>>>> netbsd/trunk
 lib/mysql/plugin/component_test_mysql_runtime_error.so
 lib/mysql/plugin/component_test_pfs_notification.so
 lib/mysql/plugin/component_test_pfs_resource_group.so
@@ -125,10 +79,7 @@ lib/mysql/plugin/component_test_sys_var_service_same.so
 lib/mysql/plugin/component_test_sys_var_service_str.so
 lib/mysql/plugin/component_test_system_variable_source.so
 lib/mysql/plugin/component_test_udf_registration.so
-<<<<<<< HEAD
-=======
 lib/mysql/plugin/component_test_udf_services.so
->>>>>>> netbsd/trunk
 lib/mysql/plugin/component_udf_reg_3_func.so
 lib/mysql/plugin/component_udf_reg_avg_func.so
 lib/mysql/plugin/component_udf_reg_int_func.so
@@ -145,17 +96,9 @@ lib/mysql/plugin/ddl_rewriter.so
 lib/mysql/plugin/group_replication.so
 lib/mysql/plugin/ha_example.so
 lib/mysql/plugin/ha_mock.so
-<<<<<<< HEAD
-lib/mysql/plugin/innodb_engine.so
 lib/mysql/plugin/keyring_file.so
 lib/mysql/plugin/keyring_udf.so
 lib/mysql/plugin/libdaemon_example.so
-lib/mysql/plugin/libmemcached.so
-=======
-lib/mysql/plugin/keyring_file.so
-lib/mysql/plugin/keyring_udf.so
-lib/mysql/plugin/libdaemon_example.so
->>>>>>> netbsd/trunk
 lib/mysql/plugin/libtest_framework.so
 lib/mysql/plugin/libtest_services.so
 lib/mysql/plugin/libtest_services_threaded.so
@@ -174,10 +117,7 @@ lib/mysql/plugin/libtest_sql_processlist.so
 lib/mysql/plugin/libtest_sql_replication.so
 lib/mysql/plugin/libtest_sql_reset_connection.so
 lib/mysql/plugin/libtest_sql_shutdown.so
-<<<<<<< HEAD
-=======
 lib/mysql/plugin/libtest_sql_sleep_is_connected.so
->>>>>>> netbsd/trunk
 lib/mysql/plugin/libtest_sql_sqlmode.so
 lib/mysql/plugin/libtest_sql_stmt.so
 lib/mysql/plugin/libtest_sql_stored_procedures_functions.so
@@ -186,10 +126,7 @@ lib/mysql/plugin/libtest_x_sessions_deinit.so
 lib/mysql/plugin/libtest_x_sessions_init.so
 lib/mysql/plugin/locking_service.so
 lib/mysql/plugin/mypluglib.so
-<<<<<<< HEAD
-=======
 lib/mysql/plugin/mysql_clone.so
->>>>>>> netbsd/trunk
 lib/mysql/plugin/mysql_no_login.so
 lib/mysql/plugin/pfs_example_plugin_employee.so
 lib/mysql/plugin/qa_auth_client.so
@@ -210,11 +147,6 @@ lib/mysql/plugin/version_token.so
 lib/mysqlrouter/http_auth_backend.so
 lib/mysqlrouter/http_auth_realm.so
 lib/mysqlrouter/http_server.so
-<<<<<<< HEAD
-lib/mysqlrouter/keepalive.so
-lib/mysqlrouter/metadata_cache.so
-lib/mysqlrouter/mysql_protocol.so
-=======
 lib/mysqlrouter/io.so
 lib/mysqlrouter/keepalive.so
 lib/mysqlrouter/metadata_cache.so
@@ -224,7 +156,6 @@ lib/mysqlrouter/rest_router.so
 lib/mysqlrouter/rest_routing.so
 lib/mysqlrouter/router_openssl.so
 lib/mysqlrouter/router_protobuf.so
->>>>>>> netbsd/trunk
 lib/mysqlrouter/routing.so
 sbin/mysqld
 share/aclocal/mysql.m4
@@ -232,17 +163,12 @@ share/doc/mysql/ChangeLog
 share/doc/mysql/INFO_BIN
 share/doc/mysql/INFO_SRC
 share/doc/mysql/LICENSE
-<<<<<<< HEAD
-share/doc/mysql/README
-share/doc/mysql/sample_mysqlrouter.conf
-=======
 share/doc/mysql/LICENSE-test
 share/doc/mysql/LICENSE.router
 share/doc/mysql/README
 share/doc/mysql/README-test
 share/doc/mysql/README.router
 share/examples/rc.d/mysqld
->>>>>>> netbsd/trunk
 share/mysql/bulgarian/errmsg.sys
 share/mysql/charsets/Index.xml
 share/mysql/charsets/README
@@ -275,35 +201,21 @@ share/mysql/danish/errmsg.sys
 share/mysql/dictionary.txt
 share/mysql/dutch/errmsg.sys
 share/mysql/english/errmsg.sys
-<<<<<<< HEAD
-share/mysql/errmsg-utf8.txt
-=======
->>>>>>> netbsd/trunk
 share/mysql/estonian/errmsg.sys
 share/mysql/french/errmsg.sys
 share/mysql/german/errmsg.sys
 share/mysql/greek/errmsg.sys
 share/mysql/hungarian/errmsg.sys
-<<<<<<< HEAD
-share/mysql/innodb_memcached_config.sql
-=======
->>>>>>> netbsd/trunk
 share/mysql/install_rewriter.sql
 share/mysql/italian/errmsg.sys
 share/mysql/japanese/errmsg.sys
 share/mysql/korean/errmsg.sys
-<<<<<<< HEAD
-share/mysql/mysql-log-rotate
-share/mysql/mysql.server
-share/mysql/mysqld_multi.server
-=======
 share/mysql/messages_to_clients.txt
 share/mysql/messages_to_error_log.txt
 share/mysql/mysql-log-rotate
 share/mysql/mysql.server
 share/mysql/mysqld_multi.server
 share/mysql/mysqlrouter-log-rotate
->>>>>>> netbsd/trunk
 share/mysql/norwegian-ny/errmsg.sys
 share/mysql/norwegian/errmsg.sys
 share/mysql/polish/errmsg.sys
@@ -314,10 +226,6 @@ share/mysql/serbian/errmsg.sys
 share/mysql/slovak/errmsg.sys
 share/mysql/spanish/errmsg.sys
 share/mysql/swedish/errmsg.sys
-<<<<<<< HEAD
-share/mysql/ukrainian/errmsg.sys
-share/mysql/uninstall_rewriter.sql
-=======
 share/mysql/test/README
 share/mysql/test/README.gcov
 share/mysql/test/README.stress
@@ -21459,4 +21367,3 @@ share/mysql/uninstall_rewriter.sql
 @pkgdir var/lib/mysqlrouter
 @pkgdir run
 @pkgdir lib/mysql/plugin/debug
->>>>>>> netbsd/trunk

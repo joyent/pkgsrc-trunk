@@ -1,17 +1,10 @@
-<<<<<<< HEAD
-@comment $NetBSD$
-=======
 @comment $NetBSD: PLIST,v 1.1 2021/05/13 15:25:20 jdolecek Exp $
->>>>>>> netbsd/trunk
 bin/mysql
 bin/mysql_client_test
 bin/mysql_config
 bin/mysql_config_editor
-<<<<<<< HEAD
-=======
 bin/mysql_migrate_keyring
 bin/mysql_ssl_rsa_setup
->>>>>>> netbsd/trunk
 bin/mysqladmin
 bin/mysqlbinlog
 bin/mysqlcheck
@@ -20,17 +13,10 @@ bin/mysqlimport
 bin/mysqlpump
 bin/mysqlshow
 bin/mysqlslap
-<<<<<<< HEAD
-bin/mysqltest
-include/mysql/errmsg.h
-include/mysql/field_types.h
-include/mysql/my_command.h
-=======
 include/mysql/errmsg.h
 include/mysql/field_types.h
 include/mysql/my_command.h
 include/mysql/my_compress.h
->>>>>>> netbsd/trunk
 include/mysql/my_list.h
 include/mysql/mysql.h
 include/mysql/mysql/client_plugin.h
@@ -43,11 +29,7 @@ include/mysql/mysqld_error.h
 lib/libmysqlclient.a
 lib/libmysqlclient.so
 lib/libmysqlclient.so.21
-<<<<<<< HEAD
-lib/libmysqlclient.so.21.0.16
-=======
 lib/libmysqlclient.so.21.1.24
->>>>>>> netbsd/trunk
 lib/pkgconfig/mysqlclient.pc
 man/man1/comp_err.1
 man/man1/ibd2sdi.1

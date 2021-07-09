@@ -1,39 +1,20 @@
-<<<<<<< HEAD
-# $NetBSD: Makefile,v 1.20 2019/02/05 20:19:55 adam Exp $
-
-PKGNAME=	${DISTNAME:S/-/-server-/}
-COMMENT=	MySQL database server
-=======
 # $NetBSD: Makefile,v 1.2 2021/05/24 19:49:30 wiz Exp $
 
 PKGNAME=	${DISTNAME:S/-/-server-/}
 PKGREVISION=	1
 COMMENT=	MySQL 8, a free SQL database (server)
->>>>>>> netbsd/trunk
 
 CONFLICTS=	mysql3-server-[0-9]*
 
 .include "../../databases/mysql80-client/Makefile.common"
 
 CMAKE_ARGS+=		-DINSTALL_INFODIR=${PKGINFODIR}
-<<<<<<< HEAD
-CMAKE_ARGS+=		-DINSTALL_MYSQLTESTDIR=""
-CMAKE_ARGS+=		-DWITH_EMBEDDED_SERVER=ON
-
-.include "../../mk/bsd.prefs.mk"
-
-.if ${OS_VARIANT} == "SmartOS"
-CMAKE_ARGS+=		-DUSE_PREGEN_RPC=1
-.else
-CMAKE_ARGS+=		-DUSE_PREGEN_RPC=0
-=======
 CMAKE_ARGS+=		-DWITH_PROTOBUF="system"
 
 PLIST_VARS+=		ndb auth_socket
 
 .if ${OPSYS} == "Linux"
 PLIST.auth_socket=	yes
->>>>>>> netbsd/trunk
 .endif
 
 PTHREAD_OPTS+=		require
@@ -57,27 +38,6 @@ MESSAGE_SUBST+=		MYSQL_DATADIR=${MYSQL_DATADIR}
 MESSAGE_SUBST+=		MYSQL_USER=${MYSQL_USER} MYSQL_GROUP=${MYSQL_GROUP}
 BUILD_DEFS+=		MYSQL_DATADIR
 
-<<<<<<< HEAD
-#REPLACE_PERL+=		mysql-test/lib/v1/mysql-test-run.pl
-#REPLACE_PERL+=		mysql-test/mysql-stress-test.pl
-#REPLACE_PERL+=		mysql-test/mysql-test-run.pl
-#REPLACE_PERL+=		mysql-test/suite/engines/rr_trx/run_stress_tx_rr.pl
-#REPLACE_PERL+=		mysql-test/suite/funcs_1/lib/DataGen_local.pl
-#REPLACE_PERL+=		mysql-test/suite/funcs_1/lib/DataGen_modify.pl
-#REPLACE_PERL+=		mysql-test/suite/funcs_2/lib/gen_charset_utf8.pl
-#REPLACE_PERL+=		mysql-test/suite/opt_trace/validate_json.pl
-#REPLACE_PERL+=		mysql-test/suite/rpl/extension/bhs.pl
-#REPLACE_PERL+=		mysql-test/suite/rpl/extension/checksum.pl
-
-#REPLACE_SH+=		mysql-test/suite/rpl/t/rpl_loaddata_symlink-master.sh
-#REPLACE_SH+=		mysql-test/suite/rpl/t/rpl_loaddata_symlink-slave.sh
-#REPLACE_SH+=		mysql-test/suite/rpl/t/rpl_misc_functions-slave.sh
-#REPLACE_SH+=		mysql-test/t/long_tmpdir-master.sh
-#REPLACE_SH+=		mysql-test/t/lowercase_mixed_tmpdir-master.sh
-#REPLACE_SH+=		mysql-test/t/lowercase_mixed_tmpdir_innodb-master.sh
-
-#CHECK_INTERPRETER_SKIP+=	share/mysql/test/std_data/dtrace.d
-=======
 REPLACE_PERL+=		mysql-test/lib/v1/mysql-test-run.pl
 REPLACE_PERL+=		mysql-test/lib/t/SafeProcessStress.pl
 REPLACE_PERL+=		mysql-test/lib/t/testMyConfig.t
@@ -102,27 +62,17 @@ REPLACE_SH+=		mysql-test/t/long_tmpdir-master.sh
 REPLACE_SH+=		mysql-test/t/lowercase_mixed_tmpdir-master.sh
 REPLACE_SH+=		mysql-test/t/lowercase_mixed_tmpdir_innodb-master.sh
 REPLACE_SH+=		scripts/mysql_config.sh
->>>>>>> netbsd/trunk
 
 SUBST_CLASSES+=		perlpath
 SUBST_STAGE.perlpath=	pre-configure
 SUBST_MESSAGE.perlpath=	Fixing Perl paths.
-<<<<<<< HEAD
-SUBST_FILES.perlpath=	scripts/mysql_config.pl.in
-SUBST_FILES.perlpath+=	scripts/mysqld_multi.sh
-SUBST_FILES.perlpath+=	scripts/mysqldumpslow.sh
-=======
 SUBST_FILES.perlpath+=	scripts/mysqld_multi.pl.in
 SUBST_FILES.perlpath+=	scripts/mysqldumpslow.pl.in
->>>>>>> netbsd/trunk
 SUBST_SED.perlpath=	-e 's,@PERL_PATH@,${PERL5},g'
 
 INSTALLATION_DIRS+=	bin
 TEST_TARGET=		test
 
-<<<<<<< HEAD
-.include "../../archivers/lz4/buildlink3.mk"
-=======
 .include "../../mk/compiler.mk"
 
 .if !empty(PKGSRC_COMPILER:Msunpro)
@@ -139,7 +89,6 @@ post-extract:
 	${CHMOD} a-x ${WRKSRC}/mysql-test/std_data/datadir_tablespace_*
 
 .include "../../devel/protobuf/buildlink3.mk"
->>>>>>> netbsd/trunk
 BUILDLINK_AUTO_DIRS.mysql-client=	no
 .include "../../databases/mysql80-client/buildlink3.mk"
 .include "../../security/tcp_wrappers/buildlink3.mk"

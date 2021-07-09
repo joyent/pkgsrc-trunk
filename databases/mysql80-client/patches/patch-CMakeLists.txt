@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-$NetBSD$
-
-Split configuration between -client and -server.
-
---- CMakeLists.txt.orig	2019-01-25 22:33:03.000000000 +0000
-+++ CMakeLists.txt
-@@ -1040,12 +1040,10 @@ ADD_SUBDIRECTORY(utilities)
- ADD_SUBDIRECTORY(share)
- ADD_SUBDIRECTORY(libservices)
- 
-=======
 $NetBSD: patch-CMakeLists.txt,v 1.1 2021/05/13 15:25:20 jdolecek Exp $
 
 Split configuration between mysql-client and mysql-server.
@@ -31,22 +19,13 @@ Split configuration between mysql-client and mysql-server.
    INCLUDE(fastcov)
  ENDIF()
  
->>>>>>> netbsd/trunk
 -IF(UNIX)
 +IF(WITHOUT_SERVER)
    ADD_SUBDIRECTORY(man)
 -ENDIF()
 -
 -IF(NOT WITHOUT_SERVER)
-<<<<<<< HEAD
-   ADD_SUBDIRECTORY(testclients)
-+ELSE()
-   ADD_SUBDIRECTORY(sql)
- ENDIF()
- 
-=======
 +ELSE()
    ADD_SUBDIRECTORY(packaging/rpm-common)
    ADD_SUBDIRECTORY(packaging/rpm-oel)
    ADD_SUBDIRECTORY(packaging/rpm-fedora)
->>>>>>> netbsd/trunk

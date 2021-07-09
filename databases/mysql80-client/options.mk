@@ -1,20 +1,3 @@
-<<<<<<< HEAD
-# $NetBSD: options.mk,v 1.3 2019/02/05 20:19:55 adam Exp $
-
-PKG_OPTIONS_VAR=	PKG_OPTIONS.mysql80
-
-PKG_SUPPORTED_OPTIONS+=	dtrace memcached
-
-.include "../../mk/bsd.options.mk"
-
-# Enable DTrace support
-.if !empty(PKG_OPTIONS:Mdtrace)
-CMAKE_ARGS+=		-DENABLE_DTRACE=ON
-.else
-CMAKE_ARGS+=		-DENABLE_DTRACE=OFF
-.endif
-
-=======
 # $NetBSD: options.mk,v 1.1 2021/05/13 15:25:20 jdolecek Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.mysql8
@@ -25,7 +8,6 @@ PKG_SUPPORTED_OPTIONS+=	memcached
 
 .include "../../mk/bsd.options.mk"
 
->>>>>>> netbsd/trunk
 # Enable InnoDB Memcached support
 PLIST_VARS+=		memcached
 .if !empty(PKG_OPTIONS:Mmemcached)
@@ -35,8 +17,6 @@ CMAKE_ARGS+=		-DWITH_BUNDLED_MEMCACHED=ON
 .else
 CMAKE_ARGS+=		-DWITH_INNODB_MEMCACHED=OFF
 .endif
-<<<<<<< HEAD
-=======
 
 # Enable Sphinx SE support
 # http://sphinxsearch.com/docs/current.html#sphinxse-overview
@@ -53,4 +33,3 @@ CMAKE_ARGS+=		-DWITH_INNODB_MEMCACHED=OFF
 #post-extract:
 #	${CP} -R ${WRKDIR}/sphinx-${SPHINX_VER}-release/mysqlse ${WRKSRC}/storage/sphinx
 #.endif
->>>>>>> netbsd/trunk

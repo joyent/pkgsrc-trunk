@@ -1,10 +1,6 @@
 #!@RCD_SCRIPTS_SHELL@
 #
-<<<<<<< HEAD
-# $NetBSD: mysqld.sh,v 1.2 2017/06/24 15:18:42 schmonz Exp $
-=======
 # $NetBSD: mysqld.sh,v 1.1 2021/05/13 15:25:20 jdolecek Exp $
->>>>>>> netbsd/trunk
 #
 # PROVIDE: mysqld
 # REQUIRE: DAEMON LOGIN mountall
