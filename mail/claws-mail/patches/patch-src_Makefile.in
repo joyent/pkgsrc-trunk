@@ -1,0 +1,13 @@
+$NetBSD: patch-src_Makefile.in,v 1.1 2021/07/13 12:35:09 nia Exp $
+
+--- src/Makefile.in.orig	2021-07-10 08:51:54.000000000 +0000
++++ src/Makefile.in
+@@ -729,7 +729,7 @@ unity_LIBS = @unity_LIBS@
+ @CLAWS_LIBETPAN_TRUE@etpan_dir = etpan
+ @CLAWS_LIBETPAN_FALSE@etpan_library = 
+ @CLAWS_LIBETPAN_TRUE@etpan_library = etpan/libclawsetpan.la
+-SUBDIRS = common gtk $(etpan_dir) . plugins $(am__append_1)
++SUBDIRS = common gtk $(etpan_dir) . $(am__append_1)
+ @BUILD_TESTS_TRUE@GTESTER = gtester
+ @BUILD_TESTS_TRUE@GTESTER_REPORT = gtester-report
+ 
