@@ -1,0 +1,15 @@
+$NetBSD: patch-po_Makefile.in.in,v 1.1 2021/07/13 12:35:09 nia Exp $
+
+--- po/Makefile.in.in.orig	2021-07-10 08:47:06.000000000 +0000
++++ po/Makefile.in.in
+@@ -40,8 +40,8 @@ INSTALL_DATA = @INSTALL_DATA@
+ # In automake >= 1.10, @mkdir_p@ is derived from ${MKDIR_P}, which is defined
+ # either as "/path/to/mkdir -p" or ".../install-sh -c -d". For these automake
+ # versions, $(mkinstalldirs) and $(install_sh) are unused.
+-mkinstalldirs = $(SHELL) @install_sh@ -d
+-install_sh = $(SHELL) @install_sh@
++mkinstalldirs = @install_sh@ -d
++install_sh = @install_sh@
+ MKDIR_P = @MKDIR_P@
+ mkdir_p = @mkdir_p@
+ 

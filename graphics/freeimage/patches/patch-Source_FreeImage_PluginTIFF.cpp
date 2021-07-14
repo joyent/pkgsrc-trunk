@@ -1,8 +1,9 @@
-$NetBSD: patch-Source_FreeImage_PluginTIFF.cpp,v 1.1 2020/05/14 16:42:14 nia Exp $
+$NetBSD: patch-Source_FreeImage_PluginTIFF.cpp,v 1.3 2021/07/11 04:08:06 markd Exp $
 
 Unbundle image libraries.
+handle openexr3
 
---- Source/FreeImage/PluginTIFF.cpp.orig	2018-07-28 23:24:44.000000000 +0000
+--- Source/FreeImage/PluginTIFF.cpp.orig	2018-07-28 12:24:44.000000000 +0000
 +++ Source/FreeImage/PluginTIFF.cpp
 @@ -37,9 +37,9 @@
  
@@ -12,7 +13,7 @@ Unbundle image libraries.
 +#include <tiffio.h>
  #include "../Metadata/FreeImageTag.h"
 -#include "../OpenEXR/Half/half.h"
-+#include <OpenEXR/half.h>
++#include <Imath/half.h>
  
  #include "FreeImageIO.h"
  #include "PSDParser.h"

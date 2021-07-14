@@ -1,4 +1,4 @@
-$NetBSD: TODO,v 1.20853 2021/07/07 13:12:24 nia Exp $
+$NetBSD: TODO,v 1.20865 2021/07/14 13:23:16 wiz Exp $
 
 Suggested new packages
 ======================
@@ -502,11 +502,11 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o adocman-0.13
 	o adodb-5.20.19 [security]
 	o advi-2.0.0
+	o adwaita-icon-theme-40.1.1
 	o aegis-4.25
 	o aewm++-1.1.5
 	o afbinit-1.0.1
 	o afl++-3.12c
-	o afterstep-2.2.12
 	o aide-0.16
 	o akonadi-16.08.1
 	o album-4.17
@@ -515,11 +515,9 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o alsa-plugins-1.1.0
 	o amass-3.12.2
 	o amavis-perl-0.3.12 [called just amavis]
-	o amiwm-0.21p2
 	o ampache-4.2.5
 	o anope-2.0.9
 	o ansible-4.0
-	o ansifilter-2.9
 	o antiright-8.6
 	o ap-Embperl-1.3.6
 	o ap-auth-mellon-0.14.2
@@ -638,7 +636,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o ccache-4.2.1
 	o cddbd-1.5.2
 	o cdhit-4.8.1
-	o cdk-5.0.20210324
 	o cdrkit-1.1.10
 	o ce-4.8
 	o ce-doc-4.8
@@ -652,7 +649,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o chrpath-0.16
 	o cim-5.1
 	o cjk-lyx-1.4.4
-	o clang-12.0.0
 	o classpath-0.99
 	o classpath-gui-0.99
 	o clawsker-0.7.13
@@ -708,7 +704,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o dhcpcd-icons-0.7.8
 	o dhcpcd-qt-0.7.8
 	o diction-1.14
-	o digikam-7.2.0
+	o digikam-7.3
 	o dikt-2s1
 	o direnv-2.28.0
 	o direvent-5.2
@@ -948,7 +944,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o gossip-0.31
 	o got-0.52
 	o gourmet-0.13.3
-	o gpac-1.0.1
 	o gperiodic-3.0.2
 	o gps-17.0
 	o gradle-7.0
@@ -965,6 +960,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o gst-plugins1-omx-1.10.0
 	o gst-rtsp-server-1.18.4
 	o gstreamer1-1.18.4 [wip]
+	o gtexinfo-6.8
 	o gthumb-3.4.0
 	o gtk-gnutella-1.2.0
 	o gtk4+-4.0 [wip]
@@ -1044,12 +1040,10 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o icinga-base-2.12.3
 	o idzebra-2.2.2
 	o ike-2.0.1 [pkg/37032]
-	o ilmbase-3.0.5
 	o imapfilter-2.7.5
 	o imapsync-1.727
 	o imp-6.2.12
 	o inadyn-2.8.1
-	o include-what-you-use-0.16
 	o inetutils-2.0
 	o influxdb-2.0.4
 	o inform-6.34
@@ -1268,7 +1262,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o linpsk-1.2 [ld: cannot find -lqt-mt with qt4]
 	o liquidwar-6.0.0.11
 	o lirc-0.9.3
-	o llvm-12.0.0
 	o lmbench-3
 	o log4cxx-0.11.0
 	o lohit-fonts-2.4.2
@@ -1506,16 +1499,15 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o opal-3.16.2
 	o open-vm-tools-11.2.5
 	o openafs-1.8
+	o openblas-0.3.16
 	o opencc-1.1.2
 	o opencolorio-2.0.0
 	o opencpn-plugin-draw-1.8.5.2
 	o opencsg-1.4.2
 	o opendnssec-2.1.8
 	o opendoas-6.8.1
-	o openexr-3.0.5
 	o opengrok-1.7.1
 	o openh323-1.19.1
-	o openimageio-2.2.13.1
 	o openmortal-0.7.1
 	o openmpi-4.1.0
 	o openmsx-0.16.0
@@ -1845,7 +1837,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o py-marisa-0.2.6
 	o py-markdown-3.2.2 [drops python-2.x support]
 	o py-mautrix-0.9.1
-	o py-moin-1.9.11
+	o py-mercurial-5.8.1
 	o py-munkres-1.1.4
 	o py-musicbrainz-0.7.4
 	o py-musicbrainz-ngs-0.7.1
@@ -2100,6 +2092,7 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o tomboy-1.10.2
 	o top-3.8beta1
 	o topgit-0.8
+	o tor-browser-10.5.2
 	o toxcore-0.2.12
 	o trafficserver-9.0.1
 	o translate-toolkit-3.3.4
@@ -2278,7 +2271,6 @@ For possible Perl packages updates, see http://www.NetBSD.org/~wiz/perl.html
 	o zenicb-1.31 (needs merge with lots of local changes)
 	o zeroconf-ioslave-20.12.3
 	o zeromq-4.3.4
-	o zig-0.7.1 [needs llvm-11.x]
 	o zile-2.6.1
 	o zoneminder-1.34.21
 	o zookeeper-3.7.0

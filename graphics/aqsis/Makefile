@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.90 2021/04/21 13:24:45 adam Exp $
+# $NetBSD: Makefile,v 1.92 2021/07/09 10:36:23 markd Exp $
 #
 
 DISTNAME=		aqsis-1.8.1
@@ -160,7 +160,6 @@ post-install:
 .include "../../devel/boost-libs/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
 .include "../../graphics/tiff/buildlink3.mk"
-.include "../../graphics/ilmbase/buildlink3.mk"
 .include "../../graphics/openexr/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"
