@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.3460 2021/07/08 08:33:21 adam Exp $
+# $NetBSD: Makefile,v 1.3466 2021/07/16 06:31:00 nia Exp $
 #
 
 COMMENT=	Development utilities
@@ -410,15 +410,12 @@ SUBDIR+=	gnustep-objc
 SUBDIR+=	gnustep-objc-lf2
 SUBDIR+=	go-blackfriday
 SUBDIR+=	go-check
-SUBDIR+=	go-cmp
 SUBDIR+=	go-colorable
 SUBDIR+=	go-colortext
 SUBDIR+=	go-ed25519
 SUBDIR+=	go-flags-svent
 SUBDIR+=	go-fsnotify
-SUBDIR+=	go-gitmap
 SUBDIR+=	go-glog
-SUBDIR+=	go-gls
 SUBDIR+=	go-gocode
 SUBDIR+=	go-godotenv
 SUBDIR+=	go-golang-lru
@@ -431,13 +428,10 @@ SUBDIR+=	go-iochan
 SUBDIR+=	go-isatty
 SUBDIR+=	go-jwt-go
 SUBDIR+=	go-kr-pretty
-SUBDIR+=	go-levenshtein
 SUBDIR+=	go-logrus
 SUBDIR+=	go-mod
 SUBDIR+=	go-nbreader
-SUBDIR+=	go-osext
 SUBDIR+=	go-pflag
-SUBDIR+=	go-properties
 SUBDIR+=	go-protobuf
 SUBDIR+=	go-pty
 SUBDIR+=	go-review
