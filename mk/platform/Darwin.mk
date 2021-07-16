@@ -208,6 +208,15 @@ _STRIPFLAG_INSTALL?=	${_INSTALL_UNSTRIPPED:D:U}	# install(1) option to strip
 # to avoid a test required by the libtool script that takes forever.
 _OPSYS_MAX_CMDLEN_CMD=	/usr/sbin/sysctl -n kern.argmax
 
+.if ${MACHINE_ARCH} == "aarch64"
+CWRAPPERS_APPEND.cc+=	-arch arm64
+CWRAPPERS_APPEND.cxx+=	-arch arm64
+CWRAPPERS_APPEND.ld+=	-arch arm64
+_WRAP_EXTRA_ARGS.CC+=	-arch arm64
+_WRAP_EXTRA_ARGS.CXX+=	-arch arm64
+_WRAP_EXTRA_ARGS.LD+=	-arch arm64
+.endif
+
 # Darwin 7.7.x has poll() in libc, but no poll.h. Try to help GNU
 # configure packages that break because of this by pretending that
 # there is no poll().
