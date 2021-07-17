@@ -1,0 +1,25 @@
+$NetBSD$
+
+--- distribution/archives/build.gradle.orig	2021-06-10 18:41:11.000000000 +0000
++++ distribution/archives/build.gradle
+@@ -83,6 +83,20 @@ distribution_archives {
+     }
+   }
+ 
++  sunosTar {
++    archiveClassifier = 'sunos-x86_64'
++    content {
++      archiveFiles(modulesFiles('sunos-x86_64'), 'tar', 'sunos', 'x64', false, false)
++    }
++  }
++
++  noJdkSunosTar {
++    archiveClassifier = 'sunos-x86_64'
++    content {
++      archiveFiles(modulesFiles('sunos-x86_64'), 'tar', 'sunos', 'x64', false, false)
++    }
++  }
++
+   darwinTar {
+     archiveClassifier = 'darwin-x86_64'
+     content {
