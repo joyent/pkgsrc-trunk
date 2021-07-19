@@ -1,4 +1,4 @@
-$NetBSD: CHANGES-2021,v 1.3863 2021/07/17 16:30:49 adam Exp $
+$NetBSD: CHANGES-2021,v 1.3876 2021/07/19 07:07:32 adam Exp $
 
 Changes to the packages collection and infrastructure in 2021:
 
@@ -6187,3 +6187,20 @@ Changes to the packages collection and infrastructure in 2021:
 	Updated x11/modular-xorg-server to 1.20.12 [wiz 2021-07-17]
 	Updated net/knock to 0.8 [adam 2021-07-17]
 	Updated textproc/cmark to 0.30.1 [adam 2021-07-17]
+	Updated editors/vim-share to 8.2.3172 [morr 2021-07-17]
+	Updated chat/matrix-synapse to 1.38.0 [js 2021-07-17]
+	Updated devel/py-setuptools to 57.2.0 [adam 2021-07-17]
+	Updated textproc/py-rapidjson to 1.4 [adam 2021-07-17]
+	Updated chat/element-web to 1.7.32 [js 2021-07-17]
+	Added x11/cool-retro-term version 1.1.1 [nia 2021-07-18]
+	Updated fonts/cascadia-ttf to 2106.17 [fcambus 2021-07-18]
+	Added graphics/py-scour version 0.38.2 [gutteridge 2021-07-18]
+	Updated cross/ppc-morphos-binutils to 2.36.1 [js 2021-07-18]
+	Updated graphics/inkscape to 1.1nb1 [gutteridge 2021-07-18]
+	Updated cross/ppc-morphos-sdk to 20210211 [js 2021-07-18]
+	Updated lang/nqp to 2021.06 [mef 2021-07-18]
+	Updated devel/MoarVM to 2021.06 [mef 2021-07-18]
+	Updated lang/rakudo to 2021.06 [mef 2021-07-18]
+	Added print/brlaser version 6 [schmonz 2021-07-18]
+	Updated databases/py-ldap3 to 2.9.1 [adam 2021-07-19]
+	Updated devel/py-pep517 to 0.11.0 [adam 2021-07-19]
