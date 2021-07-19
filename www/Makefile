@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1562 2021/07/09 16:13:23 pin Exp $
+# $NetBSD: Makefile,v 1.1567 2021/07/17 14:51:28 leot Exp $
 #
 
 COMMENT=	Packages related to the World Wide Web
@@ -126,13 +126,9 @@ SUBDIR+=	gitea
 SUBDIR+=	gitweb
 SUBDIR+=	gnurl
 SUBDIR+=	go-ffuf
-SUBDIR+=	go-gogs-client
 SUBDIR+=	go-gohtml
-SUBDIR+=	go-libsass
 SUBDIR+=	go-minify
-SUBDIR+=	go-mux
 SUBDIR+=	go-parse
-SUBDIR+=	go-spritewell
 SUBDIR+=	goaccess
 SUBDIR+=	grafana
 SUBDIR+=	gtkasp2php
@@ -993,6 +989,7 @@ SUBDIR+=	squidview
 SUBDIR+=	squirm
 SUBDIR+=	stagit
 SUBDIR+=	suckit
+SUBDIR+=	surf
 SUBDIR+=	surfraw
 SUBDIR+=	swiftsurf
 SUBDIR+=	swiggle
