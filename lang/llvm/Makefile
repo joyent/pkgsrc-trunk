@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.64 2021/07/12 18:41:02 adam Exp $
+# $NetBSD: Makefile,v 1.66 2021/07/19 16:18:48 tnn Exp $
 #
 # when updating this, please also update:
 # devel/include-what-you-use
@@ -84,6 +84,8 @@ SUBST_FILES.linkmap=	tools/lto/lto.exports
 SUBST_FILES.linkmap+=	tools/remarks-shlib/Remarks.exports
 SUBST_SED.linkmap=	-e '/^LLVM/d'
 
+LDFLAGS.SunOS+=		-lsocket -lnsl
+
 .include "../../mk/bsd.prefs.mk"
 
 PLIST_VARS+=	notdylib
@@ -98,6 +100,12 @@ PLIST_SUBST+=	SOEXT=${SOEXT}
 # needs std::atomic with 64-bit CAS
 .if ${MACHINE_ARCH} == "i386"
 CXXFLAGS+=	-march=i586
+.endif
+
+.if !empty(MACHINE_ARCH:Mpowerpc*)
+# Needed to avoid "relocation truncated to fit: R_PPC_REL24"
+CFLAGS+=	-mlongcall
+CXXFLAGS+=	-mlongcall
 .endif
 
 .include "options.mk"
